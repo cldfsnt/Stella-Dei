@@ -1,5 +1,6 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync(require('node:path').join(__dirname,'../shell.html'),'utf8');
+assert.match(html,/a <b>Water \+<\/b> tap adds 1 m to the selected patch/);assert.match(html,/no automatic refill or guaranteed evolution/);
 const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'Duplicate DOM ids');
 const elements=new Map(ids.map(id=>[id,{id,hidden:id==='guide',disabled:false,open:false,dataset:{},handlers:{},addEventListener(type,fn){this.handlers[type]=fn;},setAttribute(k,v){this[k]=v;},focus(){},setPointerCapture(){},hasPointerCapture(){return false;},dispatchEvent(){},appendChild(){},querySelector(){return {textContent:''}},getBoundingClientRect(){return{left:10,top:100,right:300,bottom:400,width:390,height:700}},showModal(){this.open=true},close(){this.open=false}}]));
 elements.set('diagnostics',{textContent:''});

@@ -14,7 +14,7 @@ add='''            if(i%60==59){
                     var depth=state.planet.waterMass[patch]*state.planet.getKmPerWaterMass()*1000;
                     if(std.posix.getenv("STELLA_PRODUCER_IRRIGATE") != null and depth<0.3){
                         state.selectedPoint=patch;var actions:usize=0;
-                        while(depth<0.5 and actions<10):(actions+=1){_=state.adjustSelectedWater(@intCast(patch),0.1);depth=state.planet.waterMass[patch]*state.planet.getKmPerWaterMass()*1000;}
+                        while(depth<0.5 and actions<10):(actions+=1){if(std.posix.getenv("STELLA_DIAG_COARSE") != null){state.pointerOnPlanet=true;std.debug.assert(state.testAction(1));}else if(std.posix.getenv("STELLA_DIAG_TARGET") != null){std.debug.assert(std.math.isFinite(state.setSelectedWaterTarget(@intCast(patch),0.5)));}else{_=state.adjustSelectedWater(@intCast(patch),0.1);}depth=state.planet.waterMass[patch]*state.planet.getKmPerWaterMass()*1000;}
                         std.debug.print("PLAYER_IRRIGATE day={d} patch={d} actions={d} depth={d}\\n",.{(i+1)/60,patch,actions,depth});
                     }
                     const cc=state.planet.microbeCells[patch];
@@ -24,4 +24,15 @@ add='''            if(i%60==59){
                 state.selectedPoint=center;
             }
 '''
-s=s[:pos]+add+s[pos:];s=s.replace('i%300==299','i%1200==1199');p.write_text(s)
+s=s[:pos]+add+s[pos:];s=s.replace('i%300==299','i%1200==1199')
+needle='    if (std.posix.getenv("STELLA_ORIGIN_COUPLED") != null) {'
+guards='''    {const point=state.selectedPoint;const old=state.planet.waterMass[point];
+      std.debug.assert(std.math.isNan(state.setSelectedWaterTarget(@intCast(point+1),0.5)));
+      std.debug.assert(std.math.isNan(state.setSelectedWaterTarget(@intCast(point),-1)));
+      std.debug.assert(std.math.isNan(state.setSelectedWaterTarget(@intCast(point),6)));
+      std.debug.assert(std.math.isNan(state.setSelectedWaterTarget(@intCast(point),std.math.nan(f32))));
+      std.debug.assert(state.planet.waterMass[point]==old);
+      std.debug.print("TARGET_HANDLER stale_invalid_unchanged=true\\n",.{});
+    }
+'''
+s=s.replace(needle,guards+needle,1);p.write_text(s)

@@ -6,6 +6,8 @@ uniform float lightIntensity;
 uniform vec3 viewPos;
 uniform int displayMode;
 uniform bool clearSurface;
+uniform bool mapContext;
+in float terrainAltitude;
 uniform float planetRadius;
 uniform float kmPerWaterMass;
 uniform samplerCube noiseCubemap;
@@ -89,6 +91,25 @@ void main() {
             mapColor = mix(mapColor, vec3(0.80, 0.90, 0.96), ice);
             float relief = 0.72 + 0.28 * max(dot(normalize(worldNormal), lightDir), 0.0);
             mapColor *= relief;
+            if(mapContext) {
+                // Hypsometric/contour map of interpolated real terrain. No texture noise.
+                float h=terrainAltitude;
+                vec3 low=vec3(0.55,0.53,0.34);
+                vec3 high=vec3(0.79,0.71,0.49);
+                vec3 ground=mix(low,high,smoothstep(-4.0,10.0,h));
+                ground=mix(ground,vec3(0.16,0.49,0.28),clamp(vegetation,0.0,1.0));
+                vec3 sea=mix(vec3(0.14,0.47,0.53),vec3(0.035,0.17,0.28),1.0-exp(-waterElevation*0.35));
+                mapColor=mix(ground,sea,wet);
+                float band=h/1.0;
+                float delta=max(fwidth(band),0.0001);
+                float nearest=abs(fract(band+0.5)-0.5);
+                float contour=1.0-smoothstep(delta*0.5,delta*1.5,nearest);
+                mapColor*=1.0-contour*0.08*(1.0-wet);
+                float shore=4.0*wet*(1.0-wet);
+                mapColor=mix(mapColor,vec3(0.68,0.76,0.62),shore*0.28);
+                mapColor*=0.85+0.15*max(dot(normalize(worldNormal),lightDir),0.0);
+                mapColor=mix(mapColor,vec3(0.80,0.90,0.96),ice);
+            }
             float ringDistance = length(worldPosition-selectedVertexPos);
             float ring = 1.0-smoothstep(3.0, 7.0, abs(ringDistance-90.0));
             if (!compactSelection) mapColor = mix(mapColor, vec3(1.0, 0.85, 0.15), ring*0.85);

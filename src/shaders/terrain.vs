@@ -13,6 +13,7 @@ uniform float planetRadius;
 uniform float kmPerWaterMass;
 
 out vec3 worldPosition;
+out float terrainAltitude;
 out vec3 worldNormal;
 out float interpData;
 out float waterElevation;
@@ -25,6 +26,7 @@ void main() {
 	gl_Position = projMatrix * viewMatrix * modelMatrix * vec4(aPos, 1);
 	worldNormal = mat3(modelMatrix) * aNormal;
 	worldPosition = vec3(modelMatrix * vec4(aPos, 1.0));
+    terrainAltitude = (length(aPos)-planetRadius)/10.0;
 	interpData = extraData;
 	vegetation = aVegetation;
 	waterElevation = aWaterMass * kmPerWaterMass;

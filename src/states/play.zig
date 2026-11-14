@@ -564,6 +564,7 @@ pub const PlayState = struct {
             program.setUniformVec3("viewPos", self.cameraPos);
             program.setUniformFloat("planetRadius", planet.radius);
             program.setUniformBool("clearSurface", @import("builtin").target.cpu.arch == .wasm32);
+            program.setUniformBool("mapContext", @import("builtin").target.cpu.arch == .wasm32);
             program.setUniformInt("displayMode", @intFromEnum(self.displayMode)); // display mode
             program.setUniformVec3("selectedVertexPos", planet.transformedPoints[self.selectedPoint]);
             program.setUniformBool("compactSelection", @import("builtin").target.cpu.arch == .wasm32);
@@ -956,7 +957,7 @@ pub const PlayState = struct {
         const index = chosen orelse { self.mobileFeedback = "No shallow habitat: add water to a basin"; self.mobileFeedbackSeconds = 5; return false; };
         self.targetCameraPos = self.planet.transformedPoints[index].norm();
         self.selectedPoint = index; self.pointerOnPlanet = true;
-        self.setOrbitDistance(self.planet.transformedPoints[index].length() + 300, true);
+        self.setOrbitDistance(self.planet.transformedPoints[index].length() + @as(f32, if (@import("builtin").target.cpu.arch == .wasm32) 900 else 300), true);
         return true;
     }
 
