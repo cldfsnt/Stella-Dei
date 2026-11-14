@@ -1444,6 +1444,17 @@ pub const Planet = struct {
         self.worldMode = .origin;
     }
 
+    /// Explicit selected-patch target, never a persistent irrigation policy.
+    /// The signed return is actual externally added/removed depth in metres.
+    pub fn setWaterDepthMeters(self:*Planet,index:usize,target_m:f32) f32 {
+        if(self.worldMode!=.origin or index>=self.waterMass.len or !std.math.isFinite(target_m) or target_m<0 or target_m>5)return std.math.nan(f32);
+        const conversion=self.getKmPerWaterMass();
+        if(!std.math.isFinite(conversion) or conversion<=0 or !std.math.isFinite(self.waterMass[index]))return std.math.nan(f32);
+        const old=self.waterMass[index];
+        self.waterMass[index]=(target_m/1000)/conversion;
+        return (self.waterMass[index]-old)*conversion*1000;
+    }
+
     /// Explicit fine-water player intervention; returns actual metres changed.
     /// Adds/removes water intentionally, not part of closed-world physics.
     pub fn adjustWaterDepth(self:*Planet,index:usize,delta_km:f32) f32 {

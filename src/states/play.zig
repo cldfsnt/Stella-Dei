@@ -905,6 +905,16 @@ pub const PlayState = struct {
         return changed;
     }
 
+    pub fn setSelectedWaterTarget(self:*PlayState, expected_point:u32, target_m:f32) f32 {
+        if(self.planet.worldMode!=.origin or expected_point!=self.selectedPoint or self.selectedPoint>=self.planet.waterMass.len or !std.math.isFinite(target_m) or target_m<0 or target_m>5) return std.math.nan(f32);
+        const changed=self.planet.setWaterDepthMeters(self.selectedPoint,target_m);
+        if(std.math.isFinite(changed)) {
+            self.mobileFeedback=if(changed>0) "Water supplied to target depth" else if(changed<0) "Water removed to target depth" else "Target depth already reached";
+            self.mobileFeedbackSeconds=3;
+        }
+        return changed;
+    }
+
     pub fn testAction(self: *PlayState, tool_id: i32) bool {
         if (!self.pointerOnPlanet or tool_id < 0 or tool_id > 6) return false;
         return self.applySelectedTool(@enumFromInt(tool_id), true, 0);

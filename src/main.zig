@@ -400,6 +400,11 @@ export fn stella_adjust_water(expected_point: u32, delta_m: f32) f32 {
     return state.adjustSelectedWater(expected_point, delta_m);
 }
 
+export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
+    const state=webPlayState() orelse return std.math.nan(f32);
+    return state.setSelectedWaterTarget(expected_point,target_m);
+}
+
 export fn stella_test_action(tool: i32) i32 {
     return if (webPlayState()) |state| @intFromBool(state.testAction(tool)) else 0;
 }
