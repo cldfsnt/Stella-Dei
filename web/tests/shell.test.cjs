@@ -5,6 +5,7 @@ assert.match(html,/body #origin-starter\{position:static;flex:none;display:block
 assert.match(html,/body #origin-starter:not\(\[open\]\)\{display:block\}/);
 assert.match(html,/body #origin-starter:not\(\[open\]\)>:not\(summary\)\{display:none\}/);
 assert.match(html,/body #origin-starter\[hidden\]\{display:none\}/);
+assert.match(html,/body #performance-details\{position:static;display:block;inset:auto/);assert.match(html,/body #performance-details:not\(\[open\]\)\{display:block\}/);
 const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'Duplicate DOM ids');
 const elements=new Map(ids.map(id=>[id,{id,hidden:id==='guide',disabled:false,open:false,dataset:{},handlers:{},addEventListener(type,fn){this.handlers[type]=fn;},setAttribute(k,v){this[k]=v;},focus(){},setPointerCapture(){},hasPointerCapture(){return false;},dispatchEvent(){},appendChild(){},querySelector(){return {textContent:''}},getBoundingClientRect(){return{left:10,top:100,right:300,bottom:400,width:390,height:700}},showModal(){this.open=true},close(){this.open=false}}]));
 elements.set('diagnostics',{textContent:''});
@@ -100,6 +101,15 @@ speedAccept=false;el('speed-slow').onclick();assert.match(el('speed-result').tex
 el('close-speed').onclick();assert.equal(el('speed-sheet').open,false);el('starter-speed').onclick();assert.equal(el('speed-sheet').open,true);
 sandbox.Module.ccall=()=>'{bad';el('refresh-speed').onclick();assert.equal(el('speed-fast').disabled,true);const speedCallCount=speedCalls.length;el('speed-fast').onclick();assert.equal(speedCalls.length,speedCallCount);
 sandbox.Module.started=false;el('starter-speed').onclick();assert.match(el('speed-readout').textContent,/Start or load/);el('close-speed').onclick();sandbox.Module.started=true;
+const perf={enabled:true,cells:40962,frames:60,ticks:30,physics_frames:30,frame_avg_ms:33,frame_max_ms:80,physics_avg_ms:22,physics_max_ms:45,render_cpu_avg_ms:4,render_cpu_max_ms:8};
+assert.match(sandbox.performanceText(perf),/40962|40,962/);assert.match(sandbox.performanceText(perf),/Render call/);
+for(const d of [{}, {...perf,frame_avg_ms:NaN},{...perf,render_cpu_max_ms:-1},{...perf,frames:61},{...perf,enabled:false},{...perf,physics_frames:61}])assert.equal(sandbox.performanceText(d),null);
+let perfEnabled=[];sandbox.Module._stella_performance_enable=n=>{perfEnabled.push(n);return 1};sandbox.Module._stella_performance_snapshot=()=>1;
+el('speed-sheet').open=true;el('performance-details').open=true;sandbox.Module.ccall=()=>JSON.stringify(perf);el('performance-details').handlers.toggle();assert.equal(perfEnabled.at(-1),1);assert.match(el('performance-readout').textContent,/60 frames/);
+sandbox.Module.ccall=()=>'{bad';sandbox.refreshPerformance();assert.match(el('performance-readout').textContent,/unavailable/);
+delete sandbox.Module._stella_performance_snapshot;sandbox.refreshPerformance();assert.match(el('performance-readout').textContent,/unavailable/);
+el('performance-details').open=false;el('performance-details').handlers.toggle();assert.equal(perfEnabled.at(-1),0);el('performance-details').open=true;el('speed-sheet').handlers.close();assert.equal(el('performance-details').open,false);
+el('close-speed').onclick();assert.equal(perfEnabled.at(-1),0);assert.equal(el('performance-details').open,false);
 let fits=0;sandbox.Module._stella_fit_life=()=>{fits++;return 1};
 el('more-toggle').onclick();el('fit-life').onclick();assert.equal(fits,1);assert.equal(el('more-menu').open,false);assert.match(el('notice').textContent,/Framed nearby connected life/);
 sandbox.Module._stella_fit_life=()=>0;el('fit-life').onclick();assert.match(el('notice').textContent,/Pan toward a living patch/);

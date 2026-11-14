@@ -206,7 +206,7 @@ pub const PlayState = struct {
         // Browser-created planets use a lighter grid. Loading preserves the
         // saved topology exactly through initWithTopology/replaceWorld.
         const subdivisions: usize = if (@import("builtin").target.cpu.arch == .wasm32 or @import("builtin").mode == .Debug) 6 else 7;
-        var state = initWithTopology(game, subdivisions);
+        var state = initNewWorld(game, subdivisions, game.newWorldChoice.preset);
         if (game.startOriginNext) {
             game.startOriginNext = false;
             state.planet.beginOrigin() catch unreachable;
@@ -220,6 +220,11 @@ pub const PlayState = struct {
     }
 
     pub fn initWithTopology(game: *Game, subdivisions: usize) PlayState {
+        // Loading/replacement topology must never consume a menu preset.
+        return initNewWorld(game, subdivisions, .random);
+    }
+
+    fn initNewWorld(game: *Game, subdivisions: usize, preset: @import("../world_setup.zig").Preset) PlayState {
         std.debug.assert(subdivisions == 6 or subdivisions == 7);
         const soundTrack = SoundTrack{ .items = &.{
             "assets/music/music1.mp3",
@@ -261,7 +266,7 @@ pub const PlayState = struct {
         // TODO: make a loading scene
         const planetRadius = 5000; // a radius a bit smaller than Earth's (~6371km)
         const seed = randomPrng.random().int(u64);
-        const planet = Planet.generate(game.allocator, subdivisions, planetRadius, seed, .{}) catch unreachable;
+        const planet = Planet.generate(game.allocator, subdivisions, planetRadius, seed, .{.water_preset=preset}) catch unreachable;
 
         if (false) {
             // Load Earth
@@ -400,8 +405,13 @@ pub const PlayState = struct {
             self.framebuffer.unbind();
         }
 
-        // Compute a texture from the HDR framebuffer with only bright parts
-        {
+        const useBloom=!@import("../empty_bloom.zig").canSkip(
+            @import("builtin").target.cpu.arch == .wasm32,self.planet.worldMode==.origin,
+            self.displayMode==.Normal,self.stableDaylight,!self.freeCam,
+            self.planet.lifeforms.items.len,self.cameraPos.length());
+        // Compute a texture from the HDR framebuffer with only bright parts.
+        // Skip only the provablyzero contribution, not an active visual effect.
+        if(useBloom) {
             const program = renderer.postprocessProgram;
             self.bloomFramebuffer.bind();
             defer self.bloomFramebuffer.unbind();
@@ -419,7 +429,7 @@ pub const PlayState = struct {
         }
 
         // Blur the bright part to create bloom
-        {
+        if(useBloom) {
             const program = renderer.postprocessProgram;
 
             // Horizontal blurring (framebuffer -> blurFramebuffer)
@@ -459,6 +469,7 @@ pub const PlayState = struct {
             program.use();
             program.setUniformInt("screenTexture", 0);
             program.setUniformInt("bloomTexture", 1);
+            program.setUniformBool("enableBloom",useBloom);
             program.setUniformInt("screenDepth", 2);
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), zNear, zFar));
             program.setUniformMat4("viewMatrix", Mat4.lookAt(self.cameraPos, target, Vec3.new(0, 0, 1)));
@@ -724,7 +735,7 @@ pub const PlayState = struct {
                 // A single engine tick is indivisible; never start another after budget expires.
                 if(timer.read()>=16_000_000)break;
             }
-            if(self.simulationStepsLastFrame>0){const elapsed=@as(f32,@floatFromInt(timer.read()))/1e9;self.averageUpdateTime=self.averageUpdateTime*0.9+elapsed*0.1;}
+            if(self.simulationStepsLastFrame>0){const elapsed=@as(f32,@floatFromInt(timer.read()))/1e9;self.averageUpdateTime=self.averageUpdateTime*0.9+elapsed*0.1;@import("../performance_details.zig").metrics.physics(@as(f64,elapsed)*1000,self.simulationStepsLastFrame);}
         }
         self.simulationClock.finish();
         self.renderGameTime=self.gameTime;

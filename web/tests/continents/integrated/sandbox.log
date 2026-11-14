@@ -1,0 +1,3 @@
+info: NEW_WORLD_WATER preset=continents requested_ocean=0.7 actual_ocean=0.6999658219813486 sea_level_km=2.006836 initial_mass=936357226081.9182 vapor=0 existing_save_untouched=true
+WORLD_MENU actual_press_release=true default_random=true reversible=true no_reset_on_select=true new_mode=sandbox preset=continents
+MENU_SAVE_RELOAD existing_mode=origin new_mode=sandbox full_json_exact=true preset_ignored=true schema=6

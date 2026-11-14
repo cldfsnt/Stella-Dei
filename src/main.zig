@@ -41,6 +41,7 @@ pub const Game = struct {
     /// False if the state doesn't contain a valid value
     state_init: bool = false,
     startOriginNext: bool = false,
+    newWorldChoice: @import("world_setup.zig").Choice = .{},
     audio: AudioSubsystem,
     window: glfw.Window,
     renderer: *Renderer,
@@ -435,6 +436,23 @@ export fn stella_speed_snapshot()[*:0]const u8 {
     return text.ptr;
 }
 
+const PerformanceDetails=@import("performance_details.zig");
+var performance_json:[1024]u8=undefined;
+export fn stella_performance_enable(enabled:i32)i32 {
+    if(webPlayState()==null){PerformanceDetails.metrics.setEnabled(false);return -1;}
+    PerformanceDetails.metrics.setEnabled(enabled==1);return 1;
+}
+export fn stella_performance_snapshot()[*:0]const u8 {
+    const state=webPlayState() orelse return "{\"status\":\"unavailable\"}";
+    const sample=PerformanceDetails.metrics.sample();
+    var stream=std.io.fixedBufferStream(&performance_json);
+    std.json.stringify(.{.enabled=PerformanceDetails.metrics.enabled,.cells=state.planet.transformedPoints.len,.frames=sample.frames,.ticks=sample.ticks,.physics_frames=sample.physics_frames,
+      .frame_avg_ms=sample.frame_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.frame_max_ms=sample.frame_max,
+      .physics_avg_ms=sample.physics_sum/@max(@as(f64,@floatFromInt(sample.physics_frames)),1),.physics_max_ms=sample.physics_max,
+      .render_cpu_avg_ms=sample.render_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.render_cpu_max_ms=sample.render_max},.{},stream.writer()) catch return "{}";
+    if(stream.pos>=performance_json.len)return "{}";performance_json[stream.pos]=0;return @ptrCast(&performance_json);
+}
+
 export fn stella_fit_life() i32 {
     const state=webPlayState() orelse return -1;
     const size=game.window.getFramebufferSize();
@@ -544,8 +562,11 @@ fn web_frame() callconv(.C) void {
     }
     // State transitions queued by update must finish before rendering.
     web_loop.pump(16);
+    const measure=PerformanceDetails.metrics.enabled;
+    const render_start=if(measure) emscripten_get_now() else 0;
     render(game.window);
     game.window.swapBuffers();
+    if(measure)PerformanceDetails.metrics.frame(@as(f64,raw_dt)*1000,emscripten_get_now()-render_start);
     game.fps = 1.0 / dt;
 }
 

@@ -1,0 +1,3 @@
+247be9cf2437ca4e7285c27faa7575df80cd8d40f51ac7fa1848269bd355fe48  web/tests/empty-bloom/qa/empty-bloom.patch
+77eee28db68c75dde4b6d1b53a7bd46836429164b66c6e928b62d811acb332dc  src/empty_bloom.zig
+f0a4c663c26f85548b90406187f8bae3a7d37ba525c18d092205d91ae21e5e39  src/shaders/postprocess.fs

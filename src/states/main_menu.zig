@@ -169,11 +169,19 @@ pub const MainMenuState = struct {
         const vg = renderer.vg;
 
         if (@import("builtin").target.cpu.arch == .wasm32) {
-            const width = @min(size.x() - 32, 320);
-            const x = (size.x() - width) / 2;
+            const layout=@import("../world_setup.zig").Layout.at(size.x(),size.y());
+            const width=layout.width;
+            const x=layout.left;
             const logoWidth = @min(size.x() - 48, 300);
-            ui.img(vg, (size.x() - logoWidth) / 2, @max(20, size.y() * 0.12), logoWidth, logoWidth / (1668.0 / 353.0), renderer.textureCache.get("logo"));
-            const startY = @max(92, size.y() * 0.42);
+            ui.img(vg, (size.x() - logoWidth) / 2, 16, logoWidth, logoWidth / (1668.0 / 353.0), renderer.textureCache.get("logo"));
+            const setupY=layout.top;
+            const half=(width-8)/2;
+            if(ui.button(vg,game,"world-random",x,setupY,half,44,if(game.newWorldChoice.preset==.random) "Random *" else "Random")) game.newWorldChoice.select(.random);
+            if(ui.button(vg,game,"world-continents",x+half+8,setupY,half,44,if(game.newWorldChoice.preset==.continents) "Continents *" else "Continents")) game.newWorldChoice.select(.continents);
+            vg.textAlign(.{ .horizontal=.center,.vertical=.top });
+            vg.fontSize(12);vg.fontFace("sans-serif");vg.fillColor(nvg.rgb(210,225,235));
+            _=vg.text(size.x()/2,setupY+48,if(game.newWorldChoice.preset==.continents) "New world: about 70% ocean" else "New world: random sea level");
+            const startY = setupY+70;
             if (ui.button(vg, game, "web-origin", x, startY, width, 52, "Origin: simple life")) {
                 game.startOriginNext = true;
                 game.setState(PlayState);
@@ -186,7 +194,7 @@ pub const MainMenuState = struct {
             }
             vg.textAlign(.{ .horizontal = .center, .vertical = .top });
             vg.fontSize(14); vg.fontFace("sans-serif"); vg.fillColor(nvg.rgb(210,225,235));
-            _ = vg.text(size.x()/2,startY+124,"Seed existing life; not abiogenesis");
+            _ = vg.text(size.x()/2,startY+124,"New planets only; saved worlds unchanged");
             return;
         }
 

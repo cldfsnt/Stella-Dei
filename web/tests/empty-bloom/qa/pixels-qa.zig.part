@@ -1,0 +1,43 @@
+    if(std.posix.getenv("QA_EMPTY_BLOOM")!=null){
+        defer loop.pump(1024);
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        const before=try saves.capture(al,state);const before_json=try std.json.stringifyAlloc(al,before,.{});
+        const size=window.getFramebufferSize();const pixels=try al.alloc(u8,@as(usize,@intCast(size.width*size.height))*4);
+        const normal_pos=state.cameraPos;const normal_target=state.targetCameraPos;const normal_distance=state.cameraDistance;const normal_target_distance=state.targetCameraDistance;
+        state.paused=true;state.selectedTool=.None;state.watchLifeView=true;state.stableDaylight=true;
+        var default_hash:u64=0;
+        for(0..3)|i|{
+            state.freeCam=false;state.displayMode=.Normal;
+            if(i==1)state.resetView();
+            if(i==2){state.cameraPos=za.Vec3.new(7000,0,0);state.targetCameraPos=state.cameraPos;state.cameraDistance=7000;state.targetCameraDistance=7000;}
+            @import("states/play.zig").qa_force_bloom=true;
+            _=bloomReadPixels(window,pixels);_=bloomReadPixels(window,pixels);
+            const full=bloomReadPixels(window,pixels);
+            @import("states/play.zig").qa_force_bloom=false;
+            const fast=bloomReadPixels(window,pixels);
+            std.debug.print("EMPTY_BLOOM_PAIR view={d} full={x} skip={x} identical={}\n",.{i,full,fast,full==fast});std.debug.assert(full==fast);
+            if(i==0)default_hash=full;
+        }
+        for([_]@TypeOf(state.displayMode){.Temperature,.WaterVapor,.Rainfall,.WindMagnitude})|mode|{
+            state.displayMode=mode;@import("states/play.zig").qa_force_bloom=true;const full=bloomReadPixels(window,pixels);
+            @import("states/play.zig").qa_force_bloom=false;const kept=bloomReadPixels(window,pixels);
+            std.debug.print("EMPTY_BLOOM_MODE mode={s} unchanged={}\n",.{@tagName(mode),full==kept});std.debug.assert(full==kept);
+        }
+        // Real HDR sun in freecam. This scene MUST retain bloom.
+        state.displayMode=.Normal;state.freeCam=true;state.cameraPos=za.Vec3.new(8000,0,0);state.targetCameraPos=state.cameraPos;state.cameraDistance=8000;state.targetCameraDistance=8000;state.cameraRotation=za.Vec3.zero();
+        @import("states/play.zig").qa_force_bloom=false;_=bloomReadPixels(window,pixels);
+        const floats=try al.alloc(f32,@as(usize,@intCast(size.width*size.height))*4);
+        state.bloomFramebuffer.bind();gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.FLOAT,floats.ptr);state.bloomFramebuffer.unbind();
+        var peak:f32=0;for(floats,0..)|v,i|{if(i%4!=3)peak=@max(peak,v);}
+        std.debug.print("EMPTY_BLOOM_SUN hdr_bloom_peak={d} retained={}\n",.{peak,peak>1});std.debug.assert(peak>1);
+        // Do not clear the bright buffer: switching to skip must ignore stale sun glow.
+        state.freeCam=false;state.cameraPos=normal_pos;state.targetCameraPos=normal_target;state.cameraDistance=normal_distance;state.targetCameraDistance=normal_target_distance;
+        const stale=bloomReadPixels(window,pixels);std.debug.print("EMPTY_BLOOM_STALE matches_empty={}\n",.{stale==default_hash});std.debug.assert(stale==default_hash);
+        // Adding one explicit render-fixture rabbit retains the ordinary HDR path.
+        state.planet.worldMode=.sandbox;const Life=@TypeOf(state.planet.lifeforms.items[0]);try state.planet.addLifeform(Life.init(state.planet.transformedPoints[state.selectedPoint],.Rabbit,state.gameTime));
+        @import("states/play.zig").qa_force_bloom=true;const rabbit_full=bloomReadPixels(window,pixels);@import("states/play.zig").qa_force_bloom=false;const rabbit_auto=bloomReadPixels(window,pixels);
+        std.debug.print("EMPTY_BLOOM_RABBIT unchanged={} fixture_not_evolution=true\n",.{rabbit_full==rabbit_auto});std.debug.assert(rabbit_full==rabbit_auto);state.planet.lifeforms.clearRetainingCapacity();state.planet.worldMode=.origin;
+        var after=try saves.capture(al,state);after.paused=before.paused;after.daylight=before.daylight;after.display_mode=before.display_mode;after.camera=before.camera;after.camera_target=before.camera_target;after.camera_distance=before.camera_distance;after.target_distance=before.target_distance;
+        const after_json=try std.json.stringifyAlloc(al,after,.{});std.debug.assert(std.mem.eql(u8,before_json,after_json));
+        std.debug.print("EMPTY_BLOOM_MODEL full_save_equal_except_test_view_fields=true\n",.{});loop.pump(1024);return;
+    }

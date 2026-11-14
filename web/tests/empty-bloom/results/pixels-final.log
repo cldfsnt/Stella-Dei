@@ -1,0 +1,64 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x128aca80 context=0x128ad090
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=29254 elevation=4999.647 water=11234.662 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5896.4697
+Captured /tmp/stella-bloom-final-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0 depth_m=1.4648438 temp=293.15 camera=5896.4697 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5296.4697
+Captured /tmp/stella-bloom-final-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0.02 depth_m=5 temp=293.15 camera=5296.4697 visiblemats=1
+FORMS_PLAYER_INITIAL patch=29254 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=126 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29256 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=7352 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29255 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40248 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40249 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+QA frame=3 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5296.4697
+Captured /tmp/stella-bloom-final-003.ppm
+QA frame=4 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5296.4697
+Captured /tmp/stella-bloom-final-004.ppm
+QA frame=5 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5296.4697
+Captured /tmp/stella-bloom-final-005.ppm
+QA frame=6 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5296.4697
+Captured /tmp/stella-bloom-final-006.ppm
+EMPTY_BLOOM_PAIR view=0 full=b4e00b892a2ef407 skip=b4e00b892a2ef407 identical=true
+QA frame=7 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=16081.202
+Captured /tmp/stella-bloom-final-007.ppm
+QA frame=8 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=16081.202
+Captured /tmp/stella-bloom-final-008.ppm
+QA frame=9 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=16081.202
+Captured /tmp/stella-bloom-final-009.ppm
+QA frame=10 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=16081.202
+Captured /tmp/stella-bloom-final-010.ppm
+EMPTY_BLOOM_PAIR view=1 full=8c48e02184eee016 skip=8c48e02184eee016 identical=true
+QA frame=11 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=7000
+Captured /tmp/stella-bloom-final-011.ppm
+QA frame=12 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=7000
+Captured /tmp/stella-bloom-final-012.ppm
+EMPTY_BLOOM_PAIR view=2 full=4cb8175ce1a75e28 skip=4cb8175ce1a75e28 identical=true
+EMPTY_BLOOM_MODE mode=Temperature unchanged=true
+EMPTY_BLOOM_MODE mode=WaterVapor unchanged=true
+EMPTY_BLOOM_MODE mode=Rainfall unchanged=true
+EMPTY_BLOOM_MODE mode=WindMagnitude unchanged=true
+EMPTY_BLOOM_SUN hdr_bloom_peak=9.96875 retained=true
+EMPTY_BLOOM_STALE matches_empty=true
+EMPTY_BLOOM_RABBIT unchanged=true fixture_not_evolution=true
+EMPTY_BLOOM_MODEL full_save_equal_except_test_view_fields=true
+info: deinit audio
+error(gpa): memory address 0x7fbd104cd000 leaked: 
+

@@ -254,9 +254,11 @@ pub const Planet = struct {
 
     const GenerationOptions = struct {
         generate_terrain: bool = true,
+        water_preset: @import("../world_setup.zig").Preset = .random,
     };
 
     pub fn generate(allocator: std.mem.Allocator, numSubdivisions: usize, radius: f32, seed: u64, options: GenerationOptions) !Planet {
+        if(!options.generate_terrain and options.water_preset!=.random)return error.PresetRequiresNewTerrain;
         const zone = tracy.ZoneN(@src(), "Generate planet");
         defer zone.End();
 
@@ -393,6 +395,11 @@ pub const Planet = struct {
                 const totalElevation = radius + (elevation[i / 3] - radius) * HEIGHT_EXAGGERATION_FACTOR;
                 const transformedPoint = point.scale(totalElevation);
                 planet.transformedPoints[i / 3] = transformedPoint;
+            }
+            if(options.water_preset==.continents){
+                const inventory=try @import("world_water_inventory.zig").plan(allocator,elevation,kmPerWaterMass,0.7);
+                for(elevation,0..)|height,index|waterElev[index]=inventory.massAt(height,kmPerWaterMass);
+                std.log.info("NEW_WORLD_WATER preset=continents requested_ocean=0.7 actual_ocean={d} sea_level_km={d} initial_mass={d} vapor=0 existing_save_untouched=true",.{inventory.oceanFraction(),inventory.sea_level-radius,inventory.initial_mass});
             }
         } else {
             var i: usize = 0;

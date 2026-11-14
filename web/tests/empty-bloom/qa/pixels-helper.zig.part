@@ -1,0 +1,5 @@
+fn bloomReadPixels(window:glfw.Window,pixels:[]u8) u64 {
+    render(window);gl.finish();const size=window.getFramebufferSize();
+    gl.pixelStorei(gl.PACK_ALIGNMENT,1);gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.UNSIGNED_BYTE,pixels.ptr);
+    window.swapBuffers();return std.hash.Wyhash.hash(0,pixels);
+}

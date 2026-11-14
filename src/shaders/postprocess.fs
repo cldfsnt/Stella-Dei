@@ -11,6 +11,7 @@ uniform float atmosphereRadius;
 uniform mat4 projMatrix;
 uniform mat4 viewMatrix;
 uniform bool enableAtmosphere;
+uniform bool enableBloom;
 
 // Samplers
 uniform sampler2D screenTexture;
@@ -213,7 +214,7 @@ void main() {
 	// result = vec3(dstThroughAtmosphere / (planetRadius * 2));
 
 	// Apply bloom
-	vec3 bloomColor = texture(bloomTexture, texCoords).rgb;
+	vec3 bloomColor = enableBloom ? texture(bloomTexture, texCoords).rgb : vec3(0.0);
 	result += bloomColor;
 
 	if (false) {
