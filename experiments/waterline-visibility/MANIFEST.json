@@ -1,0 +1,58 @@
+{
+  "waterline-visibility.patch": {
+    "sha256": "4e7b1029eb36b366c342c90a06555906bea993e6f6e7546a2956f5aad5947b77",
+    "bytes": 35241
+  },
+  "WATERLINE-VISIBILITY-QA.md": {
+    "sha256": "0ce0c879d669866862cbd17398b70348bf1a84d16046237b654bb3b27ecddebc",
+    "bytes": 3728
+  },
+  "src/waterline_observation.zig": {
+    "sha256": "80e13b5c6bc5b14b54696488416ac342dcaec5c2143c8561f5be2817a8dd2dbe",
+    "bytes": 2278
+  },
+  "web/waterline-feedback.js": {
+    "sha256": "a2ca348a74bd1b3fb1c8b26354bb49f27878656f22338fdc573d5accd142ce9c",
+    "bytes": 1723
+  },
+  "web/tests/waterline-feedback.test.cjs": {
+    "sha256": "bf43893a305fd16299f0e6ea3920c55f0e87f3beb51de05cf1ef55ef4b8381fc",
+    "bytes": 943
+  },
+  "web/tests/egl-waterline-prepare.py": {
+    "sha256": "1bd732042fb1eae3e6d90c23aa6e1e28bfa55cd510bc2093b46d88326cfb71c8",
+    "bytes": 2285
+  },
+  "web/tests/waterline-ui-fixture.py": {
+    "sha256": "721c96a9b64e6a1f7e1b093a14fdfda00cff1d7f29b735cfa206c67381cfc602",
+    "bytes": 1248
+  },
+  "evidence/js-tests.log": {
+    "sha256": "cb358cb052c7c377b864dbadc990f9cc59970a09acf0a8f0bdc6bad7f8fc712b",
+    "bytes": 54
+  },
+  "evidence/exposed.json": {
+    "sha256": "5265a355494e0680c3112eca02ab548bc97ba5cb27b6712c99dd2f67fbb0913d",
+    "bytes": 1639
+  },
+  "evidence/wasm-sha256.txt": {
+    "sha256": "70f7778cf333190c5dbfdd45b4d0796c67724e8806dd08bda06b882e0fbf3f78",
+    "bytes": 86
+  },
+  "evidence/shell-tests.log": {
+    "sha256": "1559f3da36f1a5a4f7e8beab9932df423b499228730a74ec2af6c1a8ccefb996",
+    "bytes": 142
+  },
+  "evidence/native-invariance.log": {
+    "sha256": "2f05ca274f784f292a12b8e6b38a0aac881ffa50f7c9159c3f3f2b3c3b4bfbb8",
+    "bytes": 387
+  },
+  "evidence/waterline-tests.log": {
+    "sha256": "fb0722b1f85e76a7ef7435fb6eb83d8bde0fb8d215eca8fee703bdbe12a96374",
+    "bytes": 3964
+  },
+  "evidence/wet.json": {
+    "sha256": "ed8aefce71a94fb079a1d88eb7fbf46e55c76e710be9943ec952a679a1f4dfa8",
+    "bytes": 1633
+  }
+}

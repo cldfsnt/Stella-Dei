@@ -1,0 +1,38 @@
+1/28 waterline_observation.test.film residents and paid arrival are not labeled successful shore adaptation...OK
+2/28 waterline_observation.test.actual water and temperature remain authoritative at wet edge...OK
+3/28 simulation.microbes.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+4/28 simulation.microbes.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+5/28 simulation.microbes.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+6/28 simulation.microbes.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+OK
+7/28 simulation.microbes.test.grazing is bounded, order independent, and conservative...OK
+8/28 simulation.microbes.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+9/28 simulation.microbes.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443813 births=47 gen=2 grazed=0.8482477755169384 cell_bytes=336
+OK
+10/28 simulation.microbes.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+11/28 simulation.microbes.test.darkness carbon starvation and drying do not create growth...OK
+12/28 simulation.microbes.test.live competing trait distribution responds to environment, order independent...OK
+13/28 simulation.microbes.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+14/28 simulation.microbes.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+OK
+15/28 simulation.microbes.test.one coarse relocation per simulation instant with no ghost cohort...OK
+16/28 simulation.microbes.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+17/28 simulation.microbes.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+18/28 simulation.microbes.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=21
+OK
+19/28 simulation.microbes.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+20/28 simulation.microbes.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+OK
+21/28 simulation.microbes.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+22/28 simulation.microbes.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+23/28 simulation.microbes.test.producer architecture is functional continuous and resource conserving...OK
+24/28 simulation.microbes.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 331104, 92535, 69575, 32423, 587, 20094 }
+OK
+25/28 simulation.microbes.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+26/28 propagule_feedback.test.only real registered cross-cell arrivals can later report failure once...OK
+27/28 propagule_feedback.test.bounded tracker evicts old arrivals without inventing failures...OK
+28/28 propagule_feedback.test.tracked older colony loss remains observable without claiming failed establishment...OK
+All 28 tests passed.
