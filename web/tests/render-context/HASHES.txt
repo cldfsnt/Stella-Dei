@@ -1,0 +1,6 @@
+276597200fe0af12a2e7a372341d07a49baf89dfdd1d72958828f657ef0add4d  stella-render-context/render-context.patch
+54df9a3d78dfc7ee1c590e5df7535bc98a710d25360264988278df455d2d81dc  stella-render-context/candidate/src/performance_details.zig
+1b9d8a011ea5e1964b4291d4a201aa74d2c42091e7292d7ab16c4d758fccb255  stella-render-context/candidate/src/main.zig
+9727ceff948c1c26e889798a5a4d9e992c374e5bd346ca77aac202151db79489  stella-render-context/candidate/src/states/play.zig
+73826fa359109b2bf55bed4682851c889475bdd24f487fffc44933ab74cf7ff9  stella-render-context/candidate/src/simulation/planet.zig
+9dc39191c4d60e887ba132a839d368decc0feb00c92bfa43a826ddeb102b949e  stella-render-context/candidate/web/shell.html

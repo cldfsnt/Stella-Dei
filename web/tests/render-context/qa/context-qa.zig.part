@@ -1,0 +1,14 @@
+    if(std.posix.getenv("QA_RENDER_CONTEXT")!=null){
+        defer loop.pump(1024);
+        const P=@import("performance_details.zig");P.metrics.setEnabled(true);state.paused=true;state.stableDaylight=true;state.freeCam=false;state.displayMode=.Normal;
+        const size=window.getFramebufferSize();render(window);gl.finish();P.metrics.frame(16,10);
+        var c=P.metrics.context;std.debug.assert(c.valid and !c.bloom_active and c.bloom_passes==0);std.debug.assert(c.canvas_width==size.width and c.canvas_height==size.height and c.scene_width==size.width and c.scene_height==size.height);
+        std.debug.print("CONTEXT_ORIGIN canvas={d}x{d} scene={d}x{d} bloom={d} camera={d}\n",.{c.canvas_width,c.canvas_height,c.scene_width,c.scene_height,c.bloom_passes,c.camera_radius});
+        for(P.metrics.sample().stage_sum)|v|std.debug.assert(v>0);
+        state.planet.worldMode=.sandbox;const Life=@TypeOf(state.planet.lifeforms.items[0]);try state.planet.addLifeform(Life.init(state.planet.transformedPoints[state.selectedPoint],.Rabbit,state.gameTime));
+        render(window);gl.finish();P.metrics.frame(16,10);c=P.metrics.context;std.debug.assert(c.bloom_active and c.bloom_passes==5 and c.animals==1);std.debug.assert(std.mem.eql(u8,c.world,"sandbox"));
+        state.displayMode=.Temperature;render(window);gl.finish();P.metrics.frame(16,10);std.debug.assert(std.mem.eql(u8,P.metrics.context.map,"Temperature"));
+        const snapshot=std.mem.span(stella_performance_snapshot());const json=try std.json.parseFromSlice(std.json.Value,allocator,snapshot,.{});defer json.deinit();std.debug.assert(json.value.object.get("render_context")!=null);std.debug.assert(json.value.object.get("stage_sum_ms")!=null);
+        std.debug.print("CONTEXT_SNAPSHOT {s}\n",.{snapshot});
+        P.metrics.setEnabled(false);render(window);gl.finish();std.debug.assert(!P.metrics.context.valid);std.debug.assert(P.metrics.sample().frames==0);std.debug.print("CONTEXT_PASS origin_skip_sandbox_full_maps_dimensions_stages_snapshot_disable=true\n",.{});return;
+    }

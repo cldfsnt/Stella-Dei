@@ -1,0 +1,5 @@
+1/4 performance_details.test.opt in, bounded windows, finite diagnostics and reset...OK
+2/4 performance_details.test.nearest-rank p95 empty single ties sorted reversed and rare stalls...OK
+3/4 performance_details.test.long frames strictly exceed50 and completed block remains paired with percentile...OK
+4/4 performance_details.test.render context is opt in and resets with measurement...OK
+All 4 tests passed.

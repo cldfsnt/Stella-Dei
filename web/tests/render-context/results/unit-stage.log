@@ -1,0 +1,6 @@
+1/5 performance_details.test.opt in, bounded windows, finite diagnostics and reset...OK
+2/5 performance_details.test.nearest-rank p95 empty single ties sorted reversed and rare stalls...OK
+3/5 performance_details.test.long frames strictly exceed50 and completed block remains paired with percentile...OK
+4/5 performance_details.test.render context is opt in and resets with measurement...OK
+5/5 performance_details.test.stage aggregates disabled finite bounded and reset with blocks...OK
+All 5 tests passed.

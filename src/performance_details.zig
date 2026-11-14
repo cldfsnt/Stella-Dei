@@ -1,12 +1,27 @@
 //! Opt-in local diagnostic aggregates. Never saved and never used by simulation.
 const std=@import("std");
+pub const Stage=enum(u8){terrain_upload,scene_draw,postprocess,ui};
 pub const Sample=struct {
+ stage_sum:[4]f64=.{0}**4,stage_max:[4]f64=.{0}**4,
  frames:u32=0,ticks:u32=0,physics_frames:u32=0,long_frames:u32=0,frame_p95:f64=0,
  frame_sum:f64=0,frame_max:f64=0,physics_sum:f64=0,physics_max:f64=0,render_sum:f64=0,render_max:f64=0,
 };
+/// Last observed render setup while diagnostics are enabled, not averaged timings.
+pub const RenderContext=struct {
+ valid:bool=false,world:[]const u8="unknown",map:[]const u8="unknown",
+ canvas_width:i32=0,canvas_height:i32=0,scene_width:i32=0,scene_height:i32=0,
+ bloom_active:bool=false,bloom_passes:u8=0,composite_passes:u8=1,
+ stable_daylight:bool=false,orbit:bool=false,animals:usize=0,
+ camera_radius:f32=0,planet_radius:f32=0,camera_valid:bool=false,
+};
 pub const Metrics=struct {
- enabled:bool=false,current:Sample=.{},completed:Sample=.{},frame_intervals:[60]f64=[_]f64{0}**60,
+ enabled:bool=false,context:RenderContext=.{},current:Sample=.{},completed:Sample=.{},frame_intervals:[60]f64=[_]f64{0}**60,
  pub fn setEnabled(self:*Metrics,value:bool)void{self.*=.{.enabled=value};}
+ pub fn renderContext(self:*Metrics,value:RenderContext)void{if(self.enabled)self.context=value;}
+ pub fn stage(self:*Metrics,which:Stage,ms:f64)void{
+  if(!self.enabled or !std.math.isFinite(ms) or ms<0)return;
+  const i=@intFromEnum(which);self.current.stage_sum[i]+=ms;self.current.stage_max[i]=@max(self.current.stage_max[i],ms);
+ }
  pub fn physics(self:*Metrics,ms:f64,ticks:u8)void{
   if(!self.enabled or ticks==0 or !std.math.isFinite(ms) or ms<0)return;
   self.current.physics_sum+=ms;self.current.physics_max=@max(self.current.physics_max,ms);
@@ -66,4 +81,32 @@ test "long frames strictly exceed50 and completed block remains paired with perc
  m.frame(900,0);try std.testing.expectEqualDeep(done,m.sample());
  m.setEnabled(false);m.frame(900,0);try std.testing.expectEqualDeep(Sample{},m.sample());
  m.setEnabled(true);m.frame(10,0);try std.testing.expectEqual(@as(f64,10),m.sample().frame_p95);
+}
+
+test "render context is opt in and resets with measurement" {
+ var m=Metrics{};const c=RenderContext{.valid=true,.world="origin",.canvas_width=390,.scene_width=390,.bloom_active=false,.bloom_passes=0};
+ m.renderContext(c);try std.testing.expect(!m.context.valid);
+ m.setEnabled(true);m.renderContext(c);try std.testing.expect(m.context.valid);try std.testing.expectEqual(@as(i32,390),m.context.canvas_width);
+ m.setEnabled(false);try std.testing.expect(!m.context.valid);
+}
+
+/// Opt-in CPU/call wall timers; may include driver waits, never GPU timers.
+extern "c" fn emscripten_get_now() f64;
+const web_stage_clock=@import("builtin").target.cpu.arch==.wasm32;
+pub const StageStart=if(web_stage_clock)f64 else std.time.Timer;
+pub fn beginStage() ?StageStart {
+ if(!metrics.enabled)return null;
+ if(web_stage_clock)return emscripten_get_now();
+ return std.time.Timer.start() catch null;
+}
+pub fn endStage(start:?StageStart,which:Stage)void{
+ var timer=start orelse return;
+ const ms=if(web_stage_clock)emscripten_get_now()-timer else @as(f64,@floatFromInt(timer.read()))/1e6;
+ metrics.stage(which,ms);
+}
+test "stage aggregates disabled finite bounded and reset with blocks" {
+ var m=Metrics{};m.stage(.ui,5);try std.testing.expectEqual(@as(f64,0),m.current.stage_sum[3]);
+ m.setEnabled(true);for(0..60)|_|{m.stage(.terrain_upload,2);m.stage(.scene_draw,5);m.stage(.postprocess,3);m.stage(.ui,1);m.frame(16,9);}
+ try std.testing.expectEqual(@as(f64,120),m.sample().stage_sum[0]);try std.testing.expectEqual(@as(f64,5),m.sample().stage_max[1]);
+ m.stage(.ui,std.math.nan(f64));try std.testing.expectEqual(@as(f64,0),m.current.stage_sum[3]);m.setEnabled(false);try std.testing.expectEqual(@as(f64,0),m.sample().stage_sum[0]);
 }

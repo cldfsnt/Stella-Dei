@@ -37,12 +37,18 @@ pub const Renderer = struct {
         defer zone.End();
 
         log.debug("  Create shaders", .{});
-        const terrainProgram = try ShaderProgram.createFromName("terrain");
-        const entityProgram = try ShaderProgram.createFromName("entity");
-        const skyboxProgram = try ShaderProgram.createFromName("skybox");
-        const sunProgram = try ShaderProgram.createFromName("sun");
-        const cloudsProgram = try ShaderProgram.createFromName("clouds");
-        const postprocessProgram = try ShaderProgram.createFromName("postprocess");
+        var terrainProgram = try ShaderProgram.createFromName("terrain");
+        errdefer terrainProgram.deinit();
+        var entityProgram = try ShaderProgram.createFromName("entity");
+        errdefer entityProgram.deinit();
+        var skyboxProgram = try ShaderProgram.createFromName("skybox");
+        errdefer skyboxProgram.deinit();
+        var sunProgram = try ShaderProgram.createFromName("sun");
+        errdefer sunProgram.deinit();
+        var cloudsProgram = try ShaderProgram.createFromName("clouds");
+        errdefer cloudsProgram.deinit();
+        var postprocessProgram = try ShaderProgram.createFromName("postprocess");
+        errdefer postprocessProgram.deinit();
 
         gl.enable(gl.DEPTH_TEST);
         gl.enable(gl.BLEND);
@@ -81,13 +87,25 @@ pub const Renderer = struct {
     }
 
     pub fn reloadShaders(self: *Renderer) !void {
-        const terrainProgram = try ShaderProgram.loadFromPath("src/shaders/terrain");
-        const entityProgram = try ShaderProgram.loadFromPath("src/shaders/entity");
-        const skyboxProgram = try ShaderProgram.loadFromPath("src/shaders/skybox");
-        const sunProgram = try ShaderProgram.loadFromPath("src/shaders/sun");
-        const cloudsProgram = try ShaderProgram.loadFromPath("src/shaders/clouds");
-        const postprocessProgram = try ShaderProgram.loadFromPath("src/shaders/postprocess");
+        var terrainProgram = try ShaderProgram.loadFromPath("src/shaders/terrain");
+        errdefer terrainProgram.deinit();
+        var entityProgram = try ShaderProgram.loadFromPath("src/shaders/entity");
+        errdefer entityProgram.deinit();
+        var skyboxProgram = try ShaderProgram.loadFromPath("src/shaders/skybox");
+        errdefer skyboxProgram.deinit();
+        var sunProgram = try ShaderProgram.loadFromPath("src/shaders/sun");
+        errdefer sunProgram.deinit();
+        var cloudsProgram = try ShaderProgram.loadFromPath("src/shaders/clouds");
+        errdefer cloudsProgram.deinit();
+        var postprocessProgram = try ShaderProgram.loadFromPath("src/shaders/postprocess");
+        errdefer postprocessProgram.deinit();
 
+        self.terrainProgram.deinit();
+        self.entityProgram.deinit();
+        self.skyboxProgram.deinit();
+        self.sunProgram.deinit();
+        self.cloudsProgram.deinit();
+        self.postprocessProgram.deinit();
         self.terrainProgram = terrainProgram;
         self.entityProgram = entityProgram;
         self.skyboxProgram = skyboxProgram;
@@ -113,6 +131,13 @@ pub const Renderer = struct {
     }
 
     pub fn deinit(self: *Renderer) void {
+        self.terrainProgram.deinit();
+        self.entityProgram.deinit();
+        self.skyboxProgram.deinit();
+        self.sunProgram.deinit();
+        self.cloudsProgram.deinit();
+        self.postprocessProgram.deinit();
+
         self.textureCache.deinit();
         self.vg.deinit();
     }
@@ -343,6 +368,7 @@ const Shader = struct {
 
 const ShaderProgram = struct {
     program: gl.GLuint,
+    uniformLocations: @import("uniform_locations.zig").Cache = .{},
 
     pub fn create() ShaderProgram {
         return ShaderProgram{ .program = gl.createProgram() };
@@ -369,6 +395,7 @@ const ShaderProgram = struct {
         };
 
         var program = ShaderProgram.create();
+        errdefer program.deinit();
         program.attach(fragmentShader);
         program.attach(vertexShader);
         try program.link();
@@ -400,6 +427,7 @@ const ShaderProgram = struct {
         try fragmentShader.compile();
 
         var program = ShaderProgram.create();
+        errdefer program.deinit();
         program.attach(fragmentShader);
         program.attach(vertexShader);
         try program.link();
@@ -407,40 +435,54 @@ const ShaderProgram = struct {
         return program;
     }
 
-    pub fn setUniformVec2(self: ShaderProgram, uniform: [:0]const u8, vec: Vec2) void {
-        const location = gl.getUniformLocation(self.program, uniform);
+    pub fn setUniformVec2(self: *ShaderProgram, uniform: [:0]const u8, vec: Vec2) void {
+        const location = self.uniformLocation(uniform);
         gl.uniform2f(location, vec.x(), vec.y());
     }
 
-    pub fn setUniformVec3(self: ShaderProgram, uniform: [:0]const u8, vec: Vec3) void {
-        const location = gl.getUniformLocation(self.program, uniform);
+    pub fn setUniformVec3(self: *ShaderProgram, uniform: [:0]const u8, vec: Vec3) void {
+        const location = self.uniformLocation(uniform);
         gl.uniform3f(location, vec.x(), vec.y(), vec.z());
     }
 
-    pub fn setUniformMat4(self: ShaderProgram, uniform: [:0]const u8, mat: Mat4) void {
-        const location = gl.getUniformLocation(self.program, uniform);
+    pub fn setUniformMat4(self: *ShaderProgram, uniform: [:0]const u8, mat: Mat4) void {
+        const location = self.uniformLocation(uniform);
         gl.uniformMatrix4fv(location, 1, gl.FALSE, mat.getData());
     }
 
-    pub fn setUniformInt(self: ShaderProgram, uniform: [:0]const u8, int: c_int) void {
-        const location = gl.getUniformLocation(self.program, uniform);
+    pub fn setUniformInt(self: *ShaderProgram, uniform: [:0]const u8, int: c_int) void {
+        const location = self.uniformLocation(uniform);
         gl.uniform1i(location, int);
     }
 
-    pub fn setUniformBool(self: ShaderProgram, uniform: [:0]const u8, boolean: bool) void {
+    pub fn setUniformBool(self: *ShaderProgram, uniform: [:0]const u8, boolean: bool) void {
         self.setUniformInt(uniform, @intFromBool(boolean));
     }
 
-    pub fn setUniformFloat(self: ShaderProgram, uniform: [:0]const u8, float: f32) void {
-        const location = gl.getUniformLocation(self.program, uniform);
+    pub fn setUniformFloat(self: *ShaderProgram, uniform: [:0]const u8, float: f32) void {
+        const location = self.uniformLocation(uniform);
         gl.uniform1f(location, float);
     }
 
-    pub fn attach(self: ShaderProgram, shader: Shader) void {
+    fn uniformLocation(self:*ShaderProgram,name:[:0]const u8) gl.GLint {
+        if(self.uniformLocations.get(name))|location|return location;
+        const location=gl.getUniformLocation(self.program,name);
+        self.uniformLocations.put(name,location);
+        return location;
+    }
+
+    pub fn deinit(self:*ShaderProgram) void {
+        self.uniformLocations.clear();
+        if(self.program!=0)gl.deleteProgram(self.program);
+        self.program=0;
+    }
+
+    pub fn attach(self: *const ShaderProgram, shader: Shader) void {
         gl.attachShader(self.program, shader.shader);
     }
 
-    pub fn link(self: ShaderProgram) !void {
+    pub fn link(self: *ShaderProgram) !void {
+        self.uniformLocations.clear();
         gl.linkProgram(self.program);
         var successful: gl.GLint = 0;
         gl.getProgramiv(self.program, gl.LINK_STATUS, &successful);
@@ -453,7 +495,7 @@ const ShaderProgram = struct {
         }
     }
 
-    pub fn use(self: ShaderProgram) void {
+    pub fn use(self: *const ShaderProgram) void {
         gl.useProgram(self.program);
     }
 };

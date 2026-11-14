@@ -1,0 +1,52 @@
+    if(std.posix.getenv("QA_UNIFORM")!=null){
+        const rm=@import("renderer.zig");const saves=@import("save_game.zig");
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        state.paused=true;state.watchLife();
+        for(0..30)|_|{render(window);gl.finish();}
+        const size=window.getFramebufferSize();const pixels=try al.alloc(u8,@as(usize,size.width)*size.height*4);
+        const original=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        var hashes:[2]u64=undefined;var calls:[2]u64=undefined;
+        for(0..2)|mode|{
+            rm.qa_uniform_bypass=mode==0;rm.qa_uniform_lookups=0;
+            for(0..8)|_|{render(window);gl.finish();}
+            gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.UNSIGNED_BYTE,pixels.ptr);
+            hashes[mode]=std.hash.Wyhash.hash(0,pixels);calls[mode]=rm.qa_uniform_lookups;
+        }
+        std.debug.assert(hashes[0]==hashes[1] and calls[0]>0 and calls[1]==0);
+        const after=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        std.debug.assert(std.mem.eql(u8,original,after));
+        std.debug.print("UNIFORM_RENDER width={d} height={d} bypass_calls={d} cached_calls={d} rgba_hash={x} identical=true save_unchanged=true\n",.{size.width,size.height,calls[0],calls[1],hashes[0]});
+        state.stableDaylight=false;for(0..8)|_|{render(window);gl.finish();}
+        for(0..2)|mode|{
+            rm.qa_uniform_bypass=mode==0;rm.qa_uniform_lookups=0;
+            for(0..8)|_|{render(window);gl.finish();}
+            gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.UNSIGNED_BYTE,pixels.ptr);
+            hashes[mode]=std.hash.Wyhash.hash(0,pixels);calls[mode]=rm.qa_uniform_lookups;
+        }
+        std.debug.assert(hashes[0]==hashes[1] and calls[0]>0 and calls[1]==0);
+        std.debug.print("UNIFORM_ACTIVE_BLOOM bypass_calls={d} cached_calls={d} rgba_hash={x} identical=true\n",.{calls[0],calls[1],hashes[0]});
+        var probe=try @TypeOf(renderer.postprocessProgram).createFromName("postprocess");
+        probe.use();rm.qa_uniform_lookups=0;probe.setUniformInt("QA_missing_uniform",5);probe.setUniformInt("QA_missing_uniform",9);
+        std.debug.assert(rm.qa_uniform_lookups==1 and probe.uniformLocations.get("QA_missing_uniform").? == -1);
+        try probe.link();std.debug.assert(probe.uniformLocations.count==0);probe.use();probe.setUniformInt("QA_missing_uniform",1);std.debug.assert(rm.qa_uniform_lookups==2);
+        const old=probe.program;gl.useProgram(0);probe.deinit();std.debug.assert(probe.program==0 and probe.uniformLocations.count==0 and gl.isProgram(old)==gl.FALSE);
+        var bad=@TypeOf(renderer.postprocessProgram).create();bad.uniformLocations.put("stale",1);
+        const result=bad.link();if(result)|_|unreachable else |err|std.debug.assert(err==error.ShaderLinkError);
+        std.debug.assert(bad.uniformLocations.count==0);bad.deinit();
+        if(std.posix.getenv("QA_BAD_SHADERS"))|dir|{
+            const cwd=try std.process.getCwdAlloc(al);const old_id=renderer.terrainProgram.program;
+            const made=rm.qa_program_created;const deleted=rm.qa_program_deleted;
+            try std.posix.chdir(dir);const failed=renderer.reloadShaders();try std.posix.chdir(cwd);
+            if(failed)|_|unreachable else |_|{}
+            std.debug.assert(renderer.terrainProgram.program==old_id and gl.isProgram(old_id)==gl.TRUE);
+            std.debug.assert(rm.qa_program_created-made==5 and rm.qa_program_deleted-deleted==5);
+            std.debug.print("UNIFORM_RELOAD_FAILURE created=5 deleted=5 old_programs_retained=true\n",.{});
+        }
+        // Renderer reload owns and invalidates all previous program caches.
+        const old_terrain=renderer.terrainProgram.program;try renderer.reloadShaders();std.debug.assert(renderer.terrainProgram.uniformLocations.count==0 and gl.isProgram(old_terrain)==gl.FALSE);
+        render(window);gl.finish();gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.UNSIGNED_BYTE,pixels.ptr);
+        std.debug.assert(std.hash.Wyhash.hash(0,pixels)==hashes[1]);
+        std.debug.print("UNIFORM_LIFETIME missing_minus1_cached=true relink_invalidates=true deleted_program_gone=true renderer_reload_pixels_identical=true\n",.{});
+        rm.qa_uniform_lookups=0;render(window);gl.finish();std.debug.assert(rm.qa_uniform_lookups==0);
+        loop.pump(1024);return;
+    }

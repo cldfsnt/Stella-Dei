@@ -144,7 +144,7 @@ void drawBlurredTexture() {
 	// 	weight[i] = w / (7.5 * 2 + 1);
 	// }
 	float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
-	
+
 	float sampleDistance = 1.5;
 	vec2 tex_offset = 1.0 / vec2(textureSize(screenTexture, 0)); // gets size of single texel
     vec3 result = texture(screenTexture, texCoords).rgb * weight[0]; // current fragment's contribution
@@ -171,47 +171,53 @@ void main() {
 		drawBlurredTexture();
 		return;
 	}
-	
+
 	vec3 color = texture(screenTexture, texCoords).rgb;
-	float depth = texture(screenDepth, texCoords).r;
-	
-	mat4 projViewMatrix = projMatrix * viewMatrix;
-	
-	float zFar = planetRadius * 5.0;
-	float zNear = zFar / 10000.0;
-	
-	vec4 fragNear = inverse(projViewMatrix) * vec4((texCoords.xy - vec2(0.5, 0.5))*2.0, 0.0, 1.0);
-	vec4 fragFar = fragNear + inverse(projViewMatrix)[2];
-	fragNear.xyz /= fragNear.w;
-	fragFar.xyz /= fragFar.w;
-	vec4 fragDir = fragFar - fragNear;
-	
-	vec3 rayDir = normalize(fragDir.xyz);
-	vec2 hitInfo = raySphere(atmosphereRadius, viewPos, rayDir);
-	
-	float dstToAtmosphere = hitInfo.x;
-	//float dstToSurface = linearizeDepth(depth, zNear, zFar); // TODO: make it work
-	float dstToSurface = dstToAtmosphere + 500.0;
-	float dstThroughAtmosphere = min(hitInfo.y, dstToSurface - dstToAtmosphere);
-	if (depth == 1.0) {
-		dstToSurface = dstToAtmosphere + 500.0;
-	}
-	
-	float factor = dstThroughAtmosphere / atmosphereRadius / 2.0;
-	vec3 result;
-	if (dstThroughAtmosphere > 0.0 && enableAtmosphere) {
-		vec3 pointInAtmosphere = viewPos + rayDir * dstToAtmosphere;
-		if (depth == 1.0) { // skybox
-			color = vec3(0.0);
+	// Browser scenes disable atmosphere; avoid reconstructing unused rays.
+	// Bloom and HDR mapping remain unchanged, including emissive animals.
+	vec3 result = color;
+	if (enableAtmosphere) {
+		float depth = texture(screenDepth, texCoords).r;
+
+		mat4 projViewMatrix = projMatrix * viewMatrix;
+
+		float zFar = planetRadius * 5.0;
+		float zNear = zFar / 10000.0;
+
+		vec4 fragNear = inverse(projViewMatrix) * vec4((texCoords.xy - vec2(0.5, 0.5))*2.0, 0.0, 1.0);
+		vec4 fragFar = fragNear + inverse(projViewMatrix)[2];
+		fragNear.xyz /= fragNear.w;
+		fragFar.xyz /= fragFar.w;
+		vec4 fragDir = fragFar - fragNear;
+
+		vec3 rayDir = normalize(fragDir.xyz);
+		vec2 hitInfo = raySphere(atmosphereRadius, viewPos, rayDir);
+
+		float dstToAtmosphere = hitInfo.x;
+		//float dstToSurface = linearizeDepth(depth, zNear, zFar); // TODO: make it work
+		float dstToSurface = dstToAtmosphere + 500.0;
+		float dstThroughAtmosphere = min(hitInfo.y, dstToSurface - dstToAtmosphere);
+		if (depth == 1.0) {
+			dstToSurface = dstToAtmosphere + 500.0;
 		}
-		vec3 light = calculateLight(pointInAtmosphere, rayDir, dstThroughAtmosphere, color);
-		result = light;
-		//result = pointInAtmosphere / vec3(10000);
-	} else {
-		result = color;
+
+		float factor = dstThroughAtmosphere / atmosphereRadius / 2.0;
+
+		if (dstThroughAtmosphere > 0.0) {
+			vec3 pointInAtmosphere = viewPos + rayDir * dstToAtmosphere;
+			if (depth == 1.0) { // skybox
+				color = vec3(0.0);
+			}
+			vec3 light = calculateLight(pointInAtmosphere, rayDir, dstThroughAtmosphere, color);
+			result = light;
+			//result = pointInAtmosphere / vec3(10000);
+		} else {
+			result = color;
+		}
+		//result = mix(result, vec3((dstToSurface - dstToAtmosphere - 500) / 10), 0.9);
+		// result = vec3(dstThroughAtmosphere / (planetRadius * 2));
+
 	}
-	//result = mix(result, vec3((dstToSurface - dstToAtmosphere - 500) / 10), 0.9);
-	// result = vec3(dstThroughAtmosphere / (planetRadius * 2));
 
 	// Apply bloom
 	vec3 bloomColor = enableBloom ? texture(bloomTexture, texCoords).rgb : vec3(0.0);

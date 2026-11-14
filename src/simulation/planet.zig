@@ -545,6 +545,8 @@ pub const Planet = struct {
 
     /// Upload all changes to the GPU
     pub fn upload(self: *Planet, loop: *EventLoop, displayMode: DisplayMode, axialTilt: f32) void {
+        const stage_timer=@import("../performance_details.zig").beginStage();
+        defer @import("../performance_details.zig").endStage(stage_timer,.terrain_upload);
         @setFloatMode(.optimized);
         @setRuntimeSafety(false);
 

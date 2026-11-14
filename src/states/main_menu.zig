@@ -90,7 +90,7 @@ pub const MainMenuState = struct {
 
         // Start by rendering the skybox
         {
-            const program = renderer.skyboxProgram;
+            const program = &renderer.skyboxProgram;
             program.use();
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), 0.01, 100));
             var newViewMatrix = Mat4.lookAt(cameraPos, target, Vec3.new(0, 0, 1));
@@ -117,7 +117,7 @@ pub const MainMenuState = struct {
 
         // Then render the planet
         {
-            const program = renderer.terrainProgram;
+            const program = &renderer.terrainProgram;
             program.use();
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), zNear, zFar));
             program.setUniformMat4("viewMatrix", Mat4.lookAt(cameraPos, target, Vec3.new(0, 0, 1)));

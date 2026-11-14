@@ -405,14 +405,26 @@ pub const PlayState = struct {
             self.framebuffer.unbind();
         }
 
+        const diagnostic_camera=self.cameraPos.length();
+        const post_timer=@import("../performance_details.zig").beginStage();
+        defer @import("../performance_details.zig").endStage(post_timer,.postprocess);
         const useBloom=!@import("../empty_bloom.zig").canSkip(
             @import("builtin").target.cpu.arch == .wasm32,self.planet.worldMode==.origin,
             self.displayMode==.Normal,self.stableDaylight,!self.freeCam,
-            self.planet.lifeforms.items.len,self.cameraPos.length());
+            self.planet.lifeforms.items.len,diagnostic_camera);
+        // Capture actual last-render settings only while local diagnostics are open.
+        @import("../performance_details.zig").metrics.renderContext(.{
+            .valid=true,.world=@tagName(self.planet.worldMode),.map=@tagName(self.displayMode),
+            .canvas_width=@intFromFloat(size.x()),.canvas_height=@intFromFloat(size.y()),
+            .scene_width=fbWidth,.scene_height=fbHeight,.bloom_active=useBloom,
+            .bloom_passes=if(useBloom)5 else 0,.stable_daylight=self.stableDaylight,.orbit=!self.freeCam,
+            .animals=self.planet.lifeforms.items.len,.camera_valid=std.math.isFinite(diagnostic_camera),
+            .camera_radius=if(std.math.isFinite(diagnostic_camera))diagnostic_camera else 0,.planet_radius=self.planet.radius,
+        });
         // Compute a texture from the HDR framebuffer with only bright parts.
         // Skip only the provablyzero contribution, not an active visual effect.
         if(useBloom) {
-            const program = renderer.postprocessProgram;
+            const program = &renderer.postprocessProgram;
             self.bloomFramebuffer.bind();
             defer self.bloomFramebuffer.unbind();
 
@@ -430,7 +442,7 @@ pub const PlayState = struct {
 
         // Blur the bright part to create bloom
         if(useBloom) {
-            const program = renderer.postprocessProgram;
+            const program = &renderer.postprocessProgram;
 
             // Horizontal blurring (framebuffer -> blurFramebuffer)
             program.use();
@@ -458,7 +470,7 @@ pub const PlayState = struct {
 
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         {
-            const program = renderer.postprocessProgram;
+            const program = &renderer.postprocessProgram;
             const sunPhi: f32 = @as(f32, @floatCast(@mod(self.renderGameTime / self.planetRotationTime * 2 * std.math.pi, 2 * std.math.pi)));
             const sunTheta: f32 = std.math.pi / 2.0;
             const solarVector = if (self.stableDaylight) self.cameraPos.norm() else Vec3.new(@cos(sunPhi) * @sin(sunTheta), @sin(sunPhi) * @sin(sunTheta), @cos(sunTheta));
@@ -524,6 +536,8 @@ pub const PlayState = struct {
     }
 
     pub fn renderScene(self: *PlayState, game: *Game, renderer: *Renderer) void {
+        const stage_timer=@import("../performance_details.zig").beginStage();
+        defer @import("../performance_details.zig").endStage(stage_timer,.scene_draw);
         const size = renderer.framebufferSize;
 
         const planet = &self.planet;
@@ -538,7 +552,7 @@ pub const PlayState = struct {
 
         // Start by rendering the skybox
         {
-            const program = renderer.skyboxProgram;
+            const program = &renderer.skyboxProgram;
             program.use();
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), 0.01, 100));
             var newViewMatrix = Mat4.lookAt(self.cameraPos, target, Vec3.new(0, 0, 1));
@@ -566,7 +580,7 @@ pub const PlayState = struct {
         // Then render the sun
         {
             // TODO: do like skybox so it looks infinitely far
-            const program = renderer.sunProgram;
+            const program = &renderer.sunProgram;
             program.use();
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), 1, 1000000));
             program.setUniformMat4("viewMatrix", Mat4.lookAt(self.cameraPos, target, Vec3.new(0, 0, 1)));
@@ -580,7 +594,7 @@ pub const PlayState = struct {
 
         // Then render the planet
         {
-            const program = renderer.terrainProgram;
+            const program = &renderer.terrainProgram;
             program.use();
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), zNear, zFar));
             program.setUniformMat4("viewMatrix", Mat4.lookAt(self.cameraPos, target, Vec3.new(0, 0, 1)));
@@ -627,7 +641,7 @@ pub const PlayState = struct {
 
         // Then the clouds
         {
-            const program = renderer.cloudsProgram;
+            const program = &renderer.cloudsProgram;
             program.use();
             program.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), zNear, zFar));
             program.setUniformMat4("viewMatrix", Mat4.lookAt(self.cameraPos, target, Vec3.new(0, 0, 1)));
@@ -656,7 +670,7 @@ pub const PlayState = struct {
                 planet.renderWater();
         }
 
-        const entity = renderer.entityProgram;
+        const entity = &renderer.entityProgram;
         entity.use();
         entity.setUniformMat4("projMatrix", Mat4.perspective(70, size.x() / size.y(), zNear, zFar));
         entity.setUniformMat4("viewMatrix", Mat4.lookAt(self.cameraPos, target, Vec3.new(0, 0, 1)));

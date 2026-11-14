@@ -1,0 +1,36 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x3f1c9af0 context=0x3f1ca100
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=29254 elevation=4999.647 water=11234.662 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5896.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-render-context/captures/context-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0 depth_m=1.4648438 temp=293.15 camera=5896.4697 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-render-context/captures/context-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0.02 depth_m=5 temp=293.15 camera=5296.4697 visiblemats=1
+FORMS_PLAYER_INITIAL patch=29254 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=126 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29256 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=7352 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29255 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40248 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40249 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+CONTEXT_ORIGIN canvas=390x700 scene=390x700 bloom=0 camera=5296.4697
+CONTEXT_SNAPSHOT {"enabled":true,"cells":40962,"frames":3,"ticks":0,"physics_frames":0,"frame_avg_ms":1.6e1,"frame_max_ms":1.6e1,"frame_p95_ms":1.6e1,"long_frames":0,"physics_avg_ms":0e0,"physics_max_ms":0e0,"render_cpu_avg_ms":1e1,"render_cpu_max_ms":1e1,"render_context":{"valid":true,"world":"sandbox","map":"Temperature","canvas_width":390,"canvas_height":700,"scene_width":390,"scene_height":700,"bloom_active":true,"bloom_passes":5,"composite_passes":1,"stable_daylight":true,"orbit":true,"animals":1,"camera_radius":5.2964697265625e3,"planet_radius":5e3,"camera_valid":true},"stage_sum_ms":[1.20018e0,5.126025800000001e1,1.20584863e2,3.3449039999999997e0],"stage_max_ms":[4.19179e-1,4.6716946e1,1.02312398e2,1.455948e0]}
+CONTEXT_PASS origin_skip_sandbox_full_maps_dimensions_stages_snapshot_disable=true
+info: deinit audio
+error(gpa): memory address 0x7f51cc64a000 leaked: 
+
