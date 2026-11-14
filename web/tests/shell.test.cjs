@@ -153,6 +153,11 @@ for(const [code,message] of [[-2,/Origin colonies only/],[-3,/canvas is too smal
  sandbox.Module._stella_fit_life=()=>code;el('fit-life').onclick();assert.match(el('notice').textContent,message);assert.doesNotMatch(el('notice').textContent,/Pan toward/);assert.equal(el('more-menu').open,false);
 }
 sandbox.Module._stella_fit_life=()=>-1;el('fit-life').onclick();assert.match(el('notice').textContent,/unavailable/);
+sandbox.Module._stella_find_life=()=>1;el('more-toggle').onclick();el('find-life').onclick();assert.equal(el('more-menu').open,false);assert.match(el('notice').textContent,/Found existing life/);
+sandbox.Module._stella_find_life=()=>0;el('find-life').onclick();assert.match(el('notice').textContent,/No visible-size/);
+sandbox.Module._stella_find_life=()=>-2;el('find-life').onclick();assert.match(el('notice').textContent,/Origin colonies/);
+sandbox.Module._stella_find_life=()=>-4;el('find-life').onclick();assert.match(el('notice').textContent,/view has not changed/);
+delete sandbox.Module._stella_find_life;el('find-life').onclick();assert.match(el('notice').textContent,/Start or load/);
 sandbox.Module.started=false;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);sandbox.Module.started=true;
 delete sandbox.Module._stella_fit_life;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);
 sandbox.Module.started=true;sandbox.Module._stella_life_snapshot=()=>1;

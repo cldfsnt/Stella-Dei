@@ -1,0 +1,4 @@
+TRADEOFF habitat=stable_1m swapped=0 weak=0.791184 strong=0.186981 fixed=1.327179 failed_cohorts=0 carbon_error_max=0.00000143 no_dispersal=true
+TRADEOFF habitat=stable_1m swapped=1 weak=0.791184 strong=0.186981 fixed=1.327179 failed_cohorts=0 carbon_error_max=0.00000143 no_dispersal=true
+TRADEOFF habitat=12h_1m_12h_5cm swapped=0 weak=0.000000 strong=0.758822 fixed=2.431016 failed_cohorts=1 carbon_error_max=0.00000095 no_dispersal=true
+TRADEOFF habitat=12h_1m_12h_5cm swapped=1 weak=0.000000 strong=0.758822 fixed=2.431016 failed_cohorts=1 carbon_error_max=0.00000095 no_dispersal=true

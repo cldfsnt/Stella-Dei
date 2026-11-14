@@ -1,0 +1,6 @@
+1/5 life_camera.test.local cluster excludes distant island and frames portrait with safe altitude...OK
+2/5 life_camera.test.empty nearby cluster and polar center refuse without mutation...OK
+3/5 life_camera.test.invalid viewport and geometry fail safely...OK
+4/5 life_camera.test.fit failure reasons distinguish empty, small viewport, polar and invalid geometry...OK
+5/5 life_camera.test.global explicit find locates disconnected life without mutation...OK
+All 5 tests passed.

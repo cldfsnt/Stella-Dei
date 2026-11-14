@@ -193,6 +193,10 @@ pub const PlayState = struct {
     blenderAtlasAttempted: bool = false,
     colonyPeek: @import("../colony_peek.zig").Pin = .{},
     propaguleVisuals: @import("../propagule_visuals.zig").Pool = .{},
+    colonyTargets: @import("../colony_targets.zig").List = .{},
+    colonyTargetWidth:f32=0,
+    colonyTargetHeight:f32=0,
+    colonyTargetWorld:usize=0,
     seedTargets: SeedTargets.List = .{},
     seedTargetWidth:f32=0,
     seedTargetHeight:f32=0,
@@ -832,6 +836,7 @@ pub const PlayState = struct {
             return;
         }
 
+        if(button==.left){const cursor=game.window.getCursorPos();if(self.pickColonyTarget(game,@floatCast(cursor.xpos),@floatCast(cursor.ypos))) |cell| {self.selectedPoint=cell;self.pointerOnPlanet=true;}}
         if (button == .left and !self.pointerOnPlanet) {
             self.mobileFeedback = "Tap the planet, or use Land below";
             self.mobileFeedbackSeconds = 3;
@@ -1020,6 +1025,7 @@ pub const PlayState = struct {
         self.targetCameraDistance = distance;
         self.targetCameraPos = self.targetCameraPos.norm().scale(distance);
         if (snap) {
+            self.colonyTargets.count=0;
             self.cameraDistance = distance;
             self.cameraPos = self.targetCameraPos;
         }
@@ -1125,6 +1131,16 @@ pub const PlayState = struct {
         return self.seedTargets.pick(x,y);
     }
 
+
+    fn pickColonyTarget(self:*PlayState,game:*Game,x:f32,y:f32) ?usize {
+        if(self.selectedTool!=.None or self.planet.worldMode!=.origin or self.displayMode!=.Normal or self.cameraInputBlocked())return null;
+        const size=game.window.getFramebufferSize();
+        if(self.colonyTargetWidth!=@as(f32,@floatFromInt(size.width)) or self.colonyTargetHeight!=@as(f32,@floatFromInt(size.height)) or self.colonyTargetWorld!=@intFromPtr(self.planet.microbeCells.ptr))return null;
+        const cell=self.colonyTargets.pick(x,y) orelse return null;
+        if(cell>=self.planet.microbeCells.len or Microbes.biomass(self.planet.microbeCells[cell])<0.001)return null;
+        return cell;
+    }
+
     pub fn mouseMoved(self: *PlayState, game: *Game, x: f32, y: f32, dx: f32, dy: f32) void {
         if (self.cameraInputBlocked() or self.mobilePointerOnUI(game)) return;
         if (self.freeCam) {
@@ -1133,6 +1149,7 @@ pub const PlayState = struct {
             self.cameraRotation.data[1] -= dy * mouseSensitivity;
         }
 
+        if(self.pickColonyTarget(game,x,y)) |cell| {self.selectedPoint=cell;self.pointerOnPlanet=true;return;}
         self.validateSeedTargetViewport(game);
         if (self.pickSeedTarget(x,y)) |cell| {
             if(std.mem.eql(u8,self.mobileFeedback,"Tap closer to a green + or use Seed colony")){self.mobileFeedback="";self.mobileFeedbackSeconds=0;}
@@ -1424,8 +1441,16 @@ pub const PlayState = struct {
     /// -4 polar view, -5 invalid geometry, -6 cluster too wide. -1 is no world.
     pub fn fitLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
         if(self.planet.worldMode!=.origin)return -2;
+        return self.frameLivingCluster(width,height,false);
+    }
+    pub fn findLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
+        return self.frameLivingCluster(width,height,true);
+    }
+    fn frameLivingCluster(self:*PlayState,width:f32,height:f32,global:bool) i32 {
+        if(self.planet.worldMode!=.origin)return -2;
         const start=self.planet.getNearestPointTo(self.targetCameraPos);
-        const fitted=@import("../life_camera.zig").fitDetailed(&self.planet,start,width,height) catch |err| {
+        const Camera=@import("../life_camera.zig");
+        const fitted=(if(global) Camera.findDetailed(&self.planet,.{self.targetCameraPos.x(),self.targetCameraPos.y(),self.targetCameraPos.z()},width,height) else Camera.fitDetailed(&self.planet,start,width,height)) catch |err| {
             self.mobileFeedbackSeconds=4;
             self.mobileFeedback=switch(err){
                 error.NoNearbyLife=>"No nearby connected life to fit",
@@ -1436,6 +1461,7 @@ pub const PlayState = struct {
             };
             return switch(err){error.NoNearbyLife=>0,error.ViewportTooSmall=>-3,error.PolarView=>-4,error.InvalidGeometry=>-5,error.TooWide=>-6};
         };
+        if(global){self.displayMode=.Normal;self.watchLife();self.colonyPeek.clear();}
         self.targetCameraPos=Vec3.new(fitted.direction[0],fitted.direction[1],fitted.direction[2]);
         self.setOrbitDistance(fitted.distance,true);
         self.cameraGroundPoint=self.planet.getNearestPointTo(self.cameraPos);
@@ -1600,6 +1626,9 @@ pub const PlayState = struct {
     /// Close view scans <=512 neighbours; globe view scans real living cells.
     /// Allocation-free, de-cluttered, <=64 glyphs in either view.
     fn renderSprouts(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
+        self.colonyTargets.count=0;
+        self.colonyTargetWidth=width;self.colonyTargetHeight=height;
+        self.colonyTargetWorld=@intFromPtr(self.planet.microbeCells.ptr);
         self.visibleSprouts = 0;
         self.sproutCandidates = 0;
         if (!biology_visuals.showSprouts(self.cameraDistance, self.planet.radius, self.displayMode == .Normal)) return;
@@ -1646,6 +1675,7 @@ pub const PlayState = struct {
             if (crowded) continue;
             screenPositions[self.visibleSprouts] = screen;
             self.visibleSprouts += 1;
+            if(origin)self.colonyTargets.add(.{.cell=index,.x=x,.y=y,.scale=lod});
             vg.save(); vg.translate(x,y); vg.scale(lod,lod);
             // Soft contact shadow grounds the crisp silhouette in its living patch.
             vg.beginPath(); vg.fillColor(nvg.rgba(8,35,29,125)); vg.ellipse(0,2,13,4); vg.fill();

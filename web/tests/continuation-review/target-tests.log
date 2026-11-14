@@ -1,0 +1,4 @@
+1/3 colony_targets.test.root and body select rendered cell, not terrain neighbour...OK
+2/3 colony_targets.test.bounded, invalid and scaled targets...OK
+3/3 colony_targets.test.declutter-distance vertical neighbour cannot steal an exact root tap...OK
+All 3 tests passed.

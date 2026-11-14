@@ -462,6 +462,12 @@ export fn stella_fit_life() i32 {
     return state.fitLivingClusterResult(@floatFromInt(size.width),@floatFromInt(size.height));
 }
 
+export fn stella_find_life() i32 {
+    const state=webPlayState() orelse return -1;
+    const size=game.window.getFramebufferSize();
+    return state.findLivingClusterResult(@floatFromInt(size.width),@floatFromInt(size.height));
+}
+
 export fn stella_watch_life() i32 {
     const state=webPlayState() orelse return 0;
     state.watchLife();

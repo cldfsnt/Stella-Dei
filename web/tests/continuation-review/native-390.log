@@ -1,0 +1,18 @@
+EGL surface=0x236175a0 context=0x23617bb0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xa3ae3dd7dc6890bd
+info: Sea Level: -1.637207 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+FIND_PASS explicit_fixture=true selected_surface_watch=true pace_preserved=true
+Captured native-frame-001.ppm
+GLYPH_PASS visible=7 root_body_checks=14 same_grid_load_clears=true
+Captured native-frame-002.ppm
+info: deinit audio
+error(gpa): memory address 0x7fb33022b000 leaked: 
+

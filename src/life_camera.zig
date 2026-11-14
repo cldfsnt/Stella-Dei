@@ -59,3 +59,31 @@ test "fit failure reasons distinguish empty, small viewport, polar and invalid g
  for(0..3)|i|p.microbeCells[i].cohorts[0].biomass=0;
  try std.testing.expectError(error.NoNearbyLife,fitDetailed(&p,0,390,700));
 }
+
+/// Explicit O(N) search, invoked only by a user action, never per frame.
+/// Chooses the nearest visible-size living patch to the current view direction.
+pub fn findDetailed(p:anytype,view:[3]f32,width:f32,height:f32)FitError!Fit {
+ if(!std.math.isFinite(width) or !std.math.isFinite(height))return error.InvalidGeometry;
+ if(width<240 or height<240)return error.ViewportTooSmall;
+ const direction=normal(view) orelse return error.InvalidGeometry;
+ var best:?usize=null;var score:f32=-2;var any_life=false;
+ for(p.transformedPoints,0..) |_,i| {
+  if(i>=p.microbeCells.len)continue;
+  var biomass:f32=0;for(p.microbeCells[i].cohorts)|c| {if(std.math.isFinite(c.biomass) and c.biomass>0)biomass+=c.biomass;}
+  if(biomass<0.001)continue;
+  any_life=true;
+  const d=normal(point(p,i)) orelse continue;
+  if(@abs(d[2])>0.94)continue;
+  const candidate=dot(direction,d);if(candidate>score){score=candidate;best=i;}
+ }
+ const anchor=best orelse return if(any_life) error.PolarView else error.NoNearbyLife;
+ return fitDetailed(p,anchor,width,height);
+}
+test "global explicit find locates disconnected life without mutation" {
+ var p=Mock{};for(0..3)|i|p.microbeCells[i].cohorts[0].biomass=0;
+ const old=p;const found=try findDetailed(&p,.{1,0,0},390,700);
+ try std.testing.expectEqual(@as(usize,3),found.anchor);try std.testing.expectEqualDeep(old,p);
+ p.microbeCells[3].cohorts[0].biomass=0;try std.testing.expectError(error.PolarView,findDetailed(&p,.{1,0,0},390,700));
+ p.microbeCells[4].cohorts[0].biomass=0;try std.testing.expectError(error.NoNearbyLife,findDetailed(&p,.{1,0,0},390,700));
+ try std.testing.expectError(error.ViewportTooSmall,findDetailed(&p,.{1,0,0},390,100));
+}
