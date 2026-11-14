@@ -1,0 +1,48 @@
+install
++- run test stderr
+PLANET_FIRE N=7 fuel_kg=4487989760 O2_kg=11967972693.333338 CO2_kg=16455962453.333313 heat_J=134639692800000000 stored_J=134639608507400200 rounding_J=84292599808 delta_K=19.4345703125 carbon_error=0 nutrients_unchanged=true other_cells_unchanged=true stats_unchanged=true
+PLANET_FIRE_REFUSAL case=0 failure=wet unchanged=true
+PLANET_FIRE_REFUSAL case=1 failure=no_oxygen unchanged=true
+PLANET_FIRE_REFUSAL case=2 failure=stale unchanged=true
+PLANET_FIRE_REFUSAL case=3 failure=precision unchanged=true
+PLANET_FIRE_REFUSAL case=4 failure=heat_limit unchanged=true
+PLANET_FIRE_REFUSAL case=5 failure=mode unchanged=true
+PLANET_FIRE_REFUSAL case=6 failure=no_fuel unchanged=true
+PLANET_FIRE_REFUSAL case=7 failure=precision unchanged=true
+PLANET_FIRE_REFUSAL case=8 failure=invalid unchanged=true
+PLANET_FIRE_REPEAT attempts=100 successes=27 O2_initial_kg=33510323541.333332 O2_spent_kg=32988387832.638752 O2_remaining_kg=521935708.6945831 carbon_error=-0.000091552734375 nutrients_unchanged=true
+PLANET_FIRE_SCALE N=40962 radius=5000 area=7669529600 heat_capacity=2959748131454976 O2_ideal=1563063715.2552285 O2_actual=1563063734.7276206 O2_residual=19.472392082214355 O2_old_budget=15.630637152552286 O2_half_ULP=74.50944394804537 CO2_ideal=2149212608.4759393 CO2_actual=2149212607.309437 CO2_residual=-1.1665024757385254 failure=none gas_residuals_explicit=true
+PLANET_FIRE_ALLOCATION_SWEEP N=40962 cases=32 successes=32 directed_corrections=14 actual_O2_within_equal_patch_share=true residuals_within_ULP_and_1ppm=true
+PLANET_FIRE_CUMULATIVE N=40962 attempts=1028 successes=257 burned_kg=492767276800 O2_actual_sum=1314046062318.984 O2_final_delta=1314046062318.9792 O2_residual_sum=-9147.687376022339 CO2_actual_sum=1806813348853.4905 CO2_final_delta=1806813348853.484 CO2_residual_sum=586.817271232605 carbon_delta=158 carbon_residual_expected=160.0410739725286 global_ulp_budget_kg=8.2509765625 nutrients_stats_unchanged=true no_gas_resets=true
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+FOOD_WEB120 biomass=0.19443813 births=47 gen=2 grazed=0.8482477755169384 cell_bytes=336
+GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748614356605685
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.00940453 fixed=0.0769931836402975
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857256 fixed=1.0396804702468216
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.66051495 fixed=1.0023239215370268
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911017 fixed=0.9246702608652413
+FILM_MATRIX depth_m=1 variant=0 biomass=0.9237717 fixed=0.9222954493016005
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870434 fixed=0.9155964879319072
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812204 fixed=0.9056189879775047
+RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365966 thermal_reset_control=0.09157571
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268790 thermal_reset_control=0.09157571
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120820 thermal_reset_control=0.08310293
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701172 thermal_reset_control=0.08310293

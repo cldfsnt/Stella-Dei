@@ -408,20 +408,26 @@ export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
     return state.setSelectedWaterTarget(expected_point,target_m);
 }
 
-var godTargetBuffer:[512]u8=undefined;
+var godTargetBuffer:[768]u8=undefined;
 export fn stella_god_target() [*:0]const u8 {
     const state=webPlayState() orelse return "{\"status\":\"no_world\"}";
     const i=state.selectedPoint;if(i>=state.planet.temperature.len or i>=state.planet.waterMass.len)return "{\"status\":\"invalid\"}";
     var stream=std.io.fixedBufferStream(godTargetBuffer[0..godTargetBuffer.len-1]);
     const Actions=@import("god_actions.zig");const heat=state.planet.currentHeatCapacity(i);
-    const wave=Actions.previewWave(&state.planet,i,i);const lightning=Actions.previewLightning(&state.planet,i,i,heat);const scorch=Actions.previewScorch(&state.planet,i,i,heat);
-    std.json.stringify(.{.status="ready",.cell=i,.water_m=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000,.temperature_c=state.planet.temperature[i]-273.15,.eligibility=.{.wave=@tagName(wave.failure),.lightning=@tagName(lightning.failure),.scorch=@tagName(scorch.failure)}},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{}";
+    const wave=Actions.previewWave(&state.planet,i,i);const lightning=Actions.previewLightning(&state.planet,i,i,heat);const scorch=Actions.previewScorch(&state.planet,i,i,heat);const ignition=state.previewIgnition(i);
+    std.json.stringify(.{.status="ready",.cell=i,.water_m=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000,.temperature_c=state.planet.temperature[i]-273.15,.eligibility=.{.wave=@tagName(wave.failure),.lightning=@tagName(lightning.failure),.scorch=@tagName(scorch.failure),.ignition=@tagName(ignition.failure)}},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{}";
     godTargetBuffer[stream.pos]=0;return @ptrCast(&godTargetBuffer);
 }
 var godActionBuffer:[4096]u8=undefined;
 export fn stella_god_action(kind:u32,expected:u32) [*:0]const u8 {
     const state=webPlayState() orelse return "{\"failure\":\"no_world\"}";
-    if(kind>2){state.godReceipt=null;state.godEffectSeconds=0;return "{\"failure\":\"invalid\"}";}
+    if(kind==3){
+        const ignition=state.applyIgnition(expected);
+        var stream=std.io.fixedBufferStream(godActionBuffer[0..godActionBuffer.len-1]);
+        std.json.stringify(ignition,.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{\"failure\":\"error\"}";
+        godActionBuffer[stream.pos]=0;return @ptrCast(&godActionBuffer);
+    }
+    if(kind>3){state.godReceipt=null;state.godEffectSeconds=0;return "{\"failure\":\"invalid\"}";}
     const result=state.applyGodAction(if(kind==0).wave else if(kind==1).lightning else .scorch,expected);
     var stream=std.io.fixedBufferStream(godActionBuffer[0..godActionBuffer.len-1]);
     std.json.stringify(.{.kind=@tagName(result.kind),.failure=@tagName(result.failure),.count=result.count,.affected=result.affected[0..result.count],.moved_mass=result.moved_mass,.moved_depth_m=result.moved_mass*state.planet.getKmPerWaterMass()*1000,.heat_joules=result.heat_joules},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{\"failure\":\"error\"}";

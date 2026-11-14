@@ -998,6 +998,19 @@ pub const PlayState = struct {
         return result;
     }
 
+    pub fn previewIgnition(self:*PlayState,expected:usize) @import("../experimental/planet_ignition.zig").Receipt {
+        return @import("../experimental/planet_ignition.zig").preview(&self.planet,expected,self.selectedPoint);
+    }
+
+    pub fn applyIgnition(self:*PlayState,expected:usize) @import("../experimental/planet_ignition.zig").Receipt {
+        const result=@import("../experimental/planet_ignition.zig").ignite(&self.planet,expected,self.selectedPoint);
+        // A prior wave/scorch animation is not evidence of this distinct reaction.
+        self.godReceipt=null;self.godEffectSeconds=0;
+        self.mobileFeedback=if(result.success()) "Exposed dead carbon oxidized; heat and gas changed, no wildfire" else "Detritus ignition blocked; inspect target conditions";
+        self.mobileFeedbackSeconds=5;
+        return result;
+    }
+
     pub fn seedSelectedColony(self:*PlayState, expected_point:u32) i32 {
         if(self.planet.worldMode!=.origin or expected_point!=self.selectedPoint or self.selectedPoint>=self.planet.microbeCells.len) return -1;
         return @intFromBool(self.applySelectedTool(.PlaceVegetation,true,0));

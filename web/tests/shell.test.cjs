@@ -12,6 +12,14 @@ assert.match(html,/body #speed-sheet\{overscroll-behavior:contain;scroll-padding
 assert.match(html,/#life-sheet,#god-sheet,#speed-sheet\{[^}]*width:min\(450px,calc\(100vw - 16px\)\);max-height:80dvh;overflow:auto/);
 assert.match(html,/body #speed-sheet \.sheet-heading\{z-index:5/);
 assert.match(html,/Nothing is uploaded; closing stops measurement/);
+const godDialog=html.slice(html.indexOf('<dialog id="god-sheet"'),html.indexOf('</dialog>',html.indexOf('<dialog id="god-sheet"')));
+for(const id of ['god-wave','god-heat','god-scorch','god-ignite'])assert.ok(godDialog.indexOf('id="'+id+'"')<godDialog.indexOf('id="god-help"'),'All actions precede long explanations');
+assert.ok(godDialog.indexOf('id="ignition-ledger"')<godDialog.indexOf('id="god-help"'),'Last receipt independent before help');
+assert.match(html,/body #god-sheet details\{position:static;display:block;inset:auto/);
+assert.match(html,/body #god-sheet details:not\(\[open\]\)\{display:block\}/);
+assert.match(html,/body #god-sheet details:not\(\[open\]\)>:not\(summary\)\{display:none\}/);
+assert.match(html,/body #god-sheet details\[hidden\]\{display:none\}/);
+assert.match(html,/body #god-actions\{display:grid;grid-template-columns:1fr 1fr/);
 const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'Duplicate DOM ids');
 const elements=new Map(ids.map(id=>[id,{id,hidden:id==='guide',disabled:false,open:false,dataset:{},handlers:{},addEventListener(type,fn){this.handlers[type]=fn;},setAttribute(k,v){this[k]=v;},focus(){},setPointerCapture(){},hasPointerCapture(){return false;},dispatchEvent(){},appendChild(){},querySelector(){return {textContent:''}},getBoundingClientRect(){return{left:10,top:100,right:300,bottom:400,width:390,height:700}},showModal(){this.open=true},close(){this.open=false}}]));
 elements.set('diagnostics',{textContent:''});
@@ -195,4 +203,15 @@ sandbox.Module.ccall=(name)=>{if(name==='stella_god_target')return JSON.stringif
 el('god-refresh').onclick();for(const id of ['god-wave','god-heat','god-scorch'])assert.equal(el(id).disabled,true);assert.match(el('god-availability').textContent,/Needs water/);assert.match(el('god-availability').textContent,/Needs vegetation/);el('god-wave').onclick();assert.equal(blockedGodCalls,0);
 sandbox.Module.ccall=()=>JSON.stringify({status:'ready',cell:22,water_m:1,temperature_c:25});el('god-refresh').onclick();assert.equal(el('god-wave').disabled,true);assert.match(el('god-availability').textContent,/checks unavailable/);
 
+// Real receipt fields required for separate Origin detritus action; missing readiness fails closed.
+assert.equal(el('god-ignite').disabled,true);
+const ignitionRecord={failure:'none',cell:22,burned_carbon_per_area:.02,burned_carbon_kg:200,oxygen_allocation_carbon_per_area:1,oxygen_consumed_kg:533.333,oxygen_ideal_kg:533.3333,oxygen_rounding_kg:-.0003,oxygen_rounding_budget_kg:.001,carbon_dioxide_added_kg:733.333,carbon_dioxide_ideal_kg:733.3333,carbon_dioxide_rounding_kg:-.0003,carbon_dioxide_rounding_budget_kg:.001,fuel_heat_joules:6000000000,stored_heat_joules:5999999999,thermal_rounding_joules:1,temperature_delta:1.5};
+let ignitionCalls=[];sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_god_target')return JSON.stringify({status:'ready',cell:22,water_m:0,temperature_c:25,eligibility:{wave:'dry',lightning:'none',scorch:'origin',ignition:'none'}});ignitionCalls.push(v);return JSON.stringify(ignitionRecord);};
+el('god-refresh').onclick();assert.equal(el('god-ignite').disabled,false);assert.equal(el('god-scorch').disabled,true);el('god-ignite').onclick();assert.equal(JSON.stringify(ignitionCalls),'[[3,22]]');assert.equal(el('ignition-ledger').hidden,false);assert.match(el('ignition-summary').textContent,/not wildfire/);assert.match(el('ignition-summary').textContent,/numerical gas\/heat residuals/);assert.equal(el('ignition-receipt').textContent,JSON.stringify(ignitionRecord,null,2));
+const preservedReceipt=el('ignition-receipt').textContent;el('god-refresh').onclick();assert.equal(el('ignition-receipt').textContent,preservedReceipt);
+sandbox.Module.ccall=()=>JSON.stringify({failure:'wet',cell:22});el('god-ignite').onclick();assert.match(el('god-result').textContent,/completely dry/);assert.equal(el('ignition-receipt').textContent,preservedReceipt);
+sandbox.Module.ccall=()=>JSON.stringify({failure:'stale',cell:23});el('god-ignite').onclick();assert.match(el('god-result').textContent,/Selection changed/);
+sandbox.Module.ccall=()=>JSON.stringify({failure:'none',cell:22,burned_carbon_kg:1});el('god-ignite').onclick();assert.match(el('god-result').textContent,/Inspect the patch before trying again/);assert.equal(el('ignition-receipt').textContent,preservedReceipt);
+for(const reason of ['wet','no_fuel','no_oxygen','heat_limit','precision','mode','invalid']){sandbox.Module.ccall=()=>JSON.stringify({status:'ready',cell:22,water_m:0,temperature_c:25,eligibility:{wave:'dry',lightning:'none',scorch:'origin',ignition:reason}});el('god-refresh').onclick();assert.equal(el('god-ignite').disabled,true);}
+sandbox.confirm=()=>true;await sandbox.storageAction('load');assert.equal(el('ignition-ledger').hidden,true);assert.equal(el('ignition-receipt').textContent,'');
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

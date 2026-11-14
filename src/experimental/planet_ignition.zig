@@ -1,4 +1,5 @@
-//! EXPERIMENT ONLY. Actual Planet accounting adapter; not wired to gameplay.
+//! Bounded exposed-detritus oxidation adapter. Deliberately not a wildfire model.
+//! Kept in experimental/ to distinguish this calibrated intervention from ecology.
 const std = @import("std");
 const P = @import("../simulation/planet.zig").Planet;
 const M = @import("../simulation/microbes.zig");

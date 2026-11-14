@@ -1,5 +1,5 @@
-//! EXPERIMENT ONLY: explicit one-cell exposed-detritus oxidation, not wildfire.
-//! No Planet integration, biology edits, propagation, ignition threshold or seeds.
+//! Explicit one-cell exposed-detritus oxidation, not wildfire.
+//! Pure inventory primitive: no biology edits, propagation, ignition threshold or seeds.
 //! Inputs/output inventories are per square metre; gas fields are carbon-equivalent.
 const std = @import("std");
 pub const temperature_ceiling: f64 = 500;

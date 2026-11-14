@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Experimental real-world fire assay; never injects fuel or modifies player saves."""
+"""Real-world fire assay; optional --player-flow uses production PlayState actions.
+Default preserves direct experimental adapter research. No assigned fuel/user saves.
+"""
 from pathlib import Path
 import subprocess,sys
 root=Path(__file__).resolve().parents[2];out=Path(sys.argv[1])
@@ -36,4 +38,41 @@ hook=r'''        {
             std.debug.print("FIRE_RESTORE exact_original=true user_save_used=false fuel_injected=false\n",.{});
         }
 '''
+if '--player-flow' in sys.argv:
+    # Exact methods used by the actual web export, without bypassing webPlayState.
+    hook=hook.replace('const Fire=@import("experimental/planet_ignition.zig");','')
+    hook=hook.replace('const predicted=Fire.preview(&state.planet,patch,patch);','const predicted=state.previewIgnition(patch);')
+    hook=hook.replace('const applied=Fire.ignite(&state.planet,patch,patch);','const applied=state.applyIgnition(patch);')
+    hook=hook.replace('                const before=try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{});',r'''                state.paused=true;state.timeScale=21600;
+                const action_time=state.gameTime;const action_pace=state.timeScale;const action_pause=state.paused;
+                const before=try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{});
+                const stale_preview=state.previewIgnition(patch+1);std.debug.assert(stale_preview.failure==.stale);
+                const stale_action=state.applyIgnition(patch+1);std.debug.assert(stale_action.failure==.stale);
+                std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{})));
+                std.debug.assert(state.gameTime==action_time and state.timeScale==action_pace and state.paused==action_pause);
+                std.debug.print("FIRE_PLAYER_STALE branch={d} preview=stale action=stale exact_save_unchanged=true time_pace_pause_unchanged=true\n",.{branch});
+''')
+    hook=hook.replace('                if(branch==0)std.debug.assert(!predicted.success());',r'''                std.debug.assert(state.gameTime==action_time and state.timeScale==action_pace and state.paused==action_pause);
+                if(branch==0){const wet=state.applyIgnition(patch);std.debug.assert(predicted.failure==.wet and wet.failure==.wet);
+                    std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{})));
+                    std.debug.assert(state.gameTime==action_time and state.timeScale==action_pace and state.paused==action_pause);
+                    std.debug.print("FIRE_PLAYER_WET exact_save_unchanged=true time_pace_pause_unchanged=true\n",.{});
+                }
+''')
+    hook=hook.replace('                    const frozen=try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{});',r'''                    std.debug.assert(state.gameTime==action_time and state.timeScale==action_pace and state.paused==action_pause);
+                    std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(fa,predicted,.{}),try std.json.stringifyAlloc(fa,applied,.{})));
+                    render(window);gl.finish();window.swapBuffers();
+                    std.debug.print("FIRE_PLAYER_APPLIED shared_export_action=true paused_action=true time_pace_pause_unchanged=true receipt_matches_preview=true rendered_after_action=true\n",.{});
+                    const frozen=try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{});
+                    std.debug.assert(state.planet.microbeCells[patch].detritus==0);
+                    const empty_preview=state.previewIgnition(patch);const empty_action=state.applyIgnition(patch);
+                    std.debug.assert(empty_preview.failure==.no_fuel and empty_action.failure==.no_fuel);
+                    std.debug.assert(std.mem.eql(u8,frozen,try std.json.stringifyAlloc(fa,try Save.capture(fa,state),.{})));
+                    std.debug.assert(state.gameTime==action_time and state.timeScale==action_pace and state.paused==action_pause);
+                    std.debug.print("FIRE_PLAYER_REPEAT no_fuel=true exact_save_unchanged=true time_pace_pause_unchanged=true\n",.{});
+''')
+    hook=hook.replace('FIRE_RESTORE exact_original=true','FIRE_RESTORE player_flow=true exact_original=true')
+    assert 'Fire.ignite' not in hook and 'Fire.preview' not in hook
+    play=(out/'states/play.zig').read_text()
+    assert 'pub fn previewIgnition(' in play and 'pub fn applyIgnition(' in play
 p.write_text(s.replace(needle,hook+needle,1))
