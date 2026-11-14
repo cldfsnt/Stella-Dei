@@ -1,0 +1,67 @@
+--- a/src/shaders/postprocess.fs
++++ b/src/shaders/postprocess.fs
+@@ -1,6 +1,5 @@
+ #version 330 core
+ #define M_PI 3.1415926535897932384626433832795
+-#define BLUR_KERNEL_SIZE 5
+ 
+ // Parameters
+ uniform vec3 viewPos;
+@@ -120,45 +119,19 @@
+ 	}
+ }
+ 
++// Expand the old 1.5-texel offsets into discrete weights, then group adjacent
++// (1,2), (3,4), (5,6) terms into linear-filtered pairs. Keep the original
++// kernel sum .9999994. GL interpolation/half-float rounding is not bit-exact.
+ void drawBlurredTexture() {
+-	// float weight[16] = float[] (
+-	// 	0.11764705882353,
+-	// 	0.10382316500995,
+-	// 	0.071356548201486,
+-	// 	0.038194407924512,
+-	// 	0.015921798027837,
+-	// 	0.0051690510145185,
+-	// 	0.001306940769205,
+-	// 	0.00025735189625681,
+-	// 	3.9466191517943e-05,
+-	// 	4.7135643991707e-06,
+-	// 	4.3842978495043e-07,
+-	// 	3.1759747098388e-08,
+-	// 	1.7917623229074e-09,
+-	// 	7.8724542250503e-11,
+-	// 	2.6938057007595e-12,
+-	// 	7.1787490324768e-14
+-	// );
+-	// for (int i = 0; i < 16; i++) {
+-	// 	float w = cos(i * M_PI / 16.0) * 0.5 + 0.5;
+-	// 	weight[i] = w / (7.5 * 2 + 1);
+-	// }
+-	float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
+-
+-	float sampleDistance = 1.5;
+-	vec2 tex_offset = 1.0 / vec2(textureSize(screenTexture, 0)); // gets size of single texel
+-    vec3 result = texture(screenTexture, texCoords).rgb * weight[0]; // current fragment's contribution
+-    if (horizontalBlurring) {
+-        for (int i = 1; i < BLUR_KERNEL_SIZE; i++) {
+-            result += texture(screenTexture, texCoords + vec2(tex_offset.x * float(i) * sampleDistance, 0.0)).rgb * weight[i];
+-            result += texture(screenTexture, texCoords - vec2(tex_offset.x * float(i) * sampleDistance, 0.0)).rgb * weight[i];
+-        }
+-    } else {
+-        for (int i = 1; i < BLUR_KERNEL_SIZE; i++) {
+-            result += texture(screenTexture, texCoords + vec2(0.0, tex_offset.y * float(i) * sampleDistance)).rgb * weight[i];
+-            result += texture(screenTexture, texCoords - vec2(0.0, tex_offset.y * float(i) * sampleDistance)).rgb * weight[i];
+-        }
+-    }
++    vec2 stepSize = 1.0 / vec2(textureSize(screenTexture, 0));
++    vec2 axis = horizontalBlurring ? vec2(stepSize.x, 0.0) : vec2(0.0, stepSize.y);
++    vec3 result = texture(screenTexture, texCoords).rgb * 0.227027;
++    result += texture(screenTexture, texCoords + axis * 1.5).rgb * 0.1945946;
++    result += texture(screenTexture, texCoords - axis * 1.5).rgb * 0.1945946;
++    result += texture(screenTexture, texCoords + axis * 3.181818059504092).rgb * 0.1486486;
++    result += texture(screenTexture, texCoords - axis * 3.181818059504092).rgb * 0.1486486;
++    result += texture(screenTexture, texCoords + axis * 5.37499710935874).rgb * 0.043243;
++    result += texture(screenTexture, texCoords - axis * 5.37499710935874).rgb * 0.043243;
+     fragColor = vec4(result, 1.0);
+ }
+ 

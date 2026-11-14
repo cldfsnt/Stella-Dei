@@ -18,7 +18,8 @@ elements.set('diagnostics',{textContent:''});
 const preferences=new Map();
 let reset=0,saves=0,loads=0;const state={available:true,busy:false};
 const documentEvents={};
-const sandbox={StellaLifeTrend:require('../life-trend.js'),console,setInterval(){},localStorage:{getItem:k=>preferences.get(k),setItem:(k,v)=>preferences.set(k,v)},setTimeout:()=>1,clearTimeout(){},requestAnimationFrame(){},ResizeObserver:class{observe(){}},MouseEvent:class{},KeyboardEvent:class{},confirm:()=>false,location:{reload(){}},createStellaTouchControls:()=>({reset(){reset++},setMode(){},down(){},move(){},up(){}}),createStellaStorage:()=>({state:()=>state,initialize:async()=>true,save:async()=>{saves++},load:async()=>{loads++;return true}})};
+const intervalJobs=[];let fakeNow=0;
+const sandbox={createGameplayMeasure:require('../gameplay-measure.js').create,performance:{now:()=>fakeNow},StellaLifeTrend:require('../life-trend.js'),console,setInterval(fn,ms){intervalJobs.push({fn,ms})},localStorage:{getItem:k=>preferences.get(k),setItem:(k,v)=>preferences.set(k,v)},setTimeout:()=>1,clearTimeout(){},requestAnimationFrame(){},ResizeObserver:class{observe(){}},MouseEvent:class{},KeyboardEvent:class{},confirm:()=>false,location:{reload(){}},createStellaTouchControls:()=>({reset(){reset++},setMode(){},down(){},move(){},up(){}}),createStellaStorage:()=>({state:()=>state,initialize:async()=>true,save:async()=>{saves++},load:async()=>{loads++;return true}})};
 sandbox.window=sandbox;sandbox.addEventListener=()=>{};sandbox.document={getElementById:id=>{assert.ok(elements.has(id),`Missing id ${id}`);return elements.get(id)},createElement:()=>({innerHTML:'',open:false}),querySelector:()=>({append(){}}),querySelectorAll:()=>[],addEventListener(type,fn){(documentEvents[type]??=[]).push(fn)},body:{classList:{add(){},remove(){}}},documentElement:{requestFullscreen:async()=>{}},fullscreenElement:null};
 vm.createContext(sandbox);vm.runInContext(html.split('<script>')[1].split('</script>')[0],sandbox);
 (async()=>{const el=id=>elements.get(id);el('more-toggle').onclick();assert.ok(el('more-menu').open);el('close-more').onclick();assert.ok(!el('more-menu').open);el('more-toggle').onclick();el('help-toggle').onclick();assert.ok(!el('more-menu').open);assert.equal(el('guide').hidden,false);el('close-guide').onclick();assert.equal(el('guide').hidden,true);
@@ -128,6 +129,17 @@ el('performance-details').open=true;el('speed-sheet').close();el('speed-sheet').
 el('starter-speed').onclick();el('performance-details').open=true;sandbox.document.hidden=true;
 for(const f of documentEvents.visibilitychange??[])f();assert.equal(perfEnabled.at(-1),0);assert.equal(el('performance-details').open,false);sandbox.document.hidden=false;
 el('close-speed').onclick();
+const captureData={...perf,world_serial:1,paused:false,menu_open:false,interrupted:false,game_time:100,requested:86400};
+sandbox.Module._stella_performance_snapshot=()=>1;sandbox.Module._stella_performance_enable=n=>{perfEnabled.push(n);captureData.enabled=!!n;if(n)captureData.interrupted=false;return 1};sandbox.Module.ccall=()=>JSON.stringify(captureData);
+el('starter-speed').onclick();el('measure-gameplay').onclick();assert.equal(el('speed-sheet').open,false);assert.equal(perfEnabled.at(-1),1);
+// Queued close/toggle events from dismissing the panel must not kill gameplay capture.
+el('speed-sheet').handlers.close();el('performance-details').handlers.toggle();assert.equal(perfEnabled.at(-1),1);
+const tickCapture=intervalJobs.find(x=>x.ms===250).fn;for(fakeNow=250;fakeNow<10000;fakeNow+=250)tickCapture();fakeNow=10500;captureData.game_time=36100;tickCapture();assert.equal(perfEnabled.at(-1),0);assert.match(el('gameplay-measure-message').textContent,/sample ready/);assert.equal(el('speed-sheet').open,false);
+el('starter-speed').onclick();assert.equal(el('gameplay-result').hidden,false);assert.match(el('gameplay-result-summary').textContent,/10.5 seconds/);assert.match(el('gameplay-result-summary').textContent,/not the whole-run average/);assert.match(el('gameplay-result-summary').textContent,/not live data/);
+el('measure-gameplay').onclick();el('cancel-gameplay-measure').onclick();assert.equal(perfEnabled.at(-1),0);assert.match(el('gameplay-measure-message').textContent,/Previous sample kept/);
+el('starter-speed').onclick();el('measure-gameplay').onclick();sandbox.document.hidden=true;for(const f of documentEvents.visibilitychange??[])f();assert.equal(perfEnabled.at(-1),0);sandbox.document.hidden=false;
+el('starter-speed').onclick();el('measure-gameplay').onclick();el('more-toggle').onclick();assert.equal(perfEnabled.at(-1),0);assert.match(el('gameplay-measure-message').textContent,/menu opened/);el('more-menu').close();
+captureData.paused=true;el('starter-speed').onclick();el('measure-gameplay').onclick();assert.match(el('gameplay-measure-message').textContent,/press Play/);captureData.paused=false;captureData.world_serial=2;el('starter-speed').onclick();assert.match(el('gameplay-result-summary').textContent,/previous world/);el('close-speed').onclick();
 let fits=0;sandbox.Module._stella_fit_life=()=>{fits++;return 1};
 el('more-toggle').onclick();el('fit-life').onclick();assert.equal(fits,1);assert.equal(el('more-menu').open,false);assert.match(el('notice').textContent,/Framed nearby connected life/);
 sandbox.Module._stella_fit_life=()=>0;el('fit-life').onclick();assert.match(el('notice').textContent,/Pan toward a living patch/);

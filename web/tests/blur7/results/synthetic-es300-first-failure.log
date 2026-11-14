@@ -1,0 +1,14 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+RENDERER llvmpipe (LLVM 19.1.7, 256 bits)
+Traceback (most recent call last):
+  File "/workspace/scratch/f67c3ac60ca3/stella-blur7/qa/synthetic-es300.py", line 46, in <module>
+    a,ap=run(programs[0],src);b,bp=run(programs[1],src);errs=[]
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/f67c3ac60ca3/stella-blur7/qa/synthetic-es300.py", line 33, in run
+    black=texture(w,h,np.zeros_like(src));target(display);ui('doBlurring',0);active(0x84C0);bindTex(0x0DE1,black);active(0x84C1);bindTex(0x0DE1,source);draw(4,0,3);pixels=np.empty((h,w,4),np.uint8);read(0,0,w,h,0x1908,0x1401,pixels.ctypes.data)
+                                          ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/f67c3ac60ca3/stella-blur7/qa/synthetic-es300.py", line 24, in target
+    def target(t):attachTex(0x8D40,0x8CE0,0x0DE1,t,0);assert status(0x8D40)==0x8CD5
+                                                             ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

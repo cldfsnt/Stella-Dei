@@ -1,0 +1,3 @@
+exact rational clamped cases: 2340
+positive grouped weight/offset: [('972973/5000000', '3/2', 1.5), ('743243/5000000', '2364864/743243', 3.181818059504092), ('43243/1000000', '232431/43243', 5.37499710935874)]
+sum kernel: 4999997/5000000 do not renormalize

@@ -1,0 +1,86 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x32e1eaf0 context=0x32e1f100
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=29254 elevation=4999.647 water=11234.662 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5896.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0 depth_m=1.4648438 temp=293.15 camera=5896.4697 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0.02 depth_m=5 temp=293.15 camera=5296.4697 visiblemats=1
+FORMS_PLAYER_INITIAL patch=29254 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=126 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29256 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=7352 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29255 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40248 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40249 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+QA frame=3 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-003.ppm
+QA frame=4 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-004.ppm
+QA frame=5 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-005.ppm
+SB_RABBIT visible_pixel_change=true count=1
+QA frame=6 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-006.ppm
+QA frame=7 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-007.ppm
+QA frame=8 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-008.ppm
+SB_SHADER mode=Normal atmosphere=false original=f7571322bf1669d2 candidate=1ac7968846cd4bb equal=false
+BLUR_DIFF changed=4 max_byte=1 rms=0.0012461119656980671
+QA frame=9 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-009.ppm
+QA frame=10 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-010.ppm
+QA frame=11 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-011.ppm
+SB_SHADER mode=Temperature atmosphere=false original=78723de69c60c52a candidate=3bc911ec21dd3b3d equal=false
+BLUR_DIFF changed=4 max_byte=1 rms=0.0012461119656980671
+QA frame=12 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-blur7-integrated/captures/essl-012.ppm
+SB_SHADER mode=WaterVapor atmosphere=false original=683609a6ae86e305 candidate=55f06ccbec50eb64 equal=false
+BLUR_DIFF changed=6 max_byte=1 rms=0.0015261692391683992
+SB_SHADER mode=Rainfall atmosphere=false original=97a782ec2949c35e candidate=1086063c41770156 equal=false
+BLUR_DIFF changed=2 max_byte=1 rms=0.0008811342210628017
+SB_SHADER mode=WindMagnitude atmosphere=false original=683609a6ae86e305 candidate=55f06ccbec50eb64 equal=false
+BLUR_DIFF changed=6 max_byte=1 rms=0.0015261692391683992
+SB_SHADER mode=Normal atmosphere=true original=c18a0204b81033ae candidate=b3700661c868ac70 equal=false
+BLUR_DIFF changed=3 max_byte=1 rms=0.001079164618254289
+SB_SHADER mode=Temperature atmosphere=true original=f92b9823b108170c candidate=6a8b0f712aaacb40 equal=false
+BLUR_DIFF changed=3 max_byte=1 rms=0.001079164618254289
+SB_SHADER mode=WaterVapor atmosphere=true original=23c4ecd2a7b146f0 candidate=88f3f8c73c04aa51 equal=false
+BLUR_DIFF changed=4 max_byte=1 rms=0.0012461119656980671
+SB_SHADER mode=Rainfall atmosphere=true original=b5ab08ed0e7e0c37 candidate=5de6a598f21f36dd equal=false
+BLUR_DIFF changed=4 max_byte=1 rms=0.0012461119656980671
+SB_SHADER mode=WindMagnitude atmosphere=true original=23c4ecd2a7b146f0 candidate=88f3f8c73c04aa51 equal=false
+BLUR_DIFF changed=4 max_byte=1 rms=0.0012461119656980671
+SUN_HASH original=f32cab2af650be09 candidate=ce801e1087435dfb
+BLUR_DIFF changed=46 max_byte=1 rms=0.004225771273642583
+SB_SUN compared=true bloom_peak=9.984375
+BLUR_DIFF changed=4 max_byte=1 rms=0.0012461119656980671
+SB_RETURN night=false original=f7571322bf1669d2 candidate=1ac7968846cd4bb
+BLUR_DIFF changed=0 max_byte=0 rms=0
+SB_RETURN night=true original=59f5ccc2b9261f6d candidate=59f5ccc2b9261f6d
+SB_RENDER pass=0 candidate=false frames=48 call_ms=37.472919708333336 finish_wait_ms=4.249253729166667 p50=40.433916 p95=51.035979 max=96.364066
+SB_RENDER pass=1 candidate=true frames=57 call_ms=32.9582718245614 finish_wait_ms=3.7293737192982452 p50=33.175373 p95=49.163109 max=109.366737
+SB_RENDER pass=2 candidate=true frames=57 call_ms=31.700404666666667 finish_wait_ms=3.5648601403508775 p50=33.541279 p95=42.773124 max=73.071064
+SB_RENDER pass=3 candidate=false frames=52 call_ms=34.9307175 finish_wait_ms=4.212169826923077 p50=37.208664 p95=54.327612 max=66.377053
+SB_MODEL unchanged=true
+info: deinit audio
+error(gpa): memory address 0x7f3378657000 leaked: 
+

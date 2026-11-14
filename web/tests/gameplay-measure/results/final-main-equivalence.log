@@ -1,0 +1,1 @@
+PASS: final main callback/metrics/play/module files byte-identical to tested candidate. Final shell includes immediate stopPerformance before measurement start. Parent reports final combined shader/WASM gate passed.

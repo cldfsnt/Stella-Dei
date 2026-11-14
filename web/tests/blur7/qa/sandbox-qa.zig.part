@@ -1,0 +1,40 @@
+    if(std.posix.getenv("QA_SB_SHADER")!=null){
+        defer loop.pump(1024);
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        state.planet.worldMode=.sandbox;state.paused=true;state.selectedTool=.None;state.watchLifeView=true;state.stableDaylight=true;
+        const original=renderer.postprocessProgram;var candidate=try @TypeOf(original).createFromName("postprocess_candidate");
+        defer { candidate.deinit();renderer.postprocessProgram=original; }
+        const size=window.getFramebufferSize();const pixels=try al.alloc(u8,@as(usize,@intCast(size.width*size.height))*4);
+        const normal_pos=state.cameraPos;const normal_target=state.targetCameraPos;const normal_distance=state.cameraDistance;const normal_target_distance=state.targetCameraDistance;
+        const center=state.planet.getNearestPointTo(state.cameraPos);state.selectedPoint=center;
+        const Life=@TypeOf(state.planet.lifeforms.items[0]);
+        renderer.postprocessProgram=original;_=bloomReadPixels(window,pixels);const empty=bloomReadPixels(window,pixels);
+        try state.planet.addLifeform(Life.init(state.planet.transformedPoints[center],.Rabbit,state.gameTime));
+        const rabbit=bloomReadPixels(window,pixels);std.debug.assert(empty!=rabbit);std.debug.print("SB_RABBIT visible_pixel_change=true count={d}\n",.{state.planet.lifeforms.items.len});
+        const saves=@import("save_game.zig");const before=try saves.capture(al,state);const before_json=try std.json.stringifyAlloc(al,before,.{});
+        for(0..2)|atmos|{
+            @import("states/play.zig").qa_force_atmosphere=atmos==1;
+            for([_]@TypeOf(state.displayMode){.Normal,.Temperature,.WaterVapor,.Rainfall,.WindMagnitude})|mode|{
+                state.displayMode=mode;renderer.postprocessProgram=original;_=bloomReadPixels(window,pixels);const old=bloomReadPixels(window,pixels);
+                const reference=try al.dupe(u8,pixels);renderer.postprocessProgram=candidate;const new=bloomReadPixels(window,pixels);
+                std.debug.print("SB_SHADER mode={s} atmosphere={} original={x} candidate={x} equal={}\n",.{@tagName(mode),atmos==1,old,new,old==new});qaBlurDiff(reference,pixels);
+            }
+        }
+        @import("states/play.zig").qa_force_atmosphere=false;state.displayMode=.Normal;
+        state.freeCam=true;state.cameraPos=za.Vec3.new(8000,0,0);state.targetCameraPos=state.cameraPos;state.cameraDistance=8000;state.targetCameraDistance=8000;state.cameraRotation=za.Vec3.zero();
+        renderer.postprocessProgram=original;const sun_old=bloomReadPixels(window,pixels);const sun_reference=try al.dupe(u8,pixels);renderer.postprocessProgram=candidate;const sun_new=bloomReadPixels(window,pixels);std.debug.print("SUN_HASH original={x} candidate={x}\n",.{sun_old,sun_new});qaBlurDiff(sun_reference,pixels);try qaBlurRaw(sun_reference,"../stella-blur7/results/sun-original.rgba");try qaBlurRaw(pixels,"../stella-blur7/results/sun-candidate.rgba");
+        const floats=try al.alloc(f32,pixels.len);state.bloomFramebuffer.bind();gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.FLOAT,floats.ptr);state.bloomFramebuffer.unbind();var peak:f32=0;for(floats,0..)|v,i|{if(i%4!=3)peak=@max(peak,v);}
+        std.debug.print("SB_SUN compared=true bloom_peak={d}\n",.{peak});std.debug.assert(peak>1);
+        state.freeCam=false;state.cameraPos=normal_pos;state.targetCameraPos=normal_target;state.cameraDistance=normal_distance;state.targetCameraDistance=normal_target_distance;
+        for([_]bool{false,true})|night|{state.stableDaylight=!night;renderer.postprocessProgram=original;const old=bloomReadPixels(window,pixels);const reference=try al.dupe(u8,pixels);renderer.postprocessProgram=candidate;const new=bloomReadPixels(window,pixels);qaBlurDiff(reference,pixels);std.debug.print("SB_RETURN night={} original={x} candidate={x}\n",.{night,old,new});}
+        state.stableDaylight=true;
+        for([_]bool{false,true,true,false},0..)|fast,pass|{
+            renderer.postprocessProgram=if(fast)candidate else original;_=bloomReadPixels(window,pixels);
+            var samples:[4096]f64=undefined;var count:usize=0;var timer=try std.time.Timer.start();var submit:u64=0;var wait:u64=0;
+            while(timer.read()<2_000_000_000 and count<samples.len){var frame=try std.time.Timer.start();render(window);const call=frame.read();gl.finish();const all=frame.read();submit+=call;wait+=all-call;samples[count]=@as(f64,@floatFromInt(all))/1e6;count+=1;}
+            std.mem.sort(f64,samples[0..count],{},std.sort.asc(f64));std.debug.print("SB_RENDER pass={d} candidate={} frames={d} call_ms={d} finish_wait_ms={d} p50={d} p95={d} max={d}\n",.{pass,fast,count,@as(f64,@floatFromInt(submit))/@as(f64,@floatFromInt(count))/1e6,@as(f64,@floatFromInt(wait))/@as(f64,@floatFromInt(count))/1e6,samples[count/2],samples[count*95/100],samples[count-1]});
+        }
+        var after=try saves.capture(al,state);after.display_mode=before.display_mode;after.camera=before.camera;after.camera_target=before.camera_target;after.camera_distance=before.camera_distance;after.target_distance=before.target_distance;
+        const after_json=try std.json.stringifyAlloc(al,after,.{});std.debug.assert(std.mem.eql(u8,before_json,after_json));std.debug.print("SB_MODEL unchanged=true\n",.{});return;
+    }
+

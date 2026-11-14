@@ -1,0 +1,2 @@
+fn qaBlurDiff(a:[]const u8,b:[]const u8)void{var changed:usize=0;var max:u8=0;var squares:f64=0;for(a,b)|x,y|{const d=if(x>y)x-y else y-x;if(d>0)changed+=1;max=@max(max,d);squares+=@as(f64,@floatFromInt(d))*@as(f64,@floatFromInt(d));}std.debug.print("BLUR_DIFF changed={d} max_byte={d} rms={d}\n",.{changed,max,@sqrt(squares/@as(f64,@floatFromInt(a.len)))});}
+fn qaBlurRaw(pixels:[]const u8,path:[]const u8)!void{const f=try std.fs.cwd().createFile(path,.{});defer f.close();try f.writeAll(pixels);}

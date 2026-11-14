@@ -225,6 +225,7 @@ pub const PlayState = struct {
     }
 
     fn initNewWorld(game: *Game, subdivisions: usize, preset: @import("../world_setup.zig").Preset) PlayState {
+        @import("../performance_details.zig").worldChanged();
         std.debug.assert(subdivisions == 6 or subdivisions == 7);
         const soundTrack = SoundTrack{ .items = &.{
             "assets/music/music1.mp3",
@@ -699,6 +700,7 @@ pub const PlayState = struct {
     }
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
+        if(self.paused or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails)@import("../performance_details.zig").interrupted();
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
         self.propaguleVisuals.advance(dt);
         self.godEffectSeconds = @max(0,self.godEffectSeconds-dt);

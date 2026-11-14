@@ -20,3 +20,5 @@ cp web/touch-controls.js web/dist/touch-controls.js
 cp web/stella-storage.js web/dist/stella-storage.js
 
 cp web/life-trend.js web/dist/life-trend.js
+
+cp web/gameplay-measure.js web/dist/gameplay-measure.js

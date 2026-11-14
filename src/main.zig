@@ -448,7 +448,7 @@ export fn stella_performance_snapshot()[*:0]const u8 {
     const state=webPlayState() orelse return "{\"status\":\"unavailable\"}";
     const sample=PerformanceDetails.metrics.sample();
     var stream=std.io.fixedBufferStream(&performance_json);
-    std.json.stringify(.{.enabled=PerformanceDetails.metrics.enabled,.cells=state.planet.transformedPoints.len,.frames=sample.frames,.ticks=sample.ticks,.physics_frames=sample.physics_frames,
+    std.json.stringify(.{.enabled=PerformanceDetails.metrics.enabled,.world_serial=PerformanceDetails.world_serial,.paused=state.paused,.menu_open=state.showEscapeMenu or state.showPlanetControl or state.showPointDetails,.interrupted=PerformanceDetails.metrics.interrupted,.game_time=state.gameTime,.requested=state.timeScale,.cells=state.planet.transformedPoints.len,.frames=sample.frames,.ticks=sample.ticks,.physics_frames=sample.physics_frames,
       .frame_avg_ms=sample.frame_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.frame_max_ms=sample.frame_max,.frame_p95_ms=sample.frame_p95,.long_frames=sample.long_frames,
       .physics_avg_ms=sample.physics_sum/@max(@as(f64,@floatFromInt(sample.physics_frames)),1),.physics_max_ms=sample.physics_max,
       .render_cpu_avg_ms=sample.render_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.render_cpu_max_ms=sample.render_max,.render_context=PerformanceDetails.metrics.context,.stage_sum_ms=sample.stage_sum,.stage_max_ms=sample.stage_max},.{},stream.writer()) catch return "{}";
@@ -542,6 +542,7 @@ export fn stella_load() i32 {
             return -3;
         };
     }
+    PerformanceDetails.worldChanged();
     return 0;
 }
 

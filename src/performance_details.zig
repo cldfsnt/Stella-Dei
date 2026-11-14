@@ -15,7 +15,7 @@ pub const RenderContext=struct {
  camera_radius:f32=0,planet_radius:f32=0,camera_valid:bool=false,
 };
 pub const Metrics=struct {
- enabled:bool=false,context:RenderContext=.{},current:Sample=.{},completed:Sample=.{},frame_intervals:[60]f64=[_]f64{0}**60,
+ enabled:bool=false,interrupted:bool=false,context:RenderContext=.{},current:Sample=.{},completed:Sample=.{},frame_intervals:[60]f64=[_]f64{0}**60,
  pub fn setEnabled(self:*Metrics,value:bool)void{self.*=.{.enabled=value};}
  pub fn renderContext(self:*Metrics,value:RenderContext)void{if(self.enabled)self.context=value;}
  pub fn stage(self:*Metrics,which:Stage,ms:f64)void{
@@ -51,6 +51,11 @@ fn percentile95(values:[]const f64)f64{
  return copy[(95*values.len+99)/100-1];
 }
 pub var metrics=Metrics{};
+// Volatile diagnostic generation only: never saved, sent or used by simulation.
+pub var world_serial:u32=0;
+pub fn worldChanged()void{world_serial+%=1;metrics.setEnabled(false);}
+pub fn interrupted()void{if(metrics.enabled)metrics.interrupted=true;}
+
 test "opt in, bounded windows, finite diagnostics and reset" {
  var m=Metrics{};m.physics(7,1);m.frame(16,4);try std.testing.expectEqualDeep(Sample{},m.sample());
  m.setEnabled(true);for(0..60)|_|{m.physics(7,1);m.frame(16,4);}
@@ -109,4 +114,10 @@ test "stage aggregates disabled finite bounded and reset with blocks" {
  m.setEnabled(true);for(0..60)|_|{m.stage(.terrain_upload,2);m.stage(.scene_draw,5);m.stage(.postprocess,3);m.stage(.ui,1);m.frame(16,9);}
  try std.testing.expectEqual(@as(f64,120),m.sample().stage_sum[0]);try std.testing.expectEqual(@as(f64,5),m.sample().stage_max[1]);
  m.stage(.ui,std.math.nan(f64));try std.testing.expectEqual(@as(f64,0),m.current.stage_sum[3]);m.setEnabled(false);try std.testing.expectEqual(@as(f64,0),m.sample().stage_sum[0]);
+}
+
+test "world lifecycle clears measurement and interrupted marks only enabled diagnostics" {
+ metrics=.{};const old=world_serial;interrupted();try std.testing.expect(!metrics.interrupted);
+ metrics.setEnabled(true);interrupted();try std.testing.expect(metrics.interrupted);
+ worldChanged();try std.testing.expect(world_serial==old+%1);try std.testing.expect(!metrics.enabled and !metrics.interrupted);
 }

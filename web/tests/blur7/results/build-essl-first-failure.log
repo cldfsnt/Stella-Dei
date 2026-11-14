@@ -1,0 +1,17 @@
+install
++- install stella-egl
+   +- zig build-exe stella-egl ReleaseSafe native 2 errors
+error: ld.lld: undefined symbol: emscripten_webgl_get_current_context
+    note: referenced by renderer.zig:520
+    note:               /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache/o/4651fb1e6bfc582578101e24533a991c/stella-egl.lto.o:(renderer.Framebuffer.createWithDepth)
+error: ld.lld: undefined symbol: emscripten_webgl_enable_extension
+    note: referenced by renderer.zig:520
+    note:               /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache/o/4651fb1e6bfc582578101e24533a991c/stella-egl.lto.o:(renderer.Framebuffer.createWithDepth)
+error: the following command failed with 2 compilation errors:
+/workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-linux-x86_64-0.13.0/zig build-exe -cflags -DFONS_NO_STDIO -DSTBI_NO_STDIO -fno-sanitize=undefined -- web/tests/../../deps/miniaudio.c web/tests/../../deps/nanovg/src/fontstash.c web/tests/../../deps/nanovg/src/stb_image.c web/tests/egl-origin-shim.c -OReleaseSafe -I deps -I deps/nanovg/src -I deps/web-vendor/glfw/include --dep build_options --dep gl --dep glfw --dep zalgebra --dep zigimg --dep nanovg -Mroot=/workspace/scratch/f67c3ac60ca3/stella-blur7-integrated/src-essl/main.zig -Mbuild_options=/workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache/c/dae75f2f4fc24c799774c029add80b30/options.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mgl=deps/gl3v3.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mglfw=deps/web-vendor/mach-glfw/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzalgebra=deps/web-vendor/zalgebra/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzigimg=deps/web-vendor/zigimg/zigimg.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mnanovg=deps/nanovg/src/nanovg.zig -lc --cache-dir /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache --global-cache-dir /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache --name stella-egl --listen=- 
+Build Summary: 1/4 steps succeeded; 1 failed (disable with --summary none)
+install transitive failure
++- install stella-egl transitive failure
+   +- zig build-exe stella-egl ReleaseSafe native 2 errors
+error: the following build command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache/o/1dd528dc2834f6f57584aff5da452398/build /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-linux-x86_64-0.13.0/zig web/tests /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache /workspace/scratch/f67c3ac60ca3/stella-toolchains/zig-cache --seed 0x29fbcdb3 -Zcecf4ef84fc1d51a -Dsource=/workspace/scratch/f67c3ac60ca3/stella-blur7-integrated/src-essl/main.zig --prefix /workspace/scratch/f67c3ac60ca3/stella-blur7-integrated/out-essl
