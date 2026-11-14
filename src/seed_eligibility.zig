@@ -17,13 +17,15 @@ pub fn reasonText(reason:Reason) []const u8 {
  };
 }
 pub fn seedHint(reason:Reason, feedback:[]const u8) []const u8 {
- _=feedback;
+ if(reason==.eligible and std.mem.eql(u8,feedback,"Tap closer to a green + or use Seed colony"))return feedback;
  return reasonText(reason);
 }
 test "current invalid seed status overrides stale success or focus feedback" {
  try std.testing.expectEqualStrings("Too dry: add water or find a green +",seedHint(.too_dry,"Can seed here: Seed colony adds existing life"));
  try std.testing.expectEqualStrings("Patch full: choose another green +",seedHint(.no_space,"Colony seeded. Light and resources drive growth"));
  try std.testing.expectEqualStrings("Can seed: tap a green + target",seedHint(.eligible,"Too dry"));
+ try std.testing.expectEqualStrings("Tap closer to a green + or use Seed colony",seedHint(.eligible,"Tap closer to a green + or use Seed colony"));
+ try std.testing.expectEqualStrings("Too dry: add water or find a green +",seedHint(.too_dry,"Tap closer to a green + or use Seed colony"));
 }
 pub fn evaluate(cell:Microbes.Cell,depth:f32,temp:f32,carbon:f32) Reason {
  if(!std.math.isFinite(depth) or !std.math.isFinite(temp) or !std.math.isFinite(carbon) or !std.math.isFinite(cell.nutrient))return .invalid;

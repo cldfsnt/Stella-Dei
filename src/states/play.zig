@@ -1,3 +1,4 @@
+const SeedTargets = @import("../seed_targets.zig");
 const habitat_focus = @import("../habitat_focus.zig");
 const Microbes = @import("../simulation/microbes.zig");
 const habitat_feedback = @import("../habitat_feedback.zig");
@@ -182,6 +183,10 @@ pub const PlayState = struct {
     meanTemperature: f32 = 293.15,
     mobileFeedback: []const u8 = "",
     mobileFeedbackSeconds: f32 = 0,
+    seedTargets: SeedTargets.List = .{},
+    seedTargetWidth:f32=0,
+    seedTargetHeight:f32=0,
+    seedTargetWorld:usize=0,
     godReceipt: ?@import("../god_actions.zig").Receipt = null,
     godEffectSeconds: f32 = 0,
 
@@ -778,6 +783,19 @@ pub const PlayState = struct {
         if (self.showEscapeMenu) return;
         if (@import("builtin").target.cpu.arch == .wasm32 and self.mobilePointerOnUI(game)) return;
 
+        if (button == .left and self.planet.worldMode == .origin and self.selectedTool == .PlaceVegetation) {
+            if (self.cameraInputBlocked()) return;
+            self.validateSeedTargetViewport(game);
+            const cursor=game.window.getCursorPos();
+            if (self.pickSeedTarget(@floatCast(cursor.xpos),@floatCast(cursor.ypos))) |cell| {
+                self.selectedPoint=cell;self.pointerOnPlanet=true;
+                if(self.planet.seedEligibility(cell)==.eligible) _=self.applySelectedTool(.PlaceVegetation,true,0);
+            } else {
+                self.mobileFeedback="Tap closer to a green + or use Seed colony";self.mobileFeedbackSeconds=3;
+            }
+            return;
+        }
+
         if (button == .left and !self.pointerOnPlanet) {
             self.mobileFeedback = "Tap the planet, or use Land below";
             self.mobileFeedbackSeconds = 3;
@@ -1045,6 +1063,18 @@ pub const PlayState = struct {
         self.targetCameraDistance = std.math.clamp(self.targetCameraDistance - (@as(f32, @floatCast(yOffset)) * self.cameraDistance / 50), minDistance, maxDistance);
     }
 
+    fn validateSeedTargetViewport(self:*PlayState,game:*Game) void {
+        const size=game.window.getFramebufferSize();
+        if(self.seedTargetWidth!=@as(f32,@floatFromInt(size.width)) or self.seedTargetHeight!=@as(f32,@floatFromInt(size.height)))self.seedTargets.count=0;
+    }
+    /// Exact visible target, never redirected if ecology changed after rendering.
+    /// The action separately rechecks eligibility before any state mutation.
+    pub fn pickSeedTarget(self:*PlayState,x:f32,y:f32) ?usize {
+        if(self.planet.worldMode!=.origin or self.selectedTool!=.PlaceVegetation or self.displayMode!=.Normal)return null;
+        if(self.seedTargetWorld!=@intFromPtr(self.planet.waterMass.ptr))return null;
+        return self.seedTargets.pick(x,y);
+    }
+
     pub fn mouseMoved(self: *PlayState, game: *Game, x: f32, y: f32, dx: f32, dy: f32) void {
         if (self.cameraInputBlocked()) return;
         if (self.freeCam) {
@@ -1053,6 +1083,11 @@ pub const PlayState = struct {
             self.cameraRotation.data[1] -= dy * mouseSensitivity;
         }
 
+        self.validateSeedTargetViewport(game);
+        if (self.pickSeedTarget(x,y)) |cell| {
+            if(std.mem.eql(u8,self.mobileFeedback,"Tap closer to a green + or use Seed colony")){self.mobileFeedback="";self.mobileFeedbackSeconds=0;}
+            self.selectedPoint=cell;self.pointerOnPlanet=true;return;
+        }
         const windowSize = game.window.getFramebufferSize();
         // Transform screen coordinates to Normalized Device Space coordinates
         const ndsX = 2 * x / @as(f32, @floatFromInt(windowSize.width)) - 1;
@@ -1383,11 +1418,11 @@ pub const PlayState = struct {
     /// Read-only Seed map: targets are actual cell centers where the engine can
     /// seed now, including slot/resource limits, not a water-color approximation.
     fn renderSeedZones(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
+        self.seedTargets.count=0;
+        self.seedTargetWidth=width;self.seedTargetHeight=height;self.seedTargetWorld=@intFromPtr(self.planet.waterMass.ptr);
         if (self.planet.worldMode != .origin or self.selectedTool != .PlaceVegetation or self.displayMode != .Normal) return;
-        var positions: [64]Vec2 = undefined;
-        var count: usize = 0;
         for (self.planet.transformedPoints, 0..) |p, index| {
-            if (count == positions.len) break;
+            if (self.seedTargets.count == 64) break;
             if (p.dot(self.cameraPos.sub(p)) <= 0) continue;
             const clip = vp.mulByVec4(za.Vec4.new(p.x(), p.y(), p.z(), 1));
             if (clip.w() <= 0) continue;
@@ -1395,11 +1430,7 @@ pub const PlayState = struct {
             const y = (1 - clip.y() / clip.w()) * height / 2;
             if (x < 18 or x > width - 18 or y < toolBottom + 22 or y > height - 108) continue;
             if (self.planet.seedEligibility(index) != .eligible) continue;
-            const screen = Vec2.new(x, y);
-            var crowded = false;
-            for (positions[0..count]) |prior| { if (screen.distance(prior) < 38) { crowded = true; break; } }
-            if (crowded) continue;
-            positions[count] = screen; count += 1;
+            if (!self.seedTargets.add(.{.cell=index,.x=x,.y=y},true)) continue;
             // Dark rim keeps this actionable target visible on land and water.
             vg.beginPath(); vg.circle(x,y,13); vg.fillColor(nvg.rgba(18,94,67,125)); vg.fill();
             vg.strokeColor(nvg.rgba(3,24,26,235)); vg.strokeWidth(5); vg.stroke();
@@ -1416,6 +1447,7 @@ pub const PlayState = struct {
         const y = (1-clip.y()/clip.w())*height/2;
         if (x<22 or x>width-22 or y<toolBottom+24 or y>height-110) return;
         const valid = self.planet.seedEligibility(self.selectedPoint)==.eligible;
+        if(valid) _=self.seedTargets.add(.{.cell=self.selectedPoint,.x=x,.y=y},false);
         vg.beginPath(); vg.circle(x,y,20); vg.strokeColor(nvg.rgba(3,24,26,240)); vg.strokeWidth(6); vg.stroke();
         vg.strokeColor(if(valid) nvg.rgb(132,255,182) else nvg.rgb(255,143,126)); vg.strokeWidth(3); vg.stroke();
         if (!valid) {
@@ -1643,7 +1675,7 @@ pub const PlayState = struct {
         _ = vg.text(10, height - 40, ecologyLabel);
         const depth = self.planet.waterMass[self.selectedPoint] * self.planet.getKmPerWaterMass();
         const hint: []const u8 = if (origin and self.selectedTool == .PlaceVegetation)
-            @import("../seed_eligibility.zig").seedHint(self.planet.seedEligibility(self.selectedPoint), self.mobileFeedback)
+            @import("../seed_eligibility.zig").seedHint(self.planet.seedEligibility(self.selectedPoint), if(self.mobileFeedbackSeconds>0) self.mobileFeedback else "")
         else if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin) switch (self.selectedTool) {
             .PlaceVegetation => if (depth < 0.0002) "Too dry: microbes need shallow water" else if (depth > 0.05) "Too deep: drain to 0.2–50m" else "Tap to seed existing simple life",
             .PlaceLife => "Tap to add nutrients (player supplied)",

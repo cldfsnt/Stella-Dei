@@ -129,6 +129,10 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     var total_temperature: f64 = 0;
     for (saved.temperature) |temperature| total_temperature += temperature;
     state.meanTemperature = @floatCast(total_temperature / @as(f64, @floatFromInt(saved.temperature.len)));
+    // Rendering/input caches and transient effects belong to the previous view.
+    if (@hasField(@TypeOf(state.*), "seedTargets")) state.seedTargets.count = 0;
+    if (@hasField(@TypeOf(state.*), "godReceipt")) state.godReceipt = null;
+    if (@hasField(@TypeOf(state.*), "godEffectSeconds")) state.godEffectSeconds = 0;
     state.selectedTool = .None;
     state.selectedPoint = 0;
     state.clickedPoint = 0;
