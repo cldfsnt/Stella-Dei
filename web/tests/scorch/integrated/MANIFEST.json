@@ -1,0 +1,19 @@
+{
+  "source-hashes.json": "aed87d5585f77d49980275f3f98ab0f873c6f98dc1eb779f8c3dc72702d7e07e",
+  "landscape.log": "19388eade129a1749a96b930e19181ff74ac2ef06c57f167a40f185fd0b2553d",
+  "god_visuals-unit.log": "d0ce89d7dd48a3513eb8a3f5b53a24f3a858432dcd09c562c2b68489ca144bee",
+  "proof.json": "f63bb12b35bc7400e70170b12a67430ba6cb87f5b940378294ab4a46457e1d3b",
+  "egl-world-menu-build.zig": "dc4089259fdc2c9028d8055de8a2f933115eadd00ee8c5105194d738089f529b",
+  "README.md": "e6a5fd9fb2743beab5cba0099564c44bc0e272c68c976eaaa92fef7ef71ef360",
+  "portrait-accepted.png": "8ff22b011b516ede151435ef0950f68870aec7b73b4ccd653524c1aaee08a5d8",
+  "god_actions-unit.log": "3a95c13be1ebfc58208f2ab4cc64bccbcf412e837bceed0a4f6a444e81e22334",
+  "egl-world-menu-prepare.py": "e50e14d9f08fac434892ae5dbca0f59e1c5856372def852b9a58943bc68e0d63",
+  "egl-scorch-prepare.py": "d290508c3d2bdf7ae79fade563106bf228b8ec12dc569dd3e09f56548431e09f",
+  "landscape-accepted.png": "ceea9a2913e4b6307138a8ab27372becd3c2ef9c3062f121e6c00e7f7740eb25",
+  "portrait.log": "2a6a7cb301b2616be018314c9d1e9e6a6da251c7888e5bbce40cd426d68ec9d4",
+  "egl-prepare.py": "1b86bbbe0949ea98fe6309ea5278f52f6c9025576f5bcb4a1c58bb0e29f65817",
+  "portrait-rejected.png": "3c7ecac0ab14d42a3d2becb156116e00d4a55baf010d0e8a2d07d237e65b496e",
+  "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "egl-world-menu-shim.c": "ad53c85036eb624b4da44474f7d35b213c9bdfe8dea1ae724495c01e927a7b1c",
+  "landscape-rejected.png": "e6d384ce3ba199fb78ecf1e1fadca0bde1fc0f996ab4259833271c771ada2c8a"
+}

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d18"><title>Stella Dei · Browser Edition</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#080d18;color:#e9edf5;font:15px system-ui,sans-serif}header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px}h1{font-size:18px;margin:0}small{color:#aebbd0}main{max-width:1280px;margin:auto}#stage{position:relative;background:#000;aspect-ratio:16/9}canvas{width:100%;height:100%;display:block;touch-action:none;outline:none}#status{padding:10px 16px;color:#bed1ed}#controls{display:flex;gap:7px;flex-wrap:wrap;padding:10px 14px;align-items:center}button{border:1px solid #475775;border-radius:9px;background:#172640;color:#fff;padding:12px;min-height:44px;font:inherit;touch-action:none}button[aria-pressed=true]{background:#345f92;border-color:#9bd4ff}button:disabled{opacity:.4}#help{padding:0 16px 16px;color:#bac7da;font-size:13px;line-height:1.5}a{color:#a9d6ff}#cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#080d18c9}#cover[hidden]{display:none}#play{font-size:20px;padding:18px 32px}.credits{padding:12px 16px;font-size:12px;color:#8d9cb4}@media(max-width:650px){header{padding:8px 12px}#controls{gap:5px;padding:8px}button{padding:10px}small{font-size:11px}}
+
+/* Match logical game pixels to the phone viewport, never shrink a desktop UI. */
+html,body{height:100%;overflow:hidden}body{overscroll-behavior:none;height:100dvh;display:flex;flex-direction:column}header{flex:none;padding:6px 12px;min-height:32px}header small{display:none}main{width:100%;max-width:none;flex:1;min-height:0;display:flex;flex-direction:column}#stage{flex:1;min-height:180px;aspect-ratio:auto}#controls{flex:none;flex-wrap:nowrap;overflow-x:auto;padding:6px max(8px,env(safe-area-inset-left));gap:6px;background:#111d30}#controls button{flex:none;min-height:44px;padding:8px 12px}#status{position:absolute;top:34px;left:8px;right:8px;pointer-events:none;z-index:2;font-size:12px;padding:4px 8px;background:#080d18aa;border-radius:4px}body.playing #status{display:none}#help,.credits{display:none}#controls [data-key]{display:none}details{position:absolute;z-index:4;bottom:62px;left:8px;right:8px;max-height:45dvh;overflow:auto;background:#111d30;border-radius:8px;padding:10px}details:not([open]){display:none}#guide{position:absolute;inset:40px 8px 64px;overflow:auto;background:#111d30f5;padding:20px;z-index:5;border-radius:12px}#guide[hidden]{display:none}#guide p{line-height:1.5}#guide button{float:right}#guide a{display:inline-block;padding:8px}#controls #mode{min-width:66px}#controls{font-size:13px}#controls button{padding:8px}#controls{gap:4px;padding-bottom:max(6px,env(safe-area-inset-bottom))}#controls #fullscreen{min-width:44px}#controls [data-zoom]{min-width:44px}#controls #fullscreen{font-size:13px}@media(orientation:landscape) and (max-height:500px){header{display:none}#status{top:4px}#controls{padding-top:3px;padding-bottom:max(3px,env(safe-area-inset-bottom))}#guide{top:8px}}
+#notice{position:absolute;z-index:7;top:38px;left:10px;right:10px;padding:12px 16px;background:#163c39;color:#effff9;border:1px solid #57b9a0;border-radius:8px;font-size:13px;line-height:1.4}#notice[data-error=true]{background:#4c2725;border-color:#e5a695}#notice[hidden]{display:none}
+#controls{display:grid;grid-template-columns:minmax(70px,1.4fr) repeat(5,minmax(0,1fr));gap:3px;padding-left:4px;padding-right:4px;overflow:visible}#controls button{min-width:0;padding:8px 4px}#controls #mode{min-width:70px}#more-menu{color:#e9edf5;background:#14243a;border:1px solid #506e90;border-radius:14px;padding:16px;position:fixed;top:auto;bottom:calc(64px + env(safe-area-inset-bottom));width:min(420px,calc(100vw - 16px));max-height:70dvh;overflow:auto}#more-menu::backdrop{background:#0008}.sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.sheet-heading h2{font-size:18px;margin:0}.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.sheet-actions button{min-height:48px}#more-menu p{font-size:12px;color:#bbcce1;margin-bottom:0}@media(max-width:360px){#controls{font-size:12px}}
+#welcome-tip{position:absolute;z-index:4;bottom:142px;left:8px;right:8px;margin:auto;max-width:440px;background:#172e46f5;border:1px solid #78acd0;border-radius:12px;padding:10px;box-shadow:0 4px 18px #0008}#welcome-tip[hidden]{display:none}#welcome-tip p{margin:0 0 8px;line-height:1.35}#welcome-tip .tip-actions{display:flex;gap:8px}#welcome-tip button{flex:1;min-height:44px}#guide .guide-actions{display:flex;flex-wrap:wrap;gap:8px}#guide .guide-actions button{float:none;flex:1;min-height:44px}#goal-card{background:#203c53;border-radius:10px;padding:12px;margin:12px 0}#goal-card h3{margin:0 0 6px;font-size:18px}#goal-card p{margin:6px 0}#manual{position:static;display:block;max-height:none;padding:0;background:none}#manual summary{padding:14px 0;min-height:44px;cursor:pointer}#manual:not([open])>*:not(summary){display:none}#guide button{max-width:100%}@media(max-height:420px){#welcome-tip{bottom:62px;font-size:13px;padding:8px}#guide{inset:8px 8px 58px;padding:12px}}
+#life-sheet,#god-sheet,#speed-sheet{color:#ecf7f4;background:#102c30;border:1px solid #5d9d96;border-radius:14px;padding:16px;width:min(450px,calc(100vw - 16px));max-height:80dvh;overflow:auto}#life-sheet::backdrop,#god-sheet::backdrop,#speed-sheet::backdrop{background:#0009}#life-sheet .sheet-heading,#god-sheet .sheet-heading,#speed-sheet .sheet-heading{position:sticky;top:-16px;background:#102c30;padding:8px 0;z-index:1}#life-sheet h2,#god-sheet h2,#speed-sheet h2{font-size:18px}#life-sheet p,#god-sheet p{line-height:1.45}#life-cohorts{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;background:#193e40;padding:12px;border-radius:10px;margin:12px 0}#life-sheet .life-note{font-size:12px;color:#b1ccc7}#refresh-life{width:100%;margin-top:6px}
+body #journey{min-height:36px;padding:6px 10px;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;background:#153d35;border-color:#508876}header{min-height:44px}body #water-target{display:block;width:100%;min-height:44px;font:inherit;padding:10px;margin:6px 0;color:#ecf7f4;background:#193e40;border:1px solid #5d9d96;border-radius:8px}#target-water button{margin-bottom:6px}body #origin-starter{position:static;flex:none;display:block;width:auto;inset:auto;max-height:180px;overflow:auto;padding:4px 10px;background:#102d29}body #origin-starter:not([open]){display:block}body #origin-starter:not([open])>:not(summary){display:none}body #origin-starter summary{cursor:pointer;min-height:32px}body #starter-actions{display:flex;gap:4px;flex-wrap:wrap}body #starter-actions button{font-size:12px;padding:6px;min-height:44px}body #starter-info{font-size:12px;margin:4px 0}body #origin-starter[hidden]{display:none}body #performance-details{position:static;display:block;inset:auto;max-height:none;width:auto;overflow:visible;margin-top:12px}body #performance-details:not([open]){display:block}body #performance-details[hidden]{display:none}#performance-readout{white-space:pre-line;font-variant-numeric:tabular-nums;line-height:1.5}
+body #speed-sheet .sheet-heading{z-index:5;margin:0 -1px;border-bottom:1px solid #5d9d9666}body #close-speed{flex:none;min-width:64px;min-height:44px}body #speed-sheet{overscroll-behavior:contain;scroll-padding-top:68px}
+body #gameplay-measure-status{position:absolute;z-index:6;bottom:68px;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;background:#102c30e6;border:1px solid #5d9d96;border-radius:8px;font-size:12px;pointer-events:none}body #gameplay-measure-status button{pointer-events:auto;min-height:44px}body #gameplay-measure-status[hidden]{display:none}#gameplay-result-readout{white-space:pre-line;font-variant-numeric:tabular-nums}
+</style></head><body><header><h1>Stella Dei</h1><button id="journey" aria-label="Open current habitat goal">Your next step</button><small>Original game · experimental ecosystem laboratory</small></header><main>
+<div id="stage"><canvas id="canvas" width="1280" height="720" tabindex="0" oncontextmenu="event.preventDefault()"></canvas><div id="cover"><button id="play" disabled>Loading game…</button></div></div>
+<details id="origin-starter" hidden open><summary id="starter-summary">Start life · shape, seed, inspect</summary><div id="starter-actions"><button id="starter-find">Find habitat</button><button id="starter-basin" title="Shapes up to 19 patches: a 5 m nursery center, 15 m neighboring reservoir, and dry rim. Adds water once, not life.">Shape nursery</button><button id="starter-seed">Seed colony</button><button id="starter-watch">Watch life</button><button id="starter-inspect">Inspect</button><button id="starter-speed">Fast-forward</button></div><p id="starter-info" role="status" aria-live="polite">Find habitat, optionally shape a shallow nursery, then Seed colony and Watch life. Nursery changes terrain and supplies water once, not life.</p></details>
+<div id="notice" role="status" aria-live="polite" hidden></div><div id="status" role="status">Downloading game and assets…</div>
+<nav id="controls" aria-label="Game controls"><button id="mode" aria-pressed="false" aria-label="Drag mode: navigate. Tap to switch to painting">Navigate</button><button data-zoom="1" aria-label="Zoom in">＋</button><button data-zoom="-1" aria-label="Zoom out">−</button><button data-key="32" data-code="Space" data-name=" ">Pause</button><button data-key="107" data-code="NumpadAdd" data-name="+">Faster</button><button data-key="109" data-code="NumpadSubtract" data-name="-">Slower</button><button data-key="116" data-code="F5" data-name="F5">Map view</button><button data-key="27" data-code="Escape" data-name="Escape">Menu</button><button id="land">Land</button><button id="globe">Globe</button><button id="more-toggle" aria-haspopup="dialog" aria-controls="more-menu">More</button></nav>
+<div id="help">Tap to use menus and planet tools. In <b>Navigate</b>, drag to rotate. Switch to <b>Paint</b> to brush terrain. Pinch with two fingers to zoom, or use +/−. Desktop: right-drag to orbit, wheel to zoom, Space to pause. Landscape orientation recommended.</div>
+<div class="credits">Original game by zenith391. <a href="https://github.com/zenith391/Stella-Dei">Upstream source</a> · <a href="source.html">Browser-port source (GPLv3)</a> · <a href="LICENSE">License</a></div>
+<aside id="welcome-tip" hidden aria-label="Getting started"><p><b>Choose your living world.</b> Origin begins with simple microbes; Sandbox offers plants and rabbits. Choose Random or Continents for a new world. Pinch to zoom; drag to explore.</p><div class="tip-actions"><button id="start-guide">Show me how</button><button id="dismiss-guide">Not now</button></div></aside><dialog id="more-menu" aria-labelledby="more-title"><div class="sheet-heading"><h2 id="more-title">Planet options</h2><button id="close-more" aria-label="Close planet options">Close</button></div><div class="sheet-actions"><button id="fit-life">Fit nearby life</button><button id="speed-toggle">Speed / fast-forward</button><button id="save-world" disabled>Save planet</button><button id="load-world" disabled>Load planet</button><button id="help-toggle">Sandbox guide</button><button id="fullscreen">Full screen</button><button id="god-toggle">God tools</button><button id="life-toggle">Life snapshot</button></div><p>Save stays in this browser on this device. Before replacing an older save, this build preserves one exact pre-upgrade backup here. No cloud backup or restore button yet.</p><p id="release-label">Build v30 · life in shallower water</p><p>Climate update: old planets keep their water, but accumulated vapor may rain out differently. A fresh Origin world is the tested starting comparison.</p></dialog><dialog id="speed-sheet" aria-labelledby="speed-title"><div class="sheet-heading"><h2 id="speed-title">Simulation speed</h2><button id="close-speed">Close</button></div><p>Choose a target. Changing speed never unpauses your world.</p><div class="sheet-actions"><button id="speed-slow" aria-pressed="false">Slow · 1 hour / sec</button><button id="speed-grow" aria-pressed="false">Grow · 6 hours / sec</button><button id="speed-fast" aria-pressed="false">Fast-forward · 24 hours / sec</button></div><p id="speed-readout">Start a planet first.</p><p id="speed-result" role="status" aria-live="polite"></p><p>Target is your requested speed; Measured is what your device achieves. Simulation steps stay bounded. Time spent in the background is not caught up.</p><button id="measure-gameplay">Measure gameplay · 10 seconds</button><p>Closes this panel while you play. Pause, menus or leaving the tab cancel the run.</p><section id="gameplay-result" hidden aria-label="Saved gameplay sample"><h3>Saved gameplay sample</h3><p id="gameplay-result-summary"></p><p id="gameplay-result-readout"></p></section><button id="refresh-speed">Refresh measured speed</button><details id="performance-details"><summary>Performance details · local only</summary><p id="performance-readout">Open while a planet is running to measure.</p><p>Last block of up to 60 frames. P95 is the 95th-percentile frame interval; max and the &gt;50 ms count catch rarer stalls. Physics is per active frame, not tick. Render is elapsed call time, including driver waits, not GPU time. These are not touch-latency measurements. Nothing is uploaded; closing stops measurement.</p></details></dialog><dialog id="god-sheet" aria-labelledby="god-title"><div class="sheet-heading"><h2 id="god-title">God tools · deliberate interventions</h2><button id="close-god">Close</button></div><p id="god-target">Select a patch first.</p><p>Wave pushes existing water into up to six neighboring patches: at most 25% of this patch’s water, capped at 1 m equivalent. No water creation or terrain erosion.</p><button id="god-wave">Send wave</button><p>Lightning adds a local heat impulse of up to 40°C (capped at 500 K). This is an external god power, not a full lightning simulation. Life responds through actual temperature and flooding rules over time, not guaranteed destruction.</p><p>Scorch destroys 75% of dry Sandbox cover and adds up to 40°C. It can kill rabbits through existing heat limits. This is external destruction, not fire chemistry; no guaranteed recovery.</p><button id="god-scorch" disabled>Scorch · Sandbox dry cover</button><button id="god-heat">Strike lightning</button><button id="god-refresh">Refresh target</button><p id="god-result" role="status" aria-live="polite"></p></dialog><dialog id="life-sheet" aria-labelledby="life-title"><div class="sheet-heading"><h2 id="life-title">Life in this patch</h2><button id="close-life">Close</button></div><p id="life-summary" aria-live="polite"></p><p id="life-conditions"></p><div id="life-cohorts"></div><div id="fine-water" hidden><p>Selected patch water · fine adjustment. Time keeps running unless paused.</p><button id="water-minus">−0.1 m water</button> <button id="water-plus">+0.1 m water</button><div id="target-water" hidden><p>Set this patch to an explicit depth. This supplies or removes water once, not automatic care.</p><label for="water-target">Target depth (metres, 0–5)</label><input id="water-target" type="number" inputmode="decimal" min="0" max="5" step="any" value="0.5"><button id="water-target-apply">Set depth</button> <button id="water-shallow">Set 0.5 m</button><button id="make-pond">Shape basin + add water</button><p>Shapes up to 19 terrain patches: a level floor and dry rim raised at least 17 m above it. Supplies 15 m water to the floor and drains the rim once. Existing life is not replaced; changed terrain/water can affect it. No automatic refill.</p></div><p id="water-feedback" aria-live="polite"></p></div><button id="refresh-life">Refresh snapshot</button><p id="life-glossary" class="life-note"></p><p class="life-note">Current cohorts only, not a complete family history. Parent IDs may refer to lineages no longer here. A descendant is not automatically a new species.</p></dialog><section id="guide" hidden><button id="close-guide">Close</button><h2 id="guide-heading">Sandbox habitat guide</h2><div id="goal-card" aria-live="polite"><h3 id="goal-title">Start a habitat</h3><p id="goal-text">Start the game, then check your habitat for a suggested next step.</p></div><div class="guide-actions"><button id="check-habitat">Check habitat</button><button id="guide-land">Find land</button><button id="repeat-guide">First steps</button></div><p><span id="mode-explanation">This sandbox starts with plants and rabbits. It does not yet evolve simple life into new plant or animal groups. Suggestions reflect the current planet, not required levels or guaranteed survival.</span></p><details id="manual"><summary>Controls and field notes</summary><div id="origin-fields" hidden><p>Turquoise mats mark real microbial biomass. Tap <b>Habitat</b> to find shallow water; <b>Seed</b> introduces an existing colony. <b>Nutr. +</b> is a deliberate external nutrient input, not food created by the ecosystem.</p><p>Simple seeds need 0.2–50 m water above 0°C, usable light and resources. Evolved producers with actual paid support and inherited structure can exploit thinner liquid films; the 15–20 cm transition also permits partial aquatic growth. No photosynthesis occurs when dry or frozen. Grazing and movement still require aquatic conditions. Inspect shows carbon biomass, nutrients and the dominant living lineage. Descendants can develop aquatic producer forms: cushion, rosette, ribbon, branching and canopy. Shapes follow inherited traits and actual support tissue; these are not terrestrial plant species or animals.</p><p><b>Habitat care:</b> Use <b>Find habitat → Shape nursery → Seed colony → Watch life</b> for a shallow starting patch. Nursery shapes a 5 m center beside a 15 m reservoir and dry rim; it supplies water once, not new organisms. Press Play if paused. The older level 15 m basin is still available in Life snapshot. Inspect shallow patches as water changes. For routine replenishment, a <b>Water +</b> tap adds 1 m to the selected patch. For precision, open <b>Life snapshot</b> and choose <b>Set 0.5 m</b>. Both supply water once: there is no automatic refill or guaranteed evolution.</p></div><div id="sandbox-fields"><p><b>Read the map:</b> tan is bare land, blue is water, green is vegetation, and orange dots mark living rabbits. Close-up sprouts show real vegetated patches, not individual plant counts; they grow with coverage and shrink when grazed. Rabbit models stand on the surface when you zoom close.</p><p><b>1. Find your land.</b> Tap <b>Land</b> below the game to jump to dry ground. Use <b>＋</b> to get close and <b>Globe</b> to return to a whole-planet view.</p><p><b>2. Shape a habitat.</b> Use Land +/− and Water +/−. Dry land supports rabbits; deep water does not. Pause while sculpting. Water and land brushes respond to how long you hold, not simulation speed. Inspect shows water depth.</p><p><b>3. Plant the land.</b> Choose Plants and paint patches of vegetation. Rabbits eat it, so establish food before adding animals.</p><p><b>4. Add rabbits.</b> Choose Rabbits, then tap suitable land. Watch the population and inspect the surface temperature. This prototype currently has vegetation and rabbits, not a full multi-species ecosystem.</p></div><p><b>Always daylight</b> keeps the side you are viewing lit while the climate simulation continues. You can change the view in the planet menu.</p><p>Tap menu buttons and the tool buttons inside the game. Choose a tool, then touch the planet to use it.</p><p><b>Pinch with two fingers</b> to zoom smoothly. In <b>Navigate</b> mode, drag one finger to explore and tap to use a menu or selected tool. Switch to <b>Paint</b> to brush plants or terrain by dragging. Pinching never finishes as a tool tap. Zoom +/− also works.</p><p>Landscape gives you more room. Full screen hides the browser bars. The game automatically resizes when you rotate.</p><p><b>More → Save / Load:</b> Save keeps one planet in this browser on this device, including its ecosystem. It is not a cloud backup. Wait for the Saved message before closing. Clearing site data or using a private browsing session can remove it. Load replaces your unsaved world.</p><p><b>Mobile detail:</b> New browser planets use a lighter grid for smoother play and smaller saves. Existing saved worlds keep their original grid detail when loaded.</p><p>Pause, settings and tool details are now in the game, above the planet. Open <b>More → Speed / fast-forward</b> to choose a target of 1, 6 or 24 simulated hours per real second. The top pace button also cycles these targets. Achieved speed is measured separately and may be lower on your device. New worlds start with the 6-hour target; saved worlds keep their requested pace. Pause to sculpt or inspect. Faster time also dries water faster, so watch your habitat.</p></details><a href="qa.html">Executed gameplay tests</a> · <a href="source.html">GPL source</a> · <a href="LICENSE">License</a></section><aside id="gameplay-measure-status" hidden aria-live="polite"><span id="gameplay-measure-message"></span><button id="cancel-gameplay-measure">Cancel</button></aside></main><script src="gameplay-measure.js"></script><script src="touch-controls.js"></script><script src="stella-storage.js"></script><script src="life-trend.js"></script><script>
+const canvas=document.getElementById('canvas'),status=document.getElementById('status');
+const diagnostics=[];
+const details=document.createElement('details'); details.innerHTML='<summary>Startup diagnostics</summary><pre id="diagnostics" style="white-space:pre-wrap;overflow-wrap:anywhere;padding:12px"></pre>';document.querySelector('main').append(details);
+function record(message){diagnostics.push(String(message));document.getElementById('diagnostics').textContent=diagnostics.slice(-30).join('\n');}
+function fail(reason){Module.failed=true;document.body.classList.remove("playing");record(reason);details.open=true;status.textContent='Startup failed. The diagnostics below show the exact error.';document.getElementById('cover').hidden=false;const p=document.getElementById('play');p.disabled=false;p.textContent='Reload to try again';p.onclick=()=>location.reload();}
+window.addEventListener('error',e=>fail(e.message));window.addEventListener('unhandledrejection',e=>fail(String(e.reason)));
+var Module={canvas,noInitialRun:true,print(...args){console.log(...args);record(args.join(' '));},printErr(...args){console.error(...args);const message=args.join(' ');record(message);if(!Module.storageOperation&&(message.startsWith('error:')||message.startsWith('error(')))fail(message);},setStatus(text){if(!Module.failed)status.textContent=text||'Ready';},async onRuntimeInitialized(){const probe=Module._malloc(16);Module._free(probe);record('Audio memory bridge ready.');status.textContent='Opening saved planets…';await storage.initialize();record('WASM ready. Press Play to start graphics and sound.');document.getElementById('play').disabled=false;document.getElementById('play').textContent='Play Stella Dei';status.textContent='Ready. Tap Play to start.';},onAbort(reason){fail('WASM abort: '+reason);}};
+let noticeTimer;
+function feedback(text,error=false){const notice=document.getElementById('notice');notice.textContent=text;notice.dataset.error=String(error);notice.hidden=false;clearTimeout(noticeTimer);if(!error)noticeTimer=setTimeout(()=>notice.hidden=true,9000);}
+const storage=createStellaStorage(Module,feedback,{preserveLegacyThroughVersion:6});
+const lifeTrend=typeof StellaLifeTrend!=='undefined'?StellaLifeTrend.create():{sample:()=>null,reset:()=>{},forget:()=>{}};
+async function storageAction(action){if(!Module.started||Module.failed||storage.state().busy)return;touchControls.reset();document.getElementById('more-menu').close();if(action==='load'&&!confirm('Load your saved planet? Unsaved changes to the current planet will be replaced.'))return;for(const id of ['save-world','load-world'])document.getElementById(id).disabled=true;try{const succeeded=await storage[action]();if(action==='load'&&succeeded)lifeTrend.reset();}finally{for(const id of ['save-world','load-world'])document.getElementById(id).disabled=!storage.state().available;}}
+function movementFeedback(c){
+ if(!Number.isFinite(c.mobility))return '';
+ let text='\nMobility investment '+(c.mobility*100).toFixed(0)+'%';
+ if(Number.isSafeInteger(c.relocations)&&c.relocations>0){
+  text+='\nRecorded patch relocations: '+c.relocations;
+  if(Number.isSafeInteger(c.last_from)&&Number.isSafeInteger(c.last_to)&&Number.isFinite(c.last_move_time)&&c.last_move_time>=0)text+='\nMoved to neighboring habitat on day '+(c.last_move_time/86400).toFixed(2)+'\nPatch '+c.last_from+' → '+c.last_to;
+ }else text+='\nNo relocation recorded for this cohort';
+ return text;
+}
+function movementOpportunity(reason){
+ const hints={
+ no_grazing:'This cohort has no grazing capability.',
+ no_mobility:'This cohort has no mobility investment.',
+ source_unsuitable:'This patch has unsuitable water or temperature. Inspect it before adjusting Water or Climate.',
+ already_moved:'Already moved this simulation step.',
+ no_suitable_neighbor:'No adjacent habitat has suitable water and temperature. Inspect nearby patches before adjusting Water or Climate.',
+ no_better_prey:'No suitable neighbor has more living food. Establish other colonies nearby; nutrients alone are not prey.',
+ no_capacity:'Richer neighboring habitats are full. Allow space or establish another nearby habitat.',
+ insufficient_oxygen:'Not enough oxygen to pay the movement cost. Support photosynthetic growth.',
+ insufficient_fragment:'Too little collecting tissue remains to move safely. Allow growth before expecting relocation.',
+ eligible:'A suitable route is available. May move on a future simulation step; movement is not guaranteed.'
+ };
+ return Object.prototype.hasOwnProperty.call(hints,reason)?'\nMovement now: '+hints[reason]:'';
+}
+let lifePoint=null;
+function producerFeedback(t){
+ if(!t||!Number.isFinite(t.support_mass)||!Number.isFinite(t.frond_mass))return '';
+ const n=(v,d=3)=>{if(!Number.isFinite(v))return 'unknown';const fixed=v.toFixed(d);if(v===0||Number(fixed)!==0)return fixed;const precise=v.toFixed(6);return Number(precise)!==0?precise:v.toExponential(2);};
+ return (typeof t.form==='string'?'\nGrowth form: '+t.form:'')+'\nCollecting tissue '+n(t.frond_mass)+' kg C/m² · Support '+n(t.support_mass)+' kg C/m²\nCollecting height '+n(t.height_m)+' m'+(Number.isFinite(t.available_light)?'\nPotential intercepted light '+n(t.available_light,2)+'× reference':'')+(Number.isFinite(t.maintenance_potential)?'\nPotential support upkeep '+n(t.maintenance_potential,4)+' kg C/m²/day':'');
+}
+function fineWater(delta){
+ const out=document.getElementById('water-feedback');
+ if(lifePoint===null||!Module.started||Module.failed||typeof Module._stella_adjust_water!=='function'){out.textContent='Start an Origin planet and refresh this patch first.';return;}
+ const result=Module.ccall('stella_adjust_water','number',['number','number'],[lifePoint,delta]);
+ if(!Number.isFinite(result)){out.textContent='Patch changed or adjustment unavailable. Refresh and try again.';return;}
+ out.textContent=result===0?'Water is already at its lower bound. No water removed.':(result>0?'Added ':'Removed ')+(Math.abs(result)<0.01?'less than 0.01':Math.abs(result).toFixed(2))+' m of water in this patch.';
+ refreshLife();
+}
+document.getElementById('water-minus').onclick=()=>fineWater(-0.1);
+document.getElementById('water-plus').onclick=()=>fineWater(0.1);
+function targetWater(preset){
+ const out=document.getElementById('water-feedback');
+ const raw=preset===undefined?String(document.getElementById('water-target').value).trim():String(preset), target=Number(raw);
+ if(raw===''||!Number.isFinite(target)||target<0||target>5){out.textContent='Enter a target depth from 0 to 5 metres.';return;}
+ if(lifePoint===null||!Module.started||Module.failed||typeof Module._stella_set_water_target!=='function'){out.textContent='Start an Origin planet and refresh this patch first.';return;}
+ const result=Module.ccall('stella_set_water_target','number',['number','number'],[lifePoint,target]);
+ if(!Number.isFinite(result)){out.textContent='Patch changed or target unavailable. Refresh and try again.';return;}
+ const amount=Math.abs(result)<0.01?'less than 0.01':Math.abs(result).toFixed(2);
+ out.textContent='Set to '+target+' m. '+(result===0?'No water change.':(result>0?'Added ':'Removed ')+amount+' m of water.')+' One-time external water intervention; simulation may change this depth.';
+ refreshLife();
+}
+document.getElementById('water-target-apply').onclick=()=>targetWater();
+document.getElementById('water-shallow').onclick=()=>targetWater(0.5);
+document.getElementById('make-pond').onclick=()=>{
+ const out=document.getElementById('water-feedback');
+ if(lifePoint===null||!Module.started||Module.failed||typeof Module._stella_make_pond!=='function'){out.textContent='Start an Origin planet and refresh this patch first.';return;}
+ const count=Module.ccall('stella_make_pond','number',['number'],[lifePoint]);
+ if(!Number.isInteger(count)||count<1||count>19){out.textContent='Patch changed or pond unavailable. Refresh and try again.';return;}
+ out.textContent='Basin shaped across '+count+' terrain patches, with 15 m water on the floor and a dry rim raised at least 17 m above it. One-time terrain/water intervention; no automatic refill or new life.';
+ refreshLife();
+};
+let godPoint=null;
+function refreshGodTarget(){
+ godPoint=null;
+ document.getElementById('god-target').textContent='Touch a planet patch, then refresh target.';
+ if(Module.started&&!Module.failed&&typeof Module._stella_god_target==='function')try{
+  const d=JSON.parse(Module.ccall('stella_god_target','string',[],[]));
+  if(d.status==='ready'&&Number.isSafeInteger(d.cell)&&d.cell>=0&&Number.isFinite(d.water_m)&&Number.isFinite(d.temperature_c)){
+   godPoint=d.cell;document.getElementById('god-target').textContent='Patch '+d.cell+' · '+d.water_m.toFixed(2)+' m water · '+d.temperature_c.toFixed(1)+'°C. Tools do not change pause or pace.';
+  }
+ }catch{}
+ document.getElementById('god-wave').disabled=godPoint===null;document.getElementById('god-heat').disabled=godPoint===null;document.getElementById('god-scorch').disabled=godPoint===null||gameAction('_stella_world_mode')!==0;
+}
+function invokeGod(kind){
+ const out=document.getElementById('god-result');
+ if(godPoint===null||!Module.started||Module.failed||typeof Module._stella_god_action!=='function'){out.textContent='Select a planet patch and refresh target first.';return;}
+ try{
+  const r=JSON.parse(Module.ccall('stella_god_action','string',['number','number'],[kind,godPoint]));
+  if(r.failure!=='none'||!Number.isInteger(r.count)||r.count<1||r.count>7){out.textContent=r.failure==='origin'?'Scorch is a Sandbox intervention, not Origin combustion.':r.failure==='wet'?'Scorch needs dry ground. No cover or heat changed.':r.failure==='no_cover'?'No vegetation cover here to scorch.':r.failure==='dry'?'No water here to move. Choose a wet patch.':r.failure==='precision'?(kind===0?'This deep-water patch is beyond map precision for a small wave. Try a shallower coast; no water was moved.':'This change is below numerical precision. Nothing was applied.'):'Action blocked ('+String(r.failure)+'). Refresh target; nothing was applied.';return;}
+  const t=Array.isArray(r.affected)?r.affected[0]:null;
+  if(kind===0&&Number.isFinite(r.moved_depth_m))out.textContent='Wave lowered this patch by '+r.moved_depth_m.toFixed(3)+' m and redistributed water across '+(r.count-1)+' neighbors. No water added. Watch subsequent flooding.';
+  else if(kind===1&&t&&Number.isFinite(t.temperature_k)&&Number.isFinite(r.heat_joules))out.textContent='Heat added: +'+t.temperature_k.toFixed(1)+'°C; '+r.heat_joules.toExponential(3)+' joules supplied externally. Existing life responds over time.';
+  else if(kind===2&&t&&Number.isFinite(t.cover_removed)&&Number.isFinite(t.temperature_k)&&Number.isFinite(r.heat_joules))out.textContent='Scorch removed '+(t.cover_removed*100).toFixed(1)+' percentage points of cover (75% of what was here), added +'+t.temperature_k.toFixed(1)+'°C and '+r.heat_joules.toExponential(3)+' external joules. Not combustion. Heat can kill rabbits. Any recovery uses normal ecology; it is not guaranteed.';
+  else throw Error('Invalid receipt');
+  feedback(out.textContent);document.getElementById('god-sheet').close();
+ }catch{out.textContent='Could not read the action result. Inspect the patch before trying again.';}
+}
+document.getElementById('god-toggle').onclick=()=>{touchControls.reset();document.getElementById('more-menu').close();refreshGodTarget();document.getElementById('god-sheet').showModal();};
+document.getElementById('close-god').onclick=()=>document.getElementById('god-sheet').close();
+document.getElementById('god-refresh').onclick=refreshGodTarget;
+document.getElementById('god-wave').onclick=()=>invokeGod(0);
+document.getElementById('god-heat').onclick=()=>invokeGod(1);
+document.getElementById('god-scorch').onclick=()=>invokeGod(2);
+let starterPoint=null,starterEligible=false;
+const seedReasons={eligible:'Can seed here',invalid:'Select a valid Origin patch',too_dry:'Too dry: shape a basin or add water',too_deep:'Too deep: reduce water below 50 m',too_cold:'Frozen: warm above 0°C before seeding',too_hot:'Too hot: find cooler habitat',no_space:'Colony slots full: find another patch',no_nutrients:'No nutrients: use Nutr. + or find another patch',no_carbon:'No available carbon: inspect atmosphere'};
+function refreshStarter(){
+ const box=document.getElementById('origin-starter');starterPoint=null;starterEligible=false;
+ box.hidden=!Module.started||Module.failed||gameAction('_stella_world_mode')!==1;
+ if(!box.hidden&&typeof Module._stella_life_snapshot==='function')try{
+  const d=JSON.parse(Module.ccall('stella_life_snapshot','string',[],[]));
+  if(d.status==='origin'&&Number.isSafeInteger(d.cell)&&d.cell>=0&&Number.isFinite(d.water_m)&&Number.isFinite(d.temperature_c)){
+   const trend=lifeTrend.sample(d);starterPoint=d.cell;starterEligible=d.seed_reason==='eligible';document.getElementById('starter-summary').textContent=(trend?trend.label+' ('+trend.days.toFixed(1)+' days) · ':'')+(seedReasons[d.seed_reason]||'Eligibility unavailable')+' · '+'Patch '+d.cell+' · '+d.water_m.toFixed(1)+' m water · '+d.temperature_c.toFixed(0)+'°C';
+  }
+ }catch{}
+ document.getElementById('starter-basin').disabled=starterPoint===null;
+ document.getElementById('starter-seed').disabled=starterPoint===null||!starterEligible;
+}
+function starterAction(name){
+ const out=document.getElementById('starter-info'),point=starterPoint;
+ if(point===null||!Module.started||Module.failed||gameAction('_stella_world_mode')!==1||typeof Module['_'+name]!=='function'){out.textContent='Choose an Origin habitat first.';return;}
+ if(name==='stella_seed_colony'&&!starterEligible){out.textContent='Cannot seed this patch yet. Inspect the reason above or Find habitat.';return;}
+ const result=Module.ccall(name,'number',['number'],[point]);
+ if(name==='stella_make_nursery')out.textContent=Number.isInteger(result)&&result>0&&result<=19?'Nursery shaped: '+result+' patches, 5 m center, 15 m neighboring reservoir and dry rim. Adds water once, not life. Next: Seed colony.':'Patch changed or nursery unavailable. Find habitat and try again.';
+ else if(result===1){lifeTrend.forget(point);out.textContent='Existing colony seeded. Watch life hides placement markers; Play advances time. Inspect shows living forms.';document.getElementById('origin-starter').open=true;document.getElementById('status').textContent=out.textContent;feedback(out.textContent);}
+ else out.textContent=result===0?'No colony added: this patch needs suitable water, temperature and free space. Inspect it.':'Patch changed. Find habitat and try again.';
+ refreshStarter();
+}
+document.getElementById('starter-find').onclick=()=>{const result=gameAction('_stella_focus_land');refreshStarter();document.getElementById('starter-info').textContent=result===1?'Seedable habitat selected; green zones show valid patches. Seed colony adds life here. Nursery is optional terraforming: up to 19 patches, 5 m center, 15 m neighboring water and a dry rim.':'No seedable habitat found. Inspect water, temperature and resources; Shape nursery changes terrain and supplies water, not nutrients or life.';};
+document.getElementById('starter-basin').onclick=()=>starterAction('stella_make_nursery');
+document.getElementById('starter-seed').onclick=()=>starterAction('stella_seed_colony');
+document.getElementById('starter-watch').onclick=()=>{touchControls.reset();if(gameAction('_stella_watch_life')===1){document.getElementById('origin-starter').open=false;feedback('Placement markers hidden. Pause or Play stays as you set it; tap a colony to inspect.');canvas.focus();}};
+document.getElementById('starter-inspect').onclick=()=>{touchControls.reset();refreshLife();document.getElementById('life-sheet').showModal();};
+function producerHabitatFeedback(h){
+ if(!h||!h.state)return 'Producer suitability unavailable.';
+ const blocked={frozen:'Frozen: photosynthesis is blocked at 0°C or below.',dry:'Dry: no photosynthesis without liquid water.',too_hot:'Too hot for photosynthesis.',too_deep:'Too deep for these producers.',unknown:'Producer conditions unavailable.'};
+ if(blocked[h.state])return blocked[h.state];
+ if(h.state==='thin_film')return h.compatible>0?h.compatible+' living cohort(s) have paid support and inherited structure compatible with this thin water. Light, resources and drying stress determine growth or decline; this is not dryland life.':'Thin water: no current cohort has the functional support and structure needed here. Simple seeds need at least 0.2 m water.';
+ if(h.state==='submergence_margin')return '15–20 cm transition: partial aquatic suitability, not proof of evolved shore adaptation. '+h.supported_film_capable+' supported film-capable cohort(s).';
+ return 'Aquatic producer habitat. Suitability does not guarantee growth or survival.';
+}
+function refreshLife(){
+ lifePoint=null;document.getElementById('fine-water').hidden=true;document.getElementById('target-water').hidden=true;
+
+ const summary=document.getElementById('life-summary'),conditions=document.getElementById('life-conditions'),rows=document.getElementById('life-cohorts');conditions.textContent='';rows.textContent='';document.getElementById('life-glossary').textContent='';
+ if(!Module.started||Module.failed||typeof Module._stella_life_snapshot!=='function'){summary.textContent='Start or load a planet first.';return;}
+ try{
+  const data=JSON.parse(Module.ccall('stella_life_snapshot','string',[],[]));
+  if(data.status!=='origin'){summary.textContent=data.status==='sandbox'?'This lineage view is for Origin microbes. Use Inspect for Sandbox plants and rabbits.':'No current cell snapshot is available.';return;}
+  if(!Array.isArray(data.cohorts))throw Error('Invalid snapshot');
+  if(Number.isSafeInteger(data.cell)&&data.cell>=0&&typeof Module._stella_adjust_water==='function'){lifePoint=data.cell;document.getElementById('fine-water').hidden=false;document.getElementById('target-water').hidden=typeof Module._stella_set_water_target!=='function';}
+  const number=(v,d=2)=>Number.isFinite(v)?v.toFixed(d):'unknown';
+  const living=data.cohorts.map((c,slot)=>({...c,tissue:Array.isArray(data.tissues)?data.tissues[slot]:undefined,movement_reason:Array.isArray(data.movement_reasons)?data.movement_reasons[slot]:undefined})).filter(c=>Number.isFinite(c.biomass)&&c.biomass>0.000001);
+  const forms=[...new Set(living.map(c=>c.tissue&&c.tissue.form).filter(f=>typeof f==='string'))];
+  summary.textContent='Snapshot • Selected patch • Day '+number(data.day,1)+' • '+living.length+' living cohort'+(living.length===1?'':'s')+(forms.length?' · Forms: '+forms.join(', '):'');
+  const trend=lifeTrend.sample(data);
+  conditions.textContent=(trend?trend.label+' over '+trend.days.toFixed(1)+' simulated days ('+(trend.percent>0?'+':'')+trend.percent.toFixed(0)+'%). Net change includes births, losses, movement and interventions; it does not prove a cause.\n':'')+(seedReasons[data.seed_reason]||'Seed eligibility unavailable')+'\n'+producerHabitatFeedback(data.producer_habitat)+'\nWater '+number(data.water_m)+' m · Temperature '+number(data.temperature_c,1)+'°C\nNutrients '+number(data.nutrients,3)+' kg/m² · Detritus '+number(data.detritus,3)+' kg C/m² · Biological light '+number(data.simulation_light)+'× reference daylight (not screen brightness)';
+  rows.textContent=living.length?living.map(c=>'Lineage '+String(c.lineage)+' · '+(String(c.parent)==='0'?'seeded ancestor':'parent '+String(c.parent))+'\nGeneration '+String(c.generation)+' · Biomass '+number(c.biomass,3)+' kg C/m²\nThermal optimum '+number(c.optimum-273.15,1)+'°C · Light efficiency '+number(c.efficiency)+'×'+(Number.isFinite(c.structure)?'\nStructure investment '+number(c.structure*100,0)+'%':'')+(Number.isFinite(c.water_reserve)?'\nStored water '+number(c.water_reserve,3)+' kg/m²':'')+(Number.isFinite(c.water_retention)?' · Retention investment '+number(c.water_retention*100,0)+'%':'')+(Number.isFinite(c.feeding)?'\nGrazing investment '+number(c.feeding*100,0)+'% · '+(c.feeding>0?'grazing-capable':'photosynthetic'):'')+(Number.isFinite(c.lifetime_grazed)?(c.lifetime_grazed>0?'\nHas fed · recorded intake '+number(c.lifetime_grazed,6)+' kg C/m²':'\nNo feeding recorded for this cohort'):'')+producerFeedback(c.tissue)+movementFeedback(c)+movementOpportunity(c.movement_reason)).join('\n\n'):'No living cohort in this patch. Select a turquoise mat or use Habitat, then refresh.';
+  if(living.some(c=>Number.isFinite(c.structure)))document.getElementById('life-glossary').textContent='Structure is inherited drying-protection investment with growth and maintenance costs, not a real-world taxonomic label or a new life class.';
+  if(living.some(c=>Number.isFinite(c.water_reserve)))document.getElementById('life-glossary').textContent+=' Stored water is paid for by actual uptake and living tissue, not a hidden refill. Inherited retention reduces water loss but slows wet photosynthetic growth. This supports conditional shoreline survival, not true land plants.';
+  if(living.some(c=>Number.isFinite(c.feeding)))document.getElementById('life-glossary').textContent+=' Grazing investment is an inherited capability with reduced photosynthesis and higher maintenance costs. Feeding requires other living cohorts, oxygen and suitable water. Recorded intake is carbon consumed by this cohort, not biomass gained or a feeding rate; it resets in offspring. An amber mat dot means a currently living grazing-capable cohort has fed, not that it is eating now. These are microbial functions, not animals or new species.';
+  if(living.some(c=>Number.isFinite(c.mobility)))document.getElementById('life-glossary').textContent+=' Mobility is inherited investment with photosynthesis and maintenance costs. It can relocate collecting tissue to suitable adjacent food-rich water, paying an oxygen-limited carbon cost; support is shed into detritus at the source. Records refer to coarse patch changes, not individual animal travel or an animation. Movement records reset in offspring; feeding records and identity travel with the relocating cohort.';
+  if(living.some(c=>c.tissue))document.getElementById('life-glossary').textContent+=' Raised frond symbols are map-scale schematics of actual support and collecting tissue, not individual plants. Potential intercepted light is a computed condition, not recorded production. Support has maintenance cost; careful water changes can expose tissue. This is organized microbial growth, not a claim that true plants or new species evolved.';
+ }catch{summary.textContent='Could not read this snapshot. Close and try Refresh again.';}
+}
+document.getElementById('life-toggle').onclick=()=>{touchControls.reset();document.getElementById('more-menu').close();refreshLife();document.getElementById('life-sheet').showModal();};
+document.getElementById('refresh-life').onclick=refreshLife;
+document.getElementById('close-life').onclick=()=>{document.getElementById('life-sheet').close();document.getElementById('more-toggle').focus();};
+document.getElementById('save-world').onclick=()=>storageAction('save');
+document.getElementById('load-world').onclick=()=>storageAction('load');
+document.getElementById('play').onclick=()=>{document.getElementById('cover').hidden=true;canvas.focus();status.textContent='Starting original game…';try{Module.callMain([]);if(!Module.failed){Module.started=true;document.body.classList.add("playing");resizeGame();showWelcome();document.getElementById('save-world').disabled=!storage.state().available;document.getElementById('load-world').disabled=!storage.state().available;}}catch(e){fail(String(e));}};
+function resizeGame(){if(!Module.started||!Module._stella_resize||Module.failed)return;const r=document.getElementById('stage').getBoundingClientRect();Module._stella_resize(Math.round(r.width),Math.round(r.height));}
+new ResizeObserver(()=>requestAnimationFrame(resizeGame)).observe(document.getElementById('stage'));
+window.addEventListener('orientationchange',()=>{touchControls.reset();requestAnimationFrame(resizeGame);});
+const welcomeKey='stella-guide-dismissed-v1';
+function welcomeSeen(){try{return localStorage.getItem(welcomeKey)==='yes';}catch{return false;}}
+function dismissWelcome(){document.getElementById('welcome-tip').hidden=true;try{localStorage.setItem(welcomeKey,'yes');}catch{}}
+function showWelcome(){if(!welcomeSeen())document.getElementById('welcome-tip').hidden=false;}
+const goalCopy=[['Start a habitat','Choose Land, then Plants. Tap dry ground to establish a patch of food.'],['Add a rabbit pair','Plants are present but no rabbits remain. Check water, temperature and plant cover before adding a pair to dry, planted land.'],['Watch feeding','Press Play and inspect nearby rabbits. No meals are recorded yet; food and suitable conditions matter.'],['Watch for offspring','Feeding is recorded. Keep food available and allow time for offspring. Breeding is not guaranteed.'],['Let plants grow and spread','Births are recorded. Let living plants gain coverage and spread to nearby ground. Inspect plant generations and preferred temperature.'],['Keep the habitat growing','Living plants, plant descendants and rabbits are present; meals and births are recorded. Try a small change and inspect its effects. This does not prove long-term survival.']];
+goalCopy[100]=['Seed existing simple life','Open the habitat bar: Find habitat highlights valid green targets. Seed colony plants the selected patch; Shape nursery is an optional terrain and water intervention. This introduces existing microbes; it does not simulate abiogenesis.'];
+goalCopy[101]=['Grow your first descendants','Press Play at Grow pace: use Speed to choose pace; actual progress depends on your device. Watch biomass and births, then inspect descendant traits. Keep shallow water and usable light; speed alone cannot make life thrive.'];
+goalCopy[102]=['Develop living support','Living descendants are here. Keep the patch wet and let them compete for light. Inherited organization can build support and collecting tissue. Open Life snapshot to inspect real tissue, not just a lineage number.'];
+goalCopy[103]=['Explore producer diversity','An evolved support-bearing form is alive. Inspect its shape and traits, try a neighboring shallow patch, and compare descendants. Different forms depend on inherited traits and resources, not a timed unlock.'];
+goalCopy[104]=['Expand the living habitat','At least two evolved producer forms are alive. Prepare neighboring shallow patches and observe whether colonies spread. Keep water available; additional seeding is your intervention, not proof of natural dispersal.'];
+goalCopy[105]=['Experiment with a living world','Different evolved producer forms are alive across at least three occupied patches. Try a small water or climate change and compare the outcome. This is a current observation, not a guarantee of survival or a completed ecosystem.'];
+function syncWorldMode(){const origin=gameAction('_stella_world_mode')===1;document.getElementById('origin-fields').hidden=!origin;document.getElementById('sandbox-fields').hidden=origin;document.getElementById('land').textContent=origin?'Habitat':'Land';document.getElementById('help-toggle').textContent=origin?'Origin guide':'Sandbox guide';document.getElementById('guide-heading').textContent=origin?'Origin: simple life':'Sandbox habitat guide';document.getElementById('guide-land').textContent=origin?'Find habitat':'Find land';document.getElementById('mode-explanation').textContent=origin?'Origin begins with simple microbes. Living descendants can develop support-bearing aquatic producer forms with inherited traits. These are not full terrestrial plant or animal groups. The next-step label follows current living evidence, not permanent unlocks.':'Sandbox starts with plants and rabbits. It is not the simple-life evolutionary progression. Suggestions are optional, not guaranteed survival.';return origin;}
+setInterval(syncWorldMode,1000);
+const journeyLabels={0:'Next: plant food',1:'Next: add rabbits',2:'Next: watch feeding',3:'Next: grow the family',4:'Next: spread plants',5:'Living habitat',100:'Next: seed simple life',101:'Next: grow descendants',102:'Next: living support',103:'Next: producer diversity',104:'Next: spread life',105:'Living diversity'};
+function refreshJourney(){refreshStarter();const stage=gameAction('_stella_goal_stage');document.getElementById('journey').textContent=Number.isInteger(stage)&&Object.prototype.hasOwnProperty.call(journeyLabels,stage)?journeyLabels[stage]:'Your next step';if(!document.getElementById('guide').hidden)checkHabitat();}
+setInterval(refreshJourney,3000);
+document.getElementById('journey').onclick=openGuide;
+function checkHabitat(){syncWorldMode();const stage=gameAction('_stella_goal_stage');const copy=Number.isInteger(stage)&&goalCopy[stage]?goalCopy[stage]:['Start or load a planet','Start a planet in the game, or use More → Load. Then check the habitat again.'];document.getElementById('goal-title').textContent=copy[0];document.getElementById('goal-text').textContent=copy[1];}
+function openGuide(){touchControls.reset();document.getElementById('more-menu').close();dismissWelcome();checkHabitat();document.getElementById('guide').hidden=false;document.getElementById('close-guide').focus();}
+document.getElementById('help-toggle').onclick=openGuide;
+document.getElementById('start-guide').onclick=openGuide;
+document.getElementById('dismiss-guide').onclick=dismissWelcome;
+document.getElementById('check-habitat').onclick=checkHabitat;
+document.getElementById('repeat-guide').onclick=()=>{const first=syncWorldMode()?100:0;document.getElementById('goal-title').textContent=goalCopy[first][0];document.getElementById('goal-text').textContent=goalCopy[first][1];document.getElementById('manual').open=true;};
+document.getElementById('guide-land').onclick=()=>{const found=gameAction('_stella_focus_land');if(found===1){document.getElementById('guide').hidden=true;canvas.focus();}else{document.getElementById('goal-text').textContent=found===0?(syncWorldMode()?'No suitable shallow habitat found. Use water and terrain tools, then Inspect: microbes require 0.2–50m water and suitable temperature.':'No dry land found. Choose Land + and build an island, then Inspect its water depth.'):'Start a planet first.';}};
+document.getElementById('close-guide').onclick=()=>{document.getElementById('guide').hidden=true;document.getElementById('more-toggle').focus();};
+const moreMenu=document.getElementById('more-menu');
+document.getElementById('more-toggle').onclick=()=>{gameplayMeasure.cancel('Measurement stopped: menu opened.');touchControls.reset();moreMenu.showModal();};
+document.getElementById('close-more').onclick=()=>moreMenu.close();
+document.getElementById('fit-life').onclick=()=>{
+ touchControls.reset();moreMenu.close();
+ if(!Module.started||Module.failed||typeof Module._stella_fit_life!=='function'){feedback('Start or load an Origin world before fitting nearby life.',true);return;}
+ const result=Module._stella_fit_life();
+ if(result===1){feedback('Framed nearby connected life. Distant or disconnected colonies may be outside this view.');canvas.focus();}
+ else if(result===0)feedback('No nearby Origin colonies to fit. Pan toward a living patch and try again.',true);
+ else if(result===-2)feedback('Fit nearby life is for Origin colonies only. In Sandbox, use Find land and pinch or zoom to explore plants and rabbits.',true);
+ else if(result===-3)feedback('The canvas is too small to frame life. Close panels, rotate your phone or try full screen.',true);
+ else if(result===-4)feedback('Automatic framing is unavailable near the poles. Use drag and pinch to navigate here; your view has not changed.',true);
+ else if(result===-5)feedback('This view could not be framed safely. Your camera has not changed; try navigating manually.',true);
+ else if(result===-6)feedback('This connected colony cluster is too wide to frame safely. Use zoom out to explore it manually.',true);
+ else feedback('Fit life is unavailable. Start or load an Origin world and try again.',true);
+};
+const speedPresets=[['speed-slow',3600],['speed-grow',21600],['speed-fast',86400]];
+function readSpeed(){
+ if(!Module.started||Module.failed||typeof Module._stella_speed_snapshot!=='function')return null;
+ try{const d=JSON.parse(Module.ccall('stella_speed_snapshot','string',[],[]));
+ if(!Number.isFinite(d.requested)||d.requested<0||!Number.isFinite(d.achieved)||d.achieved<0||typeof d.paused!=='boolean'||!Number.isFinite(d.step)||d.step<=0)return null;return d;}catch{return null;}
+}
+function refreshSpeed(){
+ const d=readSpeed();
+ for(const [id,rate] of speedPresets){const b=document.getElementById(id);b.disabled=!d;b.setAttribute('aria-pressed',String(!!d&&d.requested===rate));}
+ document.getElementById('speed-readout').textContent=d?'Target: '+(d.requested/3600).toFixed(1)+' hours/sec. '+(d.paused?'Paused; press Play to run.':d.achieved>0?'Measured: '+(d.achieved/3600).toFixed(1)+' hours/sec.':'Measuring actual progress…')+' Physics step: '+(d.step/60).toFixed(0)+' simulated minutes.':'Start or load a planet to choose speed.';
+ return d;
+}
+function stopPerformance(){if(!gameplayMeasure.isRunning()&&typeof Module._stella_performance_enable==='function')Module._stella_performance_enable(0);}
+function performanceContextText(c){
+ if(!c||c.valid!==true)return 'Render setup: waiting for a measured frame.';
+ const dims=['canvas_width','canvas_height','scene_width','scene_height'];
+ if(!dims.every(k=>Number.isInteger(c[k])&&c[k]>0)||!['origin','sandbox'].includes(c.world)||!['Normal','Temperature','WaterVapor','Rainfall','WindMagnitude'].includes(c.map)||typeof c.bloom_active!=='boolean'||c.bloom_passes!==(c.bloom_active?5:0)||c.composite_passes!==1||typeof c.stable_daylight!=='boolean'||typeof c.orbit!=='boolean'||!Number.isInteger(c.animals)||c.animals<0||typeof c.camera_valid!=='boolean'||!Number.isFinite(c.camera_radius)||!Number.isFinite(c.planet_radius))return 'Render setup unavailable.';
+ return 'Last render: '+c.world+' / '+c.map+' / '+(c.stable_daylight?'stable daylight':'day/night')+' / '+(c.orbit?'orbit':'free camera')+' / '+c.animals+' animals.\nCanvas '+c.canvas_width+'×'+c.canvas_height+'; scene '+c.scene_width+'×'+c.scene_height+'. Post: '+c.bloom_passes+' bloom + 1 composite passes.\nCamera radius '+(c.camera_valid?c.camera_radius.toFixed(0):'invalid')+'; planet radius '+c.planet_radius.toFixed(0)+' km. Setup is last-frame, not a timing average.';
+}
+function performanceStageText(d){
+ const ok=a=>Array.isArray(a)&&a.length===4&&a.every(x=>Number.isFinite(x)&&x>=0);
+ if(!ok(d.stage_sum_ms)||!ok(d.stage_max_ms))return '';
+ const avg=d.stage_sum_ms.map(x=>(x/Math.max(d.frames,1)).toFixed(1));
+ return '\nStage calls avg ms: scene '+avg[1]+' (upload '+avg[0]+' included), post '+avg[2]+', UI/overlays '+avg[3]+'.';
+}
+function performanceText(d){
+ const keys=['cells','frames','ticks','physics_frames','frame_avg_ms','frame_max_ms','frame_p95_ms','long_frames','physics_avg_ms','physics_max_ms','render_cpu_avg_ms','render_cpu_max_ms'];
+ if(!d||d.enabled!==true||!keys.every(k=>Number.isFinite(d[k])&&d[k]>=0)||d.frames>60||d.physics_frames>d.frames||!Number.isInteger(d.long_frames)||d.long_frames>d.frames||d.frame_p95_ms>d.frame_max_ms)return null;
+ if(!d.frames)return 'Measuring local frame costs…';
+ return d.cells.toLocaleString()+' terrain cells · '+d.frames+' frames · '+d.ticks+' physics ticks.\nFrame interval average / max: '+d.frame_avg_ms.toFixed(1)+' / '+d.frame_max_ms.toFixed(1)+' ms.\nFrame interval p95: '+d.frame_p95_ms.toFixed(1)+' ms · intervals >50 ms: '+d.long_frames+'/'+d.frames+'.\nPhysics update average / max: '+d.physics_avg_ms.toFixed(1)+' / '+d.physics_max_ms.toFixed(1)+' ms.\nRender call average / max: '+d.render_cpu_avg_ms.toFixed(1)+' / '+d.render_cpu_max_ms.toFixed(1)+' ms.'+performanceStageText(d)+'\n'+performanceContextText(d.render_context);
+}
+function readGameplaySnapshot(){
+ try{if(!Module.started||Module.failed||typeof Module._stella_performance_snapshot!=='function')return null;const d=JSON.parse(Module.ccall('stella_performance_snapshot','string',[],[]));return d.enabled&&performanceText(d)===null?null:d;}catch{return null;}
+}
+let gameplayNoticeTimer=null;
+const gameplayMeasure=createGameplayMeasure({now:()=>performance.now(),read:readGameplaySnapshot,
+ enable:value=>typeof Module._stella_performance_enable==='function'&&Module._stella_performance_enable(value?1:0)===1,
+ notify:(message,running)=>{if(gameplayNoticeTimer!==null)clearTimeout(gameplayNoticeTimer);document.getElementById('gameplay-measure-message').textContent=message;document.getElementById('gameplay-measure-status').hidden=false;document.getElementById('cancel-gameplay-measure').hidden=!running;if(!running)gameplayNoticeTimer=setTimeout(()=>{document.getElementById('gameplay-measure-status').hidden=true;},5000);}
+});
+function showGameplayResult(){
+ const r=gameplayMeasure.result(),box=document.getElementById('gameplay-result');box.hidden=!r;if(!r)return;
+ const current=readGameplaySnapshot();const same=current&&current.world_serial===r.sample.world_serial;
+ document.getElementById('gameplay-result-summary').textContent='Retained gameplay run: '+(r.elapsed_ms/1000).toFixed(1)+' seconds; achieved '+(r.achieved/3600).toFixed(1)+' simulated hours/sec (target '+(r.requested/3600).toFixed(1)+'). '+(same?'Same world. ':'From a previous world. ')+'Timings below are the latest block of up to 60 frames, not the whole-run average. This is not live data.';
+ document.getElementById('gameplay-result-readout').textContent=performanceText(r.sample)||'Saved timing data unavailable.';
+}
+document.getElementById('measure-gameplay').onclick=()=>{
+ gameplayMeasure.cancel('Restarting measurement.');stopPerformance();touchControls.reset();document.getElementById('performance-details').open=false;document.getElementById('speed-sheet').close();
+ gameplayMeasure.start();canvas.focus();
+};
+document.getElementById('cancel-gameplay-measure').onclick=()=>gameplayMeasure.cancel();
+setInterval(()=>gameplayMeasure.tick(),250);
+function refreshPerformance(){
+ const out=document.getElementById('performance-readout');
+ if(!document.getElementById('performance-details').open||!document.getElementById('speed-sheet').open)return;
+ try{if(!Module.started||Module.failed||typeof Module._stella_performance_snapshot!=='function')throw Error();
+ const text=performanceText(JSON.parse(Module.ccall('stella_performance_snapshot','string',[],[])));if(!text)throw Error();out.textContent=text;
+ }catch{out.textContent='Performance details unavailable. Start or load a planet, then reopen this section.';}
+}
+document.getElementById('performance-details').addEventListener('toggle',()=>{
+ const open=document.getElementById('performance-details').open&&document.getElementById('speed-sheet').open;
+ if(!open){stopPerformance();return;}
+ if(typeof Module._stella_performance_enable==='function')Module._stella_performance_enable(1);
+ refreshPerformance();
+});
+document.getElementById('speed-sheet').addEventListener('close',()=>{stopPerformance();document.getElementById('performance-details').open=false;});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){gameplayMeasure.cancel('Measurement stopped: tab hidden.');stopPerformance();document.getElementById('performance-details').open=false;}});
+function openSpeed(){gameplayMeasure.cancel('Measurement stopped: Speed opened.');touchControls.reset();moreMenu.close();stopPerformance();document.getElementById('performance-details').open=false;document.getElementById('speed-result').textContent='';refreshSpeed();showGameplayResult();const sheet=document.getElementById('speed-sheet');if(!sheet.open)sheet.showModal();sheet.scrollTop=0;}
+document.getElementById('speed-toggle').onclick=openSpeed;
+document.getElementById('starter-speed').onclick=openSpeed;
+document.getElementById('close-speed').onclick=()=>{stopPerformance();document.getElementById('performance-details').open=false;document.getElementById('speed-sheet').close();canvas.focus();};
+document.getElementById('refresh-speed').onclick=refreshSpeed;
+for(const [id,rate] of speedPresets)document.getElementById(id).onclick=()=>{
+ const before=readSpeed();if(!before||typeof Module._stella_set_speed!=='function'){refreshSpeed();document.getElementById('speed-result').textContent='Speed control is unavailable until a planet is running.';return;}
+ const result=Module.ccall('stella_set_speed','number',['number'],[rate]);
+ const after=refreshSpeed();
+ document.getElementById('speed-result').textContent=result===1&&after&&after.requested===rate?'Target set to '+(rate/3600)+' hours/sec. '+(after.paused?'Still paused; close this panel and press Play.':'The achieved rate depends on your device.'):'Speed was not changed. Refresh and try again.';
+};
+setInterval(()=>{if(document.getElementById('speed-sheet').open){refreshSpeed();refreshPerformance();}},1000);
+
+moreMenu.addEventListener('click',e=>{const r=moreMenu.getBoundingClientRect();if(e.target===moreMenu&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))moreMenu.close();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('guide').hidden){document.getElementById('guide').hidden=true;document.getElementById('more-toggle').focus();}});
+// Prevent GLFW's default touch-to-left-click adapter from duplicating the
+// pointer bridge (especially while orbit mode maps touches to right-click).
+for(const type of ['touchstart','touchmove','touchend','touchcancel']) canvas.addEventListener(type,e=>{e.preventDefault();e.stopImmediatePropagation();},{capture:true,passive:false});
+function mouse(type,p,button){canvas.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,clientX:p.clientX,clientY:p.clientY,button,buttons:type==='mouseup'?0:button===2?2:1}));}
+const touchControls=createStellaTouchControls({mouse,zoom:steps=>gameAction('_stella_zoom',steps),capture:id=>{canvas.focus();canvas.setPointerCapture(id);},releaseCapture:id=>{if(canvas.hasPointerCapture(id))canvas.releasePointerCapture(id);}});
+let dragMode='navigate';
+document.getElementById('mode').onclick=e=>{dragMode=dragMode==='navigate'?'paint':'navigate';touchControls.setMode(dragMode);e.currentTarget.setAttribute('aria-pressed',String(dragMode==='paint'));e.currentTarget.setAttribute('aria-label','Drag mode: '+dragMode+'. Tap to switch.');e.currentTarget.textContent=dragMode==='paint'?'Paint':'Navigate';};
+canvas.addEventListener('pointerdown',touchControls.down);
+canvas.addEventListener('pointermove',touchControls.move);
+for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,touchControls.up);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)touchControls.reset();});
+function key(type,el){const event=new KeyboardEvent(type,{key:el.dataset.name,code:el.dataset.code,bubbles:true,cancelable:true});Object.defineProperty(event,'keyCode',{value:+el.dataset.key});Object.defineProperty(event,'which',{value:+el.dataset.key});window.dispatchEvent(event);}
+document.querySelectorAll('[data-key]').forEach(el=>{el.addEventListener('pointerdown',e=>{e.preventDefault();el.setPointerCapture(e.pointerId);key('keydown',el);});for(const type of ['pointerup','pointercancel'])el.addEventListener(type,e=>{e.preventDefault();key('keyup',el);});});
+function gameAction(fn,...args){if(!Module.started||Module.failed||typeof Module[fn]!=='function')return;return Module[fn](...args);}
+document.querySelectorAll('[data-zoom]').forEach(el=>el.onclick=()=>gameAction('_stella_zoom',+el.dataset.zoom));
+document.getElementById('land').onclick=()=>{const found=gameAction('_stella_focus_land');if(found===0){openGuide();document.getElementById('goal-title').textContent=syncWorldMode()?'Prepare shallow habitat':'Build an island';document.getElementById('goal-text').textContent=syncWorldMode()?'No suitable shallow habitat found. Use water and terrain tools; Inspect depth and temperature before seeding.':'No dry land found. Choose Land + and inspect the water depth before planting.';}};
+document.getElementById('globe').onclick=()=>gameAction('_stella_reset_view');
+
+document.getElementById('fullscreen').onclick=async()=>{document.getElementById('more-menu').close();try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen();}catch(e){feedback('Fullscreen is not supported here. Rotate your device for more space.',true);}};
+window.addEventListener('blur',()=>{document.querySelectorAll('[data-key]').forEach(el=>key('keyup',el));touchControls.reset();});
+</script><script>
+if(new URLSearchParams(location.search).has('harness')){
+ const script=document.createElement('script');script.src='gameplay-harness.js';document.head.appendChild(script);
+ const button=document.createElement('button');button.textContent='Run gameplay tests';
+ button.title='Changes the current planet. Create a disposable test planet first.';
+ const output=document.createElement('pre');output.style.cssText='white-space:pre-wrap;padding:12px;font-size:12px';
+ document.getElementById('controls').appendChild(button);document.querySelector('main').appendChild(output);
+ button.onclick=async()=>{button.disabled=true;output.textContent='Testing actual game state…';try{const result=await StellaHarness.run();output.textContent=JSON.stringify({...result,captures:result.captures.map(c=>({label:c.label,error:c.error,captured:!!c.png}))},null,2);}catch(e){output.textContent=String(e)}finally{button.disabled=false}};
+ const download=document.createElement('button');download.textContent='Download test report';download.onclick=()=>StellaHarness.download();document.getElementById('controls').appendChild(download);
+}
+</script>{{{ SCRIPT }}}</body></html>

@@ -150,6 +150,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     if(@hasField(@TypeOf(p.*),"propaguleFeedback")){
         p.propaguleFeedback=.{};p.propaguleAttempts=0;p.propaguleArrivals=0;p.propaguleTrackedLosses=0;
     }
+    if(@hasField(@TypeOf(state.*),"colonyPeek"))state.colonyPeek.clear();
     if(@hasField(@TypeOf(state.*),"propaguleVisuals"))state.propaguleVisuals=.{};
     if(@hasField(@TypeOf(state.*),"watchLifeView"))state.watchLifeView=false;
 }

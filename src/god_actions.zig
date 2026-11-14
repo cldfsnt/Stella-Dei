@@ -1,9 +1,9 @@
 //! Explicit one-shot interventions. Caller owns tap handling, pause and visuals.
 //! Heat is a gameplay impulse, not a physical lightning simulation.
 const std=@import("std");
-pub const Kind=enum{wave,lightning};
-pub const Failure=enum{none,stale,invalid,dry,precision};
-pub const Delta=struct{cell:usize=0,water_mass:f32=0,temperature_k:f32=0};
+pub const Kind=enum{wave,lightning,scorch};
+pub const Failure=enum{none,stale,invalid,dry,precision,origin,wet,no_cover};
+pub const Delta=struct{cell:usize=0,water_mass:f32=0,temperature_k:f32=0,cover_removed:f32=0};
 pub const Receipt=struct{
  kind:Kind, failure:Failure=.none, count:usize=0,
  affected:[7]Delta=.{.{}}**7,
@@ -118,4 +118,33 @@ test "pentagon wave ignores self fillers and duplicate neighbours without changi
  var self_only=P{.neighbours=&.{0,0,0}};
  try std.testing.expectEqual(Failure.invalid,wave(&self_only,0,0).failure);
  try std.testing.expectEqual(@as(f32,4),self_only.waterMass[0]);
+}
+
+/// Explicit Sandbox destruction, not combustion. Cover is dimensionless; heat
+/// is supplied by the player, never inferred fuel energy or atmospheric flux.
+pub fn scorch(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {
+ if(expected!=selected)return failed(.scorch,.stale);
+ if(planet.worldMode!=.sandbox)return failed(.scorch,.origin);
+ if(selected>=planet.temperature.len or selected>=planet.waterMass.len or selected>=planet.vegetation.len)return failed(.scorch,.invalid);
+ const water=planet.waterMass[selected];const cover=planet.vegetation[selected];const before=planet.temperature[selected];
+ if(!std.math.isFinite(water) or water<0 or !std.math.isFinite(cover) or cover<0 or cover>1 or !std.math.isFinite(before) or before<0 or before>=500 or !std.math.isFinite(heat_capacity) or heat_capacity<=0)return failed(.scorch,.invalid);
+ if(water>0)return failed(.scorch,.wet);
+ if(cover==0)return failed(.scorch,.no_cover);
+ const after=@min(@as(f32,500),before+40);const next_cover=cover*0.25;
+ const removed=cover-next_cover;const delta=after-before;const energy=heat_capacity*@as(f64,delta);
+ if(!std.math.isFinite(energy) or energy<=0 or removed<=0 or next_cover<=0 or @abs(removed/cover-0.75)>0.000001)return failed(.scorch,.precision);
+ var out=Receipt{.kind=.scorch,.count=1,.heat_joules=energy};
+ out.affected[0]=.{.cell=selected,.temperature_k=delta,.cover_removed=removed};
+ planet.temperature[selected]=after;planet.vegetation[selected]=next_cover;
+ return out;
+}
+test "scorch removes actual cover and accounts external heat atomically" {
+ const P=struct{worldMode:enum{origin,sandbox}=.sandbox,temperature:[2]f32=.{295,290},waterMass:[2]f32=.{0,0},vegetation:[2]f32=.{0.8,1}};
+ var p=P{};const before=p;const r=scorch(&p,0,0,1000);
+ try std.testing.expect(r.success());try std.testing.expectApproxEqAbs(@as(f32,0.6),r.affected[0].cover_removed,1e-7);
+ try std.testing.expectEqual(@as(f64,40000),r.heat_joules);try std.testing.expectEqual(@as(f32,335),p.temperature[0]);
+ try std.testing.expectEqual(before.vegetation[1],p.vegetation[1]);try std.testing.expectEqual(before.temperature[1],p.temperature[1]);
+ for(0..8)|case|{p=before;switch(case){0=>p.worldMode=.origin,1=>p.waterMass[0]=0.0000001,2=>p.vegetation[0]=0,3=>p.vegetation[0]=std.math.nan(f32),4=>p.temperature[0]=500,else=>{}}const saved=p;
+ const a=scorch(&p,if(case==5)1 else 0,if(case==6)9 else 0,if(case==7)std.math.inf(f64) else 1000);try std.testing.expect(!a.success());try std.testing.expectEqualSlices(u8,std.mem.asBytes(&saved),std.mem.asBytes(&p));}
+ p=before;var last=p.vegetation[0];for(0..20)|_|{const a=scorch(&p,0,0,1000);if(!a.success())break;try std.testing.expect(p.vegetation[0]<last);try std.testing.expect(p.temperature[0]<=500);last=p.vegetation[0];}
 }

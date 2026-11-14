@@ -1,0 +1,157 @@
+--- a/src/states/play.zig
++++ b/src/states/play.zig
+@@ -191,6 +191,7 @@
+     watchLifeView: bool = false,
+     blenderAtlas: ?nvg.Image = null,
+     blenderAtlasAttempted: bool = false,
++    colonyPeek: @import("../colony_peek.zig").Pin = .{},
+     propaguleVisuals: @import("../propagule_visuals.zig").Pool = .{},
+     seedTargets: SeedTargets.List = .{},
+     seedTargetWidth:f32=0,
+@@ -865,8 +866,12 @@
+         }
+ 
+         if (self.selectedTool == .None and button == .left) {
+-            self.showPointDetails = true;
+-            self.clickedPoint = self.selectedPoint;
++            if(self.watchLifeView and self.planet.worldMode==.origin) {
++                self.colonyPeek.set(self.selectedPoint,self.planet.microbeCells[self.selectedPoint],self.gameTime);
++            } else {
++                self.showPointDetails = true;
++                self.clickedPoint = self.selectedPoint;
++            }
+         }
+ 
+         if (button == .right) {
+@@ -1737,6 +1742,34 @@
+         _ = vg.text(x, y, text);
+     }
+ 
++    fn renderColonyPeek(self:*PlayState,game:*Game,renderer:*Renderer,width:f32,height:f32) bool {
++        if(!self.watchLifeView or self.planet.worldMode!=.origin or self.showPointDetails or self.showEscapeMenu or self.showPlanetControl)return false;
++        const cell=self.colonyPeek.cell orelse return false;
++        if(cell>=self.planet.microbeCells.len){self.colonyPeek.clear();return false;}
++        const v=self.colonyPeek.observe(self.planet.microbeCells[cell],self.gameTime);
++        if(self.colonyPeek.cell==null)return false;
++        const vg=renderer.vg;vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
++        var text:[160]u8=undefined;
++        const line=if(v.count==0) "Pinned patch: no living colonies" else std.fmt.bufPrint(&text,"Top {s} {d:.0}% · {s} over {d:.1}d",.{@tagName(v.items[v.dominant].form),v.items[v.dominant].share*100,@import("../colony_peek.zig").label(v.trend),v.days}) catch "Pinned colony";
++        var bounds:[4]f32=undefined;_=vg.textBounds(0,0,line,&bounds);if(bounds[2]-bounds[0]>width-20)vg.fontSize(12*(width-20)/(bounds[2]-bounds[0]));
++        vg.fillColor(nvg.rgb(225,240,241));_=vg.text(10,height-72,line);
++        var x:f32=10;
++        for(v.items[0..v.count],0..)|item,index|{
++            const w=(width-20)*item.share;
++            vg.beginPath();vg.rect(x,height-58,w,7);
++            const color=biology_visuals.lineageColor(item.optimum);vg.fillColor(nvg.rgb(color[0],color[1],color[2]));vg.fill();
++            if(index==v.dominant){vg.beginPath();vg.rect(x,height-58,w,7);vg.strokeColor(nvg.rgb(230,252,255));vg.strokeWidth(1);vg.stroke();}
++            if(index>0){vg.beginPath();vg.moveTo(x,height-58);vg.lineTo(x,height-51);vg.strokeColor(nvg.rgba(8,25,37,220));vg.strokeWidth(1);vg.stroke();}
++            x+=w;
++        }
++        const buttonWidth=(width-28)/2;
++        if(ui.button(vg,game,"peek-details",8,height-46,buttonWidth,44,"Details")){
++            self.selectedPoint=cell;self.clickedPoint=cell;self.showPointDetails=true;
++        }
++        if(ui.button(vg,game,"peek-dismiss",20+buttonWidth,height-46,buttonWidth,44,"Dismiss"))self.colonyPeek.clear();
++        return true;
++    }
++
+     fn renderWatchLegend(vg:nvg,width:f32,y:f32) void {
+         vg.save();defer vg.restore();
+         vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
+@@ -1815,6 +1848,7 @@
+             if (ui.button(vg, game, "watch-pause", 8, 6, compactWidth, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
+             if (ui.button(vg, game, "watch-tools", 16 + compactWidth, 6, compactWidth, 44, "Tools")) {
+                 self.watchLifeView = false;
++                self.colonyPeek.clear();
+                 self.seedTargets.count = 0;
+             }
+             if (ui.button(vg, game, "watch-speed", 24 + 2 * compactWidth, 6, compactWidth, 44, guidance.speedLabel(self.timeScale))) {
+@@ -1857,6 +1891,7 @@
+         }
+         }
+         vg.textAlign(.{ .horizontal = .left, .vertical = .middle });
++        if(!self.renderColonyPeek(game,renderer,width,height)){
+         if (origin) ui.label(vg, game, "Origin · Day {d:.1}", .{self.gameTime / 86400}, 10, height - 64) else ui.label(vg, game, "Day {d:.1} · {d} rabbits", .{ self.gameTime / 86400, self.planet.lifeforms.items.len }, 10, height - 64);
+         vg.textAlign(.{ .horizontal = .right, .vertical = .middle });
+         ui.label(vg, game, "{d:.1}°C", .{self.planet.temperature[self.selectedPoint] - 273.15}, width - 10, height - 64);
+@@ -1896,6 +1931,7 @@
+         if (hintWidth > width - 20) vg.fontSize(14 * (width - 20) / hintWidth);
+         if(origin and self.watchLifeView and self.mobileFeedbackSeconds<=0)renderWatchLegend(vg,width,height-16) else _ = vg.text(10, height - 16, hint);
+ 
++        }
+         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) {
+             const pw = @min(width - 24, 360);
+             const ph: f32 = if (self.showPlanetControl) 280 else if (self.showEscapeMenu) 248 else 280;
+@@ -1957,6 +1993,7 @@
+                         mobileDetailLabel(vg, game, "Optimum {d:.1}°C · Light {d:.2}x", .{c.optimum-273.15,c.efficiency},px+16,py+190,pw-32);
+                     } else mobileDetailLabel(vg, game, "No living colony at this point", .{},px+16,py+158,pw-32);
+                     if (c.biomass > 0) mobileDetailLabel(vg, game, "Structure: {d:.0}% · drying protection", .{c.structure*100},px+16,py+232,pw-32) else mobileDetailLabel(vg, game, "Existing life seeded; not abiogenesis", .{},px+16,py+232,pw-32);
++                    if(self.colonyPeek.cell!=null and self.colonyPeek.cell.?==point)mobileDetailLabel(vg,game,"Bar: biomass shares · color: thermal trait",.{},px+16,py+258,pw-32);
+                 } else {
+                 const half = (pw - 40) / 2;
+                 if (ui.button(vg, game, "inspect-surface", px + 16, py + 56, half, 44, if (!self.inspectAnimal) "Surface •" else "Surface")) self.inspectAnimal = false;
+--- a/src/save_game.zig
++++ b/src/save_game.zig
+@@ -150,6 +150,7 @@
+     if(@hasField(@TypeOf(p.*),"propaguleFeedback")){
+         p.propaguleFeedback=.{};p.propaguleAttempts=0;p.propaguleArrivals=0;p.propaguleTrackedLosses=0;
+     }
++    if(@hasField(@TypeOf(state.*),"colonyPeek"))state.colonyPeek.clear();
+     if(@hasField(@TypeOf(state.*),"propaguleVisuals"))state.propaguleVisuals=.{};
+     if(@hasField(@TypeOf(state.*),"watchLifeView"))state.watchLifeView=false;
+ }
+--- a/src/colony_peek.zig
++++ b/src/colony_peek.zig
+@@ -0,0 +1,52 @@
++//! One pinned patch, four current cohorts; purely observational, never persisted.
++const std=@import("std");const M=@import("simulation/microbes.zig");
++pub const Trend=enum{waiting,rising,falling,stable,turnover,empty};
++pub const Item=struct{lineage:u64=0,biomass:f32=0,share:f32=0,optimum:f32=303,form:M.ProducerForm=.mat};
++pub const View=struct{items:[4]Item=.{.{}}**4,count:usize=0,dominant:usize=0,trend:Trend=.empty,days:f64=0};
++pub fn read(cell:M.Cell)View{
++ var v=View{};var total:f64=0;
++ for(cell.cohorts)|c|{
++  if(c.lineage==0 or !std.math.isFinite(c.biomass) or c.biomass<=0)continue;
++  v.items[v.count]=.{.lineage=c.lineage,.biomass=c.biomass,.optimum=c.optimum,.form=M.producerForm(c)};
++  total+=c.biomass;if(c.biomass>v.items[v.dominant].biomass)v.dominant=v.count;
++  v.count+=1;
++ }
++ if(total>0)for(v.items[0..v.count])|*i|{i.share=@floatCast(@as(f64,i.biomass)/total);};
++ return v;
++}
++pub const Pin=struct{
++ cell:?usize=null,since:f64=0,baseline:View=.{},
++ pub fn clear(self:*Pin)void{self.*=.{};}
++ pub fn set(self:*Pin,cell:usize,data:M.Cell,time:f64)void{
++  if(!std.math.isFinite(time)){self.clear();return;}
++  self.*=.{.cell=cell,.since=time,.baseline=read(data)};
++ }
++ pub fn observe(self:*Pin,data:M.Cell,time:f64)View{
++  if(self.cell==null or !std.math.isFinite(time) or time<self.since){self.clear();return .{};}
++  var v=read(data);v.days=(time-self.since)/86400;
++  if(v.count==0)return v;
++  v.trend=.waiting;
++  if(self.baseline.count==0 or v.items[v.dominant].lineage!=self.baseline.items[self.baseline.dominant].lineage){v.trend=.turnover;return v;}
++  if(v.days<2)return v;
++  const before=self.baseline.items[self.baseline.dominant].biomass;const delta=v.items[v.dominant].biomass-before;
++  v.trend=if(@abs(delta)<=before*0.01) .stable else if(delta>0) .rising else .falling;return v;
++ }
++};
++pub fn label(t:Trend)[]const u8{return switch(t){.waiting=>"observing",.rising=>"biomass up",.falling=>"biomass down",.stable=>"biomass steady",.turnover=>"dominant changed",.empty=>"no living colonies"};}
++test "actual shares and same-lineage changes are distinct from turnover"{
++ var c=M.Cell{};c.cohorts[0]=.{.lineage=7,.biomass=0.03};c.cohorts[1]=.{.lineage=8,.biomass=0.01};
++ const original=c;var p=Pin{};p.set(12,c,0);var v=p.observe(c,86400);
++ try std.testing.expectApproxEqAbs(@as(f32,0.75),v.items[0].share,0.00001);try std.testing.expectEqual(Trend.waiting,v.trend);
++ c.cohorts[0].biomass=0.04;v=p.observe(c,2*86400);try std.testing.expectEqual(Trend.rising,v.trend);
++ c.cohorts[0].biomass=0.02;v=p.observe(c,3*86400);try std.testing.expectEqual(Trend.falling,v.trend);
++ c.cohorts[1].biomass=0.04;v=p.observe(c,3*86400);try std.testing.expectEqual(Trend.turnover,v.trend);
++ const before=c;_=p.observe(c,4*86400);try std.testing.expectEqualDeep(before,c);
++ p.set(2,original,5*86400);_=p.observe(original,0);try std.testing.expect(p.cell==null);
++}
++test "empty invalid and replacement observations never invent growth"{
++ var p=Pin{};var c=M.Cell{};p.set(0,c,0);try std.testing.expectEqual(Trend.empty,p.observe(c,86400).trend);
++ c.cohorts[2]=.{.lineage=99,.biomass=1};try std.testing.expectEqual(Trend.turnover,p.observe(c,3*86400).trend);
++ p.set(1,c,0);c.cohorts[2].lineage=100;try std.testing.expectEqual(Trend.turnover,p.observe(c,3*86400).trend);
++ c.cohorts[2].biomass=std.math.nan(f32);try std.testing.expectEqual(@as(usize,0),p.observe(c,4*86400).count);
++ p.clear();try std.testing.expect(p.cell==null);
++}

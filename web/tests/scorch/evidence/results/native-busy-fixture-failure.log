@@ -1,0 +1,45 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x15a44a30 context=0x15a45040
+info: Loading states.main_menu.MainMenuState...
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-001.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-002.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-003.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-004.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-005.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-006.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-007.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-008.ppm
+info: Loading states.game_intro.GameIntroState...
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-009.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-010.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-011.ppm
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xdb65b69dc844703d
+info: Sea Level: -2.1567383 km
+info: NEW_WORLD_WATER preset=continents requested_ocean=0.7 actual_ocean=0.6999414091108832 sea_level_km=2.2817383 initial_mass=970111880250.8142 vapor=0 existing_save_untouched=true
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-012.ppm
+WORLD_MENU actual_press_release=true default_random=true reversible=true no_reset_on_select=true new_mode=sandbox preset=continents
+SCORCH_EXPORT json={"kind":"scorch","failure":"none","count":1,"affected":[{"cell":30114,"water_mass":0e0,"temperature_k":4e1,"cover_removed":1.5000000596046448e-1}],"moved_mass":0e0,"moved_depth_m":0e0,"heat_joules":1.1838992525819904e17}
+SCORCH_RABBIT startK=275 control_alive=1 scorch_alive=1 control_satiety=89.64 scorch_satiety=67.14 paused_save_exact=true
+SCORCH_EXPORT json={"kind":"scorch","failure":"none","count":1,"affected":[{"cell":30114,"water_mass":0e0,"temperature_k":4e1,"cover_removed":1.5000000596046448e-1}],"moved_mass":0e0,"moved_depth_m":0e0,"heat_joules":1.1838992525819904e17}
+SCORCH_RABBIT startK=295 control_alive=1 scorch_alive=0 control_satiety=89.64 scorch_satiety=0 paused_save_exact=true
+SCORCH_RECOVERY actual_vegetation_update=true post=0.2 after_day=0.70903546 no_neighbors=true controlled_daylight=true
+SCORCH_EFFECT accepted_then_wet_rejected=true invalid_kind_clears=true rejected_state_exact=true
+thread 5 panic: menu reload WorldBusy
+Unwind error at address `:0x117cb3e` (error.InvalidDebugInfo), trace may be incomplete
+

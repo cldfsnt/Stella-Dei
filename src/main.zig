@@ -419,8 +419,8 @@ export fn stella_god_target() [*:0]const u8 {
 var godActionBuffer:[4096]u8=undefined;
 export fn stella_god_action(kind:u32,expected:u32) [*:0]const u8 {
     const state=webPlayState() orelse return "{\"failure\":\"no_world\"}";
-    if(kind>1)return "{\"failure\":\"invalid\"}";
-    const result=state.applyGodAction(if(kind==0).wave else .lightning,expected);
+    if(kind>2){state.godReceipt=null;state.godEffectSeconds=0;return "{\"failure\":\"invalid\"}";}
+    const result=state.applyGodAction(if(kind==0).wave else if(kind==1).lightning else .scorch,expected);
     var stream=std.io.fixedBufferStream(godActionBuffer[0..godActionBuffer.len-1]);
     std.json.stringify(.{.kind=@tagName(result.kind),.failure=@tagName(result.failure),.count=result.count,.affected=result.affected[0..result.count],.moved_mass=result.moved_mass,.moved_depth_m=result.moved_mass*state.planet.getKmPerWaterMass()*1000,.heat_joules=result.heat_joules},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{\"failure\":\"error\"}";
     godActionBuffer[stream.pos]=0;return @ptrCast(&godActionBuffer);

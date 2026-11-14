@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "orientations": [
+    "390x700 portrait",
+    "640x360 landscape"
+  ],
+  "native_exit_codes": [
+    0,
+    0
+  ],
+  "source_and_shell_unchanged": true,
+  "main_sha256": "7da645e0c5bf667a27be4607eff80f9710633438c2c752b21bbdd550f3a6ac05",
+  "play_sha256": "952a8564eda3834e7068a85aabb193a63fe3bc2cf4d26955d4bc2dc0fde17534",
+  "save_game_sha256": "a799890e2acf2bf6f9349e4ad3a603ec3979bf40df6177b51fa11c9db19fa3a5",
+  "god_actions_sha256": "b3e9b28a9f1cca2e457f973e56e9b2a1444b9ddc2fa5534deec6694f5a0c6b3a",
+  "shell_sha256": "cd50ebc4b9cb027d46320de098ab346489f53c8173df41edec930ccbd745f6bc",
+  "binary_sha256": "a85bcced2871d85154b9c95276b11615dba5c3c2049306ddb483af00c1da6677"
+}

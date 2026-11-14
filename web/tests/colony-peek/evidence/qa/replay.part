@@ -1,0 +1,41 @@
+    if(std.posix.getenv("QA_REPLAY_SAVE"))|save_path|{
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        const bytes=try std.fs.cwd().readFileAlloc(al,save_path,100*1024*1024);
+        var parsed=try saves.schema.parse(al,bytes);defer parsed.deinit();try saves.apply(state,parsed.value);
+        state.paused=true;state.selectedTool=.None;state.watchLife();
+        state.selectedPoint=29254;state.pointerOnPlanet=true;
+        state.targetCameraPos=state.planet.transformedPoints[state.selectedPoint].norm().scale(state.cameraDistance);state.cameraPos=state.targetCameraPos;
+        std.debug.assert(stella_fit_life()==1);
+        const size=window.getFramebufferSize();const width:f32=@floatFromInt(size.width);const height:f32=@floatFromInt(size.height);
+        render(window);gl.finish();window.swapBuffers();
+        const vp=za.Mat4.perspective(70,width/height,state.planet.radius*5/10000,state.planet.radius*5).mul(za.Mat4.lookAt(state.cameraPos,za.Vec3.zero(),za.Vec3.new(0,0,1)));
+        const id:usize=29254;const pt=state.planet.transformedPoints[id];const clip=vp.mulByVec4(za.Vec4.new(pt.x(),pt.y(),pt.z(),1));
+        const x=(clip.x()/clip.w()+1)*width/2;const y=(1-clip.y()/clip.w())*height/2;
+        qa_pointer(x,y,0);std.debug.assert(state.pointerOnPlanet and state.selectedPoint==id);
+        const before=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        state.mousePressed(&game,.left);std.debug.assert(!state.showPointDetails and state.colonyPeek.cell.?==id);
+        for(0..3)|_|{_=state.colonyPeek.observe(state.planet.microbeCells[id],state.gameTime);render(window);gl.finish();window.swapBuffers();}
+        const after=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        std.debug.assert(std.mem.eql(u8,before,after));
+        const target=state.gameTime+2*86400;state.paused=false;state.timeScale=86400;
+        var frames:usize=0;while(state.gameTime<target and frames<500):(frames+=1){state.setRawFrameDelta(1.0/60.0);state.update(&game,1.0/60.0);}
+        std.debug.assert(state.gameTime>=target);state.paused=true;
+        const observed=state.colonyPeek.observe(state.planet.microbeCells[id],state.gameTime);
+        std.debug.print("PEEK_OBSERVATION width={d} height={d} same_patch={d} days={d} count={d} trend={s} frames={d}\n",.{width,height,id,observed.days,observed.count,@tagName(observed.trend),frames});
+        for(observed.items[0..observed.count])|item|std.debug.print("PEEK_LINEAGE id={d} biomass={d} share={d}\n",.{item.lineage,item.biomass,item.share});
+        render(window);gl.finish();window.swapBuffers();
+        std.debug.print("PEEK_INVARIANCE save_bytes={d} hash={x} unchanged=true visible={d}\n",.{before.len,std.hash.Wyhash.hash(0,before),state.visibleSprouts});
+        const buttonWidth=(width-28)/2;
+        qa_pointer(8+buttonWidth/2,height-24,1);render(window);qa_pointer(8+buttonWidth/2,height-24,0);render(window);
+        std.debug.assert(state.showPointDetails and state.clickedPoint==id);
+        const pw=@min(width-24,360);const px=(width-pw)/2;const py=@max(6,(height-280)/2);
+        qa_pointer(px+pw-34,py+28,1);render(window);qa_pointer(px+pw-34,py+28,0);render(window);
+        std.debug.assert(!state.showPointDetails and state.colonyPeek.cell.?==id);
+        qa_pointer(20+buttonWidth*1.5,height-24,1);render(window);qa_pointer(20+buttonWidth*1.5,height-24,0);render(window);
+        std.debug.assert(state.colonyPeek.cell==null);
+        std.debug.print("PEEK_REAL_BUTTONS details_close_dismiss=true pause_preserved={}\n",.{state.paused});
+        state.colonyPeek.set(id,state.planet.microbeCells[id],state.gameTime);
+        try saves.apply(state,parsed.value);std.debug.assert(state.colonyPeek.cell==null);
+        std.debug.print("PEEK_LOAD_RESET true\n",.{});
+        loop.pump(1024);return;
+    }

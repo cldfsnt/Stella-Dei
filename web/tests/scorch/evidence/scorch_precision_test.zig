@@ -1,0 +1,2 @@
+const std=@import("std");const A=@import("src/god_actions.zig");
+test "tiny subnormal cover refuses before mutation" {var p=struct{worldMode:enum{sandbox,origin}=.sandbox,waterMass:[1]f32=.{0},temperature:[1]f32=.{275},vegetation:[1]f32=.{@bitCast(@as(u32,1))}}{};const before=p;const r=A.scorch(&p,0,0,100);try std.testing.expectEqual(A.Failure.precision,r.failure);try std.testing.expectEqualDeep(before,p);}

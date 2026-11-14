@@ -1,0 +1,39 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x3b026a30 context=0x3b027040
+info: Loading states.main_menu.MainMenuState...
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-001.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-002.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-003.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-004.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-005.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-006.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-007.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-008.ppm
+info: Loading states.game_intro.GameIntroState...
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-009.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-010.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-011.ppm
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x89dab9f824ade0a4
+info: Sea Level: -3.199707 km
+info: NEW_WORLD_WATER preset=continents requested_ocean=0.7 actual_ocean=0.6999658219813486 sea_level_km=2.362793 initial_mass=963130975801.0044 vapor=0 existing_save_untouched=true
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-fire-v30/tmp/scorch-012.ppm
+WORLD_MENU actual_press_release=true default_random=true reversible=true no_reset_on_select=true new_mode=sandbox preset=continents
+thread 5 panic: @memcpy arguments alias
+Unwind error at address `:0x117b07e` (error.InvalidDebugInfo), trace may be incomplete
+

@@ -191,6 +191,7 @@ pub const PlayState = struct {
     watchLifeView: bool = false,
     blenderAtlas: ?nvg.Image = null,
     blenderAtlasAttempted: bool = false,
+    colonyPeek: @import("../colony_peek.zig").Pin = .{},
     propaguleVisuals: @import("../propagule_visuals.zig").Pool = .{},
     seedTargets: SeedTargets.List = .{},
     seedTargetWidth:f32=0,
@@ -865,8 +866,12 @@ pub const PlayState = struct {
         }
 
         if (self.selectedTool == .None and button == .left) {
-            self.showPointDetails = true;
-            self.clickedPoint = self.selectedPoint;
+            if(self.watchLifeView and self.planet.worldMode==.origin) {
+                self.colonyPeek.set(self.selectedPoint,self.planet.microbeCells[self.selectedPoint],self.gameTime);
+            } else {
+                self.showPointDetails = true;
+                self.clickedPoint = self.selectedPoint;
+            }
         }
 
         if (button == .right) {
@@ -974,10 +979,10 @@ pub const PlayState = struct {
 
     pub fn applyGodAction(self:*PlayState,kind:@import("../god_actions.zig").Kind,expected:usize) @import("../god_actions.zig").Receipt {
         const Actions=@import("../god_actions.zig");
-        const result=if(kind==.wave) Actions.wave(&self.planet,expected,self.selectedPoint) else Actions.lightning(&self.planet,expected,self.selectedPoint,self.planet.currentHeatCapacity(self.selectedPoint));
+        const result=if(kind==.wave) Actions.wave(&self.planet,expected,self.selectedPoint) else if(kind==.scorch) Actions.scorch(&self.planet,expected,self.selectedPoint,if(self.selectedPoint<self.planet.temperature.len) self.planet.currentHeatCapacity(self.selectedPoint) else 0) else Actions.lightning(&self.planet,expected,self.selectedPoint,self.planet.currentHeatCapacity(self.selectedPoint));
         self.godReceipt=if(result.success())result else null;
         self.godEffectSeconds=if(result.success())1.2 else 0;
-        self.mobileFeedback=if(result.success()) (if(kind==.wave) "Wave moved existing water; watch flooding" else "Heat impulse added; ecology responds with time") else "Action blocked: refresh selected patch";
+        self.mobileFeedback=if(result.success()) (if(kind==.wave) "Wave moved existing water; watch flooding" else if(kind==.scorch) "Scorch removed 75% cover and added heat; not combustion" else "Heat impulse added; ecology responds with time") else "Action blocked: refresh selected patch";
         self.mobileFeedbackSeconds=5;
         return result;
     }
@@ -1486,6 +1491,11 @@ pub const PlayState = struct {
                 vg.strokeColor(nvg.rgba(117,238,255,@intFromFloat(alpha*240)));vg.strokeWidth(2.5);vg.stroke();
                 vg.beginPath();vg.ellipse(x,y,radius*0.62,radius*0.34);
                 vg.strokeColor(nvg.rgba(164,248,255,@intFromFloat(alpha*170)));vg.strokeWidth(1.5);vg.stroke();
+            } else if(receipt.kind==.scorch) {
+                // A charcoal scar, not flame or an invented combustion simulation.
+                vg.beginPath();vg.ellipse(x,y,14+progress*8,8+progress*4);
+                vg.fillColor(nvg.rgba(43,35,31,@intFromFloat(alpha*190)));vg.fill();
+                vg.strokeColor(nvg.rgba(220,137,72,@intFromFloat(alpha*240)));vg.strokeWidth(2);vg.stroke();
             } else {
                 vg.beginPath();vg.circle(x,y,14+progress*12);
                 vg.fillColor(nvg.rgba(255,191,72,@intFromFloat(alpha*55)));vg.fill();
@@ -1737,6 +1747,34 @@ pub const PlayState = struct {
         _ = vg.text(x, y, text);
     }
 
+    fn renderColonyPeek(self:*PlayState,game:*Game,renderer:*Renderer,width:f32,height:f32) bool {
+        if(!self.watchLifeView or self.planet.worldMode!=.origin or self.showPointDetails or self.showEscapeMenu or self.showPlanetControl)return false;
+        const cell=self.colonyPeek.cell orelse return false;
+        if(cell>=self.planet.microbeCells.len){self.colonyPeek.clear();return false;}
+        const v=self.colonyPeek.observe(self.planet.microbeCells[cell],self.gameTime);
+        if(self.colonyPeek.cell==null)return false;
+        const vg=renderer.vg;vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
+        var text:[160]u8=undefined;
+        const line=if(v.count==0) "Pinned patch: no living colonies" else std.fmt.bufPrint(&text,"Top {s} {d:.0}% · {s} over {d:.1}d",.{@tagName(v.items[v.dominant].form),v.items[v.dominant].share*100,@import("../colony_peek.zig").label(v.trend),v.days}) catch "Pinned colony";
+        var bounds:[4]f32=undefined;_=vg.textBounds(0,0,line,&bounds);if(bounds[2]-bounds[0]>width-20)vg.fontSize(12*(width-20)/(bounds[2]-bounds[0]));
+        vg.fillColor(nvg.rgb(225,240,241));_=vg.text(10,height-72,line);
+        var x:f32=10;
+        for(v.items[0..v.count],0..)|item,index|{
+            const w=(width-20)*item.share;
+            vg.beginPath();vg.rect(x,height-58,w,7);
+            const color=biology_visuals.lineageColor(item.optimum);vg.fillColor(nvg.rgb(color[0],color[1],color[2]));vg.fill();
+            if(index==v.dominant){vg.beginPath();vg.rect(x,height-58,w,7);vg.strokeColor(nvg.rgb(230,252,255));vg.strokeWidth(1);vg.stroke();}
+            if(index>0){vg.beginPath();vg.moveTo(x,height-58);vg.lineTo(x,height-51);vg.strokeColor(nvg.rgba(8,25,37,220));vg.strokeWidth(1);vg.stroke();}
+            x+=w;
+        }
+        const buttonWidth=(width-28)/2;
+        if(ui.button(vg,game,"peek-details",8,height-46,buttonWidth,44,"Details")){
+            self.selectedPoint=cell;self.clickedPoint=cell;self.showPointDetails=true;
+        }
+        if(ui.button(vg,game,"peek-dismiss",20+buttonWidth,height-46,buttonWidth,44,"Dismiss"))self.colonyPeek.clear();
+        return true;
+    }
+
     fn renderWatchLegend(vg:nvg,width:f32,y:f32) void {
         vg.save();defer vg.restore();
         vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
@@ -1815,6 +1853,7 @@ pub const PlayState = struct {
             if (ui.button(vg, game, "watch-pause", 8, 6, compactWidth, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
             if (ui.button(vg, game, "watch-tools", 16 + compactWidth, 6, compactWidth, 44, "Tools")) {
                 self.watchLifeView = false;
+                self.colonyPeek.clear();
                 self.seedTargets.count = 0;
             }
             if (ui.button(vg, game, "watch-speed", 24 + 2 * compactWidth, 6, compactWidth, 44, guidance.speedLabel(self.timeScale))) {
@@ -1857,6 +1896,7 @@ pub const PlayState = struct {
         }
         }
         vg.textAlign(.{ .horizontal = .left, .vertical = .middle });
+        if(!self.renderColonyPeek(game,renderer,width,height)){
         if (origin) ui.label(vg, game, "Origin · Day {d:.1}", .{self.gameTime / 86400}, 10, height - 64) else ui.label(vg, game, "Day {d:.1} · {d} rabbits", .{ self.gameTime / 86400, self.planet.lifeforms.items.len }, 10, height - 64);
         vg.textAlign(.{ .horizontal = .right, .vertical = .middle });
         ui.label(vg, game, "{d:.1}°C", .{self.planet.temperature[self.selectedPoint] - 273.15}, width - 10, height - 64);
@@ -1896,6 +1936,7 @@ pub const PlayState = struct {
         if (hintWidth > width - 20) vg.fontSize(14 * (width - 20) / hintWidth);
         if(origin and self.watchLifeView and self.mobileFeedbackSeconds<=0)renderWatchLegend(vg,width,height-16) else _ = vg.text(10, height - 16, hint);
 
+        }
         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) {
             const pw = @min(width - 24, 360);
             const ph: f32 = if (self.showPlanetControl) 280 else if (self.showEscapeMenu) 248 else 280;
@@ -1957,6 +1998,7 @@ pub const PlayState = struct {
                         mobileDetailLabel(vg, game, "Optimum {d:.1}°C · Light {d:.2}x", .{c.optimum-273.15,c.efficiency},px+16,py+190,pw-32);
                     } else mobileDetailLabel(vg, game, "No living colony at this point", .{},px+16,py+158,pw-32);
                     if (c.biomass > 0) mobileDetailLabel(vg, game, "Structure: {d:.0}% · drying protection", .{c.structure*100},px+16,py+232,pw-32) else mobileDetailLabel(vg, game, "Existing life seeded; not abiogenesis", .{},px+16,py+232,pw-32);
+                    if(self.colonyPeek.cell!=null and self.colonyPeek.cell.?==point)mobileDetailLabel(vg,game,"Bar: biomass shares · color: thermal trait",.{},px+16,py+258,pw-32);
                 } else {
                 const half = (pw - 40) / 2;
                 if (ui.button(vg, game, "inspect-surface", px + 16, py + 56, half, 44, if (!self.inspectAnimal) "Surface •" else "Surface")) self.inspectAnimal = false;
