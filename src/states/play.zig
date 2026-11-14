@@ -282,8 +282,8 @@ pub const PlayState = struct {
         Lifeform.initMeshes(game.allocator) catch unreachable;
 
         const framebuffer = Framebuffer.create(800, 600) catch unreachable;
-        const blurFramebuffer = Framebuffer.create(800, 600) catch unreachable;
-        const bloomFramebuffer = Framebuffer.create(800, 600) catch unreachable;
+        const blurFramebuffer = Framebuffer.createColorOnly(800, 600) catch unreachable;
+        const bloomFramebuffer = Framebuffer.createColorOnly(800, 600) catch unreachable;
 
         const cursorPos = game.window.getCursorPos();
         std.valgrind.callgrind.startInstrumentation();
@@ -389,9 +389,9 @@ pub const PlayState = struct {
             self.framebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;
 
             self.blurFramebuffer.deinit();
-            self.blurFramebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;
+            self.blurFramebuffer = Framebuffer.createColorOnly(fbWidth, fbHeight) catch unreachable;
             self.bloomFramebuffer.deinit();
-            self.bloomFramebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;
+            self.bloomFramebuffer = Framebuffer.createColorOnly(fbWidth, fbHeight) catch unreachable;
         }
 
         {

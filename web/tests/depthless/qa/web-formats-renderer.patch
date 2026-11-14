@@ -1,0 +1,20 @@
+--- a/renderer.zig
++++ b/renderer.zig
+@@ -534,7 +534,7 @@
+         errdefer gl.deleteTextures(1, &colorTextures);
+         for (colorTextures, 0..) |colorTexture, i| {
+             gl.bindTexture(gl.TEXTURE_2D, colorTexture);
+-            gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.RGBA16F else gl.RGB16F, width, height, 0, if (is_web) gl.RGBA else gl.RGB, if (is_web) gl.HALF_FLOAT else gl.UNSIGNED_BYTE, null);
++            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, width, height, 0, gl.RGBA, gl.HALF_FLOAT, null);
+             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+@@ -547,7 +547,7 @@
+         if (with_depth) {
+             gl.genTextures(1, &depthTexture);
+             gl.bindTexture(gl.TEXTURE_2D, depthTexture);
+-            gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.DEPTH_COMPONENT32F else gl.DEPTH_COMPONENT, width, height, 0, gl.DEPTH_COMPONENT, gl.FLOAT, null);
++            gl.texImage2D(gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT32F, width, height, 0, gl.DEPTH_COMPONENT, gl.FLOAT, null);
+             gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
+             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);

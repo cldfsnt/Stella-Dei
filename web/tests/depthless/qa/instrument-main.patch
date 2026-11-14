@@ -1,0 +1,76 @@
+--- a/main.zig
++++ b/main.zig
+@@ -810,6 +810,7 @@
+     }
+     if(std.posix.getenv("QA_UNUSED_UPLOAD")!=null){
+         defer loop.pump(1024);
++        try qaDepthLifecycle();
+         var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+         state.planet.worldMode=.sandbox;state.paused=true;state.selectedTool=.None;state.watchLifeView=true;state.stableDaylight=true;
+         
+@@ -818,28 +819,28 @@
+         const normal_pos=state.cameraPos;const normal_target=state.targetCameraPos;const normal_distance=state.cameraDistance;const normal_target_distance=state.targetCameraDistance;
+         const center=state.planet.getNearestPointTo(state.cameraPos);state.selectedPoint=center;
+         const Life=@TypeOf(state.planet.lifeforms.items[0]);
+-        @import("simulation/planet.zig").qa_skip_unused_atmosphere=false;_=bloomReadPixels(window,pixels);const empty=bloomReadPixels(window,pixels);
++        try qaDepthTargets(state,false);_=bloomReadPixels(window,pixels);const empty=bloomReadPixels(window,pixels);
+         try state.planet.addLifeform(Life.init(state.planet.transformedPoints[center],.Rabbit,state.gameTime));
+         const rabbit=bloomReadPixels(window,pixels);std.debug.assert(empty!=rabbit);std.debug.print("SB_RABBIT visible_pixel_change=true count={d}\n",.{state.planet.lifeforms.items.len});
+         const saves=@import("save_game.zig");const before=try saves.capture(al,state);const before_json=try std.json.stringifyAlloc(al,before,.{});
+         for(0..2)|atmos|{
+             @import("states/play.zig").qa_force_atmosphere=atmos==1;
+             for([_]@TypeOf(state.displayMode){.Normal,.Temperature,.WaterVapor,.Rainfall,.WindMagnitude})|mode|{
+-                state.displayMode=mode;@import("simulation/planet.zig").qa_skip_unused_atmosphere=false;_=bloomReadPixels(window,pixels);const old=bloomReadPixels(window,pixels);
+-                @import("simulation/planet.zig").qa_skip_unused_atmosphere=true;const new=bloomReadPixels(window,pixels);
++                state.displayMode=mode;try qaDepthTargets(state,false);_=bloomReadPixels(window,pixels);const old=bloomReadPixels(window,pixels);
++                try qaDepthTargets(state,true);const new=bloomReadPixels(window,pixels);
+                 std.debug.print("UNUSED_PIXELS mode={s} atmosphere={} original={x} candidate={x} equal={}\n",.{@tagName(mode),atmos==1,old,new,old==new});std.debug.assert(old==new);
+             }
+         }
+         @import("states/play.zig").qa_force_atmosphere=false;state.displayMode=.Normal;
+         state.freeCam=true;state.cameraPos=za.Vec3.new(8000,0,0);state.targetCameraPos=state.cameraPos;state.cameraDistance=8000;state.targetCameraDistance=8000;state.cameraRotation=za.Vec3.zero();
+-        @import("simulation/planet.zig").qa_skip_unused_atmosphere=false;const sun_old=bloomReadPixels(window,pixels);@import("simulation/planet.zig").qa_skip_unused_atmosphere=true;const sun_new=bloomReadPixels(window,pixels);std.debug.assert(sun_old==sun_new);
++        try qaDepthTargets(state,false);const sun_old=bloomReadPixels(window,pixels);try qaDepthTargets(state,true);const sun_new=bloomReadPixels(window,pixels);std.debug.assert(sun_old==sun_new);
+         const floats=try al.alloc(f32,pixels.len);state.bloomFramebuffer.bind();gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.FLOAT,floats.ptr);state.bloomFramebuffer.unbind();var peak:f32=0;for(floats,0..)|v,i|{if(i%4!=3)peak=@max(peak,v);}
+         std.debug.print("SB_SUN equal=true bloom_peak={d}\n",.{peak});std.debug.assert(peak>1);
+         state.freeCam=false;state.cameraPos=normal_pos;state.targetCameraPos=normal_target;state.cameraDistance=normal_distance;state.targetCameraDistance=normal_target_distance;
+-        for([_]bool{false,true})|night|{state.stableDaylight=!night;@import("simulation/planet.zig").qa_skip_unused_atmosphere=false;const old=bloomReadPixels(window,pixels);@import("simulation/planet.zig").qa_skip_unused_atmosphere=true;const new=bloomReadPixels(window,pixels);std.debug.assert(old==new);std.debug.print("SB_RETURN night={} equal=true\n",.{night});}
++        for([_]bool{false,true})|night|{state.stableDaylight=!night;try qaDepthTargets(state,false);const old=bloomReadPixels(window,pixels);try qaDepthTargets(state,true);const new=bloomReadPixels(window,pixels);std.debug.assert(old==new);std.debug.print("SB_RETURN night={} equal=true\n",.{night});}
+         state.stableDaylight=true;
+         for([_]bool{false,true,true,false},0..)|fast,pass|{
+-            @import("simulation/planet.zig").qa_skip_unused_atmosphere=fast;_=bloomReadPixels(window,pixels);
++            try qaDepthTargets(state,fast);_=bloomReadPixels(window,pixels);
+             @import("simulation/planet.zig").qa_unused_uploads=0;@import("simulation/planet.zig").qa_unused_bytes=0;@import("simulation/planet.zig").qa_unused_ns=0;var samples:[4096]f64=undefined;var count:usize=0;var timer=try std.time.Timer.start();var submit:u64=0;var wait:u64=0;
+             while(timer.read()<4_000_000_000 and count<samples.len){var frame=try std.time.Timer.start();render(window);const call=frame.read();gl.finish();const all=frame.read();submit+=call;wait+=all-call;samples[count]=@as(f64,@floatFromInt(all))/1e6;count+=1;}
+             std.mem.sort(f64,samples[0..count],{},std.sort.asc(f64));std.debug.print("SB_RENDER pass={d} candidate={} frames={d} call_ms={d} finish_wait_ms={d} p50={d} p95={d} max={d}\n",.{pass,fast,count,@as(f64,@floatFromInt(submit))/@as(f64,@floatFromInt(count))/1e6,@as(f64,@floatFromInt(wait))/@as(f64,@floatFromInt(count))/1e6,samples[count/2],samples[count*95/100],samples[count-1]});
+@@ -1119,3 +1120,30 @@
+     gl.pixelStorei(gl.PACK_ALIGNMENT,1);gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.UNSIGNED_BYTE,pixels.ptr);
+     window.swapBuffers();return std.hash.Wyhash.hash(0,pixels);
+ }
++
++fn qaDepthTargets(st:*@import("states/play.zig").PlayState, color_only:bool)!void {
++ const F=@import("renderer.zig").Framebuffer;
++ const w=st.bloomFramebuffer.width;const h=st.bloomFramebuffer.height;
++ const a=if(color_only)try F.createColorOnly(w,h) else try F.create(w,h);
++ errdefer a.deinit();
++ const b=if(color_only)try F.createColorOnly(w,h) else try F.create(w,h);
++ st.bloomFramebuffer.deinit();st.blurFramebuffer.deinit();st.bloomFramebuffer=a;st.blurFramebuffer=b;
++ std.debug.assert(st.framebuffer.depthTexture!=0);
++ std.debug.assert((a.depthTexture==0)==color_only and (b.depthTexture==0)==color_only);
++}
++fn qaDepthLifecycle() !void {
++ const R=@import("renderer.zig");const F=R.Framebuffer;
++ for([_][2]c_int{.{32,64},.{390,700},.{920,700},.{64,32}})|dims|{
++  for([_]bool{false,true})|depth|{
++   const f=if(depth)try F.create(dims[0],dims[1]) else try F.createColorOnly(dims[0],dims[1]);
++   f.bind();var attachment:c_int=0;gl.getFramebufferAttachmentParameteriv(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,&attachment);f.unbind();
++   std.debug.assert((attachment!=0)==depth);std.debug.assert(gl.isFramebuffer(f.fbo)!=0 and gl.isTexture(f.colorTextures[0])!=0);
++   if(depth)std.debug.assert(gl.isTexture(f.depthTexture)!=0);
++   f.deinit();std.debug.assert(gl.isFramebuffer(f.fbo)==0 and gl.isTexture(f.colorTextures[0])==0);if(depth)std.debug.assert(gl.isTexture(f.depthTexture)==0);
++   R.qa_fail_fbo=true;const failed=if(depth)F.create(dims[0],dims[1]) else F.createColorOnly(dims[0],dims[1]);R.qa_fail_fbo=false;
++   if(failed)|unexpected|{unexpected.deinit();return error.ExpectedFailure;}else|err|{std.debug.assert(err==error.IncompleteFramebuffer);}
++   std.debug.assert(gl.isFramebuffer(R.qa_last_fbo)==0 and gl.isTexture(R.qa_last_color)==0);if(depth)std.debug.assert(gl.isTexture(R.qa_last_depth)==0);
++   std.debug.print("DEPTH_LIFECYCLE size={d}x{d} depth={} attachments_deinit_incomplete_cleanup=true\n",.{dims[0],dims[1],depth});
++  }
++ }
++}

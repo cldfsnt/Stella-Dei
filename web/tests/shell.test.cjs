@@ -6,13 +6,20 @@ assert.match(html,/body #origin-starter:not\(\[open\]\)\{display:block\}/);
 assert.match(html,/body #origin-starter:not\(\[open\]\)>:not\(summary\)\{display:none\}/);
 assert.match(html,/body #origin-starter\[hidden\]\{display:none\}/);
 assert.match(html,/body #performance-details\{position:static;display:block;inset:auto/);assert.match(html,/body #performance-details:not\(\[open\]\)\{display:block\}/);
+assert.match(html,/#life-sheet \.sheet-heading,#god-sheet \.sheet-heading,#speed-sheet \.sheet-heading\{position:sticky;top:-16px;background:#102c30/);
+assert.match(html,/body #close-speed\{flex:none;min-width:64px;min-height:44px\}/);
+assert.match(html,/body #speed-sheet\{overscroll-behavior:contain;scroll-padding-top:68px\}/);
+assert.match(html,/#life-sheet,#god-sheet,#speed-sheet\{[^}]*width:min\(450px,calc\(100vw - 16px\)\);max-height:80dvh;overflow:auto/);
+assert.match(html,/body #speed-sheet \.sheet-heading\{z-index:5/);
+assert.match(html,/Nothing is uploaded; closing stops measurement/);
 const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'Duplicate DOM ids');
 const elements=new Map(ids.map(id=>[id,{id,hidden:id==='guide',disabled:false,open:false,dataset:{},handlers:{},addEventListener(type,fn){this.handlers[type]=fn;},setAttribute(k,v){this[k]=v;},focus(){},setPointerCapture(){},hasPointerCapture(){return false;},dispatchEvent(){},appendChild(){},querySelector(){return {textContent:''}},getBoundingClientRect(){return{left:10,top:100,right:300,bottom:400,width:390,height:700}},showModal(){this.open=true},close(){this.open=false}}]));
 elements.set('diagnostics',{textContent:''});
 const preferences=new Map();
 let reset=0,saves=0,loads=0;const state={available:true,busy:false};
+const documentEvents={};
 const sandbox={StellaLifeTrend:require('../life-trend.js'),console,setInterval(){},localStorage:{getItem:k=>preferences.get(k),setItem:(k,v)=>preferences.set(k,v)},setTimeout:()=>1,clearTimeout(){},requestAnimationFrame(){},ResizeObserver:class{observe(){}},MouseEvent:class{},KeyboardEvent:class{},confirm:()=>false,location:{reload(){}},createStellaTouchControls:()=>({reset(){reset++},setMode(){},down(){},move(){},up(){}}),createStellaStorage:()=>({state:()=>state,initialize:async()=>true,save:async()=>{saves++},load:async()=>{loads++;return true}})};
-sandbox.window=sandbox;sandbox.addEventListener=()=>{};sandbox.document={getElementById:id=>{assert.ok(elements.has(id),`Missing id ${id}`);return elements.get(id)},createElement:()=>({innerHTML:'',open:false}),querySelector:()=>({append(){}}),querySelectorAll:()=>[],addEventListener(){},body:{classList:{add(){},remove(){}}},documentElement:{requestFullscreen:async()=>{}},fullscreenElement:null};
+sandbox.window=sandbox;sandbox.addEventListener=()=>{};sandbox.document={getElementById:id=>{assert.ok(elements.has(id),`Missing id ${id}`);return elements.get(id)},createElement:()=>({innerHTML:'',open:false}),querySelector:()=>({append(){}}),querySelectorAll:()=>[],addEventListener(type,fn){(documentEvents[type]??=[]).push(fn)},body:{classList:{add(){},remove(){}}},documentElement:{requestFullscreen:async()=>{}},fullscreenElement:null};
 vm.createContext(sandbox);vm.runInContext(html.split('<script>')[1].split('</script>')[0],sandbox);
 (async()=>{const el=id=>elements.get(id);el('more-toggle').onclick();assert.ok(el('more-menu').open);el('close-more').onclick();assert.ok(!el('more-menu').open);el('more-toggle').onclick();el('help-toggle').onclick();assert.ok(!el('more-menu').open);assert.equal(el('guide').hidden,false);el('close-guide').onclick();assert.equal(el('guide').hidden,true);
 sandbox.Module.started=true;el('more-toggle').onclick();await el('save-world').onclick();assert.equal(saves,1);assert.equal(el('more-menu').open,false);assert.equal(el('save-world').disabled,false);
@@ -112,6 +119,15 @@ sandbox.Module.ccall=()=>'{bad';sandbox.refreshPerformance();assert.match(el('pe
 delete sandbox.Module._stella_performance_snapshot;sandbox.refreshPerformance();assert.match(el('performance-readout').textContent,/unavailable/);
 el('performance-details').open=false;el('performance-details').handlers.toggle();assert.equal(perfEnabled.at(-1),0);el('performance-details').open=true;el('speed-sheet').handlers.close();assert.equal(el('performance-details').open,false);
 el('close-speed').onclick();assert.equal(perfEnabled.at(-1),0);assert.equal(el('performance-details').open,false);
+// Repeated open starts at the heading and never leaves an old measurement running.
+el('speed-sheet').scrollTop=999;el('performance-details').open=true;el('starter-speed').onclick();
+assert.equal(el('speed-sheet').scrollTop,0);assert.equal(el('speed-sheet').open,true);assert.equal(el('performance-details').open,false);assert.equal(perfEnabled.at(-1),0);
+el('starter-speed').onclick();assert.equal(el('speed-sheet').scrollTop,0);assert.equal(perfEnabled.at(-1),0);
+// Native Escape dispatches the dialog close event; exercise that production handler.
+el('performance-details').open=true;el('speed-sheet').close();el('speed-sheet').handlers.close();assert.equal(perfEnabled.at(-1),0);assert.equal(el('performance-details').open,false);
+el('starter-speed').onclick();el('performance-details').open=true;sandbox.document.hidden=true;
+for(const f of documentEvents.visibilitychange??[])f();assert.equal(perfEnabled.at(-1),0);assert.equal(el('performance-details').open,false);sandbox.document.hidden=false;
+el('close-speed').onclick();
 let fits=0;sandbox.Module._stella_fit_life=()=>{fits++;return 1};
 el('more-toggle').onclick();el('fit-life').onclick();assert.equal(fits,1);assert.equal(el('more-menu').open,false);assert.match(el('notice').textContent,/Framed nearby connected life/);
 sandbox.Module._stella_fit_life=()=>0;el('fit-life').onclick();assert.match(el('notice').textContent,/Pan toward a living patch/);

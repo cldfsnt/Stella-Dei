@@ -1,0 +1,3 @@
+77367922e5595fe333e722f8f7bf296b069502af0b1c45628288f7a8f4b5d5dc  stella-depthless/depthless.patch
+27ccc66ea64bd8df1f24f635f508363b5071f2e3b65b5d8dac0080cf273ebb15  stella-depthless/candidate/play.zig
+f994ba1e269383449daaaed255f457355f65490e0eda8d216d9d95773ab9fd08  stella-depthless/candidate/renderer.zig

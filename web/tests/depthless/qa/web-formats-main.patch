@@ -1,0 +1,11 @@
+--- a/main.zig
++++ b/main.zig
+@@ -1138,7 +1138,7 @@
+    const f=if(depth)try F.create(dims[0],dims[1]) else try F.createColorOnly(dims[0],dims[1]);
+    f.bind();var attachment:c_int=0;gl.getFramebufferAttachmentParameteriv(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,&attachment);f.unbind();
+    std.debug.assert((attachment!=0)==depth);std.debug.assert(gl.isFramebuffer(f.fbo)!=0 and gl.isTexture(f.colorTextures[0])!=0);
+-   if(depth)std.debug.assert(gl.isTexture(f.depthTexture)!=0);
++   if(depth){std.debug.assert(gl.isTexture(f.depthTexture)!=0);gl.bindTexture(gl.TEXTURE_2D,f.depthTexture);var bits:c_int=0;gl.getTexLevelParameteriv(gl.TEXTURE_2D,0,gl.TEXTURE_DEPTH_SIZE,&bits);std.debug.assert(bits==32);std.debug.print("DEPTH_STORAGE depth_bits={d} width={d} height={d}\n",.{bits,dims[0],dims[1]});}
+    f.deinit();std.debug.assert(gl.isFramebuffer(f.fbo)==0 and gl.isTexture(f.colorTextures[0])==0);if(depth)std.debug.assert(gl.isTexture(f.depthTexture)==0);
+    R.qa_fail_fbo=true;const failed=if(depth)F.create(dims[0],dims[1]) else F.createColorOnly(dims[0],dims[1]);R.qa_fail_fbo=false;
+    if(failed)|unexpected|{unexpected.deinit();return error.ExpectedFailure;}else|err|{std.debug.assert(err==error.IncompleteFramebuffer);}

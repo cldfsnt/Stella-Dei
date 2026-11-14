@@ -508,17 +508,28 @@ pub const Framebuffer = struct {
     height: c_int,
 
     pub fn create(width: c_int, height: c_int) !Framebuffer {
+        return createWithDepth(width, height, true);
+    }
+
+    /// Full-resolution HDR color target for passes that neither test nor sample depth.
+    pub fn createColorOnly(width: c_int, height: c_int) !Framebuffer {
+        return createWithDepth(width, height, false);
+    }
+
+    fn createWithDepth(width: c_int, height: c_int, with_depth: bool) !Framebuffer {
         if (is_web and emscripten_webgl_enable_extension(emscripten_webgl_get_current_context(), "EXT_color_buffer_float") == 0) {
             log.err("This browser/GPU lacks EXT_color_buffer_float, required by the HDR renderer", .{});
             return error.FloatFramebufferUnsupported;
         }
         var fbo: gl.GLuint = undefined;
         gl.genFramebuffers(1, &fbo);
+        errdefer gl.deleteFramebuffers(1, &fbo);
         gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
         defer gl.bindFramebuffer(gl.FRAMEBUFFER, 0);
 
         var colorTextures: [1]gl.GLuint = undefined;
         gl.genTextures(1, &colorTextures);
+        errdefer gl.deleteTextures(1, &colorTextures);
         for (colorTextures, 0..) |colorTexture, i| {
             gl.bindTexture(gl.TEXTURE_2D, colorTexture);
             gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.RGBA16F else gl.RGB16F, width, height, 0, if (is_web) gl.RGBA else gl.RGB, if (is_web) gl.HALF_FLOAT else gl.UNSIGNED_BYTE, null);
@@ -529,15 +540,18 @@ pub const Framebuffer = struct {
             gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + @as(c_uint, @intCast(i)), gl.TEXTURE_2D, colorTexture, 0);
         }
 
-        var depthTexture: gl.GLuint = undefined;
-        gl.genTextures(1, &depthTexture);
-        gl.bindTexture(gl.TEXTURE_2D, depthTexture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.DEPTH_COMPONENT32F else gl.DEPTH_COMPONENT, width, height, 0, gl.DEPTH_COMPONENT, gl.FLOAT, null);
-        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+        var depthTexture: gl.GLuint = 0;
+        errdefer if (depthTexture != 0) gl.deleteTextures(1, &depthTexture);
+        if (with_depth) {
+            gl.genTextures(1, &depthTexture);
+            gl.bindTexture(gl.TEXTURE_2D, depthTexture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.DEPTH_COMPONENT32F else gl.DEPTH_COMPONENT, width, height, 0, gl.DEPTH_COMPONENT, gl.FLOAT, null);
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+        }
 
         const attachments: [1]gl.GLenum = .{gl.COLOR_ATTACHMENT0};
         gl.drawBuffers(1, &attachments);
@@ -566,6 +580,6 @@ pub const Framebuffer = struct {
     pub fn deinit(self: Framebuffer) void {
         gl.deleteFramebuffers(1, &self.fbo);
         gl.deleteTextures(1, &self.colorTextures);
-        gl.deleteTextures(1, &self.depthTexture);
+        if (self.depthTexture != 0) gl.deleteTextures(1, &self.depthTexture);
     }
 };
