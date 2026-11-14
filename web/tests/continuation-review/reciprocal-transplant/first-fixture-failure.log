@@ -1,0 +1,62 @@
+install
++- run test 38/39 passed, 1 failed
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+FOOD_WEB120 biomass=0.19443813 births=47 gen=2 grazed=0.8482477755169384 cell_bytes=336
+GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 331104, 92535, 69575, 32423, 587, 20094 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748614356605685
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.00940453 fixed=0.0769931836402975
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857256 fixed=1.0396804702468216
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.66051495 fixed=1.0023239215370268
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911017 fixed=0.9246702608652413
+FILM_MATRIX depth_m=1 variant=0 biomass=0.9237717 fixed=0.9222954493016005
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870434 fixed=0.9155964879319072
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812204 fixed=0.9056189879775047
+error: 'qa_reciprocal_transplant.test.reciprocal transplants from real evolved cohorts' failed: TRAITS seed=42 treatment=4 day=30 zone=0 biomass=8.680601 cohorts=26 organization=0.033679 structure=0.040626 feeding=0.122669 optimum=302.800248 support_fraction=0.033707 generation=2.277507 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.911201 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=30 zone=1 biomass=8.646558 cohorts=16 organization=0.033476 structure=0.040145 feeding=0.122642 optimum=302.806777 support_fraction=0.033473 generation=2.273157 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.911201 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=30 zone=2 biomass=0.034043 cohorts=10 organization=0.085380 structure=0.162682 feeding=0.129563 optimum=301.141867 support_fraction=0.093150 generation=3.382342 top_lineage=642 top_parent=21 top_cell=17 top_biomass=0.005424 top_generation=3 top_org=0.133728 top_structure=0.122116 top_feeding=0.038364 top_optimum=302.574700
+PLANET seed=42 dt=1440 treatment=4 day=30 biomass=8.680601 occupied=18 cohorts=26 full_cells=1 births=3467 maxgen=6 tracked_post30=0 deaths=0 dead_within1day=0 peak_ge002=0 became_parent=0 observed_moves=0 full_neighbors_at_birth=0 larger_births=0 eligible_parent_samples=0 full_edges=0/0 grazed_per_area=17.911216 carbon_error=-1.6270653503625e-5 nutrient_error=-4.284083843231201e-8
+TRAITS seed=42 treatment=4 day=60 zone=0 biomass=8.365104 cohorts=21 organization=0.029208 structure=0.038213 feeding=0.123051 optimum=302.902521 support_fraction=0.029225 generation=2.267562 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.904443 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=60 zone=1 biomass=8.330958 cohorts=13 organization=0.028922 structure=0.037780 feeding=0.123229 optimum=302.908645 support_fraction=0.028922 generation=2.264481 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.904443 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=60 zone=2 biomass=0.034146 cohorts=8 organization=0.099020 structure=0.143977 feeding=0.079492 optimum=301.408552 support_fraction=0.103079 generation=3.019121 top_lineage=642 top_parent=21 top_cell=17 top_biomass=0.010978 top_generation=3 top_org=0.133728 top_structure=0.122116 top_feeding=0.038364 top_optimum=302.574700
+PLANET seed=42 dt=1440 treatment=4 day=60 biomass=8.365104 occupied=17 cohorts=21 full_cells=0 births=7234 maxgen=6 tracked_post30=3767 deaths=3761 dead_within1day=3676 peak_ge002=0 became_parent=0 observed_moves=0 full_neighbors_at_birth=0 larger_births=6 eligible_parent_samples=1509 full_edges=3232/9054 grazed_per_area=28.556264 carbon_error=-4.9333540971474577e-5 nutrient_error=-5.045905709266663e-6
+TRAITS seed=42 treatment=4 day=63 zone=0 biomass=8.124082 cohorts=26 organization=0.028704 structure=0.037984 feeding=0.122683 optimum=302.908367 support_fraction=0.021941 generation=2.264206 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.906151 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=63 zone=1 biomass=8.078443 cohorts=14 organization=0.028316 structure=0.037359 feeding=0.122796 optimum=302.916323 support_fraction=0.021525 generation=2.258864 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.906151 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=63 zone=2 biomass=0.045638 cohorts=12 organization=0.097400 structure=0.148674 feeding=0.102791 optimum=301.500031 support_fraction=0.095493 generation=3.209730 top_lineage=642 top_parent=21 top_cell=17 top_biomass=0.011849 top_generation=3 top_org=0.133728 top_structure=0.122116 top_feeding=0.038364 top_optimum=302.574700
+PLANET seed=42 dt=1440 treatment=4 day=63 biomass=8.124082 occupied=18 cohorts=26 full_cells=0 births=7560 maxgen=6 tracked_post30=4093 deaths=4082 dead_within1day=3992 peak_ge002=0 became_parent=0 observed_moves=1 full_neighbors_at_birth=0 larger_births=6 eligible_parent_samples=1589 full_edges=3391/9534 grazed_per_area=29.442417 carbon_error=-5.136913387104869e-5 nutrient_error=-7.132533937692642e-6
+TRAITS seed=42 treatment=4 day=100 zone=0 biomass=5.903715 cohorts=27 organization=0.027611 structure=0.039252 feeding=0.122023 optimum=303.178263 support_fraction=0.027498 generation=2.316658 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.740172 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=100 zone=1 biomass=5.807191 cohorts=16 organization=0.025412 structure=0.036501 feeding=0.123598 optimum=303.197687 support_fraction=0.025329 generation=2.293961 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.740172 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=100 zone=2 biomass=0.096523 cohorts=11 organization=0.159911 structure=0.204788 feeding=0.027266 optimum=302.009630 support_fraction=0.157988 generation=3.682179 top_lineage=8191 top_parent=21 top_cell=2 top_biomass=0.015977 top_generation=3 top_org=0.146774 top_structure=0.162792 top_feeding=0.006536 top_optimum=302.656220
+PLANET seed=42 dt=1440 treatment=4 day=100 biomass=5.903715 occupied=17 cohorts=27 full_cells=2 births=10781 maxgen=7 tracked_post30=7314 deaths=7300 dead_within1day=7100 peak_ge002=5 became_parent=9 observed_moves=2 full_neighbors_at_birth=0 larger_births=8 eligible_parent_samples=2703 full_edges=5655/16218 grazed_per_area=38.232803 carbon_error=-7.603422906754531e-5 nutrient_error=-2.6038382202386856e-5
+TRAITS seed=42 treatment=4 day=180 zone=0 biomass=8.914820 cohorts=37 organization=0.029293 structure=0.063435 feeding=0.170168 optimum=303.347298 support_fraction=0.029298 generation=3.281515 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.919144 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=180 zone=1 biomass=8.371144 cohorts=13 organization=0.017065 structure=0.045658 feeding=0.179821 optimum=303.395563 support_fraction=0.017065 generation=3.125192 top_lineage=109 top_parent=34 top_cell=12 top_biomass=0.919144 top_generation=3 top_org=0.016132 top_structure=0.050834 top_feeding=0.158066 top_optimum=303.027980
+TRAITS seed=42 treatment=4 day=180 zone=2 biomass=0.543676 cohorts=24 organization=0.217560 structure=0.337150 feeding=0.021534 optimum=302.604153 support_fraction=0.217645 generation=5.688462 top_lineage=10560 top_parent=9741 top_cell=8 top_biomass=0.126920 top_generation=5 top_org=0.226164 top_structure=0.351281 top_feeding=0.000000 top_optimum=302.458340
+PLANET seed=42 dt=1440 treatment=4 day=180 biomass=8.914820 occupied=19 cohorts=37 full_cells=6 births=19913 maxgen=9 tracked_post30=16446 deaths=16417 dead_within1day=16157 peak_ge002=29 became_parent=31 observed_moves=6 full_neighbors_at_birth=0 larger_births=38 eligible_parent_samples=9218 full_edges=21417/55308 grazed_per_area=70.126150 carbon_error=-1.5085680792026324e-4 nutrient_error=-3.972090780735016e-5
+DONOR seed=42 origin=0 lineage=109 mass=0.91914445 support_fraction=0.01613222 organization=0.01613216 structure=0.05083382 feeding=0.15806606 mobility=0.00000000 efficiency=1.03557370 optimum=303.02798000 generation=3
+DONOR seed=42 origin=1 lineage=10560 mass=0.12692004 support_fraction=0.22616325 organization=0.22616358 structure=0.35128102 feeding=0.00000000 mobility=0.11621574 efficiency=1.09625260 optimum=302.45834000 generation=5
+TRANSPLANT seed=42 tissue=0 origin=0 habitat=0 breed=0 day=1 living=0.25167572 held_daughters=0.00000000 total_living_produced=0.25167572 offspring=0 death_tick=-1 fixed=0.16506939 recycled=0.00097132 carbon_error=-2.0030938685522415e-8 nitrogen_error=7.450580596923828e-8
+TRANSPLANT seed=42 tissue=0 origin=0 habitat=0 breed=0 day=7 living=0.92859710 held_daughters=0.00000000 total_living_produced=0.92859709 offspring=0 death_tick=-1 fixed=1.14319027 recycled=0.08087787 carbon_error=-3.751340500457445e-7 nitrogen_error=8.940696716308594e-8
+TRANSPLANT seed=42 tissue=0 origin=0 habitat=0 breed=0 day=30 living=0.93109673 held_daughters=0.00000000 total_living_produced=0.93109673 offspring=0 death_tick=-1 fixed=2.52511463 recycled=1.14812665 carbon_error=2.125013907061657e-7 nitrogen_error=3.129243850708008e-7
+actual 1.5000000782310963e-1, not within absolute tolerance 1e-4 of expected 1.2999999523162842e-1
+error: while executing test 'seed_eligibility.test.frozen seedlings never advertised eligible at boundary', the following test command failed:
+<workspace>/stella-independent-review/.zig-cache-factorial/o/7f9918ae81f0fca9901b7964674efe02/test --listen=- 
+Build Summary: 2/4 steps succeeded; 1 failed; 38/39 tests passed; 1 failed (disable with --summary none)
+install transitive failure
++- run test 38/39 passed, 1 failed
+error: the following build command failed with exit code 1:
+<workspace>/stella-independent-review/.zig-cache-factorial/o/4fce7a5d4810602e0f4b4dc300c5c64d/build <workspace>/stella-review-tools/zig-linux-x86_64-0.13.0/zig web/tests <workspace>/stella-independent-review/.zig-cache-factorial <workspace>/stella-review-tools/cache --seed 0x4b8dc819 -Z364591b39c638e01 -Dsource=src/qa_reciprocal_transplant.zig
