@@ -22,6 +22,15 @@ const intervalJobs=[];let fakeNow=0;
 const sandbox={createGameplayMeasure:require('../gameplay-measure.js').create,performance:{now:()=>fakeNow},StellaLifeTrend:require('../life-trend.js'),console,setInterval(fn,ms){intervalJobs.push({fn,ms})},localStorage:{getItem:k=>preferences.get(k),setItem:(k,v)=>preferences.set(k,v)},setTimeout:()=>1,clearTimeout(){},requestAnimationFrame(){},ResizeObserver:class{observe(){}},MouseEvent:class{},KeyboardEvent:class{},confirm:()=>false,location:{reload(){}},createStellaTouchControls:()=>({reset(){reset++},setMode(){},down(){},move(){},up(){}}),createStellaStorage:()=>({state:()=>state,initialize:async()=>true,save:async()=>{saves++},load:async()=>{loads++;return true}})};
 sandbox.window=sandbox;sandbox.addEventListener=()=>{};sandbox.document={getElementById:id=>{assert.ok(elements.has(id),`Missing id ${id}`);return elements.get(id)},createElement:()=>({innerHTML:'',open:false}),querySelector:()=>({append(){}}),querySelectorAll:()=>[],addEventListener(type,fn){(documentEvents[type]??=[]).push(fn)},body:{classList:{add(){},remove(){}}},documentElement:{requestFullscreen:async()=>{}},fullscreenElement:null};
 vm.createContext(sandbox);vm.runInContext(html.split('<script>')[1].split('</script>')[0],sandbox);
+const observed={status:'origin',cohorts:[{biomass:.08,feeding:.2,support_mass:.01},{biomass:.02,feeding:0,support_mass:0}]};
+const immutable=JSON.stringify(observed);const competition=sandbox.competitionFeedback(observed);
+assert.match(competition,/largest holds 80%/);assert.match(competition,/1 grazing-capable resident/);assert.match(competition,/not grazing armor/);assert.equal(JSON.stringify(observed),immutable);
+assert.equal(sandbox.competitionFeedback({status:'sandbox',cohorts:[]}), '');
+assert.equal(sandbox.competitionFeedback({status:'origin',cohorts:[{biomass:NaN}]}), '');
+assert.match(sandbox.competitionFeedback({status:'origin',cohorts:[]}),/not necessarily safe/);
+assert.doesNotMatch(sandbox.competitionFeedback({status:'origin',cohorts:[{biomass:.1,feeding:0,support_mass:0}]}),/grazing-capable|Paid support/);
+assert.match(sandbox.competitionFeedback({status:'origin',cohorts:Array.from({length:4},()=>({biomass:.02}))}),/All four lineage places/);
+
 (async()=>{const el=id=>elements.get(id);el('more-toggle').onclick();assert.ok(el('more-menu').open);el('close-more').onclick();assert.ok(!el('more-menu').open);el('more-toggle').onclick();el('help-toggle').onclick();assert.ok(!el('more-menu').open);assert.equal(el('guide').hidden,false);el('close-guide').onclick();assert.equal(el('guide').hidden,true);
 sandbox.Module.started=true;el('more-toggle').onclick();await el('save-world').onclick();assert.equal(saves,1);assert.equal(el('more-menu').open,false);assert.equal(el('save-world').disabled,false);
 await el('load-world').onclick();assert.equal(loads,0,'Cancelled load must not load');sandbox.confirm=()=>true;await el('load-world').onclick();assert.equal(loads,1);assert.ok(reset>=5);
@@ -56,7 +65,7 @@ sandbox.Module.ccall=(name)=>name==='stella_adjust_water'?-.00038:JSON.stringify
 sandbox.Module.ccall=(name)=>name==='stella_adjust_water'?NaN:JSON.stringify({status:'origin',cell:12,cohorts:[]});el('water-minus').onclick();assert.match(el('water-feedback').textContent,/Patch changed/);
 sandbox.Module.ccall=()=>JSON.stringify({status:'sandbox'});el('refresh-life').onclick();assert.equal(el('fine-water').hidden,true);el('water-minus').onclick();assert.match(el('water-feedback').textContent,/Start an Origin/);
 sandbox.Module.ccall=()=>'{bad';el('refresh-life').onclick();assert.match(el('life-summary').textContent,/Could not read/);
-sandbox.Module.ccall=()=>JSON.stringify({status:'sandbox'});el('refresh-life').onclick();assert.match(el('life-summary').textContent,/Sandbox/);el('close-life').onclick();
+sandbox.Module.ccall=()=>JSON.stringify({status:'sandbox'});el('refresh-life').onclick();assert.match(el('life-summary').textContent,/Sandbox/);assert.equal(el('competition-panel').hidden,true);assert.equal(el('life-competition').textContent,'');el('close-life').onclick();
 // Current-goal affordance follows living stage, including regression and fallback.
 sandbox.Module._stella_goal_stage=()=>103;sandbox.refreshJourney();assert.equal(el('journey').textContent,'Next: producer diversity');
 sandbox.Module._stella_goal_stage=()=>100;sandbox.refreshJourney();assert.equal(el('journey').textContent,'Next: seed simple life');

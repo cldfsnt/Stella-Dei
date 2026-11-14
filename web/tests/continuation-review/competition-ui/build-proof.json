@@ -1,0 +1,14 @@
+{
+  "toolchains": {
+    "zig": "0.13.0",
+    "emscripten": "3.1.64"
+  },
+  "build": "passed",
+  "javascript_syntax": "passed",
+  "files": {
+    "index.html": "676eb094f7814298e78d27cb32f66e499b87621fc4b8e0e2f78fd05468e00c8f",
+    "index.js": "4bfce592970f52d5e05e578efcb495f814d977a9e265d0d856a321b36d26ee11",
+    "index.wasm": "8d58c7d80feb1421c661cfbbe8dee3f1be577350b0b1123559dc80b9c0afad96"
+  },
+  "limitation": "UI fixture only; not live browser gameplay acceptance"
+}
