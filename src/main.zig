@@ -422,6 +422,14 @@ export fn stella_god_action(kind:u32,expected:u32) [*:0]const u8 {
     godActionBuffer[stream.pos]=0;return @ptrCast(&godActionBuffer);
 }
 
+/// Leave placement overlays without moving the view or changing time/pause.
+export fn stella_watch_life() i32 {
+    const state=webPlayState() orelse return 0;
+    state.selectedTool=.None;
+    state.seedTargets.count=0;
+    return 1;
+}
+
 export fn stella_seed_colony(expected_point:u32) i32 {
     const state=webPlayState() orelse return -1;
     return state.seedSelectedColony(expected_point);
