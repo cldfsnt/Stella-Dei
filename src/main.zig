@@ -403,6 +403,11 @@ export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
     return state.setSelectedWaterTarget(expected_point,target_m);
 }
 
+export fn stella_seed_colony(expected_point:u32) i32 {
+    const state=webPlayState() orelse return -1;
+    return state.seedSelectedColony(expected_point);
+}
+
 export fn stella_make_pond(expected_point:u32) i32 {
     const state=webPlayState() orelse return -1;
     return state.makeSelectedPond(expected_point);

@@ -916,6 +916,11 @@ pub const PlayState = struct {
         return changed;
     }
 
+    pub fn seedSelectedColony(self:*PlayState, expected_point:u32) i32 {
+        if(self.planet.worldMode!=.origin or expected_point!=self.selectedPoint or self.selectedPoint>=self.planet.microbeCells.len) return -1;
+        return @intFromBool(self.applySelectedTool(.PlaceVegetation,true,0));
+    }
+
     pub fn makeSelectedPond(self:*PlayState, expected_point:u32) i32 {
         const count=@import("../pond_action.zig").makePond(&self.planet,expected_point,self.selectedPoint);
         if(count>0) {

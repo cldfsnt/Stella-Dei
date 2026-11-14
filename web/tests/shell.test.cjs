@@ -1,6 +1,10 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync(require('node:path').join(__dirname,'../shell.html'),'utf8');
 assert.match(html,/a <b>Water \+<\/b> tap adds 1 m to the selected patch/);assert.match(html,/no automatic refill or guaranteed evolution/);
+assert.match(html,/body #origin-starter\{position:static;flex:none;display:block;width:auto;inset:auto;max-height:130px/);
+assert.match(html,/body #origin-starter:not\(\[open\]\)\{display:block\}/);
+assert.match(html,/body #origin-starter:not\(\[open\]\)>:not\(summary\)\{display:none\}/);
+assert.match(html,/body #origin-starter\[hidden\]\{display:none\}/);
 const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'Duplicate DOM ids');
 const elements=new Map(ids.map(id=>[id,{id,hidden:id==='guide',disabled:false,open:false,dataset:{},handlers:{},addEventListener(type,fn){this.handlers[type]=fn;},setAttribute(k,v){this[k]=v;},focus(){},setPointerCapture(){},hasPointerCapture(){return false;},dispatchEvent(){},appendChild(){},querySelector(){return {textContent:''}},getBoundingClientRect(){return{left:10,top:100,right:300,bottom:400,width:390,height:700}},showModal(){this.open=true},close(){this.open=false}}]));
 elements.set('diagnostics',{textContent:''});
@@ -54,4 +58,15 @@ sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_make_pond'){ponds.push(v);
 el('refresh-life').onclick();el('make-pond').onclick();assert.equal(JSON.stringify(ponds), '[[12]]');assert.match(el('water-feedback').textContent,/7 terrain patches, with 15 m water/);assert.match(el('water-feedback').textContent,/no automatic refill or new life/);
 sandbox.Module.ccall=(name)=>name==='stella_make_pond'?-1:JSON.stringify({status:'origin',cell:12,cohorts:[]});el('make-pond').onclick();assert.match(el('water-feedback').textContent,/Patch changed/);
 sandbox.Module.ccall=()=>JSON.stringify({status:'sandbox'});el('refresh-life').onclick();el('make-pond').onclick();assert.match(el('water-feedback').textContent,/Start an Origin/);
+// Compact starter uses real snapshots and separate guarded actions.
+sandbox.Module._stella_world_mode=()=>1;sandbox.Module._stella_seed_colony=()=>0;
+let seedResult=1,starterCalls=[];
+sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_seed_colony'){starterCalls.push(v);return seedResult;}if(name==='stella_make_pond')return 19;return JSON.stringify({status:'origin',cell:22,water_m:15,temperature_c:24,cohorts:[]});};
+sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,false);assert.match(el('starter-summary').textContent,/22.*15.0 m water.*24°C/);
+el('starter-basin').onclick();assert.match(el('starter-info').textContent,/19 patches, 15 m water/);assert.equal(starterCalls.length,0,'Basin must not seed');
+el('origin-starter').open=true;el('starter-seed').onclick();assert.equal(JSON.stringify(starterCalls),'[[22]]');assert.equal(el('origin-starter').open,false);assert.match(el('status').textContent,/Existing colony seeded/);assert.match(el('notice').textContent,/Existing colony seeded/);assert.equal(el('notice').hidden,false);
+seedResult=0;el('starter-seed').onclick();assert.match(el('starter-info').textContent,/No colony added/);
+seedResult=-1;el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Patch changed/);
+sandbox.Module._stella_world_mode=()=>0;sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,true);assert.equal(el('starter-seed').disabled,true);el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Choose an Origin/);
+sandbox.Module._stella_world_mode=()=>1;sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:null,temperature_c:24});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});
