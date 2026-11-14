@@ -56,6 +56,7 @@ fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool) i32 
         // Basin is an explicit larger intervention; fine-depth editor stays capped at 5m.
         planet.waterMass[idx]=if(i<floor_count)floor_water_mass else 0;
         if(i==0){planet.elevation[idx]=center_elevation;planet.waterMass[idx]=center_water_mass;}
+        if(@hasDecl(@TypeOf(planet.*),"reconcileWaterPrecision"))planet.reconcileWaterPrecision(idx);
     }
     return @intCast(count);
 }
@@ -110,4 +111,100 @@ test "nursery has shallow center shared waterline, reservoir, dry rim, repeatabi
     try std.testing.expectEqual(@as(i32,-1),makeNursery(&p,0,0));
     try std.testing.expectEqualSlices(f32,&elevations,&p.elevation);
     for(0..5)|i|try std.testing.expectEqual(waters[i],p.waterMass[i]);
+}
+
+test "paused basin re-quantizes existing carries without losing water or touching reserves" {
+    const Precision=@import("simulation/water_precision.zig");
+    const P=struct {
+        const area:f64=1e9;
+        const C=struct{surface:f64=0,vapor:f64=0,reserve:f64=0.125};
+        worldMode:enum{origin,sandbox}=.origin,
+        waterMass:[6]f32=.{4,4,4,4,4,0.02},
+        waterVaporMass:[6]f32=.{0.5,0.5,0.5,0.5,0.5,0.5},
+        elevation:[6]f32=.{5000,5000.1,5000.2,5000.3,5000.4,5000.5},
+        cells:[6]C=.{.{}}**6,
+        calls:usize=0,normalizations:usize=0,
+        pub fn getKmPerWaterMass(_: *@This()) f32{return 1;}
+        pub fn getNeighbours(_: *@This(),i:usize) []const usize{return switch(i){0=>&.{1,2},1=>&.{0,2,3},2=>&.{0,1,4},3=>&.{1,4,5},4=>&.{2,3,5},else=>&.{3,4}};}
+        pub fn reconcileWaterPrecision(self:*@This(),i:usize) void {
+            self.calls+=1;
+            if(self.cells[i].surface==0 and self.cells[i].vapor==0)return;
+            self.normalizations+=1;
+            std.debug.assert(Precision.apply(&self.waterMass[i],&self.waterVaporMass[i],&self.cells[i].surface,&self.cells[i].vapor,area,0,0,0));
+        }
+    };
+    var p=P{};
+    for(&p.cells,0..)|*c,i|{c.surface=Precision.quantumKg(p.waterMass[i],P.area)*0.5;c.vapor=Precision.quantumKg(p.waterVaporMass[i],P.area)*0.25;}
+    const before=p;
+    try std.testing.expectEqual(@as(i32,-1),makePond(&p,1,0));
+    try std.testing.expectEqualDeep(before,p);
+    try std.testing.expectEqual(@as(i32,5),makePond(&p,0,0));
+    try std.testing.expectEqual(@as(usize,5),p.calls);
+    try std.testing.expectEqual(@as(usize,5),p.normalizations);
+    for(0..5)|i|{
+        const edited_bulk:f32=if(i<3)0.015 else 0;
+        const expected=@as(f64,edited_bulk)+before.cells[i].surface;
+        const actual=@as(f64,p.waterMass[i])+p.cells[i].surface;
+        try std.testing.expectApproxEqAbs(expected,actual,1e-15);
+        try std.testing.expect(Precision.validCarry(p.waterMass[i],p.cells[i].surface,P.area));
+        try std.testing.expect(Precision.validCarry(p.waterVaporMass[i],p.cells[i].vapor,P.area));
+        try std.testing.expectApproxEqAbs(@as(f64,before.waterVaporMass[i])+before.cells[i].vapor,@as(f64,p.waterVaporMass[i])+p.cells[i].vapor,1e-15);
+        try std.testing.expectEqual(before.cells[i].reserve,p.cells[i].reserve);
+    }
+    // A nominally dry rim may retain only the tiny already-owned remainder.
+    try std.testing.expect(p.waterMass[3]>0 and p.waterMass[3]<0.000001);
+    try std.testing.expectEqual(before.waterMass[5],p.waterMass[5]);
+    try std.testing.expectEqualDeep(before.cells[5],p.cells[5]);
+    var legacy=P{};
+    try std.testing.expectEqual(@as(i32,5),makePond(&legacy,0,0));
+    try std.testing.expectEqual(@as(usize,0),legacy.normalizations);
+    for(0..5)|i|try std.testing.expectEqual(@as(f32,if(i<3)0.015 else 0),legacy.waterMass[i]);
+}
+
+test "paused nursery re-quantizes existing carries without losing water or touching reserves" {
+    const Precision=@import("simulation/water_precision.zig");
+    const P=struct {
+        const area:f64=1e9;
+        const C=struct{surface:f64=0,vapor:f64=0,reserve:f64=0.125};
+        worldMode:enum{origin,sandbox}=.origin,
+        waterMass:[6]f32=.{4,4,4,4,4,0.02},
+        waterVaporMass:[6]f32=.{0.5,0.5,0.5,0.5,0.5,0.5},
+        elevation:[6]f32=.{5000,5000.1,5000.2,5000.3,5000.4,5000.5},
+        cells:[6]C=.{.{}}**6,
+        calls:usize=0,normalizations:usize=0,
+        pub fn getKmPerWaterMass(_: *@This()) f32{return 1;}
+        pub fn getNeighbours(_: *@This(),i:usize) []const usize{return switch(i){0=>&.{1,2},1=>&.{0,2,3},2=>&.{0,1,4},3=>&.{1,4,5},4=>&.{2,3,5},else=>&.{3,4}};}
+        pub fn reconcileWaterPrecision(self:*@This(),i:usize) void {
+            self.calls+=1;
+            if(self.cells[i].surface==0 and self.cells[i].vapor==0)return;
+            self.normalizations+=1;
+            std.debug.assert(Precision.apply(&self.waterMass[i],&self.waterVaporMass[i],&self.cells[i].surface,&self.cells[i].vapor,area,0,0,0));
+        }
+    };
+    var p=P{};
+    for(&p.cells,0..)|*c,i|{c.surface=Precision.quantumKg(p.waterMass[i],P.area)*0.5;c.vapor=Precision.quantumKg(p.waterVaporMass[i],P.area)*0.25;}
+    const before=p;
+    try std.testing.expectEqual(@as(i32,-1),makeNursery(&p,1,0));
+    try std.testing.expectEqualDeep(before,p);
+    try std.testing.expectEqual(@as(i32,5),makeNursery(&p,0,0));
+    try std.testing.expectEqual(@as(usize,5),p.calls);
+    try std.testing.expectEqual(@as(usize,5),p.normalizations);
+    for(0..5)|i|{
+        const edited_bulk:f32=if(i==0)0.005 else if(i<3)0.015 else 0;
+        const expected=@as(f64,edited_bulk)+before.cells[i].surface;
+        const actual=@as(f64,p.waterMass[i])+p.cells[i].surface;
+        try std.testing.expectApproxEqAbs(expected,actual,1e-15);
+        try std.testing.expect(Precision.validCarry(p.waterMass[i],p.cells[i].surface,P.area));
+        try std.testing.expect(Precision.validCarry(p.waterVaporMass[i],p.cells[i].vapor,P.area));
+        try std.testing.expectApproxEqAbs(@as(f64,before.waterVaporMass[i])+before.cells[i].vapor,@as(f64,p.waterVaporMass[i])+p.cells[i].vapor,1e-15);
+        try std.testing.expectEqual(before.cells[i].reserve,p.cells[i].reserve);
+    }
+    // A nominally dry rim may retain only the tiny already-owned remainder.
+    try std.testing.expect(p.waterMass[3]>0 and p.waterMass[3]<0.000001);
+    try std.testing.expectEqual(before.waterMass[5],p.waterMass[5]);
+    try std.testing.expectEqualDeep(before.cells[5],p.cells[5]);
+    var legacy=P{};
+    try std.testing.expectEqual(@as(i32,5),makeNursery(&legacy,0,0));
+    try std.testing.expectEqual(@as(usize,0),legacy.normalizations);
+    for(0..5)|i|try std.testing.expectEqual(@as(f32,if(i==0)0.005 else if(i<3)0.015 else 0),legacy.waterMass[i]);
 }

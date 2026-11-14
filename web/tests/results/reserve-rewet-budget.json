@@ -1,0 +1,12 @@
+{
+  "target": 13598,
+  "steps": 240,
+  "inflow_m": 0.0,
+  "outflow_m": 0.041148003761864456,
+  "net_flow_observed_m": -0.041147928915275425,
+  "condensation_m": 0.3490594249782711,
+  "evaporation_m": 0.08595625386187926,
+  "phase_observed_m": 0.2631030667084719,
+  "interstep_posthydro_m": 0.0004453525020622915,
+  "final_depth_m": 0.22240160596029254
+}

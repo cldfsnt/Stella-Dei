@@ -1,0 +1,26 @@
+    if(std.posix.getenv("QA_MIGRATE_V6"))|path|{
+        const saves=@import("save_game.zig");
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+        std.debug.print("V6_MIGRATION phase=read\n",.{});
+        const bytes=try std.fs.cwd().readFileAlloc(a,path,100*1024*1024);
+        std.debug.print("V6_MIGRATION phase=parse\n",.{});
+        var old=try saves.schema.parse(a,bytes);defer old.deinit();std.debug.assert(old.value.version==6);
+        loop.pump(1024);
+        std.debug.print("V6_MIGRATION phase=apply\n",.{});
+        try saves.replaceWorld(state,old.value);
+        std.debug.print("V6_MIGRATION phase=capture\n",.{});
+        const now=try saves.capture(a,state);std.debug.assert(now.version==7);
+        for(old.value.origin.?.cells,now.origin.?.cells)|before,after|{
+            const x=before.runtime();const y=after.runtime();std.debug.assert(std.meta.eql(x,y));
+            std.debug.assert(y.surface_water_carry==0 and y.vapor_water_carry==0);
+            for(y.cohorts)|co|std.debug.assert(co.water_reserve==0 and co.water_retention==0);
+        }
+        std.debug.assert(std.meta.eql(old.value.origin.?.stats,now.origin.?.stats));
+        std.debug.assert(std.mem.eql(f32,old.value.water,now.water) and std.mem.eql(f32,old.value.vapor,now.vapor));
+        const json=try std.json.stringifyAlloc(a,now,.{});var fresh=try saves.schema.parse(a,json);defer fresh.deinit();
+        try saves.replaceWorld(state,fresh.value);
+        const restored=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+        std.debug.assert(std.mem.eql(u8,json,restored));
+        std.debug.print("V6_RESERVE_MIGRATION cells={d} same_resources_traits_rng_stats=true reserve_retention_carries_zero=true bulk_water_unchanged=true exact_v7=true\n",.{now.origin.?.cells.len});
+        return;
+    }

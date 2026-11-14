@@ -1,0 +1,45 @@
+    if(std.posix.getenv("QA_STRESS_REPLAY"))|path|{
+        const saves=@import("save_game.zig");const M=@import("simulation/microbes.zig");const P=@import("simulation/planet.zig");
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+        std.debug.print("STRESS phase=read\n",.{});
+        const bytes=try std.fs.cwd().readFileAlloc(a,path,100*1024*1024);
+        var old=try saves.schema.parse(a,bytes);defer old.deinit();std.debug.assert(old.value.version==6);
+        loop.pump(1024);try saves.apply(state,old.value);
+        var initial_water:f64=0;for(state.planet.microbeCells)|c|{initial_water+=M.storedWater(c);std.debug.assert(c.surface_water_carry==0 and c.vapor_water_carry==0);}
+        std.debug.assert(initial_water==0);
+        const center:usize=13596;var target:usize=center;var best:f32=-1;
+        for(state.planet.getNeighbours(center))|n|{
+            if(n==center or M.biomass(state.planet.microbeCells[n])<=0)continue;
+            var protection:f32=0;for(state.planet.microbeCells[n].cohorts)|co|protection=@max(protection,M.shoreProtection(co));
+            const score=protection+M.biomass(state.planet.microbeCells[n])*0.0001;
+            if(score>best){best=score;target=n;}
+        }
+        std.debug.assert(target!=center);P.qa_stress_cell=target;
+        state.paused=false;state.timeScale=21600;
+        for(0..10)|_|state.update(&game,1.0/60.0); // One normal wet simulation hour.
+        var water_after_hour:f64=0;for(state.planet.microbeCells)|c|water_after_hour+=M.storedWater(c);
+        const ledger=P.qa_taken_total-P.qa_returned_total-P.qa_evaporated_total-water_after_hour;
+        std.debug.assert(@abs(ledger)<1e-7);
+        std.debug.print("STRESS_WET_HOUR cell={d} taken={d} returned={d} evaporated={d} body_water={d} biological_ledger_error={d}\n",.{target,P.qa_taken_total,P.qa_returned_total,P.qa_evaporated_total,water_after_hour,ledger});
+        var waterline:f32=state.planet.elevation[target]+state.planet.waterMass[target]*state.planet.getKmPerWaterMass();
+        for(state.planet.getNeighbours(target))|n|{if(n==target)continue;waterline=@max(waterline,state.planet.elevation[n]+state.planet.waterMass[n]*state.planet.getKmPerWaterMass());}
+        const raise_m:f32=if(std.posix.getenv("QA_PLATEAU_METERS"))|value|try std.fmt.parseFloat(f32,value) else 0.5;
+        state.planet.elevation[target]=waterline+raise_m/1000;
+        const removed=state.planet.setWaterDepthMeters(target,0);std.debug.assert(std.math.isFinite(removed));
+        std.debug.print("STRESS_ACTION cell={d} elevation={d} above_max_neighbor_m={d} removed_depth_m={d} biomass={d} reserve={d} repeat=false biological_edits=false\n",.{target,state.planet.elevation[target],(state.planet.elevation[target]-waterline)*1000,-removed,M.biomass(state.planet.microbeCells[target]),M.storedWater(state.planet.microbeCells[target])});
+        for(state.planet.microbeCells[target].cohorts)|co|if(co.biomass>0){std.debug.print("STRESS_FOUNDER id={d} parent={d} generation={d} biomass={d} structure={d} organization={d} support={d} retention={d} reserve={d}\n",.{co.lineage,co.parent,co.generation,co.biomass,co.structure,co.organization,co.support_mass,co.water_retention,co.water_reserve});};
+        P.qa_dry_ticks=0;P.qa_dry_fixed=0;P.qa_stress_active=true;
+        const stress_days:usize=if(std.posix.getenv("QA_STRESS_DAYS"))|value|try std.fmt.parseInt(usize,value,10) else 10;
+        for(0..stress_days*240)|i|{
+            state.update(&game,1.0/60.0);
+            if(i%240==239){
+                const c=state.planet.microbeCells[target];
+                std.debug.print("STRESS_DAY day={d} depth_m={d} temperature={d} biomass={d} reserve={d} dry_ticks={d} dry_fixed_carbon={d}\n",.{(i+1)/240,state.planet.waterMass[target]*state.planet.getKmPerWaterMass()*1000,state.planet.temperature[target],M.biomass(c),M.storedWater(c),P.qa_dry_ticks,P.qa_dry_fixed});
+                for(c.cohorts)|co|if(co.biomass>0){std.debug.print("STRESS_LINEAGE day={d} id={d} parent={d} mass={d} reserve={d}\n",.{(i+1)/240,co.lineage,co.parent,co.biomass,co.water_reserve});};
+            }
+        }
+        var final_body:f64=0;for(state.planet.microbeCells)|c|final_body+=M.storedWater(c);
+        std.debug.print("STRESS_FINAL_BIO_WATER_ERROR kg_per_m2_sum={d}\n",.{P.qa_taken_total-P.qa_returned_total-P.qa_evaporated_total-final_body});
+        try originSaveCheck(state,allocator);
+        return;
+    }
