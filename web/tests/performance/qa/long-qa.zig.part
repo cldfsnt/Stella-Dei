@@ -1,0 +1,25 @@
+    if(std.posix.getenv("QA_WIND_LONG")!=null){
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        const start_json=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        var start_parsed=try saves.schema.parse(al,start_json);defer start_parsed.deinit();const start=start_parsed.value;
+        var hashes:[2]u64=undefined;
+        for(0..2)|pass|{
+            try saves.apply(state,start);state.paused=false;state.timeScale=86400;
+            allocator.free(state.planet.atmosphericWindScratch);state.planet.atmosphericWindScratch=&.{};
+            var fail=std.testing.FailingAllocator.init(allocator,.{.fail_index=0});
+            if(pass==0)state.planet.allocator=fail.allocator();
+            var timer=try std.time.Timer.start();
+            for(0..1800)|_|{state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);std.debug.assert(state.simulationStepsLastFrame==1);}
+            const seconds=@as(f64,@floatFromInt(timer.read()))/1e9;
+            state.planet.allocator=allocator;
+            const bytes=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});hashes[pass]=std.hash.Wyhash.hash(0,bytes);
+            try (try saves.capture(al,state)).validate();
+            std.debug.print("WIND_LONG pass={d} steps=1800 days=30 hash={x} seconds={d} scratch_cells={d} scratch_bytes={d} failed_alloc={any}\n",.{pass,hashes[pass],seconds,state.planet.atmosphericWindScratch.len,state.planet.atmosphericWindScratch.len*@sizeOf([3]f32),fail.has_induced_failure});
+        }
+        std.debug.assert(hashes[0]==hashes[1]);
+        try saves.apply(state,start);for(state.planet.atmosphericWindScratch)|*w|w.*=.{std.math.nan(f32),std.math.nan(f32),std.math.nan(f32)};
+        state.paused=false;state.timeScale=86400;state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);
+        for(state.planet.atmosphericWindScratch)|w|for(w)|v|std.debug.assert(std.math.isFinite(v));
+        std.debug.print("WIND_LOAD poisoned_cache_refreshed=true full_30day_hash_equal=true\n",.{});
+        loop.pump(1024);return;
+    }

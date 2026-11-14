@@ -1,0 +1,2 @@
+f8b4c4926aa70c028ff68627679161e2381a0c478f985042c99f92504fef04eb  src/simulation/planet.zig
+f91a0aedbaea6a79e622c0420e21617aa35c334dc5b597d5f1928bf5bee76345  web/tests/performance/qa/owned-wind-cache.patch

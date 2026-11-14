@@ -1,0 +1,28 @@
+    if(std.posix.getenv("QA_WIND_LIFECYCLE")!=null){
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        var start=try saves.schema.parse(al,try std.json.stringifyAlloc(al,try saves.capture(al,state),.{}));defer start.deinit();
+        const Planet=@TypeOf(state.planet);
+        // Scratch is lazy: new world generation neither allocates nor serializes it.
+        var tracker=std.testing.FailingAllocator.init(allocator,.{});
+        var separate=try Planet.generate(tracker.allocator(),6,5000,77,.{});
+        std.debug.assert(separate.atmosphericWindScratch.len==0);
+        separate.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=1361,.gameTime=0,.planetRotationTime=86400,.solarVector=state.simulationSolarVector()});
+        std.debug.assert(separate.atmosphericWindScratch.len==40962);
+        separate.deinit();
+        std.debug.print("WIND_DEINIT allocated_bytes={d} freed_bytes={d}\n",.{tracker.allocated_bytes,tracker.freed_bytes});
+        std.debug.assert(tracker.allocated_bytes==tracker.freed_bytes);
+        var alt=state.*;alt.planet=try Planet.generate(allocator,7,5000,77,.{});defer alt.planet.deinit();
+        var big=try saves.schema.parse(al,try std.json.stringifyAlloc(al,try saves.capture(al,&alt),.{}));defer big.deinit();
+        loop.pump(1024);
+        for(0..2)|round|{
+            try saves.replaceWorld(state,big.value);std.debug.assert(state.planet.atmosphericWindScratch.len==0);
+            state.paused=false;state.timeScale=86400;state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);
+            std.debug.assert(state.planet.atmosphericWindScratch.len==163842);
+            try saves.replaceWorld(state,start.value);std.debug.assert(state.planet.atmosphericWindScratch.len==0);
+            state.paused=false;state.timeScale=86400;state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);
+            std.debug.assert(state.planet.atmosphericWindScratch.len==40962);
+            try (try saves.capture(al,state)).validate();
+            std.debug.print("WIND_GRID round={d} large=163842 small=40962 fresh_scratch=true validate=true\n",.{round});
+        }
+        loop.pump(1024);return;
+    }

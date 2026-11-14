@@ -189,6 +189,8 @@ pub const PlayState = struct {
     mobileFeedbackSeconds: f32 = 0,
     // Session-only compact observation UI; never a change to simulation or camera.
     watchLifeView: bool = false,
+    blenderAtlas: ?nvg.Image = null,
+    blenderAtlasAttempted: bool = false,
     propaguleVisuals: @import("../propagule_visuals.zig").Pool = .{},
     seedTargets: SeedTargets.List = .{},
     seedTargetWidth:f32=0,
@@ -1383,17 +1385,31 @@ pub const PlayState = struct {
 
     /// Explicit read-only local framing; never follows life automatically.
     pub fn fitLivingCluster(self:*PlayState,width:f32,height:f32) bool {
-        if(self.planet.worldMode!=.origin)return false;
+        return self.fitLivingClusterResult(width,height)==1;
+    }
+
+    /// Stable web result codes: 1 fit, 0 no nearby life; -2 mode, -3 viewport,
+    /// -4 polar view, -5 invalid geometry, -6 cluster too wide. -1 is no world.
+    pub fn fitLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
+        if(self.planet.worldMode!=.origin)return -2;
         const start=self.planet.getNearestPointTo(self.targetCameraPos);
-        const fitted=@import("../life_camera.zig").fit(&self.planet,start,width,height) orelse {
-            self.mobileFeedback="No nearby connected life to fit";self.mobileFeedbackSeconds=4;return false;
+        const fitted=@import("../life_camera.zig").fitDetailed(&self.planet,start,width,height) catch |err| {
+            self.mobileFeedbackSeconds=4;
+            self.mobileFeedback=switch(err){
+                error.NoNearbyLife=>"No nearby connected life to fit",
+                error.ViewportTooSmall=>"More canvas space needed to fit life",
+                error.PolarView=>"Fit unavailable near the poles; navigate manually",
+                error.InvalidGeometry=>"Fit unavailable for this view; camera unchanged",
+                error.TooWide=>"Connected life too wide to fit; zoom out manually",
+            };
+            return switch(err){error.NoNearbyLife=>0,error.ViewportTooSmall=>-3,error.PolarView=>-4,error.InvalidGeometry=>-5,error.TooWide=>-6};
         };
         self.targetCameraPos=Vec3.new(fitted.direction[0],fitted.direction[1],fitted.direction[2]);
         self.setOrbitDistance(fitted.distance,true);
         self.cameraGroundPoint=self.planet.getNearestPointTo(self.cameraPos);
         self.mobileFeedback=if(fitted.truncated) "Fitted bounded nearby life; distant colonies excluded" else "Fitted nearby connected life";
         self.mobileFeedbackSeconds=4;
-        return true;
+        return 1;
     }
 
     pub fn watchLife(self: *PlayState) void {
@@ -1606,10 +1622,10 @@ pub const PlayState = struct {
                 // Dense real biomass reads as a colony rather than a single sticker.
                 // Smaller shoots use the same inherited morphology, not extra species.
                 if (biomass > 0.3 and lod > 0.75) {
-                    vg.save(); vg.translate(-13,2); vg.scale(0.48,0.48); renderProducerGlyph(vg,form,color); vg.restore();
-                    vg.save(); vg.translate(12,4); vg.scale(0.58,0.58); renderProducerGlyph(vg,form,color); vg.restore();
+                    vg.save(); vg.translate(-13,2); vg.scale(0.48,0.48); if(self.blenderAtlas) |atlas| renderBlenderForm(vg,form,color,atlas) else renderProducerGlyph(vg,form,color); vg.restore();
+                    vg.save(); vg.translate(12,4); vg.scale(0.58,0.58); if(self.blenderAtlas) |atlas| renderBlenderForm(vg,form,color,atlas) else renderProducerGlyph(vg,form,color); vg.restore();
                 }
-                renderProducerGlyph(vg,form,color);
+                if(self.blenderAtlas) |atlas| renderBlenderForm(vg,form,color,atlas) else renderProducerGlyph(vg,form,color);
                 if (biology_visuals.hasFed(self.planet.microbeCells[index].cohorts)) {
                     vg.beginPath(); vg.fillColor(nvg.rgb(255,191,89)); vg.circle(12,0,3); vg.fill();
                 }
@@ -1619,6 +1635,37 @@ pub const PlayState = struct {
             }
             vg.restore();
         }
+    }
+
+    // Only for a freshly created atlas, before cache insertion / NanoVG registration.
+    // Cached or registered textures retain their existing renderer ownership.
+    fn discardUnregisteredAtlas(texture:*Texture) void {
+        std.debug.assert(texture.nvgHandle == null);
+        gl.deleteTextures(1,&texture.texture);
+        texture.texture=0;
+    }
+
+    fn loadAquaticAtlas(renderer:*Renderer,vg:nvg) ?nvg.Image {
+        const key="aquatic-forms-atlas";
+        if(renderer.textureCache.cache.getPtr(key)) |texture| return texture.tryToVgImage(vg) catch null;
+        var texture=Texture.createFromPath(renderer.textureCache.cache.allocator,"assets/aquatic-forms-atlas.png") catch |err| {
+            std.log.warn("Aquatic atlas unavailable ({s}); retaining vector forms",.{@errorName(err)});return null;
+        };
+        if(texture.width!=576 or texture.height!=384){discardUnregisteredAtlas(&texture);std.log.warn("Aquatic atlas dimensions invalid; retaining vector forms",.{});return null;}
+        renderer.textureCache.cache.put(key,texture) catch {discardUnregisteredAtlas(&texture);return null;};
+        return renderer.textureCache.cache.getPtr(key).?.tryToVgImage(vg) catch null;
+    }
+
+    fn renderBlenderForm(vg:nvg,form:[]const u8,color:[3]u8,atlas:nvg.Image) void {
+        const names=[_][]const u8{"mat","cushion","rosette","ribbon","branching","canopy"};
+        var id:usize=0;for(names,0..) |name,i|{if(std.mem.eql(u8,name,form)){id=i;break;}}
+        const tile:f32=36;const left:f32=-18;const top:f32=-29;
+        vg.beginPath();vg.rect(left,top,tile,tile);
+        var paint=vg.imagePattern(left-@as(f32,@floatFromInt(id%3))*tile,top-@as(f32,@floatFromInt(id/3))*tile,tile*3,tile*2,0,atlas,1);
+        // NanoVG image shader multiplies by inner_color; retain real thermal
+        // lineage palette without extra textures or an invented form taxonomy.
+        paint.inner_color=nvg.rgb(color[0],color[1],color[2]);paint.outer_color=paint.inner_color;
+        vg.fillPaint(paint);vg.fill();
     }
 
     /// Crisp vector silhouettes for expressed population morphology, not individual trees.
@@ -1682,6 +1729,7 @@ pub const PlayState = struct {
 
     fn renderMobileUI(self: *PlayState, game: *Game, renderer: *Renderer) void {
         const vg = renderer.vg;
+        if(!self.blenderAtlasAttempted){self.blenderAtlasAttempted=true;self.blenderAtlas=loadAquaticAtlas(renderer,vg);}
         const size = renderer.framebufferSize;
         const width = size.x();
         const height = size.y();

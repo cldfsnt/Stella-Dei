@@ -103,6 +103,9 @@ sandbox.Module.started=false;el('starter-speed').onclick();assert.match(el('spee
 let fits=0;sandbox.Module._stella_fit_life=()=>{fits++;return 1};
 el('more-toggle').onclick();el('fit-life').onclick();assert.equal(fits,1);assert.equal(el('more-menu').open,false);assert.match(el('notice').textContent,/Framed nearby connected life/);
 sandbox.Module._stella_fit_life=()=>0;el('fit-life').onclick();assert.match(el('notice').textContent,/Pan toward a living patch/);
+for(const [code,message] of [[-2,/Origin colonies only/],[-3,/canvas is too small/],[-4,/near the poles/],[-5,/could not be framed safely/],[-6,/too wide/]]){
+ sandbox.Module._stella_fit_life=()=>code;el('fit-life').onclick();assert.match(el('notice').textContent,message);assert.doesNotMatch(el('notice').textContent,/Pan toward/);assert.equal(el('more-menu').open,false);
+}
 sandbox.Module._stella_fit_life=()=>-1;el('fit-life').onclick();assert.match(el('notice').textContent,/unavailable/);
 sandbox.Module.started=false;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);sandbox.Module.started=true;
 delete sandbox.Module._stella_fit_life;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);

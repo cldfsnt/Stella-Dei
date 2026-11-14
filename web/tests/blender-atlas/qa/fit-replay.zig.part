@@ -1,0 +1,36 @@
+    if(std.posix.getenv("QA_REPLAY_SAVE"))|save_path|{
+        const saves=@import("save_game.zig");
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();
+        const bytes=try std.fs.cwd().readFileAlloc(arena.allocator(),save_path,100*1024*1024);
+        var parsed=try saves.schema.parse(arena.allocator(),bytes);defer parsed.deinit();
+        try saves.apply(state,parsed.value);
+        state.paused=true;state.selectedTool=.None;state.showPointDetails=false;state.watchLife();
+        if(std.posix.getenv("STELLA_ATLAS_BASELINE")!=null){state.blenderAtlasAttempted=true;state.blenderAtlas=null;}
+        state.selectedPoint=if(std.posix.getenv("QA_REPLAY_WORLD"))|v| (if(std.mem.eql(u8,v,"42"))29254 else 2542) else 29254;state.pointerOnPlanet=true;
+        state.targetCameraPos=state.planet.transformedPoints[state.selectedPoint].norm().scale(state.cameraDistance);state.cameraPos=state.targetCameraPos;
+        render(window);gl.finish();window.swapBuffers();originReport("saved_actual_final30d_inspect_mode",state);
+        const paused=state.paused;const rate=state.timeScale;const t=state.gameTime;
+        const size=window.getFramebufferSize();const local=@import("life_camera.zig").fit(&state.planet,state.planet.getNearestPointTo(state.targetCameraPos),@floatFromInt(size.width),@floatFromInt(size.height));
+        std.debug.print("FIT_BEFORE visible={d} distance={d} selected={d} local_count={d}\n",.{state.visibleSprouts,state.cameraDistance,state.selectedPoint,if(local)|f|f.count else 0});
+        const original=try saves.capture(arena.allocator(),state);const original_json=try std.json.stringifyAlloc(arena.allocator(),original,.{});
+        const ok=stella_fit_life()==1;
+        std.debug.assert(state.paused==paused and state.timeScale==rate and state.gameTime==t);
+        render(window);gl.finish();window.swapBuffers();
+        std.debug.print("FIT_AFTER success={} visible={d} distance={d} selected={d} pause_pace_time_unchanged=true\n",.{ok,state.visibleSprouts,state.cameraDistance,state.selectedPoint});
+        const fitted_camera=state.cameraPos;const fitted_distance=state.cameraDistance;
+        std.debug.assert(stella_fit_life()==1);std.debug.assert(state.cameraPos.distance(fitted_camera)<0.01 and @abs(state.cameraDistance-fitted_distance)<0.01);
+        var normalized=try saves.capture(arena.allocator(),state);normalized.camera=original.camera;normalized.camera_target=original.camera_target;normalized.camera_distance=original.camera_distance;normalized.target_distance=original.target_distance;
+        const normalized_json=try std.json.stringifyAlloc(arena.allocator(),normalized,.{});std.debug.assert(std.mem.eql(u8,original_json,normalized_json));
+        var picked:usize=0;
+        if(local)|cluster|{
+            const width:f32=@floatFromInt(size.width);const height:f32=@floatFromInt(size.height);
+            const vp=za.Mat4.perspective(70,width/height,state.planet.radius*5/10000,state.planet.radius*5).mul(za.Mat4.lookAt(state.cameraPos,za.Vec3.zero(),za.Vec3.new(0,0,1)));
+            for(cluster.ids[0..cluster.count])|id|{const pt=state.planet.transformedPoints[id];const clip=vp.mulByVec4(za.Vec4.new(pt.x(),pt.y(),pt.z(),1));const x=(clip.x()/clip.w()+1)*width/2;const y=(1-clip.y()/clip.w())*height/2;
+                qa_pointer(x,y,0);std.debug.assert(state.pointerOnPlanet and state.selectedPoint==id);state.mousePressed(&game,.left);std.debug.assert(state.showPointDetails and state.clickedPoint==id);state.showPointDetails=false;picked+=1;
+            }
+        }
+        std.debug.print("FIT_GUARDS repeat_idempotent=true resources_state_hash={x} unchanged_except_camera=true real_inspect_targets={d}\n",.{std.hash.Wyhash.hash(0,normalized_json),picked});
+        loop.pump(1024);return;
+    }
+
+

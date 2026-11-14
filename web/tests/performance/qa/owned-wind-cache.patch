@@ -1,0 +1,52 @@
+--- a/src/simulation/planet.zig
++++ b/src/simulation/planet.zig
+@@ -162,6 +162,9 @@
+     /// speeding up computations at the expense of some RAM
+     /// Unit: J.K-1
+     heatCapacityCache: []f32,
++    /// Transient per-step wind vectors. Owned by allocator, not saved physics.
++    /// Lazy allocation failure retains the exact uncached calculation path.
++    atmosphericWindScratch: [][3]f32 = &.{},
+     vegetation: []f32,
+     plantTraits: []Ecology.Plant,
+     vegetationSnapshot: []f32,
+@@ -1074,14 +1077,30 @@
+         const wind=right.scale(velocity.x()).add(up.scale(velocity.y()));
+         return .{wind.x(),wind.y(),wind.z()};
+     }
++    fn ensureAtmosphericWindScratch(self:*Planet) bool {
++        const count=self.transformedPoints.len;
++        if(self.atmosphericWindScratch.len==count)return true;
++        const replacement=self.allocator.alloc([3]f32,count) catch return false;
++        self.allocator.free(self.atmosphericWindScratch);
++        self.atmosphericWindScratch=replacement;
++        return true;
++    }
+     fn atmosphericEdgeRate(self:*const Planet,from:usize,to:usize) f64 {
+         const a=self.transformedPoints[from];const b=self.transformedPoints[to];
+-        return AtmosphereWater.edgeRate(.{a.x(),a.y(),a.z()},.{b.x(),b.y(),b.z()},self.atmosphericWind(from));
++        const wind:[3]f64=if(self.atmosphericWindScratch.len==self.transformedPoints.len) blk:{
++            const w=self.atmosphericWindScratch[from];break :blk .{w[0],w[1],w[2]};
++        } else self.atmosphericWind(from);
++        return AtmosphereWater.edgeRate(.{a.x(),a.y(),a.z()},.{b.x(),b.y(),b.z()},wind);
+     }
+     /// Runs only after every liquid/velocity job has joined. No neighbor writes.
+     /// Phase relaxation is phenomenological: no latent-heat or real-weather claim.
+     fn simulateAtmosphereWater(self:*Planet,dt:f32) void {
+         if(!std.math.isFinite(dt) or dt<=0)return;
++        // Velocity jobs have joined. Cache each immutable tangent basis once,
++        // preserving the original f32 components and f64 edge/summation order.
++        if(self.ensureAtmosphericWindScratch())for(self.atmosphericWindScratch,0..)|*cached,i|{
++            const wind=self.atmosphericWind(i);cached.*=.{@floatCast(wind[0]),@floatCast(wind[1]),@floatCast(wind[2])};
++        };
+         const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
+         for(self.waterMass,self.waterVaporMass,0..)|liquid,vapor,i|{
+             const temperature=self.temperature[i];
+@@ -1693,6 +1712,7 @@
+         }
+ 
+         // de-allocate
++        self.allocator.free(self.atmosphericWindScratch);
+         self.simulationArena.deinit();
+ 
+         // Mesh lifetime is managed manually by planet, for efficiency

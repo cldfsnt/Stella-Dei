@@ -1,0 +1,20 @@
+{
+  "mat": {
+    "render_triangles": 144
+  },
+  "cushion": {
+    "render_triangles": 336
+  },
+  "rosette": {
+    "render_triangles": 300
+  },
+  "ribbon": {
+    "render_triangles": 144
+  },
+  "branching": {
+    "render_triangles": 780
+  },
+  "canopy": {
+    "render_triangles": 428
+  }
+}

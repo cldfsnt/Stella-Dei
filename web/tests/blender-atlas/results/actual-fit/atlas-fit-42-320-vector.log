@@ -1,0 +1,30 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x1d192af0 context=0x1d193100
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x713206e44a617596
+info: Sea Level: 4.838867 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=13596 elevation=5004.836 water=22469.324 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5948.3594
+Captured /tmp/atlas-fit-42-320-vector-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0 depth_m=2.9296875 temp=293.15 camera=5948.3594 visiblemats=0
+FIT_EMPTY no_life_unchanged=true no_world_rejected=true
+QA frame=2 selected=29254 elevation=5003.9126 water=43063.727 vegetation=0 rabbits=0 time=2592000.2197265625 paused=true tool=None camera=5296.4697
+Captured /tmp/atlas-fit-42-320-vector-002.ppm
+ORIGIN_ENV time=2592000.2197265625 sun=1361 nutrient=0.000086115826 detritus=0.084015116 fixed=8111983441.403008 recycled=4319802287.5525675 CO2=754.357387598021 O2=26334.627199999726
+ORIGIN stage=saved_actual_final30d_inspect_mode mode=origin cells=40962 biomass=0.16461548255756497 occupied=8 births=60 maxgen=2 rabbits=0 vegetation=0 selected=29254 selectedbio=0.04342146 depth_m=5.614911 temp=296.8809 camera=5296.4697 visiblemats=6
+FIT_BEFORE visible=6 distance=5296.4697 selected=29254 local_count=8
+QA frame=3 selected=29254 elevation=5003.9126 water=43063.727 vegetation=0 rabbits=0 time=2592000.2197265625 paused=true tool=None camera=5578.647
+Captured /tmp/atlas-fit-42-320-vector-003.ppm
+FIT_AFTER success=true visible=8 distance=5578.647 selected=29254 pause_pace_time_unchanged=true
+FIT_GUARDS repeat_idempotent=true resources_state_hash=c957a0149e8f9813 unchanged_except_camera=true real_inspect_targets=8
+info: deinit audio
+error(gpa): memory address 0x7fcc9c6fe000 leaked: 
+

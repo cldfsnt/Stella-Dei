@@ -228,11 +228,17 @@ pub const Texture = struct {
 
     // TODO: toVgImage function for using textures in NanoVG
     pub fn toVgImage(self: *Texture, vg: nvg) nvg.Image {
+        return self.tryToVgImage(vg) catch unreachable;
+    }
+
+    /// Optional textures may retain their GL ownership and fall back on OOM.
+    /// Publish the NanoVG handle only after registration succeeds.
+    pub fn tryToVgImage(self: *Texture, vg: nvg) !nvg.Image {
         if (self.nvgHandle) |handle| {
             return .{ .handle = handle };
         } else {
             const ctx = @as(*nvg.gl.GLContext, @ptrCast(@alignCast(vg.ctx.params.user_ptr)));
-            var tex = ctx.allocTexture() catch unreachable;
+            var tex = try ctx.allocTexture();
             tex.width = @as(i32, @intCast(self.width));
             tex.height = @as(i32, @intCast(self.height));
             tex.tex = self.texture;

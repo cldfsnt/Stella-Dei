@@ -1,0 +1,9 @@
+{
+  "asset_entry": "/assets/aquatic-forms-atlas.png",
+  "start": 546,
+  "end": 170043,
+  "bytes": 169497,
+  "sha256": "3aaec4b988f0d12d5401d081eaa7899f04f76a18d07827723c0b764ee47b42d6",
+  "byte_identical_packaged_asset": true,
+  "wasm_bytes": 1276223
+}

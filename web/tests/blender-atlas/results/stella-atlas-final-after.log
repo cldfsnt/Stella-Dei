@@ -1,0 +1,34 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x30e71af0 context=0x30e72100
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x56515a3d31eed56d
+info: Sea Level: -1.925293 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=10076.246
+Captured /tmp/stella-v11-800x600-001.ppm
+CONTROLLED_RENDER_FIXTURE six_forms=true not_evolution_evidence=true
+QA frame=25 selected=29455 elevation=4998.0723 water=18724.438 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5880.7227
+Captured /tmp/stella-v11-800x600-025.ppm
+QA frame=35 selected=29455 elevation=4998.0723 water=18724.438 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5880.7227
+Captured /tmp/stella-v11-800x600-035.ppm
+QA frame=45 selected=29455 elevation=4998.0723 water=18724.438 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5880.7227
+Captured /tmp/stella-v11-800x600-045.ppm
+ATLAS root_pick_matches_cell=true paused=true simulated_time=0
+QA frame=55 selected=29257 elevation=4997.457 water=4737282.5 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=7261.0527
+Captured /tmp/stella-v11-800x600-055.ppm
+QA frame=59 selected=29257 elevation=4997.457 water=4737282.5 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=7515.176
+Captured /tmp/stella-v11-800x600-059.ppm
+QA frame=85 selected=29257 elevation=4997.457 water=4737282.5 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=7968.6733
+Captured /tmp/stella-v11-800x600-085.ppm
+QA frame=95 selected=29257 elevation=4997.457 water=4737282.5 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=6621.301
+Captured /tmp/stella-v11-800x600-095.ppm
+info: deinit audio
+error(gpa): memory address 0x7f095c101000 leaked: 
+
