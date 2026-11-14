@@ -203,6 +203,7 @@ pub const PlayState = struct {
     seedTargetWorld:usize=0,
     godReceipt: ?@import("../god_actions.zig").Receipt = null,
     godEffectSeconds: f32 = 0,
+    detritusFinder: @import("../detritus_finder.zig").Scanner = .{},
 
     pub const simulation_step_seconds: f32 = 1440;
     pub fn setRawFrameDelta(self:*PlayState, seconds:f32) void {self.rawFrameDelta=seconds;}
@@ -1462,6 +1463,43 @@ pub const PlayState = struct {
         if(self.planet.worldMode!=.origin)return -2;
         return self.frameLivingCluster(width,height,false);
     }
+    /// Explicit chunked discovery only: 2 pending, 1 ready dry fuel, 3 wet fuel,
+    /// 4 other existing fuel blocked, 0 none frameable, -2 mode, -4 cancelled/changed.
+    pub fn findDetritus(self:*PlayState,restart:bool) i32 {
+        if(self.planet.worldMode!=.origin){self.detritusFinder=.{};return -2;}
+        const n=self.planet.microbeCells.len;
+        if(n==0 or self.planet.transformedPoints.len!=n or self.planet.waterMass.len!=n or self.planet.temperature.len!=n){self.detritusFinder=.{};return -4;}
+        const storage=@intFromPtr(self.planet.microbeCells.ptr);
+        if(restart){self.detritusFinder.begin(n,storage);self.detritusFinder.geometry=@intFromPtr(self.planet.transformedPoints.ptr);self.detritusFinder.seed=self.planet.seed;self.detritusFinder.radius=self.planet.radius;self.detritusFinder.selection=self.selectedPoint;}
+        const scan=&self.detritusFinder;
+        if(!scan.active or scan.total!=n or scan.storage!=storage or scan.geometry!=@intFromPtr(self.planet.transformedPoints.ptr) or scan.seed!=self.planet.seed or scan.radius!=self.planet.radius or scan.selection!=self.selectedPoint){scan.*=.{};return -4;}
+        const end=scan.end();
+        var ready:?usize=null;
+        for(scan.cursor..end)|i|{
+            const fuel=self.planet.microbeCells[i].detritus;
+            const point=self.planet.transformedPoints[i];const length=point.length();
+            if(!std.math.isFinite(fuel) or fuel<=0 or !std.math.isFinite(length) or length<=0 or @abs(point.norm().z())>0.95)continue;
+            scan.consider(i,fuel);
+            if(self.planet.waterMass[i]==0 and @import("../experimental/planet_ignition.zig").preview(&self.planet,i,i).success()){ready=i;break;}
+        }
+        scan.cursor=end;
+        if(ready==null and end<n)return 2;
+        const candidate=ready orelse scan.fallback orelse {scan.active=false;return 0;};
+        scan.active=false;
+        // A running world can alter candidates between chunks; never navigate on vanished fuel.
+        const fuel=self.planet.microbeCells[candidate].detritus;
+        if(!std.math.isFinite(fuel) or fuel<=0)return 0;
+        const point=self.planet.transformedPoints[candidate];const length=point.length();
+        if(!std.math.isFinite(length) or length<=0 or @abs(point.norm().z())>0.95)return -4;
+        const eligibility=@import("../experimental/planet_ignition.zig").preview(&self.planet,candidate,candidate);
+        self.displayMode=.Normal;self.watchLife();self.colonyPeek.clear();
+        self.selectedPoint=candidate;self.clickedPoint=candidate;self.pointerOnPlanet=true;
+        self.targetCameraPos=point.norm();self.setOrbitDistance(length+900,true);self.cameraGroundPoint=candidate;
+        self.mobileFeedback=if(eligibility.success()) "Found existing dry dead carbon; ignition is optional" else if(eligibility.failure==.wet) "Found existing wet dead carbon; nothing drained or ignited" else "Found existing dead carbon; inspect why ignition is blocked";
+        self.mobileFeedbackSeconds=5;
+        return if(eligibility.success())1 else if(eligibility.failure==.wet)3 else 4;
+    }
+
     pub fn findLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
         return self.frameLivingCluster(width,height,true);
     }

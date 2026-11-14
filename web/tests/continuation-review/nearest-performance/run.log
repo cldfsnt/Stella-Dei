@@ -1,0 +1,50 @@
+install
++- run test stderr
+NEAREST repeat=0 kind=0 n=40962 queries=200 ns=14217481 ns_per_query=71087 checksum=4240316 naive_changed=0
+NEAREST repeat=0 kind=1 n=40962 queries=200 ns=9727749 ns_per_query=48638 checksum=8480632 naive_changed=0
+NEAREST repeat=0 kind=2 n=40962 queries=200 ns=8734534 ns_per_query=43672 checksum=12720948 naive_changed=0
+NEAREST repeat=1 kind=0 n=40962 queries=200 ns=12185781 ns_per_query=60928 checksum=16961264 naive_changed=0
+NEAREST repeat=1 kind=1 n=40962 queries=200 ns=9714679 ns_per_query=48573 checksum=21201580 naive_changed=0
+NEAREST repeat=1 kind=2 n=40962 queries=200 ns=8697859 ns_per_query=43489 checksum=25441896 naive_changed=0
+NEAREST repeat=2 kind=0 n=40962 queries=200 ns=12176016 ns_per_query=60880 checksum=29682212 naive_changed=0
+NEAREST repeat=2 kind=1 n=40962 queries=200 ns=9693198 ns_per_query=48465 checksum=33922528 naive_changed=0
+NEAREST repeat=2 kind=2 n=40962 queries=200 ns=8717137 ns_per_query=43585 checksum=38162844 naive_changed=0
+NEAREST repeat=3 kind=0 n=40962 queries=200 ns=11986010 ns_per_query=59930 checksum=42403160 naive_changed=0
+NEAREST repeat=3 kind=1 n=40962 queries=200 ns=7640185 ns_per_query=38200 checksum=46643476 naive_changed=0
+NEAREST repeat=3 kind=2 n=40962 queries=200 ns=6643615 ns_per_query=33218 checksum=50883792 naive_changed=0
+NEAREST repeat=4 kind=0 n=40962 queries=200 ns=11558306 ns_per_query=57791 checksum=55124108 naive_changed=0
+NEAREST repeat=4 kind=1 n=40962 queries=200 ns=7687788 ns_per_query=38438 checksum=59364424 naive_changed=0
+NEAREST repeat=4 kind=2 n=40962 queries=200 ns=6551146 ns_per_query=32755 checksum=63604740 naive_changed=0
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+FOOD_WEB120 biomass=0.19443813 births=47 gen=2 grazed=0.8482477755169384 cell_bytes=336
+GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748614356605685
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.00940453 fixed=0.0769931836402975
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857256 fixed=1.0396804702468216
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.66051495 fixed=1.0023239215370268
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911017 fixed=0.9246702608652413
+FILM_MATRIX depth_m=1 variant=0 biomass=0.9237717 fixed=0.9222954493016005
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870434 fixed=0.9155964879319072
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812204 fixed=0.9056189879775047
+RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365966 thermal_reset_control=0.09157571
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268790 thermal_reset_control=0.09157571
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120820 thermal_reset_control=0.08310293
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701172 thermal_reset_control=0.08310293
+BUILD_EXIT=0

@@ -133,6 +133,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     // Rendering/input caches and transient effects belong to the previous view.
     if (@hasField(@TypeOf(state.*), "colonyTargets")) state.colonyTargets.count = 0;
     if (@hasField(@TypeOf(state.*), "seedTargets")) state.seedTargets.count = 0;
+    if (@hasField(@TypeOf(state.*), "detritusFinder")) state.detritusFinder = .{};
     if (@hasField(@TypeOf(state.*), "godReceipt")) state.godReceipt = null;
     if (@hasField(@TypeOf(state.*), "godEffectSeconds")) state.godEffectSeconds = 0;
     state.selectedTool = .None;

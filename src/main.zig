@@ -470,6 +470,12 @@ export fn stella_fit_life() i32 {
     return state.fitLivingClusterResult(@floatFromInt(size.width),@floatFromInt(size.height));
 }
 
+export fn stella_find_detritus(restart:u32) i32 {
+    const state=webPlayState() orelse return -1;
+    if(restart==2){state.detritusFinder=.{};return -4;}
+    return state.findDetritus(restart==1);
+}
+
 export fn stella_find_life() i32 {
     const state=webPlayState() orelse return -1;
     const size=game.window.getFramebufferSize();
