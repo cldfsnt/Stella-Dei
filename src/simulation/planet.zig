@@ -1444,6 +1444,15 @@ pub const Planet = struct {
         self.worldMode = .origin;
     }
 
+    /// Representation-only normalization after direct bulk edits while paused.
+    /// Preserves bulk+carry; never adds water or changes living reserves.
+    pub fn reconcileWaterPrecision(self:*Planet,index:usize) void {
+        if(index>=self.microbeCells.len)return;
+        const cell=&self.microbeCells[index];
+        if(cell.surface_water_carry==0 and cell.vapor_water_carry==0)return;
+        self.applyMicrobeWater(index,.{});
+    }
+
     /// Explicit selected-patch target, never a persistent irrigation policy.
     /// The signed return is actual externally added/removed depth in metres.
     pub fn setWaterDepthMeters(self:*Planet,index:usize,target_m:f32) f32 {
@@ -1452,6 +1461,7 @@ pub const Planet = struct {
         if(!std.math.isFinite(conversion) or conversion<=0 or !std.math.isFinite(self.waterMass[index]))return std.math.nan(f32);
         const old=self.waterMass[index];
         self.waterMass[index]=(target_m/1000)/conversion;
+        self.reconcileWaterPrecision(index);
         return (self.waterMass[index]-old)*conversion*1000;
     }
 
@@ -1462,6 +1472,7 @@ pub const Planet = struct {
         const conversion=self.getKmPerWaterMass();
         const old=self.waterMass[index];
         self.waterMass[index]=@max(0,old+delta_km/conversion);
+        self.reconcileWaterPrecision(index);
         return (self.waterMass[index]-old)*conversion*1000;
     }
 
@@ -1473,14 +1484,14 @@ pub const Planet = struct {
             .light = light,
             .carbon_available = @floatCast(@max(0, self.averageCarbonDioxideMass) * 1e9 / area * (12.0 / 44.0)),
             .oxygen_carbon_capacity = @floatCast(@max(0, self.averageOxygenMass) * 1e9 / area * (12.0 / 32.0)),
-            .liquid_available = @as(f32,@floatCast(@max(0,self.waterMass[index])*1e9/area)),
+            .liquid_available = @as(f64,@max(0,self.waterMass[index]))*1e9/area+self.microbeCells[index].surface_water_carry,
         };
     }
 
     fn applyMicrobeWater(self:*Planet,index:usize,flux:Microbes.Flux) void {
-        const scale:f64=self.getMeanPointArea()/1e9;
-        self.waterMass[index]=@floatCast(@max(0,@as(f64,self.waterMass[index])+(@as(f64,flux.water_returned)-flux.water_taken)*scale));
-        self.waterVaporMass[index]+= @as(f32,@floatCast(@as(f64,flux.water_evaporated)*scale));
+        const cell=&self.microbeCells[index];
+        const accepted=@import("water_precision.zig").apply(&self.waterMass[index],&self.waterVaporMass[index],&cell.surface_water_carry,&cell.vapor_water_carry,self.getMeanPointArea(),flux.water_taken,flux.water_returned,flux.water_evaporated);
+        if(!accepted) @panic("Invalid microbial water transfer");
     }
 
     fn applyMicrobeFlux(self: *Planet, flux: Microbes.Flux) void {
@@ -1530,7 +1541,7 @@ pub const Planet = struct {
         const dt = @max(0, options.dt * options.timeScale);
         if (dt <= 0) return;
         for (self.microbeCells, 0..) |*cell, i| {
-            if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
+            if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0 and cell.surface_water_carry==0 and cell.vapor_water_carry==0) continue;
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
             const before_mass=Microbes.biomass(cell.*);
             const current_env=self.microbeEnvironment(i,light);

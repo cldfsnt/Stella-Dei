@@ -1,3 +1,7 @@
+# STALE: DO NOT APPLY
+
+These pre-precision proposal copies lack the f64 water/carry correction and current production propagate/event changes. They are historical comparison material only. Integrate reviewed hunks manually against current production.
+
 Clean proposed reserve integration, not applied to production.
 
 Planet base SHA256: ca384b824109b1f4e493a7947c7ee19dba38e9a10b4b71a668af94ed493bc724

@@ -3,6 +3,12 @@ const std = @import("std");
 pub const VERSION: u32 = 7;
 pub const Microbes = @import("simulation/microbes.zig");
 pub const WorldMode = Microbes.Mode;
+const WaterPrecision = @import("simulation/water_precision.zig");
+/// Match Planet.getMeanPointArea, including its f32 rounding before promotion.
+fn meanPointArea(radius_km:f32,count:usize) f64 {
+    const radius:f64=radius_km;
+    return @as(f32,@floatCast(4*std.math.pi*(radius*1000)*(radius*1000)/@as(f64,@floatFromInt(count))));
+}
 /// Wire representation accepts legacy two-slot data without advancing biology.
 pub const IndexedCohort = struct { index: u8, value: Microbes.Cohort };
 pub fn canonicalEmpty(cohort: Microbes.Cohort) bool {
@@ -22,9 +28,11 @@ pub const SavedCell = struct {
     sparse: ?[]const IndexedCohort = null,
     nutrient: f32 = 0.02,
     detritus: f32 = 0,
+    surface_water_carry: f64 = 0,
+    vapor_water_carry: f64 = 0,
     rng: u64 = 1,
     pub fn capture(cell: *const Microbes.Cell) SavedCell {
-        return .{ .cohorts = &cell.cohorts, .nutrient = cell.nutrient, .detritus = cell.detritus, .rng = cell.rng };
+        return .{ .cohorts = &cell.cohorts, .nutrient = cell.nutrient, .detritus = cell.detritus, .surface_water_carry = cell.surface_water_carry, .vapor_water_carry = cell.vapor_water_carry, .rng = cell.rng };
     }
     pub fn jsonStringify(self: SavedCell, writer: anytype) !void {
         try writer.beginObject();
@@ -39,12 +47,16 @@ pub const SavedCell = struct {
         try writer.write(self.nutrient);
         try writer.objectField("detritus");
         try writer.write(self.detritus);
+        try writer.objectField("surface_water_carry");
+        try writer.write(self.surface_water_carry);
+        try writer.objectField("vapor_water_carry");
+        try writer.write(self.vapor_water_carry);
         try writer.objectField("rng");
         try writer.write(self.rng);
         try writer.endObject();
     }
     pub fn runtime(self: SavedCell) Microbes.Cell {
-        var cell: Microbes.Cell = .{ .nutrient = self.nutrient, .detritus = self.detritus, .rng = self.rng };
+        var cell: Microbes.Cell = .{ .nutrient = self.nutrient, .detritus = self.detritus, .surface_water_carry = self.surface_water_carry, .vapor_water_carry = self.vapor_water_carry, .rng = self.rng };
         std.debug.assert(self.cohorts.len <= cell.cohorts.len);
         if (self.sparse) |entries| {
             for (entries) |entry| cell.cohorts[entry.index] = entry.value;
@@ -79,7 +91,7 @@ pub fn captureSparse(allocator: std.mem.Allocator, source: []const Microbes.Cell
                 cursor += 1;
             }
         }
-        out.* = .{ .sparse = entries[start..cursor], .nutrient = cell.nutrient, .detritus = cell.detritus, .rng = cell.rng };
+        out.* = .{ .sparse = entries[start..cursor], .nutrient = cell.nutrient, .detritus = cell.detritus, .surface_water_carry = cell.surface_water_carry, .vapor_water_carry = cell.vapor_water_carry, .rng = cell.rng };
     }
     return .{ .cells = cells, .entries = entries };
 }
@@ -181,6 +193,10 @@ pub const Save = struct {
                         const required_slots: usize = if (self.version == 2) 2 else 4;
                         if (saved_cell.cohorts.len != required_slots or saved_cell.sparse != null) return error.InvalidShape;
                     }
+                    if (self.version < 7 and (saved_cell.surface_water_carry != 0 or saved_cell.vapor_water_carry != 0)) return error.IncompatibleSave;
+                    const area = meanPointArea(self.radius, count);
+                    if (!WaterPrecision.validCarry(self.water[cell_index], saved_cell.surface_water_carry, area) or
+                        !WaterPrecision.validCarry(self.vapor[cell_index], saved_cell.vapor_water_carry, area)) return error.InvalidValue;
                     const cell = saved_cell.runtime();
                     for (cell.cohorts) |cohort| {
                         if (self.version == 2 and cohort.structure != 0) return error.IncompatibleSave;
@@ -674,7 +690,7 @@ test "v6 producer wire migrates water fields as zero without changing life or re
     var parsed = try std.json.parseFromSlice(SavedCell, std.testing.allocator, wire, .{});
     defer parsed.deinit();
     const before = parsed.value.runtime();
-    try std.testing.expectEqual(@as(f32, 0), before.cohorts[2].water_reserve);
+    try std.testing.expectEqual(@as(f64, 0), before.cohorts[2].water_reserve);
     try std.testing.expectEqual(@as(f32, 0), before.cohorts[2].water_retention);
     var cells = [_]Microbes.Cell{.{}} ** 12;
     cells[0] = before;
@@ -723,7 +739,7 @@ test "v7 reserves traits and sparse signed zero roundtrip exactly and reject inv
     for (cells, loaded.value.origin.?.cells) |before, encoded| {
         const after = encoded.runtime();
         for (before.cohorts, after.cohorts) |a, b| {
-            try std.testing.expectEqual(@as(u32, @bitCast(a.water_reserve)), @as(u32, @bitCast(b.water_reserve)));
+            try std.testing.expectEqual(@as(u64, @bitCast(a.water_reserve)), @as(u64, @bitCast(b.water_reserve)));
             try std.testing.expectEqual(@as(u32, @bitCast(a.water_retention)), @as(u32, @bitCast(b.water_retention)));
         }
     }
@@ -736,11 +752,11 @@ test "v7 reserves traits and sparse signed zero roundtrip exactly and reject inv
     sparse.entries[0].value.water_reserve = Microbes.waterCapacity(initial) + 0.00002;
     try std.testing.expectError(error.InvalidValue, saved.validate());
     sparse.entries[0].value = initial;
-    for ([_]f32{ -0.01, Microbes.waterCapacity(initial) + 0.01, std.math.inf(f32), std.math.nan(f32) }) |bad| {
+    for ([_]f64{ -0.01, Microbes.waterCapacity(initial) + 0.01, std.math.inf(f64), std.math.nan(f64) }) |bad| {
         sparse.entries[0].value.water_reserve = bad;
         const before_reject = sparse.entries[0].value;
         try std.testing.expectError(error.InvalidValue, saved.validate());
-        try std.testing.expectEqual(@as(u32, @bitCast(before_reject.water_reserve)), @as(u32, @bitCast(sparse.entries[0].value.water_reserve)));
+        try std.testing.expectEqual(@as(u64, @bitCast(before_reject.water_reserve)), @as(u64, @bitCast(sparse.entries[0].value.water_reserve)));
         try std.testing.expectEqual(initial.water_retention, sparse.entries[0].value.water_retention);
         sparse.entries[0].value = initial;
     }
@@ -757,4 +773,59 @@ test "v7 reserves traits and sparse signed zero roundtrip exactly and reject inv
     try std.testing.expectError(error.IncompatibleSave, saved.validate());
     sparse.entries[0].value.water_retention = 0;
     try saved.validate();
+}
+
+
+test "v7 water precision carries preserve subnormal quantum and reject invalid or legacy values" {
+    var cells = [_]Microbes.Cell{.{}} ** 12;
+    var saved = fixture();
+    saved.version = VERSION;
+    saved.mode = .origin;
+    var bulk_water=[_]f32{0} ** 12;
+    bulk_water[2]=@bitCast(@as(u32,1));
+    saved.water=&bulk_water;
+    const area=meanPointArea(saved.radius,cells.len);
+    // Smallest positive f32 water unit and ordinary vapor unit, both kg/m².
+    const surface_quantum=@as(f64,@as(f32,@bitCast(@as(u32,1))))*1e9/area;
+    const vapor_quantum=(@as(f64,@as(f32,@bitCast(@as(u32,@bitCast(@as(f32,0.5)))+1)))-0.5)*1e9/area;
+    cells[0].surface_water_carry=surface_quantum*0.5;
+    cells[0].vapor_water_carry=vapor_quantum*0.5;
+    cells[1].surface_water_carry=-0.0;
+    cells[2].surface_water_carry=surface_quantum*0.25;
+    const sparse=try captureSparse(std.testing.allocator,&cells);defer sparse.deinit(std.testing.allocator);
+    saved.origin=.{.model_revision=VERSION-1,.cohort_encoding=.sparse_indexed,.cells=sparse.cells,.stats=.{}};
+    try saved.validate();
+    const bytes=try std.json.stringifyAlloc(std.testing.allocator,saved,.{});defer std.testing.allocator.free(bytes);
+    var loaded=try parse(std.testing.allocator,bytes);defer loaded.deinit();
+    for(cells,loaded.value.origin.?.cells)|before,encoded|{
+        const after=encoded.runtime();
+        try std.testing.expectEqual(@as(u64,@bitCast(before.surface_water_carry)),@as(u64,@bitCast(after.surface_water_carry)));
+        try std.testing.expectEqual(@as(u64,@bitCast(before.vapor_water_carry)),@as(u64,@bitCast(after.vapor_water_carry)));
+    }
+    const again=try std.json.stringifyAlloc(std.testing.allocator,loaded.value,.{});defer std.testing.allocator.free(again);
+    try std.testing.expectEqualSlices(u8,bytes,again);
+    for([_]f64{-1,std.math.inf(f64),std.math.nan(f64),surface_quantum,surface_quantum*2})|bad|{
+        sparse.cells[0].surface_water_carry=bad;
+        try std.testing.expectError(error.InvalidValue,saved.validate());
+        try std.testing.expectEqual(@as(u64,@bitCast(bad)),@as(u64,@bitCast(sparse.cells[0].surface_water_carry)));
+    }
+    sparse.cells[0].surface_water_carry=surface_quantum*0.5;
+    for([_]f64{-1,std.math.inf(f64),std.math.nan(f64),vapor_quantum,vapor_quantum*2})|bad|{
+        sparse.cells[0].vapor_water_carry=bad;
+        try std.testing.expectError(error.InvalidValue,saved.validate());
+    }
+    sparse.cells[0].vapor_water_carry=vapor_quantum*0.5;
+    saved.version=6;saved.origin.?.model_revision=5;
+    try std.testing.expectError(error.IncompatibleSave,saved.validate());
+    sparse.cells[0].surface_water_carry=0;
+    try std.testing.expectError(error.IncompatibleSave,saved.validate());
+    sparse.cells[0].vapor_water_carry=0;
+    sparse.cells[2].surface_water_carry=0;
+    try saved.validate();
+    const wire=
+        \\{"cohorts":[{},{},{},{}],"nutrient":0.02,"detritus":0,"rng":1}
+    ;
+    var legacy=try std.json.parseFromSlice(SavedCell,std.testing.allocator,wire,.{});defer legacy.deinit();
+    try std.testing.expectEqual(@as(f64,0),legacy.value.runtime().surface_water_carry);
+    try std.testing.expectEqual(@as(f64,0),legacy.value.runtime().vapor_water_carry);
 }

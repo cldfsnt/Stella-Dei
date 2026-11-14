@@ -26,5 +26,5 @@ insert='''            if(i>=1200 and i%60==59){
             }
 '''
 assert needle in s;s=s.replace(needle,insert+needle,1)
-s=s.replace('        std.debug.print("TOTAL_WATER', '        var tissue_water:f64=0;for(state.planet.microbeCells)|cell|tissue_water+=@as(f64,@import("simulation/microbes.zig").storedWater(cell))*state.planet.getMeanPointArea()/1e9;\n        std.debug.print("TISSUE_WATER billion_kg={d}\\n",.{tissue_water});water_end+=tissue_water;\n        std.debug.print("TOTAL_WATER')
+s=s.replace('        std.debug.print("TOTAL_WATER', '        var tissue_water:f64=0;for(state.planet.microbeCells)|cell|tissue_water+=@as(f64,@import("simulation/microbes.zig").storedWater(cell)+cell.surface_water_carry+cell.vapor_water_carry)*state.planet.getMeanPointArea()/1e9;\n        std.debug.print("TISSUE_WATER billion_kg={d}\\n",.{tissue_water});water_end+=tissue_water;\n        std.debug.print("TOTAL_WATER')
 p.write_text(s)

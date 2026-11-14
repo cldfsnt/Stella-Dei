@@ -43,6 +43,18 @@ Every completed native run passed invalid-save rejection and exact restoration. 
 World1338's shelf was only roughly1.6–3.2mm at daily sampling, compared with~22mm in successful1337. This is a measured difference, not a proven sole cause of failure. Natural shore emergence is habitat/founder dependent, not universally reliable from one Seed. The reserve mechanism is demonstrated; a user-facing accessible shore tool, reserve readout, habitat guidance and integration playtest remain necessary. These are shoreline producers, not vascular land plants or evolved animals.
 
 
-## Independent review: numerical bridge is not yet integration-ready
+## Independent review: numerical bridge correction
 
 The current Planet bridge stores bulk liquid/vapor as f32. A requested0.0001kg/m² uptake from a15m cell can round to zero bulk debit while a cohort receives reserve. Isolated f64 reservoir tests do not cover that loss of significance. Before production integration, quantify biological-scale error across step sizes and implement/review approved nonnegative f64 precision carries with old-save defaults0. Native save acceptance above is real, but it does not imply exact coupled water conservation.
+
+The isolated f64 reserve/flux plus sub-quantum carry correction now passes biological-scale precision tests; see WATER-PRECISION-QA.md. Corrected native paired reruns now pass as reported below; this model remains experimental.
+
+## Post-precision native evidence
+
+The corrected f64/carry model changes floating-point ecological trajectories.
+Its world1337 expanded eight-Seed case nevertheless establishes a natural
+post-shelf colonizer (descendant146, arrival day63.3) and retains four protected
+cohorts at day100: biomass0.073297136 and reserve1.97821446694kg/m². Exact native
+save and paused action canonical-save checks pass. Earlier numeric rows above
+are historical prototype measurements, not outputs of the corrected model.
+Matched corrected disabled control completes day100 with zero shore biomass/reserves; exactsave and paused-action checks pass in that run too. See WATER-PRECISION-QA.md.

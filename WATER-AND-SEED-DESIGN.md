@@ -37,7 +37,7 @@ Extend Flux with `water_taken`, `water_evaporated`, `water_returned`, all kg H2O
 
 ### Save/migration
 
-Version 7 adds reserve and retention to cohorts. Legacy ≤6 saves default both to zero, preserving previous carbon/nutrient totals; aquatic cohorts may recharge next simulation step, but dry cohorts do not receive invented reserves on load. Validate finite/nonnegative reserve, trait range, and capacity bounds before mutation. Preserve sparse slots and lineage identity. Exact v7 roundtrip, all prior migrations, invalid-save atomic rejection, and reset behavior are required.
+Version 7 adds f64 reserve and f32 retention to cohorts, plus nonnegative f64 surface/vapor numerical carries per microbial cell. Carries remain strictly below one f32 bulk-water quantum and are not soil or physiological reservoirs. Legacy carries default to zero. Legacy ≤6 saves default both to zero, preserving previous carbon/nutrient totals; aquatic cohorts may recharge next simulation step, but dry cohorts do not receive invented reserves on load. Validate finite/nonnegative reserve, trait range, and capacity bounds before mutation. Preserve sparse slots and lineage identity. Exact v7 roundtrip, all prior migrations, invalid-save atomic rejection, and reset behavior are required.
 
 ### UI contract
 
@@ -69,3 +69,7 @@ Fire itself requires a resource ledger: burnt carbon splits into tracked atmosph
 ## Implementation boundary
 
 Do not implement these new states until parent approves this state/ledger/migration plan. The direct-controls production release remains separate. New reservoir acceptance cannot be replaced with hand-placed thriving plants or edited biological traits.
+
+## Numerical conservation correction
+
+Bulk hydrology remains f32 in engine mass units. Biological water flux/reserves use f64 kg/m² with a saved sub-quantum remainder per surface/vapor field; climate sees bulk until re-quantization. Direct water edits reconcile carries before immediate save. See web/tests/WATER-PRECISION-QA.md for the measured old-bridge failure and corrected timestep/depth tests. Do not infer exact full-climate conservation from biological-bridge tests.

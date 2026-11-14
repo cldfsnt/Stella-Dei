@@ -4,13 +4,13 @@ const std = @import("std");
 pub const nutrient_per_carbon:f32=0.1;
 pub const Mode=enum{sandbox,origin};
 pub const Cohort=struct {
-    biomass:f32=0, water_reserve:f32=0, water_retention:f32=0, organization:f32=0, support_mass:f32=0, optimum:f32=303, efficiency:f32=1, structure:f32=0, feeding:f32=0, mobility:f32=0, relocations:u32=0, last_from:u32=0, last_to:u32=0, last_move_time:f64=0, lifetime_grazed:f32=0,
+    biomass:f32=0, water_reserve:f64=0, water_retention:f32=0, organization:f32=0, support_mass:f32=0, optimum:f32=303, efficiency:f32=1, structure:f32=0, feeding:f32=0, mobility:f32=0, relocations:u32=0, last_from:u32=0, last_to:u32=0, last_move_time:f64=0, lifetime_grazed:f32=0,
     generation:u32=0, lineage:u64=0, parent:u64=0, reproduction_credit:f32=0,
 };
-pub const Cell=struct { cohorts:[4]Cohort=.{.{},.{},.{},.{}}, nutrient:f32=0.02, detritus:f32=0, rng:u64=1 };
+pub const Cell=struct { surface_water_carry:f64=0, vapor_water_carry:f64=0, cohorts:[4]Cohort=.{.{},.{},.{},.{}}, nutrient:f32=0.02, detritus:f32=0, rng:u64=1 };
 pub const Stats=struct { next_lineage:u64=1,births:u64=0,fixed_carbon:f64=0,recycled_carbon:f64=0, nutrient_added:f64=0, failed_patches:u64=0, grazed_carbon:f64=0, grazing_respired_carbon:f64=0, relocations:u64=0, movement_respired_carbon:f64=0 };
-pub const Environment=struct {temperature:f32,depth_km:f32,light:f32,carbon_available:f32,oxygen_carbon_capacity:f32,liquid_available:?f32=null,reserve_enabled:bool=true};
-pub const Flux=struct{water_taken:f32=0,water_evaporated:f32=0,water_returned:f32=0,fixed:f32=0,recycled:f32=0,failed_patches:u32=0,grazed:f32=0,grazing_respired:f32=0};
+pub const Environment=struct {temperature:f32,depth_km:f32,light:f32,carbon_available:f32,oxygen_carbon_capacity:f32,liquid_available:?f64=null,reserve_enabled:bool=true};
+pub const Flux=struct{water_taken:f64=0,water_evaporated:f64=0,water_returned:f64=0,fixed:f32=0,recycled:f32=0,failed_patches:u32=0,grazed:f32=0,grazing_respired:f32=0};
 pub fn random(state:*u64) u64 {state.* +%= 0x9e3779b97f4a7c15;if(state.*==0)state.*=1;var z=state.*;z=(z^(z>>30))*%0xbf58476d1ce4e5b9;z=(z^(z>>27))*%0x94d049bb133111eb;return z^(z>>31);}
 pub fn initialized(initial_seed:u64) Cell{return .{.rng=if(initial_seed==0) 1 else initial_seed};}
 pub fn biomass(cell:Cell) f32{var total:f32=0;for(cell.cohorts)|c|total+=c.biomass;return total;}
@@ -59,13 +59,13 @@ pub fn habitable(depth:f32,temp:f32) bool{return depth>=0.0002 and depth<=0.05 a
 /// Moist-shore protection requires inherited toughness AND paid living tissue.
 /// This is a water-film biofilm, not roots/soil or vascular land vegetation.
 /// Phenomenological hydration capacity: kg H2O/m²; carbon remains separate.
-pub fn waterCapacity(c:Cohort) f32{return @max(0,c.biomass)*20+@max(0,c.support_mass)*60;}
-pub fn storedWater(cell:Cell) f32{var water:f32=0;for(cell.cohorts)|c|water+=c.water_reserve;return water;}
-pub fn waterUsePerCarbon(c:Cohort) f32{return 50*(1-0.5*c.water_retention);}
-fn returnOverflow(c:*Cohort) f32{const old=c.water_reserve;c.water_reserve=@min(old,waterCapacity(c.*));return old-c.water_reserve;}
-fn liquidAvailable(env:Environment) f32 {
+pub fn waterCapacity(c:Cohort) f64{return @as(f64,@max(0,c.biomass))*20+@as(f64,@max(0,c.support_mass))*60;}
+pub fn storedWater(cell:Cell) f64{var water:f64=0;for(cell.cohorts)|c|water+=c.water_reserve;return water;}
+pub fn waterUsePerCarbon(c:Cohort) f64{return 50*(1-0.5*@as(f64,c.water_retention));}
+fn returnOverflow(c:*Cohort) f64{const old=c.water_reserve;c.water_reserve=@min(old,waterCapacity(c.*));return old-c.water_reserve;}
+fn liquidAvailable(env:Environment) f64 {
     if(env.temperature<=273.15 or env.temperature>=373.15)return 0;
-    const amount=env.liquid_available orelse env.depth_km*1000000;
+    const amount=env.liquid_available orelse @as(f64,env.depth_km)*1000000;
     return if(std.math.isFinite(amount)) @max(0,amount) else 0;
 }
 pub fn shoreProtection(c:Cohort) f32 {
@@ -78,7 +78,7 @@ pub fn habitatFitness(c:Cohort,depth:f32,temp:f32) f32 {
     if(!std.math.isFinite(depth) or !std.math.isFinite(temp))return 0;
     if(habitable(depth,temp))return 1;
     if(depth<0 or depth>=0.0002 or temp<=273.15 or temp>=335)return 0;
-    const reserve=if(waterCapacity(c)>0) c.water_reserve/waterCapacity(c) else 0;
+    const reserve:f32=if(waterCapacity(c)>0) @floatCast(c.water_reserve/waterCapacity(c)) else 0;
     return shoreProtection(c)*std.math.clamp(@max(depth/0.00002,reserve),0,1);
 }
 pub fn canEstablish(c:Cohort,depth:f32,temp:f32) bool{return habitatFitness(c,depth,temp)>0;}
@@ -104,13 +104,13 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     if(!std.math.isFinite(elapsed) or elapsed<=0)return result;
     const days=elapsed/86400;
     const liquid=liquidAvailable(env);
-    var uptake_demand:f32=0;
+    var uptake_demand:f64=0;
     for(&cell.cohorts)|*c|{result.water_returned+=returnOverflow(c);if(c.biomass>0 and env.reserve_enabled)uptake_demand+=@max(0,waterCapacity(c.*)-c.water_reserve);}
-    if(uptake_demand>0){const scale=@min(@as(f32,1),liquid/uptake_demand);for(&cell.cohorts)|*c|{if(c.biomass<=0)continue;const taken=@max(0,waterCapacity(c.*)-c.water_reserve)*scale;c.water_reserve+=taken;result.water_taken+=taken;}}
+    if(uptake_demand>0){const scale=@min(@as(f64,1),liquid/uptake_demand);var remaining=liquid;for(&cell.cohorts)|*c|{if(c.biomass<=0)continue;const taken=@min(remaining,@max(0,waterCapacity(c.*)-c.water_reserve)*scale);c.water_reserve+=taken;result.water_taken+=taken;remaining-=taken;}}
     // Actual stored water is lost to the atmosphere, never silently erased.
     if(env.temperature>273.15)for(&cell.cohorts)|*c|{
         const rate=0.20*(1-0.8*c.water_retention)*(0.25+@max(0,env.light))*std.math.clamp((env.temperature-260)/40,0.1,2);
-        const lost=c.water_reserve*(1-@exp(-rate*days));c.water_reserve-=lost;result.water_evaporated+=lost;
+        const lost=c.water_reserve*(-std.math.expm1(-@as(f64,rate)*days));c.water_reserve-=lost;result.water_evaporated+=lost;
     };
     const available=@max(0,env.carbon_available);
     var potentials=[_]f32{0,0,0,0};
@@ -164,17 +164,23 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
         for(&potentials,cell.cohorts)|*value,c|{budget+=value.*;value.* *= producerSpread(c)*@exp(producerHeightMeters(c)/0.1);weighted+=value.*;}
         if(weighted>0)for(&potentials)|*value|{value.* *= budget/weighted;};
     }
-    var water_demand:f32=0;
-    for(&potentials,cell.cohorts)|*v,c|{if(env.reserve_enabled)v.*=@min(v.*,c.water_reserve/waterUsePerCarbon(c));water_demand+=v.* * waterUsePerCarbon(c);}
-    if(!env.reserve_enabled and water_demand>0){const scale=@min(@as(f32,1),liquid/water_demand);for(&potentials)|*v|v.* *= scale;}
+    var water_demand:f64=0;
+    for(&potentials,cell.cohorts)|*v,c|{if(env.reserve_enabled)v.*=@floatCast(@min(@as(f64,v.*),c.water_reserve/waterUsePerCarbon(c)));water_demand+=@as(f64,v.*) * waterUsePerCarbon(c);}
+    if(!env.reserve_enabled and water_demand>0){const scale:f32=@floatCast(@min(@as(f64,1),liquid/water_demand));for(&potentials)|*v|v.* *= scale;}
     var potential:f32=0;for(potentials)|v|potential+=v;
     const growth=@min(potential,@min(space,@min(available,cell.nutrient/nutrient_per_carbon)));
+    var actual_growth:f32=0;var direct_remaining=liquid-result.water_taken;
     if(potential>0)for(&cell.cohorts,0..) |*c,i| {
-        const share=growth*potentials[i]/potential;const water_used=share*waterUsePerCarbon(c.*);
-        if(env.reserve_enabled)c.water_reserve=@max(0,c.water_reserve-water_used) else result.water_taken+=water_used;
+        var share=growth*potentials[i]/potential;
+        const budget=if(env.reserve_enabled)c.water_reserve else direct_remaining;
+        const cost=waterUsePerCarbon(c.*);
+        var bound:f32=@floatCast(@min(@as(f64,share),budget/cost));
+        if(@as(f64,bound)*cost>budget and bound>0)bound=@bitCast(@as(u32,@bitCast(bound))-1);
+        share=@min(share,bound);const water_used=@as(f64,share)*cost;actual_growth+=share;
+        if(env.reserve_enabled)c.water_reserve-=water_used else {result.water_taken+=water_used;direct_remaining-=water_used;}
         result.water_evaporated+=water_used;c.biomass+=share;c.support_mass=@min(c.biomass,c.support_mass+share*c.organization);c.reproduction_credit+=share;
     };
-    cell.nutrient=@max(0,cell.nutrient-growth*nutrient_per_carbon);result.fixed=growth;
+    cell.nutrient=@max(0,cell.nutrient-actual_growth*nutrient_per_carbon);result.fixed=actual_growth;
     var grazing_respired:f32=0;
     if(habitable(env.depth_km,env.temperature)){
         const grazing=graze(cell,days,@max(0,env.oxygen_carbon_capacity-support_respired));
@@ -218,6 +224,7 @@ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:b
 }
 pub fn validCell(cell:Cell,next_lineage:u64) bool {
     if(cell.rng==0)return false;
+    if(!std.math.isFinite(cell.surface_water_carry) or cell.surface_water_carry<0 or !std.math.isFinite(cell.vapor_water_carry) or cell.vapor_water_carry<0)return false;
     if(!std.math.isFinite(cell.nutrient) or cell.nutrient<0 or !std.math.isFinite(cell.detritus) or cell.detritus<0)return false;
     if(biomass(cell)>1.0001)return false;
     for(cell.cohorts) |c| {
@@ -238,7 +245,7 @@ pub fn validCell(cell:Cell,next_lineage:u64) bool {
 /// Only other live cohorts are edible. Half consumed carbon is assimilated;
 /// one quarter is respired (oxygen-limited), one quarter enters detritus.
 /// Nutrient bound in both waste streams returns locally.
-pub const GrazingFlux=struct{consumed:f32=0,respired:f32=0,water_returned:f32=0};
+pub const GrazingFlux=struct{consumed:f32=0,respired:f32=0,water_returned:f64=0};
 pub fn graze(cell:*Cell,days:f32,oxygen_capacity:f32) GrazingFlux {
     if(days<=0 or oxygen_capacity<=0)return .{};
     const snapshot=cell.cohorts;
@@ -252,14 +259,14 @@ pub fn graze(cell:*Cell,days:f32,oxygen_capacity:f32) GrazingFlux {
     }
     var requested:f32=0;for(demand)|row|for(row)|v|{requested+=v;};
     const oxygen_scale=if(requested>0)@min(@as(f32,1),@max(0,oxygen_capacity)/(requested*0.25)) else 0;
-    var water_gains=[_]f32{0,0,0,0};var water_losses=[_]f32{0,0,0,0};
+    var water_gains=[_]f64{0,0,0,0};var water_losses=[_]f64{0,0,0,0};
     var gains=[_]f32{0,0,0,0};var losses=[_]f32{0,0,0,0};var total:f32=0;
     for(snapshot,0..)|prey,j|{
         var wanted:f32=0;for(demand)|row|wanted+=row[j];
         const scale=if(wanted>0)@min(@as(f32,1),prey.biomass/wanted) else 0;
         for(0..4)|i|{const consumed=demand[i][j]*scale*oxygen_scale;gains[i]+=consumed*0.5;losses[j]+=consumed;total+=consumed;const water=if(prey.biomass>0)prey.water_reserve*(consumed/prey.biomass) else 0;water_gains[i]+=water;water_losses[j]+=water;}
     }
-    var water_returned:f32=0;
+    var water_returned:f64=0;
     for(&cell.cohorts,0..)|*c,i|{c.water_reserve=@max(0,c.water_reserve-water_losses[i]+water_gains[i]);if(c.biomass>0)c.support_mass*=@max(0,1-losses[i]/c.biomass);c.support_mass+=gains[i]*c.organization;c.biomass=@max(0,c.biomass-losses[i]+gains[i]);c.support_mass=std.math.clamp(c.support_mass,0,c.biomass);c.reproduction_credit+=gains[i];c.lifetime_grazed+=gains[i]*2;water_returned+=returnOverflow(c);}
     cell.detritus+=total*0.25;cell.nutrient+=total*0.5*nutrient_per_carbon;
     return .{.consumed=total,.respired=total*0.25,.water_returned=water_returned};
@@ -267,7 +274,7 @@ pub fn graze(cell:*Cell,days:f32,oxygen_capacity:f32) GrazingFlux {
 /// Whole resident cohort relocates, preserving identity/history and avoiding
 /// fractional duplicate lineage bookkeeping. The caller supplies actual adjacent
 /// patches, not an unrestricted search. Cost is respired carbon, oxygen-limited.
-pub const Movement=struct{moved:bool=false,to:usize=0,respired:f32=0,water_returned:f32=0};
+pub const Movement=struct{moved:bool=false,to:usize=0,respired:f32=0,water_returned:f64=0};
 pub const Neighbor=struct{index:usize,environment:Environment};
 pub const RelocationReason = enum {
     invalid, no_living_cohort, no_grazing, no_mobility, source_unsuitable,
@@ -861,7 +868,7 @@ test "water ledger closes through uptake growth maintenance drought and death" {
         try std.testing.expectApproxEqAbs(water_before,surface+vapor+storedWater(cell),0.0001);
         if(env.depth_km==0 and previous_water==0)try std.testing.expectEqual(@as(f32,0),f.fixed);
     }
-    try std.testing.expectEqual(@as(f32,0),biomass(cell));try std.testing.expectEqual(@as(f32,0),storedWater(cell));
+    try std.testing.expectEqual(@as(f32,0),biomass(cell));try std.testing.expectEqual(@as(f64,0),storedWater(cell));
     try std.testing.expectApproxEqAbs(@as(f64,carbon_before)+fixed,@as(f64,carbon(cell))+recycled,0.00002);
     try std.testing.expectApproxEqAbs(n_before,nutrientTotal(cell),0.00001);
 }
@@ -875,7 +882,7 @@ test "reserve uptake fairly shares finite real liquid and frozen reserves cannot
     try std.testing.expectApproxEqAbs(a.cohorts[0].water_reserve,b.cohorts[1].water_reserve,0.000001);
     try std.testing.expectApproxEqAbs(a.cohorts[1].water_reserve,b.cohorts[0].water_reserve,0.000001);
     env.temperature=270;env.light=1;const ice=step(&a,env,3600);
-    try std.testing.expectEqual(@as(f32,0),ice.fixed);try std.testing.expectEqual(@as(f32,0),ice.water_taken);
+    try std.testing.expectEqual(@as(f32,0),ice.fixed);try std.testing.expectEqual(@as(f64,0),ice.water_taken);
 }
 test "reproduction grazing and supported relocation conserve water without cloning" {
     var donor=initialized(3);donor.cohorts[0]=reserveFixture(0.4);donor.cohorts[0].reproduction_credit=0.1;
