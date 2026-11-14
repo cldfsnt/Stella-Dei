@@ -167,6 +167,10 @@ pub const Planet = struct {
     worldMode: Microbes.Mode = .sandbox,
     microbeCells: []Microbes.Cell = &.{},
     microbeStats: Microbes.Stats = .{},
+    propaguleFeedback: @import("../propagule_feedback.zig").Tracker = .{},
+    propaguleAttempts: u64 = 0,
+    propaguleArrivals: u64 = 0,
+    propaguleTrackedLosses: u64 = 0,
     plantGenerations: u32 = 0,
     plantBirths: u64 = 0,
     rabbitBirths: u64 = 0,
@@ -1536,7 +1540,11 @@ pub const Planet = struct {
         for (self.microbeCells, 0..) |*cell, i| {
             if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
+            const before_cohorts=cell.cohorts;
             const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+            for(before_cohorts,0..)|old,slot|{
+                if(old.biomass>0 and cell.cohorts[slot].biomass==0 and self.propaguleFeedback.failed(i,old.lineage,options.gameTime))self.propaguleTrackedLosses+|=1;
+            }
             self.applyMicrobeFlux(flux);
             self.microbeStats.failed_patches +|= flux.failed_patches;
             self.microbeStats.grazed_carbon += @as(f64,flux.grazed)*self.getMeanPointArea();
@@ -1554,6 +1562,7 @@ pub const Planet = struct {
                 for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
                 const moved = Microbes.relocate(self.microbeCells, i, which, self.microbeEnvironment(i, 1), &records, dt, options.gameTime);
                 if (moved.moved) {
+                    self.propaguleFeedback.forget(co.lineage);
                     self.applyMicrobeFlux(.{ .recycled = moved.respired });
                     self.microbeStats.relocations +|= 1;
                     self.microbeStats.movement_respired_carbon += @as(f64, moved.respired) * self.getMeanPointArea();
@@ -1567,6 +1576,20 @@ pub const Planet = struct {
             const donor_start:usize = @intCast(Microbes.random(&cell.rng) % cell.cohorts.len);
             for (0..cell.cohorts.len) |donor_offset| {
                 const cohort = (donor_start + donor_offset) % cell.cohorts.len;
+                if(cell.cohorts[cohort].reproduction_credit>=0.01 and cell.cohorts[cohort].biomass>=0.02){
+                    const adjacent=self.getNeighbours(i);
+                    const n=adjacent[@intCast(Microbes.random(&cell.rng)%adjacent.len)];
+                    const env=self.microbeEnvironment(n,1);
+                    self.propaguleAttempts+|=1;
+                    // Exploration includes harsh real habitats; no favorable-condition gate.
+                    if(std.math.isFinite(env.depth_km) and std.math.isFinite(env.temperature)){
+                        const lineage=self.microbeStats.next_lineage;
+                        if(Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats)){
+                            self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(i,n,lineage,options.gameTime);
+                            continue;
+                        }
+                    }
+                }
                 if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
                 if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
                 const neighbors = self.getNeighbours(i);

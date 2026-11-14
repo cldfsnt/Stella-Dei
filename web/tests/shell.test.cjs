@@ -10,7 +10,7 @@ const elements=new Map(ids.map(id=>[id,{id,hidden:id==='guide',disabled:false,op
 elements.set('diagnostics',{textContent:''});
 const preferences=new Map();
 let reset=0,saves=0,loads=0;const state={available:true,busy:false};
-const sandbox={console,setInterval(){},localStorage:{getItem:k=>preferences.get(k),setItem:(k,v)=>preferences.set(k,v)},setTimeout:()=>1,clearTimeout(){},requestAnimationFrame(){},ResizeObserver:class{observe(){}},MouseEvent:class{},KeyboardEvent:class{},confirm:()=>false,location:{reload(){}},createStellaTouchControls:()=>({reset(){reset++},setMode(){},down(){},move(){},up(){}}),createStellaStorage:()=>({state:()=>state,initialize:async()=>true,save:async()=>{saves++},load:async()=>{loads++}})};
+const sandbox={StellaLifeTrend:require('../life-trend.js'),console,setInterval(){},localStorage:{getItem:k=>preferences.get(k),setItem:(k,v)=>preferences.set(k,v)},setTimeout:()=>1,clearTimeout(){},requestAnimationFrame(){},ResizeObserver:class{observe(){}},MouseEvent:class{},KeyboardEvent:class{},confirm:()=>false,location:{reload(){}},createStellaTouchControls:()=>({reset(){reset++},setMode(){},down(){},move(){},up(){}}),createStellaStorage:()=>({state:()=>state,initialize:async()=>true,save:async()=>{saves++},load:async()=>{loads++;return true}})};
 sandbox.window=sandbox;sandbox.addEventListener=()=>{};sandbox.document={getElementById:id=>{assert.ok(elements.has(id),`Missing id ${id}`);return elements.get(id)},createElement:()=>({innerHTML:'',open:false}),querySelector:()=>({append(){}}),querySelectorAll:()=>[],addEventListener(){},body:{classList:{add(){},remove(){}}},documentElement:{requestFullscreen:async()=>{}},fullscreenElement:null};
 vm.createContext(sandbox);vm.runInContext(html.split('<script>')[1].split('</script>')[0],sandbox);
 (async()=>{const el=id=>elements.get(id);el('more-toggle').onclick();assert.ok(el('more-menu').open);el('close-more').onclick();assert.ok(!el('more-menu').open);el('more-toggle').onclick();el('help-toggle').onclick();assert.ok(!el('more-menu').open);assert.equal(el('guide').hidden,false);el('close-guide').onclick();assert.equal(el('guide').hidden,true);
@@ -64,7 +64,7 @@ let seedResult=1,starterCalls=[];
 sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_seed_colony'){starterCalls.push(v);return seedResult;}if(name==='stella_make_pond')return 19;return JSON.stringify({status:'origin',cell:22,water_m:15,temperature_c:24,seed_reason:'eligible',cohorts:[]});};
 sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,false);assert.match(el('starter-summary').textContent,/22.*15.0 m water.*24°C/);
 el('starter-basin').onclick();assert.match(el('starter-info').textContent,/19 patches, 15 m water/);assert.equal(starterCalls.length,0,'Basin must not seed');
-el('origin-starter').open=true;el('starter-seed').onclick();assert.equal(JSON.stringify(starterCalls),'[[22]]');assert.equal(el('origin-starter').open,false);assert.match(el('status').textContent,/Existing colony seeded/);assert.match(el('notice').textContent,/Existing colony seeded/);assert.equal(el('notice').hidden,false);
+el('origin-starter').open=true;el('starter-seed').onclick();assert.equal(JSON.stringify(starterCalls),'[[22]]');assert.equal(el('origin-starter').open,true);assert.match(el('status').textContent,/Existing colony seeded/);assert.match(el('notice').textContent,/Existing colony seeded/);assert.equal(el('notice').hidden,false);
 seedResult=0;el('starter-seed').onclick();assert.match(el('starter-info').textContent,/No colony added/);
 seedResult=-1;el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Patch changed/);
 sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:0,temperature_c:24,seed_reason:'too_dry'});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);assert.match(el('starter-summary').textContent,/Too dry/);
@@ -76,4 +76,16 @@ el('god-toggle').onclick();assert.equal(el('god-sheet').open,true);assert.match(
 el('god-heat').onclick();assert.match(el('notice').textContent,/40.0°C/);
 sandbox.Module.ccall=()=>JSON.stringify({failure:'dry',count:0});el('god-wave').onclick();assert.match(el('god-result').textContent,/No water here/);
 sandbox.Module.ccall=()=>JSON.stringify({status:'no_world'});el('god-refresh').onclick();assert.equal(el('god-wave').disabled,true);el('god-wave').onclick();assert.match(el('god-result').textContent,/Select a planet/);
+sandbox.Module._stella_watch_life=()=>1;el('starter-watch').onclick();assert.equal(el('origin-starter').open,false);assert.match(el('notice').textContent,/Pause or Play stays/);
+// Actual observed biomass trend is shown, without labeling a cause or guaranteed growth.
+let td=0,tm=.02;
+sandbox.Module._stella_world_mode=()=>1;
+sandbox.Module.ccall=(name)=>name==='stella_seed_colony'?1:JSON.stringify({status:'origin',cell:29,day:td,water_m:5,temperature_c:22,seed_reason:'eligible',cohorts:[{biomass:tm}]});
+for(let i=0;i<=4;i++){td=i*.5;tm=.02-i*.001;sandbox.refreshStarter();}
+assert.match(el('starter-summary').textContent,/Net biomass falling/);
+el('refresh-life').onclick();assert.match(el('life-conditions').textContent,/does not prove a cause/);
+el('starter-seed').onclick();assert.doesNotMatch(el('starter-summary').textContent,/Net biomass/);
+for(let i=1;i<=4;i++){td=2+i*.5;tm=.016+i*.001;sandbox.refreshStarter();}
+assert.match(el('starter-summary').textContent,/Net biomass rising/);
+await el('load-world').onclick();sandbox.refreshStarter();assert.doesNotMatch(el('starter-summary').textContent,/Net biomass/);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

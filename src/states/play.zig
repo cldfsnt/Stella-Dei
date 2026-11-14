@@ -183,6 +183,7 @@ pub const PlayState = struct {
     meanTemperature: f32 = 293.15,
     mobileFeedback: []const u8 = "",
     mobileFeedbackSeconds: f32 = 0,
+    propaguleVisuals: @import("../propagule_visuals.zig").Pool = .{},
     seedTargets: SeedTargets.List = .{},
     seedTargetWidth:f32=0,
     seedTargetHeight:f32=0,
@@ -663,6 +664,7 @@ pub const PlayState = struct {
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
+        self.propaguleVisuals.advance(dt);
         self.godEffectSeconds = @max(0,self.godEffectSeconds-dt);
         if (self.showEscapeMenu) return;
 
@@ -1415,6 +1417,54 @@ pub const PlayState = struct {
         }
     }
 
+    fn propaguleScreen(self:*PlayState,cell:usize,vp:Mat4,width:f32,height:f32,top:f32) ?Vec2 {
+        if(cell>=self.planet.transformedPoints.len)return null;
+        const p=self.planet.transformedPoints[cell];if(p.dot(self.cameraPos.sub(p))<=0)return null;
+        const clip=vp.mulByVec4(Vec4.new(p.x(),p.y(),p.z(),1));if(clip.w()<=0)return null;
+        const x=(clip.x()/clip.w()+1)*width/2;const y=(1-clip.y()/clip.w())*height/2;
+        if(x<14 or x>width-14 or y<top+20 or y>height-116)return null;
+        return Vec2.new(x,y);
+    }
+    /// Cyan diamonds are real arrivals, amber crosses actual tracked colony losses.
+    /// Neither denotes established life; green + targets retain their own meaning.
+    fn renderPropaguleFeedback(self:*PlayState,vg:nvg,vp:Mat4,width:f32,height:f32,top:f32) void {
+        if(self.planet.worldMode!=.origin or self.displayMode!=.Normal)return;
+        const tracker=&self.planet.propaguleFeedback;
+        const latest=tracker.next_serial-1;
+        if(latest<self.propaguleVisuals.last_serial)self.propaguleVisuals=.{};
+        var serial=@max(self.propaguleVisuals.last_serial+1,if(latest>31)latest-31 else 1);
+        while(serial<=latest):(serial+=1){
+            const event=tracker.events[@intCast((serial-1)%tracker.events.len)];
+            if(event.serial==serial and self.propaguleScreen(event.cell,vp,width,height,top)!=null)self.propaguleVisuals.take(event);
+        }
+        self.propaguleVisuals.last_serial=latest;
+        var shown=false;
+        for(self.propaguleVisuals.pulses)|pulse|{
+            if(pulse.remaining<=0)continue;
+            const pos=self.propaguleScreen(pulse.event.cell,vp,width,height,top) orelse continue;
+            const x=pos.x();const y=pos.y();const alpha=pulse.remaining/@import("../propagule_visuals.zig").duration;
+            const r=6+(1-alpha)*7;shown=true;
+            if(pulse.event.kind==.arrival){
+                if(self.propaguleScreen(pulse.event.from,vp,width,height,top))|from|{
+                    if(from.distance(pos)<160){vg.beginPath();vg.moveTo(from.x(),from.y());vg.lineTo(x,y);vg.strokeColor(nvg.rgba(107,227,255,@intFromFloat(alpha*95)));vg.strokeWidth(1.5);vg.stroke();}
+                }
+                vg.beginPath();vg.moveTo(x,y-r);vg.lineTo(x+r,y);vg.lineTo(x,y+r);vg.lineTo(x-r,y);vg.closePath();
+                vg.fillColor(nvg.rgba(15,59,78,@intFromFloat(alpha*180)));vg.fill();
+                vg.strokeColor(nvg.rgba(117,237,255,@intFromFloat(alpha*255)));vg.strokeWidth(2.5);vg.stroke();
+                vg.beginPath();vg.circle(x,y,2);vg.fillColor(nvg.rgba(210,255,255,@intFromFloat(alpha*255)));vg.fill();
+            }else{
+                vg.beginPath();vg.moveTo(x-r*0.6,y-r*0.6);vg.lineTo(x+r*0.6,y+r*0.6);vg.moveTo(x+r*0.6,y-r*0.6);vg.lineTo(x-r*0.6,y+r*0.6);
+                vg.strokeColor(nvg.rgba(71,34,9,@intFromFloat(alpha*230)));vg.strokeWidth(6);vg.stroke();
+                vg.strokeColor(nvg.rgba(255,185,93,@intFromFloat(alpha*255)));vg.strokeWidth(2.5);vg.stroke();
+            }
+        }
+        if(shown){
+            vg.beginPath();vg.roundedRect(8,height-113,@min(width-16,315),22,5);vg.fillColor(nvg.rgba(8,25,37,215));vg.fill();
+            vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});vg.fillColor(nvg.rgb(193,230,240));
+            _=vg.text(15,height-102,"Diamond: arrival · X: tracked colony lost");
+        }
+    }
+
     /// Read-only Seed map: targets are actual cell centers where the engine can
     /// seed now, including slot/resource limits, not a water-color approximation.
     fn renderSeedZones(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
@@ -1588,6 +1638,7 @@ pub const PlayState = struct {
         const vp = projection.mul(view);
         self.renderSeedZones(vg, vp, width, height, toolBottom);
         self.renderSprouts(vg, vp, width, height, toolBottom);
+        self.renderPropaguleFeedback(vg,vp,width,height,toolBottom);
         self.renderGodEffects(vg, vp, width, height, toolBottom);
         // Screen-space selection only; not a representation of brush radius.
         if (self.pointerOnPlanet and !self.cameraInputBlocked() and !(self.planet.worldMode == .origin and self.selectedTool == .PlaceVegetation)) {
