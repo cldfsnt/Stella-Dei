@@ -54,15 +54,15 @@ function movementOpportunity(reason){
 let lifePoint=null;
 function producerFeedback(t){
  if(!t||!Number.isFinite(t.support_mass)||!Number.isFinite(t.frond_mass))return '';
- const n=(v,d=3)=>Number.isFinite(v)?v.toFixed(d):'unknown';
- return '\nCollecting tissue '+n(t.frond_mass)+' kg C/m² · Support '+n(t.support_mass)+' kg C/m²\nCollecting height '+n(t.height_m)+' m'+(Number.isFinite(t.available_light)?'\nCurrent intercepted light '+n(t.available_light,2)+'× reference':'')+(Number.isFinite(t.maintenance_potential)?'\nPotential support upkeep '+n(t.maintenance_potential,4)+' kg C/m²/day':'');
+ const n=(v,d=3)=>{if(!Number.isFinite(v))return 'unknown';const fixed=v.toFixed(d);if(v===0||Number(fixed)!==0)return fixed;const precise=v.toFixed(6);return Number(precise)!==0?precise:v.toExponential(2);};
+ return '\nCollecting tissue '+n(t.frond_mass)+' kg C/m² · Support '+n(t.support_mass)+' kg C/m²\nCollecting height '+n(t.height_m)+' m'+(Number.isFinite(t.available_light)?'\nPotential intercepted light '+n(t.available_light,2)+'× reference':'')+(Number.isFinite(t.maintenance_potential)?'\nPotential support upkeep '+n(t.maintenance_potential,4)+' kg C/m²/day':'');
 }
 function fineWater(delta){
  const out=document.getElementById('water-feedback');
  if(lifePoint===null||!Module.started||Module.failed||typeof Module._stella_adjust_water!=='function'){out.textContent='Start an Origin planet and refresh this patch first.';return;}
  const result=Module.ccall('stella_adjust_water','number',['number','number'],[lifePoint,delta]);
  if(!Number.isFinite(result)){out.textContent='Patch changed or adjustment unavailable. Refresh and try again.';return;}
- out.textContent=result===0?'Water is already at its lower bound. No water removed.':(result>0?'Added ':'Removed ')+Math.abs(result).toFixed(2)+' m of water in this patch.';
+ out.textContent=result===0?'Water is already at its lower bound. No water removed.':(result>0?'Added ':'Removed ')+(Math.abs(result)<0.01?'less than 0.01':Math.abs(result).toFixed(2))+' m of water in this patch.';
  refreshLife();
 }
 document.getElementById('water-minus').onclick=()=>fineWater(-0.1);
@@ -85,7 +85,7 @@ function refreshLife(){
   if(living.some(c=>Number.isFinite(c.structure)))document.getElementById('life-glossary').textContent='Structure is inherited drying-protection investment with growth and maintenance costs, not a real-world taxonomic label or a new life class.';
   if(living.some(c=>Number.isFinite(c.feeding)))document.getElementById('life-glossary').textContent+=' Grazing investment is an inherited capability with reduced photosynthesis and higher maintenance costs. Feeding requires other living cohorts, oxygen and suitable water. Recorded intake is carbon consumed by this cohort, not biomass gained or a feeding rate; it resets in offspring. An amber mat dot means a currently living grazing-capable cohort has fed, not that it is eating now. These are microbial functions, not animals or new species.';
   if(living.some(c=>Number.isFinite(c.mobility)))document.getElementById('life-glossary').textContent+=' Mobility is inherited investment with photosynthesis and maintenance costs. It can relocate collecting tissue to suitable adjacent food-rich water, paying an oxygen-limited carbon cost; support is shed into detritus at the source. Records refer to coarse patch changes, not individual animal travel or an animation. Movement records reset in offspring; feeding records and identity travel with the relocating cohort.';
-  if(living.some(c=>c.tissue))document.getElementById('life-glossary').textContent+=' Raised frond symbols are map-scale schematics of actual support and collecting tissue, not individual plants. Current intercepted light is a computed condition, not recorded production. Support has maintenance cost; careful water changes can expose tissue. This is organized microbial growth, not a claim that true plants or new species evolved.';
+  if(living.some(c=>c.tissue))document.getElementById('life-glossary').textContent+=' Raised frond symbols are map-scale schematics of actual support and collecting tissue, not individual plants. Potential intercepted light is a computed condition, not recorded production. Support has maintenance cost; careful water changes can expose tissue. This is organized microbial growth, not a claim that true plants or new species evolved.';
  }catch{summary.textContent='Could not read this snapshot. Close and try Refresh again.';}
 }
 document.getElementById('life-toggle').onclick=()=>{touchControls.reset();document.getElementById('more-menu').close();refreshLife();document.getElementById('life-sheet').showModal();};
