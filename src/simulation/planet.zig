@@ -720,6 +720,11 @@ pub const Planet = struct {
     const exp = approxExp;
 
     /// Given the index of a point on the planet, compute the specific heat capacity
+    pub fn currentHeatCapacity(self:*Planet,index:usize) f64 {
+        if(index>=self.temperature.len or index>=self.waterMass.len)return std.math.nan(f64);
+        return self.computeHeatCapacity(index,self.getMeanPointArea());
+    }
+
     inline fn computeHeatCapacity(self: *Planet, pointIndex: usize, pointArea: f32) f32 {
         if (self.worldMode == .origin) return SurfacePhysics.originHeatCapacity(pointArea, self.waterMass[pointIndex], self.temperature[pointIndex]);
         // specific heat capacities of given materials

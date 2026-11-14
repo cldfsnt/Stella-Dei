@@ -182,6 +182,8 @@ pub const PlayState = struct {
     meanTemperature: f32 = 293.15,
     mobileFeedback: []const u8 = "",
     mobileFeedbackSeconds: f32 = 0,
+    godReceipt: ?@import("../god_actions.zig").Receipt = null,
+    godEffectSeconds: f32 = 0,
 
     pub fn init(game: *Game) PlayState {
         // Browser-created planets use a lighter grid. Loading preserves the
@@ -656,6 +658,7 @@ pub const PlayState = struct {
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
+        self.godEffectSeconds = @max(0,self.godEffectSeconds-dt);
         if (self.showEscapeMenu) return;
 
         const planet = &self.planet;
@@ -914,6 +917,16 @@ pub const PlayState = struct {
             self.mobileFeedbackSeconds=3;
         }
         return changed;
+    }
+
+    pub fn applyGodAction(self:*PlayState,kind:@import("../god_actions.zig").Kind,expected:usize) @import("../god_actions.zig").Receipt {
+        const Actions=@import("../god_actions.zig");
+        const result=if(kind==.wave) Actions.wave(&self.planet,expected,self.selectedPoint) else Actions.lightning(&self.planet,expected,self.selectedPoint,self.planet.currentHeatCapacity(self.selectedPoint));
+        self.godReceipt=if(result.success())result else null;
+        self.godEffectSeconds=if(result.success())1.2 else 0;
+        self.mobileFeedback=if(result.success()) (if(kind==.wave) "Wave moved existing water; watch flooding" else "Heat impulse added; ecology responds with time") else "Action blocked: refresh selected patch";
+        self.mobileFeedbackSeconds=5;
+        return result;
     }
 
     pub fn seedSelectedColony(self:*PlayState, expected_point:u32) i32 {
@@ -1329,6 +1342,44 @@ pub const PlayState = struct {
         return p.ypos < mobileToolbarBottom(size.x()) or p.ypos > size.y() - 84;
     }
 
+    /// Feedback depicts only cells changed by a successful explicit intervention.
+    /// Real-time, monotonic fade: no repeated lightning flashes or full-screen flash.
+    fn renderGodEffects(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
+        const receipt = self.godReceipt orelse return;
+        const visuals = @import("../god_visuals.zig");
+        if (!visuals.visible(receipt,self.godEffectSeconds)) return;
+        const alpha = visuals.fade(self.godEffectSeconds);
+        const progress = 1-alpha;
+        for (receipt.affected[0..receipt.count]) |delta| {
+            if (delta.cell>=self.planet.transformedPoints.len) continue;
+            if (receipt.kind==.wave and delta.water_mass==0) continue;
+            if (receipt.kind==.lightning and delta.temperature_k<=0) continue;
+            const p=self.planet.transformedPoints[delta.cell];
+            if (p.dot(self.cameraPos.sub(p))<=0) continue;
+            const clip=vp.mulByVec4(za.Vec4.new(p.x(),p.y(),p.z(),1));
+            if (clip.w()<=0) continue;
+            const x=(clip.x()/clip.w()+1)*width/2;
+            const y=(1-clip.y()/clip.w())*height/2;
+            if (x<8 or x>width-8 or y<toolBottom+18 or y>height-100) continue;
+            if (receipt.kind==.wave) {
+                const radius=12+progress*30;
+                vg.beginPath();vg.ellipse(x,y,radius,radius*0.55);
+                vg.strokeColor(nvg.rgba(8,53,76,@intFromFloat(alpha*220)));vg.strokeWidth(6);vg.stroke();
+                vg.strokeColor(nvg.rgba(117,238,255,@intFromFloat(alpha*240)));vg.strokeWidth(2.5);vg.stroke();
+                vg.beginPath();vg.ellipse(x,y,radius*0.62,radius*0.34);
+                vg.strokeColor(nvg.rgba(164,248,255,@intFromFloat(alpha*170)));vg.strokeWidth(1.5);vg.stroke();
+            } else {
+                vg.beginPath();vg.circle(x,y,14+progress*12);
+                vg.fillColor(nvg.rgba(255,191,72,@intFromFloat(alpha*55)));vg.fill();
+                // Fixed bolt geometry does not jitter or strobe between frames.
+                const top=@max(toolBottom+4,y-64);
+                vg.beginPath();vg.moveTo(x+9,top);vg.lineTo(x-7,y-37);vg.lineTo(x+6,y-32);vg.lineTo(x-3,y-12);vg.lineTo(x,y);
+                vg.strokeColor(nvg.rgba(102,63,20,@intFromFloat(alpha*230)));vg.strokeWidth(7);vg.stroke();
+                vg.strokeColor(nvg.rgba(255,245,169,@intFromFloat(alpha*255)));vg.strokeWidth(3);vg.stroke();
+            }
+        }
+    }
+
     /// Read-only Seed map: targets are actual cell centers where the engine can
     /// seed now, including slot/resource limits, not a water-color approximation.
     fn renderSeedZones(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
@@ -1505,6 +1556,7 @@ pub const PlayState = struct {
         const vp = projection.mul(view);
         self.renderSeedZones(vg, vp, width, height, toolBottom);
         self.renderSprouts(vg, vp, width, height, toolBottom);
+        self.renderGodEffects(vg, vp, width, height, toolBottom);
         // Screen-space selection only; not a representation of brush radius.
         if (self.pointerOnPlanet and !self.cameraInputBlocked() and !(self.planet.worldMode == .origin and self.selectedTool == .PlaceVegetation)) {
             const p = self.planet.transformedPoints[self.selectedPoint];

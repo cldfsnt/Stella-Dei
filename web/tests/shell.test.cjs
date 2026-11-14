@@ -70,4 +70,10 @@ seedResult=-1;el('starter-seed').onclick();assert.match(el('starter-info').textC
 sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:0,temperature_c:24,seed_reason:'too_dry'});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);assert.match(el('starter-summary').textContent,/Too dry/);
 sandbox.Module._stella_world_mode=()=>0;sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,true);assert.equal(el('starter-seed').disabled,true);el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Choose an Origin/);
 sandbox.Module._stella_world_mode=()=>1;sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:null,temperature_c:24});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);
+sandbox.Module._stella_god_target=()=>22;sandbox.Module._stella_god_action=()=>0;
+let godCalls=[];sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_god_target')return JSON.stringify({status:'ready',cell:22,water_m:3,temperature_c:25});godCalls.push(v);return JSON.stringify({failure:'none',count:7,moved_mass:1,moved_depth_m:0.5,affected:[{temperature_k:40}],heat_joules:40000});};
+el('god-toggle').onclick();assert.equal(el('god-sheet').open,true);assert.match(el('god-target').textContent,/22/);el('god-wave').onclick();assert.equal(JSON.stringify(godCalls),'[[0,22]]');assert.equal(el('god-sheet').open,false);assert.match(el('notice').textContent,/No water added/);
+el('god-heat').onclick();assert.match(el('notice').textContent,/40.0°C/);
+sandbox.Module.ccall=()=>JSON.stringify({failure:'dry',count:0});el('god-wave').onclick();assert.match(el('god-result').textContent,/No water here/);
+sandbox.Module.ccall=()=>JSON.stringify({status:'no_world'});el('god-refresh').onclick();assert.equal(el('god-wave').disabled,true);el('god-wave').onclick();assert.match(el('god-result').textContent,/Select a planet/);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});
