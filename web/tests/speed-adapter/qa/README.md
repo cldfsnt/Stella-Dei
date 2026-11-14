@@ -1,0 +1,9 @@
+# Actual clock adapter tests
+
+After applying adapter, STELLA_SOURCE_ROOT=<repo> python3 prepare.py /tmp/clock-test (or --sandbox) creates isolated native/browser-mode sources using the existing rendering harness. No production source edits. Build with repo web/tests/egl-origin-build.zig -Dsource=/tmp/clock-test/main.zig. Run in repo assets cwd.
+
+Callbacks: QA_CLOCK=1 STELLA_PRODUCER_SEED=42 STELLA_FORMS_SINGLE=1 <binary>. Native harness bypasses only browser-session availability check to exercise the same exported callback body; not a browser runtime claim. It verifies pause, invalid rate, raw60s gap, menu debt, zero-step rendered time, JSON parse/load resets and identical full save after6fixedticks under3requestedrates. Real wall section runs5seconds pertarget using monotonic clock, rendered frames and input polling; theoretical target is not called actual performance.
+
+Sandbox: STELLA_PRODUCER_SEED=1337 <binary>. Actual player Drain, Plant and Add-pair pointer actions after rendering establishes framebuffer size and center cursor. Requested200000 intentionally exceeds legacy threshold to exercise engine subsystem safety, although public UI offers at most86400.300fixed1440s steps; fixedstep effective timeScale1. Checks births/meals, finite positions/satiety, bounded population and actual displacement on ticks with unchanged population ordering. Raw fixture interval has0.1microsecond epsilon to avoid an f32 value infinitesimally below the quantum; no simulation/biology correction.
+
+Initial failed fixtures were corrected, not engine safety bypassed: saves.capture returns borrowed arrays, so restoring it directly triggered alias safety; tests now serialize→parse owned JSON. Mouse UI guard initially rejected clicks before first render populated dimensions; tests render before clicking. Native shutdown allocator leak warnings predate this adapter and remain disclosed.

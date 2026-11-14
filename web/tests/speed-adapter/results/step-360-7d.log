@@ -1,0 +1,163 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0xdfb9aa0 context=0xdfba0b0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+SPEED_QA step_seconds=360 requested_scale=21600 actual_step_count_per_day=240
+QA frame=1 selected=29254 elevation=4999.647 water=11234.662 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5896.4697
+Captured /tmp/speed-step-360-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0 depth_m=1.4648438 temp=293.15 camera=5896.4697 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5296.4697
+Captured /tmp/speed-step-360-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0.02 depth_m=5 temp=293.15 camera=5296.4697 visiblemats=1
+FORMS_PLAYER_INITIAL patch=29254 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=126 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29256 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=7352 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29255 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40248 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40249 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+STEP_SEEDED_STATE bytes=8734640 hash=c5cdbe3d3e203252
+DIAGNOSTIC selected=29254 latitude_z=-0.15081729 depth_m=5 temp=293.15
+QA frame=3 selected=29254 elevation=5003.9126 water=38359 vegetation=0 rabbits=0 time=360.0000305175781 paused=false tool=PlaceVegetation camera=5296.4697
+Captured /tmp/speed-step-360-003.ppm
+ORIGIN_ENV time=360.0000305175781 sun=1361 nutrient=0.018001769 detritus=0.00001769282 fixed=153390588.5714531 recycled=56.5512120437802 CO2=754.357713320203 O2=26334.626963110873
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.019982298836112022 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0.019982299 depth_m=5.00148 temp=293.14343 camera=5296.4697 visiblemats=1
+PROPAGULE_DAY day=1 grow_seconds=4 occupied=2 biomass=0.025735619477927685 attempts=1 arrivals=1 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=1 living=2 counts={ 2, 0, 0, 0, 0, 0 }
+PATCH day=1 index=29254 depth=5.0094 temp=293.31088 nutrient=0.017415894
+LINEAGE day=1 patch=29254 id=1 parent=0 generation=0 mass=0.021841014 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=1 index=126 depth=14.787014 temp=293.20477 nutrient=0.02
+PATCH day=1 index=29256 depth=14.79237 temp=293.20712 nutrient=0.02
+PATCH day=1 index=7352 depth=14.79962 temp=293.20755 nutrient=0.02
+PATCH day=1 index=29255 depth=14.79814 temp=293.20834 nutrient=0.02
+PATCH day=1 index=40248 depth=14.777682 temp=293.20422 nutrient=0.02
+PATCH day=1 index=40249 depth=14.78597 temp=293.20532 nutrient=0.020012757
+LINEAGE day=1 patch=40249 id=2 parent=1 generation=1 mass=0.003872355 support=0 organization=0 feeding=0.03480345 grazed=0 optimum=301.94894
+HOURLY hour=1 temp=292.54..293.55 depth_m=5.001..5.124 biomass=0.021841 nutrient=0.017416 detritus=0.004249 carbon_fixed_kg=79123372.7979615
+PROPAGULE_DAY day=2 grow_seconds=8 occupied=2 biomass=0.03242355212569237 attempts=2 arrivals=2 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=2 living=3 counts={ 3, 0, 0, 0, 0, 0 }
+PATCH day=2 index=29254 depth=4.864686 temp=293.4825 nutrient=0.016767928
+LINEAGE day=2 patch=29254 id=1 parent=0 generation=0 mass=0.024320636 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=2 index=126 depth=14.643373 temp=293.25986 nutrient=0.02
+PATCH day=2 index=29256 depth=14.653111 temp=293.26373 nutrient=0.02
+PATCH day=2 index=7352 depth=14.657149 temp=293.26404 nutrient=0.02
+PATCH day=2 index=29255 depth=14.6594515 temp=293.26562 nutrient=0.02
+PATCH day=2 index=40248 depth=14.645923 temp=293.25888 nutrient=0.02
+PATCH day=2 index=40249 depth=14.653979 temp=293.26035 nutrient=0.019992553
+LINEAGE day=2 patch=40249 id=2 parent=1 generation=1 mass=0.0042487546 support=0 organization=0 feeding=0.03480345 grazed=0.00011240171 optimum=301.94894
+LINEAGE day=2 patch=40249 id=3 parent=1 generation=1 mass=0.003825738 support=0 organization=0 feeding=0 grazed=0 optimum=302.04993
+HOURLY hour=2 temp=292.69..293.73 depth_m=4.865..5.009 biomass=0.024321 nutrient=0.016768 detritus=0.008400 carbon_fixed_kg=95719847.33783957
+PROPAGULE_DAY day=3 grow_seconds=12 occupied=2 biomass=0.03997109644114971 attempts=3 arrivals=3 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=3 living=4 counts={ 4, 0, 0, 0, 0, 0 }
+PATCH day=3 index=29254 depth=4.751115 temp=293.6524 nutrient=0.016049545
+LINEAGE day=3 patch=29254 id=1 parent=0 generation=0 mass=0.02750447 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=3 index=126 depth=14.551311 temp=293.31635 nutrient=0.02
+PATCH day=3 index=29256 depth=14.578697 temp=293.32156 nutrient=0.02
+PATCH day=3 index=7352 depth=14.576246 temp=293.32172 nutrient=0.02
+PATCH day=3 index=29255 depth=14.572358 temp=293.32434 nutrient=0.02
+PATCH day=3 index=40248 depth=14.568969 temp=293.31436 nutrient=0.02
+PATCH day=3 index=40249 depth=14.560689 temp=293.31686 nutrient=0.019956993
+LINEAGE day=3 patch=40249 id=2 parent=1 generation=1 mass=0.0047077765 support=0 organization=0 feeding=0.03480345 grazed=0.0005699485 optimum=301.94894
+LINEAGE day=3 patch=40249 id=3 parent=1 generation=1 mass=0.0036534832 support=0 organization=0 feeding=0 grazed=0 optimum=302.04993
+LINEAGE day=3 patch=40249 id=4 parent=1 generation=1 mass=0.0040689637 support=0 organization=0 feeding=0.07002946 grazed=0.00027074004 optimum=301.69388
+HOURLY hour=3 temp=292.84..293.90 depth_m=4.751..4.864 biomass=0.027504 nutrient=0.016050 detritus=0.012582 carbon_fixed_kg=114749464.4769972
+PROPAGULE_DAY day=4 grow_seconds=16 occupied=3 biomass=0.04848760459572077 attempts=4 arrivals=4 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=4 living=5 counts={ 5, 0, 0, 0, 0, 0 }
+PATCH day=4 index=29254 depth=4.639099 temp=293.8245 nutrient=0.015252234
+LINEAGE day=4 patch=29254 id=1 parent=0 generation=0 mass=0.031477567 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=4 index=126 depth=14.492651 temp=293.3714 nutrient=0.02
+PATCH day=4 index=29256 depth=14.539011 temp=293.3768 nutrient=0.02
+PATCH day=4 index=7352 depth=14.546295 temp=293.37708 nutrient=0.02
+PATCH day=4 index=29255 depth=14.4934025 temp=293.38168 nutrient=0.02
+PATCH day=4 index=40248 depth=14.526257 temp=293.3676 nutrient=0.019965388
+LINEAGE day=4 patch=40248 id=5 parent=1 generation=1 mass=0.004346093 support=0 organization=0 feeding=0 grazed=0 optimum=301.30896
+PATCH day=4 index=40249 depth=14.478555 temp=293.37234 nutrient=0.019937893
+LINEAGE day=4 patch=40249 id=2 parent=1 generation=1 mass=0.004843561 support=0 organization=0 feeding=0.03480345 grazed=0.0010530443 optimum=301.94894
+LINEAGE day=4 patch=40249 id=3 parent=1 generation=1 mass=0.003372046 support=0 organization=0 feeding=0 grazed=0 optimum=302.04993
+LINEAGE day=4 patch=40249 id=4 parent=1 generation=1 mass=0.004405419 support=0 organization=0 feeding=0.07002946 grazed=0.0011355865 optimum=301.69388
+HOURLY hour=4 temp=292.99..294.08 depth_m=4.639..4.751 biomass=0.031478 nutrient=0.015252 detritus=0.016903 carbon_fixed_kg=135659880.93159622
+PROPAGULE_DAY day=5 grow_seconds=20 occupied=4 biomass=0.05832537077367306 attempts=6 arrivals=6 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=5 living=7 counts={ 5, 0, 1, 1, 0, 0 }
+PATCH day=5 index=29254 depth=4.6405134 temp=293.989 nutrient=0.01438107
+LINEAGE day=5 patch=29254 id=1 parent=0 generation=0 mass=0.032189265 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=5 index=126 depth=14.439595 temp=293.42688 nutrient=0.02
+PATCH day=5 index=29256 depth=14.54463 temp=293.43253 nutrient=0.02
+PATCH day=5 index=7352 depth=14.522413 temp=293.43283 nutrient=0.019954279
+LINEAGE day=5 patch=7352 id=6 parent=1 generation=1 mass=0.0045055985 support=0.00002534048 organization=0.028553745 feeding=0 grazed=0 optimum=302.54654
+LINEAGE day=5 patch=7352 id=7 parent=1 generation=1 mass=0.0039516985 support=0.000006922366 organization=0.04236823 feeding=0 grazed=0 optimum=302.72186
+PATCH day=5 index=29255 depth=14.436232 temp=293.43964 nutrient=0.02
+PATCH day=5 index=40248 depth=14.490644 temp=293.42233 nutrient=0.019917676
+LINEAGE day=5 patch=40248 id=5 parent=1 generation=1 mass=0.0048232833 support=0 organization=0 feeding=0 grazed=0 optimum=301.30896
+PATCH day=5 index=40249 depth=14.40424 temp=293.42865 nutrient=0.019919554
+LINEAGE day=5 patch=40249 id=2 parent=1 generation=1 mass=0.004942138 support=0 organization=0 feeding=0.03480345 grazed=0.0015479462 optimum=301.94894
+LINEAGE day=5 patch=40249 id=3 parent=1 generation=1 mass=0.003083635 support=0 organization=0 feeding=0 grazed=0 optimum=302.04993
+LINEAGE day=5 patch=40249 id=4 parent=1 generation=1 mass=0.0047787484 support=0 organization=0 feeding=0.07002946 grazed=0.00207261 optimum=301.69388
+HOURLY hour=5 temp=293.15..294.25 depth_m=4.638..4.641 biomass=0.032189 nutrient=0.014381 detritus=0.021248 carbon_fixed_kg=158774788.8206427
+info: start sound
+QA frame=4 selected=29254 elevation=5003.9126 water=35590.555 vegetation=0 rabbits=0 time=432000.03662109375 paused=false tool=PlaceVegetation camera=5296.4697
+Captured /tmp/speed-step-360-004.ppm
+ORIGIN_ENV time=432000.03662109375 sun=1361 nutrient=0.01438107 detritus=0.02124848 fixed=737417942.9364903 recycled=57835868.8178173 CO2=754.357666218767 O2=26334.626997366504
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.05827436689287424 occupied=4 births=6 maxgen=1 rabbits=0 vegetation=0 selected=29254 selectedbio=0.032189265 depth_m=4.6405134 temp=293.989 camera=5296.4697 visiblemats=3
+PROPAGULE_DAY day=6 grow_seconds=24 occupied=5 biomass=0.06953765172511339 attempts=7 arrivals=7 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=6 living=8 counts={ 6, 0, 1, 1, 0, 0 }
+PATCH day=6 index=29254 depth=4.6388936 temp=294.14926 nutrient=0.0133906845
+LINEAGE day=6 patch=29254 id=1 parent=0 generation=0 mass=0.038093105 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=6 index=126 depth=14.404916 temp=293.48254 nutrient=0.019991713
+LINEAGE day=6 patch=126 id=8 parent=1 generation=1 mass=0.0040829093 support=0 organization=0 feeding=0.086007826 grazed=0 optimum=305.2612
+PATCH day=6 index=29256 depth=14.573819 temp=293.4873 nutrient=0.02
+PATCH day=6 index=7352 depth=14.4799 temp=293.49008 nutrient=0.01990227
+LINEAGE day=6 patch=7352 id=6 parent=1 generation=1 mass=0.0047515193 support=0.00005166564 organization=0.028553745 feeding=0 grazed=0 optimum=302.54654
+LINEAGE day=6 patch=7352 id=7 parent=1 generation=1 mass=0.004225432 support=0.000048415128 organization=0.04236823 feeding=0 grazed=0 optimum=302.72186
+PATCH day=6 index=29255 depth=14.404436 temp=293.49768 nutrient=0.02
+PATCH day=6 index=40248 depth=14.467657 temp=293.47797 nutrient=0.019863706
+LINEAGE day=6 patch=40248 id=5 parent=1 generation=1 mass=0.005362962 support=0 organization=0 feeding=0 grazed=0 optimum=301.30896
+PATCH day=6 index=40249 depth=14.405024 temp=293.4822 nutrient=0.019903919
+LINEAGE day=6 patch=40249 id=2 parent=1 generation=1 mass=0.004982589 support=0 organization=0 feeding=0.03480345 grazed=0.0020499318 optimum=301.94894
+LINEAGE day=6 patch=40249 id=3 parent=1 generation=1 mass=0.0027860147 support=0 organization=0 feeding=0 grazed=0 optimum=302.04993
+LINEAGE day=6 patch=40249 id=4 parent=1 generation=1 mass=0.005192251 support=0 organization=0 feeding=0.07002946 grazed=0.003089752 optimum=301.69388
+HOURLY hour=6 temp=293.31..294.41 depth_m=4.638..4.641 biomass=0.038093 nutrient=0.013391 detritus=0.025603 carbon_fixed_kg=185176340.2015705
+PROPAGULE_DAY day=7 grow_seconds=28 occupied=6 biomass=0.07849787967279553 attempts=9 arrivals=9 tracked_colony_losses=1 actual_nursery_api=true
+FORMS_DAY day=7 living=9 counts={ 6, 1, 1, 1, 0, 0 }
+PATCH day=7 index=29254 depth=4.639635 temp=294.30655 nutrient=0.0123272985
+LINEAGE day=7 patch=29254 id=1 parent=0 generation=0 mass=0.040726926 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=7 index=126 depth=14.405123 temp=293.53488 nutrient=0.020005504
+LINEAGE day=7 patch=126 id=8 parent=1 generation=1 mass=0.0039451513 support=0 organization=0 feeding=0.086007826 grazed=0 optimum=305.2612
+PATCH day=7 index=29256 depth=14.619509 temp=293.54053 nutrient=0.02
+PATCH day=7 index=7352 depth=14.435894 temp=293.5468 nutrient=0.019857818
+LINEAGE day=7 patch=7352 id=6 parent=1 generation=1 mass=0.004698502 support=0.000070055714 organization=0.028553745 feeding=0 grazed=0 optimum=302.54654
+LINEAGE day=7 patch=7352 id=7 parent=1 generation=1 mass=0.0042324616 support=0.00007963464 organization=0.04236823 feeding=0 grazed=0 optimum=302.72186
+LINEAGE day=7 patch=7352 id=9 parent=1 generation=1 mass=0.00448909 support=0 organization=0 feeding=0.07944697 grazed=0.00057549396 optimum=305.6275
+PATCH day=7 index=29255 depth=14.404595 temp=293.55276 nutrient=0.01998345
+LINEAGE day=7 patch=29255 id=10 parent=1 generation=1 mass=0.0041653784 support=0.0000029347414 organization=0.007239361 feeding=0 grazed=0 optimum=301.22894
+PATCH day=7 index=40248 depth=14.44928 temp=293.5322 nutrient=0.019802675
+LINEAGE day=7 patch=40248 id=5 parent=1 generation=1 mass=0.0059733046 support=0 organization=0 feeding=0 grazed=0 optimum=301.30896
+PATCH day=7 index=40249 depth=14.405193 temp=293.53473 nutrient=0.020180432
+LINEAGE day=7 patch=40249 id=2 parent=1 generation=1 mass=0.004652629 support=0 organization=0 feeding=0.03480345 grazed=0.0025411511 optimum=301.94894
+LINEAGE day=7 patch=40249 id=4 parent=1 generation=1 mass=0.0055433535 support=0 organization=0 feeding=0.07002946 grazed=0.0041873907 optimum=301.69388
+HOURLY hour=7 temp=293.47..294.56 depth_m=4.638..4.641 biomass=0.040727 nutrient=0.012327 detritus=0.030200 carbon_fixed_kg=204945135.00162578
+STEP_FINITE water_vapor_temperature_resources=true
+TOTAL_WATER start=477059920592.86255 end=477058237589.4907 relative_error=3.5278657861985813e-6
+STRUCTURE_WORLD max_structure=0.09729468 max_generation=1 failed_patches=1
+GRAZING_WORLD capable=4 observed=3 max_feeding=0.086007826 consumed_kgC=56018524.52371137 respired_kgC=14004631.130927842
+MOTILITY_WORLD capable=3 resident_movers=0 total_moves=0 movement_respired_kgC=0 unique_lineages=9 mean_update_ms=26.886318598214288 max_update_ms=269.128666
+PRODUCER_EVER max_support=0.000083877625 max_organization=0.04236823
+PRODUCER_WORLD inherited_capable=3 actual_supported=3 support_density_sum=0.0001526250982806232 biomass_density_sum=0.07842679647728801
+SUPPORT_RESTORE mutated_cohorts=3
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=10744724 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=240908
+info: deinit audio
+error(gpa): memory address 0x7f8a605e7000 leaked: 
+

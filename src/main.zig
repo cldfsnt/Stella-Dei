@@ -423,6 +423,18 @@ export fn stella_god_action(kind:u32,expected:u32) [*:0]const u8 {
 }
 
 /// Leave placement overlays without moving the view or changing time/pause.
+var speed_json:[512]u8=undefined;
+export fn stella_set_speed(seconds:f32)i32 {
+    const state=webPlayState() orelse return -1;
+    if(!std.math.isFinite(seconds) or (seconds!=3600 and seconds!=21600 and seconds!=86400))return -1;
+    state.timeScale=seconds;state.simulationClock.reset();return 1;
+}
+export fn stella_speed_snapshot()[*:0]const u8 {
+    const state=webPlayState() orelse return "{\"status\":\"unavailable\"}";
+    const text=std.fmt.bufPrintZ(&speed_json,"{{\"requested\":{d},\"achieved\":{d},\"paused\":{},\"step\":{d},\"steps_last_frame\":{d}}}",.{state.timeScale,state.simulationClock.achieved,state.paused,PlayState.simulation_step_seconds,state.simulationStepsLastFrame}) catch return "{}";
+    return text.ptr;
+}
+
 export fn stella_watch_life() i32 {
     const state=webPlayState() orelse return 0;
     state.watchLife();
@@ -510,13 +522,15 @@ export fn stella_load() i32 {
 fn web_frame() callconv(.C) void {
     const now = emscripten_get_now();
     // Clamp background-tab pauses rather than simulating minutes at once.
-    const dt: f32 = @floatCast(@min(@max((now - web_previous_time) / 1000, 0.001), 0.1));
+    const raw_dt:f32=@floatCast(@max((now-web_previous_time)/1000,0));
+    const dt:f32=std.math.clamp(raw_dt,0.001,0.1);
     web_previous_time = now;
     glfw.pollEvents();
     web_loop.pump(16);
     inline for (std.meta.fields(GameState)) |field| {
         if (std.mem.eql(u8, @tagName(std.meta.activeTag(game.state)), field.name)) {
             if (comptime @hasDecl(field.type, "update")) {
+                if(comptime @hasDecl(field.type,"setRawFrameDelta")) @field(game.state,field.name).setRawFrameDelta(raw_dt);
                 @field(game.state, field.name).update(&game, dt);
             }
             break;

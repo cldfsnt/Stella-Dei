@@ -115,6 +115,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     state.gameTime = saved.game_time;
     state.renderGameTime = saved.game_time;
     state.timeScale = saved.time_scale;
+    state.simulationClock.reset();state.rawFrameDelta=null;state.simulationStepsLastFrame=0;
     state.solarConstant = saved.solar_constant;
     state.planetRotationTime = saved.rotation_time;
     state.axialTilt = saved.axial_tilt;

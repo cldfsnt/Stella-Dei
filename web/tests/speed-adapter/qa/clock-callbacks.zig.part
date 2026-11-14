@@ -1,0 +1,41 @@
+    if(std.posix.getenv("QA_CLOCK")!=null){
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        const start_json=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        var start_parsed=try saves.schema.parse(al,start_json);defer start_parsed.deinit();const start=start_parsed.value;
+        state.paused=true;const before=state.gameTime;
+        std.debug.assert(stella_set_speed(86400)==1 and state.paused);
+        std.debug.assert(stella_set_speed(123)==-1 and state.timeScale==86400);
+        state.setRawFrameDelta(0.1);state.update(&game,0.1);std.debug.assert(state.gameTime==before);
+        state.paused=false;state.setRawFrameDelta(60);state.update(&game,0.1);std.debug.assert(state.gameTime==before);
+        state.setRawFrameDelta(0.01);state.update(&game,0.01);std.debug.assert(state.gameTime==before and state.simulationStepsLastFrame==0);
+        render(window);std.debug.assert(state.renderGameTime==state.gameTime);
+        state.showEscapeMenu=true;state.setRawFrameDelta(0.1);state.update(&game,0.1);std.debug.assert(state.simulationClock.pending==0 and state.gameTime==before);state.showEscapeMenu=false;
+        const rates=[_]f32{3600,21600,86400};var hashes:[3]u64=undefined;
+        for(rates,0..)|rate,k|{
+            try saves.apply(state,start);state.paused=false;state.timeScale=rate;
+            const target=state.gameTime+6*1440;var frames:usize=0;
+            while(state.gameTime<target and frames<3000):(frames+=1){state.setRawFrameDelta(1.0/60.0);state.update(&game,1.0/60.0);std.debug.assert(state.simulationStepsLastFrame<=2);}
+            std.debug.assert(state.gameTime==target);
+            // Normalize user/UI pace only for equality comparison, never simulation state.
+            const observed=try al.dupe(u8,std.mem.span(stella_speed_snapshot()));state.timeScale=21600;const bytes=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});hashes[k]=std.hash.Wyhash.hash(0,bytes);
+            std.debug.print("CLOCK_RATE requested={d} frames={d} sim_elapsed=8640 hash={x} snapshot={s}\n",.{rate,frames,hashes[k],observed});
+        }
+        std.debug.assert(hashes[0]==hashes[1] and hashes[1]==hashes[2]);
+        // Warm framebuffer/shaders and exhaust screenshot-only frames before timing.
+        for(0..12)|_|{render(window);gl.finish();window.swapBuffers();}
+        for(rates)|rate|{
+            try saves.apply(state,start);state.paused=false;state.timeScale=rate;
+            var wall=try std.time.Timer.start();var previous:u64=0;var frames:usize=0;var max_frame:f64=0;const initial_time=state.gameTime;
+            while(wall.read()<5_000_000_000){
+                const now=wall.read();const raw=@as(f64,@floatFromInt(now-previous))/1e9;previous=now;
+                glfw.pollEvents();state.setRawFrameDelta(@floatCast(raw));state.update(&game,@floatCast(std.math.clamp(raw,0.001,0.1)));
+                render(window);gl.finish();window.swapBuffers();
+                max_frame=@max(max_frame,@as(f64,@floatFromInt(wall.read()-now))/1e9);frames+=1;
+            }
+            const elapsed=@as(f64,@floatFromInt(wall.read()))/1e9;
+            std.debug.print("CLOCK_WALL requested={d} seconds={d} sim_elapsed={d} observed_mean={d} snapshot_achieved={d} frames={d} max_frame_seconds={d} raw_monotonic=true rendering=true input_polling=true\n",.{rate,elapsed,state.gameTime-initial_time,(state.gameTime-initial_time)/elapsed,state.simulationClock.achieved,frames,max_frame});
+        }
+        state.simulationClock.pending=1440;state.simulationClock.achieved=123;try saves.apply(state,start);std.debug.assert(state.simulationClock.pending==0 and state.simulationClock.achieved==0);
+        std.debug.print("CLOCK_ACTUAL paused_speed_preserved=true invalid_rejected=true raw_long_gap_no_catchup=true menu_reset=true no_tick_no_render_clock=true load_reset=true equal_physics_different_rates=true\n",.{});
+        try originSaveCheck(state,allocator);loop.pump(1024);return;
+    }

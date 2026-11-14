@@ -17,17 +17,19 @@ pub fn nextSpeed(seconds: f32) f32 {
 }
 pub const default_browser_speed: f32 = 21600;
 pub fn speedLabel(seconds: f32) []const u8 {
-    return if (seconds <= 3600) "Slow" else if (seconds <= 21600) "Grow" else "Fast";
+    return if (seconds == 3600) "1h/s" else if (seconds == 21600) "6h/s" else if (seconds == 86400) "24h/s" else "Custom";
 }
 pub fn speedHint(seconds: f32, paused: bool) []const u8 {
     if (paused) return "Pace ready; press Play to run";
-    return if (seconds <= 3600) "Slow: one day in 24 seconds" else if (seconds <= 21600) "Grow: one day in 4 seconds" else "Fast: one day per second; watch water";
+    return if (seconds == 3600) "Target 1h/s; actual rate depends on device" else if (seconds == 21600) "Target 6h/s; actual rate depends on device" else if (seconds == 86400) "Target 24h/s; actual rate depends on device" else "Custom target; see More > Speed for exact rate";
 }
 test "pace names describe bounded existing rates" {
     try std.testing.expectEqual(@as(f32,21600),default_browser_speed);
-    try std.testing.expectEqualStrings("Slow",speedLabel(3600));
-    try std.testing.expectEqualStrings("Grow",speedLabel(21600));
-    try std.testing.expectEqualStrings("Fast",speedLabel(86400));
+    try std.testing.expectEqualStrings("1h/s",speedLabel(3600));
+    try std.testing.expectEqualStrings("6h/s",speedLabel(21600));
+    try std.testing.expectEqualStrings("24h/s",speedLabel(86400));
+    try std.testing.expectEqualStrings("Custom",speedLabel(7200));
+    try std.testing.expectEqualStrings("Custom",speedLabel(43200));
     try std.testing.expectEqualStrings("Pace ready; press Play to run",speedHint(86400,true));
 }
 test "placement matches actual two metre drowning limit" {

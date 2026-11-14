@@ -1,0 +1,36 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x32c72a70 context=0x32c73080
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x1988c1518231bbba
+info: Sea Level: -1.7958984 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=28356 elevation=5014.2505 water=0 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=10257.427
+Captured /tmp/stella-v21-watch-390x400-001.ppm
+QA frame=25 selected=237 elevation=5004.8936 water=115042.94 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-025.ppm
+WATCH pause_button_actual=true no_inspect_clickthrough=true
+QA frame=35 selected=237 elevation=5004.8936 water=115016.66 vegetation=0 rabbits=0 time=1440 paused=false tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-035.ppm
+QA frame=45 selected=237 elevation=5004.8936 water=114915.875 vegetation=0 rabbits=0 time=7200 paused=true tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-045.ppm
+WATCH speed_button_actual=true compact=true
+QA frame=55 selected=237 elevation=5004.8936 water=114915.875 vegetation=0 rabbits=0 time=7200 paused=true tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-055.ppm
+WATCH_FOOTER actual_arrivals=0 tracked_losses=0 lifetime_births=0
+QA frame=59 selected=237 elevation=5004.8936 water=114915.875 vegetation=0 rabbits=0 time=7200 paused=true tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-059.ppm
+WATCH tools_restores_full=true pause_and_pace_preserved=true
+QA frame=85 selected=237 elevation=5004.8936 water=114915.875 vegetation=0 rabbits=0 time=7200 paused=true tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-085.ppm
+QA frame=95 selected=237 elevation=5004.8936 water=114915.875 vegetation=0 rabbits=0 time=7200 paused=true tool=None camera=5282.007
+Captured /tmp/stella-v21-watch-390x400-095.ppm
+info: deinit audio
+error(gpa): memory address 0x7f62f821f000 leaked: 
+

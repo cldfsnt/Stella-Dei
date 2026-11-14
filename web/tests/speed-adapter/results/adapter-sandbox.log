@@ -1,0 +1,26 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x127bea70 context=0x127bf080
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x713206e44a617596
+info: Sea Level: 4.838867 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+SANDBOX_BEGIN mode=sandbox
+SANDBOX_FOCUS result=true patch=33469
+SANDBOX_TOOLS drain=true plant=true
+SANDBOX_PAIR count=2 pointer=true depth=0
+CLOCK_SANDBOX day=1 living=2 births=0 meals=2 deaths=0 requested=200000 fixedstep=1440
+CLOCK_SANDBOX day=2 living=3 births=1 meals=6 deaths=0 requested=200000 fixedstep=1440
+CLOCK_SANDBOX day=3 living=3 births=1 meals=15 deaths=0 requested=200000 fixedstep=1440
+CLOCK_SANDBOX day=4 living=4 births=2 meals=48 deaths=0 requested=200000 fixedstep=1440
+CLOCK_SANDBOX day=5 living=4 births=2 meals=59 deaths=0 requested=200000 fixedstep=1440
+CLOCK_SANDBOX_FINAL age_elapsed=432000 max_population=4 finite=true moved=true founder_patch=33469 temp=303.63068 depth=0
+info: deinit audio
+error(gpa): memory address 0x7fb8bc185000 leaked: 
+

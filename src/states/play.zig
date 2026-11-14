@@ -154,6 +154,10 @@ pub const PlayState = struct {
     /// Updated at every frame. This will periodically resynchronise with gameTime
     /// The reason this exists is to have smooth rendering even when the simulation is slow
     renderGameTime: f64 = 0,
+    simulationClock: @import("../simulation_clock.zig").Clock = .{},
+    rawFrameDelta: ?f32 = null,
+    simulationStepsLastFrame: u8 = 0,
+
     /// The average time a tick takes to execute.
     averageUpdateTime: f32 = 0,
     /// Time scale for the simulation.
@@ -192,6 +196,9 @@ pub const PlayState = struct {
     seedTargetWorld:usize=0,
     godReceipt: ?@import("../god_actions.zig").Receipt = null,
     godEffectSeconds: f32 = 0,
+
+    pub const simulation_step_seconds: f32 = 1440;
+    pub fn setRawFrameDelta(self:*PlayState, seconds:f32) void {self.rawFrameDelta=seconds;}
 
     pub fn init(game: *Game) PlayState {
         // Browser-created planets use a lighter grid. Loading preserves the
@@ -474,7 +481,7 @@ pub const PlayState = struct {
         }
 
         if (!self.paused) {
-            self.renderGameTime = self.renderGameTime + self.timeScale / game.fps;
+            self.renderGameTime = self.gameTime;
         }
     }
 
@@ -668,11 +675,12 @@ pub const PlayState = struct {
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
         self.propaguleVisuals.advance(dt);
         self.godEffectSeconds = @max(0,self.godEffectSeconds-dt);
+        const raw_dt=self.rawFrameDelta orelse dt;self.rawFrameDelta=null;
+        self.simulationStepsLastFrame=0;
+        self.simulationClock.begin(raw_dt,self.timeScale,simulation_step_seconds,self.paused or self.showEscapeMenu);
         if (self.showEscapeMenu) return;
 
         const planet = &self.planet;
-
-        const solarVector = self.simulationSolarVector();
 
         if (game.window.getMouseButton(.left) == .press and !self.mobilePointerOnUI(game) and self.pointerOnPlanet) {
             _ = self.applySelectedTool(self.selectedTool, false, dt);
@@ -703,27 +711,21 @@ pub const PlayState = struct {
         }
 
         if (!self.paused) {
-            // The planet is simulated with a time scale divided by the number
-            // of simulation steps. So that if there are more steps, the same
-            // time speed is kept but the precision is increased.
-
-            var timer = std.time.Timer.start() catch unreachable;
-            planet.simulate(game.loop, .{
-                .dt = dt,
-                .solarConstant = self.solarConstant,
-                .timeScale = self.timeScale,
-                .gameTime = self.gameTime,
-                .planetRotationTime = self.planetRotationTime,
-                .solarVector = solarVector,
-            });
-            const updateTime = @as(f32, @floatFromInt(timer.lap() / 1_000)) / 1_000_000;
-
-            // Lifecycle ages and physics must use the same simulated duration.
-            self.gameTime += dt * self.timeScale;
-            self.averageUpdateTime = self.averageUpdateTime * 0.9 + updateTime * 0.1;
-            // Re-synchronise render game time with real game time
-            self.renderGameTime = self.gameTime;
+            var timer=std.time.Timer.start() catch unreachable;
+            while(self.simulationStepsLastFrame<2 and self.simulationClock.take(simulation_step_seconds)) {
+                // Bounded physical quantum; requested UI speed never disables a subsystem.
+                planet.simulate(game.loop,.{.dt=simulation_step_seconds,.timeScale=1,
+                    .solarConstant=self.solarConstant,.gameTime=self.gameTime,
+                    .planetRotationTime=self.planetRotationTime,.solarVector=self.simulationSolarVector()});
+                self.gameTime+=simulation_step_seconds;
+                self.simulationStepsLastFrame+=1;
+                // A single engine tick is indivisible; never start another after budget expires.
+                if(timer.read()>=16_000_000)break;
+            }
+            if(self.simulationStepsLastFrame>0){const elapsed=@as(f32,@floatFromInt(timer.read()))/1e9;self.averageUpdateTime=self.averageUpdateTime*0.9+elapsed*0.1;}
         }
+        self.simulationClock.finish();
+        self.renderGameTime=self.gameTime;
 
         const targetMusicVolume: f32 = blk: {
             if (self.paused) {
@@ -1646,6 +1648,23 @@ pub const PlayState = struct {
         _ = vg.text(x, y, text);
     }
 
+    fn renderWatchLegend(vg:nvg,width:f32,y:f32) void {
+        vg.save();defer vg.restore();
+        vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
+        var a:[4]f32=undefined;var b:[4]f32=undefined;
+        _=vg.textBounds(0,0,"paid arrival",&a);_=vg.textBounds(0,0,"tracked loss (not all deaths)",&b);
+        const first=a[2]-a[0];const second=b[2]-b[0];const lossX=12+first+16;
+        const total=lossX+12+second;
+        const scale=@min(@as(f32,1),(width-20)/total);
+        vg.translate(10,y);vg.scale(scale,scale);
+        vg.beginPath();vg.moveTo(4,-4);vg.lineTo(8,0);vg.lineTo(4,4);vg.lineTo(0,0);vg.closePath();
+        vg.strokeWidth(1.5);vg.strokeColor(nvg.rgb(117,237,255));vg.stroke();
+        vg.fillColor(nvg.rgb(190,214,232));_=vg.text(12,0,"paid arrival");
+        vg.beginPath();vg.moveTo(lossX,-4);vg.lineTo(lossX+8,4);vg.moveTo(lossX+8,-4);vg.lineTo(lossX,4);
+        vg.strokeColor(nvg.rgb(255,185,91));vg.stroke();
+        _=vg.text(lossX+12,0,"tracked loss (not all deaths)");
+    }
+
     fn renderMobileUI(self: *PlayState, game: *Game, renderer: *Renderer) void {
         const vg = renderer.vg;
         const size = renderer.framebufferSize;
@@ -1757,12 +1776,17 @@ pub const PlayState = struct {
         vg.fontFace("sans-serif");
         vg.fillColor(nvg.rgb(190, 214, 232));
         var ecologyText: [160]u8 = undefined;
-        const ecologyLabel = if (origin) std.fmt.bufPrint(&ecologyText, "Microbial births {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        const ecologyLabel = if (origin and self.watchLifeView) @import("../watch_feedback.zig").line(&ecologyText,self.planet.propaguleArrivals,self.planet.propaguleTrackedLosses) else if (origin) std.fmt.bufPrint(&ecologyText, "Microbial births {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        var ecologyBounds: [4]f32 = undefined;
+        _ = vg.textBounds(0,0,ecologyLabel,&ecologyBounds);
+        const ecologyWidth=ecologyBounds[2]-ecologyBounds[0];
+        if(ecologyWidth>width-20)vg.fontSize(14*(width-20)/ecologyWidth);
         _ = vg.text(10, height - 40, ecologyLabel);
+        vg.fontSize(14);
         const depth = self.planet.waterMass[self.selectedPoint] * self.planet.getKmPerWaterMass();
         const hint: []const u8 = if (origin and self.selectedTool == .PlaceVegetation)
             @import("../seed_eligibility.zig").seedHint(self.planet.seedEligibility(self.selectedPoint), if(self.mobileFeedbackSeconds>0) self.mobileFeedback else "")
-        else if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin) switch (self.selectedTool) {
+        else if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin and self.watchLifeView) @import("../watch_feedback.zig").legend else if (origin) switch (self.selectedTool) {
             .PlaceVegetation => if (depth < 0.0002) "Too dry: microbes need shallow water" else if (depth > 0.05) "Too deep: drain to 0.2–50m" else "Tap to seed existing simple life",
             .PlaceLife => "Tap to add nutrients (player supplied)",
             .None => "Inspect mats; Play to observe change",
@@ -1780,7 +1804,7 @@ pub const PlayState = struct {
         _ = vg.textBounds(0, 0, hint, &hintBounds);
         const hintWidth = hintBounds[2] - hintBounds[0];
         if (hintWidth > width - 20) vg.fontSize(14 * (width - 20) / hintWidth);
-        _ = vg.text(10, height - 16, hint);
+        if(origin and self.watchLifeView and self.mobileFeedbackSeconds<=0)renderWatchLegend(vg,width,height-16) else _ = vg.text(10, height - 16, hint);
 
         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) {
             const pw = @min(width - 24, 360);

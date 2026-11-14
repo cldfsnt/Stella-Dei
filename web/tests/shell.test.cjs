@@ -88,4 +88,16 @@ el('starter-seed').onclick();assert.doesNotMatch(el('starter-summary').textConte
 for(let i=1;i<=4;i++){td=2+i*.5;tm=.016+i*.001;sandbox.refreshStarter();}
 assert.match(el('starter-summary').textContent,/Net biomass rising/);
 await el('load-world').onclick();sandbox.refreshStarter();assert.doesNotMatch(el('starter-summary').textContent,/Net biomass/);
+
+// Explicit speed targets display measured progress separately; changing pace never resumes.
+sandbox.Module._stella_speed_snapshot=()=>0;sandbox.Module._stella_set_speed=()=>0;
+let speedState={requested:21600,achieved:18000,paused:true,step:1440,steps_last_frame:1},speedCalls=[],speedAccept=true;
+sandbox.Module.ccall=(name,t,a,args)=>{if(name==='stella_speed_snapshot')return JSON.stringify(speedState);if(name==='stella_set_speed'){speedCalls.push(args);if(speedAccept)speedState.requested=args[0];return speedAccept?1:-1;}return '{}';};
+el('more-toggle').onclick();el('speed-toggle').onclick();assert.equal(el('more-menu').open,false);assert.equal(el('speed-sheet').open,true);assert.match(el('speed-readout').textContent,/Paused/);assert.equal(el('speed-grow')['aria-pressed'],'true');
+el('speed-fast').onclick();assert.equal(JSON.stringify(speedCalls),'[[86400]]');assert.equal(speedState.paused,true);assert.match(el('speed-result').textContent,/Still paused/);assert.equal(el('speed-fast')['aria-pressed'],'true');
+speedState.paused=false;el('refresh-speed').onclick();assert.match(el('speed-readout').textContent,/Target: 24.0 hours\/sec.*Measured: 5.0 hours\/sec/);
+speedAccept=false;el('speed-slow').onclick();assert.match(el('speed-result').textContent,/not changed/);assert.equal(speedState.requested,86400);
+el('close-speed').onclick();assert.equal(el('speed-sheet').open,false);el('starter-speed').onclick();assert.equal(el('speed-sheet').open,true);
+sandbox.Module.ccall=()=>'{bad';el('refresh-speed').onclick();assert.equal(el('speed-fast').disabled,true);const speedCallCount=speedCalls.length;el('speed-fast').onclick();assert.equal(speedCalls.length,speedCallCount);
+sandbox.Module.started=false;el('starter-speed').onclick();assert.match(el('speed-readout').textContent,/Start or load/);el('close-speed').onclick();sandbox.Module.started=true;
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

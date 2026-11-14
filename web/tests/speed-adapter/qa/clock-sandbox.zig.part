@@ -1,0 +1,27 @@
+    var state=&game.state.Playing;std.debug.print("SANDBOX_BEGIN mode={s}\n",.{@tagName(state.planet.worldMode)});std.debug.assert(state.planet.worldMode==.sandbox);
+    state.paused=true;render(window);gl.finish();state.selectedTool=.None;qa_pointer(195,350,0);
+    const focused=state.focusLand();std.debug.print("SANDBOX_FOCUS result={} patch={d}\n",.{focused,state.selectedPoint});std.debug.assert(focused);const patch=state.selectedPoint;state.pointerOnPlanet=true;
+    const drained=state.testAction(2);const planted=state.testAction(3);std.debug.print("SANDBOX_TOOLS drain={} plant={}\n",.{drained,planted});std.debug.assert(drained and planted);
+    state.selectedTool=.PlaceLife;state.mousePressed(&game,.left);std.debug.print("SANDBOX_PAIR count={d} pointer={} depth={d}\n",.{state.planet.lifeforms.items.len,state.pointerOnPlanet,state.planet.waterMass[patch]});std.debug.assert(state.planet.lifeforms.items.len==2);
+    state.selectedTool=.None;
+    state.paused=false;state.timeScale=200000;const before=state.gameTime;var moved=false;var max_count:usize=2;
+    for(0..300)|i|{
+        var previous:[512]@TypeOf(state.planet.lifeforms.items[0].position)=undefined;
+        const prior_count=state.planet.lifeforms.items.len;const prior_deaths=state.planet.rabbitDeaths;const prior_births=state.planet.rabbitBirths;
+        for(state.planet.lifeforms.items,0..)|animal,k|previous[k]=animal.position;
+        state.setRawFrameDelta(1440.0/200000.0+0.0000001);state.update(&game,1440.0/200000.0);
+        std.debug.assert(state.simulationStepsLastFrame==1);
+        max_count=@max(max_count,state.planet.lifeforms.items.len);std.debug.assert(max_count<=512);
+        for(state.planet.lifeforms.items)|animal|{
+            std.debug.assert(std.math.isFinite(animal.satiety) and std.math.isFinite(animal.position.x()) and std.math.isFinite(animal.position.y()) and std.math.isFinite(animal.position.z()));
+
+        }
+        if(prior_count==state.planet.lifeforms.items.len and prior_deaths==state.planet.rabbitDeaths and prior_births==state.planet.rabbitBirths){for(state.planet.lifeforms.items,0..)|animal,k|{if(animal.position.distance(previous[k])>0.1)moved=true;}}
+        if(i%60==59)std.debug.print("CLOCK_SANDBOX day={d} living={d} births={d} meals={d} deaths={d} requested={d} fixedstep=1440\n",.{(i+1)/60,state.planet.lifeforms.items.len,state.planet.rabbitBirths,state.planet.rabbitMeals,state.planet.rabbitDeaths,state.timeScale});
+    }
+    std.debug.assert(state.gameTime-before==5*86400);
+    std.debug.assert(state.planet.rabbitBirths>0 and state.planet.rabbitMeals>0 and moved);
+    std.debug.print("CLOCK_SANDBOX_FINAL age_elapsed={d} max_population={d} finite=true moved={} founder_patch={d} temp={d} depth={d}\n",.{state.gameTime-before,max_count,moved,patch,state.planet.temperature[patch],state.planet.waterMass[patch]*state.planet.getKmPerWaterMass()*1000});
+    loop.pump(1024);
+}
+

@@ -1,0 +1,12 @@
+const fs=require('fs'),assert=require('assert');
+const root=process.argv[2]||require('path').resolve(__dirname,'../../..');
+const main=fs.readFileSync(root+'/src/main.zig','utf8'),play=fs.readFileSync(root+'/src/states/play.zig','utf8');
+const frame=main.slice(main.indexOf('fn web_frame()'));
+assert(frame.indexOf('const raw_dt:')>=0&&frame.includes('setRawFrameDelta(raw_dt)'));
+assert(frame.includes('std.math.clamp(raw_dt,0.001,0.1)'));
+assert(!play.includes('self.renderGameTime + self.timeScale / game.fps'));
+assert(play.includes('.dt=simulation_step_seconds,.timeScale=1'));
+assert(play.includes('.solarVector=self.simulationSolarVector()'));
+assert(play.includes('self.simulationStepsLastFrame<2'));
+assert(play.includes('self.paused or self.showEscapeMenu'));
+console.log('Static web wiring passed: raw timer delta retained, input capped, bounded fixed steps, no fake render-clock advance. Not browser runtime evidence.');
