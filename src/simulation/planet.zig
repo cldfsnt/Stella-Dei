@@ -1473,7 +1473,14 @@ pub const Planet = struct {
             .light = light,
             .carbon_available = @floatCast(@max(0, self.averageCarbonDioxideMass) * 1e9 / area * (12.0 / 44.0)),
             .oxygen_carbon_capacity = @floatCast(@max(0, self.averageOxygenMass) * 1e9 / area * (12.0 / 32.0)),
+            .liquid_available = @as(f32,@floatCast(@max(0,self.waterMass[index])*1e9/area)),
         };
+    }
+
+    fn applyMicrobeWater(self:*Planet,index:usize,flux:Microbes.Flux) void {
+        const scale:f64=self.getMeanPointArea()/1e9;
+        self.waterMass[index]=@floatCast(@max(0,@as(f64,self.waterMass[index])+(@as(f64,flux.water_returned)-flux.water_taken)*scale));
+        self.waterVaporMass[index]+= @as(f32,@floatCast(@as(f64,flux.water_evaporated)*scale));
     }
 
     fn applyMicrobeFlux(self: *Planet, flux: Microbes.Flux) void {
@@ -1525,7 +1532,11 @@ pub const Planet = struct {
         for (self.microbeCells, 0..) |*cell, i| {
             if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
-            const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+            const before_mass=Microbes.biomass(cell.*);
+            const current_env=self.microbeEnvironment(i,light);
+            const flux = Microbes.step(cell, current_env, dt);
+            if(i==3421 and before_mass>0) std.debug.print("SHORE_STEP day={d} depth_m={d} temp={d} light={d} before={d} after={d} fixed={d} recycled={d} failures={d}\n",.{options.gameTime/86400,current_env.depth_km*1000,current_env.temperature,light,before_mass,Microbes.biomass(cell.*),flux.fixed,flux.recycled,flux.failed_patches});
+            self.applyMicrobeWater(i,flux);
             self.applyMicrobeFlux(flux);
             self.microbeStats.failed_patches +|= flux.failed_patches;
             self.microbeStats.grazed_carbon += @as(f64,flux.grazed)*self.getMeanPointArea();
@@ -1543,6 +1554,7 @@ pub const Planet = struct {
                 for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
                 const moved = Microbes.relocate(self.microbeCells, i, which, self.microbeEnvironment(i, 1), &records, dt, options.gameTime);
                 if (moved.moved) {
+                    self.applyMicrobeWater(i,.{.water_returned=moved.water_returned});
                     self.applyMicrobeFlux(.{ .recycled = moved.respired });
                     self.microbeStats.relocations +|= 1;
                     self.microbeStats.movement_respired_carbon += @as(f64, moved.respired) * self.getMeanPointArea();
@@ -1557,15 +1569,22 @@ pub const Planet = struct {
             for (0..cell.cohorts.len) |donor_offset| {
                 const cohort = (donor_start + donor_offset) % cell.cohorts.len;
                 if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
-                if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
+                const prefer_neighbor=Microbes.neighborFirst(&cell.rng);
+                if (!prefer_neighbor and Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
+                var dispersed=false;
                 const neighbors = self.getNeighbours(i);
                 const start: usize = @intCast(Microbes.random(&cell.rng) % neighbors.len);
                 for (0..neighbors.len) |offset| {
                     const n = neighbors[(start + offset) % neighbors.len];
                     const env = self.microbeEnvironment(n, 1);
                     if (!Microbes.dispersalHabitat(env.depth_km, env.temperature)) continue;
-                    if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)) break;
+                    if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)) {
+                        if(n==3421) for(self.microbeCells[n].cohorts)|child|{if(child.lineage==self.microbeStats.next_lineage-1)std.debug.print("SHORE_ARRIVAL day={d} from={d} id={d} parent={d} mass={d} organization={d} support={d} structure={d} protection={d} fitness={d} depth_m={d}\n",.{options.gameTime/86400,i,child.lineage,child.parent,child.biomass,child.organization,child.support_mass,child.structure,Microbes.shoreProtection(child),Microbes.habitatFitness(child,env.depth_km,env.temperature),env.depth_km*1000});};
+                        dispersed=true;
+                        break;
+                    }
                 }
+                if(prefer_neighbor and !dispersed)_=Microbes.reproduce(cell,cohort,cell,&self.microbeStats,true);
             }
         }
     }

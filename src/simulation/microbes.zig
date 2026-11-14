@@ -4,13 +4,13 @@ const std = @import("std");
 pub const nutrient_per_carbon:f32=0.1;
 pub const Mode=enum{sandbox,origin};
 pub const Cohort=struct {
-    biomass:f32=0, organization:f32=0, support_mass:f32=0, optimum:f32=303, efficiency:f32=1, structure:f32=0, feeding:f32=0, mobility:f32=0, relocations:u32=0, last_from:u32=0, last_to:u32=0, last_move_time:f64=0, lifetime_grazed:f32=0,
+    biomass:f32=0, water_reserve:f32=0, water_retention:f32=0, organization:f32=0, support_mass:f32=0, optimum:f32=303, efficiency:f32=1, structure:f32=0, feeding:f32=0, mobility:f32=0, relocations:u32=0, last_from:u32=0, last_to:u32=0, last_move_time:f64=0, lifetime_grazed:f32=0,
     generation:u32=0, lineage:u64=0, parent:u64=0, reproduction_credit:f32=0,
 };
 pub const Cell=struct { cohorts:[4]Cohort=.{.{},.{},.{},.{}}, nutrient:f32=0.02, detritus:f32=0, rng:u64=1 };
 pub const Stats=struct { next_lineage:u64=1,births:u64=0,fixed_carbon:f64=0,recycled_carbon:f64=0, nutrient_added:f64=0, failed_patches:u64=0, grazed_carbon:f64=0, grazing_respired_carbon:f64=0, relocations:u64=0, movement_respired_carbon:f64=0 };
-pub const Environment=struct {temperature:f32,depth_km:f32,light:f32,carbon_available:f32,oxygen_carbon_capacity:f32};
-pub const Flux=struct{fixed:f32=0,recycled:f32=0,failed_patches:u32=0,grazed:f32=0,grazing_respired:f32=0};
+pub const Environment=struct {temperature:f32,depth_km:f32,light:f32,carbon_available:f32,oxygen_carbon_capacity:f32,liquid_available:?f32=null,reserve_enabled:bool=true};
+pub const Flux=struct{water_taken:f32=0,water_evaporated:f32=0,water_returned:f32=0,fixed:f32=0,recycled:f32=0,failed_patches:u32=0,grazed:f32=0,grazing_respired:f32=0};
 pub fn random(state:*u64) u64 {state.* +%= 0x9e3779b97f4a7c15;if(state.*==0)state.*=1;var z=state.*;z=(z^(z>>30))*%0xbf58476d1ce4e5b9;z=(z^(z>>27))*%0x94d049bb133111eb;return z^(z>>31);}
 pub fn initialized(initial_seed:u64) Cell{return .{.rng=if(initial_seed==0) 1 else initial_seed};}
 pub fn biomass(cell:Cell) f32{var total:f32=0;for(cell.cohorts)|c|total+=c.biomass;return total;}
@@ -58,6 +58,16 @@ pub fn producerLightShares(cell:Cell,surface:f32,depth_km:f32) [4]f32 {
 pub fn habitable(depth:f32,temp:f32) bool{return depth>=0.0002 and depth<=0.05 and temp>260 and temp<355;}
 /// Moist-shore protection requires inherited toughness AND paid living tissue.
 /// This is a water-film biofilm, not roots/soil or vascular land vegetation.
+/// Phenomenological hydration capacity: kg H2O/m²; carbon remains separate.
+pub fn waterCapacity(c:Cohort) f32{return @max(0,c.biomass)*20+@max(0,c.support_mass)*60;}
+pub fn storedWater(cell:Cell) f32{var water:f32=0;for(cell.cohorts)|c|water+=c.water_reserve;return water;}
+pub fn waterUsePerCarbon(c:Cohort) f32{return 50*(1-0.5*c.water_retention);}
+fn returnOverflow(c:*Cohort) f32{const old=c.water_reserve;c.water_reserve=@min(old,waterCapacity(c.*));return old-c.water_reserve;}
+fn liquidAvailable(env:Environment) f32 {
+    if(env.temperature<=273.15 or env.temperature>=373.15)return 0;
+    const amount=env.liquid_available orelse env.depth_km*1000000;
+    return if(std.math.isFinite(amount)) @max(0,amount) else 0;
+}
 pub fn shoreProtection(c:Cohort) f32 {
     if(c.biomass<=0 or frondMass(c)<=0)return 0;
     return std.math.clamp(c.structure/0.15,0,1)*std.math.clamp(c.support_mass/c.biomass/0.03,0,1);
@@ -67,8 +77,9 @@ pub fn shoreCapable(c:Cohort) bool{return shoreProtection(c)>=0.7;}
 pub fn habitatFitness(c:Cohort,depth:f32,temp:f32) f32 {
     if(!std.math.isFinite(depth) or !std.math.isFinite(temp))return 0;
     if(habitable(depth,temp))return 1;
-    if(depth<=0 or depth>=0.0002 or temp<=273.15 or temp>=335)return 0;
-    return shoreProtection(c)*std.math.clamp(depth/0.00002,0,1);
+    if(depth<0 or depth>=0.0002 or temp<=273.15 or temp>=335)return 0;
+    const reserve=if(waterCapacity(c)>0) c.water_reserve/waterCapacity(c) else 0;
+    return shoreProtection(c)*std.math.clamp(@max(depth/0.00002,reserve),0,1);
 }
 pub fn canEstablish(c:Cohort,depth:f32,temp:f32) bool{return habitatFitness(c,depth,temp)>0;}
 /// A propagule may arrive here; this does not guarantee its establishment.
@@ -92,6 +103,15 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     var result:Flux=.{};
     if(!std.math.isFinite(elapsed) or elapsed<=0)return result;
     const days=elapsed/86400;
+    const liquid=liquidAvailable(env);
+    var uptake_demand:f32=0;
+    for(&cell.cohorts)|*c|{result.water_returned+=returnOverflow(c);if(c.biomass>0 and env.reserve_enabled)uptake_demand+=@max(0,waterCapacity(c.*)-c.water_reserve);}
+    if(uptake_demand>0){const scale=@min(@as(f32,1),liquid/uptake_demand);for(&cell.cohorts)|*c|{if(c.biomass<=0)continue;const taken=@max(0,waterCapacity(c.*)-c.water_reserve)*scale;c.water_reserve+=taken;result.water_taken+=taken;}}
+    // Actual stored water is lost to the atmosphere, never silently erased.
+    if(env.temperature>273.15)for(&cell.cohorts)|*c|{
+        const rate=0.20*(1-0.8*c.water_retention)*(0.25+@max(0,env.light))*std.math.clamp((env.temperature-260)/40,0.1,2);
+        const lost=c.water_reserve*(1-@exp(-rate*days));c.water_reserve-=lost;result.water_evaporated+=lost;
+    };
     const available=@max(0,env.carbon_available);
     var potentials=[_]f32{0,0,0,0};
     const light=availableLight(env.light,env.depth_km);
@@ -107,24 +127,33 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
         const habitat=habitatFitness(c.*,env.depth_km,env.temperature);
         const baseline:f32=0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
         const desiccation:f32=4*(1-0.85*c.structure)+0.10*c.structure;
-        const mortality:f32=if(dry) desiccation*(1-habitat)+baseline*habitat else if(!habitable(env.depth_km,env.temperature)) 4 else baseline;
+        // Paid protective tissue remains protective while dormant; it does not
+        // supply water or permit carbon fixation. Drought still consumes life.
+        // Coarse protection tapers toward the existing lethal 260 K bound.
+        // Frozen films never permit fixation; this is finite dormancy, not
+        // frost immunity or a validated species-specific thermal model.
+        const cold_fraction=std.math.clamp((273.15-env.temperature)/13.15,0,1);
+        const protection=if(dry and env.temperature>260 and env.temperature<335) shoreProtection(c.*)*(1-cold_fraction) else 0;
+        const deficit=1-protection;
+        const dormant=desiccation*deficit*deficit+(0.03+0.10*c.structure)*protection+0.8*cold_fraction;
+        const mortality:f32=if(dry) dormant*(1-habitat)+baseline*habitat else if(!habitable(env.depth_km,env.temperature)) 4 else baseline;
         const exposed=std.math.clamp((producerHeightMeters(c.*)-env.depth_km*1000)/0.1,0,1);
-        const exposure_protection=if(env.depth_km<0.0002) habitat else 0;
+        const exposure_protection=if(env.depth_km<0.0002) protection else 0;
         const dead=c.biomass*(1-@exp(-(mortality+3*exposed*(1-exposure_protection))*days));
         if(c.biomass>0)c.support_mass*=1-dead/c.biomass;
         c.biomass-=dead;c.support_mass=@min(c.support_mass,c.biomass);cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
         // Below 25% of one propagule, recycle unresolved failed establishment.
-        if(c.biomass<0.0025){result.failed_patches+=1;cell.detritus+=c.biomass;cell.nutrient+=c.biomass*nutrient_per_carbon;c.*=.{};continue;}
+        if(c.biomass<0.0025){result.failed_patches+=1;cell.detritus+=c.biomass;cell.nutrient+=c.biomass*nutrient_per_carbon;result.water_returned+=c.water_reserve;c.*=.{};continue;}
         if(!habitable(env.depth_km,env.temperature))continue;
     }
     const space=@max(0,1-biomass(cell.*));
     var organized=false;for(cell.cohorts)|c|{if(c.support_mass>0)organized=true;}
 
     for(cell.cohorts,0..) |c,i| {
-        if(c.biomass<=0 or !canEstablish(c,env.depth_km,env.temperature))continue;
+        if(c.biomass<=0 or env.temperature<=273.15 or !canEstablish(c,env.depth_km,env.temperature))continue;
         const fitness=thermalFitness(env.temperature,c.optimum);
         // Higher light efficiency carries maintenance cost; not a free upgrade.
-        const rate=@max(0,3*fitness*light*c.efficiency*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)-0.15*c.efficiency*c.efficiency);
+        const rate=@max(0,3*fitness*light*c.efficiency*(1-0.3*c.water_retention)*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)-0.15*c.efficiency*c.efficiency);
         potentials[i]=frondMass(c)*(@exp(@min(20,rate*habitatFitness(c,env.depth_km,env.temperature)*days))-1)*space;
     }
     // Smooth competition: height redistributes, never increases the existing
@@ -135,19 +164,25 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
         for(&potentials,cell.cohorts)|*value,c|{budget+=value.*;value.* *= producerSpread(c)*@exp(producerHeightMeters(c)/0.1);weighted+=value.*;}
         if(weighted>0)for(&potentials)|*value|{value.* *= budget/weighted;};
     }
+    var water_demand:f32=0;
+    for(&potentials,cell.cohorts)|*v,c|{if(env.reserve_enabled)v.*=@min(v.*,c.water_reserve/waterUsePerCarbon(c));water_demand+=v.* * waterUsePerCarbon(c);}
+    if(!env.reserve_enabled and water_demand>0){const scale=@min(@as(f32,1),liquid/water_demand);for(&potentials)|*v|v.* *= scale;}
     var potential:f32=0;for(potentials)|v|potential+=v;
     const growth=@min(potential,@min(space,@min(available,cell.nutrient/nutrient_per_carbon)));
     if(potential>0)for(&cell.cohorts,0..) |*c,i| {
-        const share=growth*potentials[i]/potential;c.biomass+=share;c.support_mass=@min(c.biomass,c.support_mass+share*c.organization);c.reproduction_credit+=share;
+        const share=growth*potentials[i]/potential;const water_used=share*waterUsePerCarbon(c.*);
+        if(env.reserve_enabled)c.water_reserve=@max(0,c.water_reserve-water_used) else result.water_taken+=water_used;
+        result.water_evaporated+=water_used;c.biomass+=share;c.support_mass=@min(c.biomass,c.support_mass+share*c.organization);c.reproduction_credit+=share;
     };
     cell.nutrient=@max(0,cell.nutrient-growth*nutrient_per_carbon);result.fixed=growth;
     var grazing_respired:f32=0;
     if(habitable(env.depth_km,env.temperature)){
         const grazing=graze(cell,days,@max(0,env.oxygen_carbon_capacity-support_respired));
-        result.grazed=grazing.consumed;result.grazing_respired=grazing.respired;grazing_respired=grazing.respired;
+        result.water_returned+=grazing.water_returned;result.grazed=grazing.consumed;result.grazing_respired=grazing.respired;grazing_respired=grazing.respired;
     }
     const recycled=@min(cell.detritus*(1-@exp(-0.1*days)),@max(0,env.oxygen_carbon_capacity-grazing_respired-support_respired));
     cell.detritus-=recycled;result.recycled=recycled+grazing_respired+support_respired;
+    for(&cell.cohorts)|*c|result.water_returned+=returnOverflow(c);
     return result;
 }
 /// Donor-funded propagule. Empty cohort slots preserve distinct competitors;
@@ -160,7 +195,7 @@ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:b
     const i=slot orelse return false;
     if(biomass(destination.*)>0.99)return false;
     const amount:@TypeOf(parent.biomass)=0.01;
-    var child=parent.*;child.support_mass=@min(amount,parent.support_mass*(amount/parent.biomass));child.biomass=amount;child.parent=parent.lineage;child.lineage=stats.next_lineage;child.generation=parent.generation+|1;child.reproduction_credit=0;child.lifetime_grazed=0;child.relocations=0;child.last_from=0;child.last_to=0;child.last_move_time=0;
+    var child=parent.*;child.water_reserve=parent.water_reserve*(amount/parent.biomass);child.support_mass=@min(amount,parent.support_mass*(amount/parent.biomass));child.biomass=amount;child.parent=parent.lineage;child.lineage=stats.next_lineage;child.generation=parent.generation+|1;child.reproduction_credit=0;child.lifetime_grazed=0;child.relocations=0;child.last_from=0;child.last_to=0;child.last_move_time=0;
     if(mutate){
         const r=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
         const q=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
@@ -174,8 +209,10 @@ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:b
         child.mobility=std.math.clamp(child.mobility+(r_mobility-0.5)*0.2,0,1);
         const r_organization=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
+        const r_retention=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
+        child.water_retention=std.math.clamp(child.water_retention+(r_retention-0.5)*0.12,0,1);
     }
-    parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=0.04;destination.cohorts[i]=child;
+    parent.water_reserve-=child.water_reserve;parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=0.04;destination.cohorts[i]=child;
     stats.next_lineage+=1;stats.births+=1;
     return true;
 }
@@ -184,6 +221,7 @@ pub fn validCell(cell:Cell,next_lineage:u64) bool {
     if(!std.math.isFinite(cell.nutrient) or cell.nutrient<0 or !std.math.isFinite(cell.detritus) or cell.detritus<0)return false;
     if(biomass(cell)>1.0001)return false;
     for(cell.cohorts) |c| {
+        if(!std.math.isFinite(c.water_reserve) or c.water_reserve<0 or c.water_reserve>waterCapacity(c)+0.00001 or !std.math.isFinite(c.water_retention) or c.water_retention<0 or c.water_retention>1)return false;
         if(!std.math.isFinite(c.biomass) or c.biomass<0 or !std.math.isFinite(c.optimum) or c.optimum<270 or c.optimum>335 or !std.math.isFinite(c.efficiency) or c.efficiency<0.5 or c.efficiency>1.3 or !std.math.isFinite(c.reproduction_credit) or c.reproduction_credit<0)return false;
         if(!std.math.isFinite(c.organization) or c.organization<0 or c.organization>0.7 or !std.math.isFinite(c.support_mass) or c.support_mass<0 or c.support_mass>c.biomass)return false;
         if(!std.math.isFinite(c.structure) or c.structure<0 or c.structure>1)return false;
@@ -200,7 +238,7 @@ pub fn validCell(cell:Cell,next_lineage:u64) bool {
 /// Only other live cohorts are edible. Half consumed carbon is assimilated;
 /// one quarter is respired (oxygen-limited), one quarter enters detritus.
 /// Nutrient bound in both waste streams returns locally.
-pub const GrazingFlux=struct{consumed:f32=0,respired:f32=0};
+pub const GrazingFlux=struct{consumed:f32=0,respired:f32=0,water_returned:f32=0};
 pub fn graze(cell:*Cell,days:f32,oxygen_capacity:f32) GrazingFlux {
     if(days<=0 or oxygen_capacity<=0)return .{};
     const snapshot=cell.cohorts;
@@ -214,20 +252,22 @@ pub fn graze(cell:*Cell,days:f32,oxygen_capacity:f32) GrazingFlux {
     }
     var requested:f32=0;for(demand)|row|for(row)|v|{requested+=v;};
     const oxygen_scale=if(requested>0)@min(@as(f32,1),@max(0,oxygen_capacity)/(requested*0.25)) else 0;
+    var water_gains=[_]f32{0,0,0,0};var water_losses=[_]f32{0,0,0,0};
     var gains=[_]f32{0,0,0,0};var losses=[_]f32{0,0,0,0};var total:f32=0;
     for(snapshot,0..)|prey,j|{
         var wanted:f32=0;for(demand)|row|wanted+=row[j];
         const scale=if(wanted>0)@min(@as(f32,1),prey.biomass/wanted) else 0;
-        for(0..4)|i|{const consumed=demand[i][j]*scale*oxygen_scale;gains[i]+=consumed*0.5;losses[j]+=consumed;total+=consumed;}
+        for(0..4)|i|{const consumed=demand[i][j]*scale*oxygen_scale;gains[i]+=consumed*0.5;losses[j]+=consumed;total+=consumed;const water=if(prey.biomass>0)prey.water_reserve*(consumed/prey.biomass) else 0;water_gains[i]+=water;water_losses[j]+=water;}
     }
-    for(&cell.cohorts,0..)|*c,i|{if(c.biomass>0)c.support_mass*=@max(0,1-losses[i]/c.biomass);c.support_mass+=gains[i]*c.organization;c.biomass=@max(0,c.biomass-losses[i]+gains[i]);c.support_mass=std.math.clamp(c.support_mass,0,c.biomass);c.reproduction_credit+=gains[i];c.lifetime_grazed+=gains[i]*2;}
+    var water_returned:f32=0;
+    for(&cell.cohorts,0..)|*c,i|{c.water_reserve=@max(0,c.water_reserve-water_losses[i]+water_gains[i]);if(c.biomass>0)c.support_mass*=@max(0,1-losses[i]/c.biomass);c.support_mass+=gains[i]*c.organization;c.biomass=@max(0,c.biomass-losses[i]+gains[i]);c.support_mass=std.math.clamp(c.support_mass,0,c.biomass);c.reproduction_credit+=gains[i];c.lifetime_grazed+=gains[i]*2;water_returned+=returnOverflow(c);}
     cell.detritus+=total*0.25;cell.nutrient+=total*0.5*nutrient_per_carbon;
-    return .{.consumed=total,.respired=total*0.25};
+    return .{.consumed=total,.respired=total*0.25,.water_returned=water_returned};
 }
 /// Whole resident cohort relocates, preserving identity/history and avoiding
 /// fractional duplicate lineage bookkeeping. The caller supplies actual adjacent
 /// patches, not an unrestricted search. Cost is respired carbon, oxygen-limited.
-pub const Movement=struct{moved:bool=false,to:usize=0,respired:f32=0};
+pub const Movement=struct{moved:bool=false,to:usize=0,respired:f32=0,water_returned:f32=0};
 pub const Neighbor=struct{index:usize,environment:Environment};
 pub const RelocationReason = enum {
     invalid, no_living_cohort, no_grazing, no_mobility, source_unsuitable,
@@ -290,14 +330,15 @@ pub fn relocate(cells:[]Cell,from:usize,which:usize,current:Environment,neighbor
     const chance=1-@exp(-0.5*parent.mobility*days);
     const draw=@as(f32,@floatFromInt(random(&cells[from].rng)>>40))/16777216;
     if(draw>=chance)return .{};
-    var moved=parent;moved.biomass=frondMass(parent)-cost;moved.support_mass=0;
+    var moved=parent;moved.biomass=frondMass(parent)-cost;moved.support_mass=0;moved.water_reserve=parent.water_reserve*(moved.biomass/parent.biomass);
+    var water_returned=parent.water_reserve-moved.water_reserve;water_returned+=returnOverflow(&moved);
     cells[from].detritus+=parent.support_mass;cells[from].nutrient+=parent.support_mass*nutrient_per_carbon;
     cells[from].cohorts[which]=.{};
     cells[from].nutrient+=cost*nutrient_per_carbon;
     moved.relocations +|=1;moved.last_from=@intCast(from);moved.last_to=@intCast(destination);moved.last_move_time=game_time;
     cells[destination].cohorts[slot]=moved;
 
-    return .{.moved=true,.to=destination,.respired=cost};
+    return .{.moved=true,.to=destination,.respired=cost,.water_returned=water_returned};
 }
 // Test adapter: the real Planet applies returned respiratory flux to atmosphere.
 fn tryMove(cells:[]Cell,environments:[]Environment,from:usize,which:usize,neighbors:[]const usize,days:f32) Movement {
@@ -712,17 +753,17 @@ test "shore adaptation requires real tissue liquid film and tolerable temperatur
 }
 test "moist shore growth and drying conserve carbon nutrients and support" {
     var cell=initialized(31);cell.cohorts[0]=.{.biomass=0.1,.support_mass=0.004,.structure=0.15,.organization=0.04,.lineage=1};
-    var env=good;env.depth_km=0.00005;
-    const beforeC=@as(f64,carbon(cell))+env.carbon_available;const beforeN=nutrientTotal(cell);
-    for(0..24*20)|hour|{
+    var env=good;env.depth_km=0.00005;env.reserve_enabled=false;
+    const beforeC=@as(f64,carbon(cell));const beforeN=nutrientTotal(cell);var total_fixed:f64=0;var total_recycled:f64=0;
+    for(0..24*160)|hour|{
         if(hour==24*10)env.depth_km=0;
-        const f=step(&cell,env,3600);env.carbon_available+=f.recycled-f.fixed;env.oxygen_carbon_capacity+=f.fixed-f.recycled;
+        const f=step(&cell,env,3600);total_fixed+=f.fixed;total_recycled+=f.recycled;env.carbon_available+=f.recycled-f.fixed;env.oxygen_carbon_capacity+=f.fixed-f.recycled;
         if(hour==24*9)try std.testing.expect(biomass(cell)>0.1);
         if(hour>=24*10)try std.testing.expectEqual(@as(f32,0),f.fixed);
         try std.testing.expect(validCell(cell,2));
     }
     try std.testing.expectEqual(@as(f32,0),biomass(cell));
-    try std.testing.expectApproxEqAbs(beforeC,@as(f64,carbon(cell))+env.carbon_available,0.0002);
+    try std.testing.expectApproxEqAbs(beforeC+total_fixed,@as(f64,carbon(cell))+total_recycled,0.00001);
     try std.testing.expectApproxEqAbs(beforeN,nutrientTotal(cell),0.00001);
 }
 test "ordinary aquatic descendants can establish on moist shore unlike ancestors" {
@@ -759,4 +800,108 @@ test "unprotected shore propagules fail and transfer exact donor resources" {
     try std.testing.expectEqual(@as(f32,0),biomass(shore));
     try std.testing.expect(dispersalHabitat(0.00005,303));
     try std.testing.expect(!dispersalHabitat(0,303));try std.testing.expect(!dispersalHabitat(0.1,303));
+}
+
+/// Existing saved cell PRNG chooses bounded adjacent dispersal priority.
+/// This changes placement only, never reproduction thresholds or donor funding.
+pub fn neighborFirst(rng:*u64) bool{return random(rng)%4==0;}
+test "neighbor priority is bounded reproducible and does not fund extra births" {
+    var a:u64=1;var b:u64=1;var count:usize=0;
+    for(0..4096)|_|{const choice=neighborFirst(&a);try std.testing.expectEqual(choice,neighborFirst(&b));if(choice)count+=1;}
+    try std.testing.expect(count>800 and count<1250);
+    var donor=initialized(1);var dest=initialized(2);var stats:Stats=.{};_=seed(&donor,&stats,100);
+    try std.testing.expect(!reproduce(&donor,0,&dest,&stats,true));
+    try std.testing.expectEqual(@as(u64,0),stats.births);
+}
+
+test "paid protective tissue survives cyclic film without fixing carbon during drought" {
+    var adapted=initialized(1);adapted.cohorts[0]=.{.biomass=0.02,.support_mass=0.0008,.structure=0.15,.organization=0.04,.lineage=1};
+    var naked=initialized(2);naked.cohorts[0]=.{.biomass=0.02,.lineage=1};
+    const beforeC=carbon(adapted);const beforeN=nutrientTotal(adapted);var fixed:f32=0;var recycled:f32=0;
+    for(0..24*30)|hour|{
+        var env=good;env.reserve_enabled=false;env.depth_km=if(hour%24<8) 0.00005 else 0;env.light=if(hour%24<12) 1 else 0;
+        const f=step(&adapted,env,3600);_=step(&naked,env,3600);fixed+=f.fixed;recycled+=f.recycled;
+        if(env.depth_km==0)try std.testing.expectEqual(@as(f32,0),f.fixed);
+        try std.testing.expect(validCell(adapted,2));
+    }
+    try std.testing.expect(biomass(adapted)>0.02);try std.testing.expectEqual(@as(f32,0),biomass(naked));
+    try std.testing.expectApproxEqAbs(beforeC+fixed,carbon(adapted)+recycled,0.00001);
+    try std.testing.expectApproxEqAbs(beforeN,nutrientTotal(adapted),0.00001);
+}
+
+test "brief frost protection is graded and prolonged frozen film kills without fixation" {
+    var adapted=initialized(1);adapted.cohorts[0]=.{.biomass=0.02,.support_mass=0.0008,.structure=0.15,.organization=0.04,.lineage=1};
+    var naked=initialized(2);naked.cohorts[0]=.{.biomass=0.02,.lineage=1};
+    var env=good;env.depth_km=0.00005;env.temperature=272;
+    var fixed:f64=0;var recycled:f64=0;const carbon_start=carbon(adapted);const n_start=nutrientTotal(adapted);
+    for(0..24*30)|hour|{
+        const f=step(&adapted,env,3600);_=step(&naked,env,3600);fixed+=f.fixed;recycled+=f.recycled;
+        try std.testing.expectEqual(@as(f32,0),f.fixed);
+        if(hour==3){try std.testing.expect(biomass(adapted)>biomass(naked));try std.testing.expect(biomass(adapted)<0.02);}
+    }
+    try std.testing.expectEqual(@as(f32,0),biomass(adapted));
+    try std.testing.expectApproxEqAbs(@as(f64,carbon_start)+fixed,@as(f64,carbon(adapted))+recycled,0.00001);
+    try std.testing.expectApproxEqAbs(n_start,nutrientTotal(adapted),0.00001);
+}
+
+fn reserveFixture(retention:f32) Cohort {
+    var c:Cohort=.{.biomass=0.1,.support_mass=0.004,.organization=0.04,.structure=0.15,.water_retention=retention,.lineage=1};
+    c.water_reserve=waterCapacity(c);return c;
+}
+test "water ledger closes through uptake growth maintenance drought and death" {
+    var cell=initialized(2);cell.cohorts[0]=reserveFixture(0.4);cell.cohorts[0].water_reserve=0;
+    var surface:f64=2000;var vapor:f64=0;const water_before=surface;const carbon_before=carbon(cell);const n_before=nutrientTotal(cell);
+    var fixed:f64=0;var recycled:f64=0;
+    for(0..24*180)|hour|{
+        if(hour==48){vapor+=surface;surface=0;} // explicit physical environmental drying, not deletion
+        var env=good;env.depth_km=@floatCast(surface/1000000);env.liquid_available=@floatCast(surface);
+        const previous_water=storedWater(cell);const f=step(&cell,env,3600);
+        surface+=@as(f64,f.water_returned)-f.water_taken;vapor+=f.water_evaporated;fixed+=f.fixed;recycled+=f.recycled;
+        try std.testing.expect(surface>=-0.00001);try std.testing.expect(validCell(cell,2));
+        try std.testing.expectApproxEqAbs(water_before,surface+vapor+storedWater(cell),0.0001);
+        if(env.depth_km==0 and previous_water==0)try std.testing.expectEqual(@as(f32,0),f.fixed);
+    }
+    try std.testing.expectEqual(@as(f32,0),biomass(cell));try std.testing.expectEqual(@as(f32,0),storedWater(cell));
+    try std.testing.expectApproxEqAbs(@as(f64,carbon_before)+fixed,@as(f64,carbon(cell))+recycled,0.00002);
+    try std.testing.expectApproxEqAbs(n_before,nutrientTotal(cell),0.00001);
+}
+test "reserve uptake fairly shares finite real liquid and frozen reserves cannot fix carbon" {
+    var a=initialized(2);a.cohorts[0]=reserveFixture(0);a.cohorts[1]=reserveFixture(0.8);a.cohorts[1].lineage=2;
+    for(&a.cohorts)|*c|c.water_reserve=0;
+    var b=a;std.mem.swap(Cohort,&b.cohorts[0],&b.cohorts[1]);
+    var env=good;env.liquid_available=0.05;env.light=0;
+    const fa=step(&a,env,60);const fb=step(&b,env,60);
+    try std.testing.expect(fa.water_taken<=0.050001);try std.testing.expectApproxEqAbs(fa.water_taken,fb.water_taken,0.000001);
+    try std.testing.expectApproxEqAbs(a.cohorts[0].water_reserve,b.cohorts[1].water_reserve,0.000001);
+    try std.testing.expectApproxEqAbs(a.cohorts[1].water_reserve,b.cohorts[0].water_reserve,0.000001);
+    env.temperature=270;env.light=1;const ice=step(&a,env,3600);
+    try std.testing.expectEqual(@as(f32,0),ice.fixed);try std.testing.expectEqual(@as(f32,0),ice.water_taken);
+}
+test "reproduction grazing and supported relocation conserve water without cloning" {
+    var donor=initialized(3);donor.cohorts[0]=reserveFixture(0.4);donor.cohorts[0].reproduction_credit=0.1;
+    var dest=initialized(4);var stats:Stats=.{.next_lineage=2};const water=storedWater(donor);
+    try std.testing.expect(reproduce(&donor,0,&dest,&stats,true));
+    try std.testing.expectApproxEqAbs(water,storedWater(donor)+storedWater(dest),0.000001);
+    try std.testing.expect(validCell(donor,stats.next_lineage));try std.testing.expect(validCell(dest,stats.next_lineage));
+    var feed=initialized(5);feed.cohorts[0]=reserveFixture(0);feed.cohorts[0].feeding=1;feed.cohorts[1]=reserveFixture(1);feed.cohorts[1].lineage=2;
+    const before=storedWater(feed);const g=graze(&feed,0.2,100);
+    try std.testing.expectApproxEqAbs(before,storedWater(feed)+g.water_returned,0.000001);try std.testing.expect(validCell(feed,3));
+    var cells=[_]Cell{initialized(6),initialized(7)};cells[0].cohorts[0]=reserveFixture(0.4);cells[0].cohorts[0].feeding=1;cells[0].cohorts[0].mobility=1;
+    cells[1].cohorts[0]=.{.biomass=0.2,.lineage=2};const before_move=storedWater(cells[0])+storedWater(cells[1]);
+    const moved=relocate(&cells,0,0,good,&.{.{.index=1,.environment=good}},86400*1000,1);
+    try std.testing.expect(moved.moved);
+    try std.testing.expectApproxEqAbs(before_move,storedWater(cells[0])+storedWater(cells[1])+moved.water_returned,0.000001);
+    try std.testing.expect(validCell(cells[0],3));try std.testing.expect(validCell(cells[1],3));
+}
+test "retention trades wet growth speed for dry water economy" {
+    var wet_fast=initialized(1);wet_fast.cohorts[0]=reserveFixture(0);
+    var wet_slow=initialized(2);wet_slow.cohorts[0]=reserveFixture(1);
+    const fast=step(&wet_fast,good,3600);const slow=step(&wet_slow,good,3600);
+    try std.testing.expect(fast.fixed>slow.fixed);
+    var dry_fast=initialized(3);dry_fast.cohorts[0]=reserveFixture(0);
+    var dry_slow=initialized(4);dry_slow.cohorts[0]=reserveFixture(1);
+    var env=good;env.depth_km=0;env.liquid_available=0;var low_fixed:f64=0;var high_fixed:f64=0;
+    for(0..72)|_|{const f=step(&dry_fast,env,3600);const h=step(&dry_slow,env,3600);low_fixed+=f.fixed;high_fixed+=h.fixed;}
+    std.debug.print("RETENTION dry_fixed_low={d} high={d}\n",.{low_fixed,high_fixed});
+    try std.testing.expect(high_fixed>low_fixed);
 }

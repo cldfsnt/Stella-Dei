@@ -1,6 +1,6 @@
 //! Versioned, graphics-independent browser save format. Never includes pointers.
 const std = @import("std");
-pub const VERSION: u32 = 6;
+pub const VERSION: u32 = 7;
 pub const Microbes = @import("simulation/microbes.zig");
 pub const WorldMode = Microbes.Mode;
 /// Wire representation accepts legacy two-slot data without advancing biology.
@@ -190,6 +190,12 @@ pub const Save = struct {
                         try finiteRange(cohort.organization, 0, 0.7);
                         try finiteRange(cohort.support_mass, 0, cohort.biomass);
                         if (self.version < 6 and (cohort.organization != 0 or cohort.support_mass != 0)) return error.IncompatibleSave;
+                        // Water is a distinct hydrological compartment, not carbon.
+                        // Legacy worlds must not gain reserves or new traits on load.
+                        if (self.version < 7 and (cohort.water_reserve != 0 or cohort.water_retention != 0)) return error.IncompatibleSave;
+                        try finiteRange(cohort.water_retention, 0, 1);
+                        // Match runtime validity for proportional f32 transfer roundoff (kg/m²).
+                        try finiteRange(cohort.water_reserve, 0, Microbes.waterCapacity(cohort) + 0.00001);
                         try finiteRange(cohort.mobility, 0, 1);
                         try finiteRange(cohort.last_move_time, 0, self.game_time);
                         if (cohort.relocations > 0 and (cohort.last_from >= count or cohort.last_to >= count or cohort.last_from == cohort.last_to or cohort.last_to != cell_index)) return error.InvalidValue;
@@ -658,4 +664,97 @@ test "v6 support subset finite bounds and sparse signed zero remain exact" {
     saved.version = 5;
     saved.origin.?.model_revision = 4;
     try std.testing.expectError(error.IncompatibleSave, saved.validate());
+}
+
+
+test "v6 producer wire migrates water fields as zero without changing life or resources" {
+    const wire =
+        \\{"sparse":[{"index":2,"value":{"biomass":0.12,"organization":0.4,"support_mass":0.03,"optimum":303,"efficiency":1.1,"structure":0.17,"feeding":0.32,"lifetime_grazed":0.1875,"mobility":0.4,"relocations":2,"last_from":1,"last_to":0,"last_move_time":120000,"lineage":7,"parent":3,"generation":2}}],"nutrient":0.03,"detritus":0.01,"rng":778899}
+    ;
+    var parsed = try std.json.parseFromSlice(SavedCell, std.testing.allocator, wire, .{});
+    defer parsed.deinit();
+    const before = parsed.value.runtime();
+    try std.testing.expectEqual(@as(f32, 0), before.cohorts[2].water_reserve);
+    try std.testing.expectEqual(@as(f32, 0), before.cohorts[2].water_retention);
+    var cells = [_]Microbes.Cell{.{}} ** 12;
+    cells[0] = before;
+    const sparse = try captureSparse(std.testing.allocator, &cells);
+    defer sparse.deinit(std.testing.allocator);
+    var old = fixture();
+    old.version = 6;
+    old.mode = .origin;
+    old.origin = .{ .model_revision = 5, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 8, .births = 6, .grazed_carbon = 45.25, .grazing_respired_carbon = 12.5, .relocations = 2, .movement_respired_carbon = 1.25 } };
+    try old.validate();
+    var migrated = old;
+    migrated.version = VERSION;
+    migrated.origin.?.model_revision = VERSION - 1;
+    try migrated.validate();
+    const bytes = try std.json.stringifyAlloc(std.testing.allocator, migrated, .{});
+    defer std.testing.allocator.free(bytes);
+    var loaded = try parse(std.testing.allocator, bytes);
+    defer loaded.deinit();
+    for (cells, loaded.value.origin.?.cells) |cell, saved| try std.testing.expectEqualDeep(cell, saved.runtime());
+    try std.testing.expectEqualDeep(old.origin.?.stats, loaded.value.origin.?.stats);
+    try std.testing.expectEqualSlices(f32, old.water, loaded.value.water);
+    try std.testing.expectEqualSlices(f32, old.vapor, loaded.value.vapor);
+    const again = try std.json.stringifyAlloc(std.testing.allocator, loaded.value, .{});
+    defer std.testing.allocator.free(again);
+    try std.testing.expectEqualSlices(u8, bytes, again);
+}
+
+test "v7 reserves traits and sparse signed zero roundtrip exactly and reject invalid data" {
+    var cells = [_]Microbes.Cell{.{}} ** 12;
+    cells[0].cohorts[1] = .{ .biomass = 0.2, .organization = 0.6, .support_mass = 0.08, .lineage = 1, .water_retention = 0.375 };
+    cells[0].cohorts[1].water_reserve = Microbes.waterCapacity(cells[0].cohorts[1]) * 0.5;
+    cells[1].cohorts[3].water_reserve = -0.0;
+    cells[2].cohorts[2].water_retention = -0.0;
+    const sparse = try captureSparse(std.testing.allocator, &cells);
+    defer sparse.deinit(std.testing.allocator);
+    try std.testing.expectEqual(@as(usize, 3), sparse.entries.len);
+    var saved = fixture();
+    saved.version = VERSION;
+    saved.mode = .origin;
+    saved.origin = .{ .model_revision = VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 2 } };
+    try saved.validate();
+    const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
+    defer std.testing.allocator.free(bytes);
+    var loaded = try parse(std.testing.allocator, bytes);
+    defer loaded.deinit();
+    for (cells, loaded.value.origin.?.cells) |before, encoded| {
+        const after = encoded.runtime();
+        for (before.cohorts, after.cohorts) |a, b| {
+            try std.testing.expectEqual(@as(u32, @bitCast(a.water_reserve)), @as(u32, @bitCast(b.water_reserve)));
+            try std.testing.expectEqual(@as(u32, @bitCast(a.water_retention)), @as(u32, @bitCast(b.water_retention)));
+        }
+    }
+    const again = try std.json.stringifyAlloc(std.testing.allocator, loaded.value, .{});
+    defer std.testing.allocator.free(again);
+    try std.testing.expectEqualSlices(u8, bytes, again);
+    const initial = sparse.entries[0].value;
+    sparse.entries[0].value.water_reserve = Microbes.waterCapacity(initial) + 0.000005;
+    try saved.validate();
+    sparse.entries[0].value.water_reserve = Microbes.waterCapacity(initial) + 0.00002;
+    try std.testing.expectError(error.InvalidValue, saved.validate());
+    sparse.entries[0].value = initial;
+    for ([_]f32{ -0.01, Microbes.waterCapacity(initial) + 0.01, std.math.inf(f32), std.math.nan(f32) }) |bad| {
+        sparse.entries[0].value.water_reserve = bad;
+        const before_reject = sparse.entries[0].value;
+        try std.testing.expectError(error.InvalidValue, saved.validate());
+        try std.testing.expectEqual(@as(u32, @bitCast(before_reject.water_reserve)), @as(u32, @bitCast(sparse.entries[0].value.water_reserve)));
+        try std.testing.expectEqual(initial.water_retention, sparse.entries[0].value.water_retention);
+        sparse.entries[0].value = initial;
+    }
+    for ([_]f32{ -0.01, 1.001, std.math.inf(f32), std.math.nan(f32) }) |bad| {
+        sparse.entries[0].value.water_retention = bad;
+        try std.testing.expectError(error.InvalidValue, saved.validate());
+        try std.testing.expectEqual(initial.water_reserve, sparse.entries[0].value.water_reserve);
+        sparse.entries[0].value = initial;
+    }
+    saved.version = 6;
+    saved.origin.?.model_revision = 5;
+    try std.testing.expectError(error.IncompatibleSave, saved.validate());
+    sparse.entries[0].value.water_reserve = 0;
+    try std.testing.expectError(error.IncompatibleSave, saved.validate());
+    sparse.entries[0].value.water_retention = 0;
+    try saved.validate();
 }

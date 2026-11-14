@@ -5,7 +5,7 @@
         var old=try saves.schema.parse(a,bytes);defer old.deinit();std.debug.assert(old.value.version==5);
         loop.pump(1024);
         saves.replaceWorld(state,old.value) catch |err| {std.debug.print("PRODUCER_MIGRATION failure={s}\n",.{@errorName(err)});std.process.exit(2);};
-        const now=try saves.capture(a,state);std.debug.assert(now.version==6);
+        const now=try saves.capture(a,state);std.debug.assert(now.version==saves.schema.VERSION);
         var grazers:usize=0;var movers:usize=0;
         for(old.value.origin.?.cells,now.origin.?.cells)|before,after|{
             const x=before.runtime();const y=after.runtime();std.debug.assert(std.meta.eql(x,y));
