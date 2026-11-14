@@ -36,6 +36,20 @@ function movementFeedback(c){
  }else text+='\nNo relocation recorded for this cohort';
  return text;
 }
+function movementOpportunity(reason){
+ const hints={
+ no_grazing:'This cohort has no grazing capability.',
+ no_mobility:'This cohort has no mobility investment.',
+ source_unsuitable:'This patch has unsuitable water or temperature. Inspect it before adjusting Water or Climate.',
+ already_moved:'Already moved this simulation step.',
+ no_suitable_neighbor:'No adjacent habitat has suitable water and temperature. Inspect nearby patches before adjusting Water or Climate.',
+ no_better_prey:'No suitable neighbor has more living food. Establish other colonies nearby; nutrients alone are not prey.',
+ no_capacity:'Richer neighboring habitats are full. Allow space or establish another nearby habitat.',
+ insufficient_oxygen:'Not enough oxygen to pay the movement cost. Support photosynthetic growth.',
+ eligible:'A suitable route is available. May move on a future simulation step; movement is not guaranteed.'
+ };
+ return Object.prototype.hasOwnProperty.call(hints,reason)?'\nMovement now: '+hints[reason]:'';
+}
 function refreshLife(){
  const summary=document.getElementById('life-summary'),conditions=document.getElementById('life-conditions'),rows=document.getElementById('life-cohorts');conditions.textContent='';rows.textContent='';document.getElementById('life-glossary').textContent='';
  if(!Module.started||Module.failed||typeof Module._stella_life_snapshot!=='function'){summary.textContent='Start or load a planet first.';return;}
@@ -44,10 +58,10 @@ function refreshLife(){
   if(data.status!=='origin'){summary.textContent=data.status==='sandbox'?'This lineage view is for Origin microbes. Use Inspect for Sandbox plants and rabbits.':'No current cell snapshot is available.';return;}
   if(!Array.isArray(data.cohorts))throw Error('Invalid snapshot');
   const number=(v,d=2)=>Number.isFinite(v)?v.toFixed(d):'unknown';
-  const living=data.cohorts.filter(c=>Number.isFinite(c.biomass)&&c.biomass>0.000001);
+  const living=data.cohorts.map((c,slot)=>({...c,movement_reason:Array.isArray(data.movement_reasons)?data.movement_reasons[slot]:undefined})).filter(c=>Number.isFinite(c.biomass)&&c.biomass>0.000001);
   summary.textContent='Snapshot • Selected patch • Day '+number(data.day,1)+' • '+living.length+' living cohort'+(living.length===1?'':'s');
   conditions.textContent='Water '+number(data.water_m)+' m · Temperature '+number(data.temperature_c,1)+'°C\nNutrients '+number(data.nutrients,3)+' kg/m² · Detritus '+number(data.detritus,3)+' kg C/m² · Biological light '+number(data.simulation_light)+'× reference daylight (not screen brightness)';
-  rows.textContent=living.length?living.map(c=>'Lineage '+String(c.lineage)+' · '+(String(c.parent)==='0'?'seeded ancestor':'parent '+String(c.parent))+'\nGeneration '+String(c.generation)+' · Biomass '+number(c.biomass,3)+' kg C/m²\nThermal optimum '+number(c.optimum-273.15,1)+'°C · Light efficiency '+number(c.efficiency)+'×'+(Number.isFinite(c.structure)?'\nStructure investment '+number(c.structure*100,0)+'%':'')+(Number.isFinite(c.feeding)?'\nGrazing investment '+number(c.feeding*100,0)+'% · '+(c.feeding>0?'grazing-capable':'photosynthetic'):'')+(Number.isFinite(c.lifetime_grazed)?(c.lifetime_grazed>0?'\nHas fed · recorded intake '+number(c.lifetime_grazed,6)+' kg C/m²':'\nNo feeding recorded for this cohort'):'')+movementFeedback(c)).join('\n\n'):'No living cohort in this patch. Select a turquoise mat or use Habitat, then refresh.';
+  rows.textContent=living.length?living.map(c=>'Lineage '+String(c.lineage)+' · '+(String(c.parent)==='0'?'seeded ancestor':'parent '+String(c.parent))+'\nGeneration '+String(c.generation)+' · Biomass '+number(c.biomass,3)+' kg C/m²\nThermal optimum '+number(c.optimum-273.15,1)+'°C · Light efficiency '+number(c.efficiency)+'×'+(Number.isFinite(c.structure)?'\nStructure investment '+number(c.structure*100,0)+'%':'')+(Number.isFinite(c.feeding)?'\nGrazing investment '+number(c.feeding*100,0)+'% · '+(c.feeding>0?'grazing-capable':'photosynthetic'):'')+(Number.isFinite(c.lifetime_grazed)?(c.lifetime_grazed>0?'\nHas fed · recorded intake '+number(c.lifetime_grazed,6)+' kg C/m²':'\nNo feeding recorded for this cohort'):'')+movementFeedback(c)+movementOpportunity(c.movement_reason)).join('\n\n'):'No living cohort in this patch. Select a turquoise mat or use Habitat, then refresh.';
   if(living.some(c=>Number.isFinite(c.structure)))document.getElementById('life-glossary').textContent='Structure is inherited drying-protection investment with growth and maintenance costs, not a real-world taxonomic label or a new life class.';
   if(living.some(c=>Number.isFinite(c.feeding)))document.getElementById('life-glossary').textContent+=' Grazing investment is an inherited capability with reduced photosynthesis and higher maintenance costs. Feeding requires other living cohorts, oxygen and suitable water. Recorded intake is carbon consumed by this cohort, not biomass gained or a feeding rate; it resets in offspring. An amber mat dot means a currently living grazing-capable cohort has fed, not that it is eating now. These are microbial functions, not animals or new species.';
   if(living.some(c=>Number.isFinite(c.mobility)))document.getElementById('life-glossary').textContent+=' Mobility is inherited investment with photosynthesis and maintenance costs. It can relocate a whole cohort to suitable adjacent food-rich water, paying an oxygen-limited carbon cost. Records refer to coarse patch changes, not individual animal travel or an animation. Movement records reset in offspring; feeding records and identity travel with the relocating cohort.';

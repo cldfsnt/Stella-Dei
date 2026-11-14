@@ -1356,7 +1356,7 @@ pub const Planet = struct {
         return substanceDivider;
     }
 
-    fn sendWater(self: Planet, target: IndexVector, origin: IndexVector, shared: SimdVector, totalHeight: SimdVector, kmPerWaterMass: f32, shareFactor: f32) SimdVector {
+    inline fn sendWater(self: Planet, target: IndexVector, origin: IndexVector, shared: SimdVector, totalHeight: SimdVector, kmPerWaterMass: f32, shareFactor: f32) SimdVector {
         const elevation = blk: {
             var vector: SimdVector = undefined;
             comptime var i: usize = 0;

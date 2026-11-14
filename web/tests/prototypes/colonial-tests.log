@@ -1,0 +1,11 @@
+1/5 colonial_producers.test.finite light carbon nutrients and donor-funded inherited tissue...COLONIAL births=3 fixed=3.247244541803107 carbon_error=2.6645352591003757e-14
+OK
+2/5 colonial_producers.test.support has context-dependent benefit and cost not a free upgrade...OPEN structured=1.466557347542999 flat=1.901265876732695
+CROWDED structured=1.466557347542999 flat=0.054471443548535343
+OK
+3/5 colonial_producers.test.water and disturbance act on actual tissue and recycle damage...DAMAGE before=1.0080759670884445 injured=0.007631139397630546 recovered=1.4042500830244662
+OK
+4/5 colonial_producers.test.founder without support yields a functional reproducing organized descendant...INHERITED allocation=0.016375278394537823 support=0.016580495285583013 organized=2.6289003927024783 disabled=2.508353390408141 generation2=true
+OK
+5/5 colonial_producers.test.equal-height light sharing has no array-order advantage and resources limit growth...OK
+All 5 tests passed.

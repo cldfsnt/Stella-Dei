@@ -346,13 +346,17 @@ export fn stella_life_snapshot() [*:0]const u8 {
     const depth = state.planet.waterMass[point] * state.planet.getKmPerWaterMass();
     const surfaceLight = @max(0, state.planet.transformedPoints[point].norm().dot(state.simulationSolarVector())) * std.math.clamp(state.solarConstant / 1361, 0, 2);
     const biologicalLight = @import("simulation/microbes.zig").availableLight(surfaceLight, depth);
+    var movement_reasons: [4][]const u8 = undefined;
+    for (&movement_reasons, 0..) |*reason, slot| {
+        reason.* = @tagName(state.planet.microbeRelocationOpportunity(point, slot, state.gameTime).reason);
+    }
     var stream = std.io.fixedBufferStream(lifeSnapshotBuffer[0 .. lifeSnapshotBuffer.len - 1]);
     std.json.stringify(.{
         .status = "origin", .cell = point, .day = state.gameTime / 86400,
         .temperature_c = state.planet.temperature[point] - 273.15,
         .water_m = state.planet.waterMass[point] * state.planet.getKmPerWaterMass() * 1000,
         .nutrients = cell.nutrient, .detritus = cell.detritus, .simulation_light = biologicalLight,
-        .cohorts = cell.cohorts,
+        .cohorts = cell.cohorts, .movement_reasons = movement_reasons,
     }, .{ .emit_nonportable_numbers_as_strings = true }, stream.writer()) catch return "{\"status\":\"error\"}";
     lifeSnapshotBuffer[stream.pos] = 0;
     return @ptrCast(&lifeSnapshotBuffer);

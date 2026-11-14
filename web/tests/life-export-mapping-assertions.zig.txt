@@ -1,0 +1,14 @@
+
+            const obj=parsed.value.object;
+            const point=state.selectedPoint;
+            std.debug.assert(obj.get("temperature_c").?.float == @as(f64,state.planet.temperature[point]-273.15));
+            std.debug.assert(obj.get("water_m").?.float == @as(f64,state.planet.waterMass[point]*state.planet.getKmPerWaterMass()*1000));
+            std.debug.assert(obj.get("nutrients").?.float == @as(f64,state.planet.microbeCells[point].nutrient));
+            const actualDepth=state.planet.waterMass[point]*state.planet.getKmPerWaterMass();
+            const actualLight=@max(0,state.planet.transformedPoints[point].norm().dot(state.simulationSolarVector()))*std.math.clamp(state.solarConstant/1361,0,2);
+            std.debug.assert(obj.get("simulation_light").?.float == @as(f64,@import("simulation/microbes.zig").availableLight(actualLight,actualDepth)));
+            for(0..4)|slot|{
+              std.debug.assert(std.mem.eql(u8,obj.get("movement_reasons").?.array.items[slot].string,@tagName(state.planet.microbeRelocationOpportunity(point,slot,state.gameTime).reason)));
+              std.debug.assert(obj.get("cohorts").?.array.items[slot].object.get("biomass").?.float == @as(f64,state.planet.microbeCells[point].cohorts[slot].biomass));
+            }
+            std.debug.print("LIFE_MAPPING temperature_water_nutrients_light_cohorts_reasons PASS\n",.{});

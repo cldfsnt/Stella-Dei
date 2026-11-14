@@ -1,0 +1,9 @@
+# Movement conditions UI
+
+Life export invokes the existing read-only Planet relocation predicate for each of four original cohort slots only when requested. It returns movement_reasons alongside cohorts. UI maps slot reasons before filtering dead residents. No duplicate biological eligibility rules, new simulation state, random draws or per-frame world scan.
+
+UI describes current obstacles (capability, water/temperature, living prey rather than nutrient, capacity, oxygen), and eligible routes explicitly remain probabilistic on future simulation steps. Unknown reasons safely omit guidance.
+
+Fresh shell tests passed for all supported reasons, dead-slot mapping, missing legacy fields and prototype-key safety. Official sites-preview/CUA HTML fixture review at320x700 and390x700 passed: movement hints wrap within dialog, scroll and sticky Close remain usable;320 Refresh/Close returned focus to More. Explicit mock fixture only, no browser gameplay claim. Existing cloud WebGL limitation remains.
+
+Extended native egl-life-visual harness now asserts actual export leaves all microbe cell bytes (including PRNG), deep statistics, oxygen/CO2, time and selected point unchanged; also validates4 returned reason strings and existing lighting independence. Execution passed at 320×700 and 390×700. Additional independent assertions matched exported temperature, water, nutrients, biological light, all four cohort biomass values and all four reason strings to live engine state. Native screenshots were visually reviewed and legible. The optional assertion fragment is life-export-mapping-assertions.zig.txt; insert it in an isolated egl-life-visual harness after the parsed cohort-count check. This proves native rendering and exports, not HTML-dialog rendering or Android frame rate. The pre-existing native shutdown allocator leak remains.
