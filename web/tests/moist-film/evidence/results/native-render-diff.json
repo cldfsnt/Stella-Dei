@@ -1,0 +1,17 @@
+{
+  "cause": "render renormalizes camera_target; observer and seed rejection are read-only; move assertion before render",
+  "fields": {
+    "camera_target": {
+      "before": [
+        2904.053466796875,
+        -4402.00927734375,
+        523.7694702148438
+      ],
+      "after": [
+        2904.053955078125,
+        -4402.009765625,
+        523.7694702148438
+      ]
+    }
+  }
+}

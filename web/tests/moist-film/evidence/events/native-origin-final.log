@@ -1,0 +1,7 @@
+GATE_START
+GATE_OBSERVATION_OK
+GATE_FOCUS_OK selected=7124
+GATE_FROZEN_TARGETS_OK
+GATE_FROZEN_NO_MUTATION_OK
+FILM_GUIDANCE full_save_observation_invariant=true frozen_seed_rejected=true all_frozen_focus_rejected=true no_frozen_targets=true warm_focus_and_seed=true schema=6
+MENU_SAVE_RELOAD existing_mode=origin new_mode=origin full_json_exact=true preset_ignored=true schema=6

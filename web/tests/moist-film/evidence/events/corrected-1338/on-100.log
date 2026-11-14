@@ -1,0 +1,220 @@
+MATCHED_INITIAL schema6=true identical=true one_seed=true
+FILM_DAY day=1 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=2 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=3 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=4 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=5 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=6 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=7 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=8 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=9 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=10 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=11 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=12 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=13 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=14 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=15 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=16 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=17 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=18 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=19 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=20 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=21 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=22 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=23 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=24 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=25 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=26 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=27 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=28 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=29 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=30 living=1 biomass=0.005244401283562183 fixed=0.00013973944760437007 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=31 living=1 biomass=0.007876805029809475 fixed=0.00034890121804664886 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=32 living=1 biomass=0.01164479460567236 fixed=0.0005064504642291467 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=33 living=1 biomass=0.01681419275701046 fixed=0.0009421304329055857 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=34 living=1 biomass=0.0189199261367321 fixed=0.001435547248478386 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=35 living=1 biomass=0.01687283255159855 fixed=0.0021591976655361833 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=36 living=2 biomass=0.022952237632125616 fixed=0.0027493634739403916 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=36.86666666666667 source=30131 parent=51 child=68 depth_m=0.1996752
+FILM_DAY day=37 living=2 biomass=0.023190603125840425 fixed=0.0037766064575226466 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=38 living=2 biomass=0.028133939020335674 fixed=0.004475350910825071 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=39 living=3 biomass=0.039454140700399876 fixed=0.0054902797663363145 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=39.9 source=30131 parent=51 child=97 depth_m=0.19596575
+FILM_PAID_BIRTH day=39.9 source=30131 parent=63 child=98 depth_m=0.19596575
+FILM_DAY day=40 living=8 biomass=0.060726681957021356 fixed=0.00699181193597731 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=41 living=8 biomass=0.07472406164743006 fixed=0.009310701518034037 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=41.916666666666664 source=30131 parent=51 child=141 depth_m=0.19423096
+FILM_DAY day=42 living=11 biomass=0.10332451481372118 fixed=0.013370562340087488 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=43 living=11 biomass=0.12850471143610775 fixed=0.018575034202003238 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=44 living=13 biomass=0.15836958307772875 fixed=0.02506014534430001 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=45 living=14 biomass=0.17911941627971828 fixed=0.034285123730692035 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=45.85 source=30110 parent=91 child=292 depth_m=0.19886075
+FILM_DAY day=46 living=13 biomass=0.18666956783272326 fixed=0.042516876860313246 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=46.85 source=30110 parent=91 child=340 depth_m=0.19772767
+FILM_DAY day=47 living=13 biomass=0.17546973447315395 fixed=0.051215483445114174 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=47.86666666666667 source=30110 parent=144 child=388 depth_m=0.1942581
+FILM_DAY day=48 living=13 biomass=0.17566832341253757 fixed=0.06030011581521855 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=49 living=12 biomass=0.16985005955211818 fixed=0.06966317898156582 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=49.85 source=30110 parent=85 child=505 depth_m=0.19803347
+FILM_DAY day=50 living=13 biomass=0.17063027620315552 fixed=0.0802689438533637 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=50.85 source=30110 parent=91 child=549 depth_m=0.19945668
+FILM_DAY day=51 living=15 biomass=0.17731967940926552 fixed=0.0927857462818995 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=51.85 source=30110 parent=91 child=599 depth_m=0.19753034
+FILM_DAY day=52 living=13 biomass=0.16701473179273307 fixed=0.10448145617893978 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=52.85 source=30110 parent=85 child=641 depth_m=0.19909774
+FILM_PAID_BIRTH day=52.86666666666667 source=30110 parent=144 child=644 depth_m=0.19393037
+FILM_DAY day=53 living=14 biomass=0.16939783026464283 fixed=0.11592282528837394 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=53.96666666666667 source=30131 parent=63 child=686 depth_m=0.18496734
+FILM_DAY day=54 living=14 biomass=0.1734398975968361 fixed=0.12985325521727908 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=54.78333333333333 source=30120 parent=218 child=723 depth_m=0.1747499
+FILM_DAY day=55 living=13 biomass=0.17292722850106657 fixed=0.14356584524008476 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=55.78333333333333 source=30120 parent=218 child=766 depth_m=0.17484774
+FILM_PAID_BIRTH day=55.86666666666667 source=30110 parent=85 child=772 depth_m=0.19317368
+FILM_DAY day=56 living=18 biomass=0.19175408757291734 fixed=0.15826063804476043 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=57 living=17 biomass=0.19578362302854657 fixed=0.17349363015702046 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=57.733333333333334 source=30120 parent=218 child=856 depth_m=0.1904626
+FILM_PAID_BIRTH day=57.88333333333333 source=30110 parent=80 child=873 depth_m=0.19049802
+FILM_DAY day=58 living=15 biomass=0.19404870923608541 fixed=0.1882168278857197 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=58.766666666666666 source=30120 parent=218 child=916 depth_m=0.18033895
+FILM_DAY day=59 living=17 biomass=0.19949019118212163 fixed=0.2008955726925823 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=59.88333333333333 source=30120 parent=218 child=974 depth_m=0.14434725
+FILM_DAY day=60 living=16 biomass=0.1913937134668231 fixed=0.2140012633683117 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=61 living=17 biomass=0.19388928986154497 fixed=0.2275155991371438 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=61.766666666666666 source=30120 parent=218 child=1064 depth_m=0.18061362
+FILM_DAY day=62 living=17 biomass=0.19440747378394008 fixed=0.24322916710181097 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=62.86666666666667 source=30120 parent=218 child=1117 depth_m=0.1494937
+FILM_DAY day=63 living=22 biomass=0.19933028519153595 fixed=0.2596189513676226 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=64 living=17 biomass=0.18469515023753047 fixed=0.27412417370597986 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=64.76666666666667 source=30120 parent=218 child=1194 depth_m=0.1808729
+FILM_DAY day=65 living=18 biomass=0.18286837660707533 fixed=0.28716790192785346 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=65.83333333333333 source=30120 parent=218 child=1263 depth_m=0.15997334
+FILM_DAY day=66 living=22 biomass=0.18630764144472778 fixed=0.30191014984503717 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=67 living=19 biomass=0.1766634185332805 fixed=0.3173850104724014 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=67.75 source=30120 parent=218 child=1382 depth_m=0.186276
+FILM_DAY day=68 living=22 biomass=0.18933628615923226 fixed=0.3314369871879652 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=68.8 source=30120 parent=218 child=1457 depth_m=0.17072032
+FILM_DAY day=69 living=22 biomass=0.18833317677490413 fixed=0.34563244428883344 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=69.88333333333334 source=30131 parent=63 child=1526 depth_m=0.19866133
+FILM_DAY day=70 living=21 biomass=0.19279451481997967 fixed=0.3591928538200708 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=70.71666666666667 source=30120 parent=218 child=1573 depth_m=0.1965915
+FILM_DAY day=71 living=17 biomass=0.1782325014937669 fixed=0.37195959990750715 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=71.76666666666667 source=30120 parent=218 child=1649 depth_m=0.1814289
+FILM_DAY day=72 living=17 biomass=0.17440527630969882 fixed=0.3857385885603666 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=73 living=20 biomass=0.18296226183883846 fixed=0.39960461260479896 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=73.76666666666667 source=30120 parent=218 child=1769 depth_m=0.18157639
+FILM_DAY day=74 living=17 biomass=0.16789415245875716 fixed=0.4126756685742752 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=74.75 source=30120 parent=218 child=1840 depth_m=0.18681063
+FILM_DAY day=75 living=13 biomass=0.14921909687109292 fixed=0.4255177532060319 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=75.78333333333333 source=30120 parent=218 child=1912 depth_m=0.1764968
+FILM_PAID_BIRTH day=75.91666666666667 source=30131 parent=63 child=1925 depth_m=0.19378182
+FILM_DAY day=76 living=13 biomass=0.15016736183315516 fixed=0.44026708846561213 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=76.83333333333333 source=30120 parent=218 child=1988 depth_m=0.16077852
+FILM_DAY day=77 living=18 biomass=0.167569583049044 fixed=0.45446054466267505 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=78 living=20 biomass=0.17665767041034997 fixed=0.4718777087757875 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=78.75 source=30120 parent=218 child=2122 depth_m=0.18709026
+FILM_PAID_BIRTH day=78.88333333333334 source=30150 parent=1611 child=2138 depth_m=0.17821454
+FILM_DAY day=79 living=15 biomass=0.15544314077124 fixed=0.48641452975336996 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=79.81666666666666 source=30120 parent=218 child=2212 depth_m=0.16622564
+FILM_DAY day=80 living=14 biomass=0.15769149526022375 fixed=0.5034896165680269 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=81 living=12 biomass=0.1566992753650993 fixed=0.5195334842069546 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=81.73333333333333 source=30120 parent=218 child=2339 depth_m=0.19238526
+FILM_DAY day=82 living=18 biomass=0.17465584445744753 fixed=0.5364633437036677 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=82.78333333333333 source=30120 parent=218 child=2427 depth_m=0.1769657
+FILM_DAY day=83 living=17 biomass=0.18177232518792152 fixed=0.5558771955698294 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=83.86666666666666 source=30120 parent=218 child=2526 depth_m=0.15098359
+FILM_DAY day=84 living=13 biomass=0.18715126789174974 fixed=0.5756254353810082 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=85 living=17 biomass=0.2201492115855217 fixed=0.5996748534087519 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=85.73333333333333 source=7584 parent=643 child=2690 depth_m=0.16828698
+FILM_FUNDED_BIRTH day=85.73333333333333 parent=643 child=2690 depth_m=0.16828698 shallow_credit_before=0.019844427162752254
+FILM_PAID_BIRTH day=85.76666666666667 source=30120 parent=218 child=2703 depth_m=0.18238667
+FILM_PAID_BIRTH day=85.81666666666666 source=30150 parent=1611 child=2712 depth_m=0.19999187
+FILM_DAY day=86 living=20 biomass=0.24592231563292444 fixed=0.6265844713649731 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=86.76666666666667 source=30305 parent=2354 child=2806 depth_m=0.19808719
+FILM_PAID_BIRTH day=86.81666666666666 source=30305 parent=2448 child=2813 depth_m=0.18348067
+FILM_PAID_BIRTH day=86.83333333333333 source=30275 parent=2399 child=2817 depth_m=0.17354175
+FILM_PAID_BIRTH day=86.86666666666666 source=30120 parent=218 child=2824 depth_m=0.15116663
+FILM_DAY day=87 living=19 biomass=0.24938931921496987 fixed=0.6554194887841422 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=87.83333333333333 source=30275 parent=2399 child=2933 depth_m=0.17362858
+FILM_DAY day=88 living=22 biomass=0.28352108784019947 fixed=0.6859572878378604 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=88.76666666666667 source=30275 parent=2399 child=3050 depth_m=0.19795153
+FILM_PAID_BIRTH day=88.8 source=30305 parent=2448 child=3060 depth_m=0.18854426
+FILM_PAID_BIRTH day=88.83333333333333 source=30120 parent=218 child=3063 depth_m=0.161541
+FILM_PAID_BIRTH day=88.85 source=30150 parent=1611 child=3070 depth_m=0.18954201
+FILM_DAY day=89 living=24 biomass=0.304209252120927 fixed=0.719229636093397 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=89.73333333333333 source=7584 parent=643 child=3169 depth_m=0.16846742
+FILM_FUNDED_BIRTH day=89.73333333333333 parent=643 child=3169 depth_m=0.16846742 shallow_credit_before=0.01331675534878741
+FILM_PAID_BIRTH day=89.81666666666666 source=30305 parent=2354 child=3202 depth_m=0.1837493
+FILM_PAID_BIRTH day=89.96666666666667 source=30275 parent=2399 child=3216 depth_m=0.13440861
+FILM_DAY day=90 living=26 biomass=0.33990253624506295 fixed=0.7567903062072592 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=90.76666666666667 source=30120 parent=218 child=3314 depth_m=0.18270205
+FILM_PAID_BIRTH day=90.81666666666666 source=30275 parent=2399 child=3331 depth_m=0.1799799
+FILM_PAID_BIRTH day=90.83333333333333 source=30150 parent=1611 child=3334 depth_m=0.19507556
+FILM_PAID_BIRTH day=90.86666666666666 source=30305 parent=2354 child=3343 depth_m=0.16929258
+FILM_PAID_BIRTH day=90.86666666666666 source=30305 parent=2448 child=3344 depth_m=0.16929258
+FILM_DAY day=91 living=23 biomass=0.36851083184592426 fixed=0.8028459706055546 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=91.8 source=30305 parent=2933 child=3458 depth_m=0.18889055
+FILM_PAID_BIRTH day=91.81666666666666 source=30120 parent=218 child=3460 depth_m=0.16697696
+FILM_PAID_BIRTH day=91.81666666666666 source=30305 parent=2817 child=3464 depth_m=0.18397212
+FILM_DAY day=92 living=27 biomass=0.42648883583024144 fixed=0.859053466891547 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=92.76666666666667 source=30305 parent=2933 child=3585 depth_m=0.19866396
+FILM_PAID_BIRTH day=92.85 source=30150 parent=1611 child=3599 depth_m=0.18991989
+FILM_PAID_BIRTH day=92.85 source=30305 parent=2933 child=3602 depth_m=0.17425229
+FILM_DAY day=93 living=28 biomass=0.4524019614327699 fixed=0.9182178050334446 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=93.75 source=30120 parent=218 child=3703 depth_m=0.18806177
+FILM_PAID_BIRTH day=93.76666666666667 source=7584 parent=643 child=3709 depth_m=0.15641041
+FILM_PAID_BIRTH day=93.76666666666667 source=30305 parent=2933 child=3714 depth_m=0.19873364
+FILM_PAID_BIRTH day=93.81666666666666 source=30305 parent=2933 child=3733 depth_m=0.18411878
+FILM_DAY day=94 living=29 biomass=0.47765200259163976 fixed=0.9821885241245614 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=94.81666666666666 source=30120 parent=218 child=3862 depth_m=0.1671584
+FILM_DAY day=95 living=30 biomass=0.4951204424723983 fixed=1.047113208646559 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=95.1 source=30275 parent=2399 child=3887 depth_m=0.15847221
+FILM_PAID_BIRTH day=95.78333333333333 source=30339 parent=3275 child=4004 depth_m=0.18433051
+FILM_DAY day=96 living=30 biomass=0.5189547024201602 fixed=1.119900611979327 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=96.18333333333334 source=30275 parent=2399 child=4037 depth_m=0.19483103
+FILM_PAID_BIRTH day=96.68333333333334 source=7617 parent=3344 child=4113 depth_m=0.18873648
+FILM_PAID_BIRTH day=96.75 source=30120 parent=218 child=4133 depth_m=0.18824498
+FILM_PAID_BIRTH day=96.76666666666667 source=7584 parent=643 child=4140 depth_m=0.15653965
+FILM_PAID_BIRTH day=96.76666666666667 source=30339 parent=3338 child=4143 depth_m=0.18643318
+FILM_PAID_BIRTH day=96.78333333333333 source=30339 parent=3275 child=4149 depth_m=0.18449555
+FILM_PAID_BIRTH day=96.81666666666666 source=7617 parent=3344 child=4154 depth_m=0.16529597
+FILM_PAID_BIRTH day=96.88333333333334 source=30110 parent=1220 child=4166 depth_m=0.18848523
+FILM_DAY day=97 living=33 biomass=0.5562881655059755 fixed=1.2046742860145319 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=97.68333333333334 source=30339 parent=3338 child=4247 depth_m=0.19215147
+FILM_PAID_BIRTH day=97.75 source=7617 parent=3344 child=4266 depth_m=0.17858852
+FILM_PAID_BIRTH day=97.78333333333333 source=30339 parent=3275 child=4278 depth_m=0.18465695
+FILM_PAID_BIRTH day=97.8 source=30119 parent=723 child=4279 depth_m=0.14362371
+FILM_FUNDED_BIRTH day=97.8 parent=723 child=4279 depth_m=0.14362371 shallow_credit_before=0.04225660444353707
+FILM_PAID_BIRTH day=97.81666666666666 source=30120 parent=218 child=4289 depth_m=0.16733262
+FILM_PAID_BIRTH day=97.81666666666666 source=30339 parent=3570 child=4292 depth_m=0.18014129
+FILM_PAID_BIRTH day=97.91666666666667 source=30305 parent=2448 child=4306 depth_m=0.15672487
+FILM_DAY day=98 living=35 biomass=0.5831709015183151 fixed=1.3028639654674894 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=98.1 source=30275 parent=2399 child=4312 depth_m=0.15889686
+FILM_PAID_BIRTH day=98.13333333333334 source=30275 parent=2399 child=4313 depth_m=0.17382048
+FILM_PAID_BIRTH day=98.15 source=30275 parent=2399 child=4315 depth_m=0.18111368
+FILM_PAID_BIRTH day=98.68333333333334 source=30339 parent=3338 child=4389 depth_m=0.1923045
+FILM_PAID_BIRTH day=98.7 source=7617 parent=3344 child=4390 depth_m=0.18666889
+FILM_PAID_BIRTH day=98.7 source=30339 parent=3275 child=4393 depth_m=0.19177593
+FILM_PAID_BIRTH day=98.73333333333333 source=30339 parent=3570 child=4403 depth_m=0.18983522
+FILM_PAID_BIRTH day=98.75 source=30339 parent=3659 child=4408 depth_m=0.18842946
+FILM_PAID_BIRTH day=98.78333333333333 source=30275 parent=2399 child=4420 depth_m=0.19305088
+FILM_PAID_BIRTH day=98.81666666666666 source=30339 parent=3338 child=4427 depth_m=0.1802978
+FILM_PAID_BIRTH day=98.83333333333333 source=30279 parent=3434 child=4432 depth_m=0.18590422
+FILM_PAID_BIRTH day=98.9 source=7571 parent=621 child=4439 depth_m=0.1999619
+FILM_PAID_BIRTH day=98.91666666666667 source=30150 parent=1611 child=4442 depth_m=0.17064048
+FILM_DAY day=99 living=37 biomass=0.6007912622299045 fixed=1.4096401797599842 dry_fixed=0 frozen_fixed=0
+FILM_PAID_BIRTH day=99.13333333333334 source=30275 parent=2399 child=4446 depth_m=0.17395726
+FILM_PAID_BIRTH day=99.66666666666667 source=7617 parent=3344 child=4524 depth_m=0.19104527
+FILM_PAID_BIRTH day=99.66666666666667 source=30339 parent=3659 child=4529 depth_m=0.1926914
+FILM_PAID_BIRTH day=99.66666666666667 source=30339 parent=3275 child=4530 depth_m=0.1926914
+FILM_PAID_BIRTH day=99.73333333333333 source=30120 parent=218 child=4547 depth_m=0.1935289
+FILM_PAID_BIRTH day=99.73333333333333 source=30339 parent=3570 child=4551 depth_m=0.1899839
+FILM_PAID_BIRTH day=99.76666666666667 source=7617 parent=3202 child=4556 depth_m=0.17571297
+FILM_PAID_BIRTH day=99.78333333333333 source=7617 parent=3344 child=4560 depth_m=0.17247678
+FILM_PAID_BIRTH day=99.78333333333333 source=30339 parent=3338 child=4564 depth_m=0.18496206
+FILM_PAID_BIRTH day=99.8 source=30279 parent=3769 child=4569 depth_m=0.19692451
+FILM_PAID_BIRTH day=99.83333333333333 source=30279 parent=3769 child=4579 depth_m=0.18596773
+FILM_DAY day=100 living=36 biomass=0.6213697013445199 fixed=1.5251049963688192 dry_fixed=0 frozen_fixed=0
+TOTAL_WATER start=943938201811.7751 end=943830411911.813 relative_error=1.1419169152733572e-4
+PRODUCER_EVER max_support=0.015191794 max_organization=0.18665475
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=10651941 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=234428

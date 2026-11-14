@@ -149,4 +149,14 @@ for(const [code,message] of [[-2,/Origin colonies only/],[-3,/canvas is too smal
 sandbox.Module._stella_fit_life=()=>-1;el('fit-life').onclick();assert.match(el('notice').textContent,/unavailable/);
 sandbox.Module.started=false;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);sandbox.Module.started=true;
 delete sandbox.Module._stella_fit_life;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);
+sandbox.Module.started=true;sandbox.Module._stella_life_snapshot=()=>1;
+sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:12,seed_reason:'too_cold',water_m:.1,temperature_c:0,cohorts:[],producer_habitat:{state:'frozen',compatible:0}});
+el('life-toggle').onclick();assert.match(el('life-conditions').textContent,/photosynthesis is blocked/);el('close-life').onclick();
+sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:12,seed_reason:'too_dry',water_m:.1,temperature_c:20,cohorts:[],producer_habitat:{state:'thin_film',compatible:0}});
+el('life-toggle').onclick();assert.match(el('life-conditions').textContent,/no current cohort/);el('close-life').onclick();
+assert.match(sandbox.producerHabitatFeedback({state:'frozen'}),/blocked/);
+assert.match(sandbox.producerHabitatFeedback({state:'thin_film',compatible:0}),/no current cohort/);
+assert.match(sandbox.producerHabitatFeedback({state:'thin_film',compatible:2}),/not dryland/);
+assert.match(sandbox.producerHabitatFeedback({state:'submergence_margin',supported_film_capable:0}),/not proof/);
+assert.match(sandbox.producerHabitatFeedback(null),/unavailable/);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

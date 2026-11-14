@@ -9,7 +9,7 @@ pub fn reasonText(reason:Reason) []const u8 {
   .invalid=>"Cannot seed: choose a valid patch",
   .too_dry=>"Too dry: add water or find a green +",
   .too_deep=>"Too deep: drain water to 0.2–50m",
-  .too_cold=>"Too cold: warm this habitat first",
+  .too_cold=>"Frozen: warm above 0°C before seeding",
   .too_hot=>"Too hot: cool this habitat first",
   .no_space=>"Patch full: choose another green +",
   .no_nutrients=>"No nutrients: use Nutr. + first",
@@ -30,7 +30,7 @@ test "current invalid seed status overrides stale success or focus feedback" {
 pub fn evaluate(cell:Microbes.Cell,depth:f32,temp:f32,carbon:f32) Reason {
  if(!std.math.isFinite(depth) or !std.math.isFinite(temp) or !std.math.isFinite(carbon) or !std.math.isFinite(cell.nutrient))return .invalid;
  if(depth<0.0002)return .too_dry;if(depth>0.05)return .too_deep;
- if(temp<=260)return .too_cold;if(temp>=355)return .too_hot;
+ if(temp<=273.15)return .too_cold;if(temp>=355)return .too_hot;
  var space=false;for(cell.cohorts)|c|{if(!std.math.isFinite(c.biomass))return .invalid;if(c.biomass==0)space=true;}
  if(!space)return .no_space;if(cell.nutrient<=0)return .no_nutrients;if(carbon<=0)return .no_carbon;
  return .eligible;
@@ -47,4 +47,11 @@ test "eligibility matches seed resource and habitat boundaries without mutation"
  for(0..4)|_|{try std.testing.expectEqual(Reason.eligible,evaluate(cell,0.001,300,1));try std.testing.expect(Microbes.seed(&cell,&stats,1)>0);}
  try std.testing.expectEqual(Reason.no_space,evaluate(cell,0.001,300,1));
  try std.testing.expectEqual(Reason.invalid,evaluate(cell,std.math.nan(f32),300,1));
+}
+
+test "frozen seedlings never advertised eligible at boundary" {
+ const cell=Microbes.Cell{};const before=cell;
+ for([_]f32{260,273,273.15})|temp|try std.testing.expectEqual(Reason.too_cold,evaluate(cell,0.001,temp,1));
+ try std.testing.expectEqual(Reason.eligible,evaluate(cell,0.001,273.16,1));
+ try std.testing.expectEqualDeep(before,cell);
 }

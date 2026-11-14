@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "production_source_unchanged": true,
+  "snapshot_four_live_cohorts_bytes": 2681,
+  "snapshot_capacity": 8192,
+  "modes": [
+    {
+      "created": "origin",
+      "width": 390,
+      "height": 700,
+      "exit": 0
+    },
+    {
+      "created": "sandbox",
+      "width": 640,
+      "height": 360,
+      "exit": 0
+    }
+  ],
+  "old_schema6_fixture_sha256": "1a14a456849350d1b04ad7484d4a31779a0879abbf4c07d5617323e0e47d358b",
+  "native_binary_sha256": "124d61f27ee00b886d0dd6e0ad37f89f3f53b506538721a5aca83e9645e04bf5",
+  "snapshot_helper_sha256": "0b27624141409fdd81a3aad31a1511419f047699c76185999c7797c1ecd725b5",
+  "main_sha256": "727c75792da7f7693f0d3cc3d3a91625b0561f657916b47171a1195813d4bcde",
+  "model_sha256": "2b9927e150d9262c9f28286ff9bc0f5f3e87ac05ffd2f38d695dc34e2192a4f8",
+  "seed_eligibility_sha256": "6927df3f72c8f458e1cfc3ce1574c5739f62ccb1b300f6dec52051726c0e306c",
+  "shell_sha256": "14ec5849305132f4067786cea3af111f6b554779b946e23f9e4bca836ccdd17a"
+}

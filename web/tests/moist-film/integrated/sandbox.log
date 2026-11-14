@@ -1,0 +1,47 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0xc525a30 context=0xc526040
+info: Loading states.main_menu.MainMenuState...
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-001.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-002.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-003.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-004.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-005.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-006.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-007.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-008.ppm
+info: Loading states.game_intro.GameIntroState...
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-009.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-010.ppm
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-011.ppm
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x16b7d97be2e898b
+info: Sea Level: -0.9013672 km
+info: NEW_WORLD_WATER preset=continents requested_ocean=0.7 actual_ocean=0.6998925833699526 sea_level_km=2.1743164 initial_mass=879474083219.145 vapor=0 existing_save_untouched=true
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-012.ppm
+WORLD_MENU actual_press_release=true default_random=true reversible=true no_reset_on_select=true new_mode=sandbox preset=continents
+GATE_START
+GATE_OBSERVATION_OK
+SNAPSHOT_BUFFER four_live_cohorts=true valid_json=true producer_habitat=true bytes=2681 capacity=8192\nGATE_FOCUS_OK selected=7124
+GATE_FROZEN_TARGETS_OK
+GATE_FROZEN_NO_MUTATION_OK
+FILM_GUIDANCE full_save_observation_invariant=true frozen_seed_rejected=true all_frozen_focus_rejected=true no_frozen_targets=true warm_focus_and_seed=true schema=6
+MENU_SAVE_RELOAD existing_mode=origin new_mode=sandbox full_json_exact=true preset_ignored=true schema=6
+Captured /workspace/scratch/f67c3ac60ca3/stella-film-v30-native/tmp/sandbox-013.ppm
+info: deinit audio
+error(gpa): memory address 0x7fa5df65d000 leaked: 
+

@@ -1,0 +1,2 @@
+2b9927e150d9262c9f28286ff9bc0f5f3e87ac05ffd2f38d695dc34e2192a4f8  stella-film-v28/src/simulation/microbes.zig
+0b27624141409fdd81a3aad31a1511419f047699c76185999c7797c1ecd725b5  stella-film-v28/src/producer_habitat.zig
