@@ -1,0 +1,22 @@
+{
+  "toolchains": {
+    "zig": "0.13.0",
+    "emscripten": "3.1.64"
+  },
+  "build": "passed",
+  "exports": [
+    "stella_find_life",
+    "stella_fit_life",
+    "stella_save",
+    "stella_load"
+  ],
+  "artifacts": {
+    "index.html": "67b134a9a195241f729774f1ef303ceea782541eb703490bb96ae1a870c1d8e8",
+    "index.js": "4bfce592970f52d5e05e578efcb495f814d977a9e265d0d856a321b36d26ee11",
+    "index.wasm": "8d58c7d80feb1421c661cfbbe8dee3f1be577350b0b1123559dc80b9c0afad96",
+    "assets-0.bin": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+    "assets-1.bin": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+    "assets-2.bin": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+    "assets-3.bin": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f"
+  }
+}

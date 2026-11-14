@@ -38,3 +38,9 @@ This demonstrates an existing habitat-dependent tradeoff, not new fire resistanc
 `native-390.log` records successful 390×700 actual-engine rendering of a deliberately constructed seven-patch fixture. Find switches from Temperature to Surface/Watch while preserving pause and pace. All 14 root/body pointer checks select their intended rendered cells; same-grid serialized save reload clears cached targets. `native-390.png` was visually reviewed: all seven distinct plant glyphs are visible, controls and footer readable, no modal obscures colonies. Native teardown retains the previously known allocator leak warning. This is not Android/WebGL acceptance, not a naturally evolved world, and not proof of performance improvement.
 
 The candidate is saved separately for integration. Full final WASM packaging and browser-device checks remain outstanding; do not treat the build-v32 label as a deployed candidate release.
+
+## v33 release gate
+
+Full pinned Zig 0.13.0/Emscripten 3.1.64 static-library build, browser link and split-asset packaging succeeded. The resulting WebAssembly exposes `stella_find_life`, `stella_fit_life`, `stella_save` and `stella_load`; JavaScript syntax and all seven regression suites pass. `wasm-proof.json` records exact hashes.
+
+The managed cloud-browser preview downloaded assets, reached Ready and initialized the audio memory bridge. Play then reported `WindowCreationFailed`, consistent with the previously documented cloud graphics-context limitation. Actual browser gameplay/Android acceptance is not claimed; native rendering and actual pointer checks are the available graphical evidence. Release does not change the simulation, save schema or browser-local persistence mechanism.
