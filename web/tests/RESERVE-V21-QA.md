@@ -1,0 +1,3 @@
+Isolated reserve physiology on current v21 fixed1440-second physical quantum (effective timescale1). Main Planet/microbes base byte-identical to prior v20 merge base; latest PlayState, clock, save/apply observer reset and UI retained. No live changes. Prior360-second results are historical, not evidence for this version.
+
+Fixed-step oneSeed/normalGrow30d completed:1800ticks,10occupiedpatches,11livingcohorts,4forms,biomass0.11987586. Saveinvalidrejection/exactrestore/paused0m+Nursery+wave allpass. Broad dryclimate survey finds no≥80%drycells; reserve remainsunproven/costlyunderthese wetconditions. See CLIMATE-READONLY.md.
