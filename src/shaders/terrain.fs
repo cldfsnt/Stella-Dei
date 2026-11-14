@@ -85,7 +85,10 @@ void main() {
             vec3 bare = mix(vec3(0.64, 0.40, 0.16), vec3(0.37, 0.23, 0.10), smoothstep(0.0, 110.0, height));
             vec3 land = mix(bare, vec3(0.10, 0.55, 0.15), clamp(vegetation, 0.0, 1.0));
             vec3 water = mix(vec3(0.03, 0.48, 0.70), vec3(0.015, 0.11, 0.40), 1.0-exp(-waterElevation*0.5));
-            float wet = smoothstep(0.001, 0.03, waterElevation);
+            // Depth is km: make actual shallow habitats visible at 5cm–2m.
+            // The former 1–30m blend made viable ponds look like dry beige land.
+            // Zero water stays dry; deep-ocean colors and ice logic are unchanged.
+            float wet = smoothstep(0.00005, 0.002, waterElevation);
             vec3 mapColor = mix(land, water, wet);
             float ice = wet * (1.0-smoothstep(268.15, 273.15, interpData));
             mapColor = mix(mapColor, vec3(0.80, 0.90, 0.96), ice);

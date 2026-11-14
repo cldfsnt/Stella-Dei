@@ -34,6 +34,7 @@ void glfwSetWindowMonitor(GLFWwindow*w,GLFWmonitor*m,int x,int y,int a,int b,int
 void glfwDestroyWindow(GLFWwindow*w){}void glfwTerminate(void){}
 static void pointer(double x,double y,int down){mx=x;my=y;if(cursorcb)cursorcb((GLFWwindow*)1,x,y);mouseState=down;if(mousecb)mousecb((GLFWwindow*)1,0,down,0);}
 void glfwPollEvents(void){usleep(16000);
+ if(getenv("STELLA_VISUAL_STATIC")){if(frames>100)closed=1;return;}
  double pw=width-24<360?width-24:360,px=(width-pw)/2,py=(height-280)/2; if(py<6)py=6;
  double half=(pw-40)/2,topw=(width-(width>=650?40:32))/(width>=650?4:3);
  switch(frames){

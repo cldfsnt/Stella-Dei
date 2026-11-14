@@ -159,7 +159,7 @@ pub const PlayState = struct {
     /// This is the number of in-game seconds that passes for each real second
     /// TODO: only expose 3 selectable time scales like in most game (normal, fast, super fast)
     /// and they would have different values depending on the geological/biological/technological time scale
-    timeScale: f32 = (if (@import("builtin").target.cpu.arch == .wasm32) @as(f32, 1) else 6) * @as(f32, @floatFromInt(std.time.s_per_hour)),
+    timeScale: f32 = guidance.default_browser_speed,
     /// Whether the game is paused, this has the same effect as setting timeScale to
     /// 0 except it preserves the time scale value.
     paused: bool = false,
@@ -916,6 +916,15 @@ pub const PlayState = struct {
         return changed;
     }
 
+    pub fn makeSelectedPond(self:*PlayState, expected_point:u32) i32 {
+        const count=@import("../pond_action.zig").makePond(&self.planet,expected_point,self.selectedPoint);
+        if(count>0) {
+            self.mobileFeedback="Basin shaped and filled; seed shallow floor";
+            self.mobileFeedbackSeconds=5;
+        }
+        return count;
+    }
+
     pub fn testAction(self: *PlayState, tool_id: i32) bool {
         if (!self.pointerOnPlanet or tool_id < 0 or tool_id > 6) return false;
         return self.applySelectedTool(@enumFromInt(tool_id), true, 0);
@@ -1300,7 +1309,8 @@ pub const PlayState = struct {
     }
 
     /// A sprout represents a real vegetated terrain population, not one plant.
-    /// Bounded allocation-free neighbourhood: <=512 candidates, <=64 glyphs.
+    /// Close view scans <=512 neighbours; globe view scans real living cells.
+    /// Allocation-free, de-cluttered, <=64 glyphs in either view.
     fn renderSprouts(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
         self.visibleSprouts = 0;
         self.sproutCandidates = 0;
@@ -1308,17 +1318,19 @@ pub const PlayState = struct {
         var candidates: [512]usize = undefined;
         var screenPositions: [64]Vec2 = undefined;
         candidates[0] = self.cameraGroundPoint;
-        var count: usize = 1;
+        const wide = self.cameraDistance >= self.planet.radius * 1.28;
+        const lod = biology_visuals.markerScale(self.cameraDistance,self.planet.radius);
+        var count: usize = if(wide) self.planet.transformedPoints.len else 1;
         var cursor: usize = 0;
-        while (cursor < count and cursor < candidates.len and self.visibleSprouts < screenPositions.len) : (cursor += 1) {
-            const index = candidates[cursor];
+        while (cursor < count and self.visibleSprouts < screenPositions.len) : (cursor += 1) {
+            const index = if(wide) cursor else candidates[cursor];
             self.sproutCandidates += 1;
-            for (self.planet.getNeighbours(index)) |neighbour| {
+            if (!wide) for (self.planet.getNeighbours(index)) |neighbour| {
                 if (count == candidates.len) break;
                 var known = false;
                 for (candidates[0..count]) |candidate| { if (candidate == neighbour) { known = true; break; } }
                 if (!known) { candidates[count] = neighbour; count += 1; }
-            }
+            };
             const origin = self.planet.worldMode == .origin;
             const biomass = if (origin) Microbes.biomass(self.planet.microbeCells[index]) else self.planet.vegetation[index];
             if (origin) { if (biomass < 0.001) continue; } else if (biomass < 0.08 or self.planet.waterMass[index] * self.planet.getKmPerWaterMass() > 0.0005) continue;
@@ -1328,50 +1340,79 @@ pub const PlayState = struct {
             if (clip.w() <= 0) continue;
             const x = (clip.x() / clip.w() + 1) * width / 2;
             const y = (1 - clip.y() / clip.w()) * height / 2;
-            const size = if (origin) 12 + 16 * @sqrt(std.math.clamp(biomass, 0, 1)) else biology_visuals.sproutSize(biomass);
+            const size = (if (origin) 13 + 10 * @sqrt(std.math.clamp(biomass, 0, 1)) else 12 + biology_visuals.sproutSize(biomass)) * lod;
             if (x < size + 4 or x > width - size - 4 or y < toolBottom + size * 2 or y > height - 90) continue;
             const screen = Vec2.new(x,y);
+            // A living cell is an area, not a floating icon. Render its footprint
+            // even when the nearby morphology glyph is suppressed by decluttering.
+            // Adjacent occupied cells merge visually; empty terrain stays untouched.
+            const cover = std.math.clamp(biomass, 0, 1);
+            const patch = (10 + 13 * @sqrt(cover)) * lod;
+            vg.beginPath(); vg.fillColor(nvg.rgba(50,160,112, @intFromFloat(35 + 35 * cover)));
+            vg.ellipse(x,y+2*lod,patch,patch*0.57); vg.fill();
+            vg.beginPath(); vg.fillColor(nvg.rgba(91,211,132, @intFromFloat(45 + 40 * cover)));
+            vg.ellipse(x-4*lod,y,patch*0.65,patch*0.32);
+            vg.ellipse(x+6*lod,y+3*lod,patch*0.55,patch*0.28); vg.fill();
             var crowded = false;
-            for (screenPositions[0..self.visibleSprouts]) |prior| { if (screen.distance(prior) < (if (origin) @as(f32,40) else 20)) { crowded = true; break; } }
+            for (screenPositions[0..self.visibleSprouts]) |prior| { if (screen.distance(prior) < @max(14,38*lod)) { crowded = true; break; } }
             if (crowded) continue;
             screenPositions[self.visibleSprouts] = screen;
             self.visibleSprouts += 1;
+            vg.save(); vg.translate(x,y); vg.scale(lod,lod);
+            // Soft contact shadow grounds the crisp silhouette in its living patch.
+            vg.beginPath(); vg.fillColor(nvg.rgba(8,35,29,125)); vg.ellipse(0,2,13,4); vg.fill();
             if (origin) {
-                // Mat symbols indicate real carbon biomass, not giant individual cells.
-                const matSize = size;
-                vg.beginPath(); vg.fillColor(nvg.rgb(12,60,69));
-                vg.roundedRect(x-matSize,y-matSize*0.6,matSize*2,matSize*1.2,matSize*0.5); vg.fill();
-                vg.beginPath(); vg.fillColor(nvg.rgb(56,225,185));
-                vg.roundedRect(x-matSize*0.7,y-matSize*0.4,matSize*0.8,matSize*0.5,matSize*0.24);
-                vg.roundedRect(x+matSize*0.1,y,matSize*0.6,matSize*0.35,matSize*0.17); vg.fill();
-                // One bounded schematic per patch, based on tallest actual tissue.
-                var tallest: f32=0;
-                var support:f32=0;
-                var frond:f32=0;
+                var dominant: Microbes.Cohort = .{};
                 for(self.planet.microbeCells[index].cohorts) |co| {
-                    const h=Microbes.producerHeightMeters(co);
-                    if(h>tallest){tallest=h;support=co.support_mass;frond=Microbes.frondMass(co);}
+                    if(co.biomass>0 and (co.support_mass>dominant.support_mass or (co.support_mass==dominant.support_mass and co.biomass>dominant.biomass))) dominant=co;
                 }
-                if(biology_visuals.producerShape(support,frond,tallest)) |shape| {
-                    vg.beginPath();vg.fillColor(nvg.rgb(70,153,121));
-                    vg.roundedRect(x-1.5,y-shape.stem,3,shape.stem,1.5);vg.fill();
-                    vg.beginPath();vg.fillColor(nvg.rgb(142,240,174));
-                    vg.roundedRect(x-shape.canopy,y-shape.stem,shape.canopy,5,2.5);
-                    vg.roundedRect(x,y-shape.stem-4,shape.canopy,5,2.5);vg.fill();
+                const color=biology_visuals.lineageColor(dominant.optimum);
+                const form = @tagName(Microbes.producerForm(dominant));
+                // Dense real biomass reads as a colony rather than a single sticker.
+                // Smaller shoots use the same inherited morphology, not extra species.
+                if (biomass > 0.3 and lod > 0.75) {
+                    vg.save(); vg.translate(-13,2); vg.scale(0.48,0.48); renderProducerGlyph(vg,form,color); vg.restore();
+                    vg.save(); vg.translate(12,4); vg.scale(0.58,0.58); renderProducerGlyph(vg,form,color); vg.restore();
                 }
+                renderProducerGlyph(vg,form,color);
                 if (biology_visuals.hasFed(self.planet.microbeCells[index].cohorts)) {
-                    vg.beginPath(); vg.fillColor(nvg.rgb(255,191,89));
-                    vg.roundedRect(x-3,y-3,6,6,3); vg.fill();
+                    vg.beginPath(); vg.fillColor(nvg.rgb(255,191,89)); vg.circle(12,0,3); vg.fill();
                 }
-                continue;
+            } else {
+                const color=biology_visuals.lineageColor(self.planet.plantTraits[index].optimum);
+                renderProducerGlyph(vg,"branching",color);
             }
-            // Original procedural stem and leaves, brighter and larger as biomass grows.
-            vg.beginPath(); vg.fillColor(nvg.rgb(24,55,24));
-            vg.roundedRect(x-1.5,y-size*1.5,3,size*1.5,1.5); vg.fill();
-            vg.beginPath(); vg.fillColor(nvg.rgb(126,230,103));
-            vg.roundedRect(x-size,y-size, size, size*0.55, size*0.27);
-            vg.roundedRect(x,y-size*1.5,size,size*0.55,size*0.27); vg.fill();
+            vg.restore();
         }
+    }
+
+    /// Crisp vector silhouettes for expressed population morphology, not individual trees.
+    fn renderProducerGlyph(vg:nvg, form:[]const u8, color:[3]u8) void {
+        const leaf=nvg.rgb(color[0],color[1],color[2]);
+        const edge=nvg.rgb(12,49,44);
+        vg.strokeColor(edge); vg.strokeWidth(2.2); vg.fillColor(leaf);
+        if(std.mem.eql(u8,form,"mat")) {
+            vg.beginPath();vg.ellipse(-5,-3,9,5);vg.ellipse(6,-6,8,5);vg.fill();vg.stroke();
+            vg.beginPath();vg.fillColor(nvg.rgb(214,255,221));vg.circle(-6,-5,1.7);vg.circle(5,-8,1.7);vg.fill();return;
+        }
+        if(std.mem.eql(u8,form,"cushion")) {
+            vg.beginPath();vg.circle(-8,-7,7);vg.circle(0,-12,9);vg.circle(9,-6,7);vg.fill();vg.stroke();
+        } else if(std.mem.eql(u8,form,"rosette")) {
+            var i:usize=0;while(i<7):(i+=1){const angle=@as(f32,@floatFromInt(i))*6.283185/7;
+                vg.beginPath();vg.moveTo(0,-7);vg.lineTo(@cos(angle)*16-@sin(angle)*4,-7+@sin(angle)*14+@cos(angle)*4);vg.lineTo(@cos(angle)*18,-7+@sin(angle)*16);vg.closePath();vg.fill();vg.stroke();}
+        } else if(std.mem.eql(u8,form,"ribbon")) {
+            var i:i32=-1;while(i<=1):(i+=1){const x=@as(f32,@floatFromInt(i))*7;
+                vg.beginPath();vg.moveTo(x,0);vg.bezierTo(x-9,-12,x+10,-20,x,-29);vg.bezierTo(x+17,-17,x+2,-8,x+4,0);vg.closePath();vg.fill();vg.stroke();}
+        } else if(std.mem.eql(u8,form,"canopy")) {
+            vg.beginPath();vg.moveTo(-2,0);vg.lineTo(-3,-24);vg.lineTo(3,-24);vg.lineTo(2,0);vg.closePath();vg.fillColor(nvg.rgb(178,139,87));vg.fill();vg.stroke();
+            vg.fillColor(leaf);vg.beginPath();vg.circle(-9,-24,8);vg.circle(0,-30,10);vg.circle(10,-23,8);vg.fill();vg.stroke();
+        } else {
+            vg.beginPath();vg.moveTo(0,0);vg.lineTo(0,-32);vg.strokeColor(edge);vg.strokeWidth(4);vg.stroke();
+            var i:usize=0;while(i<3):(i+=1){const y=-8-@as(f32,@floatFromInt(i))*8; const w=13-@as(f32,@floatFromInt(i))*3;
+                vg.strokeWidth(2);vg.beginPath();vg.moveTo(0,y+4);vg.bezierTo(-w,y+5,-w-4,y-5,-w,y-7);vg.bezierTo(-3,y-9,-1,y,0,y+4);vg.moveTo(0,y);vg.bezierTo(w,y+1,w+3,y-9,w,y-11);vg.bezierTo(2,y-9,1,y-4,0,y);vg.fill();vg.stroke();}
+        }
+        // A small highlight preserves readability without blurred sprite textures.
+        vg.beginPath();vg.fillColor(nvg.rgba(230,255,223,220));vg.circle(-3,-12,1.7);vg.fill();
     }
 
     fn mobileDetailLabel(vg: nvg, game: *Game, comptime fmt: []const u8, args: anytype, x: f32, y: f32, available: f32) void {
@@ -1463,12 +1504,12 @@ pub const PlayState = struct {
             }
         }
         var speedLabelBuffer: [40]u8 = undefined;
-        const speedLabel = std.fmt.bufPrintZ(&speedLabelBuffer, "{d:.0}h/s", .{self.timeScale / 3600}) catch "Speed";
+        const speedLabel = std.fmt.bufPrintZ(&speedLabelBuffer, "{s}", .{guidance.speedLabel(self.timeScale)}) catch "Pace";
         const speedX = if (width >= 650) 32 + 3 * topW else 8 + 3 * (bw + 6);
         const speedY: f32 = if (width >= 650) 6 else 112;
         if (ui.button(vg, game, "mobile-speed", speedX, speedY, if (width >= 650) topW else bw, 44, speedLabel)) {
             self.timeScale = guidance.nextSpeed(self.timeScale);
-            self.mobileFeedback = if (self.paused) "Speed changed; press Play to run" else "Speed changed: hours per real second";
+            self.mobileFeedback = guidance.speedHint(self.timeScale, self.paused);
             self.mobileFeedbackSeconds = 3;
         }
         vg.textAlign(.{ .horizontal = .left, .vertical = .middle });

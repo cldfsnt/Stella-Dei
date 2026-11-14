@@ -335,7 +335,7 @@ export fn stella_target_distance() f32 {
     return if (webPlayState()) |state| state.targetCameraDistance else -1;
 }
 
-var lifeSnapshotBuffer: [4096]u8 = undefined;
+var lifeSnapshotBuffer: [8192]u8 = undefined;
 /// On-demand current-cell snapshot, not a fabricated historical lineage tree.
 export fn stella_life_snapshot() [*:0]const u8 {
     const state = webPlayState() orelse return "{\"status\":\"no_world\"}";
@@ -348,9 +348,9 @@ export fn stella_life_snapshot() [*:0]const u8 {
     const biologicalLight = @import("simulation/microbes.zig").availableLight(surfaceLight, depth);
     const Microbes = @import("simulation/microbes.zig");
     const shares = Microbes.producerLightShares(cell, surfaceLight, depth);
-    const Tissue = struct { support_mass:f32, frond_mass:f32, height_m:f32, available_light:f32, maintenance_potential:f32 };
+    const Tissue = struct { form:[]const u8, support_mass:f32, frond_mass:f32, height_m:f32, available_light:f32, maintenance_potential:f32 };
     var tissues:[4]Tissue=undefined;
-    for(cell.cohorts,0..) |co,slot| tissues[slot]=.{.support_mass=co.support_mass,.frond_mass=Microbes.frondMass(co),.height_m=Microbes.producerHeightMeters(co),.available_light=shares[slot],.maintenance_potential=Microbes.supportMaintenancePerDay(co)};
+    for(cell.cohorts,0..) |co,slot| tissues[slot]=.{.form=Microbes.producerFormName(Microbes.producerForm(co)),.support_mass=co.support_mass,.frond_mass=Microbes.frondMass(co),.height_m=Microbes.producerHeightMeters(co),.available_light=shares[slot],.maintenance_potential=Microbes.supportMaintenancePerDay(co)};
     var movement_reasons: [4][]const u8 = undefined;
     for (&movement_reasons, 0..) |*reason, slot| {
         reason.* = @tagName(state.planet.microbeRelocationOpportunity(point, slot, state.gameTime).reason);
@@ -374,9 +374,7 @@ export fn stella_world_mode() i32 {
 export fn stella_goal_stage() i32 {
     if (webPlayState()) |state| {
         if (state.planet.worldMode == .origin) {
-            var live = false;
-            for (state.planet.microbeCells) |cell| { if (@import("simulation/microbes.zig").biomass(cell) > 0.001) { live = true; break; } }
-            return if (!live) 100 else if (state.planet.microbeStats.births == 0) 101 else 102;
+            return @import("habitat_feedback.zig").originStage(state.planet.microbeCells);
         }
         return @intFromEnum(@import("habitat_feedback.zig").goalStage(state.planet));
     }
@@ -403,6 +401,11 @@ export fn stella_adjust_water(expected_point: u32, delta_m: f32) f32 {
 export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
     const state=webPlayState() orelse return std.math.nan(f32);
     return state.setSelectedWaterTarget(expected_point,target_m);
+}
+
+export fn stella_make_pond(expected_point:u32) i32 {
+    const state=webPlayState() orelse return -1;
+    return state.makeSelectedPond(expected_point);
 }
 
 export fn stella_test_action(tool: i32) i32 {

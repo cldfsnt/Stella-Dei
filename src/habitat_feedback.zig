@@ -99,3 +99,57 @@ test "animal feedback reports state not invented movement and rejects removed in
     water[0]=0.003;try std.testing.expectEqual(AnimalLabel.flooded,inspectRabbit(p,0,129600).?.label);
     p.lifeforms.items=p.lifeforms.items[0..0];try std.testing.expectEqual(@as(?RabbitStatus,null),inspectRabbit(p,0,129600));
 }
+
+/// Journey observations are recomputed from living cohorts. Old births or lost
+/// morphologies never keep a dead world at a completed stage.
+pub fn originStage(cells: anytype) i32 {
+    const microbes = @import("simulation/microbes.zig");
+    var live: usize = 0;
+    var descendant = false;
+    var supported = false;
+    var forms: [6]bool = .{false} ** 6;
+    for (cells) |cell| {
+        var occupied = false;
+        for (cell.cohorts) |c| {
+            if (c.biomass <= 0.001) continue;
+            occupied = true;
+            descendant = descendant or c.generation > 0;
+            const form = microbes.producerForm(c);
+            if (c.generation > 0 and form != .mat) {
+                supported = true;
+                forms[@intFromEnum(form)] = true;
+            }
+        }
+        if (occupied) live += 1;
+    }
+    if (live == 0) return 100;
+    if (!descendant) return 101;
+    if (!supported) return 102;
+    var diversity: usize = 0;
+    for (forms) |present| { if (present) diversity += 1; }
+    if (diversity < 2) return 103;
+    if (live < 3) return 104;
+    return 105;
+}
+test "Origin journey follows living descendants and actual producer forms" {
+    const microbes = @import("simulation/microbes.zig");
+    var cells = [_]microbes.Cell{.{},.{},.{}};
+    try std.testing.expectEqual(@as(i32,100),originStage(&cells));
+    cells[0].cohorts[0] = .{.biomass=0.1};
+    try std.testing.expectEqual(@as(i32,101),originStage(&cells));
+    cells[0].cohorts[0].generation = 1;
+    try std.testing.expectEqual(@as(i32,102),originStage(&cells));
+    cells[0].cohorts[0].support_mass = 0.02;
+    cells[0].cohorts[0].organization = 0.2;
+    try std.testing.expectEqual(@as(i32,103),originStage(&cells));
+    cells[0].cohorts[1] = cells[0].cohorts[0];
+    cells[0].cohorts[1].efficiency = 1.1;
+    try std.testing.expectEqual(@as(i32,104),originStage(&cells));
+    cells[1].cohorts[0] = cells[0].cohorts[0];
+    cells[2].cohorts[0] = cells[0].cohorts[0];
+    try std.testing.expectEqual(@as(i32,105),originStage(&cells));
+    cells[1] = .{}; cells[2] = .{}; cells[0].cohorts[1] = .{};
+    cells[0].cohorts[0].biomass = 0;
+    cells[0].cohorts[0].support_mass = 0;
+    try std.testing.expectEqual(@as(i32,100),originStage(&cells));
+}

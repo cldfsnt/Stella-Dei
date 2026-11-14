@@ -15,6 +15,21 @@ pub fn plantWarning(depth_km: f32) ?[]const u8 {
 pub fn nextSpeed(seconds: f32) f32 {
     return if (seconds < 3600) 3600 else if (seconds < 21600) 21600 else if (seconds < 86400) 86400 else 3600;
 }
+pub const default_browser_speed: f32 = 21600;
+pub fn speedLabel(seconds: f32) []const u8 {
+    return if (seconds <= 3600) "Slow" else if (seconds <= 21600) "Grow" else "Fast";
+}
+pub fn speedHint(seconds: f32, paused: bool) []const u8 {
+    if (paused) return "Pace ready; press Play to run";
+    return if (seconds <= 3600) "Slow: one day in 24 seconds" else if (seconds <= 21600) "Grow: one day in 4 seconds" else "Fast: one day per second; watch water";
+}
+test "pace names describe bounded existing rates" {
+    try std.testing.expectEqual(@as(f32,21600),default_browser_speed);
+    try std.testing.expectEqualStrings("Slow",speedLabel(3600));
+    try std.testing.expectEqualStrings("Grow",speedLabel(21600));
+    try std.testing.expectEqualStrings("Fast",speedLabel(86400));
+    try std.testing.expectEqualStrings("Pace ready; press Play to run",speedHint(86400,true));
+}
 test "placement matches actual two metre drowning limit" {
     try std.testing.expect(rabbitWaterSafe(0));
     try std.testing.expect(rabbitWaterSafe(0.001));

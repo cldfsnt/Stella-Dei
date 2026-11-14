@@ -15,3 +15,5 @@ web/tests/evidence/
 web/tests/storage-qa/index.html
 web/tests/storage-qa/index.js
 web/tests/storage-qa/index.wasm
+
+.zig-cache-*/

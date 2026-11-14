@@ -20,14 +20,37 @@ pub fn thermalFitness(temp:f32,optimum:f32) f32{return std.math.clamp(1-@abs(tem
 pub fn availableLight(surface:f32,depth_km:f32) f32{return std.math.clamp(surface,0,2)*@exp(-@max(0,depth_km)/0.02);}
 /// Support is a subset of total biomass, never additional carbon.
 pub fn frondMass(c:Cohort) f32{return @max(0,c.biomass-c.support_mass);}
-pub fn producerHeightMeters(c:Cohort) f32{return @min(0.5,0.2*c.support_mass/(frondMass(c)+0.01));}
+/// Aquatic growth forms, not taxonomic species or a claim of land plants.
+/// Classification is a read-only view of inherited traits and actual tissue.
+pub const ProducerForm=enum { mat, cushion, rosette, ribbon, branching, canopy };
+pub fn producerForm(c:Cohort) ProducerForm {
+    if(c.biomass<=0 or c.support_mass<=0 or frondMass(c)<=0)return .mat;
+    if(c.organization<0.025)return .cushion;
+    if(c.structure>=0.12)return .branching;
+    if(c.efficiency>=1.04)return .canopy;
+    if(c.efficiency<0.97)return .ribbon;
+    return .rosette;
+}
+pub fn producerFormName(form:ProducerForm) []const u8 {return switch(form){
+    .mat=>"Microbial mat",.cushion=>"Cushion",.rosette=>"Rosette",.ribbon=>"Ribbon",.branching=>"Branching",.canopy=>"Canopy",
+};}
+/// Continuous architecture avoids growth jumps at display-category boundaries.
+/// Toughness makes shorter, denser branching; efficient collectors spread wider.
+pub fn producerSpread(c:Cohort) f32 {
+    const tissue=std.math.clamp(c.support_mass/@max(c.biomass,0.000001),0,1);
+    return 1+tissue*(0.8*(c.efficiency-1)-0.3*c.structure);
+}
+pub fn producerHeightMeters(c:Cohort) f32 {
+    const slenderness=1+0.6*(1-c.efficiency)-0.3*c.structure;
+    return @min(0.5,0.2*c.support_mass/(frondMass(c)+0.01)*slenderness);
+}
 /// Potential daily maintenance demand, not a historical measured flux.
-pub fn supportMaintenancePerDay(c:Cohort) f32{return c.support_mass*0.12;}
+pub fn supportMaintenancePerDay(c:Cohort) f32{return c.support_mass*0.12*(1+0.4*@max(0,c.efficiency-1));}
 /// Fraction of reference surface daylight currently intercepted by each cohort.
 /// Read-only, finite shared photons; equal-height layers share proportionally.
 pub fn producerLightShares(cell:Cell,surface:f32,depth_km:f32) [4]f32 {
     var shares=[_]f32{0,0,0,0};var leaves:f32=0;var weighted:f32=0;
-    for(cell.cohorts,0..)|c,i|{const fronds=frondMass(c);leaves+=fronds;shares[i]=fronds*@exp(producerHeightMeters(c)/0.1);weighted+=shares[i];}
+    for(cell.cohorts,0..)|c,i|{const fronds=frondMass(c);leaves+=fronds;shares[i]=fronds*producerSpread(c)*@exp(producerHeightMeters(c)/0.1);weighted+=shares[i];}
     const absorbed=availableLight(surface,depth_km)*(1-@exp(-20*leaves));
     if(weighted>0)for(&shares)|*share|{share.*=absorbed*share.*/weighted;};
     return shares;
@@ -84,7 +107,7 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     // The phenomenological uptake response/20m attenuation remain compatible.
     if(organized){
         var budget:f32=0;var weighted:f32=0;
-        for(&potentials,cell.cohorts)|*value,c|{budget+=value.*;value.* *= @exp(producerHeightMeters(c)/0.1);weighted+=value.*;}
+        for(&potentials,cell.cohorts)|*value,c|{budget+=value.*;value.* *= producerSpread(c)*@exp(producerHeightMeters(c)/0.1);weighted+=value.*;}
         if(weighted>0)for(&potentials)|*value|{value.* *= budget/weighted;};
     }
     var potential:f32=0;for(potentials)|v|potential+=v;
@@ -603,4 +626,51 @@ test "all-support and rounded daughter subsets remain valid without changing car
         try std.testing.expectApproxEqAbs(old+f.fixed,carbon(cell)+f.recycled,0.000001);
         try std.testing.expectApproxEqAbs(n,nutrientTotal(cell),0.000001);
     }
+}
+
+test "aquatic growth forms require actual tissue and follow inherited traits" {
+    const base:Cohort=.{.biomass=0.1,.support_mass=0.01,.organization=0.04,.lineage=1};
+    var c=base;c.support_mass=0;try std.testing.expectEqual(ProducerForm.mat,producerForm(c));
+    c=base;c.organization=0.01;try std.testing.expectEqual(ProducerForm.cushion,producerForm(c));
+    c=base;try std.testing.expectEqual(ProducerForm.rosette,producerForm(c));
+    c=base;c.efficiency=0.95;try std.testing.expectEqual(ProducerForm.ribbon,producerForm(c));
+    c=base;c.structure=0.15;try std.testing.expectEqual(ProducerForm.branching,producerForm(c));
+    c=base;c.efficiency=1.06;try std.testing.expectEqual(ProducerForm.canopy,producerForm(c));
+    c.biomass=0;try std.testing.expectEqual(ProducerForm.mat,producerForm(c));
+}
+test "producer architecture is functional continuous and resource conserving" {
+    const base:Cohort=.{.biomass=0.1,.support_mass=0.03,.organization=0.3,.lineage=1};
+    var ribbon=base;ribbon.efficiency=0.9;
+    var canopy=base;canopy.efficiency=1.1;
+    var branching=base;branching.structure=0.2;
+    try std.testing.expect(producerHeightMeters(ribbon)>producerHeightMeters(canopy));
+    try std.testing.expect(producerSpread(canopy)>producerSpread(ribbon));
+    try std.testing.expect(supportMaintenancePerDay(canopy)>supportMaintenancePerDay(ribbon));
+    try std.testing.expect(producerHeightMeters(branching)<producerHeightMeters(base));
+    for([_]Cohort{base,ribbon,canopy,branching})|candidate|{
+        var cell=initialized(37);cell.cohorts[0]=candidate;
+        const initial=carbon(cell);const n=nutrientTotal(cell);var fixed:f32=0;var recycled:f32=0;
+        for(0..48)|_|{const f=step(&cell,good,3600);fixed+=f.fixed;recycled+=f.recycled;try std.testing.expect(validCell(cell,2));}
+        try std.testing.expectApproxEqAbs(initial+fixed,carbon(cell)+recycled,0.00001);
+        try std.testing.expectApproxEqAbs(n,nutrientTotal(cell),0.00001);
+    }
+    var low=base;low.efficiency=1.039999;var high=base;high.efficiency=1.040001;
+    try std.testing.expectApproxEqAbs(producerHeightMeters(low),producerHeightMeters(high),0.000001);
+    try std.testing.expectApproxEqAbs(producerSpread(low),producerSpread(high),0.000001);
+}
+test "simple seeded colonies evolve multiple real aquatic forms without assigned traits" {
+    var seen=[_]bool{false} ** 6;
+    var counts=[_]u32{0} ** 6;
+    for(1..129)|initial_seed|{
+        var cell=initialized(initial_seed);var stats:Stats=.{};_=seed(&cell,&stats,100);
+        var env=good;env.depth_km=0.002;
+        for(0..1440)|_|{
+            _=step(&cell,env,3600);
+            for(0..4)|i|_=reproduce(&cell,i,&cell,&stats,true);
+            for(cell.cohorts)|c|if(c.biomass>0){const idx=@intFromEnum(producerForm(c));seen[idx]=true;counts[idx]+=1;};
+            try std.testing.expect(validCell(cell,stats.next_lineage));
+        }
+    }
+    std.debug.print("EVOLVED_FORMS observed={any} counts={any}\n",.{seen,counts});
+    for(seen)|found|try std.testing.expect(found);
 }

@@ -18,7 +18,7 @@ pub fn groundedRabbit(point:[3]f32,scale:f32) [4][4]f32 {
     };
 }
 pub fn sproutSize(cover:f32) f32 {return 3+7*std.math.clamp(cover,0,1);}
-pub fn showSprouts(distance:f32,radius:f32,normal_view:bool) bool {return normal_view and distance < radius*1.3;}
+pub fn showSprouts(distance:f32,radius:f32,normal_view:bool) bool {return normal_view and distance < radius*4.5;}
 test "rabbit feet rest on surface and Y up follows radial at all axes" {
     const sites=[_][3]f32{.{5000,0,0},.{0,5000,0},.{0,-5000,0},.{0,0,5000},.{0,0,-5000},.{3000,4000,0}};
     for(sites)|p|{const m=groundedRabbit(p,0.12);const up=norm(p);
@@ -28,11 +28,11 @@ test "rabbit feet rest on surface and Y up follows radial at all axes" {
         try std.testing.expectApproxEqAbs(@as(f32,0),dot(.{m[0][0],m[0][1],m[0][2]},up),0.00001);
     }
 }
-test "sprouts scale with real biomass and stay off globe and overlays" {
+test "sprouts scale with real biomass and remain visible on globe but not overlays" {
     try std.testing.expect(sproutSize(0.2)<sproutSize(0.8));
     try std.testing.expectEqual(@as(f32,10),sproutSize(2));
     try std.testing.expect(showSprouts(5500,5000,true));
-    try std.testing.expect(!showSprouts(10000,5000,true));
+    try std.testing.expect(showSprouts(10000,5000,true));
     try std.testing.expect(!showSprouts(5500,5000,false));
 }
 
@@ -64,4 +64,17 @@ test "producer schematic requires actual tissue and bounded height" {
     const large=producerShape(1,1,0.5).?;
     try std.testing.expect(small.stem<large.stem and small.canopy<large.canopy);
     try std.testing.expectEqual(@as(f32,22),producerShape(1,1,999).?.stem);
+}
+
+/// Screen-size LOD keeps living populations visible beyond habitat zoom.
+pub fn markerScale(distance:f32,radius:f32) f32 {
+    return std.math.clamp(1.15-(distance/radius-1)*0.55,0.32,1.15);
+}
+pub fn lineageColor(optimum:f32) [3]u8 {
+    return if(optimum<298) .{113,218,255} else if(optimum>308) .{245,211,96} else .{138,245,139};
+}
+test "map markers remain visible at distance with bounded size" {
+    try std.testing.expect(markerScale(5500,5000)>markerScale(12000,5000));
+    try std.testing.expect(markerScale(50000,5000)>=0.32);
+    try std.testing.expectEqual(@as(u8,113),lineageColor(290)[0]);
 }

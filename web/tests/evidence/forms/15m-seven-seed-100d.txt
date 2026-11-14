@@ -1,0 +1,112 @@
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0.02 depth_m=2.9296875 temp=293.15 camera=5948.3594 visiblemats=1
+FORMS_PLAYER_INITIAL patch=13596 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=3421 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13595 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=3420 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13597 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13594 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13598 water_target=15 seeded=true biology_assigned=false
+FORMS_DAY day=1 living=8 counts={ 8, 0, 0, 0, 0, 0 }
+FORMS_DAY day=2 living=8 counts={ 8, 0, 0, 0, 0, 0 }
+FORMS_DAY day=3 living=8 counts={ 8, 0, 0, 0, 0, 0 }
+FORMS_DAY day=4 living=8 counts={ 8, 0, 0, 0, 0, 0 }
+FORMS_DAY day=5 living=8 counts={ 8, 0, 0, 0, 0, 0 }
+FORMS_DAY day=6 living=8 counts={ 8, 0, 0, 0, 0, 0 }
+FORMS_DAY day=7 living=16 counts={ 12, 3, 1, 0, 0, 0 }
+FORMS_DAY day=8 living=16 counts={ 12, 3, 1, 0, 0, 0 }
+FORMS_DAY day=9 living=16 counts={ 12, 3, 1, 0, 0, 0 }
+FORMS_DAY day=10 living=16 counts={ 12, 3, 1, 0, 0, 0 }
+FORMS_DAY day=11 living=16 counts={ 12, 3, 1, 0, 0, 0 }
+FORMS_DAY day=12 living=15 counts={ 11, 3, 1, 0, 0, 0 }
+FORMS_DAY day=13 living=19 counts={ 13, 4, 2, 0, 0, 0 }
+FORMS_DAY day=14 living=21 counts={ 13, 5, 2, 0, 0, 1 }
+FORMS_DAY day=15 living=21 counts={ 12, 6, 2, 0, 0, 1 }
+FORMS_DAY day=16 living=21 counts={ 12, 6, 2, 0, 0, 1 }
+FORMS_DAY day=17 living=21 counts={ 12, 6, 2, 0, 0, 1 }
+FORMS_DAY day=18 living=22 counts={ 13, 6, 2, 0, 0, 1 }
+FORMS_DAY day=19 living=22 counts={ 13, 6, 2, 0, 0, 1 }
+FORMS_DAY day=20 living=25 counts={ 13, 8, 3, 0, 0, 1 }
+FORMS_DAY day=21 living=25 counts={ 13, 8, 3, 0, 0, 1 }
+FORMS_DAY day=22 living=25 counts={ 13, 8, 3, 0, 0, 1 }
+FORMS_DAY day=23 living=28 counts={ 15, 8, 3, 0, 0, 2 }
+FORMS_DAY day=24 living=28 counts={ 15, 8, 3, 0, 0, 2 }
+FORMS_DAY day=25 living=28 counts={ 14, 8, 3, 0, 0, 3 }
+FORMS_DAY day=26 living=23 counts={ 13, 7, 2, 0, 0, 1 }
+FORMS_DAY day=27 living=27 counts={ 14, 9, 2, 1, 0, 1 }
+FORMS_DAY day=28 living=23 counts={ 13, 6, 2, 1, 0, 1 }
+FORMS_DAY day=29 living=21 counts={ 11, 7, 2, 0, 0, 1 }
+FORMS_DAY day=30 living=21 counts={ 11, 7, 2, 0, 0, 1 }
+FORMS_DAY day=31 living=21 counts={ 11, 7, 2, 0, 0, 1 }
+FORMS_DAY day=32 living=21 counts={ 10, 6, 3, 1, 0, 1 }
+FORMS_DAY day=33 living=21 counts={ 10, 6, 3, 1, 0, 1 }
+FORMS_DAY day=34 living=21 counts={ 11, 6, 3, 0, 0, 1 }
+FORMS_DAY day=35 living=19 counts={ 10, 6, 2, 0, 0, 1 }
+FORMS_DAY day=36 living=19 counts={ 10, 6, 2, 0, 0, 1 }
+FORMS_DAY day=37 living=19 counts={ 10, 6, 2, 0, 0, 1 }
+FORMS_DAY day=38 living=22 counts={ 13, 6, 2, 0, 0, 1 }
+FORMS_DAY day=39 living=19 counts={ 10, 6, 2, 0, 0, 1 }
+FORMS_DAY day=40 living=19 counts={ 9, 7, 2, 0, 0, 1 }
+FORMS_DAY day=41 living=19 counts={ 9, 7, 2, 0, 0, 1 }
+FORMS_DAY day=42 living=19 counts={ 9, 6, 3, 0, 0, 1 }
+FORMS_DAY day=43 living=19 counts={ 9, 6, 3, 0, 0, 1 }
+FORMS_DAY day=44 living=19 counts={ 9, 6, 3, 0, 0, 1 }
+FORMS_DAY day=45 living=19 counts={ 9, 6, 3, 0, 0, 1 }
+FORMS_DAY day=46 living=19 counts={ 8, 7, 3, 0, 0, 1 }
+FORMS_DAY day=47 living=19 counts={ 8, 7, 2, 0, 0, 2 }
+FORMS_DAY day=48 living=19 counts={ 8, 7, 2, 0, 0, 2 }
+FORMS_DAY day=49 living=19 counts={ 8, 7, 2, 0, 0, 2 }
+FORMS_DAY day=50 living=21 counts={ 10, 7, 2, 0, 0, 2 }
+FORMS_DAY day=51 living=24 counts={ 10, 9, 2, 1, 0, 2 }
+FORMS_DAY day=52 living=25 counts={ 10, 10, 2, 1, 0, 2 }
+FORMS_DAY day=53 living=23 counts={ 8, 10, 2, 1, 0, 2 }
+FORMS_DAY day=54 living=21 counts={ 7, 9, 2, 1, 0, 2 }
+FORMS_DAY day=55 living=21 counts={ 7, 9, 2, 1, 0, 2 }
+FORMS_DAY day=56 living=21 counts={ 7, 9, 2, 1, 0, 2 }
+FORMS_DAY day=57 living=20 counts={ 7, 8, 3, 0, 0, 2 }
+FORMS_DAY day=58 living=20 counts={ 7, 8, 3, 0, 0, 2 }
+FORMS_DAY day=59 living=23 counts={ 9, 10, 2, 0, 0, 2 }
+FORMS_DAY day=60 living=27 counts={ 10, 11, 3, 1, 0, 2 }
+FORMS_DAY day=61 living=26 counts={ 8, 11, 4, 1, 0, 2 }
+FORMS_DAY day=62 living=25 counts={ 8, 11, 3, 1, 0, 2 }
+FORMS_DAY day=63 living=23 counts={ 7, 11, 3, 0, 0, 2 }
+FORMS_DAY day=64 living=22 counts={ 7, 10, 3, 0, 0, 2 }
+FORMS_DAY day=65 living=21 counts={ 7, 10, 3, 0, 0, 1 }
+FORMS_DAY day=66 living=23 counts={ 7, 10, 3, 1, 0, 2 }
+FORMS_DAY day=67 living=21 counts={ 7, 10, 2, 0, 0, 2 }
+FORMS_DAY day=68 living=22 counts={ 7, 11, 2, 0, 0, 2 }
+FORMS_DAY day=69 living=20 counts={ 7, 9, 2, 0, 0, 2 }
+FORMS_DAY day=70 living=21 counts={ 6, 11, 2, 0, 0, 2 }
+FORMS_DAY day=71 living=22 counts={ 6, 12, 2, 0, 0, 2 }
+FORMS_DAY day=72 living=22 counts={ 6, 12, 2, 0, 0, 2 }
+FORMS_DAY day=73 living=25 counts={ 7, 13, 3, 0, 0, 2 }
+FORMS_DAY day=74 living=20 counts={ 6, 11, 2, 0, 0, 1 }
+FORMS_DAY day=75 living=20 counts={ 6, 11, 2, 0, 0, 1 }
+FORMS_DAY day=76 living=21 counts={ 6, 11, 2, 1, 0, 1 }
+FORMS_DAY day=77 living=21 counts={ 6, 11, 2, 1, 0, 1 }
+FORMS_DAY day=78 living=19 counts={ 6, 9, 2, 1, 0, 1 }
+FORMS_DAY day=79 living=18 counts={ 6, 8, 3, 0, 0, 1 }
+FORMS_DAY day=80 living=18 counts={ 6, 8, 3, 0, 0, 1 }
+FORMS_DAY day=81 living=18 counts={ 6, 8, 3, 0, 0, 1 }
+FORMS_DAY day=82 living=18 counts={ 6, 8, 3, 0, 0, 1 }
+FORMS_DAY day=83 living=19 counts={ 6, 9, 3, 0, 0, 1 }
+FORMS_DAY day=84 living=19 counts={ 6, 9, 3, 0, 0, 1 }
+FORMS_DAY day=85 living=19 counts={ 6, 9, 3, 0, 0, 1 }
+FORMS_DAY day=86 living=19 counts={ 6, 9, 3, 0, 0, 1 }
+FORMS_DAY day=87 living=19 counts={ 6, 10, 2, 0, 0, 1 }
+FORMS_DAY day=88 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=89 living=17 counts={ 5, 9, 2, 0, 0, 1 }
+FORMS_DAY day=90 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=91 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=92 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=93 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=94 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=95 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=96 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=97 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=98 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=99 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+FORMS_DAY day=100 living=18 counts={ 5, 10, 2, 0, 0, 1 }
+MOTILITY_WORLD capable=7 resident_movers=0 total_moves=8 movement_respired_kgC=10932549.921774702 unique_lineages=18 mean_update_ms=9.711615932833332 max_update_ms=69.255334
+PRODUCER_EVER max_support=0.0024493146 max_organization=0.09016809
+PRODUCER_WORLD inherited_capable=7 actual_supported=13 support_density_sum=0.004214158176694972 biomass_density_sum=1.241533572319895
+ORIGIN_SAVE bytes=12261118 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=246144
