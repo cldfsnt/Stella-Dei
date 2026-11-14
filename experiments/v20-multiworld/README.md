@@ -1,0 +1,5 @@
+# v20 bounded fresh-world comparison
+
+Current production source is copied unchanged by egl-nursery-prepare.py except existing native QA substitutions for browser/mobile mode, deterministic PRNG seed, paused startup and harness entry point. Actual Find habitat, guarded makeSelectedNursery and seedSelectedColony APIs run. No ongoing care/refills or artificial biology. Seeds42 and2027 selected in advance, one run each, not a favorable-seed hunt. Previous seed1337 provides context; current v20 additionally skips self-neighbor propagule attempts at pentagons. No new production edits.
+
+Prepared source /tmp/v20-multiseed-qa, executable /tmp/v20-multiseed-bin/bin/stella-egl. Actual baseline source revision/hashes recorded alongside this file. Sequential runs use STELLA_PRODUCER_SEED, STELLA_ORIGIN_COUPLED=1, STELLA_ORIGIN_FAST=1, STELLA_FORMS_SINGLE=1, STELLA_PRODUCER_LONG=1, STELLA_DIAGNOSTIC_DAYS=30. Inherited FAST selects the harness branch; actual pace is normal Grow21600sec/sec. Simulated30days =120 nominal seconds, but native measured update cost is separately reported; no device FPS assertion.

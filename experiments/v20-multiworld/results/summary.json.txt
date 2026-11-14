@@ -1,0 +1,68 @@
+{
+  "seed": "seed-2027",
+  "days_recorded": 30,
+  "first_spread": {
+    "day": 2,
+    "nominal_seconds": 8,
+    "occupied": 2,
+    "biomass": 0.03060703445225954,
+    "attempts": 2,
+    "arrivals": 2,
+    "losses": 0
+  },
+  "first_loss": {
+    "day": 4,
+    "nominal_seconds": 16,
+    "occupied": 3,
+    "biomass": 0.03947860351763666,
+    "attempts": 4,
+    "arrivals": 4,
+    "losses": 1
+  },
+  "final": {
+    "day": 30,
+    "nominal_seconds": 120,
+    "occupied": 5,
+    "biomass": 0.04323765775188804,
+    "attempts": 44,
+    "arrivals": 43,
+    "losses": 35
+  },
+  "forms": "FORMS_DAY day=30 living=5 counts={ 1, 1, 0, 0, 0, 3 }",
+  "performance": "MOTILITY_WORLD capable=4 resident_movers=1 total_moves=4 movement_respired_kgC=210937.42470141733 unique_lineages=5 mean_update_ms=26.33605589527778 max_update_ms=205.118768",
+  "save": "ORIGIN_SAVE bytes=10874312 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=242880"
+}
+{
+  "seed": "seed-42",
+  "days_recorded": 30,
+  "first_spread": {
+    "day": 1,
+    "nominal_seconds": 4,
+    "occupied": 2,
+    "biomass": 0.025735619477927685,
+    "attempts": 1,
+    "arrivals": 1,
+    "losses": 0
+  },
+  "first_loss": {
+    "day": 7,
+    "nominal_seconds": 28,
+    "occupied": 6,
+    "biomass": 0.07849787967279553,
+    "attempts": 9,
+    "arrivals": 9,
+    "losses": 1
+  },
+  "final": {
+    "day": 30,
+    "nominal_seconds": 120,
+    "occupied": 8,
+    "biomass": 0.16479884833097458,
+    "attempts": 72,
+    "arrivals": 60,
+    "losses": 45
+  },
+  "forms": "FORMS_DAY day=30 living=15 counts={ 8, 3, 1, 2, 0, 1 }",
+  "performance": "MOTILITY_WORLD capable=6 resident_movers=2 total_moves=2 movement_respired_kgC=51866.002139420016 unique_lineages=15 mean_update_ms=26.08426842791667 max_update_ms=274.785232",
+  "save": "ORIGIN_SAVE bytes=10780372 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=243856"
+}
