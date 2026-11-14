@@ -1563,7 +1563,7 @@ pub const Planet = struct {
                 for (0..neighbors.len) |offset| {
                     const n = neighbors[(start + offset) % neighbors.len];
                     const env = self.microbeEnvironment(n, 1);
-                    if (!Microbes.habitable(env.depth_km, env.temperature)) continue;
+                    if (!Microbes.dispersalHabitat(env.depth_km, env.temperature)) continue;
                     if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)) break;
                 }
             }

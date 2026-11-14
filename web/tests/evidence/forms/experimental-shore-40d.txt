@@ -1,0 +1,22 @@
+SHORE_ACTION day=20 cell=3421 raised_shelf=true actual_water_target_m=0.15 biological_edits=false repeat=false
+SHORE_DAY day=21 depth_m=0.015784236 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=22 depth_m=0.01864692 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=23 depth_m=0.020054832 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=24 depth_m=0.021458546 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=25 depth_m=0.02083622 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=26 depth_m=0.020852191 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=27 depth_m=0.020910027 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=28 depth_m=0.02088462 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=29 depth_m=0.020942362 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=30 depth_m=0.020958722 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=31 depth_m=0.020974897 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=32 depth_m=0.020991076 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=33 depth_m=0.021007258 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=34 depth_m=0.020402677 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=35 depth_m=0.020418134 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=36 depth_m=0.020433798 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=37 depth_m=0.020449486 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=38 depth_m=0.020465173 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=39 depth_m=0.020480867 biomass=0 capable=0 max_protection=0
+SHORE_DAY day=40 depth_m=0.020496551 biomass=0 capable=0 max_protection=0
+ORIGIN_SAVE bytes=12251904 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=242572

@@ -56,6 +56,27 @@ pub fn producerLightShares(cell:Cell,surface:f32,depth_km:f32) [4]f32 {
     return shares;
 }
 pub fn habitable(depth:f32,temp:f32) bool{return depth>=0.0002 and depth<=0.05 and temp>260 and temp<355;}
+/// Moist-shore protection requires inherited toughness AND paid living tissue.
+/// This is a water-film biofilm, not roots/soil or vascular land vegetation.
+pub fn shoreProtection(c:Cohort) f32 {
+    if(c.biomass<=0 or frondMass(c)<=0)return 0;
+    return std.math.clamp(c.structure/0.15,0,1)*std.math.clamp(c.support_mass/c.biomass/0.03,0,1);
+}
+pub fn shoreCapable(c:Cohort) bool{return shoreProtection(c)>=0.7;}
+/// Water is the actual liquid field; zero water never becomes hidden moisture.
+pub fn habitatFitness(c:Cohort,depth:f32,temp:f32) f32 {
+    if(!std.math.isFinite(depth) or !std.math.isFinite(temp))return 0;
+    if(habitable(depth,temp))return 1;
+    if(depth<=0 or depth>=0.0002 or temp<=273.15 or temp>=335)return 0;
+    return shoreProtection(c)*std.math.clamp(depth/0.00002,0,1);
+}
+pub fn canEstablish(c:Cohort,depth:f32,temp:f32) bool{return habitatFitness(c,depth,temp)>0;}
+/// A propagule may arrive here; this does not guarantee its establishment.
+/// Mutation happens during paid reproduction, so test actual offspring later.
+pub fn dispersalHabitat(depth:f32,temp:f32) bool {
+    return std.math.isFinite(depth) and std.math.isFinite(temp) and
+        (habitable(depth,temp) or (depth>0 and depth<0.0002 and temp>273.15 and temp<335));
+}
 pub fn seed(cell:*Cell,stats:*Stats,available_carbon:f32) f32 {
     var slot:?usize=null;for(cell.cohorts,0..) |c,i| {if(c.biomass==0){slot=i;break;}}
     const i=slot orelse return 0;
@@ -83,9 +104,13 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
         if(upkeep>0){const factor=1-upkeep/c.biomass;c.biomass-=upkeep;c.support_mass=@min(c.biomass,c.support_mass*factor);cell.nutrient+=upkeep*nutrient_per_carbon;support_respired+=upkeep;}
         const fitness=thermalFitness(env.temperature,c.optimum);
         const dry=env.depth_km<0.0002 and env.temperature>260 and env.temperature<355;
-        const mortality:f32=if(dry) 4*(1-0.85*c.structure)+0.10*c.structure else if(!habitable(env.depth_km,env.temperature)) 4 else 0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
+        const habitat=habitatFitness(c.*,env.depth_km,env.temperature);
+        const baseline:f32=0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
+        const desiccation:f32=4*(1-0.85*c.structure)+0.10*c.structure;
+        const mortality:f32=if(dry) desiccation*(1-habitat)+baseline*habitat else if(!habitable(env.depth_km,env.temperature)) 4 else baseline;
         const exposed=std.math.clamp((producerHeightMeters(c.*)-env.depth_km*1000)/0.1,0,1);
-        const dead=c.biomass*(1-@exp(-(mortality+3*exposed)*days));
+        const exposure_protection=if(env.depth_km<0.0002) habitat else 0;
+        const dead=c.biomass*(1-@exp(-(mortality+3*exposed*(1-exposure_protection))*days));
         if(c.biomass>0)c.support_mass*=1-dead/c.biomass;
         c.biomass-=dead;c.support_mass=@min(c.support_mass,c.biomass);cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
         // Below 25% of one propagule, recycle unresolved failed establishment.
@@ -96,11 +121,11 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     var organized=false;for(cell.cohorts)|c|{if(c.support_mass>0)organized=true;}
 
     for(cell.cohorts,0..) |c,i| {
-        if(c.biomass<=0 or !habitable(env.depth_km,env.temperature))continue;
+        if(c.biomass<=0 or !canEstablish(c,env.depth_km,env.temperature))continue;
         const fitness=thermalFitness(env.temperature,c.optimum);
         // Higher light efficiency carries maintenance cost; not a free upgrade.
         const rate=@max(0,3*fitness*light*c.efficiency*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)-0.15*c.efficiency*c.efficiency);
-        potentials[i]=frondMass(c)*(@exp(@min(20,rate*days))-1)*space;
+        potentials[i]=frondMass(c)*(@exp(@min(20,rate*habitatFitness(c,env.depth_km,env.temperature)*days))-1)*space;
     }
     // Smooth competition: height redistributes, never increases the existing
     // unshaded photosynthetic budget. No tiny-tissue cell-wide model switch.
@@ -673,4 +698,65 @@ test "simple seeded colonies evolve multiple real aquatic forms without assigned
     }
     std.debug.print("EVOLVED_FORMS observed={any} counts={any}\n",.{seen,counts});
     for(seen)|found|try std.testing.expect(found);
+}
+
+test "shore adaptation requires real tissue liquid film and tolerable temperature" {
+    var c:Cohort=.{.biomass=0.1,.support_mass=0.004,.structure=0.15,.organization=0.04,.lineage=1};
+    try std.testing.expect(shoreCapable(c));
+    try std.testing.expectEqual(@as(f32,1),habitatFitness(c,0.00005,303));
+    for([_]f32{0,-1,0.1})|depth|try std.testing.expectEqual(@as(f32,0),habitatFitness(c,depth,303));
+    try std.testing.expectEqual(@as(f32,0),habitatFitness(c,0.00005,270));
+    try std.testing.expectEqual(@as(f32,0),habitatFitness(c,0.00005,340));
+    c.support_mass=0;try std.testing.expect(!shoreCapable(c));try std.testing.expect(!canEstablish(c,0.00005,303));
+    c.support_mass=0.004;c.structure=0;try std.testing.expect(!canEstablish(c,0.00005,303));
+}
+test "moist shore growth and drying conserve carbon nutrients and support" {
+    var cell=initialized(31);cell.cohorts[0]=.{.biomass=0.1,.support_mass=0.004,.structure=0.15,.organization=0.04,.lineage=1};
+    var env=good;env.depth_km=0.00005;
+    const beforeC=@as(f64,carbon(cell))+env.carbon_available;const beforeN=nutrientTotal(cell);
+    for(0..24*20)|hour|{
+        if(hour==24*10)env.depth_km=0;
+        const f=step(&cell,env,3600);env.carbon_available+=f.recycled-f.fixed;env.oxygen_carbon_capacity+=f.fixed-f.recycled;
+        if(hour==24*9)try std.testing.expect(biomass(cell)>0.1);
+        if(hour>=24*10)try std.testing.expectEqual(@as(f32,0),f.fixed);
+        try std.testing.expect(validCell(cell,2));
+    }
+    try std.testing.expectEqual(@as(f32,0),biomass(cell));
+    try std.testing.expectApproxEqAbs(beforeC,@as(f64,carbon(cell))+env.carbon_available,0.0002);
+    try std.testing.expectApproxEqAbs(beforeN,nutrientTotal(cell),0.00001);
+}
+test "ordinary aquatic descendants can establish on moist shore unlike ancestors" {
+    var established:u32=0;
+    for(1..129)|initial_seed|{
+        var donor=initialized(initial_seed);var stats:Stats=.{};_=seed(&donor,&stats,100);
+        var shores=[_]Cell{initialized(500),initialized(501),initialized(502),initialized(503)};
+        var env=good;env.depth_km=0.00005;
+        for(0..24*90)|_|{
+            _=step(&donor,good,3600);
+            for(&shores)|*shore|_=step(shore,env,3600);
+            for(0..4)|i|{
+                _=reproduce(&donor,i,&donor,&stats,true);
+                for(&shores)|*shore|_=reproduce(&donor,i,shore,&stats,true);
+            }
+            for(shores)|shore|for(shore.cohorts)|c|{if(c.biomass>0.03 and c.reproduction_credit>0.02 and shoreCapable(c))established+=1;};
+            if(established>0)break;
+        }
+        if(established>0)break;
+    }
+    std.debug.print("EVOLVED_SHORE successful_founder_paths={d}\n",.{established});
+    try std.testing.expect(established>0);
+}
+
+test "unprotected shore propagules fail and transfer exact donor resources" {
+    var donor=initialized(1);var stats:Stats=.{};_=seed(&donor,&stats,100);
+    for(0..48)|_|_=step(&donor,good,3600);
+    var shore=initialized(2);const beforeC=carbon(donor)+carbon(shore);const beforeN=nutrientTotal(donor)+nutrientTotal(shore);
+    try std.testing.expect(reproduce(&donor,0,&shore,&stats,false));
+    try std.testing.expectApproxEqAbs(beforeC,carbon(donor)+carbon(shore),0.000001);
+    try std.testing.expectApproxEqAbs(beforeN,nutrientTotal(donor)+nutrientTotal(shore),0.000001);
+    var env=good;env.depth_km=0.00005;
+    for(0..48)|_|{const f=step(&shore,env,3600);try std.testing.expectEqual(@as(f32,0),f.fixed);}
+    try std.testing.expectEqual(@as(f32,0),biomass(shore));
+    try std.testing.expect(dispersalHabitat(0.00005,303));
+    try std.testing.expect(!dispersalHabitat(0,303));try std.testing.expect(!dispersalHabitat(0.1,303));
 }
