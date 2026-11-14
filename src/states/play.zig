@@ -724,7 +724,7 @@ pub const PlayState = struct {
                 // A single engine tick is indivisible; never start another after budget expires.
                 if(timer.read()>=16_000_000)break;
             }
-            if(self.simulationStepsLastFrame>0){const elapsed=@as(f32,@floatFromInt(timer.read()))/1e9;self.averageUpdateTime=self.averageUpdateTime*0.9+elapsed*0.1;}
+            if(self.simulationStepsLastFrame>0){const elapsed=@as(f32,@floatFromInt(timer.read()))/1e9;self.averageUpdateTime=self.averageUpdateTime*0.9+elapsed*0.1;@import("../performance_details.zig").metrics.physics(@as(f64,elapsed)*1000,self.simulationStepsLastFrame);}
         }
         self.simulationClock.finish();
         self.renderGameTime=self.gameTime;
