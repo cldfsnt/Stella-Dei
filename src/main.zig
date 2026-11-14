@@ -351,9 +351,9 @@ export fn stella_life_snapshot() [*:0]const u8 {
     const biologicalLight = @import("simulation/microbes.zig").availableLight(surfaceLight, depth);
     const Microbes = @import("simulation/microbes.zig");
     const shares = Microbes.producerLightShares(cell, surfaceLight, depth);
-    const Tissue = struct { form:[]const u8, support_mass:f32, frond_mass:f32, height_m:f32, available_light:f32, maintenance_potential:f32 };
+    const Tissue = struct { form:[]const u8, support_mass:f32, frond_mass:f32, height_m:f32, available_light:f32, maintenance_potential:f32, living_traits:@import("producer_habitat.zig").LivingTraits };
     var tissues:[4]Tissue=undefined;
-    for(cell.cohorts,0..) |co,slot| tissues[slot]=.{.form=Microbes.producerFormName(Microbes.producerForm(co)),.support_mass=co.support_mass,.frond_mass=Microbes.frondMass(co),.height_m=Microbes.producerHeightMeters(co),.available_light=shares[slot],.maintenance_potential=Microbes.supportMaintenancePerDay(co)};
+    for(cell.cohorts,0..) |co,slot| tissues[slot]=.{.form=Microbes.producerFormName(Microbes.producerForm(co)),.support_mass=co.support_mass,.frond_mass=Microbes.frondMass(co),.height_m=Microbes.producerHeightMeters(co),.available_light=shares[slot],.maintenance_potential=Microbes.supportMaintenancePerDay(co),.living_traits=@import("producer_habitat.zig").livingTraits(co,depth,state.planet.temperature[point])};
     var movement_reasons: [4][]const u8 = undefined;
     for (&movement_reasons, 0..) |*reason, slot| {
         reason.* = @tagName(state.planet.microbeRelocationOpportunity(point, slot, state.gameTime).reason);

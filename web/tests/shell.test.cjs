@@ -158,5 +158,15 @@ assert.match(sandbox.producerHabitatFeedback({state:'frozen'}),/blocked/);
 assert.match(sandbox.producerHabitatFeedback({state:'thin_film',compatible:0}),/no current cohort/);
 assert.match(sandbox.producerHabitatFeedback({state:'thin_film',compatible:2}),/not dryland/);
 assert.match(sandbox.producerHabitatFeedback({state:'submergence_margin',supported_film_capable:0}),/not proof/);
+
+assert.match(sandbox.livingTraitLabel({living_traits:{film_potential:true,film_compatible_now:false,habitat_factor:1}}),/potential/);
+assert.match(sandbox.livingTraitLabel({living_traits:{film_potential:true,film_compatible_now:true,habitat_factor:.3}}),/compatible here/);
+assert.match(sandbox.livingTraitLabel({living_traits:{film_potential:false,film_compatible_now:false,habitat_factor:0}}),/No supported/);
+assert.match(sandbox.livingTraitLabel(null),/unavailable/);
+for(let i=0;i<3;i++){
+ sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:12,cohorts:[{biomass:.02,lineage:9}],tissues:[{form:'cushion',living_traits:{film_potential:true,film_compatible_now:false,habitat_factor:1}}]});
+ el('life-toggle').onclick();assert.equal(el('living-traits').hidden,false);assert.match(el('living-traits-copy').textContent,/cushion: Thin-film potential/);
+ sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:12,cohorts:[]});el('refresh-life').onclick();assert.equal(el('living-traits').hidden,true);assert.equal(el('living-traits-copy').textContent,'');el('close-life').onclick();
+}
 assert.match(sandbox.producerHabitatFeedback(null),/unavailable/);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

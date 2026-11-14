@@ -19,3 +19,31 @@ test "actual tissue and water determine film feedback without mutation"{
 test "submergence margin does not falsely claim inherited support"{
  var c=M.initialized(1);c.cohorts[0]=.{.biomass=0.02,.lineage=1};const s=inspect(c,0.00019,300);try std.testing.expectEqual(State.submergence_margin,s.state);try std.testing.expectEqual(@as(usize,1),s.compatible);try std.testing.expectEqual(@as(usize,0),s.supported_film_capable);
 }
+
+/// Capability is current inherited investment AND actual paid tissue, not a
+/// lineage milestone. Compatibility permits photosynthesis, not net growth.
+pub const LivingTraits=struct{
+    film_potential:bool,
+    film_compatible_now:bool,
+    habitat_factor:f32,
+};
+pub fn livingTraits(c:M.Cohort,depth:f32,temp:f32)LivingTraits{
+    const potential=std.math.isFinite(c.biomass) and std.math.isFinite(c.support_mass) and std.math.isFinite(c.structure) and M.filmProtection(c)>0;
+    const factor=M.photosyntheticHabitat(c,depth,temp);
+    return .{.film_potential=potential,.film_compatible_now=potential and depth>0 and depth<=0.00015 and factor>0,.habitat_factor=factor};
+}
+test "living trait capability is reversible, read only, and not a growth claim" {
+    var c:M.Cohort=.{.biomass=0.02,.lineage=1,.structure=0.2};
+    try std.testing.expect(!livingTraits(c,0.0001,300).film_potential);
+    c.support_mass=0.002; const before=c;
+    try std.testing.expect(livingTraits(c,0.005,300).film_potential);
+    try std.testing.expect(!livingTraits(c,0.005,300).film_compatible_now);
+    try std.testing.expect(livingTraits(c,0.00015,300).film_compatible_now);
+    try std.testing.expect(!livingTraits(c,0.000151,300).film_compatible_now);
+    try std.testing.expect(!livingTraits(c,0.0002,300).film_compatible_now);
+    try std.testing.expect(!livingTraits(c,0,300).film_compatible_now);
+    try std.testing.expect(!livingTraits(c,0.0001,273.15).film_compatible_now);
+    try std.testing.expectEqualDeep(before,c);
+    c.structure=0;try std.testing.expect(!livingTraits(c,0.0001,300).film_potential);
+    c.structure=0.2;c.support_mass=0;try std.testing.expect(!livingTraits(c,0.0001,300).film_potential);
+}
