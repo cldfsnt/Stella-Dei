@@ -1,0 +1,13 @@
+# God-tool eligibility preview
+
+Problem: existing target snapshot enabled Wave on dry patches and Scorch on wet/coverless Sandbox patches, requiring failed clicks to learn why. Lightning could be advertised at the500K ceiling. `currentHeatCapacity` already guarded invalid indices, so earlier suspected out-of-bounds access was not a confirmed bug.
+
+Implementation: action and preview share internal Wave/Lightning/Scorch functions; preview suppresses final assignments. Bounded computation only, up to six unique neighbor cells. No whole-world copy, resource mutation, RNG advancement, atmospheric updates or repeated interventions. Main exports exact failure tags per tool. UI explains each tool's readiness and disables blocked clicks. Missing/malformed eligibility fails closed with refresh advice. This intentionally requires matched host shell/WASM rather than guessing readiness from old incomplete target snapshots. Successful preview is a snapshot, never authorization to skip execution checks.
+
+Validation: `zig test src/god_actions.zig` passes40 tests including32 microbe tests, ecology and prior god regressions. New model test compares preview versus execution receipts for valid, wet, dry, Origin, coverless, heatlimit, nonfinite, precision-limit and invalid-index fixtures. It checks preview leaves state byte-for-byte unchanged; action after preview still refuses changed wet state or changed selection. `node web/tests/shell.test.cjs` passes, including actionable disabled states, missing checks, and server refusal after ready preview. Initial appended shell test was outside existing async scope and failed ReferenceError; moved into correct scope and rerun successfully.
+
+No new combustion, fire ecology, drought trait, erosion, free resource, or automatic action. Main integration compile and real visual review remain parent release gates, not demonstrated by these unit/shell tests. Preview receipts compute hypothetical resource deltas internally but do not record applied energy/water anywhere.
+
+Separate audit finding, NOT changed here: Water− in play.zig clears selected patch AND neighbors instantly, whereas feedback says 'this patch'. This is an existing coarse drain brush, not gradual drought; investigate a separate transparent selective-depth control rather than alter unnoticed in this patch.
+
+Integration: pinned Zig0.13/Emscripten3.1.64 WASM build passed. Seven JS suites passed. Actual production shell viewed in a 374px-wide dialog fixture: readable ready/blocked explanations, disabled dry Wave and Origin Scorch, Refresh target and Close verified. This fixture did not run the game and is not Android acceptance. Native full-world checks recorded separately.

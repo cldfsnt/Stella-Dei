@@ -14,7 +14,10 @@ fn failed(kind:Kind,reason:Failure) Receipt{return .{.kind=kind,.failure=reason}
 /// Push at most 25% of donor water, capped at one metre equivalent, to adjacent
 /// patches. Equal mesh patch masses are used by the existing planet hydrology.
 /// No erosion, water creation, direct mortality or automatic repetition.
-pub fn wave(planet:anytype,expected:usize,selected:usize) Receipt {
+pub fn wave(planet:anytype,expected:usize,selected:usize) Receipt {return waveImpl(planet,expected,selected,true);}
+/// Read-only preview shares all admission and precision checks with execution.
+pub fn previewWave(planet:anytype,expected:usize,selected:usize) Receipt {return waveImpl(planet,expected,selected,false);}
+fn waveImpl(planet:anytype,expected:usize,selected:usize,apply:bool) Receipt {
  if(expected!=selected)return failed(.wave,.stale);
  if(selected>=planet.waterMass.len)return failed(.wave,.invalid);
  const conversion=planet.getKmPerWaterMass();const donor=planet.waterMass[selected];
@@ -47,14 +50,17 @@ pub fn wave(planet:anytype,expected:usize,selected:usize) Receipt {
  var out=Receipt{.kind=.wave,.count=n+1,.moved_mass=removed};
  out.affected[0]=.{.cell=selected,.water_mass=new_donor-donor};
  for(ids[0..n],0..)|id,i|out.affected[i+1]=.{.cell=id,.water_mass=updated[i]-planet.waterMass[id]};
- planet.waterMass[selected]=new_donor;
- for(ids[0..n],0..)|id,i|planet.waterMass[id]=updated[i];
+ if(apply){planet.waterMass[selected]=new_donor;
+ for(ids[0..n],0..)|id,i|planet.waterMass[id]=updated[i];}
  return out;
 }
 /// Caller supplies actual current patch heat capacity in J/K from the engine.
 /// Adds up to 40 K, bounded below 500 K. Reports actual externally supplied heat.
 /// Existing ecology subsequently reacts; the receipt does not invent casualties.
-pub fn lightning(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {
+pub fn lightning(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {return lightningImpl(planet,expected,selected,heat_capacity,true);}
+/// Read-only preview shares all admission and precision checks with execution.
+pub fn previewLightning(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {return lightningImpl(planet,expected,selected,heat_capacity,false);}
+fn lightningImpl(planet:anytype,expected:usize,selected:usize,heat_capacity:f64,apply:bool) Receipt {
  if(expected!=selected)return failed(.lightning,.stale);
  if(selected>=planet.temperature.len or !std.math.isFinite(heat_capacity) or heat_capacity<=0)return failed(.lightning,.invalid);
  const before=planet.temperature[selected];
@@ -64,7 +70,7 @@ pub fn lightning(planet:anytype,expected:usize,selected:usize,heat_capacity:f64)
  if(!std.math.isFinite(energy) or energy<=0)return failed(.lightning,.invalid);
  var out=Receipt{.kind=.lightning,.count=1,.heat_joules=energy};
  out.affected[0]=.{.cell=selected,.temperature_k=delta};
- planet.temperature[selected]=after;
+ if(apply)planet.temperature[selected]=after;
  return out;
 }
 test "wave conserves bounded real water and fails atomically" {
@@ -122,7 +128,10 @@ test "pentagon wave ignores self fillers and duplicate neighbours without changi
 
 /// Explicit Sandbox destruction, not combustion. Cover is dimensionless; heat
 /// is supplied by the player, never inferred fuel energy or atmospheric flux.
-pub fn scorch(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {
+pub fn scorch(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {return scorchImpl(planet,expected,selected,heat_capacity,true);}
+/// Read-only preview shares all admission and precision checks with execution.
+pub fn previewScorch(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Receipt {return scorchImpl(planet,expected,selected,heat_capacity,false);}
+fn scorchImpl(planet:anytype,expected:usize,selected:usize,heat_capacity:f64,apply:bool) Receipt {
  if(expected!=selected)return failed(.scorch,.stale);
  if(planet.worldMode!=.sandbox)return failed(.scorch,.origin);
  if(selected>=planet.temperature.len or selected>=planet.waterMass.len or selected>=planet.vegetation.len)return failed(.scorch,.invalid);
@@ -135,7 +144,7 @@ pub fn scorch(planet:anytype,expected:usize,selected:usize,heat_capacity:f64) Re
  if(!std.math.isFinite(energy) or energy<=0 or removed<=0 or next_cover<=0 or @abs(removed/cover-0.75)>0.000001)return failed(.scorch,.precision);
  var out=Receipt{.kind=.scorch,.count=1,.heat_joules=energy};
  out.affected[0]=.{.cell=selected,.temperature_k=delta,.cover_removed=removed};
- planet.temperature[selected]=after;planet.vegetation[selected]=next_cover;
+ if(apply){planet.temperature[selected]=after;planet.vegetation[selected]=next_cover;}
  return out;
 }
 test "scorch removes actual cover and accounts external heat atomically" {
@@ -147,4 +156,19 @@ test "scorch removes actual cover and accounts external heat atomically" {
  for(0..8)|case|{p=before;switch(case){0=>p.worldMode=.origin,1=>p.waterMass[0]=0.0000001,2=>p.vegetation[0]=0,3=>p.vegetation[0]=std.math.nan(f32),4=>p.temperature[0]=500,else=>{}}const saved=p;
  const a=scorch(&p,if(case==5)1 else 0,if(case==6)9 else 0,if(case==7)std.math.inf(f64) else 1000);try std.testing.expect(!a.success());try std.testing.expectEqualSlices(u8,std.mem.asBytes(&saved),std.mem.asBytes(&p));}
  p=before;var last=p.vegetation[0];for(0..20)|_|{const a=scorch(&p,0,0,1000);if(!a.success())break;try std.testing.expect(p.vegetation[0]<last);try std.testing.expect(p.temperature[0]<=500);last=p.vegetation[0];}
+}
+
+
+test "god previews are pure match execution and never authorize a changed target" {
+ const P=struct{worldMode:enum{origin,sandbox}=.sandbox,temperature:[2]f32=.{295,290},waterMass:[2]f32=.{0,0},vegetation:[2]f32=.{0.8,0},pub fn getKmPerWaterMass(_: *@This())f32{return 0.001;}pub fn getNeighbours(_: *@This(),_:usize)[]const usize{return &.{1};}};
+ for(0..8)|case|{
+  var p=P{};switch(case){0=>{},1=>p.waterMass[0]=4,2=>p.worldMode=.origin,3=>p.vegetation[0]=0,4=>p.temperature[0]=500,5=>p.waterMass[0]=std.math.nan(f32),6=>p.waterMass=.{1e20,1e20},else=>{}}
+  const selected:usize=if(case==7)99 else 0;const before=p;
+  const previews=[_]Receipt{previewWave(&p,selected,selected),previewLightning(&p,selected,selected,1000),previewScorch(&p,selected,selected,1000)};
+  try std.testing.expectEqualSlices(u8,std.mem.asBytes(&before),std.mem.asBytes(&p));
+  var w=p;var h=p;var f=p;const actual=[_]Receipt{wave(&w,selected,selected),lightning(&h,selected,selected,1000),scorch(&f,selected,selected,1000)};
+  for(previews,actual)|predicted,executed|try std.testing.expectEqual(predicted,executed);
+ }
+ var p=P{};try std.testing.expect(previewScorch(&p,0,0,1000).success());p.waterMass[0]=1;const changed=p;try std.testing.expectEqual(Failure.wet,scorch(&p,0,0,1000).failure);try std.testing.expectEqual(changed,p);
+ try std.testing.expectEqual(Failure.stale,lightning(&p,0,1,1000).failure);try std.testing.expectEqual(changed,p);
 }

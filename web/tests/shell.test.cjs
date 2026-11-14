@@ -89,16 +89,16 @@ sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:0,tempe
 sandbox.Module._stella_world_mode=()=>0;sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,true);assert.equal(el('starter-seed').disabled,true);el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Choose an Origin/);
 sandbox.Module._stella_world_mode=()=>1;sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:null,temperature_c:24});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);
 sandbox.Module._stella_god_target=()=>22;sandbox.Module._stella_god_action=()=>0;
-let godCalls=[];sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_god_target')return JSON.stringify({status:'ready',cell:22,water_m:3,temperature_c:25});godCalls.push(v);return JSON.stringify({failure:'none',count:7,moved_mass:1,moved_depth_m:0.5,affected:[{temperature_k:40}],heat_joules:40000});};
+let godCalls=[];sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_god_target')return JSON.stringify({status:'ready',cell:22,water_m:3,temperature_c:25,eligibility:{wave:'none',lightning:'none',scorch:'origin'}});godCalls.push(v);return JSON.stringify({failure:'none',count:7,moved_mass:1,moved_depth_m:0.5,affected:[{temperature_k:40}],heat_joules:40000});};
 el('god-toggle').onclick();assert.equal(el('god-sheet').open,true);assert.match(el('god-target').textContent,/22/);el('god-wave').onclick();assert.equal(JSON.stringify(godCalls),'[[0,22]]');assert.equal(el('god-sheet').open,false);assert.match(el('notice').textContent,/No water added/);
 el('god-heat').onclick();assert.match(el('notice').textContent,/40.0°C/);
 assert.equal(el('god-scorch').disabled,true);
 sandbox.Module._stella_world_mode=()=>0;
-sandbox.Module.ccall=(name,t,a,v)=>name==='stella_god_target'?JSON.stringify({status:'ready',cell:22,water_m:0,temperature_c:2}):JSON.stringify({failure:'none',count:1,affected:[{temperature_k:40,cover_removed:0.15}],heat_joules:40000});
+sandbox.Module.ccall=(name,t,a,v)=>name==='stella_god_target'?JSON.stringify({status:'ready',cell:22,water_m:0,temperature_c:2,eligibility:{wave:'dry',lightning:'none',scorch:'none'}}):JSON.stringify({failure:'none',count:1,affected:[{temperature_k:40,cover_removed:0.15}],heat_joules:40000});
 el('god-refresh').onclick();assert.equal(el('god-scorch').disabled,false);el('god-scorch').onclick();assert.match(el('notice').textContent,/15.0 percentage points/);assert.match(el('notice').textContent,/Not combustion/);
 sandbox.Module.ccall=()=>JSON.stringify({failure:'wet',count:0});el('god-scorch').onclick();assert.match(el('god-result').textContent,/No cover or heat changed/);
 sandbox.Module._stella_world_mode=()=>1;
-sandbox.Module.ccall=()=>JSON.stringify({failure:'dry',count:0});el('god-wave').onclick();assert.match(el('god-result').textContent,/No water here/);
+sandbox.Module.ccall=()=>JSON.stringify({status:'ready',cell:22,water_m:3,temperature_c:25,eligibility:{wave:'none',lightning:'none',scorch:'origin'}});el('god-refresh').onclick();sandbox.Module.ccall=()=>JSON.stringify({failure:'dry',count:0});el('god-wave').onclick();assert.match(el('god-result').textContent,/No water here/);
 sandbox.Module.ccall=()=>JSON.stringify({status:'no_world'});el('god-refresh').onclick();assert.equal(el('god-wave').disabled,true);el('god-wave').onclick();assert.match(el('god-result').textContent,/Select a planet/);
 sandbox.Module._stella_watch_life=()=>1;el('starter-watch').onclick();assert.equal(el('origin-starter').open,false);assert.match(el('notice').textContent,/Pause or Play stays/);
 // Actual observed biomass trend is shown, without labeling a cause or guaranteed growth.
@@ -189,4 +189,10 @@ for(let i=0;i<3;i++){
  sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:12,cohorts:[]});el('refresh-life').onclick();assert.equal(el('living-traits').hidden,true);assert.equal(el('living-traits-copy').textContent,'');el('close-life').onclick();
 }
 assert.match(sandbox.producerHabitatFeedback(null),/unavailable/);
+// Eligibility snapshot prevents known-invalid clicks but never replaces server revalidation.
+let blockedGodCalls=0;
+sandbox.Module.ccall=(name)=>{if(name==='stella_god_target')return JSON.stringify({status:'ready',cell:22,water_m:0,temperature_c:227,eligibility:{wave:'dry',lightning:'invalid',scorch:'no_cover'}});blockedGodCalls++;return '{}';};
+el('god-refresh').onclick();for(const id of ['god-wave','god-heat','god-scorch'])assert.equal(el(id).disabled,true);assert.match(el('god-availability').textContent,/Needs water/);assert.match(el('god-availability').textContent,/Needs vegetation/);el('god-wave').onclick();assert.equal(blockedGodCalls,0);
+sandbox.Module.ccall=()=>JSON.stringify({status:'ready',cell:22,water_m:1,temperature_c:25});el('god-refresh').onclick();assert.equal(el('god-wave').disabled,true);assert.match(el('god-availability').textContent,/checks unavailable/);
+
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

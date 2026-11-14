@@ -411,9 +411,11 @@ export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
 var godTargetBuffer:[512]u8=undefined;
 export fn stella_god_target() [*:0]const u8 {
     const state=webPlayState() orelse return "{\"status\":\"no_world\"}";
-    const i=state.selectedPoint;if(i>=state.planet.temperature.len)return "{\"status\":\"invalid\"}";
+    const i=state.selectedPoint;if(i>=state.planet.temperature.len or i>=state.planet.waterMass.len)return "{\"status\":\"invalid\"}";
     var stream=std.io.fixedBufferStream(godTargetBuffer[0..godTargetBuffer.len-1]);
-    std.json.stringify(.{.status="ready",.cell=i,.water_m=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000,.temperature_c=state.planet.temperature[i]-273.15},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{}";
+    const Actions=@import("god_actions.zig");const heat=state.planet.currentHeatCapacity(i);
+    const wave=Actions.previewWave(&state.planet,i,i);const lightning=Actions.previewLightning(&state.planet,i,i,heat);const scorch=Actions.previewScorch(&state.planet,i,i,heat);
+    std.json.stringify(.{.status="ready",.cell=i,.water_m=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000,.temperature_c=state.planet.temperature[i]-273.15,.eligibility=.{.wave=@tagName(wave.failure),.lightning=@tagName(lightning.failure),.scorch=@tagName(scorch.failure)}},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{}";
     godTargetBuffer[stream.pos]=0;return @ptrCast(&godTargetBuffer);
 }
 var godActionBuffer:[4096]u8=undefined;

@@ -33,6 +33,19 @@ hook=r'''        {
             std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(aa,saved.origin,.{}),try std.json.stringifyAlloc(aa,after.origin,.{})));
             _=bytes;
             std.debug.print("NATURAL_WATCH rendered_targets={d} exact_root_picks={d} biology_unchanged=true\n",.{visible.count,checked});
+            // Same target internals used by stella_god_target, without native web-state substitution.
+            const preview_before=try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{});
+            const Actions=@import("god_actions.zig");const patch=state.selectedPoint;
+            const capacity=state.planet.currentHeatCapacity(patch);
+            const wave_preview=Actions.previewWave(&state.planet,patch,patch);
+            const heat_preview=Actions.previewLightning(&state.planet,patch,patch,capacity);
+            const scorch_preview=Actions.previewScorch(&state.planet,patch,patch,capacity);
+            std.debug.assert(wave_preview.success() and heat_preview.success());
+            std.debug.assert(scorch_preview.failure==.origin and !scorch_preview.success());
+            std.debug.assert(wave_preview.moved_mass>0 and heat_preview.heat_joules>0);
+            std.debug.assert(std.mem.eql(u8,preview_before,try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{})));
+            std.debug.assert(state.gameTime==before_time and state.timeScale==before_pace and state.paused==before_pause);
+            std.debug.print("NATURAL_GOD_PREVIEW selected={d} wave={s} lightning={s} scorch={s} water_m={d} heat_capacity={d} exact_save_unchanged=true time_pace_pause_unchanged=true\n",.{patch,@tagName(wave_preview.failure),@tagName(heat_preview.failure),@tagName(scorch_preview.failure),state.planet.waterMass[patch]*state.planet.getKmPerWaterMass()*1000,capacity});
             originReport("natural_nursery_watch",state);
         }
 '''
