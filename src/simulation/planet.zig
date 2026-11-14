@@ -618,7 +618,9 @@ pub const Planet = struct {
             gl.bufferSubData(gl.ARRAY_BUFFER, 8 * @sizeOf(f32) * self.vertices.len, @as(isize, @intCast(self.vegetation.len * @sizeOf(f32))), self.vegetation.ptr);
         }
 
-        {
+        // Browser rendering never draws atmosphereMesh (renderWater is native-only).
+        // Keep its native upload, but avoid rebuilding/streaming unused browser data.
+        if (@import("builtin").target.cpu.arch != .wasm32) {
             const kmPerWaterMass = self.getKmPerWaterMass();
             const STRIDE = 4;
             for (self.vertices, 0..) |point, i| {

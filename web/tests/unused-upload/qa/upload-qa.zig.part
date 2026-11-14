@@ -1,0 +1,40 @@
+    if(std.posix.getenv("QA_UNUSED_UPLOAD")!=null){
+        defer loop.pump(1024);
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        state.planet.worldMode=.sandbox;state.paused=true;state.selectedTool=.None;state.watchLifeView=true;state.stableDaylight=true;
+        
+
+        const size=window.getFramebufferSize();const pixels=try al.alloc(u8,@as(usize,@intCast(size.width*size.height))*4);
+        const normal_pos=state.cameraPos;const normal_target=state.targetCameraPos;const normal_distance=state.cameraDistance;const normal_target_distance=state.targetCameraDistance;
+        const center=state.planet.getNearestPointTo(state.cameraPos);state.selectedPoint=center;
+        const Life=@TypeOf(state.planet.lifeforms.items[0]);
+        @import("simulation/planet.zig").qa_skip_unused_atmosphere=false;_=bloomReadPixels(window,pixels);const empty=bloomReadPixels(window,pixels);
+        try state.planet.addLifeform(Life.init(state.planet.transformedPoints[center],.Rabbit,state.gameTime));
+        const rabbit=bloomReadPixels(window,pixels);std.debug.assert(empty!=rabbit);std.debug.print("SB_RABBIT visible_pixel_change=true count={d}\n",.{state.planet.lifeforms.items.len});
+        const saves=@import("save_game.zig");const before=try saves.capture(al,state);const before_json=try std.json.stringifyAlloc(al,before,.{});
+        for(0..2)|atmos|{
+            @import("states/play.zig").qa_force_atmosphere=atmos==1;
+            for([_]@TypeOf(state.displayMode){.Normal,.Temperature,.WaterVapor,.Rainfall,.WindMagnitude})|mode|{
+                state.displayMode=mode;@import("simulation/planet.zig").qa_skip_unused_atmosphere=false;_=bloomReadPixels(window,pixels);const old=bloomReadPixels(window,pixels);
+                @import("simulation/planet.zig").qa_skip_unused_atmosphere=true;const new=bloomReadPixels(window,pixels);
+                std.debug.print("UNUSED_PIXELS mode={s} atmosphere={} original={x} candidate={x} equal={}\n",.{@tagName(mode),atmos==1,old,new,old==new});std.debug.assert(old==new);
+            }
+        }
+        @import("states/play.zig").qa_force_atmosphere=false;state.displayMode=.Normal;
+        state.freeCam=true;state.cameraPos=za.Vec3.new(8000,0,0);state.targetCameraPos=state.cameraPos;state.cameraDistance=8000;state.targetCameraDistance=8000;state.cameraRotation=za.Vec3.zero();
+        @import("simulation/planet.zig").qa_skip_unused_atmosphere=false;const sun_old=bloomReadPixels(window,pixels);@import("simulation/planet.zig").qa_skip_unused_atmosphere=true;const sun_new=bloomReadPixels(window,pixels);std.debug.assert(sun_old==sun_new);
+        const floats=try al.alloc(f32,pixels.len);state.bloomFramebuffer.bind();gl.readPixels(0,0,@intCast(size.width),@intCast(size.height),gl.RGBA,gl.FLOAT,floats.ptr);state.bloomFramebuffer.unbind();var peak:f32=0;for(floats,0..)|v,i|{if(i%4!=3)peak=@max(peak,v);}
+        std.debug.print("SB_SUN equal=true bloom_peak={d}\n",.{peak});std.debug.assert(peak>1);
+        state.freeCam=false;state.cameraPos=normal_pos;state.targetCameraPos=normal_target;state.cameraDistance=normal_distance;state.targetCameraDistance=normal_target_distance;
+        for([_]bool{false,true})|night|{state.stableDaylight=!night;@import("simulation/planet.zig").qa_skip_unused_atmosphere=false;const old=bloomReadPixels(window,pixels);@import("simulation/planet.zig").qa_skip_unused_atmosphere=true;const new=bloomReadPixels(window,pixels);std.debug.assert(old==new);std.debug.print("SB_RETURN night={} equal=true\n",.{night});}
+        state.stableDaylight=true;
+        for([_]bool{false,true,true,false},0..)|fast,pass|{
+            @import("simulation/planet.zig").qa_skip_unused_atmosphere=fast;_=bloomReadPixels(window,pixels);
+            @import("simulation/planet.zig").qa_unused_uploads=0;@import("simulation/planet.zig").qa_unused_bytes=0;@import("simulation/planet.zig").qa_unused_ns=0;var samples:[4096]f64=undefined;var count:usize=0;var timer=try std.time.Timer.start();var submit:u64=0;var wait:u64=0;
+            while(timer.read()<4_000_000_000 and count<samples.len){var frame=try std.time.Timer.start();render(window);const call=frame.read();gl.finish();const all=frame.read();submit+=call;wait+=all-call;samples[count]=@as(f64,@floatFromInt(all))/1e6;count+=1;}
+            std.mem.sort(f64,samples[0..count],{},std.sort.asc(f64));std.debug.print("SB_RENDER pass={d} candidate={} frames={d} call_ms={d} finish_wait_ms={d} p50={d} p95={d} max={d}\n",.{pass,fast,count,@as(f64,@floatFromInt(submit))/@as(f64,@floatFromInt(count))/1e6,@as(f64,@floatFromInt(wait))/@as(f64,@floatFromInt(count))/1e6,samples[count/2],samples[count*95/100],samples[count-1]});
+            std.debug.print("UNUSED_UPLOAD pass={d} skipped={} frames={d} uploads={d} bytes={d} cpu_ns={d}\n",.{pass,fast,count,@import("simulation/planet.zig").qa_unused_uploads,@import("simulation/planet.zig").qa_unused_bytes,@import("simulation/planet.zig").qa_unused_ns});
+        }
+        var after=try saves.capture(al,state);after.display_mode=before.display_mode;after.camera=before.camera;after.camera_target=before.camera_target;after.camera_distance=before.camera_distance;after.target_distance=before.target_distance;
+        const after_json=try std.json.stringifyAlloc(al,after,.{});std.debug.assert(std.mem.eql(u8,before_json,after_json));std.debug.print("SB_MODEL unchanged=true\n",.{});return;
+    }

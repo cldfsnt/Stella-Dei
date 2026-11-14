@@ -1,0 +1,5 @@
+Set STELLA_SOURCE_ROOT to actual checkout. Run `python3 prepare.py /workspace/isolated-src`; build with checkout web/tests/egl-origin-build.zig, unique prefix and writable caches. No main edits. From checkout cwd, use STELLA_PRODUCER_SEED=42 STELLA_FORMS_SINGLE=1 and a workspace-local STELLA_EGL_CAPTURE_PREFIX whose directory exists.
+
+QA_UNUSED_UPLOAD=1 performs same-binary old/new/old upload toggles: all5 maps, visible rabbit, bright sun, day/night, full serialized state check, then four-second ABBA paused render windows. Counters report exact avoided upload calls/bytes and wall time inside original block. Render call and glFinish wait are not GPU timer measurements. STELLA_ORIGIN_WIDTH=920 exercises920×700, not an actual phone aspect ratio/GPU.
+
+QA_CLOCK=1 QA_UNUSED_ALWAYS=1 enables skip for actual callback/model/save regression. Test-only dynamic toggle approximates the production compile-time browser condition. Actual native production code keeps its original atmosphere upload; the browser renderWater caller is already disabled. No atmosphere generation/deinit/resource ownership changes.
