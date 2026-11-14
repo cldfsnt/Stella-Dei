@@ -1,0 +1,6 @@
+87f0fcf26b3ae8e05a9f2389a266d666f4412b2bec8a1e18d2bb9cab38f7a1da  src/experimental/planet_ignition.zig
+c48221c3385e23c22841959acc5f9a9f0c99b4d132f6ec22383fae7358c1bb5d  src/qa_fire_planet.zig
+b0610750e46e13478dedb51798c6a100df5905c63d32a98529678d7ea3ce1327  web/tests/continuation-review/fire-candidate/PLANET-ADAPTER.md
+adc05c5cde49c763cc793fd02349c1459367eaad858a8624c09ba42e2ec8a995  web/tests/continuation-review/fire-candidate/planet-tests.log
+d5d1979b775b36b29ed23b36c3ad5827ec96e876c20c12c3def70222fec95f26  web/tests/continuation-review/fire-candidate/planet-scale-diagnostic.log
+2e0d17ae2629f80978988b860e4e0fe0861fb76956c639eb74b581cd11b4302b  web/tests/continuation-review/fire-candidate/planet-ulp-tests.log
