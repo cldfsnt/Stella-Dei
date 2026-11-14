@@ -1,0 +1,8 @@
+1/1 qa_grazing_establishment.test.paid propagule faces scarce-prey resident grazing contrast...GRAZING_CONTRAST variant=0 tick=1 resident=0.80127820 child=0.00000000 child_credit=0.00000000 grazed=0.00399564 child_traits_structure=0.000000 feeding=0.000000
+GRAZING_CONTRAST variant=0 tick=2 resident=0.80055730 child=0.00000000 child_credit=0.00000000 grazed=0.00399564 child_traits_structure=0.000000 feeding=0.000000
+GRAZING_CONTRAST variant=0 tick=60 resident=0.75983920 child=0.00000000 child_credit=0.00000000 grazed=0.00399564 child_traits_structure=0.000000 feeding=0.000000
+GRAZING_CONTRAST variant=1 tick=1 resident=0.79946685 child=0.00399565 child_credit=0.00000000 grazed=0.00000000 child_traits_structure=0.000000 feeding=0.000000
+GRAZING_CONTRAST variant=1 tick=2 resident=0.79893404 child=0.00399129 child_credit=0.00000000 grazed=0.00000000 child_traits_structure=0.000000 feeding=0.000000
+GRAZING_CONTRAST variant=1 tick=60 resident=0.76863170 child=0.00374691 child_credit=0.00000000 grazed=0.00000000 child_traits_structure=0.000000 feeding=0.000000
+OK
+All 1 tests passed.
