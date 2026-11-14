@@ -1,0 +1,36 @@
+MATCHED_INITIAL schema6=true identical=true one_seed=true
+FILM_DAY day=1 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=2 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=3 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=4 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=5 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=6 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=7 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=8 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=9 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=10 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=11 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=12 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=13 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=14 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=15 living=1 biomass=0.0027880885172635317 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=16 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=17 living=1 biomass=0.0030773826874792576 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=18 living=0 biomass=0 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=19 living=1 biomass=0.003717438317835331 fixed=0 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=20 living=3 biomass=0.01056498265825212 fixed=0.0001961902821676631 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=21 living=3 biomass=0.0140602788887918 fixed=0.0010923128224931133 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=22 living=4 biomass=0.021067246794700623 fixed=0.0021637837204337984 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=23 living=4 biomass=0.026134468847885728 fixed=0.0032448379048304332 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=24 living=5 biomass=0.035283412085846066 fixed=0.004367087989166407 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=25 living=3 biomass=0.03631354961544275 fixed=0.005487217372873943 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=26 living=6 biomass=0.05265613179653883 fixed=0.006176910592202489 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=27 living=8 biomass=0.07109011616557837 fixed=0.00722448533984732 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=28 living=8 biomass=0.07598416483961046 fixed=0.008807309883977155 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=29 living=7 biomass=0.07944841124117374 fixed=0.01069487062692076 dry_fixed=0 frozen_fixed=0
+FILM_DAY day=30 living=9 biomass=0.09782540379092097 fixed=0.013153336701961393 dry_fixed=0 frozen_fixed=0
+TOTAL_WATER start=899982260513.9004 end=899960177222.0532 relative_error=2.453747458817483e-5
+STRUCTURE_WORLD max_structure=0.12246744 max_generation=3 failed_patches=44
+PRODUCER_EVER max_support=0.0015369464 max_organization=0.10605155
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=10586959 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=250192

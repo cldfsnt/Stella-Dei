@@ -1,0 +1,142 @@
+--- a/src/simulation/microbes.zig
++++ b/src/simulation/microbes.zig
+@@ -56,6 +56,30 @@
+     return shares;
+ }
+ pub fn habitable(depth:f32,temp:f32) bool{return depth>=0.0002 and depth<=0.05 and temp>260 and temp<355;}
++/// Phenomenological moist-film adaptation, not vascular plants or stored water.
++/// Both actual paid tissue and inherited toughness are required. Existing costs
++/// (less frond carbon, support respiration, structure growth cost) remain active.
++pub fn filmProtection(c:Cohort) f32 {
++    if(c.biomass<=0 or c.support_mass<=0 or c.structure<=0)return 0;
++    const tissue=std.math.clamp(c.support_mass/c.biomass,0,1);
++    return (tissue/(tissue+0.005))*(c.structure/(c.structure+0.02));
++}
++fn aquaticSubmergence(depth:f32) f32 {
++    const margin=std.math.clamp((depth-0.00015)/0.00005,0,1);
++    return margin*margin*(3-2*margin);
++}
++fn filmExposureMultiplier(c:Cohort,depth:f32) f32 {
++    return 1-filmProtection(c)*(1-aquaticSubmergence(depth));
++}
++pub fn photosyntheticHabitat(c:Cohort,depth:f32,temp:f32) f32 {
++    if(!std.math.isFinite(depth) or !std.math.isFinite(temp) or depth<=0 or depth>0.05 or temp<=273.15 or temp>=355)return 0;
++    if(depth>=0.0002)return 1;
++    // A smooth submergence margin removes the inherited 20cm step. Naked
++    // ancestors gain no shallow-film growth below15cm; support remains useful
++    // below that margin, and both responses meet aquatic fitness continuously.
++    const aquatic=aquaticSubmergence(depth);
++    return aquatic+(1-aquatic)*filmProtection(c)*@sqrt(std.math.clamp(depth/0.0002,0,1));
++}
+ pub fn seed(cell:*Cell,stats:*Stats,available_carbon:f32) f32 {
+     var slot:?usize=null;for(cell.cohorts,0..) |c,i| {if(c.biomass==0){slot=i;break;}}
+     const i=slot orelse return 0;
+@@ -83,8 +107,11 @@
+         if(upkeep>0){const factor=1-upkeep/c.biomass;c.biomass-=upkeep;c.support_mass=@min(c.biomass,c.support_mass*factor);cell.nutrient+=upkeep*nutrient_per_carbon;support_respired+=upkeep;}
+         const fitness=thermalFitness(env.temperature,c.optimum);
+         const dry=env.depth_km<0.0002 and env.temperature>260 and env.temperature<355;
+-        const mortality:f32=if(dry) 4*(1-0.85*c.structure)+0.10*c.structure else if(!habitable(env.depth_km,env.temperature)) 4 else 0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
+-        const exposed=std.math.clamp((producerHeightMeters(c.*)-env.depth_km*1000)/0.1,0,1);
++        const film=env.depth_km>0 and env.depth_km<0.0002 and env.temperature>273.15 and env.temperature<355;
++        const hydration=std.math.clamp(env.depth_km/0.0002,0,1);
++        const protection=filmProtection(c.*);
++        const mortality:f32=if(film) 0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility+4*(1-hydration)*(1-protection)*(1-protection) else if(dry) 4*(1-0.85*c.structure)+0.10*c.structure else if(!habitable(env.depth_km,env.temperature)) 4 else 0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
++        const exposed=std.math.clamp((producerHeightMeters(c.*)-env.depth_km*1000)/0.1,0,1)*(if(film) filmExposureMultiplier(c.*,env.depth_km) else @as(f32,1));
+         const dead=c.biomass*(1-@exp(-(mortality+3*exposed)*days));
+         if(c.biomass>0)c.support_mass*=1-dead/c.biomass;
+         c.biomass-=dead;c.support_mass=@min(c.support_mass,c.biomass);cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
+@@ -96,10 +123,10 @@
+     var organized=false;for(cell.cohorts)|c|{if(c.support_mass>0)organized=true;}
+ 
+     for(cell.cohorts,0..) |c,i| {
+-        if(c.biomass<=0 or !habitable(env.depth_km,env.temperature))continue;
++        if(c.biomass<=0 or photosyntheticHabitat(c,env.depth_km,env.temperature)<=0)continue;
+         const fitness=thermalFitness(env.temperature,c.optimum);
+         // Higher light efficiency carries maintenance cost; not a free upgrade.
+-        const rate=@max(0,3*fitness*light*c.efficiency*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)-0.15*c.efficiency*c.efficiency);
++        const rate=@max(0,3*photosyntheticHabitat(c,env.depth_km,env.temperature)*fitness*light*c.efficiency*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)-0.15*c.efficiency*c.efficiency);
+         potentials[i]=frondMass(c)*(@exp(@min(20,rate*days))-1)*space;
+     }
+     // Smooth competition: height redistributes, never increases the existing
+@@ -701,3 +728,81 @@
+     try std.testing.expectApproxEqAbs(n_before,nutrientTotal(target),0.000001);
+     var favorable=wet;_=step(&favorable,env,86400);try std.testing.expect(biomass(favorable)>0.004);
+ }
++
++test "film adaptation requires real tissue and inherited structure, never dry or frozen fixation" {
++    var supported:Cohort=.{.biomass=0.1,.support_mass=0.004,.organization=0.04,.structure=0.1,.lineage=1};
++    try std.testing.expect(photosyntheticHabitat(supported,0.00001,303)>0);
++    var no_tissue=supported;no_tissue.support_mass=0;
++    var no_trait=supported;no_trait.structure=0;
++    try std.testing.expectEqual(@as(f32,0),photosyntheticHabitat(no_tissue,0.00001,303));
++    try std.testing.expectEqual(@as(f32,0),photosyntheticHabitat(no_trait,0.00001,303));
++    for([_]f32{0,0.00001,0.01})|depth|for([_]f32{260,273.15,303})|temp|{
++        if(depth>0 and temp>273.15)continue;
++        var cell=initialized(77);cell.cohorts[0]=supported;
++        const f=step(&cell,.{.depth_km=depth,.temperature=temp,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1},1440);
++        try std.testing.expectEqual(@as(f32,0),f.fixed);
++    };
++    supported.support_mass=0.04;
++    try std.testing.expect(supportMaintenancePerDay(supported)>supportMaintenancePerDay(no_tissue));
++}
++test "film growth is resource funded with conservative paid offspring and unchanged water input" {
++    var cell=initialized(89);cell.nutrient=0.2;
++    cell.cohorts[0]=.{.biomass=0.1,.support_mass=0.004,.organization=0.04,.structure=0.1,.lineage=1};
++    const nutrient_before=nutrientTotal(cell);var atmospheric:f64=10;const total_before=@as(f64,carbon(cell))+atmospheric;
++    var fixed:f64=0;
++    const env:Environment=.{.depth_km=0.00005,.temperature=303,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1};
++    for(0..120)|_|{const f=step(&cell,env,1440);fixed+=f.fixed;atmospheric+=@as(f64,f.recycled)-f.fixed;}
++    try std.testing.expect(fixed>0);
++    try std.testing.expectApproxEqAbs(total_before,@as(f64,carbon(cell))+atmospheric,0.00001);
++    try std.testing.expectApproxEqAbs(nutrient_before,nutrientTotal(cell),0.00001);
++    var destination=initialized(99);var stats:Stats=.{.next_lineage=2};
++    const before=carbon(cell)+carbon(destination);const n=nutrientTotal(cell)+nutrientTotal(destination);
++    try std.testing.expect(propagate(&cell,0,&destination,&stats));
++    try std.testing.expectApproxEqAbs(before,carbon(cell)+carbon(destination),0.000001);
++    try std.testing.expectApproxEqAbs(n,nutrientTotal(cell)+nutrientTotal(destination),0.000001);
++    try std.testing.expectEqual(@as(u64,1),destination.cohorts[0].parent);
++    try std.testing.expectEqual(@as(f32,0.00005),env.depth_km);
++}
++test "film tradeoff matrix synthetic controls do not prove natural evolution" {
++    for([_]f32{0,0.000001,0.00001,0.00005,0.00019,0.001})|depth|{
++        for(0..3)|variant|{
++            var cell=initialized(44);cell.nutrient=1;
++            cell.cohorts[0]=.{.biomass=0.1,.support_mass=if(variant==0)0 else 0.004,.organization=if(variant==0)0 else 0.04,.structure=if(variant==2)0.1 else 0,.lineage=1};
++            const n=nutrientTotal(cell);var atmosphere:f64=10;const total=atmosphere+carbon(cell);var fixed:f64=0;
++            for(0..240)|i|{const flux=step(&cell,.{.depth_km=depth,.temperature=303,.light=if(i%60<30)1 else 0,.carbon_available=1,.oxygen_carbon_capacity=1},1440);fixed+=flux.fixed;atmosphere+=@as(f64,flux.recycled)-flux.fixed;}
++            try std.testing.expectApproxEqAbs(total,atmosphere+carbon(cell),0.00002);
++            try std.testing.expectApproxEqAbs(n,nutrientTotal(cell),0.00002);
++            if(depth<=0.00015 and variant!=2)try std.testing.expectEqual(@as(f64,0),fixed);
++            if(depth==0)try std.testing.expectEqual(@as(f64,0),fixed);
++            std.debug.print("FILM_MATRIX depth_m={d} variant={d} biomass={d} fixed={d}\n",.{depth*1000,variant,biomass(cell),fixed});
++        }
++    }
++}
++test "smooth aquatic boundary and fluctuating shoreline remain conservative" {
++    const naked:Cohort=.{.biomass=0.1,.lineage=1};
++    try std.testing.expectApproxEqAbs(@as(f32,1),photosyntheticHabitat(naked,0.00019999,303),0.000001);
++    try std.testing.expectEqual(@as(f32,0),photosyntheticHabitat(naked,0.00015,303));
++    try std.testing.expectEqual(@as(f32,1),photosyntheticHabitat(naked,0.0002,303));
++    var cell=initialized(72);cell.nutrient=1;cell.cohorts[0]=naked;
++    const nutrient_before=nutrientTotal(cell);var atmosphere:f64=10;const total=atmosphere+carbon(cell);
++    for(0..240)|i|{
++        const env:Environment=.{.depth_km=if(i%2==0)0.00019999 else 0.00020001,.temperature=303,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1};
++        const flux=step(&cell,env,1440);
++        try std.testing.expect(flux.fixed>=0);
++        atmosphere+=@as(f64,flux.recycled)-flux.fixed;
++    }
++    try std.testing.expectApproxEqAbs(total,atmosphere+carbon(cell),0.00002);
++    try std.testing.expectApproxEqAbs(nutrient_before,nutrientTotal(cell),0.00002);
++}
++
++test "tall supported exposed mortality meets aquatic limit continuously" {
++    const c:Cohort=.{.biomass=0.8,.support_mass=0.5,.organization=0.7,.structure=0.4,.lineage=1};
++    try std.testing.expect(producerHeightMeters(c)>0.2);
++    try std.testing.expectApproxEqAbs(@as(f32,1),filmExposureMultiplier(c,0.00019999),0.000001);
++    var low=initialized(2);var high=initialized(2);low.cohorts[0]=c;high.cohorts[0]=c;
++    const a=step(&low,.{.depth_km=0.00019999,.temperature=303,.light=0,.carbon_available=0,.oxygen_carbon_capacity=1},1440);
++    const b=step(&high,.{.depth_km=0.00020001,.temperature=303,.light=0,.carbon_available=0,.oxygen_carbon_capacity=1},1440);
++    try std.testing.expectEqual(@as(f32,0),a.fixed);try std.testing.expectEqual(@as(f32,0),b.fixed);
++    try std.testing.expectApproxEqAbs(biomass(low),biomass(high),0.00003);
++    try std.testing.expectApproxEqAbs(carbon(low)+a.recycled,carbon(high)+b.recycled,0.000001);
++}

@@ -1,0 +1,38 @@
+{
+  "src/simulation/microbes.zig": {
+    "sha256": "15f2a3f6f62c230a45ee5da8e0aa3e99c628e0352600b19356c16e48ef18ea64",
+    "bytes": 57162
+  },
+  "tmp/source-final/simulation/microbes.zig": {
+    "sha256": "3732e82f6f4a4e297a8502af389b035daf0a618ffff5a9212bace111e664d1d8",
+    "bytes": 57242
+  },
+  "tmp/source-final/simulation/planet.zig": {
+    "sha256": "5170e97ca2028b314b7728cb8e5d5435843be74abb89009ab6f3021a92b33344",
+    "bytes": 89319
+  },
+  "tmp/source-final/main.zig": {
+    "sha256": "e9d7f678ca99cd8dcf743f0f7fd57e15928d588f347437f74a2902fc50ca69da",
+    "bytes": 53108
+  },
+  "tmp/source-final/states/play.zig": {
+    "sha256": "ae7e0a8e8b4b1251cd9facbb30df9e053f965deac6012f47e6861102ca248b2a",
+    "bytes": 113820
+  },
+  "tmp/final-out/bin/stella-egl": {
+    "sha256": "f542f1ca84e83341052522758c732ce419119476e421e9649c254f12d92d69f9",
+    "bytes": 11705408
+  },
+  "tmp/source-smooth/simulation/microbes.zig": {
+    "sha256": "1300075b5452ae33efec2d7ecafe9287ecffc00202dc2720fcbd41204d51da9d",
+    "bytes": 56079
+  },
+  "tmp/source-smooth/simulation/planet.zig": {
+    "sha256": "5170e97ca2028b314b7728cb8e5d5435843be74abb89009ab6f3021a92b33344",
+    "bytes": 89319
+  },
+  "tmp/smooth-out/bin/stella-egl": {
+    "sha256": "110ae78097f20e579a3c19fd59566f919e310ed784959ad8e2f347b94e623571",
+    "bytes": 11705400
+  }
+}

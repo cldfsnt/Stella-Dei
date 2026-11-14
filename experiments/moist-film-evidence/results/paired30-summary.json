@@ -1,0 +1,291 @@
+{
+  "initial": {
+    "sha256": "8cf1adb1ff0c85a2cae61c84c870c25bc0aae381d123875a6a8b164ae33201a5",
+    "schema": 6,
+    "biomass": 0.019999999552965164,
+    "living": 1,
+    "occupied": 1,
+    "shallow": [],
+    "carbon_kg": 8427273058760209.0,
+    "nutrient_kg": 6283185289061.004,
+    "water_kg": 8.999822605139003e+20
+  },
+  "on-final": {
+    "sha256": "f8336a28eceb0ca69b8043fbd5caa2a2fc953dea79d2d1052a897405ea48eebe",
+    "schema": 6,
+    "biomass": 0.3117265354376286,
+    "living": 29,
+    "occupied": 13,
+    "shallow": [
+      {
+        "cell": 7512,
+        "depth_m": 0.18196806973276594,
+        "temperature": 300.78729248046875,
+        "biomass": 0.01775447279214859,
+        "cohorts": [
+          {
+            "biomass": 0.01775447279214859,
+            "organization": 0.05836629867553711,
+            "support_mass": 0.0010336051927879453,
+            "optimum": 301.8424987792969,
+            "efficiency": 1.054776668548584,
+            "structure": 0.0,
+            "feeding": 0.08712219446897507,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0016210791654884815,
+            "generation": 2,
+            "lineage": 47,
+            "parent": 17,
+            "reproduction_credit": 0.015385319478809834
+          }
+        ]
+      },
+      {
+        "cell": 7574,
+        "depth_m": 0.17432302314049353,
+        "temperature": 298.85174560546875,
+        "biomass": 0.049858635291457176,
+        "cohorts": [
+          {
+            "biomass": 0.01305948756635189,
+            "organization": 0.028893418610095978,
+            "support_mass": 0.00041745026828721166,
+            "optimum": 299.51068115234375,
+            "efficiency": 1.0251845121383667,
+            "structure": 0.0,
+            "feeding": 0.06840988248586655,
+            "mobility": 0.019574783742427826,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0034798753913491964,
+            "generation": 3,
+            "lineage": 58,
+            "parent": 44,
+            "reproduction_credit": 0.01861054077744484
+          },
+          {
+            "biomass": 0.010431603528559208,
+            "organization": 0.02981812320649624,
+            "support_mass": 0.0002897174272220582,
+            "optimum": 299.11029052734375,
+            "efficiency": 1.0294021368026733,
+            "structure": 0.0,
+            "feeding": 0.0377759225666523,
+            "mobility": 0.09257685393095016,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.001683640293776989,
+            "generation": 2,
+            "lineage": 59,
+            "parent": 5,
+            "reproduction_credit": 0.015689486637711525
+          },
+          {
+            "biomass": 0.006897740997374058,
+            "organization": 0.06920154392719269,
+            "support_mass": 0.00048672829871065915,
+            "optimum": 305.2671813964844,
+            "efficiency": 1.1216797828674316,
+            "structure": 0.12246744334697723,
+            "feeding": 0.016565881669521332,
+            "mobility": 0.06267360597848892,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0005161468288861215,
+            "generation": 3,
+            "lineage": 60,
+            "parent": 44,
+            "reproduction_credit": 0.009022976271808147
+          },
+          {
+            "biomass": 0.01946980319917202,
+            "organization": 0.0783386304974556,
+            "support_mass": 0.0007092604646459222,
+            "optimum": 302.32623291015625,
+            "efficiency": 1.0641324520111084,
+            "structure": 0.06353624165058136,
+            "feeding": 0.048543620854616165,
+            "mobility": 0.05939000844955444,
+            "relocations": 1,
+            "last_from": 30132,
+            "last_to": 7574,
+            "last_move_time": 2534400.0,
+            "lifetime_grazed": 0.0031521059572696686,
+            "generation": 2,
+            "lineage": 44,
+            "parent": 14,
+            "reproduction_credit": 0.00958113931119442
+          }
+        ]
+      },
+      {
+        "cell": 30109,
+        "depth_m": 0.1517849943281968,
+        "temperature": 298.825927734375,
+        "biomass": 0.015496381325647235,
+        "cohorts": [
+          {
+            "biomass": 0.011990061961114407,
+            "organization": 0.0,
+            "support_mass": 3.36315315507818e-06,
+            "optimum": 300.1429138183594,
+            "efficiency": 1.0411944389343262,
+            "structure": 0.09455320239067078,
+            "feeding": 0.06970278173685074,
+            "mobility": 0.014914417639374733,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 6.950135866645724e-05,
+            "generation": 2,
+            "lineage": 42,
+            "parent": 17,
+            "reproduction_credit": 0.045575886964797974
+          },
+          {
+            "biomass": 0.0035063193645328283,
+            "organization": 0.10605154931545258,
+            "support_mass": 0.00020405046234373003,
+            "optimum": 304.4567565917969,
+            "efficiency": 1.1015632152557373,
+            "structure": 0.0,
+            "feeding": 0.04444193094968796,
+            "mobility": 0.07512587308883667,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 3,
+            "lineage": 73,
+            "parent": 47,
+            "reproduction_credit": 0.0
+          }
+        ]
+      },
+      {
+        "cell": 30131,
+        "depth_m": 0.13072755276271686,
+        "temperature": 298.373046875,
+        "biomass": 0.01392528391443193,
+        "cohorts": [
+          {
+            "biomass": 0.010316207073628902,
+            "organization": 0.008219640702009201,
+            "support_mass": 0.00017239070439245552,
+            "optimum": 297.52496337890625,
+            "efficiency": 1.0171492099761963,
+            "structure": 0.11234917491674423,
+            "feeding": 0.0,
+            "mobility": 0.04651118442416191,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 2,
+            "lineage": 61,
+            "parent": 14,
+            "reproduction_credit": 0.010543427430093288
+          },
+          {
+            "biomass": 0.003609076840803027,
+            "organization": 0.06793219596147537,
+            "support_mass": 0.00019255286315456033,
+            "optimum": 302.2269287109375,
+            "efficiency": 1.0832233428955078,
+            "structure": 0.007368098944425583,
+            "feeding": 0.10100865364074707,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 2,
+            "lineage": 71,
+            "parent": 14,
+            "reproduction_credit": 0.00019347693887539208
+          }
+        ]
+      }
+    ],
+    "carbon_kg": 8427273058763584.0,
+    "nutrient_kg": 6283185289398.792,
+    "water_kg": 8.999601772220513e+20,
+    "carbon_kg_change": 3375.0,
+    "nutrient_kg_change": 337.7880859375,
+    "water_kg_change": -2.208329184903168e+16
+  },
+  "off-final": {
+    "sha256": "9b965505b4cd2859bd8e89dcd89bfa172b1f82f559f4f4b303fa59e5405bccd0",
+    "schema": 6,
+    "biomass": 0.18041803501546383,
+    "living": 15,
+    "occupied": 8,
+    "shallow": [
+      {
+        "cell": 7574,
+        "depth_m": 0.17432302314049353,
+        "temperature": 298.85174560546875,
+        "biomass": 0.003348485566675663,
+        "cohorts": [
+          {
+            "biomass": 0.003348485566675663,
+            "organization": 0.09490296244621277,
+            "support_mass": 0.0002106167667079717,
+            "optimum": 302.0940856933594,
+            "efficiency": 0.9725010395050049,
+            "structure": 0.09110628813505173,
+            "feeding": 0.1255771964788437,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 2,
+            "lineage": 63,
+            "parent": 14,
+            "reproduction_credit": 0.0012656181352213025
+          }
+        ]
+      }
+    ],
+    "carbon_kg": 8427273058763418.0,
+    "nutrient_kg": 6283185289535.398,
+    "water_kg": 8.999601772220281e+20,
+    "carbon_kg_change": 3209.0,
+    "nutrient_kg_change": 474.39453125,
+    "water_kg_change": -2.2083291872231424e+16
+  },
+  "on_observations": {
+    "last_flux": [
+      "FILM_DAY day=30 living=9 biomass=0.09782540379092097 fixed=0.013153336701961393 dry_fixed=0 frozen_fixed=0"
+    ],
+    "paid_births": [],
+    "save_check": [
+      "ORIGIN_SAVE bytes=10586959 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=250192"
+    ]
+  },
+  "off_observations": {
+    "last_flux": [
+      "FILM_DAY day=30 living=1 biomass=0.003561884630471468 fixed=0 dry_fixed=0 frozen_fixed=0"
+    ],
+    "paid_births": [],
+    "save_check": [
+      "ORIGIN_SAVE bytes=10580527 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=241408"
+    ]
+  }
+}
