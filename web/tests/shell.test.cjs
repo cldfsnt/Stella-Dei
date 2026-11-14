@@ -101,9 +101,11 @@ speedAccept=false;el('speed-slow').onclick();assert.match(el('speed-result').tex
 el('close-speed').onclick();assert.equal(el('speed-sheet').open,false);el('starter-speed').onclick();assert.equal(el('speed-sheet').open,true);
 sandbox.Module.ccall=()=>'{bad';el('refresh-speed').onclick();assert.equal(el('speed-fast').disabled,true);const speedCallCount=speedCalls.length;el('speed-fast').onclick();assert.equal(speedCalls.length,speedCallCount);
 sandbox.Module.started=false;el('starter-speed').onclick();assert.match(el('speed-readout').textContent,/Start or load/);el('close-speed').onclick();sandbox.Module.started=true;
-const perf={enabled:true,cells:40962,frames:60,ticks:30,physics_frames:30,frame_avg_ms:33,frame_max_ms:80,physics_avg_ms:22,physics_max_ms:45,render_cpu_avg_ms:4,render_cpu_max_ms:8};
+const perf={enabled:true,cells:40962,frames:60,ticks:30,physics_frames:30,frame_avg_ms:33,frame_max_ms:80,frame_p95_ms:60,long_frames:5,physics_avg_ms:22,physics_max_ms:45,render_cpu_avg_ms:4,render_cpu_max_ms:8};
 assert.match(sandbox.performanceText(perf),/40962|40,962/);assert.match(sandbox.performanceText(perf),/Render call/);
 for(const d of [{}, {...perf,frame_avg_ms:NaN},{...perf,render_cpu_max_ms:-1},{...perf,frames:61},{...perf,enabled:false},{...perf,physics_frames:61}])assert.equal(sandbox.performanceText(d),null);
+assert.match(sandbox.performanceText(perf),/Frame interval p95: 60.0 ms/);assert.match(sandbox.performanceText(perf),/intervals >50 ms: 5\/60/);
+for(const d of [{...perf,frame_p95_ms:81},{...perf,long_frames:61},{...perf,long_frames:1.5},{...perf,frame_p95_ms:NaN}])assert.equal(sandbox.performanceText(d),null);
 let perfEnabled=[];sandbox.Module._stella_performance_enable=n=>{perfEnabled.push(n);return 1};sandbox.Module._stella_performance_snapshot=()=>1;
 el('speed-sheet').open=true;el('performance-details').open=true;sandbox.Module.ccall=()=>JSON.stringify(perf);el('performance-details').handlers.toggle();assert.equal(perfEnabled.at(-1),1);assert.match(el('performance-readout').textContent,/60 frames/);
 sandbox.Module.ccall=()=>'{bad';sandbox.refreshPerformance();assert.match(el('performance-readout').textContent,/unavailable/);

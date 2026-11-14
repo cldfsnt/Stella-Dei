@@ -1,0 +1,69 @@
+--- a/src/simulation/planet.zig
++++ b/src/simulation/planet.zig
+@@ -165,6 +165,9 @@
+     /// Transient per-step wind vectors. Owned by allocator, not saved physics.
+     /// Lazy allocation failure retains the exact uncached calculation path.
+     atmosphericWindScratch: [][3]f32 = &.{},
++    /// Owned per-tick directed rates; refreshed from current geometry and wind.
++    /// Preserve f64 rates and original sum order. Not part of saved physics.
++    atmosphericEdgeScratch: [][6]f64 = &.{},
+     vegetation: []f32,
+     plantTraits: []Ecology.Plant,
+     vegetationSnapshot: []f32,
+@@ -1092,6 +1095,18 @@
+         self.atmosphericWindScratch=replacement;
+         return true;
+     }
++    fn ensureAtmosphericEdgeScratch(self:*Planet) bool {
++        const count=self.transformedPoints.len;
++        if(self.atmosphericEdgeScratch.len==count)return true;
++        const replacement=self.allocator.alloc([6]f64,count) catch return false;
++        self.allocator.free(self.atmosphericEdgeScratch);self.atmosphericEdgeScratch=replacement;return true;
++    }
++    fn cachedAtmosphericEdgeRate(self:*const Planet,from:usize,to:usize) f64 {
++        if(self.atmosphericEdgeScratch.len==self.transformedPoints.len){
++            for(self.getNeighbours(from),0..)|n,j|if(n==to)return self.atmosphericEdgeScratch[from][j];
++        }
++        return self.atmosphericEdgeRate(from,to);
++    }
+     fn atmosphericEdgeRate(self:*const Planet,from:usize,to:usize) f64 {
+         const a=self.transformedPoints[from];const b=self.transformedPoints[to];
+         const wind:[3]f64=if(self.atmosphericWindScratch.len==self.transformedPoints.len) blk:{
+@@ -1108,6 +1123,10 @@
+         if(self.ensureAtmosphericWindScratch())for(self.atmosphericWindScratch,0..)|*cached,i|{
+             const wind=self.atmosphericWind(i);cached.*=.{@floatCast(wind[0]),@floatCast(wind[1]),@floatCast(wind[2])};
+         };
++        // No static geometry/velocity cache: rebuild every tick after wind refresh.
++        if(self.ensureAtmosphericEdgeScratch())for(self.atmosphericEdgeScratch,0..)|*rates,i|{
++            for(self.getNeighbours(i),0..)|n,j|rates[j]=self.atmosphericEdgeRate(i,n);
++        };
+         const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
+         for(self.waterMass,self.waterVaporMass,0..)|liquid,vapor,i|{
+             const temperature=self.temperature[i];
+@@ -1120,15 +1139,15 @@
+         // Saves and rendering consume current waterMass, never this scratch.
+         // Immutable post-phase vapor + fixed velocities drive both passes.
+         for(self.waterVaporMass,0..)|vapor,i|{
+-            var total_rate:f64=0;for(self.getNeighbours(i))|n|total_rate+=self.atmosphericEdgeRate(i,n);
++            var total_rate:f64=0;for(self.getNeighbours(i),0..)|n,j|total_rate+=if(self.atmosphericEdgeScratch.len==self.transformedPoints.len)self.atmosphericEdgeScratch[i][j] else self.atmosphericEdgeRate(i,n);
+             const coefficient=AtmosphereWater.coefficient32(vapor,total_rate,dt);
+             self.newWaterMass[i]=coefficient;
+ 
+         }
+         for(self.waterVaporMass,0..)|vapor,i|{
+-            var total_rate:f64=0;for(self.getNeighbours(i))|n|total_rate+=self.atmosphericEdgeRate(i,n);
++            var total_rate:f64=0;for(self.getNeighbours(i),0..)|n,j|total_rate+=if(self.atmosphericEdgeScratch.len==self.transformedPoints.len)self.atmosphericEdgeScratch[i][j] else self.atmosphericEdgeRate(i,n);
+             var gathered:f64=@max(0,@as(f64,vapor)-@as(f64,self.newWaterMass[i])*total_rate);
+-            for(self.getNeighbours(i))|n|gathered+=@as(f64,self.newWaterMass[n])*self.atmosphericEdgeRate(n,i);
++            for(self.getNeighbours(i))|n|gathered+=@as(f64,self.newWaterMass[n])*self.cachedAtmosphericEdgeRate(n,i);
+             self.newWaterVaporMass[i]=@floatCast(gathered);
+         }
+         std.mem.swap([]f32,&self.waterVaporMass,&self.newWaterVaporMass);
+@@ -1719,6 +1738,7 @@
+         }
+ 
+         // de-allocate
++        self.allocator.free(self.atmosphericEdgeScratch);
+         self.allocator.free(self.atmosphericWindScratch);
+         self.simulationArena.deinit();
+ 

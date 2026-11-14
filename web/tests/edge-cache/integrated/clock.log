@@ -1,0 +1,68 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x1bedf5a0 context=0x1bedfbb0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=29254 elevation=4999.647 water=11234.662 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5896.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0 depth_m=1.4648438 temp=293.15 camera=5896.4697 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=29254 elevation=5003.9126 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=29254 selectedbio=0.02 depth_m=5 temp=293.15 camera=5296.4697 visiblemats=1
+FORMS_PLAYER_INITIAL patch=29254 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=126 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29256 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=7352 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=29255 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40248 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=40249 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+CLOCK_RATE requested=3600 frames=144 sim_elapsed=8640 hash=d523353839672a4 snapshot={"requested":3600,"achieved":3599.999812245379,"paused":false,"step":1440,"steps_last_frame":1}
+CLOCK_RATE requested=21600 frames=24 sim_elapsed=8640 hash=d523353839672a4 snapshot={"requested":21600,"achieved":0,"paused":false,"step":1440,"steps_last_frame":1}
+CLOCK_RATE requested=86400 frames=6 sim_elapsed=8640 hash=d523353839672a4 snapshot={"requested":86400,"achieved":0,"paused":false,"step":1440,"steps_last_frame":1}
+QA frame=3 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-003.ppm
+QA frame=4 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-004.ppm
+QA frame=5 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-005.ppm
+QA frame=6 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-006.ppm
+QA frame=7 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-007.ppm
+QA frame=8 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-008.ppm
+QA frame=9 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-009.ppm
+QA frame=10 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-010.ppm
+QA frame=11 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-011.ppm
+QA frame=12 selected=0 elevation=5001.947 water=0 vegetation=0 rabbits=0 time=8640 paused=false tool=None camera=5296.4697
+Captured /workspace/scratch/f67c3ac60ca3/stella-source-v16/../stella-edge-integrated/captures/clock-012.ppm
+BLOOM_FRAMES target=3600 forced_full=false samples=413 p50_ms=9.702838999999999 p95_ms=23.429093 p99_ms=60.054093 max_ms=209.533152
+CLOCK_WALL requested=3600 seconds=5.008512511 sim_elapsed=17280 observed_mean=3450.1261526348617 snapshot_achieved=3568.632939141773 frames=413 max_frame_seconds=0.209533152 raw_monotonic=true rendering=true input_polling=true
+info: start sound
+BLOOM_FRAMES target=21600 forced_full=false samples=309 p50_ms=10.333696 p95_ms=31.399535999999998 p99_ms=109.711867 max_ms=248.099638
+CLOCK_WALL requested=21600 seconds=5.016537563 sim_elapsed=102240 observed_mean=20380.590938674886 snapshot_achieved=20028.12674936884 frames=309 max_frame_seconds=0.248099638 raw_monotonic=true rendering=true input_polling=true
+BLOOM_FRAMES target=86400 forced_full=false samples=128 p50_ms=37.916976999999996 p95_ms=52.451846 p99_ms=89.309858 max_ms=208.281944
+CLOCK_WALL requested=86400 seconds=5.030164664 sim_elapsed=302400 observed_mean=60117.316270821786 snapshot_achieved=66867.47967249311 frames=128 max_frame_seconds=0.208281944 raw_monotonic=true rendering=true input_polling=true
+BLOOM_INPUT two_frame_pause_ms=30.015683 paused_without_extra_tick=true
+CLOCK_ACTUAL paused_speed_preserved=true invalid_rejected=true raw_long_gap_no_catchup=true menu_reset=true no_tick_no_render_clock=true load_reset=true equal_physics_different_rates=true
+SUPPORT_RESTORE mutated_cohorts=0
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=8734640 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=277192
+info: deinit audio
+error(gpa): memory address 0x7f8624283000 leaked: 
+

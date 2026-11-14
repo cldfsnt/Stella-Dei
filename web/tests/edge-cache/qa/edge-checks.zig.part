@@ -1,0 +1,64 @@
+    if(std.posix.getenv("QA_WIND_LIFECYCLE")!=null){
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        var start=try saves.schema.parse(al,try std.json.stringifyAlloc(al,try saves.capture(al,state),.{}));defer start.deinit();
+        const Planet=@TypeOf(state.planet);
+        // Scratch is lazy: new world generation neither allocates nor serializes it.
+        var tracker=std.testing.FailingAllocator.init(allocator,.{});
+        var separate=try Planet.generate(tracker.allocator(),6,5000,77,.{});
+        std.debug.assert(separate.atmosphericEdgeScratch.len==0);
+        separate.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=1361,.gameTime=0,.planetRotationTime=86400,.solarVector=state.simulationSolarVector()});
+        std.debug.assert(separate.atmosphericEdgeScratch.len==40962);
+        separate.deinit();
+        std.debug.print("WIND_DEINIT allocated_bytes={d} freed_bytes={d}\n",.{tracker.allocated_bytes,tracker.freed_bytes});
+        std.debug.assert(tracker.allocated_bytes==tracker.freed_bytes);
+        var alt=state.*;alt.planet=try Planet.generate(allocator,7,5000,77,.{});defer alt.planet.deinit();
+        var big=try saves.schema.parse(al,try std.json.stringifyAlloc(al,try saves.capture(al,&alt),.{}));defer big.deinit();
+        loop.pump(1024);
+        for(0..2)|round|{
+            try saves.replaceWorld(state,big.value);std.debug.assert(state.planet.atmosphericEdgeScratch.len==0);
+            state.paused=false;state.timeScale=86400;state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);
+            std.debug.assert(state.planet.atmosphericEdgeScratch.len==163842);
+            try saves.replaceWorld(state,start.value);std.debug.assert(state.planet.atmosphericEdgeScratch.len==0);
+            state.paused=false;state.timeScale=86400;state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);
+            std.debug.assert(state.planet.atmosphericEdgeScratch.len==40962);
+            try (try saves.capture(al,state)).validate();
+            std.debug.print("WIND_GRID round={d} large=163842 small=40962 fresh_scratch=true validate=true\n",.{round});
+        }
+        loop.pump(1024);return;
+    }
+    if(std.posix.getenv("QA_WIND_LONG")!=null){
+        const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const al=arena.allocator();
+        const start_json=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});
+        var start_parsed=try saves.schema.parse(al,start_json);defer start_parsed.deinit();const start=start_parsed.value;
+        const original_geometry=try al.dupe(@TypeOf(state.planet.transformedPoints[0]),state.planet.transformedPoints);
+        var hashes:[2]u64=undefined;
+        for(0..2)|pass|{
+            try saves.apply(state,start);@memcpy(state.planet.transformedPoints,original_geometry);state.paused=false;state.timeScale=86400;
+            allocator.free(state.planet.atmosphericEdgeScratch);state.planet.atmosphericEdgeScratch=&.{};
+            if(state.planet.atmosphericWindScratch.len==0)state.planet.atmosphericWindScratch=try allocator.alloc([3]f32,state.planet.transformedPoints.len);
+            var fail=std.testing.FailingAllocator.init(allocator,.{.fail_index=0});
+            if(pass==0)state.planet.allocator=fail.allocator();
+            var timer=try std.time.Timer.start();
+            for(0..1800)|tick|{
+                if(std.posix.getenv("QA_EDGE_MUTATION")!=null and (tick==300 or tick==900)){
+                    // Equivalent changes on both runs exercise dynamic geometry/winds.
+                    const cell:usize=42;const height:f32=if(tick==300)12 else -8;
+                    state.planet.elevation[cell]=state.planet.radius+height;
+                    state.planet.transformedPoints[cell]=state.planet.transformedPoints[cell].norm().scale(state.planet.elevation[cell]);
+                    const Vec2=@TypeOf(state.planet.airVelocity[cell]);
+                    state.planet.airVelocity[cell]=Vec2.new(if(tick==300)0.001 else -0.002,0.0007);
+                }
+                state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);std.debug.assert(state.simulationStepsLastFrame==1);}
+            const seconds=@as(f64,@floatFromInt(timer.read()))/1e9;
+            state.planet.allocator=allocator;
+            const bytes=try std.json.stringifyAlloc(al,try saves.capture(al,state),.{});hashes[pass]=std.hash.Wyhash.hash(0,bytes);
+            try (try saves.capture(al,state)).validate();
+            std.debug.print("WIND_LONG pass={d} steps=1800 days=30 hash={x} seconds={d} scratch_cells={d} scratch_bytes={d} failed_alloc={any}\n",.{pass,hashes[pass],seconds,state.planet.atmosphericEdgeScratch.len,state.planet.atmosphericEdgeScratch.len*@sizeOf([6]f64),fail.has_induced_failure});
+        }
+        std.debug.assert(hashes[0]==hashes[1]);
+        try saves.apply(state,start);for(state.planet.atmosphericEdgeScratch)|*w|w.*=.{std.math.nan(f64)}**6;
+        state.paused=false;state.timeScale=86400;state.setRawFrameDelta(1.0/60.0+0.0000001);state.update(&game,1.0/60.0);
+        for(state.planet.atmosphericEdgeScratch)|w|for(w)|v|std.debug.assert(std.math.isFinite(v));
+        std.debug.print("WIND_LOAD poisoned_cache_refreshed=true full_30day_hash_equal=true\n",.{});
+        loop.pump(1024);return;
+    }

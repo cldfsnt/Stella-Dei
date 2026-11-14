@@ -447,7 +447,7 @@ export fn stella_performance_snapshot()[*:0]const u8 {
     const sample=PerformanceDetails.metrics.sample();
     var stream=std.io.fixedBufferStream(&performance_json);
     std.json.stringify(.{.enabled=PerformanceDetails.metrics.enabled,.cells=state.planet.transformedPoints.len,.frames=sample.frames,.ticks=sample.ticks,.physics_frames=sample.physics_frames,
-      .frame_avg_ms=sample.frame_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.frame_max_ms=sample.frame_max,
+      .frame_avg_ms=sample.frame_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.frame_max_ms=sample.frame_max,.frame_p95_ms=sample.frame_p95,.long_frames=sample.long_frames,
       .physics_avg_ms=sample.physics_sum/@max(@as(f64,@floatFromInt(sample.physics_frames)),1),.physics_max_ms=sample.physics_max,
       .render_cpu_avg_ms=sample.render_sum/@max(@as(f64,@floatFromInt(sample.frames)),1),.render_cpu_max_ms=sample.render_max},.{},stream.writer()) catch return "{}";
     if(stream.pos>=performance_json.len)return "{}";performance_json[stream.pos]=0;return @ptrCast(&performance_json);
