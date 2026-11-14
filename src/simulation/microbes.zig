@@ -198,12 +198,39 @@ fn reproduceSized(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:
         child.feeding=std.math.clamp(child.feeding+(r_feeding-0.5)*0.2,0,1);
         const r_mobility=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
         child.mobility=std.math.clamp(child.mobility+(r_mobility-0.5)*0.2,0,1);
-        const r_organization=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
+        const organization_draw=random(&donor.rng);
+        const r_organization=@as(f32,@floatFromInt(organization_draw>>40))/16777216;
         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
+        applyRareMutation(&child,parent.*,organization_draw);
     }
     parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=credit;destination.cohorts[i]=child;
     stats.next_lineage+=1;stats.births+=1;
     return true;
+}
+// Reuse disjoint low40 bits of the sixth draw: no additional RNG advancement.
+// One rare larger step, not a fitness bonus. Clamping may hide its expression.
+const RareMutation=struct { trait:u8, signed_scale:f32 };
+fn rareMutation(draw:u64) ?RareMutation {
+    if(draw&511!=0)return null; // 1/512 successful mutating births.
+    const selector=(draw>>9)&65535;
+    const trait:u8=@intCast((selector*6)>>16); // bin sizes differ by at most one.
+    const sign:f32=if((draw>>25)&1==0) -1 else 1;
+    const magnitude=1+2*@as(f32,@floatFromInt((draw>>26)&16383))/16384;
+    return .{.trait=trait,.signed_scale=sign*magnitude};
+}
+fn applyRareMutation(child:*Cohort,parent:Cohort,draw:u64) void {
+    const tail=rareMutation(draw) orelse return;
+    // Replace the ordinary step from original inherited value, never add biomass,
+    // support, credit, or new traits. The full phenotype still pays normal costs.
+    switch(tail.trait){
+        0=>child.optimum=std.math.clamp(parent.optimum+tail.signed_scale*3,270,335),
+        1=>child.efficiency=std.math.clamp(parent.efficiency+tail.signed_scale*0.06,0.5,1.3),
+        2=>child.structure=std.math.clamp(parent.structure+tail.signed_scale*0.1,0,1),
+        3=>child.feeding=std.math.clamp(parent.feeding+tail.signed_scale*0.1,0,1),
+        4=>child.mobility=std.math.clamp(parent.mobility+tail.signed_scale*0.1,0,1),
+        5=>child.organization=std.math.clamp(parent.organization+tail.signed_scale*0.06,0,0.7),
+        else=>unreachable,
+    }
 }
 pub fn validCell(cell:Cell,next_lineage:u64) bool {
     if(cell.rng==0)return false;
@@ -841,4 +868,77 @@ test "zero water and zero paid tissue limits have no survival windfall" {
         _=step(&naked,env,1440);_=step(&tiny,env,1440);
         try std.testing.expectApproxEqAbs(biomass(naked),biomass(tiny),0.000001);
     }
+}
+
+
+fn mutationTraitValues(c:Cohort) [6]f32{return .{c.optimum,c.efficiency,c.structure,c.feeding,c.mobility,c.organization};}
+fn ordinaryMutationReference(parent:Cohort,rng:*u64) Cohort {
+    var child=parent;var draws:[6]f32=undefined;
+    for(&draws)|*v|v.*=@as(f32,@floatFromInt(random(rng)>>40))/16777216;
+    child.optimum=std.math.clamp(parent.optimum+(draws[0]-0.5)*6,270,335);
+    child.efficiency=std.math.clamp(parent.efficiency+(draws[1]-0.5)*0.12,0.5,1.3);
+    child.structure=std.math.clamp(parent.structure+(draws[2]-0.5)*0.2,0,1);
+    child.feeding=std.math.clamp(parent.feeding+(draws[3]-0.5)*0.2,0,1);
+    child.mobility=std.math.clamp(parent.mobility+(draws[4]-0.5)*0.2,0,1);
+    child.organization=std.math.clamp(parent.organization+(draws[5]-0.5)*0.12,0,0.7);return child;
+}
+test "rare mutation distribution preserves ordinary offspring and six draws with funded inheritance" {
+    const parent=Cohort{.biomass=0.2,.support_mass=0.04,.reproduction_credit=0.08,.lineage=1,.optimum=302.5,.efficiency=0.9,.structure=0.5,.feeding=0.5,.mobility=0.5,.organization=0.35};
+    var stream:u64=20261114;var tails:u32=0;var positive:u32=0;var traits:[6]u32=.{0}**6;var positive_traits:[6]u32=.{0}**6;
+    const widths=[_]f32{3,0.06,0.1,0.1,0.1,0.06};
+    for(0..262144)|_|{
+        var donor=initialized(stream);donor.cohorts[0]=parent;donor.nutrient=0.12;var target=initialized(999);target.nutrient=0;
+        var stats=Stats{.next_lineage=2};var expected_rng=donor.rng;const reference=ordinaryMutationReference(parent,&expected_rng);var decode_rng=donor.rng;var last:u64=0;for(0..6)|_|last=random(&decode_rng);
+        const c0=carbon(donor)+carbon(target);const n0=nutrientTotal(donor)+nutrientTotal(target);
+        var replay_donor=donor;var replay_target=target;var replay_stats=stats;
+        try std.testing.expect(reproduce(&donor,0,&target,&stats,true));try std.testing.expect(reproduce(&replay_donor,0,&replay_target,&replay_stats,true));try std.testing.expectEqual(donor,replay_donor);try std.testing.expectEqual(target,replay_target);try std.testing.expectEqual(stats,replay_stats);try std.testing.expectEqual(expected_rng,donor.rng);stream=donor.rng;
+        const child=target.cohorts[0];const actual=mutationTraitValues(child);const baseline=mutationTraitValues(reference);
+        if(rareMutation(last))|tail|{tails+=1;traits[tail.trait]+=1;if(tail.signed_scale>0){positive+=1;positive_traits[tail.trait]+=1;}
+            for(actual,baseline,0..)|value,ordinary,i|{if(i!=tail.trait)try std.testing.expectEqual(ordinary,value);}
+            const delta=actual[tail.trait]-mutationTraitValues(parent)[tail.trait];try std.testing.expect(delta*tail.signed_scale>0);try std.testing.expect(@abs(delta)>=widths[tail.trait]-0.00002);try std.testing.expect(@abs(delta)<=3*widths[tail.trait]+0.00002);
+        }else try std.testing.expectEqualSlices(f32,&baseline,&actual);
+        try std.testing.expect(validCell(donor,stats.next_lineage) and validCell(target,stats.next_lineage));try std.testing.expectApproxEqAbs(c0,carbon(donor)+carbon(target),0.000001);try std.testing.expectApproxEqAbs(n0,nutrientTotal(donor)+nutrientTotal(target),0.000001);
+        try std.testing.expectApproxEqAbs(@as(f32,0.04),donor.cohorts[0].support_mass+child.support_mass,0.000001);try std.testing.expectApproxEqAbs(@as(f32,0.04),donor.cohorts[0].reproduction_credit,0.000001);try std.testing.expectEqual(@as(f32,0),child.reproduction_credit);
+        var grand=initialized(123);grand.nutrient=0;target.cohorts[0].biomass=0.1;target.cohorts[0].reproduction_credit=0.04;const untouched=target.rng;
+        try std.testing.expect(reproduce(&target,0,&grand,&stats,false));try std.testing.expectEqual(untouched,target.rng);try std.testing.expectEqualSlices(f32,&actual,&mutationTraitValues(grand.cohorts[0]));
+    }
+    try std.testing.expect(tails>400 and tails<630);try std.testing.expect(positive>180 and positive<340);for(traits)|count|try std.testing.expect(count>45 and count<130);
+    std.debug.print("RARE_MUTATION n=262144 events={d} positive={d} negative={d} traits={any} positive_traits={any}\n",.{tails,positive,tails-positive,traits,positive_traits});
+}
+test "rare mutation bounded at extremes deterministic and never funds tissue" {
+    for(0..6)|trait|for(0..2)|sign|for(0..2)|edge|{
+        var parent=Cohort{.biomass=0.1,.lineage=1,.optimum=if(edge==0)270 else 335,.efficiency=if(edge==0)0.5 else 1.3,.structure=@floatFromInt(edge),.feeding=@floatFromInt(edge),.mobility=@floatFromInt(edge),.organization=if(edge==0)0 else 0.7,.support_mass=0.01};
+        const selector=(trait*65536+5)/6;const draw=(@as(u64,@intCast(selector))<<9)|(@as(u64,@intCast(sign))<<25)|(@as(u64,16383)<<26);var a=parent;var b=parent;applyRareMutation(&a,parent,draw);applyRareMutation(&b,parent,draw);
+        try std.testing.expectEqual(a,b);try std.testing.expectEqual(parent.biomass,a.biomass);try std.testing.expectEqual(parent.support_mass,a.support_mass);var cell=initialized(1);cell.cohorts[0]=a;try std.testing.expect(validCell(cell,2));
+        parent.biomass=0.01;cell.cohorts[0]=parent;const before=cell;var dest=initialized(2);const dest_before=dest;var stats=Stats{.next_lineage=2};try std.testing.expect(!reproduce(&cell,0,&dest,&stats,true));try std.testing.expectEqual(before,cell);try std.testing.expectEqual(dest_before,dest);try std.testing.expectEqual(@as(u64,0),stats.births);
+    };
+}
+
+test "actual rare thermal offspring can help or harm under matched environments" {
+    var found:[2]bool=.{false,false};
+    for(1..200000)|seed_value|{
+        var donor=initialized(@intCast(seed_value));donor.cohorts[0]=.{.biomass=0.2,.reproduction_credit=0.08,.lineage=1,.optimum=300};
+        var preview=donor.rng;var draw:u64=0;for(0..6)|_|draw=random(&preview);
+        const tail=rareMutation(draw) orelse continue;if(tail.trait!=0 or @abs(tail.signed_scale)>1.66)continue;
+        const direction:usize=if(tail.signed_scale>0)1 else 0;if(found[direction])continue;
+        var destination=initialized(7);destination.nutrient=0.12;var stats=Stats{.next_lineage=2};try std.testing.expect(reproduce(&donor,0,&destination,&stats,true));
+        const offspring=destination.cohorts[0];try std.testing.expect(@abs(offspring.optimum-300)>=3);
+        for([_]f32{297,303},0..)|temperature,habitat|{
+            var endpoints:[2]f32=undefined;
+            for(0..2)|variant|{
+                var cell=destination;if(variant==1)cell.cohorts[0].optimum=300; // Isolate only thermal delta, not other offspring mutations.
+                var air:f64=10;var oxygen:f64=10;const c0=air+carbon(cell);const n0=nutrientTotal(cell);
+                for(0..60)|_|{
+                    const flux=step(&cell,.{.temperature=temperature,.depth_km=0.001,.light=1,.carbon_available=@floatCast(air),.oxygen_carbon_capacity=@floatCast(oxygen)},1440);
+                    air+=@as(f64,flux.recycled)-flux.fixed;oxygen+=@as(f64,flux.fixed)-flux.recycled;
+                    try std.testing.expect(validCell(cell,stats.next_lineage));try std.testing.expect(air>=0 and oxygen>=0);try std.testing.expectApproxEqAbs(c0,air+carbon(cell),0.00001);try std.testing.expectApproxEqAbs(n0,nutrientTotal(cell),0.00001);
+                }
+                endpoints[variant]=biomass(cell);
+            }
+            if(direction==habitat)try std.testing.expect(endpoints[0]>endpoints[1]) else try std.testing.expect(endpoints[0]<endpoints[1]);
+            std.debug.print("RARE_THERMAL seed={d} offspring_optimum={d:.6} environment={d} actual_mass={d:.8} thermal_reset_control={d:.8}\n",.{seed_value,offspring.optimum,temperature,endpoints[0],endpoints[1]});
+        }
+        found[direction]=true;if(found[0] and found[1])break;
+    }
+    try std.testing.expect(found[0] and found[1]);
 }

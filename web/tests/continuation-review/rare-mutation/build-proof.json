@@ -1,0 +1,13 @@
+{
+  "toolchains": {
+    "zig": "0.13.0",
+    "emscripten": "3.1.64"
+  },
+  "build": "passed",
+  "exports": "save/load/find verified",
+  "sha256": {
+    "index.html": "55a1c690aadd01a04049ad49e373ea981c75e909e06dad8158bb326cf8db7657",
+    "index.js": "4bfce592970f52d5e05e578efcb495f814d977a9e265d0d856a321b36d26ee11",
+    "index.wasm": "defeadb057752a935749c82b662db30313b4b78a96cc72f3f173efdeb304abdc"
+  }
+}
