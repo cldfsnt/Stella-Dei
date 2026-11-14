@@ -1,0 +1,35 @@
+    // Controlled light/climate only. Real founder/daughters, no assigned biology.
+    const microbes=@import("simulation/microbes.zig");
+    const sun=state.planet.transformedPoints[state.selectedPoint].norm();
+    for(0..2400)|hour|{
+        state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=if(hour%24<12)1361 else 0,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;
+    }
+    var selected:usize=state.selectedPoint;var strongest:f32=0;
+    for(state.planet.microbeCells,0..)|cell,index|for(cell.cohorts)|co|{if(co.support_mass>strongest){strongest=co.support_mass;selected=index;}};
+    state.selectedPoint=selected;state.targetCameraPos=state.planet.transformedPoints[selected].norm().scale(state.cameraDistance);state.cameraPos=state.targetCameraPos;
+    std.debug.print("PRODUCER_CONTROL real_descendant_support={} selected={d} support={d}\n",.{strongest>0,selected,strongest});
+    render(window);gl.finish();window.swapBuffers();producerReport("grown100days",state);
+    if(strongest<=0){std.debug.print("PRODUCER_CONTROL no_support_emerged=true intervention_skipped=true\n",.{});try originSaveCheck(state,allocator);return;}
+    const oldDepth=state.planet.waterMass[selected]*state.planet.getKmPerWaterMass()*1000;
+    var edits:usize=0;
+    while(state.planet.waterMass[selected]*state.planet.getKmPerWaterMass()*1000>0 and edits<1000):(edits+=1){
+        const change=state.adjustSelectedWater(@intCast(selected),-0.1);std.debug.assert(std.math.isFinite(change));
+    }
+    std.debug.print("PRODUCER_CONTROL water_removed_actions={d} target_m=0 mechanism=combined_drying_and_exposure\n",.{edits});
+    for(0..6)|_|{state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=1361,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;}
+    render(window);gl.finish();window.swapBuffers();producerReport("exposure6hours",state);
+    edits=0;
+    while(state.planet.waterMass[selected]*state.planet.getKmPerWaterMass()*1000<oldDepth-0.00001 and edits<1000):(edits+=1){
+        const change=state.adjustSelectedWater(@intCast(selected),0.1);std.debug.assert(std.math.isFinite(change));
+    }
+    std.debug.print("PRODUCER_CONTROL water_restored_actions={d}\n",.{edits});
+    for(0..96)|hour|{state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=if(hour%24<12)1361 else 0,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;}
+    render(window);gl.finish();window.swapBuffers();producerReport("restored4days",state);
+    for(state.planet.microbeCells)|cell|std.debug.assert(microbes.validCell(cell,state.planet.microbeStats.next_lineage));
+    try originSaveCheck(state,allocator);
+}
+fn producerReport(label:[]const u8,state:anytype) void {
+    const m=@import("simulation/microbes.zig");const cell=state.planet.microbeCells[state.selectedPoint];
+    std.debug.print("PRODUCER_TISSUES stage={s} day={d} water_m={d} nutrient={d} detritus={d}\n",.{label,state.gameTime/86400,state.planet.waterMass[state.selectedPoint]*state.planet.getKmPerWaterMass()*1000,cell.nutrient,cell.detritus});
+    for(cell.cohorts)|co|if(co.biomass>0){std.debug.print("PRODUCER_COHORT lineage={d} parent={d} generation={d} organization={d} biomass={d} support={d} frond={d} height_m={d}\n",.{co.lineage,co.parent,co.generation,co.organization,co.biomass,co.support_mass,m.frondMass(co),m.producerHeightMeters(co)});};
+}

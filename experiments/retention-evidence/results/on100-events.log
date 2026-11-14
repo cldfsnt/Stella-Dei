@@ -1,0 +1,388 @@
+ACTUAL_NURSERY_RIM center=30114 target=30111 graph_distance=2 existing_player_tool=true
+MATCHED_INITIAL exact_serialized=true zero_reserves=true one_seed=true schema=7
+RIM_ARRIVAL day=38.8 from=7570 id=167 parent=12
+RIM_ARRIVAL day=41.81666666666667 from=7570 id=254 parent=12
+RIM_ARRIVAL day=41.86666666666667 from=30113 id=261 parent=18
+RIM_ARRIVAL day=42.88333333333333 from=30109 id=291 parent=134
+RIM_ARRIVAL day=46.61666666666667 from=30109 id=428 parent=134
+RIM_ARRIVAL day=46.9 from=30109 id=465 parent=134
+RIM_ARRIVAL day=47.666666666666664 from=30109 id=501 parent=134
+RIM_ARRIVAL day=57.733333333333334 from=30110 id=1207 parent=526
+RIM_ARRIVAL day=57.833333333333336 from=30110 id=1227 parent=585
+RIM_ARRIVAL day=58.65 from=30109 id=1265 parent=516
+RIM_ARRIVAL day=58.78333333333333 from=30110 id=1289 parent=751
+RIM_ARRIVAL day=58.85 from=30110 id=1299 parent=585
+RIM_ARRIVAL day=59.63333333333333 from=30110 id=1345 parent=760
+RIM_ARRIVAL day=60.71666666666667 from=30110 id=1446 parent=751
+RIM_ARRIVAL day=60.75 from=7570 id=1456 parent=36
+RIM_ARRIVAL day=61.55 from=30110 id=1491 parent=760
+RIM_ARRIVAL day=61.766666666666666 from=30110 id=1538 parent=760
+RIM_ARRIVAL day=61.85 from=30110 id=1555 parent=585
+RIM_ARRIVAL day=61.88333333333333 from=30109 id=1561 parent=516
+SHORE_LOCAL_BIRTH day=62.016666666666666 cell=30131 depth_m=0.18491966
+RIM_ARRIVAL day=62.583333333333336 from=30110 id=1596 parent=760
+RIM_ARRIVAL day=62.766666666666666 from=30110 id=1632 parent=760
+RIM_ARRIVAL day=62.93333333333333 from=7570 id=1661 parent=36
+RIM_ARRIVAL day=63.06666666666667 from=30109 id=1665 parent=516
+RIM_ARRIVAL day=63.71666666666667 from=30109 id=1707 parent=516
+RIM_ARRIVAL day=65.6 from=30110 id=1880 parent=760
+RIM_ARRIVAL day=68.78333333333333 from=7570 id=2284 parent=35
+RIM_ARRIVAL day=68.85 from=7570 id=2301 parent=14
+RIM_ARRIVAL day=68.86666666666666 from=30110 id=2305 parent=760
+RIM_ARRIVAL day=69.58333333333333 from=30110 id=2342 parent=428
+RIM_ARRIVAL day=70.2 from=30110 id=2439 parent=760
+RIM_ARRIVAL day=70.73333333333333 from=30110 id=2513 parent=428
+RIM_ARRIVAL day=72.55 from=30110 id=2707 parent=428
+RIM_ARRIVAL day=72.75 from=7570 id=2767 parent=36
+RIM_ARRIVAL day=72.85 from=7570 id=2794 parent=35
+RIM_ARRIVAL day=73.58333333333333 from=30110 id=2853 parent=428
+RIM_ARRIVAL day=73.7 from=30110 id=2893 parent=428
+RIM_ARRIVAL day=74.65 from=30109 id=3016 parent=516
+RIM_ARRIVAL day=75.46666666666667 from=30110 id=3088 parent=428
+RIM_ARRIVAL day=75.68333333333334 from=30110 id=3151 parent=428
+RIM_ARRIVAL day=76.21666666666667 from=30110 id=3210 parent=428
+RIM_ARRIVAL day=76.65 from=30110 id=3262 parent=696
+RIM_ARRIVAL day=76.76666666666667 from=30110 id=3299 parent=696
+RIM_ARRIVAL day=76.76666666666667 from=30110 id=3300 parent=428
+RIM_ARRIVAL day=77.86666666666666 from=30110 id=3448 parent=428
+RIM_ARRIVAL day=79.58333333333333 from=30110 id=3611 parent=428
+RIM_ARRIVAL day=80.55 from=30110 id=3729 parent=428
+RIM_ARRIVAL day=80.76666666666667 from=30113 id=3799 parent=1509
+RIM_ARRIVAL day=80.83333333333333 from=30110 id=3815 parent=696
+RIM_ARRIVAL day=84.61666666666666 from=30110 id=4274 parent=428
+RIM_ARRIVAL day=85.68333333333334 from=7570 id=4420 parent=36
+RIM_ARRIVAL day=86.55 from=30109 id=4495 parent=516
+RIM_ARRIVAL day=88.85 from=30113 id=4864 parent=1509
+RIM_ARRIVAL day=90.65 from=30113 id=5104 parent=1509
+RIM_ARRIVAL day=91.6 from=30110 id=5226 parent=428
+RIM_ARRIVAL day=95.68333333333334 from=30110 id=5847 parent=428
+PROPAGULE_DAY day=100 grow_seconds=400 occupied=93 biomass=5.970488569699228 attempts=19612 arrivals=6439 tracked_colony_losses=3636 actual_nursery_api=true
+SHORE_FLUX day=100 fixed=3.697683171472298 dry_fixed=0
+RIM_DAY day=100 depth_m=0.21897839 temperature=303.51166 biomass=0.017328128 reserve=0.4021874163299799 dry_fixed=0
+FORMS_DAY day=100 living=166 counts={ 7, 37, 14, 2, 63, 43 }
+ORIGIN_SAVE bytes=12719142 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=229112
+SHORE_FLUX day=1 fixed=0 dry_fixed=0
+RIM_DAY day=1 depth_m=0 temperature=311.0352 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=1 total_engine_mass=899982264258.943 tissue_and_carry_kg_m2_sum=0.5132716415527613
+SHORE_FLUX day=2 fixed=0 dry_fixed=0
+RIM_DAY day=2 depth_m=0 temperature=316.11166 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=2 total_engine_mass=899982211508.9769 tissue_and_carry_kg_m2_sum=0.6363521661474509
+SHORE_FLUX day=3 fixed=0 dry_fixed=0
+RIM_DAY day=3 depth_m=0 temperature=309.34866 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=3 total_engine_mass=899981908933.7303 tissue_and_carry_kg_m2_sum=0.7746327296646711
+SHORE_FLUX day=4 fixed=0 dry_fixed=0
+RIM_DAY day=4 depth_m=0.0042895824 temperature=301.22733 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=4 total_engine_mass=899981568578.092 tissue_and_carry_kg_m2_sum=0.9283122854934596
+SHORE_FLUX day=5 fixed=0 dry_fixed=0
+RIM_DAY day=5 depth_m=0.038758434 temperature=297.89664 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=5 total_engine_mass=899981191582.8613 tissue_and_carry_kg_m2_sum=1.1031286493736838
+SHORE_FLUX day=6 fixed=0 dry_fixed=0
+RIM_DAY day=6 depth_m=0.043145917 temperature=298.45932 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=6 total_engine_mass=899980731547.4788 tissue_and_carry_kg_m2_sum=1.2793138125704926
+SHORE_FLUX day=7 fixed=0 dry_fixed=0
+RIM_DAY day=7 depth_m=0.045690592 temperature=298.71448 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=7 total_engine_mass=899980208340.3411 tissue_and_carry_kg_m2_sum=1.4819677346449638
+SHORE_FLUX day=8 fixed=0 dry_fixed=0
+RIM_DAY day=8 depth_m=0.05576636 temperature=298.47928 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=8 total_engine_mass=899979627520.0933 tissue_and_carry_kg_m2_sum=1.6159588630945174
+SHORE_FLUX day=9 fixed=0 dry_fixed=0
+RIM_DAY day=9 depth_m=0.06614312 temperature=298.453 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=9 total_engine_mass=899978997042.2938 tissue_and_carry_kg_m2_sum=1.887331285742837
+SHORE_FLUX day=10 fixed=0 dry_fixed=0
+RIM_DAY day=10 depth_m=0.073567845 temperature=298.61462 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=10 total_engine_mass=899978308772.8364 tissue_and_carry_kg_m2_sum=2.0934151642443304
+SHORE_FLUX day=11 fixed=0 dry_fixed=0
+RIM_DAY day=11 depth_m=0.07822213 temperature=298.8243 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=11 total_engine_mass=899977589421.7087 tissue_and_carry_kg_m2_sum=2.4554944160230185
+SHORE_FLUX day=12 fixed=0 dry_fixed=0
+RIM_DAY day=12 depth_m=0.081061564 temperature=299.00894 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=12 total_engine_mass=899976833017.6997 tissue_and_carry_kg_m2_sum=2.864447086259144
+SHORE_FLUX day=13 fixed=0 dry_fixed=0
+RIM_DAY day=13 depth_m=0.0829046 temperature=299.14822 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=13 total_engine_mass=899976053121.3297 tissue_and_carry_kg_m2_sum=3.322246792571968
+SHORE_FLUX day=14 fixed=0 dry_fixed=0
+RIM_DAY day=14 depth_m=0.08439599 temperature=299.2429 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=14 total_engine_mass=899975240101.9657 tissue_and_carry_kg_m2_sum=3.7022318493641087
+SHORE_FLUX day=15 fixed=0 dry_fixed=0
+RIM_DAY day=15 depth_m=0.08582319 temperature=299.3052 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=15 total_engine_mass=899974404210.8363 tissue_and_carry_kg_m2_sum=4.057865011337953
+SHORE_FLUX day=16 fixed=0 dry_fixed=0
+RIM_DAY day=16 depth_m=0.08727219 temperature=299.34723 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=16 total_engine_mass=899973549198.0704 tissue_and_carry_kg_m2_sum=3.864673312446146
+SHORE_FLUX day=17 fixed=0 dry_fixed=0
+RIM_DAY day=17 depth_m=0.08867336 temperature=299.38016 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=17 total_engine_mass=899972672081.5267 tissue_and_carry_kg_m2_sum=3.8087276194485598
+SHORE_FLUX day=18 fixed=0 dry_fixed=0
+RIM_DAY day=18 depth_m=0.09000184 temperature=299.40784 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=18 total_engine_mass=899971783173.7434 tissue_and_carry_kg_m2_sum=3.8715650578424348
+SHORE_FLUX day=19 fixed=0 dry_fixed=0
+RIM_DAY day=19 depth_m=0.09122644 temperature=299.4331 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=19 total_engine_mass=899970878511.5414 tissue_and_carry_kg_m2_sum=3.954027258531054
+SHORE_FLUX day=20 fixed=0 dry_fixed=0
+RIM_DAY day=20 depth_m=0.09234823 temperature=299.4563 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=20 total_engine_mass=899969957671.1393 tissue_and_carry_kg_m2_sum=4.111407347395955
+SHORE_FLUX day=21 fixed=0 dry_fixed=0
+RIM_DAY day=21 depth_m=0.09336509 temperature=299.47797 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=21 total_engine_mass=899969026077.782 tissue_and_carry_kg_m2_sum=4.21360572427718
+SHORE_FLUX day=22 fixed=0 dry_fixed=0
+RIM_DAY day=22 depth_m=0.094297186 temperature=299.4975 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=22 total_engine_mass=899968088932.5109 tissue_and_carry_kg_m2_sum=4.215658923252055
+SHORE_FLUX day=23 fixed=0 dry_fixed=0
+RIM_DAY day=23 depth_m=0.09514302 temperature=299.51556 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=23 total_engine_mass=899967131776.6198 tissue_and_carry_kg_m2_sum=4.377718395827139
+SHORE_FLUX day=24 fixed=0 dry_fixed=0
+RIM_DAY day=24 depth_m=0.095940545 temperature=299.53088 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=24 total_engine_mass=899966167730.5905 tissue_and_carry_kg_m2_sum=4.149797393344796
+SHORE_FLUX day=25 fixed=0.000014686478721159801 dry_fixed=0
+RIM_DAY day=25 depth_m=0.096679516 temperature=299.54443 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=25 total_engine_mass=899965197400.9073 tissue_and_carry_kg_m2_sum=4.196973220953572
+SHORE_FLUX day=26 fixed=0.000014686478721159801 dry_fixed=0
+RIM_DAY day=26 depth_m=0.097376995 temperature=299.5564 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=26 total_engine_mass=899964222495.0819 tissue_and_carry_kg_m2_sum=4.272137811332262
+SHORE_FLUX day=27 fixed=0.000014686478721159801 dry_fixed=0
+RIM_DAY day=27 depth_m=0.09801764 temperature=299.56775 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=27 total_engine_mass=899963235027.3839 tissue_and_carry_kg_m2_sum=4.441439187268344
+SHORE_FLUX day=28 fixed=0.000014686478721159801 dry_fixed=0
+RIM_DAY day=28 depth_m=0.098614484 temperature=299.57834 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=28 total_engine_mass=899962234894.7177 tissue_and_carry_kg_m2_sum=4.464080082940909
+SHORE_FLUX day=29 fixed=0.000014686478721159801 dry_fixed=0
+RIM_DAY day=29 depth_m=0.09917704 temperature=299.58786 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=29 total_engine_mass=899961217972.0122 tissue_and_carry_kg_m2_sum=4.68042995631678
+SHORE_FLUX day=30 fixed=0.000014725708698648532 dry_fixed=0
+RIM_DAY day=30 depth_m=0.0997067 temperature=299.59683 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=30 total_engine_mass=899960194440.1458 tissue_and_carry_kg_m2_sum=4.97446714904435
+SHORE_FLUX day=31 fixed=0.000014725708698648532 dry_fixed=0
+RIM_DAY day=31 depth_m=0.100198925 temperature=299.60516 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=31 total_engine_mass=899959160468.4718 tissue_and_carry_kg_m2_sum=5.302421915535178
+SHORE_FLUX day=32 fixed=0.000014725708698648532 dry_fixed=0
+RIM_DAY day=32 depth_m=0.10067653 temperature=299.61234 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=32 total_engine_mass=899958120564.8622 tissue_and_carry_kg_m2_sum=5.766031060807922
+SHORE_FLUX day=33 fixed=0.00007749214950436567 dry_fixed=0
+RIM_DAY day=33 depth_m=0.1121805 temperature=299.37958 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=33 total_engine_mass=899957085718.1354 tissue_and_carry_kg_m2_sum=6.28910339499645
+SHORE_FLUX day=34 fixed=0.00007749214950436567 dry_fixed=0
+RIM_DAY day=34 depth_m=0.14866689 temperature=298.45963 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=34 total_engine_mass=899956050240.1583 tissue_and_carry_kg_m2_sum=7.5400586401851495
+SHORE_FLUX day=35 fixed=0.00007749214950436567 dry_fixed=0
+RIM_DAY day=35 depth_m=0.16637038 temperature=299.03967 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=35 total_engine_mass=899955003311.1874 tissue_and_carry_kg_m2_sum=9.197778068330555
+SHORE_FLUX day=36 fixed=0.00007749214950436567 dry_fixed=0
+RIM_DAY day=36 depth_m=0.16496278 temperature=299.857 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=36 total_engine_mass=899953952603.6365 tissue_and_carry_kg_m2_sum=11.48243543694585
+SHORE_FLUX day=37 fixed=0.00007749214950436567 dry_fixed=0
+RIM_DAY day=37 depth_m=0.1615634 temperature=300.36328 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=37 total_engine_mass=899952900100.1398 tissue_and_carry_kg_m2_sum=14.104991262436116
+SHORE_FLUX day=38 fixed=0.00014336785574542432 dry_fixed=0
+RIM_DAY day=38 depth_m=0.15960623 temperature=300.60083 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=38 total_engine_mass=899951840681.7406 tissue_and_carry_kg_m2_sum=16.185657742202604
+SHORE_FLUX day=39 fixed=0.0003972739196491659 dry_fixed=0
+RIM_DAY day=39 depth_m=0.1602189 temperature=300.65112 biomass=0.003155883 reserve=0.07315129885682836 dry_fixed=0
+WATER_DAY day=39 total_engine_mass=899950781152.3671 tissue_and_carry_kg_m2_sum=18.60674540781706
+SHORE_FLUX day=40 fixed=0.0007430107744461623 dry_fixed=0
+RIM_DAY day=40 depth_m=0.16037123 temperature=300.69495 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=40 total_engine_mass=899949718770.4171 tissue_and_carry_kg_m2_sum=21.575161804811604
+SHORE_FLUX day=41 fixed=0.0017287343917224973 dry_fixed=0
+RIM_DAY day=41 depth_m=0.1604227 temperature=300.7253 biomass=0 reserve=0 dry_fixed=0
+WATER_DAY day=41 total_engine_mass=899948648268.685 tissue_and_carry_kg_m2_sum=25.33699834868944
+SHORE_FLUX day=42 fixed=0.004452121997505998 dry_fixed=0
+RIM_DAY day=42 depth_m=0.16061267 temperature=300.74197 biomass=0.006091959 reserve=0.1326184583012946 dry_fixed=0
+WATER_DAY day=42 total_engine_mass=899947566934.5372 tissue_and_carry_kg_m2_sum=28.11486017396387
+SHORE_FLUX day=43 fixed=0.008070949177668041 dry_fixed=0
+RIM_DAY day=43 depth_m=0.17566054 temperature=300.38785 biomass=0.004029223 reserve=0.09458118729526177 dry_fixed=0
+WATER_DAY day=43 total_engine_mass=899946487111.6967 tissue_and_carry_kg_m2_sum=30.841833701390097
+SHORE_FLUX day=44 fixed=0.012779026045368624 dry_fixed=0
+RIM_DAY day=44 depth_m=0.17153247 temperature=300.68173 biomass=0.006264876 reserve=0.15211342892143875 dry_fixed=0
+WATER_DAY day=44 total_engine_mass=899945396632.0842 tissue_and_carry_kg_m2_sum=34.62409281065272
+SHORE_FLUX day=45 fixed=0.018435900670628058 dry_fixed=0
+RIM_DAY day=45 depth_m=0.17611147 temperature=300.69647 biomass=0.009688291 reserve=0.23940968909300864 dry_fixed=0
+WATER_DAY day=45 total_engine_mass=899944298242.049 tissue_and_carry_kg_m2_sum=38.290262617411486
+SHORE_FLUX day=46 fixed=0.0243160150068924 dry_fixed=0
+RIM_DAY day=46 depth_m=0.189409 temperature=300.66638 biomass=0.014976637 reserve=0.3735763719305396 dry_fixed=0
+WATER_DAY day=46 total_engine_mass=899943193911.3301 tissue_and_carry_kg_m2_sum=40.44433195529674
+SHORE_FLUX day=47 fixed=0.03050818787471954 dry_fixed=0
+RIM_DAY day=47 depth_m=0.20320868 temperature=300.64035 biomass=0.028128093 reserve=0.6913247660850175 dry_fixed=0
+WATER_DAY day=47 total_engine_mass=899942093077.9868 tissue_and_carry_kg_m2_sum=42.877080279042715
+SHORE_FLUX day=48 fixed=0.037486729721994294 dry_fixed=0
+RIM_DAY day=48 depth_m=0.21011151 temperature=300.96405 biomass=0.037928633 reserve=0.930970095214434 dry_fixed=0
+WATER_DAY day=48 total_engine_mass=899940987315.0302 tissue_and_carry_kg_m2_sum=45.6060144921179
+SHORE_FLUX day=49 fixed=0.04569287809045264 dry_fixed=0
+RIM_DAY day=49 depth_m=0.21596016 temperature=301.28162 biomass=0.05022547 reserve=1.237763789249584 dry_fixed=0
+WATER_DAY day=49 total_engine_mass=899939881546.8716 tissue_and_carry_kg_m2_sum=47.96447958899865
+SHORE_FLUX day=50 fixed=0.05630461188343716 dry_fixed=0
+RIM_DAY day=50 depth_m=0.2114006 temperature=301.6395 biomass=0.05749456 reserve=1.42198771587573 dry_fixed=0
+WATER_DAY day=50 total_engine_mass=899938774635.4032 tissue_and_carry_kg_m2_sum=50.160805631948705
+SHORE_FLUX day=51 fixed=0.06776752268797637 dry_fixed=0
+RIM_DAY day=51 depth_m=0.21596646 temperature=301.9931 biomass=0.06764716 reserve=1.6768947732634842 dry_fixed=0
+WATER_DAY day=51 total_engine_mass=899937671434.6202 tissue_and_carry_kg_m2_sum=53.35521815738663
+SHORE_FLUX day=52 fixed=0.08298582209977567 dry_fixed=0
+RIM_DAY day=52 depth_m=0.21670084 temperature=302.2806 biomass=0.0817347 reserve=2.0236227777786553 dry_fixed=0
+WATER_DAY day=52 total_engine_mass=899936570571.5156 tissue_and_carry_kg_m2_sum=57.77561727768895
+SHORE_FLUX day=53 fixed=0.10003583972984842 dry_fixed=0
+RIM_DAY day=53 depth_m=0.2108282 temperature=302.56552 biomass=0.08301094 reserve=2.0546237495727837 dry_fixed=0
+WATER_DAY day=53 total_engine_mass=899935464684.3381 tissue_and_carry_kg_m2_sum=62.605159068713945
+SHORE_FLUX day=54 fixed=0.12319766430096912 dry_fixed=0
+RIM_DAY day=54 depth_m=0.21039833 temperature=302.74756 biomass=0.096856266 reserve=2.3922206182032824 dry_fixed=0
+WATER_DAY day=54 total_engine_mass=899934353468.9604 tissue_and_carry_kg_m2_sum=66.31131054853384
+SHORE_FLUX day=55 fixed=0.15468905038274872 dry_fixed=0
+RIM_DAY day=55 depth_m=0.21182476 temperature=302.81836 biomass=0.10707251 reserve=2.641709658782929 dry_fixed=0
+WATER_DAY day=55 total_engine_mass=899933243498.9658 tissue_and_carry_kg_m2_sum=69.08587870045271
+SHORE_FLUX day=56 fixed=0.194894291835644 dry_fixed=0
+RIM_DAY day=56 depth_m=0.21610397 temperature=302.9109 biomass=0.102555156 reserve=2.5217033154331148 dry_fixed=0
+WATER_DAY day=56 total_engine_mass=899932133502.4833 tissue_and_carry_kg_m2_sum=71.81975889477943
+SHORE_FLUX day=57 fixed=0.24445211730013372 dry_fixed=0
+RIM_DAY day=57 depth_m=0.21278614 temperature=303.03506 biomass=0.090498395 reserve=2.214625095948577 dry_fixed=0
+WATER_DAY day=57 total_engine_mass=899931014924.9844 tissue_and_carry_kg_m2_sum=71.49764341025686
+SHORE_FLUX day=58 fixed=0.3032986326342868 dry_fixed=0
+RIM_DAY day=58 depth_m=0.21261705 temperature=303.11816 biomass=0.0810207 reserve=1.9672313518822193 dry_fixed=0
+WATER_DAY day=58 total_engine_mass=899929895666.7379 tissue_and_carry_kg_m2_sum=72.60523682237229
+SHORE_FLUX day=59 fixed=0.37336182283066566 dry_fixed=0
+RIM_DAY day=59 depth_m=0.2136322 temperature=303.1233 biomass=0.0836052 reserve=2.029993776232004 dry_fixed=0
+WATER_DAY day=59 total_engine_mass=899928772220.7926 tissue_and_carry_kg_m2_sum=75.38265597635616
+SHORE_FLUX day=60 fixed=0.45296036161467756 dry_fixed=0
+RIM_DAY day=60 depth_m=0.2130003 temperature=303.14444 biomass=0.083389334 reserve=2.0247578620910645 dry_fixed=0
+WATER_DAY day=60 total_engine_mass=899927642384.6539 tissue_and_carry_kg_m2_sum=77.3118990317255
+SHORE_FLUX day=61 fixed=0.5349498899203897 dry_fixed=0
+RIM_DAY day=61 depth_m=0.21279944 temperature=303.14142 biomass=0.084608704 reserve=2.045644467798411 dry_fixed=0
+WATER_DAY day=61 total_engine_mass=899926508582.7505 tissue_and_carry_kg_m2_sum=79.77910210338517
+SHORE_FLUX day=62 fixed=0.6224811559340739 dry_fixed=0
+RIM_DAY day=62 depth_m=0.21406695 temperature=303.1251 biomass=0.08925812 reserve=2.161765285563888 dry_fixed=0
+WATER_DAY day=62 total_engine_mass=899925379364.432 tissue_and_carry_kg_m2_sum=82.42847286665004
+SHORE_FLUX day=63 fixed=0.7123442485564826 dry_fixed=0
+RIM_DAY day=63 depth_m=0.21315502 temperature=303.15182 biomass=0.09579665 reserve=2.3134563071653247 dry_fixed=0
+WATER_DAY day=63 total_engine_mass=899924248896.4524 tissue_and_carry_kg_m2_sum=84.07911950181513
+SHORE_FLUX day=64 fixed=0.8050697022867641 dry_fixed=0
+RIM_DAY day=64 depth_m=0.21653633 temperature=303.19617 biomass=0.09233137 reserve=2.2418932151049376 dry_fixed=0
+WATER_DAY day=64 total_engine_mass=899923126048.9386 tissue_and_carry_kg_m2_sum=87.17952157709769
+SHORE_FLUX day=65 fixed=0.8910832238456894 dry_fixed=0
+RIM_DAY day=65 depth_m=0.21063471 temperature=303.21814 biomass=0.08835838 reserve=2.145425593480468 dry_fixed=0
+WATER_DAY day=65 total_engine_mass=899921999889.0414 tissue_and_carry_kg_m2_sum=90.14245083962257
+SHORE_FLUX day=66 fixed=0.9838231997987268 dry_fixed=0
+RIM_DAY day=66 depth_m=0.21677929 temperature=303.1857 biomass=0.08439137 reserve=2.049103556200862 dry_fixed=0
+WATER_DAY day=66 total_engine_mass=899920863512.4479 tissue_and_carry_kg_m2_sum=91.88455037912689
+SHORE_FLUX day=67 fixed=1.0804101631424519 dry_fixed=0
+RIM_DAY day=67 depth_m=0.21637534 temperature=303.2235 biomass=0.08041808 reserve=1.9526287447661161 dry_fixed=0
+WATER_DAY day=67 total_engine_mass=899919725663.2457 tissue_and_carry_kg_m2_sum=94.27431482317112
+SHORE_FLUX day=68 fixed=1.1813140730923724 dry_fixed=0
+RIM_DAY day=68 depth_m=0.21600774 temperature=303.32657 biomass=0.07246962 reserve=1.7596329655498266 dry_fixed=0
+WATER_DAY day=68 total_engine_mass=899918594068.8004 tissue_and_carry_kg_m2_sum=97.50423953378551
+SHORE_FLUX day=69 fixed=1.2919121647287202 dry_fixed=0
+RIM_DAY day=69 depth_m=0.22050485 temperature=303.34213 biomass=0.077882625 reserve=1.8716677368502133 dry_fixed=0
+WATER_DAY day=69 total_engine_mass=899917462441.112 tissue_and_carry_kg_m2_sum=100.25487757207085
+SHORE_FLUX day=70 fixed=1.4164181520031807 dry_fixed=0
+RIM_DAY day=70 depth_m=0.21524116 temperature=303.44214 biomass=0.0059550093 reserve=0.12672001001192257 dry_fixed=0
+WATER_DAY day=70 total_engine_mass=899916333114.5659 tissue_and_carry_kg_m2_sum=103.2019582076249
+SHORE_FLUX day=71 fixed=1.5496587250686307 dry_fixed=0
+RIM_DAY day=71 depth_m=0.21440785 temperature=303.40643 biomass=0.016571712 reserve=0.36465564033278497 dry_fixed=0
+WATER_DAY day=71 total_engine_mass=899915207610.0017 tissue_and_carry_kg_m2_sum=106.7650084833112
+SHORE_FLUX day=72 fixed=1.7017372033405909 dry_fixed=0
+RIM_DAY day=72 depth_m=0.21458262 temperature=303.41217 biomass=0.013851729 reserve=0.3147525095846504 dry_fixed=0
+WATER_DAY day=72 total_engine_mass=899914073840.9584 tissue_and_carry_kg_m2_sum=110.07245339243048
+SHORE_FLUX day=73 fixed=1.8587520422961379 dry_fixed=0
+RIM_DAY day=73 depth_m=0.21162869 temperature=303.47916 biomass=0.027612537 reserve=0.6165893531215261 dry_fixed=0
+WATER_DAY day=73 total_engine_mass=899912930551.91 tissue_and_carry_kg_m2_sum=112.58964151355222
+SHORE_FLUX day=74 fixed=2.0025585431699175 dry_fixed=0
+RIM_DAY day=74 depth_m=0.21298417 temperature=303.39688 biomass=0.023129996 reserve=0.5419809045270085 dry_fixed=0
+WATER_DAY day=74 total_engine_mass=899911786667.8716 tissue_and_carry_kg_m2_sum=113.58663275763338
+SHORE_FLUX day=75 fixed=2.1286902794401987 dry_fixed=0
+RIM_DAY day=75 depth_m=0.21450023 temperature=303.33636 biomass=0.0204649 reserve=0.473557710647583 dry_fixed=0
+WATER_DAY day=75 total_engine_mass=899910643310.891 tissue_and_carry_kg_m2_sum=115.02084595899923
+SHORE_FLUX day=76 fixed=2.2211849491961777 dry_fixed=0
+RIM_DAY day=76 depth_m=0.2132737 temperature=303.3375 biomass=0.020768814 reserve=0.48126328038051724 dry_fixed=0
+WATER_DAY day=76 total_engine_mass=899909497521.8726 tissue_and_carry_kg_m2_sum=115.14716146569967
+SHORE_FLUX day=77 fixed=2.3083092129129374 dry_fixed=0
+RIM_DAY day=77 depth_m=0.21221465 temperature=303.34244 biomass=0.03574615 reserve=0.8235099667217582 dry_fixed=0
+WATER_DAY day=77 total_engine_mass=899908347953.8365 tissue_and_carry_kg_m2_sum=117.29217345054892
+SHORE_FLUX day=78 fixed=2.3937944803039874 dry_fixed=0
+RIM_DAY day=78 depth_m=0.21626502 temperature=303.3404 biomass=0.02877822 reserve=0.6676164851523936 dry_fixed=0
+WATER_DAY day=78 total_engine_mass=899907196681.1228 tissue_and_carry_kg_m2_sum=116.73632752458408
+SHORE_FLUX day=79 fixed=2.4757188486994357 dry_fixed=0
+RIM_DAY day=79 depth_m=0.20922177 temperature=303.41428 biomass=0.03459921 reserve=0.802809982560575 dry_fixed=0
+WATER_DAY day=79 total_engine_mass=899906046818.8215 tissue_and_carry_kg_m2_sum=116.08614784920681
+SHORE_FLUX day=80 fixed=2.5554621545982092 dry_fixed=0
+RIM_DAY day=80 depth_m=0.21798444 temperature=303.36514 biomass=0.036128577 reserve=0.8383890218101442 dry_fixed=0
+WATER_DAY day=80 total_engine_mass=899904893982.2538 tissue_and_carry_kg_m2_sum=116.0050564373686
+SHORE_FLUX day=81 fixed=2.631620309001156 dry_fixed=0
+RIM_DAY day=81 depth_m=0.2099014 temperature=303.41724 biomass=0.039354272 reserve=0.9132998064160347 dry_fixed=0
+WATER_DAY day=81 total_engine_mass=899903743809.8981 tissue_and_carry_kg_m2_sum=114.87150756611923
+SHORE_FLUX day=82 fixed=2.7069650148089215 dry_fixed=0
+RIM_DAY day=82 depth_m=0.21459208 temperature=303.36322 biomass=0.040106 reserve=0.9307774901390076 dry_fixed=0
+WATER_DAY day=82 total_engine_mass=899902580553.8378 tissue_and_carry_kg_m2_sum=115.08547994649608
+SHORE_FLUX day=83 fixed=2.7787046186830286 dry_fixed=0
+RIM_DAY day=83 depth_m=0.21656816 temperature=303.3668 biomass=0.036128566 reserve=0.838483520783484 dry_fixed=0
+WATER_DAY day=83 total_engine_mass=899901421309.5435 tissue_and_carry_kg_m2_sum=116.61483066896616
+SHORE_FLUX day=84 fixed=2.8489449279760413 dry_fixed=0
+RIM_DAY day=84 depth_m=0.21184412 temperature=303.42947 biomass=0.032149017 reserve=0.7461346592754126 dry_fixed=0
+WATER_DAY day=84 total_engine_mass=899900259999.3462 tissue_and_carry_kg_m2_sum=116.58018890486683
+SHORE_FLUX day=85 fixed=2.91368194176595 dry_fixed=0
+RIM_DAY day=85 depth_m=0.21377933 temperature=303.4075 biomass=0.032149673 reserve=0.7461626641452312 dry_fixed=0
+WATER_DAY day=85 total_engine_mass=899899096067.3909 tissue_and_carry_kg_m2_sum=117.39049621541167
+SHORE_FLUX day=86 fixed=2.9766136911599608 dry_fixed=0
+RIM_DAY day=86 depth_m=0.21410239 temperature=303.44696 biomass=0.032148514 reserve=0.7461450947448611 dry_fixed=0
+WATER_DAY day=86 total_engine_mass=899897934132.5366 tissue_and_carry_kg_m2_sum=118.24263148646797
+SHORE_FLUX day=87 fixed=3.0406750578591675 dry_fixed=0
+RIM_DAY day=87 depth_m=0.21268408 temperature=303.4393 biomass=0.03214864 reserve=0.7461550110019743 dry_fixed=0
+WATER_DAY day=87 total_engine_mass=899896775756.377 tissue_and_carry_kg_m2_sum=121.14151566352751
+SHORE_FLUX day=88 fixed=3.0962676282466566 dry_fixed=0
+RIM_DAY day=88 depth_m=0.21679184 temperature=303.4835 biomass=0.032147475 reserve=0.7461312506347895 dry_fixed=0
+WATER_DAY day=88 total_engine_mass=899895617325.4958 tissue_and_carry_kg_m2_sum=123.30322381678488
+SHORE_FLUX day=89 fixed=3.1526159366300055 dry_fixed=0
+RIM_DAY day=89 depth_m=0.21452221 temperature=303.52264 biomass=0.029234532 reserve=0.6785259675234556 dry_fixed=0
+WATER_DAY day=89 total_engine_mass=899894465239.2698 tissue_and_carry_kg_m2_sum=127.69388437926067
+SHORE_FLUX day=90 fixed=3.2055522592405543 dry_fixed=0
+RIM_DAY day=90 depth_m=0.21231194 temperature=303.56094 biomass=0.028168153 reserve=0.6537783634848893 dry_fixed=0
+WATER_DAY day=90 total_engine_mass=899893311742.0986 tissue_and_carry_kg_m2_sum=129.28483306051083
+SHORE_FLUX day=91 fixed=3.2551864618286492 dry_fixed=0
+RIM_DAY day=91 depth_m=0.21227504 temperature=303.53937 biomass=0.0281686 reserve=0.6537911179475486 dry_fixed=0
+WATER_DAY day=91 total_engine_mass=899892155224.1202 tissue_and_carry_kg_m2_sum=131.81822394563588
+SHORE_FLUX day=92 fixed=3.302687351001274 dry_fixed=0
+RIM_DAY day=92 depth_m=0.21352877 temperature=303.4444 biomass=0.029260749 reserve=0.6791411549784243 dry_fixed=0
+WATER_DAY day=92 total_engine_mass=899890997422.7803 tissue_and_carry_kg_m2_sum=133.41909642193133
+SHORE_FLUX day=93 fixed=3.3485843433833145 dry_fixed=0
+RIM_DAY day=93 depth_m=0.21508661 temperature=303.42615 biomass=0.025284113 reserve=0.5868443753570318 dry_fixed=0
+WATER_DAY day=93 total_engine_mass=899889838380.6166 tissue_and_carry_kg_m2_sum=135.25047629476663
+SHORE_FLUX day=94 fixed=3.394202041194254 dry_fixed=0
+RIM_DAY day=94 depth_m=0.21536705 temperature=303.43503 biomass=0.025283895 reserve=0.5868397862650454 dry_fixed=0
+WATER_DAY day=94 total_engine_mass=899888683426.1451 tissue_and_carry_kg_m2_sum=136.9321198679439
+SHORE_FLUX day=95 fixed=3.4383689840980116 dry_fixed=0
+RIM_DAY day=95 depth_m=0.21613455 temperature=303.46112 biomass=0.021306112 reserve=0.4945157072506845 dry_fixed=0
+WATER_DAY day=95 total_engine_mass=899887524820.973 tissue_and_carry_kg_m2_sum=137.29615284200298
+SHORE_FLUX day=96 fixed=3.4892039597708537 dry_fixed=0
+RIM_DAY day=96 depth_m=0.21333496 temperature=303.50253 biomass=0.024141766 reserve=0.5603318079374731 dry_fixed=0
+WATER_DAY day=96 total_engine_mass=899886364454.9207 tissue_and_carry_kg_m2_sum=135.0663707971522
+SHORE_FLUX day=97 fixed=3.538996010609586 dry_fixed=0
+RIM_DAY day=97 depth_m=0.21618222 temperature=303.44562 biomass=0.021306418 reserve=0.494523486122489 dry_fixed=0
+WATER_DAY day=97 total_engine_mass=899885207364.4829 tissue_and_carry_kg_m2_sum=136.26787020889378
+SHORE_FLUX day=98 fixed=3.5907479583387873 dry_fixed=0
+RIM_DAY day=98 depth_m=0.21208896 temperature=303.50644 biomass=0.021305136 reserve=0.49449391663074493 dry_fixed=0
+WATER_DAY day=98 total_engine_mass=899884054191.8306 tissue_and_carry_kg_m2_sum=138.42081645489782
+SHORE_FLUX day=99 fixed=3.6431120505589467 dry_fixed=0
+RIM_DAY day=99 depth_m=0.21553628 temperature=303.5248 biomass=0.017327785 reserve=0.4021793743595481 dry_fixed=0
+WATER_DAY day=99 total_engine_mass=899882899467.1608 tissue_and_carry_kg_m2_sum=140.62768901700082
+SHORE_FLUX day=100 fixed=3.697683171472298 dry_fixed=0
+RIM_DAY day=100 depth_m=0.21897839 temperature=303.51166 biomass=0.017328128 reserve=0.4021874163299799 dry_fixed=0
+WATER_DAY day=100 total_engine_mass=899881738755.1012 tissue_and_carry_kg_m2_sum=144.26789540649
+SHORE_PROPAGULE day=24.883333333333333 from=30133 to=30131 id=46 parent=20 source_depth_m=15.911157 dest_depth_m=0.14845629
+SHORE_PROPAGULE day=27.766666666666666 from=30133 to=30131 id=52 parent=20 source_depth_m=16.236832 dest_depth_m=0.18343344
+SHORE_PROPAGULE day=28.8 from=30113 to=30109 id=56 parent=18 source_depth_m=16.442566 dest_depth_m=0.19726437
+SHORE_PROPAGULE day=32.766666666666666 from=7570 to=30110 id=69 parent=12 source_depth_m=16.845694 dest_depth_m=0.16811436
+SHORE_PROPAGULE day=32.833333333333336 from=30133 to=30131 id=71 parent=20 source_depth_m=16.708693 dest_depth_m=0.17574157
+SHORE_PROPAGULE day=34.86666666666667 from=30133 to=30131 id=86 parent=20 source_depth_m=16.860062 dest_depth_m=0.18654272
+SHORE_PROPAGULE day=38.8 from=7570 to=30111 id=167 parent=12 source_depth_m=16.86538 dest_depth_m=0.19823071
+SHORE_PROPAGULE day=38.916666666666664 from=7512 to=30109 id=170 parent=82 source_depth_m=0.21725276 dest_depth_m=0.19324662
+SHORE_PROPAGULE day=40.78333333333333 from=30109 to=30108 id=217 parent=134 source_depth_m=0.2232297 dest_depth_m=0.07159003
+SHORE_PROPAGULE day=41.65 from=30109 to=30108 id=236 parent=134 source_depth_m=0.25384808 dest_depth_m=0.098842785
+SHORE_PROPAGULE day=41.81666666666667 from=7570 to=30111 id=254 parent=12 source_depth_m=16.870638 dest_depth_m=0.19466096
+SHORE_PROPAGULE day=41.86666666666667 from=30113 to=30111 id=261 parent=18 source_depth_m=17.315975 dest_depth_m=0.18227418
+SHORE_PROPAGULE day=42.65 from=30109 to=30108 id=275 parent=134 source_depth_m=0.25758785 dest_depth_m=0.09906455
+SHORE_PROPAGULE day=42.766666666666666 from=7570 to=30110 id=278 parent=36 source_depth_m=16.959858 dest_depth_m=0.19498873
+SHORE_PROPAGULE day=42.88333333333333 from=30109 to=30111 id=291 parent=134 source_depth_m=0.20523304 dest_depth_m=0.19344556
+SHORE_PROPAGULE day=43.13333333333333 from=7512 to=30109 id=295 parent=82 source_depth_m=0.21991944 dest_depth_m=0.17956671
+SHORE_PROPAGULE day=44.06666666666667 from=7574 to=30130 id=334 parent=78 source_depth_m=0.2091708 dest_depth_m=0.19241723
+SHORE_PROPAGULE day=44.81666666666667 from=7570 to=30131 id=369 parent=12 source_depth_m=17.17884 dest_depth_m=0.19549492
+SHORE_PROPAGULE day=44.86666666666667 from=30133 to=30131 id=372 parent=20 source_depth_m=17.331688 dest_depth_m=0.1830461
+SHORE_PROPAGULE day=45.266666666666666 from=30129 to=30130 id=386 parent=221 source_depth_m=0.7751991 dest_depth_m=0.19895002
+SHORE_PROPAGULE day=47.86666666666667 from=7570 to=30110 id=526 parent=12 source_depth_m=17.329084 dest_depth_m=0.19836
+SHORE_PROPAGULE day=48.88333333333333 from=30131 to=30110 id=585 parent=369 source_depth_m=0.20819907 dest_depth_m=0.19527799
+SHORE_PROPAGULE day=49.7 from=30109 to=30108 id=627 parent=134 source_depth_m=0.29566368 dest_depth_m=0.095611975
+SHORE_PROPAGULE day=49.78333333333333 from=30109 to=30108 id=640 parent=134 source_depth_m=0.2731851 dest_depth_m=0.07684386
+SHORE_PROPAGULE day=49.8 from=30108 to=30227 id=644 parent=275 source_depth_m=0.07250087 dest_depth_m=894.76556

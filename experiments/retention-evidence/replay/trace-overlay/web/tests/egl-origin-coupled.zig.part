@@ -1,0 +1,19 @@
+    if (std.posix.getenv("STELLA_ORIGIN_COUPLED") != null) {
+        const fast = std.posix.getenv("STELLA_ORIGIN_FAST") != null;
+        state.paused=false; state.timeScale=if(fast)86400 else 3600;
+        var water_start:f64=0;for(state.planet.waterMass,state.planet.waterVaporMass)|w,v|water_start+=@as(f64,w)+v;
+        const idx=state.selectedPoint;
+        std.debug.print("DIAGNOSTIC selected={d} latitude_z={d} depth_m={d} temp={d}\n",.{idx,state.planet.transformedPoints[idx].norm().z(),state.planet.waterMass[idx]*state.planet.getKmPerWaterMass()*1000,state.planet.temperature[idx]});
+        var low_t:f32=10000;var high_t:f32=0;var low_w:f32=100000;var high_w:f32=0;
+        var fixed_before=state.planet.microbeStats.fixed_carbon;
+        for(0..@as(usize,if(fast)300 else 7200)) |i| {
+            state.update(&game,1.0/60.0);
+            const water=state.planet.waterMass[idx]*state.planet.getKmPerWaterMass()*1000;
+            low_t=@min(low_t,state.planet.temperature[idx]);high_t=@max(high_t,state.planet.temperature[idx]);low_w=@min(low_w,water);high_w=@max(high_w,water);
+            if(i%60==59){std.debug.print("HOURLY hour={d} temp={d:.2}..{d:.2} depth_m={d:.3}..{d:.3} biomass={d:.6} nutrient={d:.6} detritus={d:.6} carbon_fixed_kg={d}\n",.{(i+1)/60,low_t,high_t,low_w,high_w,@import("simulation/microbes.zig").biomass(state.planet.microbeCells[idx]),state.planet.microbeCells[idx].nutrient,state.planet.microbeCells[idx].detritus,state.planet.microbeStats.fixed_carbon-fixed_before});low_t=10000;high_t=0;low_w=100000;high_w=0;fixed_before=state.planet.microbeStats.fixed_carbon;}
+            if(i<6 or (if(fast) i%60==59 else i%1440==1439)){render(window);gl.finish();window.swapBuffers();originReport("fresh_coupled",state);}
+        }
+        var water_end:f64=0;for(state.planet.waterMass,state.planet.waterVaporMass)|w,v|water_end+=@as(f64,w)+v;
+        std.debug.print("TOTAL_WATER start={d} end={d} relative_error={e}\n",.{water_start,water_end,@abs(water_end-water_start)/water_start});
+        try originSaveCheck(state,allocator);
+        return;

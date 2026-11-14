@@ -1,0 +1,71 @@
+1/59 save_schema.test.versioned world roundtrip preserves rabbits, growth, climate and exact PRNG...OK
+2/59 save_schema.test.corrupt incompatible and nonfinite saves rejected before application...OK
+3/59 save_schema.test.legacy v1 remains sandbox with exact climate plants rabbits and topology...OK
+4/59 save_schema.test.legacy version cannot reinterpret original habitat as origin world...OK
+5/59 save_schema.test.Origin v5 preserves cohorts lineage resources RNG and deterministic continuation...OK
+6/59 save_schema.test.Origin rejects absent state invalid shape resources lineage RNG and version confusion...OK
+7/59 save_schema.test.v2 wire migration preserves tiny colonies resources IDs RNG and pads only...OK
+8/59 save_schema.test.v3 structural state migrates with zero feeding then v4 preserves real consumption...OK
+9/59 save_schema.test.sparse exactness retains inactive history signed zero and movement events...OK
+10/59 save_schema.test.fully occupied sparse capture retains all four slots without loss...OK
+11/59 save_schema.test.v4 grazing wire defaults movement fields without altering feeding history...OK
+12/59 save_schema.test.v5 motion wire migrates producer fields as zero without changing history...OK
+13/59 save_schema.test.v6 support subset finite bounds and sparse signed zero remain exact...OK
+14/59 save_schema.test.v6 producer wire migrates water fields as zero without changing life or resources...OK
+15/59 save_schema.test.v7 reserves traits and sparse signed zero roundtrip exactly and reject invalid data...OK
+16/59 save_schema.test.v7 water precision carries preserve subnormal quantum and reject invalid or legacy values...OK
+17/59 simulation.microbes.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+18/59 simulation.microbes.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+19/59 simulation.microbes.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+20/59 simulation.microbes.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+OK
+21/59 simulation.microbes.test.grazing is bounded, order independent, and conservative...OK
+22/59 simulation.microbes.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+23/59 simulation.microbes.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443816 births=47 gen=2 grazed=0.6916255708929384 cell_bytes=416
+OK
+24/59 simulation.microbes.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+25/59 simulation.microbes.test.darkness carbon starvation and drying do not create growth...OK
+26/59 simulation.microbes.test.live competing trait distribution responds to environment, order independent...OK
+27/59 simulation.microbes.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+28/59 simulation.microbes.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+OK
+29/59 simulation.microbes.test.one coarse relocation per simulation instant with no ghost cohort...OK
+30/59 simulation.microbes.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+31/59 simulation.microbes.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+32/59 simulation.microbes.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=25
+OK
+33/59 simulation.microbes.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+34/59 simulation.microbes.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+OK
+35/59 simulation.microbes.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+36/59 simulation.microbes.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+37/59 simulation.microbes.test.producer architecture is functional continuous and resource conserving...OK
+38/59 simulation.microbes.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 320884, 97981, 70466, 35604, 549, 23289 }
+OK
+39/59 simulation.microbes.test.shore adaptation requires real tissue liquid film and tolerable temperature...OK
+40/59 simulation.microbes.test.moist shore growth and drying conserve carbon nutrients and support...OK
+41/59 simulation.microbes.test.ordinary aquatic descendants can establish on moist shore unlike ancestors...EVOLVED_SHORE successful_founder_paths=1
+OK
+42/59 simulation.microbes.test.unprotected shore propagules fail and transfer exact donor resources...OK
+43/59 simulation.microbes.test.neighbor priority is bounded reproducible and does not fund extra births...OK
+44/59 simulation.microbes.test.paid protective tissue survives cyclic film without fixing carbon during drought...OK
+45/59 simulation.microbes.test.brief frost protection is graded and prolonged frozen film kills without fixation...OK
+46/59 simulation.microbes.test.water ledger closes through uptake growth maintenance drought and death...OK
+47/59 simulation.microbes.test.reserve uptake fairly shares finite real liquid and frozen reserves cannot fix carbon...OK
+48/59 simulation.microbes.test.reproduction grazing and supported relocation conserve water without cloning...OK
+49/59 simulation.microbes.test.retention trades wet growth speed for dry water economy...RETENTION dry_fixed_low=0.042546805581777036 high=0.0863483829125471
+OK
+50/59 simulation.microbes.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+51/59 simulation.microbes.test.small exploratory propagules proportionally transfer f64 stored water without free water...OK
+52/59 simulation.microbes.test.tiny carry-only uptake never overdrafts aggregate liquid budget...OK
+53/59 simulation.ecology.test.plants thrive, grazed cover regrows, and water/heat kill...OK
+54/59 simulation.ecology.test.offspring inherit with variation and selection favors local adaptation...OK
+55/59 simulation.water_precision.test.precision carries retain tiny uptake and evaporation without hidden gain...OK
+56/59 simulation.water_precision.test.carry-only water requantizes after weather drains bulk including zero and subnormal...OK
+57/59 simulation.water_precision.test.precision transfer rejects invalid or impossible state atomically...OK
+58/59 simulation.water_precision.test.signed zero bulk remains compatible with legacy water...OK
+59/59 simulation.water_precision.test.exact full represented balance can drain without cancellation rejection...OK
+All 59 tests passed.

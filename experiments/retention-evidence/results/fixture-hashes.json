@@ -1,0 +1,26 @@
+{
+  "on-final.json": {
+    "sha256": "f1069b8051c7debaa4b9209356496f57dd395d05e56cbfff40d8e749617f55aa",
+    "bytes": 12633556
+  },
+  "matched-initial100.json": {
+    "sha256": "57334a6bbb71fe4b8f3cebfdfc49ddcae9d7b7df40bffe7e0c27eb237630bb83",
+    "bytes": 10850881
+  },
+  "matched-initial.json": {
+    "sha256": "57334a6bbb71fe4b8f3cebfdfc49ddcae9d7b7df40bffe7e0c27eb237630bb83",
+    "bytes": 10850881
+  },
+  "on100-final.json": {
+    "sha256": "70e4b4b45ce5c5e6edcc27c5f33d79e7bec39f14631ed722f2dc5fdf3f54c81c",
+    "bytes": 12719142
+  },
+  "off-final.json": {
+    "sha256": "8afe70030f2f08a766fbc127a8cc5296b927a1e74085031cf43ebf7beca0e077",
+    "bytes": 12634564
+  },
+  "off100-final.json": {
+    "sha256": "8ecb1d0ddc143d056c5ef06e337f3079c17aa6ca5015b757d79e0aa30ebe0c62",
+    "bytes": 12701512
+  }
+}

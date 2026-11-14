@@ -1,0 +1,48 @@
+1/36 reserve_model.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+2/36 reserve_model.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+3/36 reserve_model.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+4/36 reserve_model.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+OK
+5/36 reserve_model.test.grazing is bounded, order independent, and conservative...OK
+6/36 reserve_model.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+7/36 reserve_model.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443816 births=47 gen=2 grazed=0.6916255708929384 cell_bytes=416
+OK
+8/36 reserve_model.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+9/36 reserve_model.test.darkness carbon starvation and drying do not create growth...OK
+10/36 reserve_model.test.live competing trait distribution responds to environment, order independent...OK
+11/36 reserve_model.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+12/36 reserve_model.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+OK
+13/36 reserve_model.test.one coarse relocation per simulation instant with no ghost cohort...OK
+14/36 reserve_model.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+15/36 reserve_model.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+16/36 reserve_model.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=25
+OK
+17/36 reserve_model.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+18/36 reserve_model.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+OK
+19/36 reserve_model.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+20/36 reserve_model.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+21/36 reserve_model.test.producer architecture is functional continuous and resource conserving...OK
+22/36 reserve_model.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 320884, 97981, 70466, 35604, 549, 23289 }
+OK
+23/36 reserve_model.test.shore adaptation requires real tissue liquid film and tolerable temperature...OK
+24/36 reserve_model.test.moist shore growth and drying conserve carbon nutrients and support...OK
+25/36 reserve_model.test.ordinary aquatic descendants can establish on moist shore unlike ancestors...EVOLVED_SHORE successful_founder_paths=1
+OK
+26/36 reserve_model.test.unprotected shore propagules fail and transfer exact donor resources...OK
+27/36 reserve_model.test.neighbor priority is bounded reproducible and does not fund extra births...OK
+28/36 reserve_model.test.paid protective tissue survives cyclic film without fixing carbon during drought...OK
+29/36 reserve_model.test.brief frost protection is graded and prolonged frozen film kills without fixation...OK
+30/36 reserve_model.test.water ledger closes through uptake growth maintenance drought and death...OK
+31/36 reserve_model.test.reserve uptake fairly shares finite real liquid and frozen reserves cannot fix carbon...OK
+32/36 reserve_model.test.reproduction grazing and supported relocation conserve water without cloning...OK
+33/36 reserve_model.test.retention trades wet growth speed for dry water economy...RETENTION dry_fixed_low=0.042546805581777036 high=0.0863483829125471
+OK
+34/36 reserve_model.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+35/36 reserve_model.test.small exploratory propagules proportionally transfer f64 stored water without free water...OK
+36/36 reserve_model.test.tiny carry-only uptake never overdrafts aggregate liquid budget...OK
+All 36 tests passed.

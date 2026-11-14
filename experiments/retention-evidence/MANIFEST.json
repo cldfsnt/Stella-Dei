@@ -1,0 +1,338 @@
+{
+  "status": "experimental only; paired100 complete; no production reserve/schema integration",
+  "base_commit": "b73cf9c10692b1dfad70452ab819c713347d9d46",
+  "files": {
+    "COUPLED-QA.md": {
+      "bytes": 5339,
+      "sha256": "45cb4b4d9135a5e63d25322e4fae3a3281fc809e6e81784ee40ef5a690152871"
+    },
+    "README.md": {
+      "bytes": 3210,
+      "sha256": "90e969abbf927b2dcef0c3ee4af366c6cd502e3dec7b88a464a9b68ba418d81a"
+    },
+    "REPLAY-QA.md": {
+      "bytes": 4674,
+      "sha256": "f9700014e36877b1bf4d4a274e9a80ad42582c2aadb67480a1227c8f5ed8b4f0"
+    },
+    "coupled/overlay/src/god_actions.zig": {
+      "bytes": 10650,
+      "sha256": "cdc8c41fccf8b34c1369bbbb5aa5fd8fb5e75fa972e7e65d8a998700fc91f2df"
+    },
+    "coupled/overlay/src/main.zig": {
+      "bytes": 28880,
+      "sha256": "a609fb0541ee8a9b1f6bd8cadfaaf184c5aa2f1900334a31daecce43dfe8e6a6"
+    },
+    "coupled/overlay/src/pond_action.zig": {
+      "bytes": 12883,
+      "sha256": "f9b94da29015ab486bfa5e513fd7fa2a1687317c1289c8d425a342bb2aff21ef"
+    },
+    "coupled/overlay/src/renderer.zig": {
+      "bytes": 20243,
+      "sha256": "5a1bcfa1ae92ac05f33cdca6389f49b3170cfc7f39c73163fec5a9c8c8564921"
+    },
+    "coupled/overlay/src/save_schema.zig": {
+      "bytes": 45443,
+      "sha256": "0b421ee286096a4cdf40a83df51279fd295985eb21e182e077ac8d8a19cd3467"
+    },
+    "coupled/overlay/src/simulation/microbes.zig": {
+      "bytes": 69839,
+      "sha256": "0f507e33035fef4e8530dcbc4a4839961f1a8133412d12a7e5ec3a40f2db6ed8"
+    },
+    "coupled/overlay/src/simulation/planet.zig": {
+      "bytes": 86193,
+      "sha256": "8bc138baa4563ae69c6315f2e1d587903710b767896e3813263a21c146671d59"
+    },
+    "coupled/overlay/src/simulation/water_bridge_precision_test.zig": {
+      "bytes": 3848,
+      "sha256": "3cd916f70045057211dc314c1c2c6c6cb7d7dab69f89cc0c6baa2b8b3fc5c971"
+    },
+    "coupled/overlay/src/simulation/water_precision.zig": {
+      "bytes": 5682,
+      "sha256": "b9f8153ff102f68aa4fe6bd08da93ae921a8c71cd85ca836b25734511850c0a7"
+    },
+    "coupled/overlay/src/simulation/world_water_inventory.zig": {
+      "bytes": 3097,
+      "sha256": "9ebe51048a1c1be5773e71a9dc7f9adff5ed60302d795493badc75599b9c57d2"
+    },
+    "coupled/overlay/src/states/play.zig": {
+      "bytes": 108268,
+      "sha256": "b3c995177e286c1c333366ec3ef1f3b47f6f8001e30c17f5db6fec7f75c3c08b"
+    },
+    "coupled/overlay/src/world_setup.zig": {
+      "bytes": 1285,
+      "sha256": "643266b33c78bd246e9f9c4342ca7e588985edf63f5f133fa87cd92f1a0c683f"
+    },
+    "coupled/overlay/web/tests/egl-forms-world-prepare.py": {
+      "bytes": 2256,
+      "sha256": "b5ea5ba13a534ab47ccc80136ecf270a8dd01d79c7f37e16339dc5aa296413f6"
+    },
+    "coupled/overlay/web/tests/egl-grazing-world-prepare.py": {
+      "bytes": 1034,
+      "sha256": "76b3d63cde93da0cf96e531cde37eef51b6f82fa5d048fad6d710ca68cd71775"
+    },
+    "coupled/overlay/web/tests/egl-motility-world-prepare.py": {
+      "bytes": 2083,
+      "sha256": "75c664c888370fd1150a892c20bfb853de1e2c4306a51a55689aa2cc3c24fc6a"
+    },
+    "coupled/overlay/web/tests/egl-nursery-prepare.py": {
+      "bytes": 1345,
+      "sha256": "f78653292444085e3c9164c1d34968858dd4e529d656c2b0dd2072fac359d874"
+    },
+    "coupled/overlay/web/tests/egl-origin-build.zig": {
+      "bytes": 1625,
+      "sha256": "66c5bfcbf5b71531fced4d4dc41c733316e01e8288920eb7b90922e487909aea"
+    },
+    "coupled/overlay/web/tests/egl-origin-coupled-prepare.py": {
+      "bytes": 532,
+      "sha256": "c0fc0057aa6ccc456bb2b57ead567e37154e99d5ce0ab8a84bc0c27b73b2667c"
+    },
+    "coupled/overlay/web/tests/egl-origin-coupled.zig.part": {
+      "bytes": 2082,
+      "sha256": "e356ac595e5219c5175c7582854d12fe6b4382a1abcb200194316b9711f29134"
+    },
+    "coupled/overlay/web/tests/egl-origin-main.zig.part": {
+      "bytes": 4610,
+      "sha256": "2f431f1deb782dec28fa01bd5a58b9a399706d6c5dcf36156dfec74d12f18ff7"
+    },
+    "coupled/overlay/web/tests/egl-origin-prepare.py": {
+      "bytes": 1273,
+      "sha256": "a6135e6c6c0e738c4bd8c198b819cbd2edcf7701e3b379d226d1530e877023ba"
+    },
+    "coupled/overlay/web/tests/egl-origin-save.zig.part": {
+      "bytes": 1512,
+      "sha256": "b671ee8fd4cee46e94d642b06adbf3996cbfe6279ae1194bc528d687d6399854"
+    },
+    "coupled/overlay/web/tests/egl-origin-shim.c": {
+      "bytes": 4761,
+      "sha256": "f7f4f8c07bf2000137f7484a8b504e98c5099ce5166c5284931d1df825e47623"
+    },
+    "coupled/overlay/web/tests/egl-prepare.py": {
+      "bytes": 7806,
+      "sha256": "1b86bbbe0949ea98fe6309ea5278f52f6c9025576f5bcb4a1c58bb0e29f65817"
+    },
+    "coupled/overlay/web/tests/egl-producer-controlled.zig.part": {
+      "bytes": 3428,
+      "sha256": "70fe4febf6c24a618f604a368c3cc72fc1e38ceb34a82f623fcf93e23cc719b5"
+    },
+    "coupled/overlay/web/tests/egl-producer-diagnostic-prepare.py": {
+      "bytes": 3330,
+      "sha256": "f1cc7d8f7cd944ea999ded7bf1e4a0734126c4731c1e4603fd5cdf6285a1de7b"
+    },
+    "coupled/overlay/web/tests/egl-producer-migration.zig.part": {
+      "bytes": 2491,
+      "sha256": "4caa5ce710997e0ad57eb2a621f78f4e2ee690a7c9b348814ef01d4719508e86"
+    },
+    "coupled/overlay/web/tests/egl-producer-world-prepare.py": {
+      "bytes": 3909,
+      "sha256": "b03ec4e741ed731bc904fff4325fb327191d802f896d73f1adab64ef266470e1"
+    },
+    "coupled/overlay/web/tests/egl-propagule-prepare.py": {
+      "bytes": 2049,
+      "sha256": "898219dc2f01904459cd48779733f5db7f1e955bc630a2a80c4d35783d7e3e55"
+    },
+    "coupled/overlay/web/tests/egl-retention-world-prepare.py": {
+      "bytes": 6092,
+      "sha256": "04d0f038e9014b9cced9edb14772958bc2a9ab2a5421395f840f6b432843dfa9"
+    },
+    "coupled/overlay/web/tests/egl-starter-prepare.py": {
+      "bytes": 1560,
+      "sha256": "a3e74a73154a68e4c807d3b1c724f5523a48e5a76aa0d53350e62508663037ca"
+    },
+    "coupled/overlay/web/tests/egl-structure-world-prepare.py": {
+      "bytes": 1047,
+      "sha256": "0ff60d7282df5d9627328b6c81234ff46ba9de317e3043e89b3288822b8a2da7"
+    },
+    "coupled/overlay/web/tests/nursery-replay.zig.part": {
+      "bytes": 998,
+      "sha256": "ef15efcf28612bc00320b9924f11948feb8d78884e360472d57a916e5a5d17b2"
+    },
+    "coupled/source-manifest.json": {
+      "bytes": 5894,
+      "sha256": "1809985ec4834069ba855f957eea738af72bba22af6b5430323ea1d3bc1e7714"
+    },
+    "coupled/summarize.py": {
+      "bytes": 2083,
+      "sha256": "2b1576befba6800e3eaa61339a75f58db89a07da78e2f37ccdfe033323c14139"
+    },
+    "replay/reserve_model.zig": {
+      "bytes": 69839,
+      "sha256": "0f507e33035fef4e8530dcbc4a4839961f1a8133412d12a7e5ec3a40f2db6ed8"
+    },
+    "replay/results/continents-trace.csv": {
+      "bytes": 408878,
+      "sha256": "52f09377b22b885ffbc60b74d8ba22ebcdf6f5c4d7809e283f1f8576620e276a"
+    },
+    "replay/results/model-tests.log": {
+      "bytes": 4758,
+      "sha256": "f2a4b894b2476ed6373ae45f05a57b4f43381aca0e8264264f4c9fa202229a29"
+    },
+    "replay/results/replay-results.log": {
+      "bytes": 11657,
+      "sha256": "78fb5d0d70aa3b1f48a8386ac2b9dfa3a3c286abae365aaeecdd52e94174879c"
+    },
+    "replay/results/summary.json": {
+      "bytes": 19336,
+      "sha256": "f5aa993fca014b220631bd1055355671396964ba631ba72eafbeff4c55eafd65"
+    },
+    "replay/run.zig": {
+      "bytes": 3037,
+      "sha256": "820ea146af15f1a4e6d372e50be0377847c94d986c58717334efa5c20faf9f01"
+    },
+    "replay/trace-overlay/src/empty_bloom.zig": {
+      "bytes": 1585,
+      "sha256": "77eee28db68c75dde4b6d1b53a7bd46836429164b66c6e928b62d811acb332dc"
+    },
+    "replay/trace-overlay/src/main.zig": {
+      "bytes": 30675,
+      "sha256": "538d978ab05d66aed205276daa20517a6358e74afc3415520b8b6d13b03bbc9a"
+    },
+    "replay/trace-overlay/src/performance_details.zig": {
+      "bytes": 2062,
+      "sha256": "5ea96b3d629659de516505ac431e82197ca67e0c79844be9cbc6a8ee4624bce1"
+    },
+    "replay/trace-overlay/src/shaders/postprocess.fs": {
+      "bytes": 7807,
+      "sha256": "f0a4c663c26f85548b90406187f8bae3a7d37ba525c18d092205d91ae21e5e39"
+    },
+    "replay/trace-overlay/src/simulation/planet.zig": {
+      "bytes": 86147,
+      "sha256": "01092032cbb7aa63eaf8025133c89b41ae6fd3004bf78bcc46c440da43cef6d7"
+    },
+    "replay/trace-overlay/src/simulation/world_water_inventory.zig": {
+      "bytes": 3097,
+      "sha256": "9ebe51048a1c1be5773e71a9dc7f9adff5ed60302d795493badc75599b9c57d2"
+    },
+    "replay/trace-overlay/src/states/main_menu.zig": {
+      "bytes": 11266,
+      "sha256": "8052f36a6e869936d1d18fad2fbc08e498e922091532cbd74d25000a580212cf"
+    },
+    "replay/trace-overlay/src/states/play.zig": {
+      "bytes": 113384,
+      "sha256": "845079cd124a0c0054d7c247b2a3d3a418a9fcbc6692789e6502c41f816490c7"
+    },
+    "replay/trace-overlay/src/states/play.zig.orig": {
+      "bytes": 112920,
+      "sha256": "e7ddc625f745dbfe51aadf24f347c00c661390b570503038cd28d02b865dada2"
+    },
+    "replay/trace-overlay/src/world_setup.zig": {
+      "bytes": 1285,
+      "sha256": "643266b33c78bd246e9f9c4342ca7e588985edf63f5f133fa87cd92f1a0c683f"
+    },
+    "replay/trace-overlay/web/tests/egl-continents-prepare.py": {
+      "bytes": 4436,
+      "sha256": "f8c97fa1ff532721d67e61fa31e32e2fadf15d314e79821613783fbc626f487a"
+    },
+    "replay/trace-overlay/web/tests/egl-forms-world-prepare.py": {
+      "bytes": 2256,
+      "sha256": "b5ea5ba13a534ab47ccc80136ecf270a8dd01d79c7f37e16339dc5aa296413f6"
+    },
+    "replay/trace-overlay/web/tests/egl-grazing-world-prepare.py": {
+      "bytes": 1034,
+      "sha256": "76b3d63cde93da0cf96e531cde37eef51b6f82fa5d048fad6d710ca68cd71775"
+    },
+    "replay/trace-overlay/web/tests/egl-motility-world-prepare.py": {
+      "bytes": 2083,
+      "sha256": "75c664c888370fd1150a892c20bfb853de1e2c4306a51a55689aa2cc3c24fc6a"
+    },
+    "replay/trace-overlay/web/tests/egl-nursery-prepare.py": {
+      "bytes": 1345,
+      "sha256": "f78653292444085e3c9164c1d34968858dd4e529d656c2b0dd2072fac359d874"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-build.zig": {
+      "bytes": 1625,
+      "sha256": "66c5bfcbf5b71531fced4d4dc41c733316e01e8288920eb7b90922e487909aea"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-coupled-prepare.py": {
+      "bytes": 532,
+      "sha256": "c0fc0057aa6ccc456bb2b57ead567e37154e99d5ce0ab8a84bc0c27b73b2667c"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-coupled.zig.part": {
+      "bytes": 2082,
+      "sha256": "e356ac595e5219c5175c7582854d12fe6b4382a1abcb200194316b9711f29134"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-main.zig.part": {
+      "bytes": 4610,
+      "sha256": "2f431f1deb782dec28fa01bd5a58b9a399706d6c5dcf36156dfec74d12f18ff7"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-prepare.py": {
+      "bytes": 1273,
+      "sha256": "a6135e6c6c0e738c4bd8c198b819cbd2edcf7701e3b379d226d1530e877023ba"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-save.zig.part": {
+      "bytes": 1512,
+      "sha256": "b671ee8fd4cee46e94d642b06adbf3996cbfe6279ae1194bc528d687d6399854"
+    },
+    "replay/trace-overlay/web/tests/egl-origin-shim.c": {
+      "bytes": 4761,
+      "sha256": "f7f4f8c07bf2000137f7484a8b504e98c5099ce5166c5284931d1df825e47623"
+    },
+    "replay/trace-overlay/web/tests/egl-prepare.py": {
+      "bytes": 7806,
+      "sha256": "1b86bbbe0949ea98fe6309ea5278f52f6c9025576f5bcb4a1c58bb0e29f65817"
+    },
+    "replay/trace-overlay/web/tests/egl-producer-controlled.zig.part": {
+      "bytes": 3428,
+      "sha256": "70fe4febf6c24a618f604a368c3cc72fc1e38ceb34a82f623fcf93e23cc719b5"
+    },
+    "replay/trace-overlay/web/tests/egl-producer-diagnostic-prepare.py": {
+      "bytes": 3330,
+      "sha256": "f1cc7d8f7cd944ea999ded7bf1e4a0734126c4731c1e4603fd5cdf6285a1de7b"
+    },
+    "replay/trace-overlay/web/tests/egl-producer-migration.zig.part": {
+      "bytes": 2491,
+      "sha256": "4caa5ce710997e0ad57eb2a621f78f4e2ee690a7c9b348814ef01d4719508e86"
+    },
+    "replay/trace-overlay/web/tests/egl-producer-world-prepare.py": {
+      "bytes": 3909,
+      "sha256": "b03ec4e741ed731bc904fff4325fb327191d802f896d73f1adab64ef266470e1"
+    },
+    "replay/trace-overlay/web/tests/egl-propagule-prepare.py": {
+      "bytes": 2049,
+      "sha256": "898219dc2f01904459cd48779733f5db7f1e955bc630a2a80c4d35783d7e3e55"
+    },
+    "replay/trace-overlay/web/tests/egl-retention-trace-prepare.py": {
+      "bytes": 853,
+      "sha256": "d0b92891c0daa11352d116c90d556ed58d35d8db4c76de6366ff88ed7dd7e56e"
+    },
+    "replay/trace-overlay/web/tests/egl-starter-prepare.py": {
+      "bytes": 1560,
+      "sha256": "a3e74a73154a68e4c807d3b1c724f5523a48e5a76aa0d53350e62508663037ca"
+    },
+    "replay/trace-overlay/web/tests/egl-structure-world-prepare.py": {
+      "bytes": 1047,
+      "sha256": "0ff60d7282df5d9627328b6c81234ff46ba9de317e3043e89b3288822b8a2da7"
+    },
+    "replay/trace-overlay/web/tests/nursery-replay.zig.part": {
+      "bytes": 998,
+      "sha256": "ef15efcf28612bc00320b9924f11948feb8d78884e360472d57a916e5a5d17b2"
+    },
+    "replay/trace-source-manifest.json": {
+      "bytes": 6055,
+      "sha256": "4bd6f1feee7553078e731d748739cc732ffa369cdda3b2075116c3ff459cdb05"
+    },
+    "results/fixture-hashes.json": {
+      "bytes": 807,
+      "sha256": "10537f1c358ffb06d619548f556487cf4a8fa19ad60bc13bb66983b9cdd98ba4"
+    },
+    "results/off100-events.log": {
+      "bytes": 30303,
+      "sha256": "1a8235086ec3f4342e6bcfdda2275f6bd4f74c0ef7a42be3a6b380a0e2426dbb"
+    },
+    "results/on100-events.log": {
+      "bytes": 32326,
+      "sha256": "93de4aae135da7d1fa73fba5fc90c7e28aabc2b246238084013975987e17ea7d"
+    },
+    "results/paired100-summary.json": {
+      "bytes": 57443,
+      "sha256": "2d46c92c76ef31919985e1acc3460d337d27b5622cb6260789a7852f4c2ec740"
+    },
+    "results/paired30-summary.json": {
+      "bytes": 6443,
+      "sha256": "56e357a95c7423bb2b1db4e9601ac7e19234fdf53e1047ddde144b830b1dff13"
+    },
+    "results/schema-tests.log": {
+      "bytes": 7403,
+      "sha256": "37a4e7b56841e9798d3169e74dd036932cad289de8f26a6c8cbde248ef391797"
+    }
+  }
+}
