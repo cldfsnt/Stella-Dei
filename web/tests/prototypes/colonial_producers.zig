@@ -2,6 +2,8 @@
 //! Carbon pools kg C/m²; support and frond are real tissue, not visual counters.
 const std = @import("std");
 const N:f64=0.1;
+// Same resolution as the existing model: one quarter of a funded propagule.
+const resolution_floor:f64=0.0025;
 const Tissue=struct {
     frond:f64=0, support:f64=0, allocation:f64=0,
     credit:f64=0, lineage:u64=0, parent:u64=0, generation:u32=0,
@@ -11,7 +13,7 @@ const Tissue=struct {
 const World=struct {
     colonies:[4]Tissue=.{.{},.{},.{},.{}}, carbon:f64=10, oxygen:f64=10,
     nutrient:f64=1, detritus:f64=0, fixed:f64=0, respired:f64=0,
-    broken:f64=0, births:u32=0, next:u64=2, rng:u64=42,
+    broken:f64=0, unresolved:f64=0, extinctions:u32=0, births:u32=0, next:u64=2, rng:u64=42,
     fn organic(w:World) f64{var x=w.detritus;for(w.colonies)|c|x+=c.mass();return x;}
     fn totalC(w:World) f64{return w.carbon+w.organic();}
     fn totalN(w:World) f64{var x=w.nutrient;for(w.colonies)|c|x+=N*c.mass();return x;}
@@ -41,6 +43,12 @@ fn step(w:*World,e:Environment,days:f64) Flux {
         const loss=c.mass()*(1-@exp(-hazard*days));const fraction=if(c.mass()>0)loss/c.mass() else 0;
         c.frond*=1-fraction;c.support*=1-fraction;
         w.detritus+=loss;w.nutrient+=loss*N;w.broken+=loss;
+        // No eternal sub-resolution ghosts and no forced winning lineage.
+        // Recycle all remaining carbon/nutrient before freeing the cohort slot.
+        if(c.mass()<resolution_floor){
+            const residual=c.mass();w.detritus+=residual;w.nutrient+=residual*N;
+            w.unresolved+=residual;w.extinctions+=1;c.*=.{};
+        }
     }
     // Highest fronds receive light first. Equal-height colonies share a layer,
     // eliminating array-order privilege. Unabsorbed light reaches lower layers.
@@ -142,4 +150,59 @@ test "equal-height light sharing has no array-order advantage and resources limi
     try std.testing.expect(no_carbon.fixed<=w.respired);
     w.nutrient=0;const n_before=w.totalN();_=step(&w,.{},0.1);
     try std.testing.expectApproxEqAbs(n_before,w.totalN(),1e-10);
+}
+test "resolution extinction conserves residual tissue and permits donor-funded slot reuse" {
+    var w=initialize(0);
+    for(1..4)|i|{w.colonies[i]=.{.frond=0.001,.support=0.0005,.lineage=i+1};w.carbon-=0.0015;w.nutrient-=0.0015*N;}
+    w.next=5;const carbon=w.totalC();const nutrient=w.totalN();
+    _=step(&w,.{},0.1);
+    try std.testing.expectEqual(@as(u32,3),w.extinctions);
+    try std.testing.expect(w.unresolved>0);
+    for(w.colonies[1..])|c|try std.testing.expectEqual(@as(f64,0),c.mass());
+    for(0..100)|_|_=step(&w,.{},0.1);
+    try std.testing.expect(reproduce(&w,0));
+    try std.testing.expect(w.colonies[1].lineage==5 and w.colonies[1].parent==1);
+    try std.testing.expectEqual(@as(u32,3),w.extinctions);
+    try std.testing.expectApproxEqAbs(carbon,w.totalC(),1e-10);
+    try std.testing.expectApproxEqAbs(nutrient,w.totalN(),1e-10);
+}
+test "resource scarcity and severe exposure can cause real extinction without resurrection" {
+    var w=initialize(0.4);const carbon=w.totalC();const nutrient=w.totalN();
+    for(0..100)|_|_=step(&w,.{.depth = -0.1,.light=0},0.1);
+    try std.testing.expectEqual(@as(f64,0),w.colonies[0].mass());
+    try std.testing.expectEqual(@as(u32,1),w.extinctions);
+    for(0..100)|_|_=step(&w,.{},0.1);
+    try std.testing.expectEqual(@as(f64,0),w.colonies[0].mass());
+    try std.testing.expectEqual(@as(u32,0),w.births);
+    try std.testing.expectApproxEqAbs(carbon,w.totalC(),1e-10);
+    try std.testing.expectApproxEqAbs(nutrient,w.totalN(),1e-10);
+    var scarce=initialize(0);scarce.carbon=0;scarce.nutrient=0;scarce.oxygen=0;
+    const limited=scarce.organic();for(0..240)|_|_=step(&scarce,.{},0.1);
+    try std.testing.expect(scarce.organic()<=limited+1e-10);
+    try std.testing.expect(scarce.colonies[0].mass()<0.08);
+}
+test "multiple founder seeds and exposed timestep scales conserve resources and allow actual inherited organization" {
+    var expressing:u32=0;var born:u32=0;
+    for(1..33)|seed_value|{
+        var w=initialize(0);w.rng=seed_value;
+        const carbon=w.totalC();const nutrients=w.totalN();
+        for(0..300)|_|{_=step(&w,.{},0.1);for(0..4)|i|_=reproduce(&w,i);}
+        var supported=false;for(w.colonies)|c|{if(c.generation>0 and c.support>0 and c.allocation>0)supported=true;}
+        if(supported)expressing+=1;if(w.births>0)born+=1;
+        try std.testing.expectApproxEqAbs(carbon,w.totalC(),1e-9);
+        try std.testing.expectApproxEqAbs(nutrients,w.totalN(),1e-9);
+        for(w.colonies,0..)|c,i|{if(c.mass()>0){try std.testing.expect(c.mass()>=resolution_floor);for(w.colonies[i+1..])|other|try std.testing.expect(other.mass()==0 or other.lineage!=c.lineage);}}
+    }
+    try std.testing.expect(expressing>0 and born>0);
+    std.debug.print("MULTISEED founders=32 births_in={d} expressed_support_in={d}\n",.{born,expressing});
+    var endpoints:[3]f64=undefined;
+    for([_]u32{60,1440,3600},0..)|seconds,i|{
+        var w=initialize(0.4);const carbon=w.totalC();const nutrients=w.totalN();
+        for(0..1728000/seconds)|_|{const f=step(&w,.{},@as(f64,@floatFromInt(seconds))/86400);try std.testing.expect(f.photons<=1.000000001);}
+        endpoints[i]=w.colonies[0].mass();
+        try std.testing.expectApproxEqAbs(carbon,w.totalC(),1e-8);
+        try std.testing.expectApproxEqAbs(nutrients,w.totalN(),1e-9);
+        std.debug.print("TIMESTEP seconds={d} biomass={d} carbon_error={e}\n",.{seconds,endpoints[i],@abs(carbon-w.totalC())});
+    }
+    try std.testing.expect(@abs(endpoints[0]-endpoints[2])/endpoints[0]<0.02);
 }

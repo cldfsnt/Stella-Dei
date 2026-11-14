@@ -1,11 +1,18 @@
-1/5 colonial_producers.test.finite light carbon nutrients and donor-funded inherited tissue...COLONIAL births=3 fixed=3.247244541803107 carbon_error=2.6645352591003757e-14
+1/8 colonial_producers.test.finite light carbon nutrients and donor-funded inherited tissue...COLONIAL births=3 fixed=3.247244541803107 carbon_error=2.6645352591003757e-14
 OK
-2/5 colonial_producers.test.support has context-dependent benefit and cost not a free upgrade...OPEN structured=1.466557347542999 flat=1.901265876732695
+2/8 colonial_producers.test.support has context-dependent benefit and cost not a free upgrade...OPEN structured=1.466557347542999 flat=1.901265876732695
 CROWDED structured=1.466557347542999 flat=0.054471443548535343
 OK
-3/5 colonial_producers.test.water and disturbance act on actual tissue and recycle damage...DAMAGE before=1.0080759670884445 injured=0.007631139397630546 recovered=1.4042500830244662
+3/8 colonial_producers.test.water and disturbance act on actual tissue and recycle damage...DAMAGE before=1.0080759670884445 injured=0.007631139397630546 recovered=1.4042500830244662
 OK
-4/5 colonial_producers.test.founder without support yields a functional reproducing organized descendant...INHERITED allocation=0.016375278394537823 support=0.016580495285583013 organized=2.6289003927024783 disabled=2.508353390408141 generation2=true
+4/8 colonial_producers.test.founder without support yields a functional reproducing organized descendant...INHERITED allocation=0.016375278394537823 support=0.016580495285583013 organized=2.6289003927024783 disabled=2.508353390408141 generation2=true
 OK
-5/5 colonial_producers.test.equal-height light sharing has no array-order advantage and resources limit growth...OK
-All 5 tests passed.
+5/8 colonial_producers.test.equal-height light sharing has no array-order advantage and resources limit growth...OK
+6/8 colonial_producers.test.resolution extinction conserves residual tissue and permits donor-funded slot reuse...OK
+7/8 colonial_producers.test.resource scarcity and severe exposure can cause real extinction without resurrection...OK
+8/8 colonial_producers.test.multiple founder seeds and exposed timestep scales conserve resources and allow actual inherited organization...MULTISEED founders=32 births_in=32 expressed_support_in=30
+TIMESTEP seconds=60 biomass=1.4645084190317061 carbon_error=9.627854069549358e-13
+TIMESTEP seconds=1440 biomass=1.4648403174862685 carbon_error=1.9539925233402755e-14
+TIMESTEP seconds=3600 biomass=1.4653579846100748 carbon_error=3.197442310920451e-14
+OK
+All 8 tests passed.
