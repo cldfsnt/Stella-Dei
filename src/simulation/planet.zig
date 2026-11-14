@@ -1488,8 +1488,14 @@ pub const Planet = struct {
         self.microbeStats.recycled_carbon += @as(f64, flux.recycled) * area;
     }
 
+    pub fn seedEligibility(self:*Planet,index:usize) @import("../seed_eligibility.zig").Reason {
+        if(self.worldMode!=.origin or index>=self.microbeCells.len or index>=self.waterMass.len or index>=self.temperature.len)return .invalid;
+        const env=self.microbeEnvironment(index,1);
+        return @import("../seed_eligibility.zig").evaluate(self.microbeCells[index],env.depth_km,env.temperature,env.carbon_available);
+    }
+
     pub fn seedMicrobes(self: *Planet, index: usize) bool {
-        if (self.worldMode != .origin or index >= self.microbeCells.len) return false;
+        if (self.seedEligibility(index)!=.eligible) return false;
         const env = self.microbeEnvironment(index, 1);
         if (!Microbes.habitable(env.depth_km, env.temperature)) return false;
         const fixed = Microbes.seed(&self.microbeCells[index], &self.microbeStats, env.carbon_available);

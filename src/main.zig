@@ -358,6 +358,7 @@ export fn stella_life_snapshot() [*:0]const u8 {
     var stream = std.io.fixedBufferStream(lifeSnapshotBuffer[0 .. lifeSnapshotBuffer.len - 1]);
     std.json.stringify(.{
         .status = "origin", .cell = point, .day = state.gameTime / 86400,
+        .seed_reason = @tagName(state.planet.seedEligibility(point)),
         .temperature_c = state.planet.temperature[point] - 273.15,
         .water_m = state.planet.waterMass[point] * state.planet.getKmPerWaterMass() * 1000,
         .nutrients = cell.nutrient, .detritus = cell.detritus, .simulation_light = biologicalLight,

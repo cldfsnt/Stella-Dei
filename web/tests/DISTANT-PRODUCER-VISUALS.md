@@ -30,3 +30,12 @@ LOD have two smaller shoots of their actual form to read as colonies. These are
 population symbols, not a claim of individual organism counts. The controlled
 six-form fixture spaces actual occupied cells across a 0.12-radian habitat ring
 so de-cluttering does not hide most of the comparison. It is not evolution proof.
+
+Origin Seed mode now marks actual seedable visible cell centers with green +
+target rings, checked through the same `Planet.seedEligibility` used by the
+seed action. Targets include current water, temperature, empty cohort slots,
+nutrients and carbon checks. They are capped at64 and separated by38 screen
+pixels to avoid an unreadable blanket. The selected patch has a larger green
+ring when valid or a salmon ring/X when invalid; the generic white selection
+is suppressed in Seed mode. No model values or eligibility are changed here.
+The bottom reason text and Find-seedable behavior are integrated separately.

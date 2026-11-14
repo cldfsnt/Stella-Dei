@@ -5,7 +5,9 @@ import subprocess,sys
 here=Path(__file__).resolve().parent;out=Path(sys.argv[1])
 subprocess.run([sys.executable,str(here/'egl-forms-world-prepare.py'),str(out)],check=True)
 p=out/'main.zig';s=p.read_text()
-s=s.replace('    const size=window.getFramebufferSize();\n    qa_click(@as(f64,@floatFromInt(size.width))/2,350);', '''    { const point: u32=@intCast(state.selectedPoint);
+s=s.replace('    const size=window.getFramebufferSize();\n    qa_click(@as(f64,@floatFromInt(size.width))/2,350);', '''    { std.debug.assert(state.focusSeedableHabitat());
+    std.debug.assert(state.planet.seedEligibility(state.selectedPoint)==.eligible);
+    const point: u32=@intCast(state.selectedPoint);
     const paused=state.paused;const pace=state.timeScale;
     const starter_biomass_before=@import("simulation/microbes.zig").biomass(state.planet.microbeCells[point]);
     std.debug.assert(state.seedSelectedColony(point+1)==-1);

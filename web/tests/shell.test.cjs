@@ -61,12 +61,13 @@ sandbox.Module.ccall=()=>JSON.stringify({status:'sandbox'});el('refresh-life').o
 // Compact starter uses real snapshots and separate guarded actions.
 sandbox.Module._stella_world_mode=()=>1;sandbox.Module._stella_seed_colony=()=>0;
 let seedResult=1,starterCalls=[];
-sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_seed_colony'){starterCalls.push(v);return seedResult;}if(name==='stella_make_pond')return 19;return JSON.stringify({status:'origin',cell:22,water_m:15,temperature_c:24,cohorts:[]});};
+sandbox.Module.ccall=(name,t,a,v)=>{if(name==='stella_seed_colony'){starterCalls.push(v);return seedResult;}if(name==='stella_make_pond')return 19;return JSON.stringify({status:'origin',cell:22,water_m:15,temperature_c:24,seed_reason:'eligible',cohorts:[]});};
 sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,false);assert.match(el('starter-summary').textContent,/22.*15.0 m water.*24°C/);
 el('starter-basin').onclick();assert.match(el('starter-info').textContent,/19 patches, 15 m water/);assert.equal(starterCalls.length,0,'Basin must not seed');
 el('origin-starter').open=true;el('starter-seed').onclick();assert.equal(JSON.stringify(starterCalls),'[[22]]');assert.equal(el('origin-starter').open,false);assert.match(el('status').textContent,/Existing colony seeded/);assert.match(el('notice').textContent,/Existing colony seeded/);assert.equal(el('notice').hidden,false);
 seedResult=0;el('starter-seed').onclick();assert.match(el('starter-info').textContent,/No colony added/);
 seedResult=-1;el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Patch changed/);
+sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:0,temperature_c:24,seed_reason:'too_dry'});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);assert.match(el('starter-summary').textContent,/Too dry/);
 sandbox.Module._stella_world_mode=()=>0;sandbox.refreshStarter();assert.equal(el('origin-starter').hidden,true);assert.equal(el('starter-seed').disabled,true);el('starter-seed').onclick();assert.match(el('starter-info').textContent,/Choose an Origin/);
 sandbox.Module._stella_world_mode=()=>1;sandbox.Module.ccall=()=>JSON.stringify({status:'origin',cell:22,water_m:null,temperature_c:24});sandbox.refreshStarter();assert.equal(el('starter-seed').disabled,true);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});
