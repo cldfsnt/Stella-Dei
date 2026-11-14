@@ -47,6 +47,27 @@ hook=r'''        {
             std.debug.assert(state.gameTime==before_time and state.timeScale==before_pace and state.paused==before_pause);
             std.debug.print("NATURAL_GOD_PREVIEW selected={d} wave={s} lightning={s} scorch={s} water_m={d} heat_capacity={d} exact_save_unchanged=true time_pace_pause_unchanged=true\n",.{patch,@tagName(wave_preview.failure),@tagName(heat_preview.failure),@tagName(scorch_preview.failure),state.planet.waterMass[patch]*state.planet.getKmPerWaterMass()*1000,capacity});
             originReport("natural_nursery_watch",state);
+            // Exercise actual selected-tool seam, then restore the exact original save.
+            const brush_save=try saves.capture(aa,state);
+            const brush_bytes=try std.json.stringifyAlloc(aa,brush_save,.{});
+            const original_water=try aa.dupe(f32,state.planet.waterMass);
+            const before_depth=original_water[patch]*state.planet.getKmPerWaterMass()*1000;
+            std.debug.assert(before_depth>1);
+            std.debug.assert(state.testAction(2));
+            const removed_depth=(original_water[patch]-state.planet.waterMass[patch])*state.planet.getKmPerWaterMass()*1000;
+            std.debug.assert(@abs(removed_depth-1)<0.0001);
+            for(original_water,0..)|mass,i|if(i!=patch)std.debug.assert(mass==state.planet.waterMass[i]);
+            std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(aa,brush_save.origin,.{}),try std.json.stringifyAlloc(aa,(try saves.capture(aa,state)).origin,.{})));
+            _=state.planet.setWaterDepthMeters(patch,0.25); // Explicit temporary fixture for zero bound, not natural ecology.
+            std.debug.assert(state.testAction(2));std.debug.assert(state.planet.waterMass[patch]==0);
+            std.debug.assert(!state.testAction(2));
+            for(original_water,0..)|mass,i|if(i!=patch)std.debug.assert(mass==state.planet.waterMass[i]);
+            std.debug.assert(state.gameTime==before_time and state.timeScale==before_pace and state.paused==before_pause);
+            const frozen_brush=try std.json.parseFromSlice(saves.schema.Save,aa,brush_bytes,.{.allocate=.alloc_always});
+            try saves.apply(state,frozen_brush.value);
+            std.debug.assert(std.mem.eql(u8,brush_bytes,try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{})));
+            std.debug.print("NATURAL_WATER_MINUS selected={d} removed_m={d} all_other_water_unchanged=true biology_unchanged=true zero_clamped=true dry_noop=true exact_save_restored=true time_pace_pause_unchanged=true\n",.{patch,removed_depth});
+
         }
 '''
 s=s.replace(needle,hook+needle,1);p.write_text(s)

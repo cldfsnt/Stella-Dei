@@ -1,0 +1,6 @@
+1/5 water_brush.test.selected water removal is gradual bounded and never changes neighbors...OK
+2/5 water_brush.test.removal gesture matches rate across frames and no elapsed spike...OK
+3/5 water_brush.test.invalid or unresolved water removal refuses atomically...OK
+4/5 edit_rates.test.same two-second gesture at 15 30 60 120 Hz and every simulation speed...OK
+5/5 edit_rates.test.tap bounded and stalled or invalid elapsed cannot spike brush...OK
+All 5 tests passed.

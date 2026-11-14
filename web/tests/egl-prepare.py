@@ -52,8 +52,9 @@ if '--ecosystem' in sys.argv:
                 const restored = @abs(state.planet.elevation[selected] - height) < 0.001;
                 const emitted = state.testAction(1);
                 const wet = state.planet.waterMass[selected] > 0;
+                const wet_before=state.planet.waterMass[selected];
                 const drained = state.testAction(2);
-                const dry = state.planet.waterMass[selected] == 0;
+                const dry = state.planet.waterMass[selected] < wet_before and state.planet.waterMass[selected]>=0;
                 std.debug.print("TOOLS same vertex={d} raise={} lower={} addwater={} drain={}\n", .{selected,raised and higher,lowered and restored,emitted and wet,drained and dry});
             }
             if (frame >= 76 and frame <= 85) {

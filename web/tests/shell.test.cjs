@@ -1,6 +1,6 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync(require('node:path').join(__dirname,'../shell.html'),'utf8');
-assert.match(html,/a <b>Water \+<\/b> tap adds 1 m to the selected patch/);assert.match(html,/no automatic refill or guaranteed evolution/);
+assert.match(html,/a <b>Water \+<\/b> tap adds 1 m to the selected patch/);assert.match(html,/no automatic refill or guaranteed evolution/);assert.match(html,/Water −<\/b> removes up to 1 m per tap from only the selected patch/);assert.match(html,/never drains neighbors/);
 assert.match(html,/body #origin-starter\{position:static;flex:none;display:block;width:auto;inset:auto;max-height:180px/);
 assert.match(html,/body #origin-starter:not\(\[open\]\)\{display:block\}/);
 assert.match(html,/body #origin-starter:not\(\[open\]\)>:not\(summary\)\{display:none\}/);

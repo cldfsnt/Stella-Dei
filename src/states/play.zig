@@ -922,10 +922,16 @@ pub const PlayState = struct {
         }
 
         if (tool == .DrainWater) {
-            planet.waterMass[self.selectedPoint] = 0;
-            for (planet.getNeighbours(self.selectedPoint)) |idx| {
-                planet.waterMass[idx] = 0;
-            }
+            const removal=@import("../water_brush.zig").remove(planet.waterMass,self.selectedPoint,planet.getKmPerWaterMass(),tap,elapsed);
+            self.mobileFeedback=switch(removal.status){
+                .changed=>"Water removed from selected patch only (up to 1 m per tap)",
+                .dry=>"Selected patch is already dry; neighbors unchanged",
+                .no_change=>"No water removed",
+                .precision=>"Water change below map precision; try a shallower patch",
+                .invalid=>"Invalid water target; no water removed",
+            };
+            self.mobileFeedbackSeconds=3;
+            return removal.status==.changed;
         }
 
         if (tool == .RaiseTerrain) {
@@ -953,7 +959,7 @@ pub const PlayState = struct {
         self.mobileFeedback = switch (tool) {
             .PlaceVegetation => if (guidance.plantWarning(planet.waterMass[self.selectedPoint] * planet.getKmPerWaterMass())) |warning| warning else "Seedlings planted: let them grow",
             .EmitWater => "Water added: flooding can kill life",
-            .DrainWater => "Water drained from this patch",
+            .DrainWater => "Selected-patch water removal",
             .RaiseTerrain => "Land raised",
             .LowerTerrain => "Land lowered",
             else => "",
@@ -1954,7 +1960,7 @@ pub const PlayState = struct {
         } else switch (self.selectedTool) {
             .None => if (self.planet.lifeforms.items.len == 0) "Plant food, add rabbits, press Play" else if (self.paused) "Paused: press Play to watch your habitat" else if (self.planet.rabbitBirths == 0) "Watch grazing; births need food and time" else "Births recorded. Inspect or change climate",
             .EmitWater => "Paint mode: drag to add water",
-            .DrainWater => "Paint mode: drag to drain water",
+            .DrainWater => "Water -: selected patch only, 1 m/tap or 5 m/sec held",
             .PlaceVegetation => guidance.plantWarning(depth) orelse "Paint mode: drag to plant food",
             .RaiseTerrain => "Paint mode: drag to raise land",
             .LowerTerrain => "Paint mode: drag to lower land",

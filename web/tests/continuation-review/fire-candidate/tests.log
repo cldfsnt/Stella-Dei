@@ -1,0 +1,6 @@
+1/5 detritus_ignition.test.fuel oxidation conserves carbon oxygen nutrients and unrelated living state...OK
+2/5 detritus_ignition.test.oxygen and thermal caps leave unburned fuel without discarding heat...OK
+3/5 detritus_ignition.test.repetition cannot consume absent fuel or oxygen and never resurrects fuel...OK
+4/5 detritus_ignition.test.wet invalid nonfinite and subresolution inputs refuse atomically...OK
+5/5 detritus_ignition.test.deterministic bounded parameter sweep closes ledgers...OK
+All 5 tests passed.
