@@ -145,6 +145,12 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     state.debug_spawnRabbits = false;
     state.defer_saveGame = false;
     p.uploadNo = 0;
+    // Observation effects are transient, not historical save-state facts.
+    if(@hasField(@TypeOf(p.*),"propaguleFeedback")){
+        p.propaguleFeedback=.{};p.propaguleAttempts=0;p.propaguleArrivals=0;p.propaguleTrackedLosses=0;
+    }
+    if(@hasField(@TypeOf(state.*),"propaguleVisuals"))state.propaguleVisuals=.{};
+    if(@hasField(@TypeOf(state.*),"watchLifeView"))state.watchLifeView=false;
 }
 
 /// Restore the saved grid exactly. Build/apply a replacement in isolation so

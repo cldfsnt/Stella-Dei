@@ -1,3 +1,4 @@
+const AtmosphereWater = @import("atmosphere_water.zig");
 const Microbes = @import("microbes.zig");
 const SurfacePhysics = @import("surface_physics.zig");
 const builtin = @import("builtin");
@@ -167,6 +168,10 @@ pub const Planet = struct {
     worldMode: Microbes.Mode = .sandbox,
     microbeCells: []Microbes.Cell = &.{},
     microbeStats: Microbes.Stats = .{},
+    propaguleFeedback: @import("../propagule_feedback.zig").Tracker = .{},
+    propaguleAttempts: u64 = 0,
+    propaguleArrivals: u64 = 0,
+    propaguleTrackedLosses: u64 = 0,
     plantGenerations: u32 = 0,
     plantBirths: u64 = 0,
     rabbitBirths: u64 = 0,
@@ -983,15 +988,10 @@ pub const Planet = struct {
         const dt = options.dt * options.timeScale;
 
         const meanPointArea = self.getMeanPointArea();
-        const meanDistance = std.math.sqrt(meanPointArea); // m
-        const meanDistanceKm = meanDistance / 1000; // km
         const kmPerWaterMass = self.getKmPerWaterMass(); // km / 10⁹ kg
 
         const shareFactor = @min(0.00002 * dt / (6 * @as(f32, @floatFromInt(numIterations))), 1.0 / 7.0);
-        const substanceDivider: f64 = self.getSubstanceDivider();
-        const meanAtmVolume: f64 = self.getMeanPointArea() * 12_000; // m³
 
-        const evaporationAmt = @as(f32, 0.1) * meanPointArea * dt;
 
         // Do some liquid simulation
         const counting_vector = std.simd.iota(usize, VECTOR_SIZE);
@@ -1000,36 +1000,10 @@ pub const Planet = struct {
             while (i < end - VECTOR_SIZE + 1) : (i += VECTOR_SIZE) {
                 // only fluid if it's not ice
                 const indices = @as(IndexVector, @splat(i)) + counting_vector; // i + 0, i + 1, i + 2, ...
-                const temp = loadSimdVector(self.temperature, i).*;
                 const elevation = loadSimdVector(self.elevation, i).*;
-                var mass = loadSimdVector(self.newWaterMass, i).*;
-                const vaporMass = loadSimdVector(self.newWaterVaporMass, i).*;
-                var vaporMassDiff = VECTOR_ZERO;
+                const mass = loadSimdVector(self.newWaterMass, i).*;
 
-                {
-                    const doBoiling = temp > @as(SimdVector, @splat(@as(f32, 373.15)));
-                    const boilingDiff = @min(mass, @as(SimdVector, @splat(evaporationAmt)));
-                    const diff = @select(f32, doBoiling, boilingDiff, VECTOR_ZERO);
-                    mass -= diff;
-                    vaporMassDiff += diff;
-                }
-
-                // Mass to remove from the current cell because it has been shared to others or evaporated
-                {
-                    const RH = Planet.getRelativeHumidities(substanceDivider, temp, vaporMass);
-                    // evaporation only happens when the air isn't saturated and when the water is above 0°C
-                    const hasSuitableHumidity = RH < @as(SimdVector, @splat(@as(f32, 1.0)));
-                    const isLiquid = temp > @as(SimdVector, @splat(@as(f32, 273.15)));
-                    const doEvaporation = @select(bool, hasSuitableHumidity, isLiquid, @as(@Vector(VECTOR_SIZE, bool), @splat(false)));
-                    // TODO: maxDiff = max until it reaches 100% humidity
-                    const equilibriumMass = Planet.getEquilibriumVaporMasses(substanceDivider, temp);
-                    const maxDiff = @max(equilibriumMass - vaporMass, VECTOR_ZERO);
-                    const computedDiff = @min(maxDiff, mass);
-                    const diff = @select(f32, doEvaporation, computedDiff, VECTOR_ZERO);
-                    mass -= diff;
-                    vaporMassDiff += diff;
-                    saveSimdVector(self.newWaterVaporMass, i, vaporMass + vaporMassDiff);
-                }
+                // Atmospheric phase exchange occurs after all liquid jobs join.
 
                 const totalHeight = elevation + mass * @as(SimdVector, @splat(kmPerWaterMass));
                 const shared = mass * @as(SimdVector, @splat(shareFactor));
@@ -1047,69 +1021,6 @@ pub const Planet = struct {
             }
         }
 
-        // Those are simply the coordinates of points in an hexagon,
-        // which is enough to get a (rough approximation of a) tangent
-        // vector.
-        const tangentVectors = [6]Vec2{
-            Vec2.new(-0.5, 0.9),
-            Vec2.new(-0.5, -0.9),
-            Vec2.new(-1.0, 0.0),
-            Vec2.new(0.5, 0.9),
-            Vec2.new(0.5, -0.9),
-            Vec2.new(1.0, 0.0),
-        };
-
-        // Do some water vapor simulation
-        i = start;
-        while (i < end) : (i += 1) {
-            const mass = self.newWaterVaporMass[i];
-            const T = self.temperature[i]; // TODO: separate air temperature?
-            const pressure = self.getAirPressure(substanceDivider, T, mass);
-            self.rainfall[i] = @max(0, self.rainfall[i] * (1.0 - dt / 86400.0));
-
-            if (false) {
-                for (self.getNeighbours(i), 0..) |neighbourIdx, location| {
-                    const neighbourVapor = self.waterVaporMass[neighbourIdx];
-                    const dP = pressure - self.getAirPressure(substanceDivider, self.temperature[neighbourIdx], neighbourVapor);
-
-                    // // Vector corresponding to the right-center point of the tangent plane of the sphere passing through current point
-                    // const right = transformedPoint.cross(Vec3.back()).norm();
-
-                    // // Vector corresponding to the center-up point on the tangent plane
-                    // const up = transformedPoint.cross(right).norm();
-
-                    const tangent = tangentVectors[location];
-
-                    // wind is from high pressure to low pressure
-                    if (dP > 0) {
-                        // Pressure gradient force
-                        const pgf = dP / meanDistance * meanAtmVolume; // N
-                        // F = ma, so a = F/m
-                        const acceleration = @as(f32, @floatCast(pgf / (mass * 1_000_000_000) / 1000 * dt)); // km/s
-                        self.airVelocity[i].data += tangent.scale(acceleration).data;
-                    }
-                }
-            }
-            std.debug.assert(self.newWaterVaporMass[i] >= 0);
-
-            // Rainfall
-            {
-                const RH = Planet.getRelativeHumidity(substanceDivider, T, mass);
-                // rain
-                if (RH > 0.95 and T < 373.15) {
-                    // clouds don't go above 15km
-                    if (self.newWaterMass[i] * kmPerWaterMass + self.elevation[i] - self.radius < 15) {
-                        // TODO: form cloud as clouds are formed from super-saturated air
-                        const diff = @min(mass, 0.5 * dt * mass / 100000.0);
-                        //const diff = mass;
-                        self.newWaterMass[i] += diff;
-                        self.newWaterVaporMass[i] -= diff;
-                        self.rainfall[i] += diff / dt * 86400;
-                    }
-                }
-            }
-        }
-
         // Do some wind simulation
         i = start;
         if (true) {
@@ -1121,7 +1032,6 @@ pub const Planet = struct {
             const spinRate = 1.0 / options.planetRotationTime * 2 * std.math.pi * self.radius / 500000;
             while (i < end) : (i += 1) {
                 const vert = self.vertices[i];
-                const transformedPoint = self.transformedPoints[i];
                 var velocity = self.airVelocity[i];
 
                 // Coriolis force
@@ -1146,68 +1056,56 @@ pub const Planet = struct {
                     velocity = velocity.sub(velocity.norm().scale(std.math.clamp(dragForce * dt, 0, velocityN / 20)));
                 }
 
-                var appliedVelocity = Vec3.new(velocity.x() * dt, velocity.y() * dt, 0);
-                if (appliedVelocity.dot(appliedVelocity) > meanDistanceKm * meanDistanceKm) { // length squared > meanDistanceKm²
-                    appliedVelocity = appliedVelocity.norm().scale(meanDistanceKm);
-                }
-
-                // Vector corresponding to the right-center point of the tangent plane of the sphere passing through current point
-                const right = transformedPoint.cross(Vec3.back()).norm().scale(0.1);
-
-                // Vector corresponding to the center-up point on the tangent plane
-                const up = transformedPoint.cross(right).norm().scale(0.1);
-                const targetPos = transformedPoint.add(right.scale(appliedVelocity.x()).add(up.scale(appliedVelocity.y())));
-                _ = targetPos;
-
-                // const neighbours = self.getNeighbours(i);
-                // for (neighbours) |neighbourIdx| {
-                //     const neighbourPos = self.transformedPoints[neighbourIdx];
-                //     const diff = meanDistanceKm - @min(meanDistanceKm, neighbourPos.distance(targetPos));
-
-                //     const shared = std.math.clamp(diff / (6 * meanDistanceKm), 0, 1);
-                //     //std.log.info("shared: {d}", .{ shared });
-                //     const sharedVapor = self.waterVaporMass[i] * shared;
-                //     self.newWaterVaporMass[neighbourIdx] += sharedVapor;
-                //     // avoid negative values due to imprecision
-                //     self.newWaterVaporMass[i] = @max(0, self.newWaterVaporMass[i] - sharedVapor);
-                // }
-
-                // TODO: account for airPositionError
-                var rightmostNeighbour: usize = undefined;
-                var rightmostNeighbourPos: Vec3 = undefined;
-                var rightmostDist: f32 = 1000000;
-                const neighbours = self.getNeighbours(i);
-                const positionError = right.scale(self.airPositionError[i].x()).add(up.scale(self.airPositionError[i].y()));
-                for (neighbours) |neighbourIdx| {
-                    const neighbourPos = self.vertices[neighbourIdx].sub(positionError);
-                    const dist = neighbourPos.distance(right);
-                    if (dist < rightmostDist) {
-                        rightmostDist = dist;
-                        rightmostNeighbour = neighbourIdx;
-                        rightmostNeighbourPos = neighbourPos;
-                    }
-                }
-
-                const share = self.waterVaporMass[i] / 4;
-                self.newWaterVaporMass[rightmostNeighbour] += share;
-                self.newWaterVaporMass[i] -= share;
-
-                // TODO: properly determine the coefficient
-                // const coeff = @max(1.0, 0.00005 * dt);
-                const coeff = 0.5;
-                const distanceError = rightmostNeighbourPos.distance(self.vertices[i]) - right.distance(self.vertices[i]);
-                const targetError = Vec2.new(
-                    distanceError * right.dot(rightmostNeighbourPos),
-                    distanceError * up.dot(rightmostNeighbourPos),
-                ); // right now it's always coming from left
-                self.airPositionError[rightmostNeighbour] =
-                    self.airPositionError[rightmostNeighbour].scale(1 - coeff).add(targetError.scale(coeff));
+                // Actual moisture advection is a globally staged gather pass.
 
                 velocity = velocity.scale(airSpeedMult);
 
                 self.airVelocity[i] = velocity;
             }
         }
+    }
+
+    fn atmosphericWind(self:*const Planet,index:usize) [3]f64 {
+        const normal=self.transformedPoints[index].norm();
+        var right=normal.cross(Vec3.back());
+        if(right.length()<0.000001)right=normal.cross(Vec3.new(0,1,0));
+        right=right.norm();const up=normal.cross(right).norm();
+        const velocity=self.airVelocity[index];
+        const wind=right.scale(velocity.x()).add(up.scale(velocity.y()));
+        return .{wind.x(),wind.y(),wind.z()};
+    }
+    fn atmosphericEdgeRate(self:*const Planet,from:usize,to:usize) f64 {
+        const a=self.transformedPoints[from];const b=self.transformedPoints[to];
+        return AtmosphereWater.edgeRate(.{a.x(),a.y(),a.z()},.{b.x(),b.y(),b.z()},self.atmosphericWind(from));
+    }
+    /// Runs only after every liquid/velocity job has joined. No neighbor writes.
+    /// Phase relaxation is phenomenological: no latent-heat or real-weather claim.
+    fn simulateAtmosphereWater(self:*Planet,dt:f32) void {
+        if(!std.math.isFinite(dt) or dt<=0)return;
+        const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
+        for(self.waterMass,self.waterVaporMass,0..)|liquid,vapor,i|{
+            const temperature=self.temperature[i];
+            const saturation=@as(f64,getEquilibriumVaporPressure(temperature))*divider/(@as(f64,temperature)*k);
+            const result=AtmosphereWater.phase(liquid,vapor,saturation,temperature,dt,self.rainfall[i]) orelse continue;
+            self.waterMass[i]=@floatCast(result.liquid);self.waterVaporMass[i]=@floatCast(result.vapor);self.rainfall[i]=@floatCast(result.rain_rate);
+        }
+        // After the preceding swap, newWaterMass holds stale OLD liquid data.
+        // It is scratch until the NEXT water step overwrites it from waterMass.
+        // Saves and rendering consume current waterMass, never this scratch.
+        // Immutable post-phase vapor + fixed velocities drive both passes.
+        for(self.waterVaporMass,0..)|vapor,i|{
+            var total_rate:f64=0;for(self.getNeighbours(i))|n|total_rate+=self.atmosphericEdgeRate(i,n);
+            const coefficient=AtmosphereWater.coefficient32(vapor,total_rate,dt);
+            self.newWaterMass[i]=coefficient;
+
+        }
+        for(self.waterVaporMass,0..)|vapor,i|{
+            var total_rate:f64=0;for(self.getNeighbours(i))|n|total_rate+=self.atmosphericEdgeRate(i,n);
+            var gathered:f64=@max(0,@as(f64,vapor)-@as(f64,self.newWaterMass[i])*total_rate);
+            for(self.getNeighbours(i))|n|gathered+=@as(f64,self.newWaterMass[n])*self.atmosphericEdgeRate(n,i);
+            self.newWaterVaporMass[i]=@floatCast(gathered);
+        }
+        std.mem.swap([]f32,&self.waterVaporMass,&self.newWaterVaporMass);
     }
 
     /// Compute partial pressure using ideal gas law, it is done in f64 as
@@ -1536,7 +1434,11 @@ pub const Planet = struct {
         for (self.microbeCells, 0..) |*cell, i| {
             if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
+            const before_cohorts=cell.cohorts;
             const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+            for(before_cohorts,0..)|old,slot|{
+                if(old.biomass>0 and cell.cohorts[slot].biomass==0 and self.propaguleFeedback.failed(i,old.lineage,options.gameTime))self.propaguleTrackedLosses+|=1;
+            }
             self.applyMicrobeFlux(flux);
             self.microbeStats.failed_patches +|= flux.failed_patches;
             self.microbeStats.grazed_carbon += @as(f64,flux.grazed)*self.getMeanPointArea();
@@ -1554,6 +1456,7 @@ pub const Planet = struct {
                 for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
                 const moved = Microbes.relocate(self.microbeCells, i, which, self.microbeEnvironment(i, 1), &records, dt, options.gameTime);
                 if (moved.moved) {
+                    self.propaguleFeedback.forget(co.lineage);
                     self.applyMicrobeFlux(.{ .recycled = moved.respired });
                     self.microbeStats.relocations +|= 1;
                     self.microbeStats.movement_respired_carbon += @as(f64, moved.respired) * self.getMeanPointArea();
@@ -1567,6 +1470,22 @@ pub const Planet = struct {
             const donor_start:usize = @intCast(Microbes.random(&cell.rng) % cell.cohorts.len);
             for (0..cell.cohorts.len) |donor_offset| {
                 const cohort = (donor_start + donor_offset) % cell.cohorts.len;
+                if(cell.cohorts[cohort].reproduction_credit>=0.01 and cell.cohorts[cohort].biomass>=0.02){
+                    const adjacent=self.getNeighbours(i);
+                    const n=adjacent[@intCast(Microbes.random(&cell.rng)%adjacent.len)];
+                    // Pentagon adjacency pads with self: not a dispersal attempt.
+                    if(n==i)continue;
+                    const env=self.microbeEnvironment(n,1);
+                    self.propaguleAttempts+|=1;
+                    // Exploration includes harsh real habitats; no favorable-condition gate.
+                    if(std.math.isFinite(env.depth_km) and std.math.isFinite(env.temperature)){
+                        const lineage=self.microbeStats.next_lineage;
+                        if(Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats)){
+                            self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(i,n,lineage,options.gameTime);
+                            continue;
+                        }
+                    }
+                }
                 if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
                 if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
                 const neighbors = self.getNeighbours(i);
@@ -1679,6 +1598,7 @@ pub const Planet = struct {
 
                 std.mem.swap([]f32, &self.waterMass, &self.newWaterMass);
                 std.mem.swap([]f32, &self.waterVaporMass, &self.newWaterVaporMass);
+                self.simulateAtmosphereWater(dt);
             }
         } else {
             // TODO: use a global water level

@@ -1,0 +1,33 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x1485f5a0 context=0x1485fbb0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x4cd1056762c78896
+info: Sea Level: -2.5336914 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=37234 elevation=5014.248 water=0 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=10257.427
+Captured /tmp/stella-watch-390x400-001.ppm
+QA frame=25 selected=14610 elevation=4999.0464 water=115042.94 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5274.649
+Captured /tmp/stella-watch-390x400-025.ppm
+WATCH pause_button_actual=true no_inspect_clickthrough=true
+QA frame=35 selected=14610 elevation=4999.0464 water=115016.35 vegetation=0 rabbits=0 time=1456.81494140625 paused=false tool=None camera=5274.649
+Captured /tmp/stella-watch-390x400-035.ppm
+QA frame=45 selected=14610 elevation=4999.0464 water=114927.055 vegetation=0 rabbits=0 time=6540.5712890625 paused=true tool=None camera=5274.649
+Captured /tmp/stella-watch-390x400-045.ppm
+WATCH speed_button_actual=true compact=true
+QA frame=55 selected=14610 elevation=4999.0464 water=114927.055 vegetation=0 rabbits=0 time=6540.5712890625 paused=true tool=None camera=5274.649
+Captured /tmp/stella-watch-390x400-055.ppm
+WATCH tools_restores_full=true pause_and_pace_preserved=true
+QA frame=85 selected=14610 elevation=4999.0464 water=114927.055 vegetation=0 rabbits=0 time=6540.5712890625 paused=true tool=None camera=5274.649
+Captured /tmp/stella-watch-390x400-085.ppm
+QA frame=95 selected=14610 elevation=4999.0464 water=114927.055 vegetation=0 rabbits=0 time=6540.5712890625 paused=true tool=None camera=5274.649
+Captured /tmp/stella-watch-390x400-095.ppm
+info: deinit audio
+error(gpa): memory address 0x7f4168071000 leaked: 
+

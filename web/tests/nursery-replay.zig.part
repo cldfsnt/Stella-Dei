@@ -1,0 +1,15 @@
+    if(std.posix.getenv("QA_REPLAY_SAVE"))|save_path|{
+        const saves=@import("save_game.zig");
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();
+        const bytes=try std.fs.cwd().readFileAlloc(arena.allocator(),save_path,100*1024*1024);
+        var parsed=try saves.schema.parse(arena.allocator(),bytes);defer parsed.deinit();
+        try saves.apply(state,parsed.value);
+        state.paused=true;state.selectedTool=.None;state.showPointDetails=false;state.watchLife();
+        state.selectedPoint=13596;state.pointerOnPlanet=true;
+        state.targetCameraPos=state.planet.transformedPoints[state.selectedPoint].norm().scale(state.cameraDistance);state.cameraPos=state.targetCameraPos;
+        render(window);gl.finish();window.swapBuffers();originReport("saved_actual_final30d_inspect_mode",state);
+        state.clickedPoint=state.selectedPoint;state.showPointDetails=true;
+        render(window);gl.finish();window.swapBuffers();
+        return;
+    }
+

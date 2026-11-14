@@ -128,13 +128,20 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
 /// Donor-funded propagule. Empty cohort slots preserve distinct competitors;
 /// full slots reject colonization rather than silently overwrite a population.
 pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool) bool {
+    return reproduceSized(donor,which,destination,stats,mutate,0.01,0.03,0.04);
+}
+/// Small exploratory offspring: fully funded from parent mass and earned growth.
+/// Destination need not be habitable; normal physiology decides survival there.
+pub fn propagate(donor:*Cell,which:usize,destination:*Cell,stats:*Stats) bool {
+    return reproduceSized(donor,which,destination,stats,true,0.004,0.02,0.01);
+}
+fn reproduceSized(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,amount:f32,min_parent:f32,credit:f32) bool {
     if(which>=4)return false;
     const parent=&donor.cohorts[which];
-    if(parent.biomass<0.03 or parent.reproduction_credit<0.04)return false;
+    if(parent.biomass<min_parent or parent.reproduction_credit<credit)return false;
     var slot:?usize=null;for(destination.cohorts,0..) |c,i|{if(c.biomass==0){slot=i;break;}}
     const i=slot orelse return false;
     if(biomass(destination.*)>0.99)return false;
-    const amount:@TypeOf(parent.biomass)=0.01;
     var child=parent.*;child.support_mass=@min(amount,parent.support_mass*(amount/parent.biomass));child.biomass=amount;child.parent=parent.lineage;child.lineage=stats.next_lineage;child.generation=parent.generation+|1;child.reproduction_credit=0;child.lifetime_grazed=0;child.relocations=0;child.last_from=0;child.last_to=0;child.last_move_time=0;
     if(mutate){
         const r=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
@@ -150,7 +157,7 @@ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:b
         const r_organization=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
     }
-    parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=0.04;destination.cohorts[i]=child;
+    parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=credit;destination.cohorts[i]=child;
     stats.next_lineage+=1;stats.births+=1;
     return true;
 }
@@ -673,4 +680,24 @@ test "simple seeded colonies evolve multiple real aquatic forms without assigned
     }
     std.debug.print("EVOLVED_FORMS observed={any} counts={any}\n",.{seen,counts});
     for(seen)|found|try std.testing.expect(found);
+}
+
+test "exploratory propagule is paid conserved and cannot chain without new growth" {
+    var donor=Cell{};var target=Cell{};var beyond=Cell{};var stats=Stats{};
+    _=seed(&donor,&stats,1);
+    try std.testing.expect(!propagate(&donor,0,&target,&stats));
+    const env=Environment{.depth_km=0.001,.temperature=303,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1};
+    for(0..24)|_|{_=step(&donor,env,3600);if(donor.cohorts[0].reproduction_credit>=0.01)break;}
+    const before=carbon(donor)+carbon(target);const nutrient=nutrientTotal(donor)+nutrientTotal(target);
+    try std.testing.expect(propagate(&donor,0,&target,&stats));
+    try std.testing.expectApproxEqAbs(before,carbon(donor)+carbon(target),0.000001);
+    try std.testing.expectApproxEqAbs(nutrient,nutrientTotal(donor)+nutrientTotal(target),0.000001);
+    try std.testing.expectEqual(@as(f32,0),target.cohorts[0].reproduction_credit);
+    try std.testing.expect(!propagate(&target,0,&beyond,&stats));
+    const wet=target;const c_before=carbon(target);const n_before=nutrientTotal(target);
+    _=step(&target,.{.depth_km=0,.temperature=303,.light=1,.carbon_available=1,.oxygen_carbon_capacity=0},86400);
+    try std.testing.expectEqual(@as(f32,0),biomass(target));
+    try std.testing.expectApproxEqAbs(c_before,carbon(target),0.000001);
+    try std.testing.expectApproxEqAbs(n_before,nutrientTotal(target),0.000001);
+    var favorable=wet;_=step(&favorable,env,86400);try std.testing.expect(biomass(favorable)>0.004);
 }

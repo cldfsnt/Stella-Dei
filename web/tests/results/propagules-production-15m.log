@@ -1,0 +1,397 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x2147faa0 context=0x214800b0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x713206e44a617596
+info: Sea Level: 4.838867 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=13596 elevation=5004.836 water=22469.324 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5948.3594
+Captured /tmp/stella-egl-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0 depth_m=2.9296875 temp=293.15 camera=5948.3594 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=17884 elevation=5007.55 water=115042.94 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.02 depth_m=15 temp=293.15 camera=5348.3594 visiblemats=1
+FORMS_PLAYER_INITIAL patch=17884 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=4497 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=17883 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=4496 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=17885 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=17882 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=17886 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+DIAGNOSTIC selected=17884 latitude_z=0.72377056 depth_m=15 temp=293.15
+QA frame=3 selected=17884 elevation=5007.55 water=113454.78 vegetation=0 rabbits=0 time=360.0000305175781 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-003.ppm
+ORIGIN_ENV time=360.0000305175781 sun=1361 nutrient=0.0179987 detritus=0.000017680904 fixed=153625977.0105796 recycled=56.51312324521314 CO2=754.3577132991323 O2=26334.626963126197
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.020013002678751945 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.020013003 depth_m=14.792927 temp=293.15158 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=1 grow_seconds=4 occupied=1 biomass=0.019100410863757133 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=1 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=1 index=17884 depth=14.380212 temp=293.0225 nutrient=0.018088767
+LINEAGE day=1 patch=17884 id=1 parent=0 generation=0 mass=0.019112244 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=1 index=4497 depth=13.843385 temp=293.02335 nutrient=0.02
+PATCH day=1 index=17883 depth=14.319919 temp=293.02948 nutrient=0.02
+PATCH day=1 index=4496 depth=14.708225 temp=293.0188 nutrient=0.02
+PATCH day=1 index=17885 depth=14.750236 temp=293.02734 nutrient=0.02
+PATCH day=1 index=17882 depth=14.557875 temp=293.01456 nutrient=0.02
+PATCH day=1 index=17886 depth=13.612633 temp=293.01035 nutrient=0.02
+HOURLY hour=1 temp=293.01..293.32 depth_m=14.380..14.793 biomass=0.019112 nutrient=0.018089 detritus=0.004118 carbon_fixed_kg=26405060.02584642
+PROPAGULE_DAY day=2 grow_seconds=8 occupied=1 biomass=0.018244072794914246 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=2 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=2 index=17884 depth=14.301867 temp=292.89383 nutrient=0.018174473
+LINEAGE day=2 patch=17884 id=1 parent=0 generation=0 mass=0.018255213 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=2 index=4497 depth=13.712614 temp=292.8966 nutrient=0.02
+PATCH day=2 index=17883 depth=14.126041 temp=292.91055 nutrient=0.02
+PATCH day=2 index=4496 depth=14.591116 temp=292.88943 nutrient=0.02
+PATCH day=2 index=17885 depth=14.752746 temp=292.9066 nutrient=0.02
+PATCH day=2 index=17882 depth=14.553409 temp=292.8801 nutrient=0.02
+PATCH day=2 index=17886 depth=13.353149 temp=292.86914 nutrient=0.02
+HOURLY hour=2 temp=292.88..293.20 depth_m=14.302..14.380 biomass=0.018255 nutrient=0.018174 detritus=0.007703 carbon_fixed_kg=25511101.96271175
+PROPAGULE_DAY day=3 grow_seconds=12 occupied=1 biomass=0.01738837920129299 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=3 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=3 index=17884 depth=14.2231455 temp=292.7667 nutrient=0.018260097
+LINEAGE day=3 patch=17884 id=1 parent=0 generation=0 mass=0.017398845 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=3 index=4497 depth=13.504314 temp=292.76724 nutrient=0.02
+PATCH day=3 index=17883 depth=13.9485655 temp=292.79086 nutrient=0.02
+PATCH day=3 index=4496 depth=14.508655 temp=292.76157 nutrient=0.02
+PATCH day=3 index=17885 depth=14.78259 temp=292.78925 nutrient=0.02
+PATCH day=3 index=17882 depth=14.613945 temp=292.75024 nutrient=0.02
+PATCH day=3 index=17886 depth=13.216767 temp=292.72726 nutrient=0.02
+HOURLY hour=3 temp=292.76..293.07 depth_m=14.223..14.302 biomass=0.017399 nutrient=0.018260 detritus=0.010805 carbon_fixed_kg=24365011.00406277
+PROPAGULE_DAY day=4 grow_seconds=16 occupied=1 biomass=0.01653878390789032 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=4 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=4 index=17884 depth=14.108245 temp=292.64212 nutrient=0.018345125
+LINEAGE day=4 patch=17884 id=1 parent=0 generation=0 mass=0.016548667 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=4 index=4497 depth=13.427674 temp=292.63998 nutrient=0.02
+PATCH day=4 index=17883 depth=13.872133 temp=292.66922 nutrient=0.02
+PATCH day=4 index=4496 depth=14.4548855 temp=292.63043 nutrient=0.02
+PATCH day=4 index=17885 depth=14.829095 temp=292.67245 nutrient=0.02
+PATCH day=4 index=17882 depth=14.723871 temp=292.62003 nutrient=0.02
+PATCH day=4 index=17886 depth=13.047906 temp=292.58755 nutrient=0.02
+HOURLY hour=4 temp=292.63..292.95 depth_m=14.108..14.223 biomass=0.016549 nutrient=0.018345 detritus=0.013465 carbon_fixed_kg=23230178.26479745
+PROPAGULE_DAY day=5 grow_seconds=20 occupied=1 biomass=0.015706103295087814 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=5 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=5 index=17884 depth=13.972558 temp=292.51425 nutrient=0.018428445
+LINEAGE day=5 patch=17884 id=1 parent=0 generation=0 mass=0.015715444 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=5 index=4497 depth=13.428199 temp=292.51614 nutrient=0.02
+PATCH day=5 index=17883 depth=13.815139 temp=292.5491 nutrient=0.02
+PATCH day=5 index=4496 depth=14.43245 temp=292.50034 nutrient=0.02
+PATCH day=5 index=17885 depth=14.8812475 temp=292.55597 nutrient=0.02
+PATCH day=5 index=17882 depth=14.864546 temp=292.4929 nutrient=0.02
+PATCH day=5 index=17886 depth=12.939356 temp=292.44693 nutrient=0.02
+HOURLY hour=5 temp=292.50..292.82 depth_m=13.973..14.107 biomass=0.015715 nutrient=0.018428 detritus=0.015724 carbon_fixed_kg=22172844.493829966
+info: start sound
+QA frame=4 selected=17884 elevation=5007.55 water=107162.945 vegetation=0 rabbits=0 time=432000.03662109375 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-004.ppm
+ORIGIN_ENV time=432000.03662109375 sun=1361 nutrient=0.018428445 detritus=0.015724093 fixed=275074784.32270145 recycled=33948464.382365294 CO2=754.3577054666325 O2=26334.62696882256
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.015715444460511208 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.015715444 depth_m=13.972558 temp=292.51425 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=6 grow_seconds=24 occupied=1 biomass=0.014892534352838993 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=6 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=6 index=17884 depth=13.916071 temp=292.3891 nutrient=0.018509861
+LINEAGE day=6 patch=17884 id=1 parent=0 generation=0 mass=0.014901229 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=6 index=4497 depth=13.428426 temp=292.39233 nutrient=0.02
+PATCH day=6 index=17883 depth=13.754551 temp=292.43097 nutrient=0.02
+PATCH day=6 index=4496 depth=14.530364 temp=292.37347 nutrient=0.02
+PATCH day=6 index=17885 depth=14.893014 temp=292.44275 nutrient=0.02
+PATCH day=6 index=17882 depth=14.900666 temp=292.3689 nutrient=0.02
+PATCH day=6 index=17886 depth=12.943894 temp=292.30878 nutrient=0.02
+HOURLY hour=6 temp=292.38..292.70 depth_m=13.915..13.972 biomass=0.014901 nutrient=0.018510 detritus=0.017622 carbon_fixed_kg=21137015.852073908
+PROPAGULE_DAY day=7 grow_seconds=28 occupied=1 biomass=0.014083357527852058 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=7 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=7 index=17884 depth=13.916048 temp=292.2659 nutrient=0.018590847
+LINEAGE day=7 patch=17884 id=1 parent=0 generation=0 mass=0.014091345 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=7 index=4497 depth=13.42882 temp=292.26852 nutrient=0.02
+PATCH day=7 index=17883 depth=13.740101 temp=292.31473 nutrient=0.02
+PATCH day=7 index=4496 depth=14.669345 temp=292.24948 nutrient=0.02
+PATCH day=7 index=17885 depth=14.892661 temp=292.33054 nutrient=0.02
+PATCH day=7 index=17882 depth=14.911127 temp=292.24457 nutrient=0.02
+PATCH day=7 index=17886 depth=12.974679 temp=292.17026 nutrient=0.02
+HOURLY hour=7 temp=292.25..292.57 depth_m=13.915..13.916 biomass=0.014091 nutrient=0.018591 detritus=0.019190 carbon_fixed_kg=19967238.97711283
+PROPAGULE_DAY day=8 grow_seconds=32 occupied=1 biomass=0.013278357684612274 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=8 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=8 index=17884 depth=13.916281 temp=292.1427 nutrient=0.01867141
+LINEAGE day=8 patch=17884 id=1 parent=0 generation=0 mass=0.013285665 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=8 index=4497 depth=13.429383 temp=292.14468 nutrient=0.02
+PATCH day=8 index=17883 depth=13.76814 temp=292.19846 nutrient=0.02
+PATCH day=8 index=4496 depth=14.825302 temp=292.12827 nutrient=0.02
+PATCH day=8 index=17885 depth=14.893041 temp=292.21835 nutrient=0.02
+PATCH day=8 index=17882 depth=14.921863 temp=292.11987 nutrient=0.02
+PATCH day=8 index=17886 depth=13.05453 temp=292.033 nutrient=0.02
+HOURLY hour=8 temp=292.13..292.45 depth_m=13.915..13.916 biomass=0.013286 nutrient=0.018671 detritus=0.020457 carbon_fixed_kg=18772312.726065934
+PROPAGULE_DAY day=9 grow_seconds=36 occupied=1 biomass=0.012481516227126122 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=9 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=9 index=17884 depth=13.943805 temp=292.01938 nutrient=0.018751169
+LINEAGE day=9 patch=17884 id=1 parent=0 generation=0 mass=0.01248814 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=9 index=4497 depth=13.441864 temp=292.02087 nutrient=0.02
+PATCH day=9 index=17883 depth=13.804723 temp=292.08115 nutrient=0.02
+PATCH day=9 index=4496 depth=14.893199 temp=292.00845 nutrient=0.02
+PATCH day=9 index=17885 depth=14.893367 temp=292.10617 nutrient=0.02
+PATCH day=9 index=17882 depth=14.989501 temp=291.9962 nutrient=0.02
+PATCH day=9 index=17886 depth=13.2235 temp=291.89932 nutrient=0.02
+HOURLY hour=9 temp=292.01..292.33 depth_m=13.916..13.944 biomass=0.012488 nutrient=0.018751 detritus=0.021449 carbon_fixed_kg=17591930.43118161
+PROPAGULE_DAY day=10 grow_seconds=40 occupied=1 biomass=0.011692427098751068 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=10 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=10 index=17884 depth=13.997556 temp=291.89697 nutrient=0.01883016
+LINEAGE day=10 patch=17884 id=1 parent=0 generation=0 mass=0.01169837 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=10 index=4497 depth=13.489576 temp=291.8984 nutrient=0.02
+PATCH day=10 index=17883 depth=13.847459 temp=291.966 nutrient=0.02
+PATCH day=10 index=4496 depth=14.892362 temp=291.8875 nutrient=0.02
+PATCH day=10 index=17885 depth=14.893456 temp=291.994 nutrient=0.02
+PATCH day=10 index=17882 depth=15.102607 temp=291.876 nutrient=0.02
+PATCH day=10 index=17886 depth=13.450786 temp=291.77023 nutrient=0.02
+HOURLY hour=10 temp=291.89..292.20 depth_m=13.944..13.998 biomass=0.011698 nutrient=0.018830 detritus=0.022191 carbon_fixed_kg=16394867.586966157
+QA frame=5 selected=17884 elevation=5007.55 water=107354.664 vegetation=0 rabbits=0 time=864000.0732421875 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-005.ppm
+ORIGIN_ENV time=864000.0732421875 sun=1361 nutrient=0.01883016 detritus=0.022190623 fixed=368938149.8961019 recycled=109025632.85700735 CO2=754.3577037850064 O2=26334.626970045574
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.01169836986809969 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.01169837 depth_m=13.997556 temp=291.89697 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=11 grow_seconds=44 occupied=1 biomass=0.01091392245143652 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=11 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=11 index=17884 depth=14.071205 temp=291.77798 nutrient=0.018908087
+LINEAGE day=11 patch=17884 id=1 parent=0 generation=0 mass=0.01091921 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=11 index=4497 depth=13.700614 temp=291.78073 nutrient=0.02
+PATCH day=11 index=17883 depth=13.895421 temp=291.85315 nutrient=0.02
+PATCH day=11 index=4496 depth=14.892305 temp=291.76654 nutrient=0.02
+PATCH day=11 index=17885 depth=14.895065 temp=291.88177 nutrient=0.02
+PATCH day=11 index=17882 depth=15.214336 temp=291.75632 nutrient=0.02
+PATCH day=11 index=17886 depth=13.585122 temp=291.64392 nutrient=0.02
+HOURLY hour=11 temp=291.77..292.08 depth_m=13.997..14.071 biomass=0.010919 nutrient=0.018908 detritus=0.022704 carbon_fixed_kg=15202860.930918634
+PROPAGULE_DAY day=12 grow_seconds=48 occupied=1 biomass=0.010147739201784134 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=12 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=12 index=17884 depth=14.203599 temp=291.65918 nutrient=0.018984776
+LINEAGE day=12 patch=17884 id=1 parent=0 generation=0 mass=0.010152351 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=12 index=4497 depth=13.922674 temp=291.6663 nutrient=0.02
+PATCH day=12 index=17883 depth=13.928987 temp=291.73975 nutrient=0.02
+PATCH day=12 index=4496 depth=14.892281 temp=291.64706 nutrient=0.02
+PATCH day=12 index=17885 depth=14.896599 temp=291.76956 nutrient=0.02
+PATCH day=12 index=17882 depth=15.326917 temp=291.6384 nutrient=0.02
+PATCH day=12 index=17886 depth=13.756771 temp=291.52005 nutrient=0.02
+HOURLY hour=12 temp=291.65..291.96 depth_m=14.071..14.204 biomass=0.010152 nutrient=0.018985 detritus=0.023010 carbon_fixed_kg=14019067.411218047
+PROPAGULE_DAY day=13 grow_seconds=52 occupied=1 biomass=0.009390398859977722 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=13 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=13 index=17884 depth=14.427384 temp=291.54416 nutrient=0.019060586
+LINEAGE day=13 patch=17884 id=1 parent=0 generation=0 mass=0.009394306 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=13 index=4497 depth=14.030218 temp=291.55157 nutrient=0.02
+PATCH day=13 index=17883 depth=13.995723 temp=291.62924 nutrient=0.02
+PATCH day=13 index=4496 depth=14.947467 temp=291.53012 nutrient=0.02
+PATCH day=13 index=17885 depth=14.922352 temp=291.65915 nutrient=0.02
+PATCH day=13 index=17882 depth=15.385862 temp=291.52423 nutrient=0.02
+PATCH day=13 index=17886 depth=13.977498 temp=291.39957 nutrient=0.02
+HOURLY hour=13 temp=291.53..291.84 depth_m=14.204..14.427 biomass=0.009394 nutrient=0.019061 detritus=0.023127 carbon_fixed_kg=12796460.64826566
+PROPAGULE_DAY day=14 grow_seconds=56 occupied=1 biomass=0.008648055605590343 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=14 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=14 index=17884 depth=14.491285 temp=291.4295 nutrient=0.019134885
+LINEAGE day=14 patch=17884 id=1 parent=0 generation=0 mass=0.008651463 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=14 index=4497 depth=14.336879 temp=291.4422 nutrient=0.02
+PATCH day=14 index=17883 depth=14.080326 temp=291.51962 nutrient=0.02
+PATCH day=14 index=4496 depth=15.117221 temp=291.4163 nutrient=0.02
+PATCH day=14 index=17885 depth=14.979554 temp=291.5532 nutrient=0.02
+PATCH day=14 index=17882 depth=15.395177 temp=291.4091 nutrient=0.02
+PATCH day=14 index=17886 depth=14.122892 temp=291.28 nutrient=0.02
+HOURLY hour=14 temp=291.42..291.72 depth_m=14.428..14.491 biomass=0.008651 nutrient=0.019135 detritus=0.023072 carbon_fixed_kg=11616483.693319678
+PROPAGULE_DAY day=15 grow_seconds=60 occupied=1 biomass=0.00793572049587965 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=15 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=15 index=17884 depth=14.652311 temp=291.31854 nutrient=0.019206168
+LINEAGE day=15 patch=17884 id=1 parent=0 generation=0 mass=0.007938599 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=15 index=4497 depth=14.405555 temp=291.33182 nutrient=0.02
+PATCH day=15 index=17883 depth=14.273377 temp=291.41418 nutrient=0.02
+PATCH day=15 index=4496 depth=15.2865095 temp=291.30453 nutrient=0.02
+PATCH day=15 index=17885 depth=15.058977 temp=291.446 nutrient=0.02
+PATCH day=15 index=17882 depth=15.404246 temp=291.29367 nutrient=0.02
+PATCH day=15 index=17886 depth=14.351253 temp=291.16318 nutrient=0.02
+HOURLY hour=15 temp=291.31..291.61 depth_m=14.492..14.652 biomass=0.007939 nutrient=0.019206 detritus=0.022864 carbon_fixed_kg=10575207.200084686
+QA frame=6 selected=17884 elevation=5007.55 water=112376.336 vegetation=0 rabbits=0 time=1296000.1098632812 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-006.ppm
+ORIGIN_ENV time=1296000.1098632812 sun=1361 nutrient=0.019206168 detritus=0.022864254 fixed=433148229.7799086 recycled=196904869.23961273 CO2=754.3577059037228 O2=26334.62696850471
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.007938599213957787 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.007938599 depth_m=14.652311 temp=291.31854 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=16 grow_seconds=64 occupied=1 biomass=0.007247979287058115 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=16 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=16 index=17884 depth=14.891764 temp=291.2102 nutrient=0.01927499
+LINEAGE day=16 patch=17884 id=1 parent=0 generation=0 mass=0.007250332 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=16 index=4497 depth=14.498597 temp=291.2234 nutrient=0.02
+PATCH day=16 index=17883 depth=14.479337 temp=291.31097 nutrient=0.02
+PATCH day=16 index=4496 depth=15.381333 temp=291.1945 nutrient=0.02
+PATCH day=16 index=17885 depth=15.193157 temp=291.34155 nutrient=0.02
+PATCH day=16 index=17882 depth=15.437607 temp=291.17834 nutrient=0.02
+PATCH day=16 index=17886 depth=14.518874 temp=291.0488 nutrient=0.02
+HOURLY hour=16 temp=291.20..291.50 depth_m=14.653..14.892 biomass=0.007250 nutrient=0.019275 detritus=0.022522 carbon_fixed_kg=9517027.170739472
+PROPAGULE_DAY day=17 grow_seconds=68 occupied=1 biomass=0.006588317453861237 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=17 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=17 index=17884 depth=14.942996 temp=291.10165 nutrient=0.019340992
+LINEAGE day=17 patch=17884 id=1 parent=0 generation=0 mass=0.0065903263 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=17 index=4497 depth=14.817991 temp=291.1198 nutrient=0.02
+PATCH day=17 index=17883 depth=14.634651 temp=291.2088 nutrient=0.02
+PATCH day=17 index=4496 depth=15.38626 temp=291.08273 nutrient=0.02
+PATCH day=17 index=17885 depth=15.412453 temp=291.23843 nutrient=0.02
+PATCH day=17 index=17882 depth=15.555283 temp=291.0669 nutrient=0.02
+PATCH day=17 index=17886 depth=14.663153 temp=290.9362 nutrient=0.02
+HOURLY hour=17 temp=291.09..291.38 depth_m=14.892..14.943 biomass=0.006590 nutrient=0.019341 detritus=0.022061 carbon_fixed_kg=8513819.63616389
+PROPAGULE_DAY day=18 grow_seconds=72 occupied=1 biomass=0.005968608893454075 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=18 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=18 index=17884 depth=15.105316 temp=290.9953 nutrient=0.019403001
+LINEAGE day=18 patch=17884 id=1 parent=0 generation=0 mass=0.005970249 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=18 index=4497 depth=14.892868 temp=291.01736 nutrient=0.02
+PATCH day=18 index=17883 depth=14.882867 temp=291.10968 nutrient=0.02
+PATCH day=18 index=4496 depth=15.413654 temp=290.97253 nutrient=0.02
+PATCH day=18 index=17885 depth=15.567078 temp=291.1372 nutrient=0.02
+PATCH day=18 index=17882 depth=15.703754 temp=290.95673 nutrient=0.02
+PATCH day=18 index=17886 depth=14.888562 temp=290.82614 nutrient=0.02
+HOURLY hour=18 temp=290.98..291.27 depth_m=14.943..15.105 biomass=0.005970 nutrient=0.019403 detritus=0.021500 carbon_fixed_kg=7655966.525225222
+PROPAGULE_DAY day=19 grow_seconds=76 occupied=1 biomass=0.005382683593779802 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=19 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=19 index=17884 depth=15.326 temp=290.89133 nutrient=0.019461626
+LINEAGE day=19 patch=17884 id=1 parent=0 generation=0 mass=0.005383973 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=19 index=4497 depth=15.06538 temp=290.91656 nutrient=0.02
+PATCH day=19 index=17883 depth=15.057085 temp=291.0115 nutrient=0.02
+PATCH day=19 index=4496 depth=15.440786 temp=290.86588 nutrient=0.02
+PATCH day=19 index=17885 depth=15.732093 temp=291.0381 nutrient=0.02
+PATCH day=19 index=17882 depth=15.85181 temp=290.84833 nutrient=0.02
+PATCH day=19 index=17886 depth=15.033926 temp=290.7179 nutrient=0.02
+HOURLY hour=19 temp=290.88..291.17 depth_m=15.106..15.326 biomass=0.005384 nutrient=0.019462 detritus=0.020854 carbon_fixed_kg=6799810.624066591
+PROPAGULE_DAY day=20 grow_seconds=80 occupied=1 biomass=0.004831874743103981 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=20 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=20 index=17884 depth=15.3807125 temp=290.78806 nutrient=0.019516734
+LINEAGE day=20 patch=17884 id=1 parent=0 generation=0 mass=0.0048329397 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=20 index=4497 depth=15.348896 temp=290.8183 nutrient=0.02
+PATCH day=20 index=17883 depth=15.226583 temp=290.91534 nutrient=0.02
+PATCH day=20 index=4496 depth=15.676793 temp=290.76093 nutrient=0.02
+PATCH day=20 index=17885 depth=15.874292 temp=290.94107 nutrient=0.02
+PATCH day=20 index=17882 depth=15.875488 temp=290.74344 nutrient=0.02
+PATCH day=20 index=17886 depth=15.177317 temp=290.6115 nutrient=0.02
+HOURLY hour=20 temp=290.78..291.06 depth_m=15.327..15.381 biomass=0.004833 nutrient=0.019517 detritus=0.020137 carbon_fixed_kg=6004358.389408767
+QA frame=7 selected=17884 elevation=5007.55 water=117962.82 vegetation=0 rabbits=0 time=1728000.146484375 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-007.ppm
+ORIGIN_ENV time=1728000.146484375 sun=1361 nutrient=0.019516734 detritus=0.020136721 fixed=471639212.12551254 recycled=280133621.342065 CO2=754.3577099083739 O2=26334.62696559224
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.004832939710468054 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.0048329397 depth_m=15.3807125 temp=290.78806 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=21 grow_seconds=84 occupied=1 biomass=0.004325158428400755 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=21 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=21 index=17884 depth=15.513698 temp=290.68814 nutrient=0.019567441
+LINEAGE day=21 patch=17884 id=1 parent=0 generation=0 mass=0.0043259994 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=21 index=4497 depth=15.418886 temp=290.7209 nutrient=0.02
+PATCH day=21 index=17883 depth=15.449028 temp=290.82214 nutrient=0.02
+PATCH day=21 index=4496 depth=15.884379 temp=290.65912 nutrient=0.02
+PATCH day=21 index=17885 depth=15.978606 temp=290.84546 nutrient=0.02
+PATCH day=21 index=17882 depth=15.960144 temp=290.6379 nutrient=0.02
+PATCH day=21 index=17886 depth=15.405701 temp=290.5084 nutrient=0.02
+HOURLY hour=21 temp=290.68..290.96 depth_m=15.381..15.514 biomass=0.004326 nutrient=0.019567 detritus=0.019365 carbon_fixed_kg=5345523.199902475
+PROPAGULE_DAY day=22 grow_seconds=88 occupied=1 biomass=0.0038554007187485695 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=22 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=22 index=17884 depth=15.734332 temp=290.589 nutrient=0.01961444
+LINEAGE day=22 patch=17884 id=1 parent=0 generation=0 mass=0.0038560196 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=22 index=4497 depth=15.595668 temp=290.62607 nutrient=0.02
+PATCH day=22 index=17883 depth=15.617926 temp=290.72964 nutrient=0.02
+PATCH day=22 index=4496 depth=15.910171 temp=290.557 nutrient=0.02
+PATCH day=22 index=17885 depth=16.145136 temp=290.7508 nutrient=0.02
+PATCH day=22 index=17882 depth=16.10708 temp=290.5332 nutrient=0.02
+PATCH day=22 index=17886 depth=15.548189 temp=290.4061 nutrient=0.02
+HOURLY hour=22 temp=290.58..290.86 depth_m=15.515..15.734 biomass=0.003856 nutrient=0.019614 detritus=0.018550 carbon_fixed_kg=4696858.564698696
+PROPAGULE_DAY day=23 grow_seconds=92 occupied=1 biomass=0.0034210975281894207 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=23 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=23 index=17884 depth=15.869232 temp=290.4919 nutrient=0.019657873
+LINEAGE day=23 patch=17884 id=1 parent=0 generation=0 mass=0.0034215592 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=23 index=4497 depth=15.826354 temp=290.53345 nutrient=0.02
+PATCH day=23 index=17883 depth=15.786266 temp=290.63864 nutrient=0.02
+PATCH day=23 index=4496 depth=15.966357 temp=290.45404 nutrient=0.02
+PATCH day=23 index=17885 depth=16.311253 temp=290.658 nutrient=0.02
+PATCH day=23 index=17882 depth=16.253607 temp=290.43005 nutrient=0.02
+PATCH day=23 index=17886 depth=15.690288 temp=290.30566 nutrient=0.02
+HOURLY hour=23 temp=290.48..290.75 depth_m=15.735..15.869 biomass=0.003422 nutrient=0.019658 detritus=0.017705 carbon_fixed_kg=4095884.827792287
+PROPAGULE_DAY day=24 grow_seconds=96 occupied=1 biomass=0.0030256586614996195 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=24 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=24 index=17884 depth=15.930712 temp=290.39496 nutrient=0.019697418
+LINEAGE day=24 patch=17884 id=1 parent=0 generation=0 mass=0.0030260102 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=24 index=4497 depth=15.930612 temp=290.44125 nutrient=0.02
+PATCH day=24 index=17883 depth=15.97717 temp=290.55038 nutrient=0.02
+PATCH day=24 index=4496 depth=16.265339 temp=290.35452 nutrient=0.02
+PATCH day=24 index=17885 depth=16.37557 temp=290.56787 nutrient=0.02
+PATCH day=24 index=17882 depth=16.358864 temp=290.33005 nutrient=0.02
+PATCH day=24 index=17886 depth=15.907669 temp=290.20657 nutrient=0.02
+HOURLY hour=24 temp=290.38..290.66 depth_m=15.869..15.931 biomass=0.003026 nutrient=0.019697 detritus=0.016841 carbon_fixed_kg=3587291.320004821
+PROPAGULE_DAY day=25 grow_seconds=100 occupied=1 biomass=0.0026673644315451384 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=25 living=1 counts={ 1, 0, 0, 0, 0, 0 }
+PATCH day=25 index=17884 depth=16.121439 temp=290.29993 nutrient=0.01973326
+LINEAGE day=25 patch=17884 id=1 parent=0 generation=0 mass=0.002667594 support=0 organization=0 feeding=0 grazed=0 optimum=303
+PATCH day=25 index=4497 depth=16.10614 temp=290.3506 nutrient=0.02
+PATCH day=25 index=17883 depth=16.144781 temp=290.4622 nutrient=0.02
+PATCH day=25 index=4496 depth=16.377565 temp=290.25662 nutrient=0.02
+PATCH day=25 index=17885 depth=16.5116 temp=290.47696 nutrient=0.02
+PATCH day=25 index=17882 depth=16.475498 temp=290.22952 nutrient=0.02
+PATCH day=25 index=17886 depth=16.0492 temp=290.1093 nutrient=0.02
+HOURLY hour=25 temp=290.29..290.56 depth_m=15.931..16.121 biomass=0.002668 nutrient=0.019733 detritus=0.015967 carbon_fixed_kg=3134395.700645447
+QA frame=8 selected=17884 elevation=5007.55 water=123643.86 vegetation=0 rabbits=0 time=2160000.1831054688 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-008.ppm
+ORIGIN_ENV time=2160000.1831054688 sun=1361 nutrient=0.01973326 detritus=0.015967097 fixed=492499165.73855627 recycled=349579749.02121294 CO2=754.35771425751 O2=26334.626962429258
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.002667594002559781 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0.002667594 depth_m=16.121439 temp=290.29993 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=26 grow_seconds=104 occupied=0 biomass=0 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=26 living=0 counts={ 0, 0, 0, 0, 0, 0 }
+PATCH day=26 index=17884 depth=16.341259 temp=290.20697 nutrient=0.020000031
+PATCH day=26 index=4497 depth=16.281223 temp=290.2617 nutrient=0.02
+PATCH day=26 index=17883 depth=16.311947 temp=290.37555 nutrient=0.02
+PATCH day=26 index=4496 depth=16.401516 temp=290.15762 nutrient=0.02
+PATCH day=26 index=17885 depth=16.67639 temp=290.38934 nutrient=0.02
+PATCH day=26 index=17882 depth=16.620863 temp=290.13205 nutrient=0.02
+PATCH day=26 index=17886 depth=16.190138 temp=290.01358 nutrient=0.02
+HOURLY hour=26 temp=290.20..290.46 depth_m=16.122..16.341 biomass=0.000000 nutrient=0.020000 detritus=0.017334 carbon_fixed_kg=2479627.0762099624
+PROPAGULE_DAY day=27 grow_seconds=108 occupied=0 biomass=0 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=27 living=0 counts={ 0, 0, 0, 0, 0, 0 }
+PATCH day=27 index=17884 depth=16.414469 temp=290.11328 nutrient=0.020000031
+PATCH day=27 index=4497 depth=16.420544 temp=290.17322 nutrient=0.02
+PATCH day=27 index=17883 depth=16.478178 temp=290.29044 nutrient=0.02
+PATCH day=27 index=4496 depth=16.542797 temp=290.06177 nutrient=0.02
+PATCH day=27 index=17885 depth=16.840708 temp=290.30127 nutrient=0.02
+PATCH day=27 index=17882 depth=16.76598 temp=290.03458 nutrient=0.02
+PATCH day=27 index=17886 depth=16.395296 temp=289.9208 nutrient=0.02
+HOURLY hour=27 temp=290.10..290.37 depth_m=16.342..16.414 biomass=0.000000 nutrient=0.020000 detritus=0.015684 carbon_fixed_kg=0
+PROPAGULE_DAY day=28 grow_seconds=112 occupied=0 biomass=0 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=28 living=0 counts={ 0, 0, 0, 0, 0, 0 }
+PATCH day=28 index=17884 depth=16.502714 temp=290.02246 nutrient=0.020000031
+PATCH day=28 index=4497 depth=16.594732 temp=290.08746 nutrient=0.02
+PATCH day=28 index=17883 depth=16.645777 temp=290.20798 nutrient=0.02
+PATCH day=28 index=4496 depth=16.84715 temp=289.96838 nutrient=0.02
+PATCH day=28 index=17885 depth=16.851147 temp=290.21445 nutrient=0.02
+PATCH day=28 index=17882 depth=16.851513 temp=289.93796 nutrient=0.02
+PATCH day=28 index=17886 depth=16.535656 temp=289.82983 nutrient=0.02
+HOURLY hour=28 temp=290.01..290.27 depth_m=16.415..16.503 biomass=0.000000 nutrient=0.020000 detritus=0.014192 carbon_fixed_kg=0
+PROPAGULE_DAY day=29 grow_seconds=116 occupied=0 biomass=0 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=29 living=0 counts={ 0, 0, 0, 0, 0, 0 }
+PATCH day=29 index=17884 depth=16.711473 temp=289.93378 nutrient=0.020000031
+PATCH day=29 index=4497 depth=16.768562 temp=290.00262 nutrient=0.02
+PATCH day=29 index=17883 depth=16.815674 temp=290.12543 nutrient=0.02
+PATCH day=29 index=4496 depth=16.846062 temp=289.87396 nutrient=0.02
+PATCH day=29 index=17885 depth=16.918755 temp=290.1272 nutrient=0.02
+PATCH day=29 index=17882 depth=16.92319 temp=289.84183 nutrient=0.02
+PATCH day=29 index=17886 depth=16.678411 temp=289.73834 nutrient=0.02
+HOURLY hour=29 temp=289.92..290.18 depth_m=16.504..16.711 biomass=0.000000 nutrient=0.020000 detritus=0.012841 carbon_fixed_kg=0
+PROPAGULE_DAY day=30 grow_seconds=120 occupied=0 biomass=0 attempts=0 arrivals=0 tracked_colony_losses=0 production_15m=true
+FORMS_DAY day=30 living=0 counts={ 0, 0, 0, 0, 0, 0 }
+PATCH day=30 index=17884 depth=16.876139 temp=289.84583 nutrient=0.020000031
+PATCH day=30 index=4497 depth=16.861586 temp=289.9183 nutrient=0.02
+PATCH day=30 index=17883 depth=16.881657 temp=290.0431 nutrient=0.02
+PATCH day=30 index=4496 depth=16.892727 temp=289.78055 nutrient=0.02
+PATCH day=30 index=17885 depth=16.990318 temp=290.04114 nutrient=0.02
+PATCH day=30 index=17882 depth=16.998796 temp=289.74948 nutrient=0.02
+PATCH day=30 index=17886 depth=16.860744 temp=289.64917 nutrient=0.02
+HOURLY hour=30 temp=289.84..290.09 depth_m=16.712..16.876 biomass=0.000000 nutrient=0.020000 detritus=0.011619 carbon_fixed_kg=0
+QA frame=9 selected=17884 elevation=5007.55 water=129432.05 vegetation=0 rabbits=0 time=2592000.2197265625 paused=false tool=PlaceVegetation camera=5348.3594
+Captured /tmp/stella-egl-009.ppm
+ORIGIN_ENV time=2592000.2197265625 sun=1361 nutrient=0.020000031 detritus=0.011619119 fixed=494978792.8147662 recycled=405865406.39636505 CO2=754.3577190738961 O2=26334.62695892644
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=17884 selectedbio=0 depth_m=16.876139 temp=289.84583 camera=5348.3594 visiblemats=0
+TOTAL_WATER start=1645057409449.0623 end=1645042894910.8118 relative_error=8.823119586658845e-6
+STRUCTURE_WORLD max_structure=0 max_generation=0 failed_patches=1
+GRAZING_WORLD capable=0 observed=0 max_feeding=0 consumed_kgC=0 respired_kgC=0
+MOTILITY_WORLD capable=0 resident_movers=0 total_moves=0 movement_respired_kgC=0 unique_lineages=0 mean_update_ms=10.844927448472223 max_update_ms=180.01311
+PRODUCER_EVER max_support=0 max_organization=0
+PRODUCER_WORLD inherited_capable=0 actual_supported=0 support_density_sum=0 biomass_density_sum=0
+SUPPORT_RESTORE mutated_cohorts=0
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=12199062 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=242232
+info: deinit audio
+error(gpa): memory address 0x7fbb30150000 leaked: 
+

@@ -183,6 +183,9 @@ pub const PlayState = struct {
     meanTemperature: f32 = 293.15,
     mobileFeedback: []const u8 = "",
     mobileFeedbackSeconds: f32 = 0,
+    // Session-only compact observation UI; never a change to simulation or camera.
+    watchLifeView: bool = false,
+    propaguleVisuals: @import("../propagule_visuals.zig").Pool = .{},
     seedTargets: SeedTargets.List = .{},
     seedTargetWidth:f32=0,
     seedTargetHeight:f32=0,
@@ -663,6 +666,7 @@ pub const PlayState = struct {
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
+        self.propaguleVisuals.advance(dt);
         self.godEffectSeconds = @max(0,self.godEffectSeconds-dt);
         if (self.showEscapeMenu) return;
 
@@ -952,6 +956,15 @@ pub const PlayState = struct {
         return @intFromBool(self.applySelectedTool(.PlaceVegetation,true,0));
     }
 
+    pub fn makeSelectedNursery(self:*PlayState, expected_point:u32) i32 {
+        const count=@import("../pond_action.zig").makeNursery(&self.planet,expected_point,self.selectedPoint);
+        if(count>0) {
+            self.mobileFeedback="Nursery shaped: 5 m center, 15 m reservoir; seed separately";
+            self.mobileFeedbackSeconds=5;
+        }
+        return count;
+    }
+
     pub fn makeSelectedPond(self:*PlayState, expected_point:u32) i32 {
         const count=@import("../pond_action.zig").makePond(&self.planet,expected_point,self.selectedPoint);
         if(count>0) {
@@ -1012,7 +1025,8 @@ pub const PlayState = struct {
         for(self.planet.transformedPoints,0..)|point,i| {
             if(@abs(point.norm().z())>0.95 or self.planet.seedEligibility(i)!=.eligible)continue;
             var neighbors:f32=0;for(self.planet.getNeighbours(i))|n|{if(self.planet.seedEligibility(n)==.eligible)neighbors+=1;}
-            const score=neighbors+1/(1+@abs(self.planet.temperature[i]-298));
+            // Placeable is not a survival guarantee: prefer existing shallow, low-latitude habitat.
+            const score=habitat_focus.score(0,point.norm().z(),self.planet.waterMass[i]*self.planet.getKmPerWaterMass(),self.planet.temperature[i],true,neighbors);
             if(score>best){best=score;chosen=i;}
         }
         const i=chosen orelse {self.mobileFeedback="No seedable patch: inspect water, temperature and resources";self.mobileFeedbackSeconds=5;return false;};
@@ -1076,7 +1090,7 @@ pub const PlayState = struct {
     }
 
     pub fn mouseMoved(self: *PlayState, game: *Game, x: f32, y: f32, dx: f32, dy: f32) void {
-        if (self.cameraInputBlocked()) return;
+        if (self.cameraInputBlocked() or self.mobilePointerOnUI(game)) return;
         if (self.freeCam) {
             const mouseSensitivity = 0.1;
             self.cameraRotation.data[0] -= dx * mouseSensitivity;
@@ -1365,8 +1379,17 @@ pub const PlayState = struct {
         }
     }
 
-    fn mobileToolbarBottom(width: f32) f32 {
-        return if (width >= 650) 112 else 166;
+    pub fn watchLife(self: *PlayState) void {
+        self.watchLifeView = true;
+        self.selectedTool = .None;
+        self.seedTargets.count = 0;
+        self.showEscapeMenu = false;
+        self.showPlanetControl = false;
+        self.showPointDetails = false;
+    }
+
+    fn mobileToolbarBottom(self: *const PlayState, width: f32) f32 {
+        return if (self.watchLifeView) 56 else if (width >= 650) 112 else 166;
     }
 
     fn mobilePointerOnUI(self: *PlayState, game: *Game) bool {
@@ -1374,7 +1397,7 @@ pub const PlayState = struct {
         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) return true;
         const p = game.window.getCursorPos();
         const size = game.renderer.framebufferSize;
-        return p.ypos < mobileToolbarBottom(size.x()) or p.ypos > size.y() - 84;
+        return p.ypos < self.mobileToolbarBottom(size.x()) or p.ypos > size.y() - 84;
     }
 
     /// Feedback depicts only cells changed by a successful explicit intervention.
@@ -1412,6 +1435,54 @@ pub const PlayState = struct {
                 vg.strokeColor(nvg.rgba(102,63,20,@intFromFloat(alpha*230)));vg.strokeWidth(7);vg.stroke();
                 vg.strokeColor(nvg.rgba(255,245,169,@intFromFloat(alpha*255)));vg.strokeWidth(3);vg.stroke();
             }
+        }
+    }
+
+    fn propaguleScreen(self:*PlayState,cell:usize,vp:Mat4,width:f32,height:f32,top:f32) ?Vec2 {
+        if(cell>=self.planet.transformedPoints.len)return null;
+        const p=self.planet.transformedPoints[cell];if(p.dot(self.cameraPos.sub(p))<=0)return null;
+        const clip=vp.mulByVec4(Vec4.new(p.x(),p.y(),p.z(),1));if(clip.w()<=0)return null;
+        const x=(clip.x()/clip.w()+1)*width/2;const y=(1-clip.y()/clip.w())*height/2;
+        if(x<14 or x>width-14 or y<top+20 or y>height-116)return null;
+        return Vec2.new(x,y);
+    }
+    /// Cyan diamonds are real arrivals, amber crosses actual tracked colony losses.
+    /// Neither denotes established life; green + targets retain their own meaning.
+    fn renderPropaguleFeedback(self:*PlayState,vg:nvg,vp:Mat4,width:f32,height:f32,top:f32) void {
+        if(self.planet.worldMode!=.origin or self.displayMode!=.Normal)return;
+        const tracker=&self.planet.propaguleFeedback;
+        const latest=tracker.next_serial-1;
+        if(latest<self.propaguleVisuals.last_serial)self.propaguleVisuals=.{};
+        var serial=@max(self.propaguleVisuals.last_serial+1,if(latest>31)latest-31 else 1);
+        while(serial<=latest):(serial+=1){
+            const event=tracker.events[@intCast((serial-1)%tracker.events.len)];
+            if(event.serial==serial and self.propaguleScreen(event.cell,vp,width,height,top)!=null)self.propaguleVisuals.take(event);
+        }
+        self.propaguleVisuals.last_serial=latest;
+        var shown=false;
+        for(self.propaguleVisuals.pulses)|pulse|{
+            if(pulse.remaining<=0)continue;
+            const pos=self.propaguleScreen(pulse.event.cell,vp,width,height,top) orelse continue;
+            const x=pos.x();const y=pos.y();const alpha=pulse.remaining/@import("../propagule_visuals.zig").duration;
+            const r=6+(1-alpha)*7;shown=true;
+            if(pulse.event.kind==.arrival){
+                if(self.propaguleScreen(pulse.event.from,vp,width,height,top))|from|{
+                    if(from.distance(pos)<160){vg.beginPath();vg.moveTo(from.x(),from.y());vg.lineTo(x,y);vg.strokeColor(nvg.rgba(107,227,255,@intFromFloat(alpha*95)));vg.strokeWidth(1.5);vg.stroke();}
+                }
+                vg.beginPath();vg.moveTo(x,y-r);vg.lineTo(x+r,y);vg.lineTo(x,y+r);vg.lineTo(x-r,y);vg.closePath();
+                vg.fillColor(nvg.rgba(15,59,78,@intFromFloat(alpha*180)));vg.fill();
+                vg.strokeColor(nvg.rgba(117,237,255,@intFromFloat(alpha*255)));vg.strokeWidth(2.5);vg.stroke();
+                vg.beginPath();vg.circle(x,y,2);vg.fillColor(nvg.rgba(210,255,255,@intFromFloat(alpha*255)));vg.fill();
+            }else{
+                vg.beginPath();vg.moveTo(x-r*0.6,y-r*0.6);vg.lineTo(x+r*0.6,y+r*0.6);vg.moveTo(x+r*0.6,y-r*0.6);vg.lineTo(x-r*0.6,y+r*0.6);
+                vg.strokeColor(nvg.rgba(71,34,9,@intFromFloat(alpha*230)));vg.strokeWidth(6);vg.stroke();
+                vg.strokeColor(nvg.rgba(255,185,93,@intFromFloat(alpha*255)));vg.strokeWidth(2.5);vg.stroke();
+            }
+        }
+        if(shown){
+            vg.beginPath();vg.roundedRect(8,height-113,@min(width-16,315),22,5);vg.fillColor(nvg.rgba(8,25,37,215));vg.fill();
+            vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});vg.fillColor(nvg.rgb(193,230,240));
+            _=vg.text(15,height-102,"Diamond: arrival · X: tracked colony lost");
         }
     }
 
@@ -1580,7 +1651,7 @@ pub const PlayState = struct {
         const size = renderer.framebufferSize;
         const width = size.x();
         const height = size.y();
-        const toolBottom = mobileToolbarBottom(width);
+        const toolBottom = self.mobileToolbarBottom(width);
         // Map markers represent actual living rabbits, not decorative sprites.
         // The original 3D models are still drawn; markers remain legible at planetary scale.
         const projection = Mat4.perspective(70, width / height, self.planet.radius * 5 / 10000, self.planet.radius * 5);
@@ -1588,6 +1659,7 @@ pub const PlayState = struct {
         const vp = projection.mul(view);
         self.renderSeedZones(vg, vp, width, height, toolBottom);
         self.renderSprouts(vg, vp, width, height, toolBottom);
+        self.renderPropaguleFeedback(vg,vp,width,height,toolBottom);
         self.renderGodEffects(vg, vp, width, height, toolBottom);
         // Screen-space selection only; not a representation of brush radius.
         if (self.pointerOnPlanet and !self.cameraInputBlocked() and !(self.planet.worldMode == .origin and self.selectedTool == .PlaceVegetation)) {
@@ -1628,6 +1700,20 @@ pub const PlayState = struct {
         vg.rect(0, 0, width, toolBottom);
         vg.rect(0, height - 84, width, 84);
         vg.fill();
+        const origin = self.planet.worldMode == .origin;
+        if (self.watchLifeView) {
+            const compactWidth = (width - 32) / 3;
+            if (ui.button(vg, game, "watch-pause", 8, 6, compactWidth, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
+            if (ui.button(vg, game, "watch-tools", 16 + compactWidth, 6, compactWidth, 44, "Tools")) {
+                self.watchLifeView = false;
+                self.seedTargets.count = 0;
+            }
+            if (ui.button(vg, game, "watch-speed", 24 + 2 * compactWidth, 6, compactWidth, 44, guidance.speedLabel(self.timeScale))) {
+                self.timeScale = guidance.nextSpeed(self.timeScale);
+                self.mobileFeedback = guidance.speedHint(self.timeScale, self.paused);
+                self.mobileFeedbackSeconds = 3;
+            }
+        } else {
         const topColumns: f32 = if (width >= 650) 4 else 3;
         const topW = (width - (topColumns + 1) * 8) / topColumns;
         if (ui.button(vg, game, "mobile-pause", 8, 6, topW, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
@@ -1637,7 +1723,6 @@ pub const PlayState = struct {
         }
         if (ui.button(vg, game, "mobile-menu", 24 + 2 * topW, 6, topW, 44, "Menu")) { self.showEscapeMenu = !self.showEscapeMenu; self.leavePlanetArmed = false; }
         const tools = [_]GameTool{ .None, .EmitWater, .DrainWater, .PlaceVegetation, .RaiseTerrain, .LowerTerrain, .PlaceLife };
-        const origin = self.planet.worldMode == .origin;
         const names = [_][]const u8{ "Inspect", "Water +", "Water -", if (origin) "Seed" else "Plants", "Land +", "Land -", if (origin) "Nutr. +" else "Rabbits" };
         const columns: usize = if (width >= 650) 7 else 4;
         const bw = (width - 16 - @as(f32, @floatFromInt(columns - 1)) * 6) / @as(f32, @floatFromInt(columns));
@@ -1660,6 +1745,7 @@ pub const PlayState = struct {
             self.timeScale = guidance.nextSpeed(self.timeScale);
             self.mobileFeedback = guidance.speedHint(self.timeScale, self.paused);
             self.mobileFeedbackSeconds = 3;
+        }
         }
         vg.textAlign(.{ .horizontal = .left, .vertical = .middle });
         if (origin) ui.label(vg, game, "Origin · Day {d:.1}", .{self.gameTime / 86400}, 10, height - 64) else ui.label(vg, game, "Day {d:.1} · {d} rabbits", .{ self.gameTime / 86400, self.planet.lifeforms.items.len }, 10, height - 64);

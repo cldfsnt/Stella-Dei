@@ -21,9 +21,10 @@ pub fn wave(planet:anytype,expected:usize,selected:usize) Receipt {
  if(!std.math.isFinite(conversion) or conversion<=0 or !std.math.isFinite(donor) or donor<0)return failed(.wave,.invalid);
  if(donor==0)return failed(.wave,.dry);
  var ids:[6]usize=undefined;var n:usize=0;
- for(planet.getNeighbours(selected))|id| {
-  if(id>=planet.waterMass.len or id==selected)return failed(.wave,.invalid);
-  for(ids[0..n])|old|{if(id==old)return failed(.wave,.invalid);}
+ neighbors:for(planet.getNeighbours(selected))|id| {
+  if(id>=planet.waterMass.len)return failed(.wave,.invalid);
+  if(id==selected)continue;
+  for(ids[0..n])|old|{if(id==old)continue :neighbors;}
   if(n==ids.len)return failed(.wave,.invalid);
   if(!std.math.isFinite(planet.waterMass[id]) or planet.waterMass[id]<0)return failed(.wave,.invalid);
   ids[n]=id;n+=1;
@@ -89,4 +90,32 @@ test "deep map precision refusal leaves water unchanged" {
  var p=P{};const before=p.waterMass;
  try std.testing.expectEqual(Failure.precision,wave(&p,0,0).failure);
  try std.testing.expectEqualSlices(f32,&before,&p.waterMass);
+}
+
+test "pentagon wave ignores self fillers and duplicate neighbours without changing budget" {
+ const P=struct {
+  waterMass:[7]f32=.{4,0,0,0,0,0,9},
+  neighbours:[]const usize=&.{1,2,3,4,5,0},
+  reconciled:[7]u8=.{0}**7,
+  pub fn getKmPerWaterMass(_: *@This()) f32{return 0.001;}
+  pub fn getNeighbours(self:*@This(),_:usize) []const usize{return self.neighbours;}
+  pub fn reconcileWaterPrecision(self:*@This(),i:usize) void {self.reconciled[i]+=1;}
+ };
+ var pentagon=P{};var duplicate=P{.neighbours=&.{1,2,3,4,5,1,0,2}};
+ const a=wave(&pentagon,0,0);const b=wave(&duplicate,0,0);
+ try std.testing.expect(a.success() and b.success());
+ try std.testing.expectEqual(@as(usize,6),a.count);
+ try std.testing.expectEqualSlices(f32,&pentagon.waterMass,&duplicate.waterMass);
+ try std.testing.expectEqual(@as(f32,3),pentagon.waterMass[0]);
+ var total:f64=0;for(pentagon.waterMass)|m|total+=m;
+ try std.testing.expectApproxEqAbs(@as(f64,13),total,1e-6);
+ try std.testing.expectEqual(@as(u8,0),pentagon.reconciled[6]);
+ var invalid=P{.neighbours=&.{1,0,1,99}};
+ const before=invalid;
+ try std.testing.expectEqual(Failure.invalid,wave(&invalid,0,0).failure);
+ try std.testing.expectEqualSlices(f32,&before.waterMass,&invalid.waterMass);
+ try std.testing.expectEqualSlices(u8,&before.reconciled,&invalid.reconciled);
+ var self_only=P{.neighbours=&.{0,0,0}};
+ try std.testing.expectEqual(Failure.invalid,wave(&self_only,0,0).failure);
+ try std.testing.expectEqual(@as(f32,4),self_only.waterMass[0]);
 }
