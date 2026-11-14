@@ -1,0 +1,28 @@
+    if (std.posix.getenv("STELLA_MIGRATE_V5")) |path| {
+        const saves=@import("save_game.zig");
+        var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+        const bytes=try std.fs.cwd().readFileAlloc(a,path,100*1024*1024);
+        var old=try saves.schema.parse(a,bytes);defer old.deinit();std.debug.assert(old.value.version==5);
+        loop.pump(1024);
+        saves.replaceWorld(state,old.value) catch |err| {std.debug.print("PRODUCER_MIGRATION failure={s}\n",.{@errorName(err)});std.process.exit(2);};
+        const now=try saves.capture(a,state);std.debug.assert(now.version==6);
+        var grazers:usize=0;var movers:usize=0;
+        for(old.value.origin.?.cells,now.origin.?.cells)|before,after|{
+            const x=before.runtime();const y=after.runtime();std.debug.assert(std.meta.eql(x,y));
+            for(y.cohorts)|co|{std.debug.assert(co.organization==0 and co.support_mass==0);if(co.lifetime_grazed>0)grazers+=1;if(co.relocations>0)movers+=1;}
+        }
+        std.debug.assert(std.meta.eql(old.value.origin.?.stats,now.origin.?.stats));std.debug.assert(grazers>0 and movers>0);
+        const json=try std.json.stringifyAlloc(a,now,.{});var fresh=try saves.schema.parse(a,json);defer fresh.deinit();
+        var invalidTest=false;
+        outer:for(fresh.value.origin.?.cells)|cell|{if(cell.sparse)|entries|{for(@constCast(entries))|*entry|{
+            if(entry.value.biomass>0){const was=entry.value.support_mass;entry.value.support_mass=entry.value.biomass+1;
+                var rejected=false;saves.apply(state,fresh.value) catch {rejected=true;};std.debug.assert(rejected);entry.value.support_mass=was;
+                const unchanged=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,unchanged));invalidTest=true;break :outer;
+            }
+        }}}
+        std.debug.assert(invalidTest);
+        state.planet.microbeCells[0].nutrient=0;state.planet.microbeStats.grazed_carbon=0;
+        try saves.replaceWorld(state,fresh.value);
+        const again=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,again));
+        std.debug.print("V5_ENGINE_MIGRATION cells={d} feeding_histories={d} movement_histories={d} all_cells_resources_rng_equal=true all_stats_equal=true producer_defaults_zero=true support_invalid_unchanged=true exact_v6_restore=true\n",.{now.origin.?.cells.len,grazers,movers});return;
+    }

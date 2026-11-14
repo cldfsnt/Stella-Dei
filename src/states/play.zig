@@ -895,6 +895,16 @@ pub const PlayState = struct {
         return true;
     }
 
+    pub fn adjustSelectedWater(self:*PlayState, expected_point:u32, delta_m:f32) f32 {
+        if(self.planet.worldMode!=.origin or expected_point!=self.selectedPoint or self.selectedPoint>=self.planet.waterMass.len or !std.math.isFinite(delta_m) or @abs(delta_m)>0.100001) return std.math.nan(f32);
+        const changed=self.planet.adjustWaterDepth(self.selectedPoint,delta_m/1000);
+        if(std.math.isFinite(changed)) {
+            self.mobileFeedback=if(changed>0) "Fine water added to selected patch" else if(changed<0) "Fine water removed from selected patch" else "No water change";
+            self.mobileFeedbackSeconds=3;
+        }
+        return changed;
+    }
+
     pub fn testAction(self: *PlayState, tool_id: i32) bool {
         if (!self.pointerOnPlanet or tool_id < 0 or tool_id > 6) return false;
         return self.applySelectedTool(@enumFromInt(tool_id), true, 0);
@@ -1323,6 +1333,21 @@ pub const PlayState = struct {
                 vg.beginPath(); vg.fillColor(nvg.rgb(56,225,185));
                 vg.roundedRect(x-matSize*0.7,y-matSize*0.4,matSize*0.8,matSize*0.5,matSize*0.24);
                 vg.roundedRect(x+matSize*0.1,y,matSize*0.6,matSize*0.35,matSize*0.17); vg.fill();
+                // One bounded schematic per patch, based on tallest actual tissue.
+                var tallest: f32=0;
+                var support:f32=0;
+                var frond:f32=0;
+                for(self.planet.microbeCells[index].cohorts) |co| {
+                    const h=Microbes.producerHeightMeters(co);
+                    if(h>tallest){tallest=h;support=co.support_mass;frond=Microbes.frondMass(co);}
+                }
+                if(biology_visuals.producerShape(support,frond,tallest)) |shape| {
+                    vg.beginPath();vg.fillColor(nvg.rgb(70,153,121));
+                    vg.roundedRect(x-1.5,y-shape.stem,3,shape.stem,1.5);vg.fill();
+                    vg.beginPath();vg.fillColor(nvg.rgb(142,240,174));
+                    vg.roundedRect(x-shape.canopy,y-shape.stem,shape.canopy,5,2.5);
+                    vg.roundedRect(x,y-shape.stem-4,shape.canopy,5,2.5);vg.fill();
+                }
                 if (biology_visuals.hasFed(self.planet.microbeCells[index].cohorts)) {
                     vg.beginPath(); vg.fillColor(nvg.rgb(255,191,89));
                     vg.roundedRect(x-3,y-3,6,6,3); vg.fill();

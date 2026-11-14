@@ -346,6 +346,11 @@ export fn stella_life_snapshot() [*:0]const u8 {
     const depth = state.planet.waterMass[point] * state.planet.getKmPerWaterMass();
     const surfaceLight = @max(0, state.planet.transformedPoints[point].norm().dot(state.simulationSolarVector())) * std.math.clamp(state.solarConstant / 1361, 0, 2);
     const biologicalLight = @import("simulation/microbes.zig").availableLight(surfaceLight, depth);
+    const Microbes = @import("simulation/microbes.zig");
+    const shares = Microbes.producerLightShares(cell, surfaceLight, depth);
+    const Tissue = struct { support_mass:f32, frond_mass:f32, height_m:f32, available_light:f32, maintenance_potential:f32 };
+    var tissues:[4]Tissue=undefined;
+    for(cell.cohorts,0..) |co,slot| tissues[slot]=.{.support_mass=co.support_mass,.frond_mass=Microbes.frondMass(co),.height_m=Microbes.producerHeightMeters(co),.available_light=shares[slot],.maintenance_potential=Microbes.supportMaintenancePerDay(co)};
     var movement_reasons: [4][]const u8 = undefined;
     for (&movement_reasons, 0..) |*reason, slot| {
         reason.* = @tagName(state.planet.microbeRelocationOpportunity(point, slot, state.gameTime).reason);
@@ -356,7 +361,7 @@ export fn stella_life_snapshot() [*:0]const u8 {
         .temperature_c = state.planet.temperature[point] - 273.15,
         .water_m = state.planet.waterMass[point] * state.planet.getKmPerWaterMass() * 1000,
         .nutrients = cell.nutrient, .detritus = cell.detritus, .simulation_light = biologicalLight,
-        .cohorts = cell.cohorts, .movement_reasons = movement_reasons,
+        .cohorts = cell.cohorts, .movement_reasons = movement_reasons, .tissues = tissues,
     }, .{ .emit_nonportable_numbers_as_strings = true }, stream.writer()) catch return "{\"status\":\"error\"}";
     lifeSnapshotBuffer[stream.pos] = 0;
     return @ptrCast(&lifeSnapshotBuffer);
@@ -390,6 +395,11 @@ export fn stella_selected_vegetation() f32 {
 export fn stella_selected_elevation() f32 {
     return if (webPlayState()) |state| state.planet.elevation[state.selectedPoint] else -1;
 }
+export fn stella_adjust_water(expected_point: u32, delta_m: f32) f32 {
+    const state=webPlayState() orelse return std.math.nan(f32);
+    return state.adjustSelectedWater(expected_point, delta_m);
+}
+
 export fn stella_test_action(tool: i32) i32 {
     return if (webPlayState()) |state| @intFromBool(state.testAction(tool)) else 0;
 }

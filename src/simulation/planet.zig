@@ -1444,6 +1444,16 @@ pub const Planet = struct {
         self.worldMode = .origin;
     }
 
+    /// Explicit fine-water player intervention; returns actual metres changed.
+    /// Adds/removes water intentionally, not part of closed-world physics.
+    pub fn adjustWaterDepth(self:*Planet,index:usize,delta_km:f32) f32 {
+        if(self.worldMode!=.origin or index>=self.waterMass.len or !std.math.isFinite(delta_km) or @abs(delta_km)>0.00010001)return 0;
+        const conversion=self.getKmPerWaterMass();
+        const old=self.waterMass[index];
+        self.waterMass[index]=@max(0,old+delta_km/conversion);
+        return (self.waterMass[index]-old)*conversion*1000;
+    }
+
     fn microbeEnvironment(self: *Planet, index: usize, light: f32) Microbes.Environment {
         const area = self.getMeanPointArea();
         return .{

@@ -25,7 +25,7 @@ pub fn capture(allocator: std.mem.Allocator, state: anytype) !schema.Save {
     var origin: ?schema.Origin = null;
     if (p.worldMode == .origin) {
         const sparse = try schema.captureSparse(allocator, p.microbeCells);
-        origin = .{ .model_revision = 4, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = p.microbeStats };
+        origin = .{ .model_revision = schema.VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = p.microbeStats };
     }
     return .{ .version = schema.VERSION, .mode = p.worldMode, .origin = origin, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = p.waterVaporMass, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
 }

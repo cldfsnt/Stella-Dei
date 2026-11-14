@@ -51,3 +51,17 @@ test "feeding marker requires living capability and recorded intake" {
     try std.testing.expect(!hasFed([_]C{.{.biomass=1,.feeding=0,.lifetime_grazed=1}}));
     try std.testing.expect(hasFed([_]C{.{.biomass=1,.feeding=0.2,.lifetime_grazed=0.01}}));
 }
+
+/// Map-scale schematic only: no tissue means no raised collecting glyph.
+pub fn producerShape(support:f32,frond:f32,height_m:f32) ?struct{stem:f32,canopy:f32} {
+    if (!std.math.isFinite(support) or !std.math.isFinite(frond) or !std.math.isFinite(height_m) or support<=0 or frond<=0 or height_m<=0) return null;
+    return .{.stem=4+18*std.math.clamp(height_m/0.5,0,1),.canopy=3+9*@sqrt(std.math.clamp(frond,0,1))};
+}
+test "producer schematic requires actual tissue and bounded height" {
+    try std.testing.expect(producerShape(0,1,0.5)==null);
+    try std.testing.expect(producerShape(1,0,0.5)==null);
+    const small=producerShape(0.01,0.02,0.01).?;
+    const large=producerShape(1,1,0.5).?;
+    try std.testing.expect(small.stem<large.stem and small.canopy<large.canopy);
+    try std.testing.expectEqual(@as(f32,22),producerShape(1,1,999).?.stem);
+}

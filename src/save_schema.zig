@@ -1,6 +1,6 @@
 //! Versioned, graphics-independent browser save format. Never includes pointers.
 const std = @import("std");
-pub const VERSION: u32 = 5;
+pub const VERSION: u32 = 6;
 pub const Microbes = @import("simulation/microbes.zig");
 pub const WorldMode = Microbes.Mode;
 /// Wire representation accepts legacy two-slot data without advancing biology.
@@ -187,6 +187,9 @@ pub const Save = struct {
                         try finiteRange(cohort.feeding, 0, 1);
                         try finiteRange(cohort.lifetime_grazed, 0, 1e12);
                         if (self.version < 4 and (cohort.feeding != 0 or cohort.lifetime_grazed != 0)) return error.IncompatibleSave;
+                        try finiteRange(cohort.organization, 0, 0.7);
+                        try finiteRange(cohort.support_mass, 0, cohort.biomass);
+                        if (self.version < 6 and (cohort.organization != 0 or cohort.support_mass != 0)) return error.IncompatibleSave;
                         try finiteRange(cohort.mobility, 0, 1);
                         try finiteRange(cohort.last_move_time, 0, self.game_time);
                         if (cohort.relocations > 0 and (cohort.last_from >= count or cohort.last_to >= count or cohort.last_from == cohort.last_to or cohort.last_to != cell_index)) return error.InvalidValue;
@@ -374,7 +377,7 @@ test "Origin v5 preserves cohorts lineage resources RNG and deterministic contin
     original.mode = .origin;
     var saved_cells: [12]SavedCell = undefined;
     for (&cells, &saved_cells) |*cell, *out| out.* = SavedCell.capture(cell);
-    original.origin = .{ .model_revision = 4, .cells = &saved_cells, .stats = stats };
+    original.origin = .{ .model_revision = VERSION - 1, .cells = &saved_cells, .stats = stats };
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, original, .{});
     defer std.testing.allocator.free(bytes);
     var parsed = try parse(std.testing.allocator, bytes);
@@ -396,7 +399,7 @@ test "Origin rejects absent state invalid shape resources lineage RNG and versio
     var cells = [_]Microbes.Cell{Microbes.initialized(42)} ** 12;
     var saved_cells: [12]SavedCell = undefined;
     for (&cells, &saved_cells) |*cell, *out| out.* = SavedCell.capture(cell);
-    saved.origin = .{ .model_revision = 4, .cells = &saved_cells, .stats = .{} };
+    saved.origin = .{ .model_revision = VERSION - 1, .cells = &saved_cells, .stats = .{} };
     try saved.validate();
     cells[0].nutrient = std.math.nan(f32);
     saved_cells[0] = SavedCell.capture(&cells[0]);
@@ -449,7 +452,7 @@ test "v2 wire migration preserves tiny colonies resources IDs RNG and pads only"
     try saved.validate();
     const new_cells = [_]SavedCell{SavedCell.capture(&migrated)} ** 12;
     saved.version = VERSION;
-    saved.origin.?.model_revision = 4;
+    saved.origin.?.model_revision = VERSION - 1;
     saved.origin.?.cells = &new_cells;
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
     defer std.testing.allocator.free(bytes);
@@ -479,7 +482,7 @@ test "v3 structural state migrates with zero feeding then v4 preserves real cons
     migrated.cohorts[0].lifetime_grazed = 0.125;
     const new_cells = [_]SavedCell{SavedCell.capture(&migrated)} ** 12;
     saved.version = VERSION;
-    saved.origin.?.model_revision = 4;
+    saved.origin.?.model_revision = VERSION - 1;
     saved.origin.?.cells = &new_cells;
     saved.origin.?.stats.grazed_carbon = 12345.125;
     saved.origin.?.stats.grazing_respired_carbon = 4567.25;
@@ -512,7 +515,7 @@ test "sparse exactness retains inactive history signed zero and movement events"
     var saved = fixture();
     saved.version = VERSION;
     saved.mode = .origin;
-    saved.origin = .{ .model_revision = 4, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 100, .relocations = 2, .movement_respired_carbon = 0.0125 } };
+    saved.origin = .{ .model_revision = VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 100, .relocations = 2, .movement_respired_carbon = 0.0125 } };
     try saved.validate();
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
     defer std.testing.allocator.free(bytes);
@@ -574,10 +577,85 @@ test "v4 grazing wire defaults movement fields without altering feeding history"
     defer sparse.deinit(std.testing.allocator);
     var migrated = old;
     migrated.version = VERSION;
-    migrated.origin.?.model_revision = 4;
+    migrated.origin.?.model_revision = VERSION - 1;
     migrated.origin.?.cohort_encoding = .sparse_indexed;
     migrated.origin.?.cells = sparse.cells;
     try migrated.validate();
     for (sparse.cells) |cell| try std.testing.expectEqualDeep(before, cell.runtime());
     try std.testing.expectEqualDeep(old.origin.?.stats, migrated.origin.?.stats);
+}
+
+test "v5 motion wire migrates producer fields as zero without changing history" {
+    const wire =
+        \\{"sparse":[{"index":2,"value":{"biomass":0.12,"optimum":303,"efficiency":1.1,"structure":0.17,"feeding":0.32,"lifetime_grazed":0.1875,"mobility":0.4,"relocations":2,"last_from":1,"last_to":0,"last_move_time":120000,"lineage":7,"parent":3,"generation":2}}],"nutrient":0.03,"detritus":0.01,"rng":778899}
+    ;
+    var parsed = try std.json.parseFromSlice(SavedCell, std.testing.allocator, wire, .{});
+    defer parsed.deinit();
+    const before = parsed.value.runtime();
+    try std.testing.expectEqual(@as(f32, 0), before.cohorts[2].organization);
+    try std.testing.expectEqual(@as(f32, 0), before.cohorts[2].support_mass);
+    var cells = [_]Microbes.Cell{.{}} ** 12;
+    cells[0] = before;
+    const sparse = try captureSparse(std.testing.allocator, &cells);
+    defer sparse.deinit(std.testing.allocator);
+    var old = fixture();
+    old.version = 5;
+    old.mode = .origin;
+    old.origin = .{ .model_revision = 4, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 8, .births = 6, .grazed_carbon = 45.25, .grazing_respired_carbon = 12.5, .relocations = 2, .movement_respired_carbon = 1.25 } };
+    try old.validate();
+    var migrated = old;
+    migrated.version = VERSION;
+    migrated.origin.?.model_revision = VERSION - 1;
+    try migrated.validate();
+    const bytes = try std.json.stringifyAlloc(std.testing.allocator, migrated, .{});
+    defer std.testing.allocator.free(bytes);
+    var loaded = try parse(std.testing.allocator, bytes);
+    defer loaded.deinit();
+    for (cells, loaded.value.origin.?.cells) |cell, saved| try std.testing.expectEqualDeep(cell, saved.runtime());
+    try std.testing.expectEqualDeep(old.origin.?.stats, loaded.value.origin.?.stats);
+    const again = try std.json.stringifyAlloc(std.testing.allocator, loaded.value, .{});
+    defer std.testing.allocator.free(again);
+    try std.testing.expectEqualSlices(u8, bytes, again);
+}
+
+test "v6 support subset finite bounds and sparse signed zero remain exact" {
+    var cells = [_]Microbes.Cell{.{}} ** 12;
+    cells[0].cohorts[1] = .{ .biomass = 0.2, .organization = 0.6, .support_mass = 0.08, .lineage = 1 };
+    cells[1].cohorts[3].organization = -0.0;
+    cells[2].cohorts[2].support_mass = -0.0;
+    const sparse = try captureSparse(std.testing.allocator, &cells);
+    defer sparse.deinit(std.testing.allocator);
+    try std.testing.expectEqual(@as(usize, 3), sparse.entries.len);
+    var saved = fixture();
+    saved.version = VERSION;
+    saved.mode = .origin;
+    saved.origin = .{ .model_revision = VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 2 } };
+    try saved.validate();
+    const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
+    defer std.testing.allocator.free(bytes);
+    var loaded = try parse(std.testing.allocator, bytes);
+    defer loaded.deinit();
+    for (cells, loaded.value.origin.?.cells) |before, encoded| {
+        const after = encoded.runtime();
+        for (before.cohorts, after.cohorts) |a, b| {
+            try std.testing.expectEqual(@as(u32, @bitCast(a.organization)), @as(u32, @bitCast(b.organization)));
+            try std.testing.expectEqual(@as(u32, @bitCast(a.support_mass)), @as(u32, @bitCast(b.support_mass)));
+        }
+    }
+    const initial = sparse.entries[0].value;
+    for ([_]f32{ -0.01, 0.2001, std.math.inf(f32), std.math.nan(f32) }) |bad| {
+        sparse.entries[0].value.support_mass = bad;
+        try std.testing.expectError(error.InvalidValue, saved.validate());
+        // Validation never normalizes/repairs or mutates the other saved fields.
+        try std.testing.expectEqual(initial.organization, sparse.entries[0].value.organization);
+        sparse.entries[0].value = initial;
+    }
+    for ([_]f32{ -0.01, 0.7001, std.math.inf(f32), std.math.nan(f32) }) |bad| {
+        sparse.entries[0].value.organization = bad;
+        try std.testing.expectError(error.InvalidValue, saved.validate());
+        sparse.entries[0].value = initial;
+    }
+    saved.version = 5;
+    saved.origin.?.model_revision = 4;
+    try std.testing.expectError(error.IncompatibleSave, saved.validate());
 }
