@@ -1,0 +1,1 @@
+Experimental helper, not wired into the live shell yet. Samples observed net biomass over at least two simulated days; does not infer photosynthetic growth, cause, establishment, or future survival. Actions/load should clear history. Tests cover decrease, increase, stable, loss, zero baseline, gaps, rewinds and invalid data. Native browser UI remains to integrate/test.
