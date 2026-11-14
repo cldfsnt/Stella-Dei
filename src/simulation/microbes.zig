@@ -26,18 +26,10 @@ pub fn supportMaintenancePerDay(c:Cohort) f32{return c.support_mass*0.12;}
 /// Fraction of reference surface daylight currently intercepted by each cohort.
 /// Read-only, finite shared photons; equal-height layers share proportionally.
 pub fn producerLightShares(cell:Cell,surface:f32,depth_km:f32) [4]f32 {
-    var shares=[_]f32{0,0,0,0};var order=[_]usize{0,1,2,3};
-    for(0..4)|i|for(i+1..4)|j|{if(producerHeightMeters(cell.cohorts[order[j]])>producerHeightMeters(cell.cohorts[order[i]]))std.mem.swap(usize,&order[i],&order[j]);};
-    var light=std.math.clamp(surface,0,2);var previous=@max(0,depth_km*1000);var start:usize=0;
-    while(start<4){
-        const height=producerHeightMeters(cell.cohorts[order[start]]);var end=start+1;
-        while(end<4 and @abs(producerHeightMeters(cell.cohorts[order[end]])-height)<0.000001):(end+=1){}
-        light*=@exp(-@max(0,previous-height)/3);previous=height;
-        var leaves:f32=0;for(order[start..end])|i|leaves+=frondMass(cell.cohorts[i]);
-        const absorbed=light*(1-@exp(-20*leaves));light-=absorbed;
-        if(leaves>0)for(order[start..end])|i|{shares[i]=absorbed*frondMass(cell.cohorts[i])/leaves;};
-        start=end;
-    }
+    var shares=[_]f32{0,0,0,0};var leaves:f32=0;var weighted:f32=0;
+    for(cell.cohorts,0..)|c,i|{const fronds=frondMass(c);leaves+=fronds;shares[i]=fronds*@exp(producerHeightMeters(c)/0.1);weighted+=shares[i];}
+    const absorbed=availableLight(surface,depth_km)*(1-@exp(-20*leaves));
+    if(weighted>0)for(&shares)|*share|{share.*=absorbed*share.*/weighted;};
     return shares;
 }
 pub fn habitable(depth:f32,temp:f32) bool{return depth>=0.0002 and depth<=0.05 and temp>260 and temp<355;}
@@ -65,32 +57,40 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     for(&cell.cohorts) |*c| {
         if(c.biomass<=0)continue;
         const upkeep=@min(c.biomass,supportMaintenancePerDay(c.*)*days*support_scale);
-        if(upkeep>0){const factor=1-upkeep/c.biomass;c.biomass-=upkeep;c.support_mass*=factor;cell.nutrient+=upkeep*nutrient_per_carbon;support_respired+=upkeep;}
+        if(upkeep>0){const factor=1-upkeep/c.biomass;c.biomass-=upkeep;c.support_mass=@min(c.biomass,c.support_mass*factor);cell.nutrient+=upkeep*nutrient_per_carbon;support_respired+=upkeep;}
         const fitness=thermalFitness(env.temperature,c.optimum);
         const dry=env.depth_km<0.0002 and env.temperature>260 and env.temperature<355;
         const mortality:f32=if(dry) 4*(1-0.85*c.structure)+0.10*c.structure else if(!habitable(env.depth_km,env.temperature)) 4 else 0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
         const exposed=std.math.clamp((producerHeightMeters(c.*)-env.depth_km*1000)/0.1,0,1);
         const dead=c.biomass*(1-@exp(-(mortality+3*exposed)*days));
         if(c.biomass>0)c.support_mass*=1-dead/c.biomass;
-        c.biomass-=dead;cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
+        c.biomass-=dead;c.support_mass=@min(c.support_mass,c.biomass);cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
         // Below 25% of one propagule, recycle unresolved failed establishment.
         if(c.biomass<0.0025){result.failed_patches+=1;cell.detritus+=c.biomass;cell.nutrient+=c.biomass*nutrient_per_carbon;c.*=.{};continue;}
         if(!habitable(env.depth_km,env.temperature))continue;
     }
     const space=@max(0,1-biomass(cell.*));
     var organized=false;for(cell.cohorts)|c|{if(c.support_mass>0)organized=true;}
-    const intercepted=if(organized)producerLightShares(cell.*,env.light,env.depth_km) else [_]f32{0,0,0,0};
+
     for(cell.cohorts,0..) |c,i| {
         if(c.biomass<=0 or !habitable(env.depth_km,env.temperature))continue;
         const fitness=thermalFitness(env.temperature,c.optimum);
         // Higher light efficiency carries maintenance cost; not a free upgrade.
         const rate=@max(0,3*fitness*light*c.efficiency*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)-0.15*c.efficiency*c.efficiency);
-        potentials[i]=if(organized) @max(0,0.15*intercepted[i]*fitness*c.efficiency*(1-0.5*c.structure)*(1-0.7*c.feeding)*(1-0.3*c.mobility)*days)*space else c.biomass*(@exp(@min(20,rate*days))-1)*space;
+        potentials[i]=frondMass(c)*(@exp(@min(20,rate*days))-1)*space;
+    }
+    // Smooth competition: height redistributes, never increases the existing
+    // unshaded photosynthetic budget. No tiny-tissue cell-wide model switch.
+    // The phenomenological uptake response/20m attenuation remain compatible.
+    if(organized){
+        var budget:f32=0;var weighted:f32=0;
+        for(&potentials,cell.cohorts)|*value,c|{budget+=value.*;value.* *= @exp(producerHeightMeters(c)/0.1);weighted+=value.*;}
+        if(weighted>0)for(&potentials)|*value|{value.* *= budget/weighted;};
     }
     var potential:f32=0;for(potentials)|v|potential+=v;
     const growth=@min(potential,@min(space,@min(available,cell.nutrient/nutrient_per_carbon)));
     if(potential>0)for(&cell.cohorts,0..) |*c,i| {
-        const share=growth*potentials[i]/potential;c.biomass+=share;c.support_mass+=share*c.organization;c.reproduction_credit+=share;
+        const share=growth*potentials[i]/potential;c.biomass+=share;c.support_mass=@min(c.biomass,c.support_mass+share*c.organization);c.reproduction_credit+=share;
     };
     cell.nutrient=@max(0,cell.nutrient-growth*nutrient_per_carbon);result.fixed=growth;
     var grazing_respired:f32=0;
@@ -112,7 +112,7 @@ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:b
     const i=slot orelse return false;
     if(biomass(destination.*)>0.99)return false;
     const amount:@TypeOf(parent.biomass)=0.01;
-    var child=parent.*;child.support_mass=parent.support_mass*(amount/parent.biomass);child.biomass=amount;child.parent=parent.lineage;child.lineage=stats.next_lineage;child.generation=parent.generation+|1;child.reproduction_credit=0;child.lifetime_grazed=0;child.relocations=0;child.last_from=0;child.last_to=0;child.last_move_time=0;
+    var child=parent.*;child.support_mass=@min(amount,parent.support_mass*(amount/parent.biomass));child.biomass=amount;child.parent=parent.lineage;child.lineage=stats.next_lineage;child.generation=parent.generation+|1;child.reproduction_credit=0;child.lifetime_grazed=0;child.relocations=0;child.last_from=0;child.last_to=0;child.last_move_time=0;
     if(mutate){
         const r=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
         const q=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
@@ -127,7 +127,7 @@ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:b
         const r_organization=@as(f32,@floatFromInt(random(&donor.rng)>>40))/16777216;
         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
     }
-    parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.reproduction_credit-=0.04;destination.cohorts[i]=child;
+    parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=0.04;destination.cohorts[i]=child;
     stats.next_lineage+=1;stats.births+=1;
     return true;
 }
@@ -172,7 +172,7 @@ pub fn graze(cell:*Cell,days:f32,oxygen_capacity:f32) GrazingFlux {
         const scale=if(wanted>0)@min(@as(f32,1),prey.biomass/wanted) else 0;
         for(0..4)|i|{const consumed=demand[i][j]*scale*oxygen_scale;gains[i]+=consumed*0.5;losses[j]+=consumed;total+=consumed;}
     }
-    for(&cell.cohorts,0..)|*c,i|{if(c.biomass>0)c.support_mass*=@max(0,1-losses[i]/c.biomass);c.support_mass+=gains[i]*c.organization;c.biomass=@max(0,c.biomass-losses[i]+gains[i]);c.reproduction_credit+=gains[i];c.lifetime_grazed+=gains[i]*2;}
+    for(&cell.cohorts,0..)|*c,i|{if(c.biomass>0)c.support_mass*=@max(0,1-losses[i]/c.biomass);c.support_mass+=gains[i]*c.organization;c.biomass=@max(0,c.biomass-losses[i]+gains[i]);c.support_mass=std.math.clamp(c.support_mass,0,c.biomass);c.reproduction_credit+=gains[i];c.lifetime_grazed+=gains[i]*2;}
     cell.detritus+=total*0.25;cell.nutrient+=total*0.5*nutrient_per_carbon;
     return .{.consumed=total,.respired=total*0.25};
 }
@@ -561,4 +561,46 @@ test "real inherited organization grows support with finite light and fair shari
     std.debug.print("PRODUCER32 expressed={d}\n",.{expressed});
     var equal=initialized(1);equal.cohorts[0]=.{.biomass=0.1,.support_mass=0.03};equal.cohorts[1]=equal.cohorts[0];
     const shares=producerLightShares(equal,1,0.0003);try std.testing.expectApproxEqAbs(shares[0],shares[1],0.000001);
+}
+test "infinitesimal producer tissue is continuous with zero-support baseline" {
+    var baseline=initialized(1);baseline.cohorts[0]=.{.biomass=0.08,.lineage=1};baseline.cohorts[1]=.{.biomass=0.08,.lineage=2};
+    var tiny=baseline;tiny.cohorts[0].support_mass=1e-10;
+    const old=step(&baseline,good,3600);const new=step(&tiny,good,3600);
+    try std.testing.expectApproxEqAbs(old.fixed,new.fixed,0.0000001);
+    try std.testing.expectApproxEqAbs(baseline.cohorts[1].biomass,tiny.cohorts[1].biomass,0.0000001);
+    const shares=producerLightShares(tiny,1,0.002);
+    try std.testing.expectApproxEqAbs(shares[0],shares[1],0.0000001);
+}
+test "production organization trades open-water growth for continuous crowded light competition" {
+    var grown:[2]f32=undefined;
+    for(0..2)|control|{
+        var cell=initialized(1);cell.nutrient=1;
+        cell.cohorts[0]=.{.biomass=0.08,.organization=if(control==0)0.4 else 0,.support_mass=if(control==0)0.032 else 0,.lineage=1};
+        for(0..240)|_|_=step(&cell,good,3600);
+        grown[control]=cell.cohorts[0].biomass;
+    }
+    try std.testing.expect(grown[0]<grown[1]);
+    var competition=initialized(1);competition.nutrient=1;
+    competition.cohorts[0]=.{.biomass=0.08,.organization=0.4,.support_mass=0.032,.lineage=1};
+    competition.cohorts[1]=.{.biomass=0.08,.lineage=2};
+    for(0..240)|_|_=step(&competition,good,3600);
+    std.debug.print("PRODUCER_CONTROL open_support={d} open_flat={d} crowded_support={d} crowded_flat={d}\n",.{grown[0],grown[1],competition.cohorts[0].biomass,competition.cohorts[1].biomass});
+    try std.testing.expect(competition.cohorts[0].biomass>competition.cohorts[1].biomass);
+}
+test "all-support and rounded daughter subsets remain valid without changing carbon" {
+    for([_]f32{0.031234567,0.08,0.33333334,0.98})|mass|{
+        var cell=initialized(1);var stats:Stats=.{.next_lineage=2};
+        cell.cohorts[0]=.{.biomass=mass,.support_mass=mass,.organization=0.7,.lineage=1,.reproduction_credit=0.1,.feeding=0.5,.mobility=1};
+        const old=carbon(cell);const n=nutrientTotal(cell);
+        try std.testing.expectEqual(@as(f32,0),frondMass(cell.cohorts[0]));
+        var cells=[_]Cell{cell,initialized(2)};cells[1].cohorts[0]=.{.biomass=0.1,.lineage=2};
+        try std.testing.expectEqual(RelocationReason.insufficient_fragment,evaluateRelocation(&cells,0,0,good,&.{.{.index=1,.environment=good}},1).reason);
+        try std.testing.expect(reproduce(&cell,0,&cell,&stats,false));
+        try std.testing.expect(validCell(cell,stats.next_lineage));
+        try std.testing.expectApproxEqAbs(old,carbon(cell),0.000001);
+        const f=step(&cell,good,1440);
+        try std.testing.expect(validCell(cell,stats.next_lineage));
+        try std.testing.expectApproxEqAbs(old+f.fixed,carbon(cell)+f.recycled,0.000001);
+        try std.testing.expectApproxEqAbs(n,nutrientTotal(cell),0.000001);
+    }
 }

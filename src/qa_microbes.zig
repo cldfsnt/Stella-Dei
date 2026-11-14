@@ -55,6 +55,15 @@ test "actual Origin route conserves atmospheric carbon and nutrients and never s
         }
     }
     try std.testing.expectEqualDeep(stats_before_explanation,p.microbeStats);
+    var support_total:f32=0;var organized_descendants:usize=0;
+    for(p.microbeCells)|cell|for(cell.cohorts)|co|{support_total+=co.support_mass;if(co.generation>0 and co.support_mass>0)organized_descendants+=1;};
+    try std.testing.expect(support_total>0 and organized_descendants>0);
+    const old_depth=p.waterMass[0]*p.getKmPerWaterMass();
+    try std.testing.expectApproxEqAbs(@as(f32,0.1),p.adjustWaterDepth(0,0.0001),0.00001);
+    try std.testing.expectApproxEqAbs(@as(f32,-0.1),p.adjustWaterDepth(0,-0.0001),0.00001);
+    try std.testing.expectApproxEqAbs(old_depth,p.waterMass[0]*p.getKmPerWaterMass(),0.00000001);
+    try std.testing.expectEqual(@as(f32,0),p.adjustWaterDepth(0,1));
+    std.debug.print("PRODUCER_PLANET support={d} actual_descendants={d} fine_water_roundtrip=true\n",.{support_total,organized_descendants});
     const before=p.microbeStats.fixed_carbon;
     p.simulateMicrobes(.{.dt=3600,.timeScale=1,.gameTime=8640000,.solarVector=Vec3.new(1,0,0),.solarConstant=0,.planetRotationTime=86400});
     try std.testing.expectEqual(before,p.microbeStats.fixed_carbon);
