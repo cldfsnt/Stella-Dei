@@ -21,9 +21,10 @@ pub fn wave(planet:anytype,expected:usize,selected:usize) Receipt {
  if(!std.math.isFinite(conversion) or conversion<=0 or !std.math.isFinite(donor) or donor<0)return failed(.wave,.invalid);
  if(donor==0)return failed(.wave,.dry);
  var ids:[6]usize=undefined;var n:usize=0;
- for(planet.getNeighbours(selected))|id| {
-  if(id>=planet.waterMass.len or id==selected)return failed(.wave,.invalid);
-  for(ids[0..n])|old|{if(id==old)return failed(.wave,.invalid);}
+ neighbors:for(planet.getNeighbours(selected))|id| {
+  if(id>=planet.waterMass.len)return failed(.wave,.invalid);
+  if(id==selected)continue; // Mesh pentagons include self padding.
+  for(ids[0..n])|old|{if(id==old)continue :neighbors;}
   if(n==ids.len)return failed(.wave,.invalid);
   if(!std.math.isFinite(planet.waterMass[id]) or planet.waterMass[id]<0)return failed(.wave,.invalid);
   ids[n]=id;n+=1;
@@ -48,6 +49,10 @@ pub fn wave(planet:anytype,expected:usize,selected:usize) Receipt {
  for(ids[0..n],0..)|id,i|out.affected[i+1]=.{.cell=id,.water_mass=updated[i]-planet.waterMass[id]};
  planet.waterMass[selected]=new_donor;
  for(ids[0..n],0..)|id,i|planet.waterMass[id]=updated[i];
+ if(@hasDecl(@TypeOf(planet.*),"reconcileWaterPrecision")){
+  planet.reconcileWaterPrecision(selected);
+  for(ids[0..n])|id|planet.reconcileWaterPrecision(id);
+ }
  return out;
 }
 /// Caller supplies actual current patch heat capacity in J/K from the engine.
@@ -89,4 +94,81 @@ test "deep map precision refusal leaves water unchanged" {
  var p=P{};const before=p.waterMass;
  try std.testing.expectEqual(Failure.precision,wave(&p,0,0).failure);
  try std.testing.expectEqualSlices(f32,&before,&p.waterMass);
+}
+
+test "paused wave keeps bulk plus existing carries conserved and canonical" {
+ const Precision=@import("simulation/water_precision.zig");
+ const P=struct {
+  const area:f64=1e9;
+  const C=struct{surface:f64=0,vapor:f64=0,reserve:f64=0.125};
+  waterMass:[3]f32=.{4,0.25,9},waterVaporMass:[3]f32=.{0.5,0.5,0.5},temperature:[3]f32=.{295,295,295},cells:[3]C=.{.{}}**3,
+  calls:usize=0,normalizations:usize=0,
+  pub fn getKmPerWaterMass(_: *@This()) f32{return 0.001;}
+  pub fn getNeighbours(_: *@This(),_:usize) []const usize{return &.{1};}
+  pub fn reconcileWaterPrecision(self:*@This(),i:usize) void {
+   self.calls+=1;
+   if(self.cells[i].surface==0 and self.cells[i].vapor==0)return;
+   self.normalizations+=1;
+   std.debug.assert(Precision.apply(&self.waterMass[i],&self.waterVaporMass[i],&self.cells[i].surface,&self.cells[i].vapor,area,0,0,0));
+  }
+ };
+ var p=P{};
+ for(&p.cells,0..)|*c,i|{c.surface=Precision.quantumKg(p.waterMass[i],P.area)*0.5;c.vapor=Precision.quantumKg(p.waterVaporMass[i],P.area)*0.25;}
+ const before=p;
+ try std.testing.expectEqual(Failure.stale,wave(&p,1,0).failure);
+ try std.testing.expectEqualDeep(before,p);
+ const result=wave(&p,0,0);try std.testing.expect(result.success());
+ try std.testing.expectEqual(@as(usize,2),p.calls);try std.testing.expectEqual(@as(usize,2),p.normalizations);
+ var total_before:f64=0;var total_after:f64=0;
+ for(0..3)|i|{
+  total_before+=@as(f64,before.waterMass[i])+before.cells[i].surface;
+  total_after+=@as(f64,p.waterMass[i])+p.cells[i].surface;
+  try std.testing.expect(Precision.validCarry(p.waterMass[i],p.cells[i].surface,P.area));
+  try std.testing.expect(Precision.validCarry(p.waterVaporMass[i],p.cells[i].vapor,P.area));
+  try std.testing.expectApproxEqAbs(@as(f64,before.waterVaporMass[i])+before.cells[i].vapor,@as(f64,p.waterVaporMass[i])+p.cells[i].vapor,1e-15);
+  try std.testing.expectEqual(before.cells[i].reserve,p.cells[i].reserve);
+ }
+ try std.testing.expectApproxEqAbs(total_before,total_after,1e-14);
+ // Receipt describes physical bulk transfer before representation normalization.
+ try std.testing.expectApproxEqAbs(@as(f64,3)+before.cells[0].surface,@as(f64,p.waterMass[0])+p.cells[0].surface,1e-15);
+ try std.testing.expectApproxEqAbs(@as(f64,1.25)+before.cells[1].surface,@as(f64,p.waterMass[1])+p.cells[1].surface,1e-15);
+ try std.testing.expectEqual(before.waterMass[2],p.waterMass[2]);try std.testing.expectEqualDeep(before.cells[2],p.cells[2]);
+ const after_wave=p;
+ try std.testing.expect(lightning(&p,0,0,1000).success());
+ try std.testing.expectEqualSlices(f32,&after_wave.waterMass,&p.waterMass);
+ try std.testing.expectEqualDeep(after_wave.cells,p.cells);
+ try std.testing.expectEqual(after_wave.calls,p.calls);
+ var legacy=P{};try std.testing.expect(wave(&legacy,0,0).success());
+ try std.testing.expectEqual(@as(usize,0),legacy.normalizations);
+ try std.testing.expectEqualSlices(f32,&.{3,1.25,9},&legacy.waterMass);
+}
+
+
+test "pentagon wave ignores self fillers and duplicate neighbours without changing budget" {
+ const P=struct {
+  waterMass:[7]f32=.{4,0,0,0,0,0,9},
+  neighbours:[]const usize=&.{1,2,3,4,5,0},
+  reconciled:[7]u8=.{0}**7,
+  pub fn getKmPerWaterMass(_: *@This()) f32{return 0.001;}
+  pub fn getNeighbours(self:*@This(),_:usize) []const usize{return self.neighbours;}
+  pub fn reconcileWaterPrecision(self:*@This(),i:usize) void {self.reconciled[i]+=1;}
+ };
+ var pentagon=P{};var duplicate=P{.neighbours=&.{1,2,3,4,5,1,0,2}};
+ const a=wave(&pentagon,0,0);const b=wave(&duplicate,0,0);
+ try std.testing.expect(a.success() and b.success());
+ try std.testing.expectEqual(@as(usize,6),a.count);
+ try std.testing.expectEqualSlices(f32,&pentagon.waterMass,&duplicate.waterMass);
+ try std.testing.expectEqual(@as(f32,3),pentagon.waterMass[0]);
+ var total:f64=0;for(pentagon.waterMass)|m|total+=m;
+ try std.testing.expectApproxEqAbs(@as(f64,13),total,1e-6);
+ for(0..6)|i|try std.testing.expectEqual(@as(u8,1),pentagon.reconciled[i]);
+ try std.testing.expectEqual(@as(u8,0),pentagon.reconciled[6]);
+ var invalid=P{.neighbours=&.{1,0,1,99}};
+ const before=invalid;
+ try std.testing.expectEqual(Failure.invalid,wave(&invalid,0,0).failure);
+ try std.testing.expectEqualSlices(f32,&before.waterMass,&invalid.waterMass);
+ try std.testing.expectEqualSlices(u8,&before.reconciled,&invalid.reconciled);
+ var self_only=P{.neighbours=&.{0,0,0}};
+ try std.testing.expectEqual(Failure.invalid,wave(&self_only,0,0).failure);
+ try std.testing.expectEqual(@as(f32,4),self_only.waterMass[0]);
 }
