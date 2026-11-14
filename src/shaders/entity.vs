@@ -11,5 +11,7 @@ out vec3 normal;
 
 void main() {
 	gl_Position = projMatrix * viewMatrix * modelMatrix * vec4(aPos, 1);
-	normal = aNormal;
+	// Existing entities use rotation + positive uniform scale only.
+	// Nonuniform/skinned assets require an inverse-transpose normal matrix.
+	normal = normalize(mat3(modelMatrix) * aNormal);
 }

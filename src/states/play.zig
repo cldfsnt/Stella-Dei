@@ -1646,6 +1646,23 @@ pub const PlayState = struct {
         _ = vg.text(x, y, text);
     }
 
+    fn renderWatchLegend(vg:nvg,width:f32,y:f32) void {
+        vg.save();defer vg.restore();
+        vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
+        var a:[4]f32=undefined;var b:[4]f32=undefined;
+        _=vg.textBounds(0,0,"paid arrival",&a);_=vg.textBounds(0,0,"tracked loss (not all deaths)",&b);
+        const first=a[2]-a[0];const second=b[2]-b[0];const lossX=12+first+16;
+        const total=lossX+12+second;
+        const scale=@min(@as(f32,1),(width-20)/total);
+        vg.translate(10,y);vg.scale(scale,scale);
+        vg.beginPath();vg.moveTo(4,-4);vg.lineTo(8,0);vg.lineTo(4,4);vg.lineTo(0,0);vg.closePath();
+        vg.strokeWidth(1.5);vg.strokeColor(nvg.rgb(117,237,255));vg.stroke();
+        vg.fillColor(nvg.rgb(190,214,232));_=vg.text(12,0,"paid arrival");
+        vg.beginPath();vg.moveTo(lossX,-4);vg.lineTo(lossX+8,4);vg.moveTo(lossX+8,-4);vg.lineTo(lossX,4);
+        vg.strokeColor(nvg.rgb(255,185,91));vg.stroke();
+        _=vg.text(lossX+12,0,"tracked loss (not all deaths)");
+    }
+
     fn renderMobileUI(self: *PlayState, game: *Game, renderer: *Renderer) void {
         const vg = renderer.vg;
         const size = renderer.framebufferSize;
@@ -1757,12 +1774,17 @@ pub const PlayState = struct {
         vg.fontFace("sans-serif");
         vg.fillColor(nvg.rgb(190, 214, 232));
         var ecologyText: [160]u8 = undefined;
-        const ecologyLabel = if (origin) std.fmt.bufPrint(&ecologyText, "Microbial births {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        const ecologyLabel = if (origin and self.watchLifeView) @import("../watch_feedback.zig").line(&ecologyText,self.planet.propaguleArrivals,self.planet.propaguleTrackedLosses) else if (origin) std.fmt.bufPrint(&ecologyText, "Microbial births {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        var ecologyBounds: [4]f32 = undefined;
+        _ = vg.textBounds(0,0,ecologyLabel,&ecologyBounds);
+        const ecologyWidth=ecologyBounds[2]-ecologyBounds[0];
+        if(ecologyWidth>width-20)vg.fontSize(14*(width-20)/ecologyWidth);
         _ = vg.text(10, height - 40, ecologyLabel);
+        vg.fontSize(14);
         const depth = self.planet.waterMass[self.selectedPoint] * self.planet.getKmPerWaterMass();
         const hint: []const u8 = if (origin and self.selectedTool == .PlaceVegetation)
             @import("../seed_eligibility.zig").seedHint(self.planet.seedEligibility(self.selectedPoint), if(self.mobileFeedbackSeconds>0) self.mobileFeedback else "")
-        else if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin) switch (self.selectedTool) {
+        else if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin and self.watchLifeView) @import("../watch_feedback.zig").legend else if (origin) switch (self.selectedTool) {
             .PlaceVegetation => if (depth < 0.0002) "Too dry: microbes need shallow water" else if (depth > 0.05) "Too deep: drain to 0.2–50m" else "Tap to seed existing simple life",
             .PlaceLife => "Tap to add nutrients (player supplied)",
             .None => "Inspect mats; Play to observe change",
@@ -1780,7 +1802,7 @@ pub const PlayState = struct {
         _ = vg.textBounds(0, 0, hint, &hintBounds);
         const hintWidth = hintBounds[2] - hintBounds[0];
         if (hintWidth > width - 20) vg.fontSize(14 * (width - 20) / hintWidth);
-        _ = vg.text(10, height - 16, hint);
+        if(origin and self.watchLifeView and self.mobileFeedbackSeconds<=0)renderWatchLegend(vg,width,height-16) else _ = vg.text(10, height - 16, hint);
 
         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) {
             const pw = @min(width - 24, 360);
