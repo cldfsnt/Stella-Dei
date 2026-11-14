@@ -66,6 +66,9 @@ pub fn button(vg: nvg, game: *Game, name: []const u8, x: f32, y: f32, w: f32, h:
         } else {
             state.Button.pressed = pressed;
         }
+    } else if (!pressed) {
+        // Releasing outside cancels the click instead of leaving it armed.
+        state.Button.pressed = false;
     }
     return false;
 }

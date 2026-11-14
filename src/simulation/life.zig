@@ -5,6 +5,8 @@ const ObjLoader = @import("../ObjLoader.zig");
 const Allocator = std.mem.Allocator;
 const Vec3 = za.Vec3;
 
+var birthCounter = std.atomic.Value(u32).init(0);
+
 var rabbitMesh: ?ObjLoader.Mesh = null;
 
 const Gender = enum { Male, Female };
@@ -56,7 +58,11 @@ pub const Lifeform = struct {
     }
 
     pub fn init(position: Vec3, kind: Kind, gameTime: f64) Lifeform {
-        return Lifeform{ .position = position, .kind = kind, .prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp()))), .timeBorn = gameTime };
+        // Births in the same millisecond must not share an identical RNG stream.
+        const serial: u64 = birthCounter.fetchAdd(1, .monotonic);
+        var prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())) ^ (serial *% 0x9e3779b97f4a7c15));
+        const gender: Gender = if (prng.random().boolean()) .Male else .Female;
+        return Lifeform{ .position = position, .kind = kind, .prng = prng, .timeBorn = gameTime, .genome = .{ .gender = gender } };
     }
 
     pub fn getMesh(self: Lifeform) ObjLoader.Mesh {
@@ -69,164 +75,91 @@ pub const Lifeform = struct {
     const GESTATION_DURATION: f64 = 86400; // 1 day
     const SEXUAL_MATURITY_AGE: f64 = 86400 / 2; // 12 hours
 
-    pub fn aiStep(self: *Lifeform, planet: *Planet, options: Planet.SimulationOptions) void {
-        const pointIdx = planet.getNearestPointTo(self.position);
-        const point = planet.transformedPoints[pointIdx];
-        const random = self.prng.random();
-        const dt = options.dt * options.timeScale;
-        self.reproductionCooldown = @max(0, self.reproductionCooldown - dt);
-        self.satiety = @max(0, self.satiety - dt * 0.001);
-
-        const pointTemperature = planet.temperature[pointIdx];
-
-        const age = options.gameTime - self.timeBorn;
-        const isInDeepWater = planet.waterMass[pointIdx] > 1 and pointTemperature > 273.15;
-        const isFrying = pointTemperature > 273.15 + 60.0;
-        const isStarving = self.satiety < 10;
-        const isTooOld = age > 10 * 86400;
-        var shouldDie: bool = isInDeepWater or isFrying or isStarving or isTooOld;
-
-        if (self.sexualCriteria > 0.3) {
-            // lowers by a few every in-game second
-            self.sexualCriteria -= 0.000001 * options.timeScale;
-            self.sexualCriteria = @max(0.3, self.sexualCriteria);
+    fn hasBreedingHabitat(self: *const Lifeform, planet: anytype, idx: usize) bool {
+        // Food-limited reproduction avoids a fed population overshooting its
+        // habitat and stripping every plant before hunger becomes visible.
+        var food = planet.vegetation[idx];
+        for (planet.getNeighbours(idx)) |n| food += planet.vegetation[n];
+        if (food < 1.5) return false;
+        var nearby: usize = 0;
+        for (planet.lifeforms.items) |other| {
+            if (self.position.distance(other.position) < 200) nearby += 1;
         }
+        return @as(f32, @floatFromInt(nearby)) < food * 4;
+    }
 
-        switch (self.state) {
-            .wander => {
-                if (self.satiety < 80) {
-                    if (planet.vegetation[pointIdx] > 0.2) {
-                        // eat
-                        const neededToEat = (100.0 - self.satiety) / 100.0;
-                        const eaten = @min(planet.vegetation[pointIdx], neededToEat);
-                        planet.vegetation[pointIdx] -= eaten;
-                        self.satiety += eaten * 100.0;
-                        std.log.info("rabbit ate {d} veggie level", .{eaten});
-                    } else {
-                        // TODO: search for food
-                        std.log.info("OH NO! THERE'S NO FOOD", .{});
-                    }
-                } else if (pointTemperature > 273.15 + 30.0) { // Above 30°C
-                    // Try to go to a colder point
-                    var coldestPointIdx: usize = pointIdx;
-                    var coldestTemperature: f32 = pointTemperature;
-                    for (planet.getNeighbours(pointIdx)) |neighbourIdx| {
-                        const isInWater = planet.waterMass[neighbourIdx] > 0.1 and planet.temperature[neighbourIdx] > 273.15;
-                        if (planet.temperature[neighbourIdx] + random.float(f32) * 1 < coldestTemperature and !isInWater) {
-                            coldestPointIdx = neighbourIdx;
-                            coldestTemperature = planet.temperature[neighbourIdx];
-                        }
-                    }
-                    self.state = State.goToPoint(planet, coldestPointIdx);
-                } else if (pointTemperature < 273.15 + 5.0) { // Below 5°C
-                    // Try to go to an hotter point
-                    var hottestPointIdx: usize = pointIdx;
-                    var hottestTemperature: f32 = pointTemperature;
-                    for (planet.getNeighbours(pointIdx)) |neighbourIdx| {
-                        const isInWater = planet.waterMass[neighbourIdx] > 0.1 and planet.temperature[neighbourIdx] > 273.15;
-                        if (planet.temperature[neighbourIdx] - random.float(f32) * 1 > hottestTemperature and !isInWater) {
-                            hottestPointIdx = neighbourIdx;
-                            hottestTemperature = planet.temperature[neighbourIdx];
-                        }
-                    }
-                    self.state = State.goToPoint(planet, hottestPointIdx);
-                } else {
-                    var seekingPartner = false;
-                    for (planet.lifeforms.items) |*other| {
-                        // Avoid choosing self as a partner
-                        if (other != self and self.reproductionCooldown == 0) {
-                            const distance = other.position.distance(self.position);
-                            if (distance < 100 and age >= SEXUAL_MATURITY_AGE) {
-                                // TODO: have sexual attractivity depend partially on a gene
-                                const sexualAttractivity = 0.4 + random.float(f32) * 0.1;
-                                if (sexualAttractivity >= other.sexualCriteria) {
-                                    const number = random.intRangeLessThanBiased(u8, 0, 100);
-                                    std.log.info("try {}", .{number});
-                                    if (number == 0) { // 1/100 chance
-                                        // have a baby if it's not already pregnant
-                                        if (other.state != .gestation) {
-                                            std.log.info("a rabbit got pregnant", .{});
-                                            other.state = .{ .gestation = .{ .since = options.gameTime } };
-                                        }
-                                    } else {
-                                        // The other gets more fed up by the attempts
-                                        other.sexualCriteria += 0.05;
-                                    }
-                                }
-                                self.reproductionCooldown = 3600;
-                            } else if (distance < 400 and other.sexualCriteria < 0.45) {
-                                // lookup the partner
-                                self.state = .{ .go_to_point = other.position };
-                                seekingPartner = true;
-                            }
-                        }
-                    }
-
-                    if (!seekingPartner) {
-                        // If the lifeform hasn't found any partner to mate with,
-                        // just wander around to one of the current point's neighbours
-                        const neighbours = planet.getNeighbours(pointIdx);
-                        var attempts: usize = 1;
-                        var number = random.intRangeLessThanBiased(u8, 0, 6);
-                        while (planet.waterMass[neighbours[number]] >= 0.1) {
-                            if (attempts == 6) break;
-                            number = random.intRangeLessThanBiased(u8, 0, 6);
-                            attempts += 1;
-                        }
-                        self.state = State.goToPoint(planet, neighbours[number]);
-                    }
-                }
-            },
-            .go_to_point => |target| {
-                const direction = target.sub(point);
-                self.velocity = direction.norm().scale(0.02); // 3km/frame
-                //std.log.info("(dist={d}) go by {}", .{ direction.dot(direction), direction });
-                if (direction.dot(direction) < 1000) {
-                    self.state = .wander;
-                }
-            },
-            .gestation => |info| {
-                if (options.gameTime > info.since + GESTATION_DURATION) {
-                    std.log.info("a rabbit got a baby", .{});
-
-                    const number = random.intRangeLessThanBiased(u8, 0, 6);
-                    if (number == 0) { // 1/6 chance to die
-                        shouldDie = true;
-                    }
-                    self.state = .wander;
-                    self.sexualCriteria = 25;
-
-                    const lifeform = Lifeform.init(point, self.kind, options.gameTime);
-                    planet.addLifeform(lifeform) catch {
-                        // TODO?
-                    };
-                    // Must return as the array list may have expanded, in which case
-                    // the 'self' pointer is now invalid!
+    /// Surface-bound animal ecology. Feeding is independent of behavioral state,
+    /// so gestating mothers and travelling animals can eat rather than starving.
+    pub fn aiStep(self: *Lifeform, planet: anytype, options: anytype) void {
+        const dt = @max(0, options.dt * options.timeScale);
+        if (dt == 0) return;
+        const idx = planet.getNearestPointTo(self.position);
+        const point = planet.transformedPoints[idx];
+        const temperature = planet.temperature[idx];
+        const age = options.gameTime - self.timeBorn;
+        self.reproductionCooldown = @max(0, self.reproductionCooldown - dt);
+        self.satiety -= dt * 0.00025;
+        if (planet.waterMass[idx] * planet.getKmPerWaterMass() > 0.002 or temperature > 333.15 or temperature < 243.15 or self.satiety <= 0 or age > 30 * 86400) {
+            for (planet.lifeforms.items, 0..) |*animal, i| {
+                if (animal == self) {
+                    _ = planet.lifeforms.orderedRemove(i);
+                    planet.rabbitDeaths += 1;
                     return;
                 }
-            },
+            }
+            return;
         }
-        if (self.position.length() < point.length()) {
-            self.position = self.position.norm().scale(point.length());
-            self.velocity = Vec3.zero();
-        } else {
-            // TODO: accurate gravity
-            self.velocity = self.velocity.add(self.position.norm().negate().scale(0.015) // towards the planet
-            );
+        if (self.satiety < 85 and planet.vegetation[idx] > 0.01) {
+            const eaten = @min(planet.vegetation[idx], (100 - self.satiety) / 150);
+            planet.vegetation[idx] -= eaten;
+            self.satiety = @min(100, self.satiety + eaten * 150);
+            planet.rabbitMeals += 1;
         }
-        self.position = self.position.add(self.velocity.scale(dt));
-
-        if (shouldDie) {
-            const index = blk: {
-                for (planet.lifeforms.items, 0..) |*lifeform, idx| {
-                    if (lifeform == self) break :blk idx;
-                }
-                // already removed???
+        if (self.state == .gestation) {
+            if (options.gameTime - self.state.gestation.since >= GESTATION_DURATION and self.satiety > 35 and planet.lifeforms.items.len < 512) {
+                var child = Lifeform.init(point, self.kind, options.gameTime);
+                child.prng = std.rand.DefaultPrng.init(self.prng.random().int(u64));
+                child.genome.gender = if (child.prng.random().boolean()) .Male else .Female;
+                self.state = .wander;
+                self.reproductionCooldown = 86400;
+                self.satiety -= 15;
+                planet.rabbitBirths += 1;
+                planet.addLifeformDuringStep(child);
                 return;
-            };
-
-            // we're iterating so avoid a swapRemove
-            _ = planet.lifeforms.orderedRemove(index);
+            }
+        } else if (age >= SEXUAL_MATURITY_AGE and self.satiety > 65 and self.reproductionCooldown == 0 and self.hasBreedingHabitat(planet, idx)) {
+            for (planet.lifeforms.items) |*other| {
+                if (other == self or other.genome.gender == self.genome.gender or other.state == .gestation or other.reproductionCooldown > 0 or other.satiety <= 65 or options.gameTime - other.timeBorn < SEXUAL_MATURITY_AGE) continue;
+                if (self.position.distance(other.position) < 200) {
+                    const mother = if (self.genome.gender == .Female) self else other;
+                    mother.state = .{ .gestation = .{ .since = options.gameTime } };
+                    self.reproductionCooldown = 2 * 86400;
+                    other.reproductionCooldown = 2 * 86400;
+                    break;
+                }
+            }
         }
+        // Hungry rabbits seek actual neighboring food. Healthy rabbits remain
+        // in their habitat, avoiding the old random march into oceans.
+        var target = idx;
+        var best = planet.vegetation[idx];
+        if (self.satiety < 85) {
+            for (planet.getNeighbours(idx)) |n| {
+                if (planet.waterMass[n] * planet.getKmPerWaterMass() <= 0.002 and planet.temperature[n] > 253.15 and planet.temperature[n] < 328.15 and planet.vegetation[n] > best + 0.05) {
+                    target = n;
+                    best = planet.vegetation[n];
+                }
+            }
+        }
+        const destination = planet.transformedPoints[target];
+        const delta = destination.sub(self.position);
+        const distance = delta.length();
+        if (target != idx and distance > 0.001) {
+            // Clamp displacement to avoid overshoot at accelerated speeds.
+            self.position = self.position.add(delta.scale(@min(1, dt * 0.02 / distance))).norm().scale(destination.length());
+        } else {
+            self.position = self.position.norm().scale(point.length());
+        }
+        self.velocity = Vec3.zero();
     }
 };

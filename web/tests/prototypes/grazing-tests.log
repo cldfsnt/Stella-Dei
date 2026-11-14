@@ -1,0 +1,7 @@
+1/4 grazing_microbes.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+OK
+2/4 grazing_microbes.test.grazing is bounded, order independent, and conservative...OK
+3/4 grazing_microbes.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+4/4 grazing_microbes.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443806 births=48 gen=2 grazed=0.623374576374772 cell_bytes=208
+OK
+All 4 tests passed.

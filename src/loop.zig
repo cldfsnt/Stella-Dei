@@ -1,4 +1,5 @@
 const std = @import("std");
+const is_web = @import("builtin").target.cpu.arch == .wasm32;
 const TaskStack = std.DoublyLinkedList(Task);
 const Thread = std.Thread;
 const Allocator = std.mem.Allocator;
@@ -80,8 +81,13 @@ pub fn Job(comptime ResultType: type) type {
         /// Get result
         pub fn get(self: *const Self) ResultType {
             while (self.completed.load(.acquire) == false) {
-                //self.loop.yield();
-                std.time.sleep(1000);
+                if (is_web) {
+                    // Browser jobs run on the UI thread. A nested wait must run
+                    // pending work, never block waiting for an absent worker.
+                    if (!self.loop.runOne()) @panic("Waiting for a browser job with no queued work");
+                } else {
+                    std.time.sleep(1000);
+                }
             }
             return self.result;
         }
@@ -150,6 +156,11 @@ pub const EventLoop = struct {
     /// This function assumes that the EventLoop pointer will stay
     /// valid during the entire loop's lifetime
     pub fn start(self: *EventLoop, allocator: Allocator) !void {
+        self.allocator = allocator;
+        if (is_web) {
+            self.threads = &.{};
+            return;
+        }
         const cpuCount = std.math.floorPowerOfTwo(usize, try Thread.getCpuCount());
         const threads = try allocator.alloc(Thread, cpuCount);
         self.threads = threads;
@@ -158,6 +169,27 @@ pub const EventLoop = struct {
         for (threads, 0..) |*thread, threadId| {
             thread.* = try Thread.spawn(.{}, workerLoop, .{ self, threadId });
         }
+    }
+
+    /// Execute one queued job. Pop before calling: jobs may enqueue/wait on
+    /// other jobs recursively and their own nodes may be destroyed afterward.
+    pub fn runOne(self: *EventLoop) bool {
+        self.taskStackMutex.lock();
+        const node = self.taskStack.popFirst();
+        self.taskStackMutex.unlock();
+        if (node) |task| {
+            const data = task.data;
+            data.fnPtr(data.userdata);
+            return true;
+        }
+        return false;
+    }
+
+    /// Bound ordinary frame work, so self-enqueuing jobs cannot starve input.
+    /// A synchronous get()/wait() can still complete its dependency tree.
+    pub fn pump(self: *EventLoop, max_jobs: usize) void {
+        var count: usize = 0;
+        while (count < max_jobs and self.runOne()) : (count += 1) {}
     }
 
     pub fn workerLoop(self: *EventLoop, threadId: usize) void {
@@ -189,6 +221,10 @@ pub const EventLoop = struct {
     pub fn endEvent(self: *EventLoop) void {
         self.events -= 1;
         if (self.events == 0) {
+            if (is_web) {
+                self.pump(std.math.maxInt(usize));
+                return;
+            }
             for (self.threads) |thread| {
                 thread.join();
             }
@@ -199,6 +235,23 @@ pub const EventLoop = struct {
 
     /// The number of frames a task should ideally divide itself into
     pub fn getParallelCount(self: *const EventLoop) usize {
-        return self.threads.len;
+        return if (is_web) 1 else self.threads.len;
     }
 };
+
+test "queued jobs execute cooperatively" {
+    var loop = EventLoop.init();
+    loop.allocator = std.testing.allocator;
+    const job = try Job(u32).create(&loop);
+    defer job.deinit();
+    const add = struct {
+        fn run(a: u32, b: u32) u32 {
+            return a + b;
+        }
+    }.run;
+    try job.call(add, .{ @as(u32, 20), @as(u32, 22) });
+    try std.testing.expect(!job.isCompleted());
+    try std.testing.expect(loop.runOne());
+    try std.testing.expectEqual(@as(u32, 42), job.get());
+    try std.testing.expect(!loop.runOne());
+}

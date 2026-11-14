@@ -26,35 +26,35 @@ in vec2 texCoords;
 
 out vec4 fragColor;
 
-const float pos_infinity = uintBitsToFloat(0x7F800000U);
+#define pos_infinity uintBitsToFloat(0x7F800000U)
 
 // Returns vector (dstToSphere, dstThroughSphere)
 vec2 raySphere(float sphereRadius, vec3 rayOrigin, vec3 rayDir) {
 	vec3 offset = rayOrigin;
-	float a = 1;
-	float b = 2 * dot(offset, rayDir);
+	float a = 1.0;
+	float b = 2.0 * dot(offset, rayDir);
 	float c = dot(offset, offset) - sphereRadius * sphereRadius;
-	float d = b * b - 4 * a * c;
+	float d = b * b - 4.0 * a * c;
 	
-	if (d > 0) {
+	if (d > 0.0) {
 		float s = sqrt(d);
-		float dstNear = max(0, (-b - s) / (2 * a));
-		float dstFar = (-b + s) / (2 * a);
-		if (dstFar >= 0) {
+		float dstNear = max(0.0, (-b - s) / (2.0 * a));
+		float dstFar = (-b + s) / (2.0 * a);
+		if (dstFar >= 0.0) {
 			return vec2(dstNear, dstFar - dstNear);
 		}
 	}
 	
 	// TODO: vec2(infinity, 0)
-	return vec2(pos_infinity, 0);
+	return vec2(pos_infinity, 0.0);
 }
 
 float densityAtPoint(vec3 point) {
-	float radius = planetRadius - 100;
+	float radius = planetRadius - 100.0;
 	float height = length(point) - radius;
 	float heightScaled = height / (atmosphereRadius - radius);
 	float densityFalloff = 4.00; // TODO: variable depending on composition?
-	float localDensity = exp(-heightScaled * densityFalloff) * (1 - heightScaled);
+	float localDensity = exp(-heightScaled * densityFalloff) * (1.0 - heightScaled);
 	return localDensity;
 }
 
@@ -62,8 +62,8 @@ float densityAtPoint(vec3 point) {
 float opticalDepth(vec3 rayOrigin, vec3 rayDir, float rayLength) {
 	vec3 point = rayOrigin;
 	int numOpticalDepthPoints = 10;
-	float stepSize = rayLength / (numOpticalDepthPoints);
-	float opticalDepth = 0;
+	float stepSize = rayLength / float(numOpticalDepthPoints);
+	float opticalDepth = 0.0;
 	
 	for (int i = 0; i < numOpticalDepthPoints; i++) {
 		float localDensity = densityAtPoint(point);
@@ -77,20 +77,20 @@ vec3 calculateLight(vec3 rayOrigin, vec3 rayDir, float rayLength, vec3 originalC
 	int numInScatteringPoints = 10; // TODO: configurable quality level
 	
 	vec3 inScatterPoint = rayOrigin;
-	float stepSize = rayLength / (numInScatteringPoints);
-	vec3 inScatteredLight = vec3(0);
+	float stepSize = rayLength / float(numInScatteringPoints);
+	vec3 inScatteredLight = vec3(0.0);
 	vec3 dirToSun = lightDir;
 	
-	vec3 wavelengths = vec3(700, 530, 440);
-	vec3 scatteringCoefficients = pow(400 / wavelengths, vec3(4));
-	float scatteringStrength = 1;
+	vec3 wavelengths = vec3(700.0, 530.0, 440.0);
+	vec3 scatteringCoefficients = pow(400.0 / wavelengths, vec3(4.0));
+	float scatteringStrength = 1.0;
 	scatteringCoefficients *= scatteringStrength;
 	float viewRayOpticalDepth;
 	
 	for (int i = 0; i < numInScatteringPoints; i++) {
 		float sunRayLength = raySphere(atmosphereRadius, inScatterPoint, dirToSun).y;
 		float sunRayOpticalDepth = opticalDepth(inScatterPoint, dirToSun, sunRayLength);
-		viewRayOpticalDepth = opticalDepth(inScatterPoint, -rayDir, stepSize * i);
+		viewRayOpticalDepth = opticalDepth(inScatterPoint, -rayDir, stepSize * float(i));
 		//sunRayOpticalDepth = 0;
 		vec3 transmittance = exp(-(sunRayOpticalDepth + viewRayOpticalDepth) * scatteringCoefficients);
 		float localDensity = densityAtPoint(inScatterPoint);
@@ -115,7 +115,7 @@ void drawBrightTexture() {
 	if (brightness > 1.0) {
 		fragColor = vec4(color.rgb, 1.0);
 	} else {
-		fragColor = vec4(0, 0, 0, 1.0);
+		fragColor = vec4(0.0, 0.0, 0.0, 1.0);
 	}
 }
 
@@ -145,17 +145,17 @@ void drawBlurredTexture() {
 	float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
 	
 	float sampleDistance = 1.5;
-	vec2 tex_offset = 1.0 / textureSize(screenTexture, 0); // gets size of single texel
+	vec2 tex_offset = 1.0 / vec2(textureSize(screenTexture, 0)); // gets size of single texel
     vec3 result = texture(screenTexture, texCoords).rgb * weight[0]; // current fragment's contribution
     if (horizontalBlurring) {
         for (int i = 1; i < BLUR_KERNEL_SIZE; i++) {
-            result += texture(screenTexture, texCoords + vec2(tex_offset.x * i * sampleDistance, 0.0)).rgb * weight[i];
-            result += texture(screenTexture, texCoords - vec2(tex_offset.x * i * sampleDistance, 0.0)).rgb * weight[i];
+            result += texture(screenTexture, texCoords + vec2(tex_offset.x * float(i) * sampleDistance, 0.0)).rgb * weight[i];
+            result += texture(screenTexture, texCoords - vec2(tex_offset.x * float(i) * sampleDistance, 0.0)).rgb * weight[i];
         }
     } else {
         for (int i = 1; i < BLUR_KERNEL_SIZE; i++) {
-            result += texture(screenTexture, texCoords + vec2(0.0, tex_offset.y * i * sampleDistance)).rgb * weight[i];
-            result += texture(screenTexture, texCoords - vec2(0.0, tex_offset.y * i * sampleDistance)).rgb * weight[i];
+            result += texture(screenTexture, texCoords + vec2(0.0, tex_offset.y * float(i) * sampleDistance)).rgb * weight[i];
+            result += texture(screenTexture, texCoords - vec2(0.0, tex_offset.y * float(i) * sampleDistance)).rgb * weight[i];
         }
     }
     fragColor = vec4(result, 1.0);
@@ -176,10 +176,10 @@ void main() {
 	
 	mat4 projViewMatrix = projMatrix * viewMatrix;
 	
-	float zFar = planetRadius * 5;
-	float zNear = zFar / 10000;
+	float zFar = planetRadius * 5.0;
+	float zNear = zFar / 10000.0;
 	
-	vec4 fragNear = inverse(projViewMatrix) * vec4((texCoords.xy - vec2(0.5, 0.5))*2, 0.0, 1.0);
+	vec4 fragNear = inverse(projViewMatrix) * vec4((texCoords.xy - vec2(0.5, 0.5))*2.0, 0.0, 1.0);
 	vec4 fragFar = fragNear + inverse(projViewMatrix)[2];
 	fragNear.xyz /= fragNear.w;
 	fragFar.xyz /= fragFar.w;
@@ -190,18 +190,18 @@ void main() {
 	
 	float dstToAtmosphere = hitInfo.x;
 	//float dstToSurface = linearizeDepth(depth, zNear, zFar); // TODO: make it work
-	float dstToSurface = dstToAtmosphere + 500;
+	float dstToSurface = dstToAtmosphere + 500.0;
 	float dstThroughAtmosphere = min(hitInfo.y, dstToSurface - dstToAtmosphere);
-	if (depth == 1) {
-		dstToSurface = dstToAtmosphere + 500;
+	if (depth == 1.0) {
+		dstToSurface = dstToAtmosphere + 500.0;
 	}
 	
-	float factor = dstThroughAtmosphere / atmosphereRadius / 2;
+	float factor = dstThroughAtmosphere / atmosphereRadius / 2.0;
 	vec3 result;
-	if (dstThroughAtmosphere > 0 && enableAtmosphere) {
+	if (dstThroughAtmosphere > 0.0 && enableAtmosphere) {
 		vec3 pointInAtmosphere = viewPos + rayDir * dstToAtmosphere;
-		if (depth == 1) { // skybox
-			color = vec3(0);
+		if (depth == 1.0) { // skybox
+			color = vec3(0.0);
 		}
 		vec3 light = calculateLight(pointInAtmosphere, rayDir, dstThroughAtmosphere, color);
 		result = light;

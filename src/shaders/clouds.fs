@@ -14,19 +14,19 @@ in vec3 worldPosition;
 out vec4 fragColor;
 
 void main() {
-	vec3 pPrime = vec3(normal.x, 0, normal.z);
+	vec3 pPrime = vec3(normal.x, 0.0, normal.z);
 	vec2 tangent = vec2(-pPrime.y, pPrime.x);
 	vec3 tangentVec3 = vec3(tangent.x, normal.y, tangent.y);
 	vec3 bitangent = cross(tangentVec3, normal);
 
-	vec2 mapPosition = vec2(worldPosition.x/100 + gameTime/100000, worldPosition.y/100 - gameTime/100000);
+	vec2 mapPosition = vec2(worldPosition.x/100.0 + gameTime/100000.0, worldPosition.y/100.0 - gameTime/100000.0);
 	vec3 map = normalize(texture(waterNormalMap, mapPosition).xyz);
 	vec3 newNormal = normalize(map.x * tangentVec3 + map.y * bitangent + map.z * normal);
 
-	vec3 ambient = (0.05 + lightIntensity / 50) * lightColor;
+	vec3 ambient = (0.05 + lightIntensity / 50.0) * lightColor;
 	vec3 diffuse = max(dot(newNormal, lightDir) * lightIntensity, 0.0) * lightColor;
 
-	float alpha =  clamp(1 - exp(-waterElevation * 4), 0.0, 1.0);
+	float alpha =  clamp(1.0 - exp(-waterElevation * 4.0), 0.0, 1.0);
 	// TODO: use actual depth value as it's more precise?
 	vec3 shallow = vec3(0.5, 0.5, 0.9);
 	vec3 deep = vec3(0.1, 0.1, 0.6);

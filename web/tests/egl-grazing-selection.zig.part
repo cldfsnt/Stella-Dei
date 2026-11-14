@@ -1,0 +1,45 @@
+    {
+        const cycle=std.posix.getenv("STELLA_GRAZING_DAY_NIGHT")!=null;
+        const m=@import("simulation/microbes.zig");const idx=state.selectedPoint;const sun=state.planet.transformedPoints[idx].norm();
+        if(std.posix.getenv("STELLA_GRAZING_REFUGE")!=null){
+            // Actual player tool handlers; explicit water engineering, no seeded
+            // neighbors or assigned organisms. Climate held fixed below.
+            var before_water:f64=0;for(state.planet.waterMass)|w|before_water+=w;
+            _=state.testAction(2); // Drain selected patch and its ring.
+            _=state.testAction(1);_=state.testAction(1);
+            for(state.planet.getNeighbours(idx))|n|{state.selectedPoint=n;_=state.testAction(1);_=state.testAction(1);}
+            state.selectedPoint=idx;
+            var after_water:f64=0;for(state.planet.waterMass)|w|after_water+=w;
+            std.debug.print("HABITAT_INTERVENTION actual_water_tools mass_change_units={d}\n",.{after_water-before_water});
+        }
+        // Real establishment first; do not assign feeding traits or organisms.
+        for(0..24*4)|_|{state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=1361,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;}
+        const initial=try allocator.dupe(m.Cell,state.planet.microbeCells);defer allocator.free(initial);
+        var initial_carbon:f64=0;var initial_nutrient:f64=0;for(initial)|cell|{initial_carbon+=m.carbon(cell);initial_nutrient+=m.nutrientTotal(cell);}
+        const initial_stats=state.planet.microbeStats;const co2=state.planet.averageCarbonDioxideMass;const oxygen=state.planet.averageOxygenMass;
+        var tracked:u64=0;var strongest:f32=0;
+        for(initial)|cell|for(cell.cohorts)|co|{if(co.biomass>0 and co.feeding>strongest){strongest=co.feeding;tracked=co.lineage;}};
+        std.debug.assert(tracked>0);
+        render(window);gl.finish();window.swapBuffers();originReport("established4d",state);
+        for(0..2)|scenario|{
+            @memcpy(state.planet.microbeCells,initial);state.planet.microbeStats=initial_stats;state.planet.averageCarbonDioxideMass=co2;state.planet.averageOxygenMass=oxygen;state.gameTime=4*86400;state.selectedPoint=idx;state.clickedPoint=idx;
+            // Explicit feeding-disabled mechanistic control; all saved resources
+            // and biomass identical. This is not an ordinary player action.
+            if(scenario==1)for(state.planet.microbeCells)|*cell|{for(&cell.cohorts)|*co|co.feeding=0;};
+            var peak_observed_gen:u32=0;
+            for(0..24*@as(usize,if(cycle)120 else 18))|hour|{if(scenario==1)for(state.planet.microbeCells)|*cell|{for(&cell.cohorts)|*co|co.feeding=0;};state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=if(cycle and hour%24<12)1361 else 0,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;for(state.planet.microbeCells)|cell|for(cell.cohorts)|co|{if(co.biomass>0 and co.feeding>0 and co.lifetime_grazed>0)peak_observed_gen=@max(peak_observed_gen,co.generation);};}
+            var tracked_biomass:f64=0;var observed:usize=0;var gen:u32=0;var observed_gen:u32=0;
+            for(state.planet.microbeCells)|cell|for(cell.cohorts)|co|{if(co.biomass>0){if(co.lineage==tracked)tracked_biomass+=co.biomass;if(co.feeding>0 and co.lifetime_grazed>0){observed+=1;observed_gen=@max(observed_gen,co.generation);}gen=@max(gen,co.generation);}};
+            var final_carbon:f64=0;var final_nutrient:f64=0;for(state.planet.microbeCells)|cell|{final_carbon+=m.carbon(cell);final_nutrient+=m.nutrientTotal(cell);}
+            const area=state.planet.getMeanPointArea();
+            const expected_carbon=initial_carbon+(state.planet.microbeStats.fixed_carbon-initial_stats.fixed_carbon-state.planet.microbeStats.recycled_carbon+initial_stats.recycled_carbon)/area;
+            const carbon_error=@abs(expected_carbon-final_carbon);const nutrient_error=@abs(initial_nutrient-final_nutrient);
+            std.debug.assert(carbon_error<0.002 and nutrient_error<0.0001);
+            std.debug.print("GRAZING_WORLD_BALANCE scenario={d} organic_carbon_density_error={d} nutrient_density_error={d}\n",.{scenario,carbon_error,nutrient_error});
+            render(window);gl.finish();window.swapBuffers();originReport(if(cycle) (if(scenario==0) "cycle120d_grazing" else "cycle120d_disabled") else (if(scenario==0)"dark18d_grazing" else "dark18d_disabled"),state);
+            std.debug.print("GRAZING_SELECTION scenario={d} tracked_lineage={d} tracked_biomass={d} observed={d} generation={d} observed_generation={d} peak_observed_generation={d} consumed_delta_kgC={d} respired_delta_kgC={d} births_delta={d}\n",.{scenario,tracked,tracked_biomass,observed,gen,observed_gen,peak_observed_gen,state.planet.microbeStats.grazed_carbon-initial_stats.grazed_carbon,state.planet.microbeStats.grazing_respired_carbon-initial_stats.grazing_respired_carbon,state.planet.microbeStats.births-initial_stats.births});
+            try originSaveCheck(state,allocator);
+        }
+        return;
+    }
+}

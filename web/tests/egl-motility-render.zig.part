@@ -1,0 +1,66 @@
+    {
+        if(std.posix.getenv("STELLA_MIGRATE_V4"))|path|{
+            const saves=@import("save_game.zig");
+            var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+            const bytes=try std.fs.cwd().readFileAlloc(a,path,100*1024*1024);
+            var old=try saves.schema.parse(a,bytes);defer old.deinit();std.debug.assert(old.value.version==4);
+            try saves.replaceWorld(state,old.value);
+            const now=try saves.capture(a,state);std.debug.assert(now.version==5);
+            var grazers:usize=0;
+            for(old.value.origin.?.cells,now.origin.?.cells)|before,after|{
+                const x=before.runtime();const y=after.runtime();std.debug.assert(std.meta.eql(x,y));
+                for(y.cohorts)|co|{std.debug.assert(co.mobility==0 and co.relocations==0 and co.last_from==0 and co.last_to==0 and co.last_move_time==0);if(co.lifetime_grazed>0)grazers+=1;}
+            }
+            std.debug.assert(std.meta.eql(old.value.origin.?.stats,now.origin.?.stats));std.debug.assert(grazers>0);
+            const json=try std.json.stringifyAlloc(a,now,.{});var fresh=try saves.schema.parse(a,json);defer fresh.deinit();
+            state.planet.microbeCells[0].nutrient=0;state.planet.microbeStats.grazed_carbon=0;
+            try saves.replaceWorld(state,fresh.value);
+            const again=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,again));
+            std.debug.print("V4_ENGINE_MIGRATION cells={d} feeding_histories={d} all_cells_resources_rng_equal=true all_stats_equal=true movement_defaults_zero=true exact_v5_restore=true bytes={d}\n",.{now.origin.?.cells.len,grazers,json.len});return;
+        }
+        const m=@import("simulation/microbes.zig");const idx=state.selectedPoint;const sun=state.planet.transformedPoints[idx].norm();
+        // Controlled climate; actual water tool edits expand the wet refuge.
+        _=state.testAction(2);_=state.testAction(1);_=state.testAction(1);
+        for(state.planet.getNeighbours(idx))|n|{state.selectedPoint=n;_=state.testAction(1);_=state.testAction(1);}state.selectedPoint=idx;
+        state.zoom(-1);for(0..80)|_|{render(window);}
+        var initialC:f64=0;var initialN:f64=0;for(state.planet.microbeCells)|c|{initialC+=m.carbon(c);initialN+=m.nutrientTotal(c);}
+        const stats0=state.planet.microbeStats;
+        const previous=try allocator.alloc(m.Cell,state.planet.microbeCells.len);defer allocator.free(previous);
+        const after=try allocator.alloc(m.Cell,state.planet.microbeCells.len);defer allocator.free(after);
+        var tracked:u64=0;var intake0:f32=0;var fed_after=false;var moved_hour:usize=0;var prey0:f32=0;
+        for(0..24*100)|hour|{
+            @memcpy(previous,state.planet.microbeCells);
+            const priorStats=state.planet.microbeStats;
+            const moves=state.planet.microbeStats.relocations;
+            state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=if(hour<24*4 or hour%24<12)1361 else 0,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;
+            if(state.planet.microbeStats.relocations>moves){
+                var ids=std.AutoHashMap(u64,void).init(allocator);defer ids.deinit();
+                for(state.planet.microbeCells)|c|for(c.cohorts)|co|{if(co.biomass>0){const found=try ids.getOrPut(co.lineage);std.debug.assert(!found.found_existing);}};
+                if(tracked==0){
+                    tracked=state.planet.qaLineage;intake0=state.planet.qaIntake;moved_hour=hour;
+                    for(state.planet.microbeCells[state.planet.qaTo].cohorts)|co|{if(co.lineage!=tracked)prey0+=co.biomass;}
+                    const afterStats=state.planet.microbeStats;
+                    @memcpy(after,state.planet.microbeCells);@memcpy(state.planet.microbeCells,previous);state.planet.microbeStats=priorStats;
+                    state.gameTime-=3600;state.selectedPoint=state.planet.qaFrom;render(window);gl.finish();window.swapBuffers();
+                    @memcpy(state.planet.microbeCells,after);state.planet.microbeStats=afterStats;state.gameTime+=3600;state.selectedPoint=state.planet.qaTo;
+                    render(window);gl.finish();window.swapBuffers();
+                    std.debug.print("TRACKED lineage={d} from={d} to={d} before_frame=3 after_frame=4 initial_intake={d}\n",.{tracked,state.planet.qaFrom,state.planet.qaTo,intake0});
+                }
+            }
+            if(tracked>0 and !fed_after){
+                for(state.planet.microbeCells,0..)|c,ci|for(c.cohorts)|co|{if(co.biomass>0 and co.lineage==tracked and co.lifetime_grazed>intake0+0.00000001){
+                    var prey1:f32=0;for(c.cohorts)|prey|{if(prey.lineage!=tracked)prey1+=prey.biomass;}
+                    std.debug.print("PREY_AFTER arrival_biomass={d} current_biomass={d} raw_loss={d}\n",.{prey0,prey1,prey0-prey1});
+                    fed_after=true;state.selectedPoint=ci;state.clickedPoint=ci;render(window);gl.finish();window.swapBuffers();
+                    std.debug.print("FED_AFTER lineage={d} hour={d} move_hour={d} cell={d} intake_before={d} intake_after={d} delta={d}\n",.{tracked,hour,moved_hour,ci,intake0,co.lifetime_grazed,co.lifetime_grazed-intake0});
+                }};
+            }
+        }
+        var finalC:f64=0;var finalN:f64=0;for(state.planet.microbeCells)|c|{std.debug.assert(m.validCell(c,state.planet.microbeStats.next_lineage));finalC+=m.carbon(c);finalN+=m.nutrientTotal(c);}
+        const expected=initialC+(state.planet.microbeStats.fixed_carbon-stats0.fixed_carbon-state.planet.microbeStats.recycled_carbon+stats0.recycled_carbon)/state.planet.getMeanPointArea();
+        const cerror=@abs(expected-finalC);const nerror=@abs(initialN-finalN);std.debug.assert(cerror<0.002 and nerror<0.0001);
+        std.debug.print("MOTILITY_FINAL relocations={d} tracked={d} fed_after={} carbon_error={d} nutrient_error={d} movement_respired_kgC={d} grazing_kgC={d}\n",.{state.planet.microbeStats.relocations,tracked,fed_after,cerror,nerror,state.planet.microbeStats.movement_respired_carbon,state.planet.microbeStats.grazed_carbon});
+        try originSaveCheck(state,allocator);
+        return;
+    }
+}

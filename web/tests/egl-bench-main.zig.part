@@ -1,0 +1,39 @@
+    std.debug.print("BENCH startup_ms={d} cells={d}\n", .{@as(f64,@floatFromInt(bench_start.read()))/1e6, game.state.Playing.planet.vertices.len});
+    var state = &game.state.Playing;
+    state.timeScale = 60;
+    state.paused = false;
+    const center = state.planet.transformedPoints[state.selectedPoint].norm();
+    for (state.planet.transformedPoints,0..) |point,i| {
+        if (point.norm().dot(center) > 0.999) state.planet.vegetation[i] = 1;
+    }
+    for (0..65) |i| {
+        state.gameTime = @floatFromInt(i);
+        var timer = try std.time.Timer.start();
+        state.update(&game, 1.0 / 60.0);
+        const update_ns=timer.lap();
+        render(window);
+        gl.finish();
+        const render_ns=timer.lap();
+        if (i>=5) std.debug.print("BENCH step={d} update_ms={d} render_ms={d}\n", .{i,@as(f64,@floatFromInt(update_ns))/1e6,@as(f64,@floatFromInt(render_ns))/1e6});
+        window.swapBuffers();
+        game.fps=60;
+    }
+    std.debug.print("BENCH gameplay_peak_rss_kib={d}\n", .{stella_bench_peak_rss()});
+    if (std.posix.getenv("STELLA_BENCH_SAVE") != null) {
+        const saves=@import("save_game.zig");
+        var timer=try std.time.Timer.start();
+        try saves.write(state,game.allocator);
+        const write_ns=timer.lap();
+        const file=try std.fs.cwd().openFile(saves.path,.{});
+        const stat=try file.stat();file.close();
+        std.debug.print("BENCH save_ms={d} bytes={d} peak_rss_kib={d}\n", .{@as(f64,@floatFromInt(write_ns))/1e6,stat.size,stella_bench_peak_rss()});
+        var parsed=try saves.read(game.allocator);
+        const read_ns=timer.lap();
+        std.debug.print("BENCH parse_ms={d} peak_rss_kib={d}\n", .{@as(f64,@floatFromInt(read_ns))/1e6,stella_bench_peak_rss()});
+        try saves.apply(state,parsed.value);
+        const apply_ns=timer.lap();
+        std.debug.print("BENCH apply_ms={d} peak_rss_kib={d}\n", .{@as(f64,@floatFromInt(apply_ns))/1e6,stella_bench_peak_rss()});
+        parsed.deinit();
+    }
+
+}

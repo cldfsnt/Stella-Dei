@@ -43,6 +43,18 @@ pub const GameIntroState = struct {
         const size = renderer.framebufferSize;
         const vg = renderer.vg;
 
+        if (@import("builtin").target.cpu.arch == .wasm32) {
+            vg.textAlign(.{ .horizontal = .center, .vertical = .middle });
+            ui.label(vg, game, "A long time ago,", .{}, size.x() / 2, size.y() * 0.30);
+            ui.label(vg, game, "in a galaxy far away...", .{}, size.x() / 2, size.y() * 0.30 + 32);
+            const width = @min(size.x() - 32, 320);
+            if (ui.button(vg, game, "web-begin", (size.x() - width) / 2, size.y() * 0.58, width, 56, "Create my planet")) {
+                game.setState(PlayState);
+                return;
+            }
+            return;
+        }
+
         // The time in seconds since the game intro started
         const time = (Game.getTime() - self.startTime) / 1000;
 

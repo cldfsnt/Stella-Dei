@@ -47,7 +47,10 @@ pub const MainMenuState = struct {
             earthFile = file;
         } else |err| err catch {}; // ignore error
 
-        var planet = Planet.generate(game.allocator, if (@import("builtin").mode == .Debug) 7 else 8, 5000, seed, .{ .generate_terrain = earthFile == null }) catch unreachable;
+        // Decorative browser globe matches the lightweight playable grid;
+        // do not allocate 16x the cells just to choose a mode on a phone.
+        const menuSubdivisions: usize = if (@import("builtin").target.cpu.arch == .wasm32) 6 else if (@import("builtin").mode == .Debug) 7 else 8;
+        var planet = Planet.generate(game.allocator, menuSubdivisions, 5000, seed, .{ .generate_terrain = earthFile == null }) catch unreachable;
         if (earthFile) |*file| {
             defer file.close();
             planet.loadFromImage(game.allocator, file) catch {};
@@ -164,6 +167,28 @@ pub const MainMenuState = struct {
     pub fn renderUI(self: *MainMenuState, game: *Game, renderer: *Renderer) void {
         const size = renderer.framebufferSize;
         const vg = renderer.vg;
+
+        if (@import("builtin").target.cpu.arch == .wasm32) {
+            const width = @min(size.x() - 32, 320);
+            const x = (size.x() - width) / 2;
+            const logoWidth = @min(size.x() - 48, 300);
+            ui.img(vg, (size.x() - logoWidth) / 2, @max(20, size.y() * 0.12), logoWidth, logoWidth / (1668.0 / 353.0), renderer.textureCache.get("logo"));
+            const startY = @max(92, size.y() * 0.42);
+            if (ui.button(vg, game, "web-origin", x, startY, width, 52, "Origin: simple life")) {
+                game.startOriginNext = true;
+                game.setState(PlayState);
+                return;
+            }
+            if (ui.button(vg, game, "web-new-planet", x, startY + 62, width, 52, "Sandbox: plants & rabbits")) {
+                game.startOriginNext = false;
+                game.setState(GameIntroState);
+                return;
+            }
+            vg.textAlign(.{ .horizontal = .center, .vertical = .top });
+            vg.fontSize(14); vg.fontFace("sans-serif"); vg.fillColor(nvg.rgb(210,225,235));
+            _ = vg.text(size.x()/2,startY+124,"Seed existing life; not abiogenesis");
+            return;
+        }
 
         const centerY = size.y() / 2.0;
         const columnHeight = 160.0;

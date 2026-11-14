@@ -4,14 +4,17 @@
     .paths = .{"."},
     .dependencies = .{
         .zalgebra = .{
+            .lazy = true,
             .url = "https://github.com/kooparse/zalgebra/archive/e36116987d11c4a28ab8a03ab62d71be8b81404a.tar.gz",
             .hash = "12200e1b17e15217623e36563e459164fff4debb8210ea9d027d8548aca6d30f0811",
         },
         .zigimg = .{
+            .lazy = true,
             .url = "https://github.com/zigimg/zigimg/archive/d9dbbe22b5f7b5f1f4772169ed93ffeed8e8124d.tar.gz",
             .hash = "122013646f7038ecc71ddf8a0d7de346d29a6ec40140af57f838b0a975c69af512b0",
         },
         .mach_glfw = .{
+            .lazy = true,
             .url = "https://github.com/hexops/mach-glfw/archive/95bacce05bce0622039be6db46145d5f378ba50f.tar.gz",
             .hash = "122009d5fa5aed0e9a75deed250450dec0705c0ead9bdb075db8ac41495992a834fc",
         },

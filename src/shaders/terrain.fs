@@ -5,12 +5,14 @@ uniform vec3 lightDir;
 uniform float lightIntensity;
 uniform vec3 viewPos;
 uniform int displayMode;
+uniform bool clearSurface;
 uniform float planetRadius;
 uniform float kmPerWaterMass;
 uniform samplerCube noiseCubemap;
 uniform sampler2D terrainNormalMap;
 uniform sampler2D waterNormalMap;
 uniform vec3 selectedVertexPos;
+uniform bool compactSelection;
 uniform vec3 vegetationColor;
 
 in vec3 worldNormal;
@@ -35,14 +37,14 @@ float getDepth(vec2 coords) {
 
 vec2 parallaxMapping(vec2 texCoords, vec3 viewDir) {
 	float heightScale = 100.0;
-	float height = 1 - getDepth(texCoords);
+	float height = 1.0 - getDepth(texCoords);
 	vec2 p = viewDir.xy / viewDir.z * (height * heightScale);
 	return texCoords - p;
 }
 
 // Whiteout blend from https://bgolus.medium.com/normal-mapping-for-a-triplanar-shader-10bf39dca05a
 vec3 getNormal(vec3 viewDir) {
-	float waterBlend = 1 - exp(-waterElevation * 1.0);
+	float waterBlend = 1.0 - exp(-waterElevation * 1.0);
 
 	float scale = 0.003;
 	float strength = 0.8;
@@ -74,7 +76,26 @@ vec3 hsv2rgb(vec3 c) {
 
 void main() {
 	if (displayMode == 0) {
-		vec3 ambient = (0.05 + lightIntensity / 10) * lightColor;
+        // Readable planet-laboratory map. Colors represent the actual simulation
+        // fields, not a painted backdrop; planting changes this branch directly.
+        if (clearSurface) {
+            float height = length(worldPosition) - planetRadius;
+            vec3 bare = mix(vec3(0.64, 0.40, 0.16), vec3(0.37, 0.23, 0.10), smoothstep(0.0, 110.0, height));
+            vec3 land = mix(bare, vec3(0.10, 0.55, 0.15), clamp(vegetation, 0.0, 1.0));
+            vec3 water = mix(vec3(0.03, 0.48, 0.70), vec3(0.015, 0.11, 0.40), 1.0-exp(-waterElevation*0.5));
+            float wet = smoothstep(0.001, 0.03, waterElevation);
+            vec3 mapColor = mix(land, water, wet);
+            float ice = wet * (1.0-smoothstep(268.15, 273.15, interpData));
+            mapColor = mix(mapColor, vec3(0.80, 0.90, 0.96), ice);
+            float relief = 0.72 + 0.28 * max(dot(normalize(worldNormal), lightDir), 0.0);
+            mapColor *= relief;
+            float ringDistance = length(worldPosition-selectedVertexPos);
+            float ring = 1.0-smoothstep(3.0, 7.0, abs(ringDistance-90.0));
+            if (!compactSelection) mapColor = mix(mapColor, vec3(1.0, 0.85, 0.15), ring*0.85);
+            fragColor = vec4(mapColor, 1.0);
+            return;
+        }
+		vec3 ambient = (0.05 + lightIntensity / 10.0) * lightColor;
 
 		vec3 nViewDir = normalize(tangentViewPos - tangentFragPos);
 		vec3 nNormal = getNormal(nViewDir);
@@ -83,35 +104,35 @@ void main() {
 		vec3 diffuse = max(dot(nNormal, lightDir) * lightIntensity, 0.0) * lightColor;
 
 		float specularStrength = 0.1;
-		float specularPower = 64;
+		float specularPower = 64.0;
 		vec3 terrainColor = mix(vec3(0.5f, 0.4f, 0.3f), vegetationColor, vegetation);
-		vec3 objectColor = terrainColor * (noiseValue() / 20 + 1);
+		vec3 objectColor = terrainColor * (noiseValue() / 20.0 + 1.0);
 
-		float waterTreshold = 0.1 + (noiseValue() * 2 - 1) * 0.025;
+		float waterTreshold = 0.1 + (noiseValue() * 2.0 - 1.0) * 0.025;
 		if (interpData < 280.15) {
-			waterTreshold = 0.0002 + (noiseValue() * 2 - 1) * 0.0001;
+			waterTreshold = 0.0002 + (noiseValue() * 2.0 - 1.0) * 0.0001;
 		}
 		
 		// totalElevation = elevation + water (km)
 		// partialWaterElevation = water (km)
-		float partialWaterElevation = waterElevation * 10;
+		float partialWaterElevation = waterElevation * 10.0;
 		if (partialWaterElevation >= waterTreshold) {
 			float depthMultiplier = 0.2;
 			float alphaMultiplier = 1.0;
 
-			float opticalDepth = 1 - exp(-partialWaterElevation * depthMultiplier);
-			float alpha = 1 - exp(-partialWaterElevation * alphaMultiplier);
+			float opticalDepth = 1.0 - exp(-partialWaterElevation * depthMultiplier);
+			float alpha = 1.0 - exp(-partialWaterElevation * alphaMultiplier);
 
 			// vec3 waterColor = mix(vec3(0.1f, 0.3f, 0.8f), vec3(0.05f, 0.2f, 0.4f), min(opticalDepth, 1)); // ocean blue
 			// objectColor = mix(objectColor, waterColor, alpha);
 
-			float iceLevel = min(1, exp((-interpData + 272.15) / 5));
-			objectColor = mix(objectColor, vec3(1.0f, 1.0f, 1.0f), iceLevel * min(1, alpha*10));
+			float iceLevel = min(1.0, exp((-interpData + 272.15) / 5.0));
+			objectColor = mix(objectColor, vec3(1.0f, 1.0f, 1.0f), iceLevel * min(1.0, alpha*10.0));
 			if (interpData > 273.15) {
-				specularPower = mix(16, 256, min(partialWaterElevation*1*(1-iceLevel), 1));
+				specularPower = mix(16.0, 256.0, min(partialWaterElevation*1.0*(1.0-iceLevel), 1.0));
 				specularStrength = 0.5;
 			} else {
-				specularPower = 64;
+				specularPower = 64.0;
 				specularStrength = 0.5;
 			}
 		}
@@ -122,9 +143,9 @@ void main() {
 		vec3 specular = specularStrength * spec * lightColor * lightIntensity;
 
 		vec3 result = (ambient + diffuse + specular) * objectColor;
-		float selected = 1 - length(worldPosition - selectedVertexPos) / 100;
-		if (selected > 0) {
-			float selectedE = 1 - (1 - selected) * (1 - selected);
+		float selected = 1.0 - length(worldPosition - selectedVertexPos) / 100.0;
+		if (selected > 0.0) {
+			float selectedE = 1.0 - (1.0 - selected) * (1.0 - selected);
 			result = mix(result, vec3(0.1f, 0.1f, 0.9f), selectedE);
 		}
 		fragColor = vec4(result, 1.0f);
@@ -132,7 +153,7 @@ void main() {
 		vec3 cold = vec3(234.0f / 360.0f, 1.0f, 0.5f);
 		vec3 hot  = vec3(  0.0f / 360.0f, 1.0f, 0.33f);
 		// Default range of -50°C - 50°C
-		vec3 result = hsv2rgb(mix(cold, hot, clamp((interpData - 273.15 + 50) / 100, 0, 1)));
+		vec3 result = hsv2rgb(mix(cold, hot, clamp((interpData - 273.15 + 50.0) / 100.0, 0.0, 1.0)));
 		fragColor = vec4(result, 1.0f);
 	} else if (displayMode == 2) { // water vapor
 		vec3 cold = vec3(0.0f, 0.0f, 0.0f);
@@ -144,14 +165,14 @@ void main() {
 		// From 0 to 200 km/h
 		float right = interpData * 3600.0 / 200.0;
 		float up = waterElevation * 3600.0 / 200.0;
-		vec3 result = vec3(right / 2, sqrt(right * right + up * up), up / 2);
+		vec3 result = vec3(right / 2.0, sqrt(right * right + up * up), up / 2.0);
 		fragColor = vec4(result, 1.0f);
 	} else if (displayMode == 4) { // rainfall
 		// for rainfall, colors are in HSV (in order to make a smooth color gradient)
 		vec3 cold = vec3( 25.0f / 360.0f, 1.0f, 0.33f);
 		vec3 hot  = vec3(234.0f / 360.0f, 1.0f, 0.5f);
 		float waterKm = interpData * kmPerWaterMass;
-		vec3 result = hsv2rgb(mix(cold, hot, clamp((waterKm) / 0.03, 0, 1)));
+		vec3 result = hsv2rgb(mix(cold, hot, clamp((waterKm) / 0.03, 0.0, 1.0)));
 		fragColor = vec4(result, 1.0f);
 	}
 }

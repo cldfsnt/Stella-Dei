@@ -4,11 +4,9 @@ const Allocator = std.mem.Allocator;
 const ArrayList = std.ArrayList;
 
 const use_webgl = builtin.cpu.arch.isWasm();
-const gl = if (use_webgl)
-    @import("web/webgl.zig")
-else
-    @import("root").gl;
-const print = if (builtin.cpu.arch.isWasm()) @import("web/console.zig").log else std.debug.print;
+// Share Emscripten GL context and object IDs with the game renderer.
+const gl = @import("root").gl;
+const print = std.debug.print;
 
 const nvg = @import("nanovg.zig");
 const internal = @import("internal.zig");
@@ -140,22 +138,28 @@ const Shader = struct {
 
     fn create(shader: *Shader, header: [:0]const u8, vertsrc: [:0]const u8, fragsrc: [:0]const u8) !void {
         var status: gl.GLint = undefined;
-        var str: [2][*]const u8 = undefined;
-        var len: [2]gl.GLint = undefined;
-        str[0] = header.ptr;
-        len[0] = @as(gl.GLint, @intCast(header.len));
+        var str: [3][*]const u8 = undefined;
+        var len: [3]gl.GLint = undefined;
+        const vertex_prefix = if (use_webgl) "#version 300 es\n#define attribute in\n#define varying out\n" else "";
+        const fragment_prefix = if (use_webgl) "#version 300 es\nprecision mediump float;\n#define varying in\n#define texture2D texture\nout vec4 webglFragColor;\n#define gl_FragColor webglFragColor\n" else "";
+        str[0] = vertex_prefix.ptr;
+        len[0] = @intCast(vertex_prefix.len);
+        str[1] = header.ptr;
+        len[1] = @intCast(header.len);
 
         shader.* = std.mem.zeroes(Shader);
 
         const prog = gl.createProgram();
         const vert = gl.createShader(gl.VERTEX_SHADER);
         const frag = gl.createShader(gl.FRAGMENT_SHADER);
-        str[1] = vertsrc.ptr;
-        len[1] = @as(gl.GLint, @intCast(vertsrc.len));
-        gl.shaderSource(vert, 2, &str[0], &len[0]);
-        str[1] = fragsrc.ptr;
-        len[1] = @as(gl.GLint, @intCast(fragsrc.len));
-        gl.shaderSource(frag, 2, &str[0], &len[0]);
+        str[2] = vertsrc.ptr;
+        len[2] = @intCast(vertsrc.len);
+        gl.shaderSource(vert, 3, &str[0], &len[0]);
+        str[0] = fragment_prefix.ptr;
+        len[0] = @intCast(fragment_prefix.len);
+        str[2] = fragsrc.ptr;
+        len[2] = @intCast(fragsrc.len);
+        gl.shaderSource(frag, 3, &str[0], &len[0]);
 
         gl.compileShader(vert);
         gl.getShaderiv(vert, gl.COMPILE_STATUS, &status);
@@ -566,8 +570,8 @@ fn renderCreateTexture(uptr: *anyopaque, tex_type: internal.TextureType, w: i32,
 
     switch (tex_type) {
         .none => {},
-        .alpha => gl.texImage2D(gl.TEXTURE_2D, 0, gl.RED, w, h, 0, gl.RED, gl.UNSIGNED_BYTE, data),
-        .rgba => gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, data),
+        .alpha => gl.texImage2D(gl.TEXTURE_2D, 0, if (use_webgl) gl.R8 else gl.RED, w, h, 0, gl.RED, gl.UNSIGNED_BYTE, data),
+        .rgba => gl.texImage2D(gl.TEXTURE_2D, 0, if (use_webgl) gl.RGBA8 else gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, data),
     }
 
     if (flags.generate_mipmaps) {

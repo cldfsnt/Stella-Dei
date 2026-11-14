@@ -1,0 +1,55 @@
+    var state = &game.state.Playing;
+    state.paused=true;
+    render(window); gl.finish(); window.swapBuffers();
+    originReport("empty",state);
+    const size=window.getFramebufferSize();
+    qa_click(@as(f64,@floatFromInt(size.width))/2,350);
+    render(window); gl.finish();window.swapBuffers();
+    originReport("seeded",state);
+    if (std.posix.getenv("STELLA_ORIGIN_COUPLED") != null) {
+        state.paused=false; state.timeScale=3600;
+        for(0..7200) |i| {
+            state.update(&game,1.0/60.0);
+            if(i<6 or i%1440==1439){render(window);gl.finish();window.swapBuffers();originReport("fresh_coupled",state);}
+        }
+        try originSaveCheck(state,allocator);
+        return;
+    }
+    const seed=state.selectedPoint;
+    const sun=state.planet.transformedPoints[seed].norm();
+    for(0..96) |_| { state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=1361,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600; }
+    render(window);gl.finish();window.swapBuffers();originReport("growth4d",state);
+    const saved_water=try allocator.dupe(f32,state.planet.waterMass);defer allocator.free(saved_water);
+    for(state.planet.microbeCells,0..) |cell,i| {if(@import("simulation/microbes.zig").biomass(cell)>0)state.planet.waterMass[i]=0;}
+    for(0..6) |_| {state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=1361,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;}
+    render(window);gl.finish();window.swapBuffers();originReport("dry6h",state);
+    @memcpy(state.planet.waterMass,saved_water);
+    for(0..96) |_| {state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=1361,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;}
+    render(window);gl.finish();window.swapBuffers();originReport("recovery4d",state);
+    state.selectedPoint=seed;qa_pointer(40,80,1);render(window);qa_pointer(40,80,0);render(window);qa_click(@as(f64,@floatFromInt(size.width))/2,350);
+    render(window);gl.finish();window.swapBuffers();originReport("inspect",state);
+    state.showPointDetails=false;
+    const fixed_before=state.planet.microbeStats.fixed_carbon;
+    for(0..24) |_| {state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=0,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;}
+    std.debug.print("ORIGIN darkness_fixation_delta={d}\n",.{state.planet.microbeStats.fixed_carbon-fixed_before});
+    originReport("dark1d",state);
+    state.paused=false;state.timeScale=60;
+    for(0..35) |i| {var timer=try std.time.Timer.start();state.update(&game,1.0/60.0);const update=timer.lap();render(window);gl.finish();const draw=timer.lap();if(i>=5)std.debug.print("ORIGIN_BENCH step={d} update_ms={d} render_ms={d}\n",.{i,@as(f64,@floatFromInt(update))/1e6,@as(f64,@floatFromInt(draw))/1e6});}
+    std.debug.print("ORIGIN rss_kib={d}\n",.{stella_bench_peak_rss()});
+    originReport("coupled30sec",state);
+    try originSaveCheck(state,allocator);
+    state.timeScale=3600;
+    for(0..96) |i| {state.update(&game,1.0);if(i%24==23){render(window);gl.finish();window.swapBuffers();originReport("coupled_day",state);}}
+    originReport("coupled4d",state);
+
+}
+fn originReport(label:[]const u8,state:anytype) void {
+ const m=@import("simulation/microbes.zig");var bio:f64=0;var live:usize=0;var gen:u32=0;var veg:f64=0;
+ for(state.planet.vegetation)|v|{veg+=v;}
+ for(state.planet.microbeCells)|c|{std.debug.assert(m.validCell(c,state.planet.microbeStats.next_lineage));bio+=m.biomass(c);if(m.biomass(c)>0)live+=1;for(c.cohorts)|co|{if(co.biomass>0)gen=@max(gen,co.generation);}}
+ const idx=state.selectedPoint;
+ const cc=state.planet.microbeCells[idx];
+ std.debug.print("ORIGIN_ENV time={d} sun={d} nutrient={d} detritus={d} fixed={d} recycled={d} CO2={d} O2={d}\n",.{state.gameTime,state.solarConstant,cc.nutrient,cc.detritus,state.planet.microbeStats.fixed_carbon,state.planet.microbeStats.recycled_carbon,state.planet.averageCarbonDioxideMass,state.planet.averageOxygenMass});
+
+ std.debug.print("ORIGIN stage={s} mode={s} cells={d} biomass={d} occupied={d} births={d} maxgen={d} rabbits={d} vegetation={d} selected={d} selectedbio={d} depth_m={d} temp={d} camera={d} visiblemats={d}\n",.{label,@tagName(state.planet.worldMode),state.planet.vertices.len,bio,live,state.planet.microbeStats.births,gen,state.planet.lifeforms.items.len,veg,idx,m.biomass(state.planet.microbeCells[idx]),state.planet.waterMass[idx]*state.planet.getKmPerWaterMass()*1000,state.planet.temperature[idx],state.cameraDistance,state.visibleSprouts});
+}

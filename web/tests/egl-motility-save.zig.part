@@ -1,0 +1,33 @@
+fn originSaveCheck(state:anytype, allocator:std.mem.Allocator) !void {
+ const saves=@import("save_game.zig");
+ var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+ const captured=try saves.capture(a,state);
+ const json=try std.json.stringifyAlloc(a,captured,.{});
+ if(std.posix.getenv("STELLA_EGL_SAVE_PATH"))|path|{
+  var fixture=try std.fs.createFileAbsolute(path,.{});defer fixture.close();try fixture.writeAll(json);
+  std.debug.print("QA_SAVE_FIXTURE bytes={d} version={d}\n",.{json.len,captured.version});
+ }
+
+ var parsed=try saves.schema.parse(a,json);defer parsed.deinit();
+ for(parsed.value.origin.?.cells)|cell|{if(cell.sparse)|entries|{if(entries.len>0){
+     const e=@constCast(entries);const saved=e[0].index;e[0].index=4;
+     var bad=false;saves.apply(state,parsed.value) catch {bad=true;};std.debug.assert(bad);e[0].index=saved;
+     const same=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,same));
+     std.debug.print("SPARSE_INVALID index_rejected=true live_unchanged=true\n",.{});break;
+ }}}
+ const original=parsed.value.origin.?.cells;
+ parsed.value.origin.?.cells=original[0..original.len-1];
+ var rejected=false;saves.apply(state,parsed.value) catch {rejected=true;};
+ std.debug.assert(rejected);
+ const unchanged=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+ std.debug.assert(std.mem.eql(u8,json,unchanged));
+ parsed.value.origin.?.cells=original;
+ var changed_event=false;
+ outer:for(state.planet.microbeCells)|*cell|for(&cell.cohorts)|*co|{if(co.relocations>0){co.relocations=0;co.last_from=0;co.last_to=0;co.last_move_time=0;changed_event=true;break :outer;}};
+ std.debug.assert(changed_event);std.debug.print("EVENT_RESTORE live_event_fields_mutated=true\n",.{});
+ state.planet.worldMode=.sandbox;state.planet.microbeCells[0]=.{};state.planet.temperature[0]=270;state.planet.microbeStats.births=0;
+ try saves.apply(state,parsed.value);
+ const restored=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+ std.debug.assert(std.mem.eql(u8,json,restored));
+ std.debug.print("ORIGIN_SAVE bytes={d} invalid_rejected={} unchanged=true exact_restore=true mode={s} peak_rss_kib={d}\n",.{json.len,rejected,@tagName(state.planet.worldMode),stella_bench_peak_rss()});
+}

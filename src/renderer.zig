@@ -1,4 +1,7 @@
 const std = @import("std");
+const is_web = @import("builtin").cpu.arch.isWasm();
+extern fn emscripten_webgl_get_current_context() c_int;
+extern fn emscripten_webgl_enable_extension(context: c_int, extension: [*:0]const u8) c_int;
 const gl = @import("gl");
 const za = @import("zalgebra");
 const zigimg = @import("zigimg");
@@ -43,7 +46,7 @@ pub const Renderer = struct {
 
         gl.enable(gl.DEPTH_TEST);
         gl.enable(gl.BLEND);
-        gl.enable(gl.TEXTURE_CUBE_MAP_SEAMLESS);
+        if (!is_web) gl.enable(gl.TEXTURE_CUBE_MAP_SEAMLESS);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
         const vg = try nvg.gl.init(allocator, .{
@@ -193,7 +196,8 @@ pub const Texture = struct {
     pub fn generateMipmaps(self: Texture) void {
         gl.bindTexture(gl.TEXTURE_2D, self.texture);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+        // Magnification accepts only NEAREST or LINEAR, never a mipmap filter.
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.generateMipmap(gl.TEXTURE_2D);
     }
 
@@ -296,8 +300,11 @@ const Shader = struct {
         return Shader{ .shader = gl.createShader(kind) };
     }
 
-    pub fn setSource(self: Shader, source: [:0]const u8) void {
-        gl.shaderSource(self.shader, 1, &[_][*c]const u8{source.ptr}, null);
+    pub fn setSource(self: Shader, source: [:0]const u8) !void {
+        const allocator = std.heap.page_allocator;
+        const adapted = try @import("shader_source.zig").prepare(allocator, source, @import("builtin").cpu.arch.isWasm());
+        defer allocator.free(adapted);
+        gl.shaderSource(self.shader, 1, &[_][*c]const u8{adapted.ptr}, null);
     }
 
     pub fn compile(self: Shader) !void {
@@ -340,14 +347,20 @@ const ShaderProgram = struct {
         const vertexShader = Shader.create(gl.VERTEX_SHADER);
         defer vertexShader.deinit();
 
-        vertexShader.setSource(@embedFile("shaders/" ++ name ++ ".vs"));
-        try vertexShader.compile();
+        try vertexShader.setSource(@embedFile("shaders/" ++ name ++ ".vs"));
+        vertexShader.compile() catch |err| {
+            log.err("Failed vertex shader: {s}", .{name});
+            return err;
+        };
 
         const fragmentShader = Shader.create(gl.FRAGMENT_SHADER);
         defer fragmentShader.deinit();
 
-        fragmentShader.setSource(@embedFile("shaders/" ++ name ++ ".fs"));
-        try fragmentShader.compile();
+        try fragmentShader.setSource(@embedFile("shaders/" ++ name ++ ".fs"));
+        fragmentShader.compile() catch |err| {
+            log.err("Failed fragment shader: {s}", .{name});
+            return err;
+        };
 
         var program = ShaderProgram.create();
         program.attach(fragmentShader);
@@ -368,7 +381,7 @@ const ShaderProgram = struct {
         const vertexFile = try std.fs.cwd().openFile(path ++ ".vs", .{});
         defer vertexFile.close();
 
-        vertexShader.setSource(try allocator.dupeZ(u8, try vertexFile.readToEndAlloc(allocator, std.math.maxInt(usize))));
+        try vertexShader.setSource(try allocator.dupeZ(u8, try vertexFile.readToEndAlloc(allocator, std.math.maxInt(usize))));
         try vertexShader.compile();
 
         const fragmentShader = Shader.create(gl.FRAGMENT_SHADER);
@@ -377,7 +390,7 @@ const ShaderProgram = struct {
         const fragmentFile = try std.fs.cwd().openFile(path ++ ".fs", .{});
         defer fragmentFile.close();
 
-        fragmentShader.setSource(try allocator.dupeZ(u8, try fragmentFile.readToEndAlloc(allocator, std.math.maxInt(usize))));
+        try fragmentShader.setSource(try allocator.dupeZ(u8, try fragmentFile.readToEndAlloc(allocator, std.math.maxInt(usize))));
         try fragmentShader.compile();
 
         var program = ShaderProgram.create();
@@ -423,7 +436,15 @@ const ShaderProgram = struct {
 
     pub fn link(self: ShaderProgram) !void {
         gl.linkProgram(self.program);
-        // TODO: check for errors
+        var successful: gl.GLint = 0;
+        gl.getProgramiv(self.program, gl.LINK_STATUS, &successful);
+        if (successful != gl.TRUE) {
+            var info: [4096]u8 = undefined;
+            var length: gl.GLsizei = 0;
+            gl.getProgramInfoLog(self.program, info.len, &length, &info);
+            log.err("shader link error: {s}", .{info[0..@intCast(@max(length, 0))]});
+            return error.ShaderLinkError;
+        }
     }
 
     pub fn use(self: ShaderProgram) void {
@@ -433,22 +454,26 @@ const ShaderProgram = struct {
 
 pub const Framebuffer = struct {
     fbo: gl.GLuint,
-    colorTextures: [2]gl.GLuint,
+    colorTextures: [1]gl.GLuint,
     depthTexture: gl.GLuint,
     width: c_int,
     height: c_int,
 
     pub fn create(width: c_int, height: c_int) !Framebuffer {
+        if (is_web and emscripten_webgl_enable_extension(emscripten_webgl_get_current_context(), "EXT_color_buffer_float") == 0) {
+            log.err("This browser/GPU lacks EXT_color_buffer_float, required by the HDR renderer", .{});
+            return error.FloatFramebufferUnsupported;
+        }
         var fbo: gl.GLuint = undefined;
         gl.genFramebuffers(1, &fbo);
         gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
         defer gl.bindFramebuffer(gl.FRAMEBUFFER, 0);
 
-        var colorTextures: [2]gl.GLuint = undefined;
-        gl.genTextures(2, &colorTextures);
+        var colorTextures: [1]gl.GLuint = undefined;
+        gl.genTextures(1, &colorTextures);
         for (colorTextures, 0..) |colorTexture, i| {
             gl.bindTexture(gl.TEXTURE_2D, colorTexture);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB16F, width, height, 0, gl.RGB, gl.UNSIGNED_BYTE, null);
+            gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.RGBA16F else gl.RGB16F, width, height, 0, if (is_web) gl.RGBA else gl.RGB, if (is_web) gl.HALF_FLOAT else gl.UNSIGNED_BYTE, null);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -459,15 +484,15 @@ pub const Framebuffer = struct {
         var depthTexture: gl.GLuint = undefined;
         gl.genTextures(1, &depthTexture);
         gl.bindTexture(gl.TEXTURE_2D, depthTexture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT, width, height, 0, gl.DEPTH_COMPONENT, gl.FLOAT, null);
+        gl.texImage2D(gl.TEXTURE_2D, 0, if (is_web) gl.DEPTH_COMPONENT32F else gl.DEPTH_COMPONENT, width, height, 0, gl.DEPTH_COMPONENT, gl.FLOAT, null);
         gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
 
-        const attachments: [2]gl.GLenum = .{ gl.COLOR_ATTACHMENT0, gl.COLOR_ATTACHMENT1 };
-        gl.drawBuffers(2, &attachments);
+        const attachments: [1]gl.GLenum = .{gl.COLOR_ATTACHMENT0};
+        gl.drawBuffers(1, &attachments);
 
         if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) != gl.FRAMEBUFFER_COMPLETE) {
             return error.IncompleteFramebuffer;
@@ -492,7 +517,7 @@ pub const Framebuffer = struct {
 
     pub fn deinit(self: Framebuffer) void {
         gl.deleteFramebuffers(1, &self.fbo);
-        gl.deleteTextures(2, &self.colorTextures);
+        gl.deleteTextures(1, &self.colorTextures);
         gl.deleteTextures(1, &self.depthTexture);
     }
 };

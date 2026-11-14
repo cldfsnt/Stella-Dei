@@ -1,0 +1,31 @@
+--- a/simulation/planet.zig
++++ b/simulation/planet.zig
+@@ -97,6 +97,8 @@
+ };
+ 
+ pub const Planet = struct {
++    qaLineage:u64=0, qaFrom:usize=0, qaTo:usize=0, qaCost:f32=0, qaIntake:f32=0,
++
+     mesh: IcosphereMesh,
+     atmosphereMesh: IcosphereMesh,
+ 
+@@ -1510,8 +1512,19 @@
+                 const adjacent = self.getNeighbours(i);
+                 var records: [6]Microbes.Neighbor = undefined;
+                 for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
++                const qaN=self.microbeCells[i].nutrient;
+                 const moved = Microbes.relocate(self.microbeCells, i, which, self.microbeEnvironment(i, 1), &records, dt, options.gameTime);
+                 if (moved.moved) {
++                    std.debug.assert(self.microbeCells[i].cohorts[which].biomass==0);
++                    const expected=co.biomass*0.02*co.mobility;
++                    std.debug.assert(@abs(moved.respired-expected)<0.0000001);
++                    std.debug.assert(@abs(self.microbeCells[i].nutrient-qaN-expected*Microbes.nutrient_per_carbon)<0.000001);
++                    var matches:usize=0;
++                    for(self.microbeCells,0..) |qc,qi| for(qc.cohorts)|q| {if(q.biomass>0 and q.lineage==co.lineage){matches+=1;std.debug.assert(qi==moved.to);std.debug.assert(@abs(q.biomass-(co.biomass-expected))<0.0000001);}};
++                    std.debug.assert(matches==1);
++                    self.qaLineage=co.lineage;self.qaFrom=i;self.qaTo=moved.to;self.qaCost=expected;self.qaIntake=co.lifetime_grazed;
++                    std.debug.print("RELOCATION day={d} lineage={d} parent={d} generation={d} from={d} to={d} biomass_before={d} mobility={d} paid_carbon={d} unique=true source_empty=true\n",.{options.gameTime/86400,co.lineage,co.parent,co.generation,i,moved.to,co.biomass,co.mobility,expected});
++
+                     self.applyMicrobeFlux(.{ .recycled = moved.respired });
+                     self.microbeStats.relocations +|= 1;
+                     self.microbeStats.movement_respired_carbon += @as(f64, moved.respired) * self.getMeanPointArea();

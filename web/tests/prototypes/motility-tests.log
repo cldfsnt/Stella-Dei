@@ -1,0 +1,5 @@
+1/3 motile_grazers.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+2/3 motile_grazers.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+3/3 motile_grazers.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+All 3 tests passed.

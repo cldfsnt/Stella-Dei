@@ -1,3 +1,10 @@
+const habitat_focus = @import("../habitat_focus.zig");
+const Microbes = @import("../simulation/microbes.zig");
+const habitat_feedback = @import("../habitat_feedback.zig");
+const edit_rates = @import("../edit_rates.zig");
+const biology_visuals = @import("../biology_visuals.zig");
+const guidance = @import("../mobile_guidance.zig");
+const camera_math = @import("../camera_math.zig");
 const std = @import("std");
 const gl = @import("gl");
 const za = @import("zalgebra");
@@ -108,6 +115,7 @@ pub const PlayState = struct {
     skyboxCubemap: Texture,
     framebuffer: Framebuffer,
     blurFramebuffer: Framebuffer,
+    bloomFramebuffer: Framebuffer,
 
     /// The position of the camera
     /// This is already scaled by cameraDistance
@@ -125,6 +133,11 @@ pub const PlayState = struct {
     cameraRotation: Vec3 = Vec3.new(0, 0, 0),
     /// The index of the currently selected point
     selectedPoint: usize = 0,
+    cameraGroundPoint: usize = 0,
+    visibleSprouts: usize = 0,
+    sproutCandidates: usize = 0,
+    pointerOnPlanet: bool = false,
+    viewportAspect: f32 = 16.0 / 9.0,
     clickedPoint: usize = 0,
     displayMode: Planet.DisplayMode = .Normal,
     /// Inclination of rotation, in degrees
@@ -146,12 +159,16 @@ pub const PlayState = struct {
     /// This is the number of in-game seconds that passes for each real second
     /// TODO: only expose 3 selectable time scales like in most game (normal, fast, super fast)
     /// and they would have different values depending on the geological/biological/technological time scale
-    timeScale: f32 = 6 * @as(f32, @floatFromInt(std.time.s_per_hour)),
+    timeScale: f32 = (if (@import("builtin").target.cpu.arch == .wasm32) @as(f32, 1) else 6) * @as(f32, @floatFromInt(std.time.s_per_hour)),
     /// Whether the game is paused, this has the same effect as setting timeScale to
     /// 0 except it preserves the time scale value.
     paused: bool = false,
+    /// Visual inspection light only; physical solar heating still cycles.
+    stableDaylight: bool = @import("builtin").target.cpu.arch == .wasm32,
     showPlanetControl: bool = false,
     showPointDetails: bool = false,
+    inspectAnimal: bool = false,
+    leavePlanetArmed: bool = false,
 
     debug_showMoreInfo: bool = false,
     debug_clearWater: bool = false,
@@ -162,9 +179,29 @@ pub const PlayState = struct {
     showEscapeMenu: bool = false,
 
     selectedTool: GameTool = .None,
-    meanTemperature: f32 = 0.0,
+    meanTemperature: f32 = 293.15,
+    mobileFeedback: []const u8 = "",
+    mobileFeedbackSeconds: f32 = 0,
 
     pub fn init(game: *Game) PlayState {
+        // Browser-created planets use a lighter grid. Loading preserves the
+        // saved topology exactly through initWithTopology/replaceWorld.
+        const subdivisions: usize = if (@import("builtin").target.cpu.arch == .wasm32 or @import("builtin").mode == .Debug) 6 else 7;
+        var state = initWithTopology(game, subdivisions);
+        if (game.startOriginNext) {
+            game.startOriginNext = false;
+            state.planet.beginOrigin() catch unreachable;
+            state.paused = true;
+            state.selectedTool = .PlaceVegetation;
+            const found = state.focusHabitat();
+            if (found) state.mobileFeedback = "Origin: seed existing life in shallow water";
+            state.mobileFeedbackSeconds = 8;
+        }
+        return state;
+    }
+
+    pub fn initWithTopology(game: *Game, subdivisions: usize) PlayState {
+        std.debug.assert(subdivisions == 6 or subdivisions == 7);
         const soundTrack = SoundTrack{ .items = &.{
             "assets/music/music1.mp3",
             "assets/music/music2.mp3",
@@ -205,8 +242,6 @@ pub const PlayState = struct {
         // TODO: make a loading scene
         const planetRadius = 5000; // a radius a bit smaller than Earth's (~6371km)
         const seed = randomPrng.random().int(u64);
-        const subdivisions = if (@import("builtin").mode == .Debug) 6 else 7;
-        //const subdivisions = 6;
         const planet = Planet.generate(game.allocator, subdivisions, planetRadius, seed, .{}) catch unreachable;
 
         if (false) {
@@ -224,24 +259,34 @@ pub const PlayState = struct {
 
         const framebuffer = Framebuffer.create(800, 600) catch unreachable;
         const blurFramebuffer = Framebuffer.create(800, 600) catch unreachable;
+        const bloomFramebuffer = Framebuffer.create(800, 600) catch unreachable;
 
         const cursorPos = game.window.getCursorPos();
         std.valgrind.callgrind.startInstrumentation();
-        return PlayState{
+        var state = PlayState{
             .dragStart = Vec2.new(@as(f32, @floatCast(cursorPos.xpos)), @as(f32, @floatCast(cursorPos.ypos))),
             .noiseCubemap = cubemap,
             .skyboxCubemap = skybox,
             .planet = planet,
             .framebuffer = framebuffer,
             .blurFramebuffer = blurFramebuffer,
+            .bloomFramebuffer = bloomFramebuffer,
             .cameraDistance = planetRadius * 10,
             .targetCameraDistance = planetRadius * 2.5,
         };
+        if (@import("builtin").target.cpu.arch == .wasm32) {
+            _ = state.focusLand();
+            const viewport = game.window.getFramebufferSize();
+            state.viewportAspect = @as(f32, @floatFromInt(viewport.width)) / @as(f32, @floatFromInt(@max(1, viewport.height)));
+            state.resetView();
+        }
+        return state;
     }
 
     pub fn render(self: *PlayState, game: *Game, renderer: *Renderer) void {
         const window = renderer.window;
         const size = renderer.framebufferSize;
+        self.viewportAspect = size.x() / @max(1, size.y());
 
         // Move the camera when dragging the mouse
         if (self.freeCam) {
@@ -265,13 +310,14 @@ pub const PlayState = struct {
             }
 
             {
-                const cameraPoint = self.planet.transformedPoints[self.planet.getNearestPointTo(self.cameraPos)];
+                self.cameraGroundPoint = self.planet.getNearestPointTo(self.cameraPos);
+                const cameraPoint = self.planet.transformedPoints[self.cameraGroundPoint];
                 if (self.cameraPos.length() < cameraPoint.length() + 100) {
                     self.cameraPos = self.cameraPos.norm().scale(cameraPoint.length() + 100);
                 }
             }
         } else {
-            if (window.getMouseButton(.right) == .press and !self.showEscapeMenu) {
+            if (window.getMouseButton(.right) == .press and !self.cameraInputBlocked()) {
                 const glfwCursorPos = game.window.getCursorPos();
                 const cursorPos = Vec2.new(@as(f32, @floatCast(glfwCursorPos.xpos)), @as(f32, @floatCast(glfwCursorPos.ypos)));
                 const delta = cursorPos.sub(self.dragStart).scale(1.0 / 100.0);
@@ -288,7 +334,8 @@ pub const PlayState = struct {
             }
 
             {
-                const cameraPoint = self.planet.transformedPoints[self.planet.getNearestPointTo(self.targetCameraPos)];
+                self.cameraGroundPoint = self.planet.getNearestPointTo(self.targetCameraPos);
+                const cameraPoint = self.planet.transformedPoints[self.cameraGroundPoint];
                 if (self.targetCameraDistance < cameraPoint.length() + 100) {
                     self.targetCameraDistance = cameraPoint.length() + 100;
                 }
@@ -319,6 +366,8 @@ pub const PlayState = struct {
 
             self.blurFramebuffer.deinit();
             self.blurFramebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;
+            self.bloomFramebuffer.deinit();
+            self.bloomFramebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;
         }
 
         {
@@ -335,13 +384,8 @@ pub const PlayState = struct {
         // Compute a texture from the HDR framebuffer with only bright parts
         {
             const program = renderer.postprocessProgram;
-            self.framebuffer.bind();
-            defer self.framebuffer.unbind();
-
-            const attachments: [1]gl.GLenum = .{gl.COLOR_ATTACHMENT1};
-            const ogAttachments: [1]gl.GLenum = .{gl.COLOR_ATTACHMENT0};
-            gl.drawBuffers(1, &attachments);
-            defer gl.drawBuffers(1, &ogAttachments);
+            self.bloomFramebuffer.bind();
+            defer self.bloomFramebuffer.unbind();
 
             program.use();
             program.setUniformBool("doBrightTexture", true);
@@ -367,21 +411,13 @@ pub const PlayState = struct {
             for (0..4) |i| {
                 program.setUniformBool("horizontalBlurring", i % 2 == 0);
 
-                const source = if (i % 2 == 0) self.framebuffer.colorTextures[1] else self.blurFramebuffer.colorTextures[0];
-                const target = if (i % 2 == 0) self.blurFramebuffer else self.framebuffer;
+                const source = if (i % 2 == 0) self.bloomFramebuffer.colorTextures[0] else self.blurFramebuffer.colorTextures[0];
+                const target = if (i % 2 == 0) self.blurFramebuffer else self.bloomFramebuffer;
                 {
                     target.bind();
                     defer target.unbind();
                     gl.viewport(0, 0, fbWidth, fbHeight);
                     defer gl.viewport(0, 0, @as(c_int, @intFromFloat(size.x())), @as(c_int, @intFromFloat(size.y())));
-                    var attachments: [1]gl.GLenum = .{gl.COLOR_ATTACHMENT1};
-                    if (i % 2 == 0) {
-                        attachments[0] = gl.COLOR_ATTACHMENT0;
-                    }
-                    const ogAttachments: [1]gl.GLenum = .{gl.COLOR_ATTACHMENT0};
-                    gl.drawBuffers(1, &attachments);
-                    defer gl.drawBuffers(1, &ogAttachments);
-
                     gl.bindVertexArray(QuadMesh.getVAO());
                     gl.disable(gl.DEPTH_TEST);
                     gl.activeTexture(gl.TEXTURE0);
@@ -396,7 +432,7 @@ pub const PlayState = struct {
             const program = renderer.postprocessProgram;
             const sunPhi: f32 = @as(f32, @floatCast(@mod(self.renderGameTime / self.planetRotationTime * 2 * std.math.pi, 2 * std.math.pi)));
             const sunTheta: f32 = std.math.pi / 2.0;
-            const solarVector = Vec3.new(@cos(sunPhi) * @sin(sunTheta), @sin(sunPhi) * @sin(sunTheta), @cos(sunTheta));
+            const solarVector = if (self.stableDaylight) self.cameraPos.norm() else Vec3.new(@cos(sunPhi) * @sin(sunTheta), @sin(sunPhi) * @sin(sunTheta), @cos(sunTheta));
             const zFar = self.planet.radius * 5;
             const zNear = zFar / 10000;
             const target = self.getViewTarget();
@@ -412,7 +448,7 @@ pub const PlayState = struct {
             program.setUniformFloat("planetRadius", self.planet.radius);
             program.setUniformFloat("atmosphereRadius", self.planet.radius + 50 * 10); // * HEIGHT_ELEVATION
             program.setUniformFloat("lightIntensity", self.solarConstant / 1500);
-            program.setUniformBool("enableAtmosphere", self.displayMode == .Normal);
+            program.setUniformBool("enableAtmosphere", self.displayMode == .Normal and @import("builtin").target.cpu.arch != .wasm32);
             program.setUniformBool("doBrightTexture", false);
             program.setUniformBool("doBlurring", false);
 
@@ -421,7 +457,7 @@ pub const PlayState = struct {
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D, self.framebuffer.colorTextures[0]); // color
             gl.activeTexture(gl.TEXTURE1);
-            gl.bindTexture(gl.TEXTURE_2D, self.framebuffer.colorTextures[1]); // blur
+            gl.bindTexture(gl.TEXTURE_2D, self.bloomFramebuffer.colorTextures[0]); // blur
             gl.activeTexture(gl.TEXTURE2);
             gl.bindTexture(gl.TEXTURE_2D, self.framebuffer.depthTexture); // depth
             gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -433,6 +469,9 @@ pub const PlayState = struct {
     }
 
     fn getViewTarget(self: *PlayState) Vec3 {
+        // Planet-lab orbit stays centered even at close zoom. The old
+        // horizon bias moved land away from the picking ray on phones.
+        if (@import("builtin").target.cpu.arch == .wasm32 and !self.freeCam) return Vec3.zero();
         const right = self.cameraPos.cross(Vec3.forward()).norm();
         const forward = self.cameraPos.cross(right).norm().negate();
         const planetTarget = Vec3.new(0, 0, 0).sub(self.cameraPos).norm();
@@ -460,7 +499,7 @@ pub const PlayState = struct {
         const planet = &self.planet;
         const sunPhi: f32 = @as(f32, @floatCast(@mod(self.renderGameTime / self.planetRotationTime * 2 * std.math.pi, 2 * std.math.pi)));
         const sunTheta: f32 = std.math.pi / 2.0;
-        const solarVector = Vec3.new(@cos(sunPhi) * @sin(sunTheta), @sin(sunPhi) * @sin(sunTheta), @cos(sunTheta));
+        const solarVector = if (self.stableDaylight) self.cameraPos.norm() else Vec3.new(@cos(sunPhi) * @sin(sunTheta), @sin(sunPhi) * @sin(sunTheta), @cos(sunTheta));
 
         const zFar = planet.radius * 5;
         const zNear = zFar / 10000;
@@ -524,8 +563,10 @@ pub const PlayState = struct {
             program.setUniformFloat("lightIntensity", self.solarConstant / 1500);
             program.setUniformVec3("viewPos", self.cameraPos);
             program.setUniformFloat("planetRadius", planet.radius);
+            program.setUniformBool("clearSurface", @import("builtin").target.cpu.arch == .wasm32);
             program.setUniformInt("displayMode", @intFromEnum(self.displayMode)); // display mode
             program.setUniformVec3("selectedVertexPos", planet.transformedPoints[self.selectedPoint]);
+            program.setUniformBool("compactSelection", @import("builtin").target.cpu.arch == .wasm32);
             program.setUniformFloat("kmPerWaterMass", planet.getKmPerWaterMass());
             program.setUniformVec3("vegetationColor", utils.getWavelengthColor(planet.plantColorWavelength));
 
@@ -580,7 +621,7 @@ pub const PlayState = struct {
             gl.bindTexture(gl.TEXTURE_2D, waterNormalMap.texture);
             program.setUniformInt("waterNormalMap", 1);
 
-            if (self.displayMode == .Normal)
+            if (self.displayMode == .Normal and @import("builtin").target.cpu.arch != .wasm32)
                 planet.renderWater();
         }
 
@@ -591,7 +632,8 @@ pub const PlayState = struct {
 
         gl.frontFace(gl.CCW);
         for (planet.lifeforms.items) |lifeform| {
-            const modelMat = Mat4.recompose(lifeform.position, Vec3.new(0, 0, 0), Vec3.new(1, 1, 1));
+            const animalScale: f32 = if (@import("builtin").target.cpu.arch == .wasm32) 0.12 else 1;
+            const modelMat: Mat4 = if (@import("builtin").target.cpu.arch == .wasm32) .{ .data = biology_visuals.groundedRabbit(lifeform.position.data, animalScale) } else Mat4.recompose(lifeform.position, Vec3.new(0, 0, 0), Vec3.new(animalScale, animalScale, animalScale));
             entity.setUniformMat4("modelMatrix", modelMat);
             entity.setUniformVec3("lightColor", Vec3.new(1.0, 1.0, 1.0));
             entity.setUniformVec3("lightDir", solarVector);
@@ -604,52 +646,23 @@ pub const PlayState = struct {
 
     // As updated slices (temperature and water elevation) are updated by a
     // swap. This is atomic.
+    /// Biological illumination, independent of the stable-daylight viewing aid.
+    pub fn simulationSolarVector(self: *const PlayState) Vec3 {
+        const phi: f32 = @floatCast(@mod(self.gameTime / self.planetRotationTime * 2 * std.math.pi, 2 * std.math.pi));
+        const theta: f32 = std.math.pi / 2.0;
+        return Vec3.new(@cos(phi) * @sin(theta), @sin(phi) * @sin(theta), @cos(theta));
+    }
+
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
+        self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
         if (self.showEscapeMenu) return;
 
         const planet = &self.planet;
 
-        const sunPhi: f32 = @as(f32, @floatCast(@mod(self.gameTime / self.planetRotationTime * 2 * std.math.pi, 2 * std.math.pi)));
-        const sunTheta: f32 = std.math.pi / 2.0;
-        const solarVector = Vec3.new(@cos(sunPhi) * @sin(sunTheta), @sin(sunPhi) * @sin(sunTheta), @cos(sunTheta));
+        const solarVector = self.simulationSolarVector();
 
-        if (self.selectedTool == .EmitWater and game.window.getMouseButton(.left) == .press) {
-            const kmPerWaterMass = planet.getKmPerWaterMass();
-            if (planet.waterMass[self.selectedPoint] < 25 / kmPerWaterMass) {
-                planet.waterMass[self.selectedPoint] += 0.00005 * self.timeScale / kmPerWaterMass;
-            }
-        }
-        if (self.selectedTool == .PlaceVegetation and game.window.getMouseButton(.left) == .press) {
-            planet.vegetation[self.selectedPoint] = 1;
-        }
-
-        if (self.selectedTool == .DrainWater and game.window.getMouseButton(.left) == .press) {
-            planet.waterMass[self.selectedPoint] = 0;
-            for (planet.getNeighbours(self.selectedPoint)) |idx| {
-                planet.waterMass[idx] = 0;
-            }
-        }
-
-        if (self.selectedTool == .RaiseTerrain and game.window.getMouseButton(.left) == .press) {
-            if (planet.elevation[self.selectedPoint] < planet.radius + 20) {
-                planet.elevation[self.selectedPoint] += 0.4;
-            }
-            for (planet.getNeighbours(self.selectedPoint)) |idx| {
-                if (planet.elevation[idx] < planet.radius + 20) {
-                    planet.elevation[idx] += 0.2;
-                }
-            }
-        }
-
-        if (self.selectedTool == .LowerTerrain and game.window.getMouseButton(.left) == .press) {
-            if (planet.elevation[self.selectedPoint] > planet.radius - 20) {
-                planet.elevation[self.selectedPoint] -= 0.4;
-            }
-            for (planet.getNeighbours(self.selectedPoint)) |idx| {
-                if (planet.elevation[idx] > planet.radius - 20) {
-                    planet.elevation[idx] -= 0.2;
-                }
-            }
+        if (game.window.getMouseButton(.left) == .press and !self.mobilePointerOnUI(game) and self.pointerOnPlanet) {
+            _ = self.applySelectedTool(self.selectedTool, false, dt);
         }
 
         if (self.debug_clearWater) {
@@ -692,8 +705,8 @@ pub const PlayState = struct {
             });
             const updateTime = @as(f32, @floatFromInt(timer.lap() / 1_000)) / 1_000_000;
 
-            // TODO: use std.time.milliTimestamp or std.time.Timer for accurate game time
-            self.gameTime += updateTime * self.timeScale;
+            // Lifecycle ages and physics must use the same simulated duration.
+            self.gameTime += dt * self.timeScale;
             self.averageUpdateTime = self.averageUpdateTime * 0.9 + updateTime * 0.1;
             // Re-synchronise render game time with real game time
             self.renderGameTime = self.gameTime;
@@ -759,15 +772,39 @@ pub const PlayState = struct {
 
     pub fn mousePressed(self: *PlayState, game: *Game, button: MouseButton) void {
         if (self.showEscapeMenu) return;
+        if (@import("builtin").target.cpu.arch == .wasm32 and self.mobilePointerOnUI(game)) return;
 
-        if (self.selectedTool == .PlaceLife and button == .left) {
+        if (button == .left and !self.pointerOnPlanet) {
+            self.mobileFeedback = "Tap the planet, or use Land below";
+            self.mobileFeedbackSeconds = 3;
+            return;
+        }
+        if (button == .left) _ = self.applySelectedTool(self.selectedTool, true, 0);
+        if (self.selectedTool == .PlaceLife and button == .left and self.planet.worldMode != .origin) {
             const planet = &self.planet;
             const point = self.selectedPoint;
+            if (!guidance.rabbitWaterSafe(planet.waterMass[point] * planet.getKmPerWaterMass())) {
+                self.mobileFeedback = "Too much water: choose dry land";
+                self.mobileFeedbackSeconds = 3;
+                return;
+            }
             const pointPos = planet.transformedPoints[point];
-            const lifeform = Lifeform.init(pointPos, .Rabbit, self.gameTime);
-            // planet.lifeformsLock.lock();
-            // defer planet.lifeformsLock.unlock();
-            planet.addLifeform(lifeform) catch unreachable;
+            var lifeform = Lifeform.init(pointPos, .Rabbit, self.gameTime);
+            if (@import("builtin").target.cpu.arch == .wasm32) {
+                // Start a nearby mixed-sex pair, not an invisible single founder.
+                // They still need suitable land, food and time to mature.
+                lifeform.genome.gender = .Female;
+                planet.addLifeform(lifeform) catch unreachable;
+                const tangent = pointPos.cross(if (@abs(pointPos.norm().z()) < 0.9) Vec3.new(0, 0, 1) else Vec3.new(0, 1, 0)).norm();
+                const nearby = pointPos.add(tangent.scale(35)).norm().scale(pointPos.length());
+                var partner = Lifeform.init(nearby, .Rabbit, self.gameTime);
+                partner.genome.gender = .Male;
+                planet.addLifeform(partner) catch unreachable;
+                self.mobileFeedback = if (planet.vegetation[point] <= 0.01) "Pair added. Plant food nearby" else if (self.paused) "Pair added. Press Play to watch them" else "Pair added. Watch them find food";
+                self.mobileFeedbackSeconds = 3;
+            } else {
+                planet.addLifeform(lifeform) catch unreachable;
+            }
         }
 
         if (self.selectedTool == .None and button == .left) {
@@ -781,9 +818,161 @@ pub const PlayState = struct {
         }
     }
 
-    pub fn mouseScroll(self: *PlayState, _: *Game, yOffset: f64) void {
-        if (self.showEscapeMenu) return;
+    /// Shared implementation used by actual pointer editing and the test seam.
+    fn applySelectedTool(self: *PlayState, tool: GameTool, tap: bool, elapsed: f32) bool {
+        if (self.selectedPoint >= self.planet.vertices.len) return false;
+        if (self.planet.worldMode == .origin and (tool == .PlaceVegetation or tool == .PlaceLife)) {
+            // Seeding and nutrient input are deliberate taps, never automatic
+            // repeated additions from frame rate or holding the pointer down.
+            if (!tap) return false;
+            const success = if (tool == .PlaceVegetation) self.planet.seedMicrobes(self.selectedPoint) else self.planet.addMicrobeNutrients(self.selectedPoint);
+            self.mobileFeedback = if (tool == .PlaceVegetation) (if (success) "Colony seeded. Light and resources drive growth" else "Need shallow water, suitable temperature and space") else (if (success) "Nutrients added: an external resource input" else "This patch already has ample nutrients");
+            self.mobileFeedbackSeconds = 3;
+            return success;
+        }
+        if (tool == .None or tool == .PlaceLife) return false;
+        const planet = &self.planet;
+        if (tool == .EmitWater) {
+            const kmPerWaterMass = planet.getKmPerWaterMass();
+            if (planet.waterMass[self.selectedPoint] < 25 / kmPerWaterMass) {
+                planet.waterMass[self.selectedPoint] = @min(25 / kmPerWaterMass, planet.waterMass[self.selectedPoint] + edit_rates.water(tap, elapsed) / kmPerWaterMass);
+            }
+        }
+        if (tool == .PlaceVegetation) {
+            planet.vegetation[self.selectedPoint] = @max(0.35, planet.vegetation[self.selectedPoint]);
+            if (@import("builtin").target.cpu.arch == .wasm32) {
+                // A phone brush paints a visible patch, not one tiny triangle.
+                // Keep approximately the same physical brush footprint:
+                // one ring on the lighter grid, three on existing dense saves.
+                for (planet.getNeighbours(self.selectedPoint)) |first| {
+                    planet.vegetation[first] = @max(0.35, planet.vegetation[first]);
+                    if (planet.numSubdivisions >= 7) for (planet.getNeighbours(first)) |second| {
+                        planet.vegetation[second] = @max(0.35, planet.vegetation[second]);
+                        for (planet.getNeighbours(second)) |third| planet.vegetation[third] = @max(0.35, planet.vegetation[third]);
+                    };
+                }
+            }
+        }
 
+        if (tool == .DrainWater) {
+            planet.waterMass[self.selectedPoint] = 0;
+            for (planet.getNeighbours(self.selectedPoint)) |idx| {
+                planet.waterMass[idx] = 0;
+            }
+        }
+
+        if (tool == .RaiseTerrain) {
+            if (planet.elevation[self.selectedPoint] < planet.radius + 20) {
+                planet.elevation[self.selectedPoint] = @min(planet.radius + 20, planet.elevation[self.selectedPoint] + edit_rates.terrain(tap, elapsed));
+            }
+            for (planet.getNeighbours(self.selectedPoint)) |idx| {
+                if (planet.elevation[idx] < planet.radius + 20) {
+                    planet.elevation[idx] = @min(planet.radius + 20, planet.elevation[idx] + edit_rates.terrain(tap, elapsed) * 0.5);
+                }
+            }
+        }
+
+        if (tool == .LowerTerrain) {
+            if (planet.elevation[self.selectedPoint] > planet.radius - 20) {
+                planet.elevation[self.selectedPoint] = @max(planet.radius - 20, planet.elevation[self.selectedPoint] - edit_rates.terrain(tap, elapsed));
+            }
+            for (planet.getNeighbours(self.selectedPoint)) |idx| {
+                if (planet.elevation[idx] > planet.radius - 20) {
+                    planet.elevation[idx] = @max(planet.radius - 20, planet.elevation[idx] - edit_rates.terrain(tap, elapsed) * 0.5);
+                }
+            }
+        }
+
+        self.mobileFeedback = switch (tool) {
+            .PlaceVegetation => if (guidance.plantWarning(planet.waterMass[self.selectedPoint] * planet.getKmPerWaterMass())) |warning| warning else "Seedlings planted: let them grow",
+            .EmitWater => "Water added: flooding can kill life",
+            .DrainWater => "Water drained from this patch",
+            .RaiseTerrain => "Land raised",
+            .LowerTerrain => "Land lowered",
+            else => "",
+        };
+        self.mobileFeedbackSeconds = 3;
+        return true;
+    }
+
+    pub fn testAction(self: *PlayState, tool_id: i32) bool {
+        if (!self.pointerOnPlanet or tool_id < 0 or tool_id > 6) return false;
+        return self.applySelectedTool(@enumFromInt(tool_id), true, 0);
+    }
+
+    fn setOrbitDistance(self: *PlayState, distance: f32, snap: bool) void {
+        self.freeCam = false;
+        self.targetCameraDistance = distance;
+        self.targetCameraPos = self.targetCameraPos.norm().scale(distance);
+        if (snap) {
+            self.cameraDistance = distance;
+            self.cameraPos = self.targetCameraPos;
+        }
+    }
+
+    pub fn zoom(self: *PlayState, steps: f32) void {
+        if (!std.math.isFinite(steps)) return;
+        const surface = self.planet.transformedPoints[self.planet.getNearestPointTo(self.targetCameraPos)].length();
+        self.setOrbitDistance(camera_math.zoomDistance(self.targetCameraDistance, surface, steps), false);
+    }
+
+    pub fn resetView(self: *PlayState) void {
+        self.setOrbitDistance(camera_math.globeDistance(self.planet.radius, self.viewportAspect), true);
+    }
+
+    /// Frame real live colonies or suitable existing shallow water; never create habitat.
+    pub fn focusHabitat(self: *PlayState) bool {
+        var chosen: ?usize = null;
+        var best: f32 = -1;
+        for (self.planet.transformedPoints, 0..) |point, i| {
+            if (@abs(point.norm().z()) > 0.95) continue;
+            const depth = self.planet.waterMass[i] * self.planet.getKmPerWaterMass();
+            var neighbours: f32 = 0;
+            for (self.planet.getNeighbours(i)) |n| { if (Microbes.habitable(self.planet.waterMass[n] * self.planet.getKmPerWaterMass(), self.planet.temperature[n])) neighbours += 1; }
+            const biomass = if (self.planet.microbeCells.len > i) Microbes.biomass(self.planet.microbeCells[i]) else 0;
+            const score = habitat_focus.score(biomass, point.norm().z(), depth, self.planet.temperature[i], Microbes.habitable(depth,self.planet.temperature[i]), neighbours);
+            if (score > best) { chosen = i; best = score; }
+        }
+        const index = chosen orelse { self.mobileFeedback = "No shallow habitat: add water to a basin"; self.mobileFeedbackSeconds = 5; return false; };
+        self.targetCameraPos = self.planet.transformedPoints[index].norm();
+        self.selectedPoint = index; self.pointerOnPlanet = true;
+        self.setOrbitDistance(self.planet.transformedPoints[index].length() + 300, true);
+        return true;
+    }
+
+    pub fn focusLand(self: *PlayState) bool {
+        if (self.planet.worldMode == .origin) return self.focusHabitat();
+        var best: usize = 0;
+        var found = false;
+        var bestElevation: f32 = -std.math.inf(f32);
+        for (self.planet.transformedPoints, 0..) |point, index| {
+            // Avoid the orbit camera's polar up-vector singularity.
+            if (@abs(point.norm().z()) > 0.95) continue;
+            const dry = self.planet.waterMass[index] < 0.1;
+            if ((dry and !found) or (dry == found and self.planet.elevation[index] > bestElevation)) {
+                best = index;
+                found = dry;
+                bestElevation = self.planet.elevation[index];
+            }
+        }
+        self.targetCameraPos = self.planet.transformedPoints[best].norm();
+        self.selectedPoint = best;
+        self.pointerOnPlanet = true;
+        self.setOrbitDistance(@max(self.planet.radius * 1.35, self.planet.transformedPoints[best].length() + 300), true);
+        return found;
+    }
+
+    fn cameraInputBlocked(self: *const PlayState) bool {
+        return self.showEscapeMenu or self.showPlanetControl or self.showPointDetails;
+    }
+
+    pub fn mouseScroll(self: *PlayState, _: *Game, yOffset: f64) void {
+        if (self.cameraInputBlocked()) return;
+
+        if (@import("builtin").target.cpu.arch == .wasm32) {
+            self.zoom(@as(f32, @floatCast(yOffset)) * 0.5);
+            return;
+        }
         const zFar = self.planet.radius * 5;
         const zNear = zFar / 10000;
 
@@ -793,7 +982,7 @@ pub const PlayState = struct {
     }
 
     pub fn mouseMoved(self: *PlayState, game: *Game, x: f32, y: f32, dx: f32, dy: f32) void {
-        if (self.showEscapeMenu) return;
+        if (self.cameraInputBlocked()) return;
         if (self.freeCam) {
             const mouseSensitivity = 0.1;
             self.cameraRotation.data[0] -= dx * mouseSensitivity;
@@ -815,15 +1004,18 @@ pub const PlayState = struct {
         // put to world space by multiplying by inverse of view matrix
         cursorVector.data[2] = -1;
         cursorVector.data[3] = 0; // we only want directions so set z and w
-        const viewMatrix = Mat4.lookAt(self.cameraPos, Vec3.new(0, 0, 0), Vec3.new(0, 0, 1));
+        const viewMatrix = Mat4.lookAt(self.cameraPos, self.getViewTarget(), Vec3.new(0, 0, 1));
         cursorVector = viewMatrix.inv().mulByVec4(cursorVector);
         const worldSpaceCursor = Vec3.new(cursorVector.x(), cursorVector.y(), cursorVector.z());
         //std.log.info("{d}", .{ worldSpaceCursor });
 
-        // Select the closest point that the camera is facing.
-        // To do this, it gets the point that has the lowest distance to the
-        // position of the camera.
-        const pos = self.cameraPos.add(worldSpaceCursor.scale(self.cameraPos.length() / 2)).norm().scale(self.planet.radius + 20);
+        const direction = worldSpaceCursor.norm();
+        const distance = camera_math.sphereHit(self.cameraPos.data, direction.data, self.planet.radius) orelse {
+            self.pointerOnPlanet = false;
+            return;
+        };
+        self.pointerOnPlanet = true;
+        const pos = self.cameraPos.add(direction.scale(distance));
         var closestPointDist: f32 = std.math.inf(f32);
         var closestPoint: usize = undefined;
         for (self.planet.transformedPoints, 0..) |point, i| {
@@ -838,6 +1030,10 @@ pub const PlayState = struct {
     pub fn renderUI(self: *PlayState, game: *Game, renderer: *Renderer) void {
         const size = renderer.framebufferSize;
         const vg = renderer.vg;
+        if (@import("builtin").target.cpu.arch == .wasm32) {
+            self.renderMobileUI(game, renderer);
+            return;
+        }
         const pressed = game.window.getMouseButton(.left) == .press;
         const glfwCursorPos = game.window.getCursorPos();
         const cursorPos = Vec2.new(@as(f32, @floatCast(glfwCursorPos.xpos)), @as(f32, @floatCast(glfwCursorPos.ypos)));
@@ -1070,6 +1266,305 @@ pub const PlayState = struct {
         }
     }
 
+    fn mobileToolbarBottom(width: f32) f32 {
+        return if (width >= 650) 112 else 166;
+    }
+
+    fn mobilePointerOnUI(self: *PlayState, game: *Game) bool {
+        if (@import("builtin").target.cpu.arch != .wasm32) return false;
+        if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) return true;
+        const p = game.window.getCursorPos();
+        const size = game.renderer.framebufferSize;
+        return p.ypos < mobileToolbarBottom(size.x()) or p.ypos > size.y() - 84;
+    }
+
+    /// A sprout represents a real vegetated terrain population, not one plant.
+    /// Bounded allocation-free neighbourhood: <=512 candidates, <=64 glyphs.
+    fn renderSprouts(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
+        self.visibleSprouts = 0;
+        self.sproutCandidates = 0;
+        if (!biology_visuals.showSprouts(self.cameraDistance, self.planet.radius, self.displayMode == .Normal)) return;
+        var candidates: [512]usize = undefined;
+        var screenPositions: [64]Vec2 = undefined;
+        candidates[0] = self.cameraGroundPoint;
+        var count: usize = 1;
+        var cursor: usize = 0;
+        while (cursor < count and cursor < candidates.len and self.visibleSprouts < screenPositions.len) : (cursor += 1) {
+            const index = candidates[cursor];
+            self.sproutCandidates += 1;
+            for (self.planet.getNeighbours(index)) |neighbour| {
+                if (count == candidates.len) break;
+                var known = false;
+                for (candidates[0..count]) |candidate| { if (candidate == neighbour) { known = true; break; } }
+                if (!known) { candidates[count] = neighbour; count += 1; }
+            }
+            const origin = self.planet.worldMode == .origin;
+            const biomass = if (origin) Microbes.biomass(self.planet.microbeCells[index]) else self.planet.vegetation[index];
+            if (origin) { if (biomass < 0.001) continue; } else if (biomass < 0.08 or self.planet.waterMass[index] * self.planet.getKmPerWaterMass() > 0.0005) continue;
+            const p = self.planet.transformedPoints[index];
+            if (p.dot(self.cameraPos.sub(p)) <= 0) continue;
+            const clip = vp.mulByVec4(za.Vec4.new(p.x(), p.y(), p.z(), 1));
+            if (clip.w() <= 0) continue;
+            const x = (clip.x() / clip.w() + 1) * width / 2;
+            const y = (1 - clip.y() / clip.w()) * height / 2;
+            const size = if (origin) 12 + 16 * @sqrt(std.math.clamp(biomass, 0, 1)) else biology_visuals.sproutSize(biomass);
+            if (x < size + 4 or x > width - size - 4 or y < toolBottom + size * 2 or y > height - 90) continue;
+            const screen = Vec2.new(x,y);
+            var crowded = false;
+            for (screenPositions[0..self.visibleSprouts]) |prior| { if (screen.distance(prior) < (if (origin) @as(f32,40) else 20)) { crowded = true; break; } }
+            if (crowded) continue;
+            screenPositions[self.visibleSprouts] = screen;
+            self.visibleSprouts += 1;
+            if (origin) {
+                // Mat symbols indicate real carbon biomass, not giant individual cells.
+                const matSize = size;
+                vg.beginPath(); vg.fillColor(nvg.rgb(12,60,69));
+                vg.roundedRect(x-matSize,y-matSize*0.6,matSize*2,matSize*1.2,matSize*0.5); vg.fill();
+                vg.beginPath(); vg.fillColor(nvg.rgb(56,225,185));
+                vg.roundedRect(x-matSize*0.7,y-matSize*0.4,matSize*0.8,matSize*0.5,matSize*0.24);
+                vg.roundedRect(x+matSize*0.1,y,matSize*0.6,matSize*0.35,matSize*0.17); vg.fill();
+                if (biology_visuals.hasFed(self.planet.microbeCells[index].cohorts)) {
+                    vg.beginPath(); vg.fillColor(nvg.rgb(255,191,89));
+                    vg.roundedRect(x-3,y-3,6,6,3); vg.fill();
+                }
+                continue;
+            }
+            // Original procedural stem and leaves, brighter and larger as biomass grows.
+            vg.beginPath(); vg.fillColor(nvg.rgb(24,55,24));
+            vg.roundedRect(x-1.5,y-size*1.5,3,size*1.5,1.5); vg.fill();
+            vg.beginPath(); vg.fillColor(nvg.rgb(126,230,103));
+            vg.roundedRect(x-size,y-size, size, size*0.55, size*0.27);
+            vg.roundedRect(x,y-size*1.5,size,size*0.55,size*0.27); vg.fill();
+        }
+    }
+
+    fn mobileDetailLabel(vg: nvg, game: *Game, comptime fmt: []const u8, args: anytype, x: f32, y: f32, available: f32) void {
+        _ = game;
+        var buf: [240]u8 = undefined;
+        const text = std.fmt.bufPrint(&buf, fmt, args) catch "";
+        vg.textAlign(.{ .horizontal = .left, .vertical = .top });
+        vg.fontSize(18); vg.fontFace("sans-serif"); vg.fillColor(nvg.rgb(235,242,250));
+        var bounds: [4]f32 = undefined;
+        _ = vg.textBounds(0, 0, text, &bounds);
+        const textWidth = bounds[2] - bounds[0];
+        if (textWidth > available) vg.fontSize(18 * available / textWidth);
+        _ = vg.text(x, y, text);
+    }
+
+    fn renderMobileUI(self: *PlayState, game: *Game, renderer: *Renderer) void {
+        const vg = renderer.vg;
+        const size = renderer.framebufferSize;
+        const width = size.x();
+        const height = size.y();
+        const toolBottom = mobileToolbarBottom(width);
+        // Map markers represent actual living rabbits, not decorative sprites.
+        // The original 3D models are still drawn; markers remain legible at planetary scale.
+        const projection = Mat4.perspective(70, width / height, self.planet.radius * 5 / 10000, self.planet.radius * 5);
+        const view = Mat4.lookAt(self.cameraPos, self.getViewTarget(), Vec3.new(0, 0, 1));
+        const vp = projection.mul(view);
+        self.renderSprouts(vg, vp, width, height, toolBottom);
+        // Screen-space selection only; not a representation of brush radius.
+        if (self.pointerOnPlanet and !self.cameraInputBlocked()) {
+            const p = self.planet.transformedPoints[self.selectedPoint];
+            const clip = vp.mulByVec4(za.Vec4.new(p.x(),p.y(),p.z(),1));
+            if (clip.w()>0 and p.dot(self.cameraPos.sub(p))>0) {
+                const x=(clip.x()/clip.w()+1)*width/2;
+                const y=(1-clip.y()/clip.w())*height/2;
+                if (x>18 and x<width-18 and y>toolBottom+18 and y<height-100) {
+                    vg.beginPath(); vg.fillColor(nvg.rgba(230,252,255,220));
+                    vg.roundedRect(x-16,y-16,9,2,1);vg.roundedRect(x-16,y-16,2,9,1);
+                    vg.roundedRect(x+7,y-16,9,2,1);vg.roundedRect(x+14,y-16,2,9,1);
+                    vg.roundedRect(x-16,y+14,9,2,1);vg.roundedRect(x-16,y+7,2,9,1);
+                    vg.roundedRect(x+7,y+14,9,2,1);vg.roundedRect(x+14,y+7,2,9,1);vg.fill();
+                }
+            }
+        }
+
+        for (self.planet.lifeforms.items) |lifeform| {
+            const p = lifeform.position;
+            if (p.dot(self.cameraPos.sub(p)) <= 0) continue; // far hemisphere
+            const clip = vp.mulByVec4(za.Vec4.new(p.x(), p.y(), p.z(), 1));
+            if (clip.w() <= 0) continue;
+            const x = (clip.x() / clip.w() + 1) * width / 2;
+            const y = (1 - clip.y() / clip.w()) * height / 2;
+            if (x < 6 or x > width - 6 or y < toolBottom + 6 or y > height - 90) continue;
+            vg.beginPath();
+            vg.fillColor(nvg.rgb(255, 178, 70));
+            vg.roundedRect(x - 6, y - 6, 12, 12, 6);
+            vg.fill();
+            vg.beginPath();
+            vg.fillColor(nvg.rgb(60, 30, 8));
+            vg.roundedRect(x - 2, y - 2, 4, 4, 2);
+            vg.fill();
+        }
+        vg.beginPath();
+        vg.fillColor(nvg.rgba(8, 15, 28, 225));
+        vg.rect(0, 0, width, toolBottom);
+        vg.rect(0, height - 84, width, 84);
+        vg.fill();
+        const topColumns: f32 = if (width >= 650) 4 else 3;
+        const topW = (width - (topColumns + 1) * 8) / topColumns;
+        if (ui.button(vg, game, "mobile-pause", 8, 6, topW, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
+        if (ui.button(vg, game, "mobile-climate", 16 + topW, 6, topW, 44, "Climate")) {
+            self.showPlanetControl = !self.showPlanetControl;
+            self.showPointDetails = false;
+        }
+        if (ui.button(vg, game, "mobile-menu", 24 + 2 * topW, 6, topW, 44, "Menu")) { self.showEscapeMenu = !self.showEscapeMenu; self.leavePlanetArmed = false; }
+        const tools = [_]GameTool{ .None, .EmitWater, .DrainWater, .PlaceVegetation, .RaiseTerrain, .LowerTerrain, .PlaceLife };
+        const origin = self.planet.worldMode == .origin;
+        const names = [_][]const u8{ "Inspect", "Water +", "Water -", if (origin) "Seed" else "Plants", "Land +", "Land -", if (origin) "Nutr. +" else "Rabbits" };
+        const columns: usize = if (width >= 650) 7 else 4;
+        const bw = (width - 16 - @as(f32, @floatFromInt(columns - 1)) * 6) / @as(f32, @floatFromInt(columns));
+        for (tools, names, 0..) |tool, name, i| {
+            const x = 8 + @as(f32, @floatFromInt(i % columns)) * (bw + 6);
+            const y = 58 + @as(f32, @floatFromInt(i / columns)) * 54;
+            if (ui.button(vg, game, name, x, y, bw, 44, name)) self.selectedTool = tool;
+            if (self.selectedTool == tool) {
+                vg.beginPath();
+                vg.fillColor(nvg.rgb(92, 214, 255));
+                vg.roundedRect(x + 6, y + 46, bw - 12, 4, 2);
+                vg.fill();
+            }
+        }
+        var speedLabelBuffer: [40]u8 = undefined;
+        const speedLabel = std.fmt.bufPrintZ(&speedLabelBuffer, "{d:.0}h/s", .{self.timeScale / 3600}) catch "Speed";
+        const speedX = if (width >= 650) 32 + 3 * topW else 8 + 3 * (bw + 6);
+        const speedY: f32 = if (width >= 650) 6 else 112;
+        if (ui.button(vg, game, "mobile-speed", speedX, speedY, if (width >= 650) topW else bw, 44, speedLabel)) {
+            self.timeScale = guidance.nextSpeed(self.timeScale);
+            self.mobileFeedback = if (self.paused) "Speed changed; press Play to run" else "Speed changed: hours per real second";
+            self.mobileFeedbackSeconds = 3;
+        }
+        vg.textAlign(.{ .horizontal = .left, .vertical = .middle });
+        if (origin) ui.label(vg, game, "Origin · Day {d:.1}", .{self.gameTime / 86400}, 10, height - 64) else ui.label(vg, game, "Day {d:.1} · {d} rabbits", .{ self.gameTime / 86400, self.planet.lifeforms.items.len }, 10, height - 64);
+        vg.textAlign(.{ .horizontal = .right, .vertical = .middle });
+        ui.label(vg, game, "{d:.1}°C", .{self.planet.temperature[self.selectedPoint] - 273.15}, width - 10, height - 64);
+
+        vg.textAlign(.{ .horizontal = .left, .vertical = .middle });
+        vg.fontSize(14);
+        vg.fontFace("sans-serif");
+        vg.fillColor(nvg.rgb(190, 214, 232));
+        var ecologyText: [160]u8 = undefined;
+        const ecologyLabel = if (origin) std.fmt.bufPrint(&ecologyText, "Microbial births {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        _ = vg.text(10, height - 40, ecologyLabel);
+        const depth = self.planet.waterMass[self.selectedPoint] * self.planet.getKmPerWaterMass();
+        const hint: []const u8 = if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin) switch (self.selectedTool) {
+            .PlaceVegetation => if (depth < 0.0002) "Too dry: microbes need shallow water" else if (depth > 0.05) "Too deep: drain to 0.2–50m" else "Tap to seed existing simple life",
+            .PlaceLife => "Tap to add nutrients (player supplied)",
+            .None => "Inspect mats; Play to observe change",
+            else => "Shape habitat; Inspect water and heat",
+        } else switch (self.selectedTool) {
+            .None => if (self.planet.lifeforms.items.len == 0) "Plant food, add rabbits, press Play" else if (self.paused) "Paused: press Play to watch your habitat" else if (self.planet.rabbitBirths == 0) "Watch grazing; births need food and time" else "Births recorded. Inspect or change climate",
+            .EmitWater => "Paint mode: drag to add water",
+            .DrainWater => "Paint mode: drag to drain water",
+            .PlaceVegetation => guidance.plantWarning(depth) orelse "Paint mode: drag to plant food",
+            .RaiseTerrain => "Paint mode: drag to raise land",
+            .LowerTerrain => "Paint mode: drag to lower land",
+            .PlaceLife => guidance.rabbitWarning(depth, self.planet.temperature[self.selectedPoint], self.planet.vegetation[self.selectedPoint]) orelse "Tap planted land to add a rabbit pair",
+        };
+        var hintBounds: [4]f32 = undefined;
+        _ = vg.textBounds(0, 0, hint, &hintBounds);
+        const hintWidth = hintBounds[2] - hintBounds[0];
+        if (hintWidth > width - 20) vg.fontSize(14 * (width - 20) / hintWidth);
+        _ = vg.text(10, height - 16, hint);
+
+        if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) {
+            const pw = @min(width - 24, 360);
+            const ph: f32 = if (self.showPlanetControl) 280 else if (self.showEscapeMenu) 248 else 280;
+            const px = (width - pw) / 2;
+            const py = @max(6, (height - ph) / 2);
+            vg.beginPath();
+            vg.fillColor(nvg.rgba(0, 0, 0, 160));
+            vg.rect(0, 0, width, height);
+            vg.fill();
+            vg.beginPath();
+            vg.fillColor(nvg.rgb(20, 34, 53));
+            vg.roundedRect(px, py, pw, ph, 12);
+            vg.fill();
+            vg.textAlign(.{ .horizontal = .left, .vertical = .top });
+            ui.label(vg, game, "{s}", .{if (self.showEscapeMenu) "Planet menu" else if (self.showPlanetControl) "Climate" else "Surface details"}, px + 16, py + 14);
+            if (ui.button(vg, game, "mobile-close", px + pw - 60, py + 6, 52, 44, "X")) {
+                self.showEscapeMenu = false;
+                self.showPlanetControl = false;
+                self.showPointDetails = false;
+                self.leavePlanetArmed = false;
+                return;
+            }
+            if (self.showEscapeMenu) {
+                const half = (pw - 40) / 2;
+                if (ui.button(vg, game, "mobile-resume", px + 16, py + 58, half, 44, "Resume")) self.showEscapeMenu = false;
+                if (ui.button(vg, game, "mobile-main-menu", px + 24 + half, py + 58, half, 44, if (self.leavePlanetArmed) "Discard & leave" else "Leave planet")) {
+                    if (self.leavePlanetArmed) { game.setState(MainMenuState); return; }
+                    self.leavePlanetArmed = true;
+                }
+                if (ui.button(vg, game, "mobile-daylight", px + 16, py + 110, half, 44, if (self.stableDaylight) "Daylight: on" else "Daylight: off")) self.stableDaylight = !self.stableDaylight;
+                if (ui.button(vg, game, "mobile-map", px + 24 + half, py + 110, half, 44, if (self.displayMode == .Normal) "Surface" else "Heat map")) self.displayMode = if (self.displayMode == .Normal) .Temperature else .Normal;
+                if (ui.button(vg, game, "mobile-slower", px + 16, py + 162, half, 44, "Slower")) self.timeScale = @max(1, self.timeScale / 2);
+                if (ui.button(vg, game, "mobile-faster", px + 24 + half, py + 162, half, 44, "Faster")) self.timeScale = @min(86400, self.timeScale * 2);
+                vg.textAlign(.{ .horizontal = .center, .vertical = .middle });
+                vg.fontSize(14);
+                vg.fontFace("sans-serif");
+                vg.fillColor(nvg.rgb(190, 214, 232));
+                var speedBuf: [100]u8 = undefined;
+                const speed = if (self.leavePlanetArmed) "Unsaved progress lost. Close to cancel." else std.fmt.bufPrint(&speedBuf, "{d:.1} hours/sec · light affects view only", .{self.timeScale / 3600}) catch "";
+                _ = vg.text(width / 2, py + 228, speed);
+            } else if (self.showPlanetControl) {
+                vg.textAlign(.{ .horizontal = .center, .vertical = .middle });
+                ui.label(vg, game, "Sun: {d} W/m²", .{self.solarConstant}, width / 2, py + 76);
+                if (ui.button(vg, game, "mobile-solar-minus", px + 16, py + 102, (pw - 40) / 2, 44, "Less sun")) self.solarConstant = @max(0, self.solarConstant - 100);
+                if (ui.button(vg, game, "mobile-solar-plus", px + 24 + (pw - 40) / 2, py + 102, (pw - 40) / 2, 44, "More sun")) self.solarConstant = @min(5000, self.solarConstant + 100);
+                if (ui.button(vg, game, "mobile-clear-water", px + 16, py + 158, pw - 32, 44, "Clear all water")) self.debug_clearWater = true;
+                if (ui.button(vg, game, "mobile-deluge", px + 16, py + 214, pw - 32, 44, "Deluge")) self.debug_deluge = true;
+            } else {
+                const point = self.clickedPoint;
+                if (origin) {
+                    const cell = self.planet.microbeCells[point];
+                    var c = cell.cohorts[0];
+                    for (cell.cohorts[1..]) |cohort| { if (cohort.biomass > c.biomass) c = cohort; }
+                    mobileDetailLabel(vg, game, "Microbial mat · {d:.3} kg C/m²", .{Microbes.biomass(cell)}, px+16, py+62, pw-32);
+                    mobileDetailLabel(vg, game, "Water {d:.2}m · {d:.1}°C", .{self.planet.waterMass[point]*self.planet.getKmPerWaterMass()*1000,self.planet.temperature[point]-273.15}, px+16,py+94,pw-32);
+                    mobileDetailLabel(vg, game, "Nutrients: {d:.3} kg/m²", .{cell.nutrient},px+16,py+126,pw-32);
+                    if (c.biomass > 0) {
+                        mobileDetailLabel(vg, game, "Dominant lineage {d} · Gen {d}", .{c.lineage,c.generation},px+16,py+158,pw-32);
+                        mobileDetailLabel(vg, game, "Optimum {d:.1}°C · Light {d:.2}x", .{c.optimum-273.15,c.efficiency},px+16,py+190,pw-32);
+                    } else mobileDetailLabel(vg, game, "No living colony at this point", .{},px+16,py+158,pw-32);
+                    if (c.biomass > 0) mobileDetailLabel(vg, game, "Structure: {d:.0}% · drying protection", .{c.structure*100},px+16,py+232,pw-32) else mobileDetailLabel(vg, game, "Existing life seeded; not abiogenesis", .{},px+16,py+232,pw-32);
+                } else {
+                const half = (pw - 40) / 2;
+                if (ui.button(vg, game, "inspect-surface", px + 16, py + 56, half, 44, if (!self.inspectAnimal) "Surface •" else "Surface")) self.inspectAnimal = false;
+                if (ui.button(vg, game, "inspect-rabbit", px + 24 + half, py + 56, half, 44, if (self.inspectAnimal) "Rabbit •" else "Rabbit")) self.inspectAnimal = true;
+                vg.textAlign(.{ .horizontal = .left, .vertical = .top });
+                if (self.inspectAnimal) {
+                    const nearby = habitat_feedback.nearestRabbit(self.planet, point);
+                    const status = if (nearby) |i| habitat_feedback.inspectRabbit(self.planet, i, self.gameTime) else null;
+                    if (status) |rabbit| {
+                        mobileDetailLabel(vg, game, "Nearby: {s}", .{habitat_feedback.animalLabelText(rabbit.label)}, px + 16, py + 112, pw - 32);
+                        mobileDetailLabel(vg, game, "Age: {d:.1} hours", .{rabbit.age_hours}, px + 16, py + 142, pw - 32);
+                        mobileDetailLabel(vg, game, "Fullness: {d:.0}% (not health)", .{rabbit.fullness}, px + 16, py + 172, pw - 32);
+                        if (rabbit.gestation_hours) |hours| {
+                            mobileDetailLabel(vg, game, "Gestation: {d:.1}h minimum left", .{hours}, px + 16, py + 202, pw - 32);
+                            mobileDetailLabel(vg, game, "Birth also needs food and space", .{}, px + 16, py + 232, pw - 32);
+                        } else {
+                            mobileDetailLabel(vg, game, "Breeding rest: {d:.1} hours", .{rabbit.cooldown_hours}, px + 16, py + 202, pw - 32);
+                            mobileDetailLabel(vg, game, "Nearest now; not a tracked ID", .{}, px + 16, py + 232, pw - 32);
+                        }
+                    } else {
+                        mobileDetailLabel(vg, game, "No nearby rabbit", .{}, px + 16, py + 112, pw - 32);
+                        mobileDetailLabel(vg, game, "Inspect closer to an orange dot", .{}, px + 16, py + 150, pw - 32);
+                        mobileDetailLabel(vg, game, "Animals move as time runs", .{}, px + 16, py + 190, pw - 32);
+                    }
+                } else {
+                    mobileDetailLabel(vg, game, "Altitude: {d:.2} km", .{self.planet.elevation[point] - self.planet.radius}, px + 16, py + 112, pw - 32);
+                    mobileDetailLabel(vg, game, "Temperature: {d:.1}°C", .{self.planet.temperature[point] - 273.15}, px + 16, py + 142, pw - 32);
+                    mobileDetailLabel(vg, game, "Water depth: {d:.2} m", .{self.planet.waterMass[point] * self.planet.getKmPerWaterMass() * 1000}, px + 16, py + 172, pw - 32);
+                    mobileDetailLabel(vg, game, "Plant cover: {d:.0}% · Gen {d}", .{ self.planet.vegetation[point] * 100, self.planet.plantTraits[point].generation }, px + 16, py + 202, pw - 32);
+                    mobileDetailLabel(vg, game, "Adapted to: {d:.1}°C", .{self.planet.plantTraits[point].optimum - 273.15}, px + 16, py + 232, pw - 32);
+                }
+                }
+            }
+        }
+    }
+
     pub fn saveGame(self: *PlayState) !void {
         try std.fs.cwd().makePath("saves/abc");
 
@@ -1140,5 +1635,7 @@ pub const PlayState = struct {
         SunMesh.deinit(game.allocator);
         self.planet.deinit();
         self.framebuffer.deinit();
+        self.blurFramebuffer.deinit();
+        self.bloomFramebuffer.deinit();
     }
 };

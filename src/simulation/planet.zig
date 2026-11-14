@@ -1,3 +1,5 @@
+const Microbes = @import("microbes.zig");
+const SurfacePhysics = @import("surface_physics.zig");
 const builtin = @import("builtin");
 const std = @import("std");
 const gl = @import("gl");
@@ -17,6 +19,7 @@ const Job = @import("../loop.zig").Job;
 const IcosphereMesh = @import("../utils.zig").IcosphereMesh;
 
 const Lifeform = @import("life.zig").Lifeform;
+const Ecology = @import("ecology.zig");
 
 const Vec2 = za.Vec2;
 const Vec3 = za.Vec3;
@@ -159,6 +162,16 @@ pub const Planet = struct {
     /// Unit: J.K-1
     heatCapacityCache: []f32,
     vegetation: []f32,
+    plantTraits: []Ecology.Plant,
+    vegetationSnapshot: []f32,
+    worldMode: Microbes.Mode = .sandbox,
+    microbeCells: []Microbes.Cell = &.{},
+    microbeStats: Microbes.Stats = .{},
+    plantGenerations: u32 = 0,
+    plantBirths: u64 = 0,
+    rabbitBirths: u64 = 0,
+    rabbitMeals: u64 = 0,
+    rabbitDeaths: u64 = 0,
     /// The wavelength of plant's color, in nanometers
     plantColorWavelength: f32 = 530,
     /// Buffer array that is used to store the temperatures to be used after next update
@@ -274,6 +287,8 @@ pub const Planet = struct {
         const bufData = try simAlloc.alloc(f32, vertices.len * 9 + 1);
         const normals = try simAlloc.alloc(Vec3, vertices.len);
         const transformedPoints = try simAlloc.alloc(Vec3, vertices.len);
+        const plantTraits = try simAlloc.alloc(Ecology.Plant, numPoints);
+        const vegetationSnapshot = try simAlloc.alloc(f32, numPoints);
 
         var planet = Planet{
             .mesh = mesh,
@@ -297,6 +312,8 @@ pub const Planet = struct {
             .temperature = temperature,
             .temperaturePtrOrg = temperature.ptr,
             .vegetation = vegetation,
+            .plantTraits = plantTraits,
+            .vegetationSnapshot = vegetationSnapshot,
             .newTemperature = newTemp,
             .heatCapacityCache = heatCapacCache,
             .lifeforms = lifeforms,
@@ -321,9 +338,12 @@ pub const Planet = struct {
             @memset(waterVaporMass, 0);
             @memset(rainfall, 0);
             @memset(airVelocity, Vec2.zero());
+            @memset(airPositionError, Vec2.zero());
             @memset(elevation, radius);
             @memset(waterElev, 0);
             @memset(vegetation, 0);
+            @memset(planet.plantTraits, .{});
+            @memset(planet.vegetationSnapshot, 0);
             @memset(temperature, 273.15 + 22.0);
 
             const NITROGEN_PERCENT = 78.084 / 100.0;
@@ -361,7 +381,8 @@ pub const Planet = struct {
 
                 temperature[i / 3] = (1 - @abs(point.z())) * 55 + 273.15 - 25.0;
 
-                const totalElevation = elevation[i / 3] + waterElev[i / 3];
+                // Match upload geometry; waterElev is mass, never a radius.
+                const totalElevation = radius + (elevation[i / 3] - radius) * HEIGHT_EXAGGERATION_FACTOR;
                 const transformedPoint = point.scale(totalElevation);
                 planet.transformedPoints[i / 3] = transformedPoint;
             }
@@ -700,6 +721,7 @@ pub const Planet = struct {
 
     /// Given the index of a point on the planet, compute the specific heat capacity
     inline fn computeHeatCapacity(self: *Planet, pointIndex: usize, pointArea: f32) f32 {
+        if (self.worldMode == .origin) return SurfacePhysics.originHeatCapacity(pointArea, self.waterMass[pointIndex], self.temperature[pointIndex]);
         // specific heat capacities of given materials
         const groundCp: f32 = 700;
         // TODO: more precise water specific heat capacity, depending on temperature
@@ -1008,12 +1030,12 @@ pub const Planet = struct {
                 const shared = mass * @as(SimdVector, @splat(shareFactor));
 
                 var massToRemove = @as(SimdVector, @splat(@as(f32, 0.0)));
-                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .ForwardLeft), indices, shared, totalHeight, kmPerWaterMass);
-                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .ForwardRight), indices, shared, totalHeight, kmPerWaterMass);
-                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .BackwardLeft), indices, shared, totalHeight, kmPerWaterMass);
-                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .BackwardRight), indices, shared, totalHeight, kmPerWaterMass);
-                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .Left), indices, shared, totalHeight, kmPerWaterMass);
-                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .Right), indices, shared, totalHeight, kmPerWaterMass);
+                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .ForwardLeft), indices, shared, totalHeight, kmPerWaterMass, shareFactor);
+                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .ForwardRight), indices, shared, totalHeight, kmPerWaterMass, shareFactor);
+                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .BackwardLeft), indices, shared, totalHeight, kmPerWaterMass, shareFactor);
+                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .BackwardRight), indices, shared, totalHeight, kmPerWaterMass, shareFactor);
+                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .Left), indices, shared, totalHeight, kmPerWaterMass, shareFactor);
+                massToRemove += self.sendWater(self.getNeighbourSimd(indices, .Right), indices, shared, totalHeight, kmPerWaterMass, shareFactor);
 
                 std.debug.assert(@reduce(.And, (mass - massToRemove) >= VECTOR_ZERO));
                 saveSimdVector(self.newWaterMass, i, mass - massToRemove);
@@ -1334,7 +1356,7 @@ pub const Planet = struct {
         return substanceDivider;
     }
 
-    fn sendWater(self: Planet, target: IndexVector, origin: IndexVector, shared: SimdVector, totalHeight: SimdVector, kmPerWaterMass: f32) SimdVector {
+    fn sendWater(self: Planet, target: IndexVector, origin: IndexVector, shared: SimdVector, totalHeight: SimdVector, kmPerWaterMass: f32, shareFactor: f32) SimdVector {
         const elevation = blk: {
             var vector: SimdVector = undefined;
             comptime var i: usize = 0;
@@ -1354,7 +1376,10 @@ pub const Planet = struct {
         const targetTotalHeight = elevation + waterMass * @as(SimdVector, @splat(kmPerWaterMass));
 
         const doTransmit = totalHeight > targetTotalHeight;
-        const originalTransmitted = @min(shared, shared * (totalHeight - targetTotalHeight) / @as(SimdVector, @splat(kmPerWaterMass)) / @as(SimdVector, @splat(@as(f32, 2.0))));
+        const originalTransmitted = if (self.worldMode == .origin)
+            @min(shared, SurfacePhysics.heightLimitedMass(SimdVector, totalHeight - targetTotalHeight, @as(SimdVector, @splat(kmPerWaterMass)), @as(SimdVector, @splat(shareFactor))))
+        else
+            @min(shared, shared * (totalHeight - targetTotalHeight) / @as(SimdVector, @splat(kmPerWaterMass)) / @as(SimdVector, @splat(@as(f32, 2.0))));
 
         const zero = @as(SimdVector, @splat(@as(f32, 0.0)));
         var transmitted = @select(f32, doTransmit, originalTransmitted, zero);
@@ -1399,55 +1424,157 @@ pub const Planet = struct {
         }
     }
 
-    fn simulateVegetation(self: *Planet, options: SimulationOptions, start: usize, end: usize) void {
-        const zone = tracy.ZoneN(@src(), "Vegetation Simulation");
-        defer zone.End();
+    /// Snapshot reads and sequential writes make colonization deterministic and race-free.
+    /// Newly colonized populations inherit a mutated thermal optimum. Selection
+    /// replaces a sparse population only with a better-adapted neighboring lineage.
+    /// Optional Origin storage; use the live arena, never a copied allocator state.
+    pub fn ensureMicrobeStorage(self: *Planet) !void {
+        if (self.microbeCells.len == self.vertices.len) return;
+        const cells = try self.simulationArena.allocator().alloc(Microbes.Cell, self.vertices.len);
+        for (cells, 0..) |*cell, i| cell.* = Microbes.initialized(self.seed ^ (@as(u64, @intCast(i)) *% 0x9e3779b97f4a7c15));
+        self.microbeCells = cells;
+    }
 
-        const dt = options.dt * options.timeScale;
-        // The surface of the planet (approx.) divided by the numbers of points
-        const meanPointArea = self.getMeanPointArea(); // m²
-        const solarVector = options.solarVector;
+    /// New-world choice only. Never silently erase a living sandbox.
+    pub fn beginOrigin(self: *Planet) !void {
+        if (self.worldMode == .origin) return;
+        if (self.lifeforms.items.len != 0) return error.SandboxHasLife;
+        for (self.vegetation) |cover| if (cover > 0) return error.SandboxHasLife;
+        try self.ensureMicrobeStorage();
+        self.worldMode = .origin;
+    }
 
-        // Normally, I should take the distance from the planet to the star and calculate thingies but no
-        const solarIrrCoeff = options.solarConstant * meanPointArea * @as(f32, @floatFromInt(self.vegetation.len)); // W
-        const stefanBoltzmannConstant = 0.00000005670374; // W.m-2.K-4
-        const wienConstant = 0.002897729; // K.m
-        const solarTemperature = std.math.pow(f32, solarIrrCoeff / stefanBoltzmannConstant, 1.0 / 8.0) * 4;
-        const maxWavelength = wienConstant / solarTemperature;
-        const m_to_nm = std.math.pow(f32, 10.0, 9.0);
-        self.plantColorWavelength = maxWavelength * m_to_nm;
+    fn microbeEnvironment(self: *Planet, index: usize, light: f32) Microbes.Environment {
+        const area = self.getMeanPointArea();
+        return .{
+            .temperature = self.temperature[index],
+            .depth_km = self.waterMass[index] * self.getKmPerWaterMass(),
+            .light = light,
+            .carbon_available = @floatCast(@max(0, self.averageCarbonDioxideMass) * 1e9 / area * (12.0 / 44.0)),
+            .oxygen_carbon_capacity = @floatCast(@max(0, self.averageOxygenMass) * 1e9 / area * (12.0 / 32.0)),
+        };
+    }
 
-        // TODO: multiple species
+    fn applyMicrobeFlux(self: *Planet, flux: Microbes.Flux) void {
+        // Atmospheric fields are average 10^9 kg gas per mesh point.
+        // Colony fields are kg carbon/m². CO2:C:O2 mass ratios = 44:12:32.
+        const area: f64 = self.getMeanPointArea();
+        const scale = area / 1e9 / @as(f64, @floatFromInt(self.vertices.len));
+        const net: f64 = @as(f64, flux.fixed) - flux.recycled;
+        self.averageCarbonDioxideMass = @max(0, self.averageCarbonDioxideMass - net * scale * (44.0 / 12.0));
+        self.averageOxygenMass = @max(0, self.averageOxygenMass + net * scale * (32.0 / 12.0));
+        self.microbeStats.fixed_carbon += @as(f64, flux.fixed) * area;
+        self.microbeStats.recycled_carbon += @as(f64, flux.recycled) * area;
+    }
 
-        var i = start;
-        while (i < end) : (i += 1) {
-            const vert = self.transformedPoints[i];
-            const normVert = vert.norm();
-            const solarCoeff = @max(0, normVert.dot(solarVector) / normVert.length());
-            var newVegetation = self.vegetation[i];
-            // TODO: Direct Normal Irradiance? when we have atmosphere
+    pub fn seedMicrobes(self: *Planet, index: usize) bool {
+        if (self.worldMode != .origin or index >= self.microbeCells.len) return false;
+        const env = self.microbeEnvironment(index, 1);
+        if (!Microbes.habitable(env.depth_km, env.temperature)) return false;
+        const fixed = Microbes.seed(&self.microbeCells[index], &self.microbeStats, env.carbon_available);
+        if (fixed <= 0) return false;
+        self.applyMicrobeFlux(.{ .fixed = fixed });
+        return true;
+    }
 
-            newVegetation -= 0.0001 * dt * @as(f32, if (self.waterMass[i] >= 1_000_000) 1.0 else 0.0);
+    /// Explicit player-supplied nutrient input, not an endogenous source.
+    pub fn addMicrobeNutrients(self: *Planet, index: usize) bool {
+        if (self.worldMode != .origin or index >= self.microbeCells.len) return false;
+        if (self.microbeCells[index].nutrient >= 0.2) return false;
+        const added = @min(0.01, 0.2 - self.microbeCells[index].nutrient);
+        self.microbeCells[index].nutrient += added;
+        self.microbeStats.nutrient_added += @as(f64, added) * self.getMeanPointArea();
+        return true;
+    }
 
-            for (self.getNeighbours(i)) |neighbourIndex| {
-                if (self.vegetation[neighbourIndex] < newVegetation) {
-                    self.vegetation[neighbourIndex] += 0.000001 * dt * newVegetation;
+    /// On-demand UI explanation, using the exact model predicate and actual
+    /// adjacent cells. This does not advance simulation, resources or randomness.
+    pub fn microbeRelocationOpportunity(self: *Planet, index: usize, cohort_slot: usize, game_time: f64) Microbes.RelocationOpportunity {
+        if (self.worldMode != .origin or index >= self.microbeCells.len or self.microbeCells.len != self.vertices.len) return .{ .reason = .invalid };
+        const adjacent = self.getNeighbours(index);
+        var records: [6]Microbes.Neighbor = undefined;
+        for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
+        return Microbes.evaluateRelocation(self.microbeCells, index, cohort_slot, self.microbeEnvironment(index, 1), &records, game_time);
+    }
+
+    pub fn simulateMicrobes(self: *Planet, options: SimulationOptions) void {
+        if (self.microbeCells.len != self.vertices.len) return;
+        const dt = @max(0, options.dt * options.timeScale);
+        if (dt <= 0) return;
+        for (self.microbeCells, 0..) |*cell, i| {
+            if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
+            const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
+            const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+            self.applyMicrobeFlux(flux);
+            self.microbeStats.failed_patches +|= flux.failed_patches;
+            self.microbeStats.grazed_carbon += @as(f64,flux.grazed)*self.getMeanPointArea();
+            self.microbeStats.grazing_respired_carbon += @as(f64,flux.grazing_respired)*self.getMeanPointArea();
+        }
+        // A resident cohort may make at most one adjacent relocation per step.
+        // Six neighbor records stay on the stack; no world-sized scratch storage.
+        for (0..self.microbeCells.len) |i| {
+            for (0..self.microbeCells[i].cohorts.len) |which| {
+                const co = self.microbeCells[i].cohorts[which];
+                if (co.biomass <= 0 or co.feeding <= 0 or co.mobility <= 0) continue;
+                if (co.relocations > 0 and co.last_move_time == options.gameTime) continue;
+                const adjacent = self.getNeighbours(i);
+                var records: [6]Microbes.Neighbor = undefined;
+                for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
+                const moved = Microbes.relocate(self.microbeCells, i, which, self.microbeEnvironment(i, 1), &records, dt, options.gameTime);
+                if (moved.moved) {
+                    self.applyMicrobeFlux(.{ .recycled = moved.respired });
+                    self.microbeStats.relocations +|= 1;
+                    self.microbeStats.movement_respired_carbon += @as(f64, moved.respired) * self.getMeanPointArea();
                 }
             }
-            newVegetation = std.math.clamp(newVegetation, 0, 1);
+        }
+        // All growth precedes dispersal. Newborn credits start at zero, so no
+        // propagule can grow/reproduce again merely due to grid iteration order.
+        for (self.microbeCells, 0..) |*cell, i| {
+            if (Microbes.biomass(cell.*) <= 0) continue;
+            const donor_start:usize = @intCast(Microbes.random(&cell.rng) % cell.cohorts.len);
+            for (0..cell.cohorts.len) |donor_offset| {
+                const cohort = (donor_start + donor_offset) % cell.cohorts.len;
+                if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
+                if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
+                const neighbors = self.getNeighbours(i);
+                const start: usize = @intCast(Microbes.random(&cell.rng) % neighbors.len);
+                for (0..neighbors.len) |offset| {
+                    const n = neighbors[(start + offset) % neighbors.len];
+                    const env = self.microbeEnvironment(n, 1);
+                    if (!Microbes.habitable(env.depth_km, env.temperature)) continue;
+                    if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)) break;
+                }
+            }
+        }
+    }
 
-            // TODO: only when it's sunny
-            const gasMass = newVegetation * dt * 0.1 / meanPointArea;
-            const enoughCO2 = @as(f32, @floatFromInt(@intFromBool(self.averageCarbonDioxideMass > gasMass))) * solarCoeff;
-            self.averageCarbonDioxideMass -= gasMass * enoughCO2;
-            self.averageOxygenMass += gasMass * enoughCO2;
-            newVegetation -= (1 - enoughCO2) * dt * 0.00001;
-
-            const tooHot: f32 = @floatFromInt(@intFromBool(self.temperature[i] > 273.15 + 80.0));
-            newVegetation -= tooHot * dt * 0.00001;
-            newVegetation = std.math.clamp(newVegetation, 0, 1);
-
-            self.vegetation[i] = newVegetation;
+    pub fn simulateVegetation(self: *Planet, options: SimulationOptions, start: usize, end: usize) void {
+        const dt = @max(0, options.dt * options.timeScale);
+        @memcpy(self.vegetationSnapshot, self.vegetation);
+        self.plantColorWavelength = 530;
+        for (start..end) |i| {
+            const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector));
+            var cover = Ecology.grow(self.vegetationSnapshot[i], self.temperature[i], self.plantTraits[i].optimum, self.waterMass[i] * self.getKmPerWaterMass(), light, self.averageCarbonDioxideMass > 0, dt);
+            if (self.waterMass[i] * self.getKmPerWaterMass() <= 0.0005 and self.temperature[i] > 250 and self.temperature[i] < 350) {
+                for (self.getNeighbours(i)) |n| {
+                    if (self.vegetationSnapshot[n] < 0.25) continue;
+                    if (cover < 0.0001 or (cover < 0.35 and Ecology.fitness(self.temperature[i], self.plantTraits[n].optimum) > Ecology.fitness(self.temperature[i], self.plantTraits[i].optimum) + 0.1)) {
+                        const epoch: u64 = @intFromFloat(@max(0, options.gameTime / 3600));
+                        const child = Ecology.offspring(self.plantTraits[n], self.seed ^ (@as(u64, @intCast(i)) *% 0x9e3779b97f4a7c15) ^ epoch);
+                        if (Ecology.fitness(self.temperature[i], child.optimum) < 0.15) continue;
+                        self.plantTraits[i] = child;
+                        self.plantGenerations = @max(self.plantGenerations, child.generation);
+                        self.plantBirths += 1;
+                        cover += @min(0.08, dt / 86400 * self.vegetationSnapshot[n]);
+                        break;
+                    }
+                }
+            }
+            self.vegetation[i] = std.math.clamp(cover, 0, 1);
+            const gas = @min(self.averageCarbonDioxideMass, @as(f64, cover * light * dt * 0.1 / self.getMeanPointArea()));
+            self.averageCarbonDioxideMass -= gas;
+            self.averageOxygenMass += gas;
         }
     }
 
@@ -1569,66 +1696,35 @@ pub const Planet = struct {
 
             self.lifeformsLock.lock();
             defer self.lifeformsLock.unlock();
-            for (self.lifeforms.items, 0..) |*lifeform, i| {
-                if (i >= self.lifeforms.items.len) {
-                    // A lifeform has been removed and we got over
-                    // the new size of the ArrayList
-                    break;
-                }
-                lifeform.aiStep(self, options);
+            // Each original organism can produce at most one child per tick.
+            // Reserve before taking pointers, and walk backwards: removing the
+            // current organism cannot skip an earlier one. Newborns wait until
+            // the next tick, and appends cannot invalidate active pointers.
+            const initial_count = self.lifeforms.items.len;
+            self.lifeforms.ensureTotalCapacity(self.simulationArena.allocator(), initial_count * 2) catch {
+                std.log.err("Not enough memory for life simulation", .{});
+                return;
+            };
+            var remaining = initial_count;
+            while (remaining > 0) {
+                remaining -= 1;
+                self.lifeforms.items[remaining].aiStep(self, options);
             }
         } else {
             // TODO: switch down to much simplified and "globalized" life simulation
         }
 
-        if (options.timeScale < 100000 or true) {
-            // TODO: better
-            {
-                var jobs: [32]*Job(void) = undefined;
-                const parallelness = @min(loop.getParallelCount(), jobs.len);
-                const pointCount = self.vertices.len;
-                var i: usize = 0;
-                while (i < parallelness) : (i += 1) {
-                    const start = pointCount / parallelness * i;
-                    const end = if (i == parallelness - 1) pointCount else pointCount / parallelness * (i + 1);
-                    const job = Job(void).create(loop) catch unreachable;
-                    job.call(simulateVegetation, .{ self, options, start, end }) catch unreachable;
-                    jobs[i] = job;
-                }
+        if (self.worldMode == .origin) self.simulateMicrobes(options) else self.simulateVegetation(options, 0, self.vegetation.len);
+    }
 
-                i = 0;
-                while (i < parallelness) : (i += 1) {
-                    jobs[i].wait();
-                }
-            }
-
-            //var i: usize = 0;
-            //while (i < self.vertices.len) : (i += 1) {
-            //    const vegetation = self.vegetation[i];
-            //    const waterMass = self.waterMass[i];
-            //    var newVegetation: f32 = vegetation;
-            //    // vegetation roots can drown in too much water
-            //    newVegetation -= 0.0001 * dt * @as(f32, if (self.waterMass[i] >= 1_000_000) 1.0 else 0.0);
-            //    newVegetation -= 0.0001 * dt * @as(f32, if (self.elevation[i] - self.radius >= 7) 1.0 else 0.0);
-            //    // but it still needs water to grow
-            //    const shareCoeff = @as(f32, if (waterMass >= 10) 1.0 else 0.0);
-            //    newVegetation -= 0.0000001 * dt / 10;
-            //    // TODO: actually consume the water ?
-
-            //    const isInappropriateTemperature = self.temperature[i] >= 273.15 + 50.0 or self.temperature[i] <= 273.15 - 5.0;
-            //    newVegetation -= 0.000001 * dt * @as(f32, if (isInappropriateTemperature) 1.0 else 0.0);
-            //    self.vegetation[i] = @max(0, newVegetation);
-
-            //    for (self.getNeighbours(i)) |neighbour| {
-            //        if (self.waterMass[neighbour] < 0.1) {
-            //            self.vegetation[neighbour] = std.math.clamp(self.vegetation[neighbour] + vegetation * 0.0000001 * dt * shareCoeff, 0, 1);
-            //        }
-            //    }
-            //}
-        }
+    /// Simulation already owns lifeformsLock and reserved capacity for births.
+    pub fn addLifeformDuringStep(self: *Planet, lifeform: Lifeform) void {
+        std.debug.assert(self.lifeforms.items.len < self.lifeforms.capacity);
+        self.lifeforms.appendAssumeCapacity(lifeform);
     }
 
     pub fn addLifeform(self: *Planet, lifeform: Lifeform) !void {
+        if (self.worldMode == .origin) return error.ConsumersNotModeled;
         self.lifeformsLock.lock();
         defer self.lifeformsLock.unlock();
 

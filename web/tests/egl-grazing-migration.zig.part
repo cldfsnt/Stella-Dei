@@ -1,0 +1,25 @@
+    const saves=@import("save_game.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+    const bytes=try std.fs.cwd().readFileAlloc(a,"/tmp/stella-v13-origin-save.json",128*1024*1024);
+    var old=try saves.schema.parse(a,bytes);defer old.deinit();std.debug.assert(old.value.version==3);
+    var state=&game.state.Playing;std.debug.assert(state.planet.worldMode==.sandbox);
+    try saves.replaceWorld(state,old.value);
+    for(state.planet.microbeCells,old.value.origin.?.cells) |actual,saved| {
+        try std.testing.expectEqualDeep(saved.runtime(),actual);
+        for(actual.cohorts)|cohort| {std.debug.assert(cohort.feeding==0);std.debug.assert(cohort.lifetime_grazed==0);}
+    }
+    try std.testing.expectEqualDeep(old.value.origin.?.stats,state.planet.microbeStats);
+    std.debug.assert(state.planet.microbeStats.grazed_carbon==0 and state.planet.microbeStats.grazing_respired_carbon==0);
+    const captured=try saves.capture(a,state);std.debug.assert(captured.version==4);
+    const json=try std.json.stringifyAlloc(a,captured,.{});
+    var parsed=try saves.schema.parse(a,json);defer parsed.deinit();
+    const orig=parsed.value.origin.?.cells;parsed.value.origin.?.cells=orig[0..orig.len-1];
+    var rejected=false;saves.replaceWorld(state,parsed.value) catch {rejected=true;};std.debug.assert(rejected);
+    const unchanged=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,unchanged));
+    parsed.value.origin.?.cells=orig;
+    state.planet.microbeCells[0].nutrient=0.123;state.planet.temperature[0]=270;state.planet.worldMode=.sandbox;
+    try saves.replaceWorld(state,parsed.value);
+    const restored=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,restored));
+    render(window);gl.finish();window.swapBuffers();
+    std.debug.print("ENGINE_MIGRATION v3bytes={d} v4bytes={d} cells={d} slots=4 old_fields_structure_resources_exact=true feeding_intake_zero=true new_ledgers_zero=true stats_exact=true invalid_unchanged=true v4_roundtrip_exact=true mode={s}\n",.{bytes.len,json.len,state.planet.microbeCells.len,@tagName(state.planet.worldMode)});
+}

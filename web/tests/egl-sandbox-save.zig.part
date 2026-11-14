@@ -1,0 +1,11 @@
+fn sandboxSaveCheck(state:anytype, allocator:std.mem.Allocator) !void {
+ const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+ const saved=try saves.capture(a,state);const json=try std.json.stringifyAlloc(a,saved,.{});
+ var parsed=try saves.schema.parse(a,json);defer parsed.deinit();const original=parsed.value.elevation;
+ parsed.value.elevation=original[0..original.len-1];var rejected=false;saves.apply(state,parsed.value) catch {rejected=true;};std.debug.assert(rejected);
+ const unchanged=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,unchanged));
+ parsed.value.elevation=original;state.planet.vegetation[state.selectedPoint]=0.875;state.planet.lifeforms.clearRetainingCapacity();state.planet.temperature[0]=270;
+ try saves.apply(state,parsed.value);const restored=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,restored));
+ parsed.value.version=1;try saves.apply(state,parsed.value);const legacy=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,json,legacy));
+ std.debug.print("SANDBOX_SAVE bytes={d} reject_unchanged=true exact_restore=true legacy_v1=true rabbits={d} mode={s}\n",.{json.len,state.planet.lifeforms.items.len,@tagName(state.planet.worldMode)});
+}

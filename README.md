@@ -33,3 +33,9 @@ To distribute an executable for Windows, use:
 ```sh
 $ zig build -Dtarget=native-windows -Dcpu=x86_64_v2 -Doptimize=ReleaseSafe
 ```
+
+## Browser/mobile evolution fork
+
+This fork preserves the original GPL-3.0 game and adds a Zig 0.13.0/Emscripten 3.1.64 browser build, touch controls, compatible browser-local saves, and experimental resource-accounted Origin simulation with inherited microbial traits, grazing and neighboring-habitat relocation. See docs/WEB_PORT.md and web/tests/ for build and test details. Origin does not yet evolve full plant/animal classes; the original plant/rabbit sandbox remains separate. Native software-rendered tests are not Android frame-rate guarantees.
+
+Generated build outputs, private hosting configuration and large test fixtures/logs are intentionally excluded. Test harness source is included. Recovered source is from the last durable checkpoint; later uncheckpointed performance changes are not represented as included.

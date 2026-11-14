@@ -1,0 +1,20 @@
+    {
+        const m=@import("simulation/microbes.zig");
+        const initial=try allocator.dupe(m.Cell,state.planet.microbeCells);defer allocator.free(initial);
+        const initial_stats=state.planet.microbeStats;const co2=state.planet.averageCarbonDioxideMass;const oxygen=state.planet.averageOxygenMass;
+        const idx=state.selectedPoint;const water=state.planet.waterMass[idx];const sun=state.planet.transformedPoints[idx].norm();
+        for(0..2)|scenario|{
+            @memcpy(state.planet.microbeCells,initial);state.planet.microbeStats=initial_stats;state.planet.averageCarbonDioxideMass=co2;state.planet.averageOxygenMass=oxygen;state.gameTime=0;
+            for(0..24*400)|hour|{
+                state.planet.waterMass[idx]=if(scenario==1 and hour%24>=18)0 else water;
+                state.planet.simulateMicrobes(.{.dt=3600,.solarConstant=1361,.planetRotationTime=86400,.gameTime=state.gameTime,.solarVector=sun});state.gameTime+=3600;
+            }
+            state.planet.waterMass[idx]=water;
+            var bio:f64=0;var structure:f64=0;var top:f32=0;var gen:u32=0;var structured_children:u32=0;
+            for(state.planet.microbeCells)|cell|for(cell.cohorts)|co|{if(co.biomass>0){bio+=co.biomass;structure+=@as(f64,co.biomass)*co.structure;top=@max(top,co.structure);gen=@max(gen,co.generation);if(co.structure>0 and co.generation>=2)structured_children+=1;}};
+            render(window);gl.finish();window.swapBuffers();originReport(if(scenario==0)"wet400d" else "drycycles400d",state);
+            std.debug.print("STRUCTURE_SELECTION scenario={d} mean_structure={d} top={d} gen={d} children={d} failures={d}\n",.{scenario,structure/bio,top,gen,structured_children,state.planet.microbeStats.failed_patches});
+        }
+        try originSaveCheck(state,allocator);return;
+    }
+}

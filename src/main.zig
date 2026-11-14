@@ -1,4 +1,14 @@
 const std = @import("std");
+// Emscripten owns linear-memory growth and must refresh its JS heap views.
+// Zig's default wasm page allocator calls memory.grow directly and detaches them.
+pub const os = if (@import("builtin").os.tag == .emscripten) struct {
+    pub const heap = struct {
+        pub const page_allocator = std.heap.c_allocator;
+    };
+} else struct {};
+const is_web = @import("builtin").target.cpu.arch == .wasm32;
+extern "c" fn emscripten_get_now() f64;
+extern "c" fn emscripten_set_main_loop(callback: *const fn () callconv(.C) void, fps: c_int, simulate_infinite_loop: c_int) void;
 pub const gl = @import("gl");
 const glfw = @import("glfw");
 const za = @import("zalgebra");
@@ -30,6 +40,7 @@ pub const Game = struct {
     state: GameState,
     /// False if the state doesn't contain a valid value
     state_init: bool = false,
+    startOriginNext: bool = false,
     audio: AudioSubsystem,
     window: glfw.Window,
     renderer: *Renderer,
@@ -80,6 +91,7 @@ pub const Game = struct {
     }
 
     pub fn getTime() f64 {
+        if (is_web) return emscripten_get_now();
         return @as(f64, @floatFromInt(std.time.milliTimestamp()));
     }
 
@@ -272,6 +284,7 @@ fn fatalCrash(allocator: std.mem.Allocator, comptime fmt: []const u8, args: anyt
 }
 
 pub fn main() !void {
+    if (is_web) return main_web();
     std.valgrind.callgrind.stopInstrumentation();
     // Only manually catch errors (and show them as message boxes) on Windows
     if (@import("builtin").target.os.tag == .windows) {
@@ -289,6 +302,208 @@ pub fn main() !void {
         // Let Zig handle it (it'll log in the terminal, along with optional debug info)
         try main_wrap();
     }
+}
+
+// Browser state outlives main(), unlike the stack-bound native run loop.
+var web_loop = EventLoop.init();
+var web_previous_time: f64 = 0;
+var web_initialized = false;
+export fn stella_resize(width: u32, height: u32) void {
+    if (is_web and web_initialized) game.window.setSize(.{ .width = @max(240, width), .height = @max(180, height) });
+}
+
+fn webPlayState() ?*PlayState {
+    if (!is_web or !web_initialized or !game.state_init) return null;
+    return switch (game.state) {
+        .Playing => &game.state.Playing,
+        else => null,
+    };
+}
+export fn stella_zoom(steps: f32) void {
+    if (webPlayState()) |state| state.zoom(steps);
+}
+export fn stella_focus_land() i32 {
+    return if (webPlayState()) |state| (if (state.focusLand()) @as(i32, 1) else 0) else -1;
+}
+export fn stella_reset_view() void {
+    if (webPlayState()) |state| state.resetView();
+}
+export fn stella_camera_distance() f32 {
+    return if (webPlayState()) |state| state.cameraDistance else -1;
+}
+export fn stella_target_distance() f32 {
+    return if (webPlayState()) |state| state.targetCameraDistance else -1;
+}
+
+var lifeSnapshotBuffer: [4096]u8 = undefined;
+/// On-demand current-cell snapshot, not a fabricated historical lineage tree.
+export fn stella_life_snapshot() [*:0]const u8 {
+    const state = webPlayState() orelse return "{\"status\":\"no_world\"}";
+    if (state.planet.worldMode != .origin) return "{\"status\":\"sandbox\"}";
+    const point = state.selectedPoint;
+    if (point >= state.planet.microbeCells.len) return "{\"status\":\"no_cell\"}";
+    const cell = state.planet.microbeCells[point];
+    const depth = state.planet.waterMass[point] * state.planet.getKmPerWaterMass();
+    const surfaceLight = @max(0, state.planet.transformedPoints[point].norm().dot(state.simulationSolarVector())) * std.math.clamp(state.solarConstant / 1361, 0, 2);
+    const biologicalLight = @import("simulation/microbes.zig").availableLight(surfaceLight, depth);
+    var stream = std.io.fixedBufferStream(lifeSnapshotBuffer[0 .. lifeSnapshotBuffer.len - 1]);
+    std.json.stringify(.{
+        .status = "origin", .cell = point, .day = state.gameTime / 86400,
+        .temperature_c = state.planet.temperature[point] - 273.15,
+        .water_m = state.planet.waterMass[point] * state.planet.getKmPerWaterMass() * 1000,
+        .nutrients = cell.nutrient, .detritus = cell.detritus, .simulation_light = biologicalLight,
+        .cohorts = cell.cohorts,
+    }, .{ .emit_nonportable_numbers_as_strings = true }, stream.writer()) catch return "{\"status\":\"error\"}";
+    lifeSnapshotBuffer[stream.pos] = 0;
+    return @ptrCast(&lifeSnapshotBuffer);
+}
+
+export fn stella_world_mode() i32 {
+    return if (webPlayState()) |state| (if (state.planet.worldMode == .origin) @as(i32,1) else 0) else -1;
+}
+
+export fn stella_goal_stage() i32 {
+    if (webPlayState()) |state| {
+        if (state.planet.worldMode == .origin) {
+            var live = false;
+            for (state.planet.microbeCells) |cell| { if (@import("simulation/microbes.zig").biomass(cell) > 0.001) { live = true; break; } }
+            return if (!live) 100 else if (state.planet.microbeStats.births == 0) 101 else 102;
+        }
+        return @intFromEnum(@import("habitat_feedback.zig").goalStage(state.planet));
+    }
+    return -1;
+}
+
+export fn stella_selected_point() i32 {
+    return if (webPlayState()) |state| (if (state.pointerOnPlanet) @as(i32, @intCast(state.selectedPoint)) else -1) else -1;
+}
+export fn stella_selected_water() f32 {
+    return if (webPlayState()) |state| state.planet.waterMass[state.selectedPoint] else -1;
+}
+export fn stella_selected_vegetation() f32 {
+    return if (webPlayState()) |state| state.planet.vegetation[state.selectedPoint] else -1;
+}
+export fn stella_selected_elevation() f32 {
+    return if (webPlayState()) |state| state.planet.elevation[state.selectedPoint] else -1;
+}
+export fn stella_test_action(tool: i32) i32 {
+    return if (webPlayState()) |state| @intFromBool(state.testAction(tool)) else 0;
+}
+
+export fn stella_test_pick(x: f32, y: f32) i32 {
+    if (webPlayState()) |state| {
+        state.mouseMoved(&game, x, y, 0, 0);
+        return if (state.pointerOnPlanet) @intCast(state.selectedPoint) else -1;
+    }
+    return -1;
+}
+
+// Save data is durable only after the shell's FS.syncfs(false) callback.
+export fn stella_save() i32 {
+    if (!is_web or !web_initialized) return -1;
+    web_loop.pump(1024);
+    const state = webPlayState() orelse return -1;
+    @import("save_game.zig").write(state, game.allocator) catch |err| {
+        std.log.err("Save failed: {s}", .{@errorName(err)});
+        return -2;
+    };
+    return 0;
+}
+
+export fn stella_load() i32 {
+    if (!is_web or !web_initialized) return -3;
+    const saves = @import("save_game.zig");
+    var parsed = saves.read(game.allocator) catch |err| {
+        if (err == error.FileNotFound) return -1;
+        std.log.err("Load rejected: {s}", .{@errorName(err)});
+        return -2;
+    };
+    defer parsed.deinit();
+    // Version-1 saves retain their original grid and point IDs, including
+    // older high-resolution browser worlds. Never resample a saved ecosystem.
+    if (parsed.value.subdivisions != 6 and parsed.value.subdivisions != 7) return -2;
+    web_loop.pump(1024);
+    // The existing menu also owns a planet. Never deinit it while its normal
+    // computation is still queued on this browser's cooperative event loop.
+    switch (game.state) {
+        .MainMenu => |*menu| if (menu.planet.normalComputeJob) |job| {
+            if (!job.isCompleted()) return -3;
+        },
+        else => {},
+    }
+    if (webPlayState()) |state| {
+        saves.replaceWorld(state, parsed.value) catch |err| {
+            std.log.err("Load could not apply: {s}", .{@errorName(err)});
+            return -3;
+        };
+    } else {
+        // Use the existing state transition: direct union assignment of the
+        // large candidate triggers a Zig 0.13 WASM backend trap. No live user
+        // world exists in the menu. Failed load leaves an empty new planet.
+        game.setState(PlayState);
+        saves.replaceWorld(webPlayState().?, parsed.value) catch |err| {
+            std.log.err("Load could not apply: {s}", .{@errorName(err)});
+            return -3;
+        };
+    }
+    return 0;
+}
+
+fn web_frame() callconv(.C) void {
+    const now = emscripten_get_now();
+    // Clamp background-tab pauses rather than simulating minutes at once.
+    const dt: f32 = @floatCast(@min(@max((now - web_previous_time) / 1000, 0.001), 0.1));
+    web_previous_time = now;
+    glfw.pollEvents();
+    web_loop.pump(16);
+    inline for (std.meta.fields(GameState)) |field| {
+        if (std.mem.eql(u8, @tagName(std.meta.activeTag(game.state)), field.name)) {
+            if (comptime @hasDecl(field.type, "update")) {
+                @field(game.state, field.name).update(&game, dt);
+            }
+            break;
+        }
+    }
+    // State transitions queued by update must finish before rendering.
+    web_loop.pump(16);
+    render(game.window);
+    game.window.swapBuffers();
+    game.fps = 1.0 / dt;
+}
+
+/// C entry used when this Zig program is linked as an Emscripten library.
+export fn stella_main() void {
+    if (is_web) {
+        main_web() catch |err| {
+            std.log.err("Could not initialize Stella Dei: {s}", .{@errorName(err)});
+            @panic("Stella Dei initialization failed");
+        };
+    }
+}
+
+fn main_web() !void {
+    const allocator = std.heap.c_allocator;
+    if (!glfw.init(.{})) return error.WindowInitializationFailed;
+    const window = glfw.Window.create(1280, 720, "Stella Dei", null, null, .{
+        .opengl_profile = .opengl_core_profile,
+        .context_version_major = 3,
+        .context_version_minor = 0,
+    }) orelse return error.WindowCreationFailed;
+    window.setCursorPosCallback(cursorPosCallback);
+    window.setMouseButtonCallback(mouseButtonCallback);
+    window.setScrollCallback(mouseScroll);
+    window.setKeyCallback(keyCallback);
+    glfw.makeContextCurrent(window);
+    try gl.load({}, getProcAddress);
+    renderer = try Renderer.init(allocator, window);
+    web_loop.beginEvent();
+    try web_loop.start(allocator);
+    game = try Game.init(allocator, window, &renderer, &web_loop);
+    game.setState(MainMenuState);
+    web_initialized = true;
+    web_previous_time = emscripten_get_now();
+    // Return normally; all browser-owned state above has static lifetime.
+    emscripten_set_main_loop(web_frame, 0, 0);
 }
 
 fn main_wrap() !void {

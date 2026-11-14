@@ -2,3 +2,16 @@
 .zig-cache/
 zig-out/
 deps.zig
+.zig-cache-web/
+web/dist/
+web/tests/zig-out/
+.openai/
+web/qa-v8/
+/libstella.a
+/libstella.a.o
+__pycache__/
+
+web/tests/evidence/
+web/tests/storage-qa/index.html
+web/tests/storage-qa/index.js
+web/tests/storage-qa/index.wasm

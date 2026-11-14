@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Stella full-world IDBFS durability probe</title></head><body><h1>Full-world browser save-storage test</h1><p>Local QA only. Real five-day simulated world; never published with game.</p><pre id="result">PENDING: initializing filesystem</pre><script>
+const output=document.getElementById('result');
+const expectedLength=34882406, expectedSHA='c5159953f2552169bca23a6e22aa0637f3d9606169c5003b5db1158b8bd133ca';
+const hex=bytes=>Array.from(bytes,v=>v.toString(16).padStart(2,'0')).join('');
+const sha=async bytes=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)));
+const sync=populate=>new Promise((resolve,reject)=>FS.syncfs(populate,error=>error?reject(error):resolve()));
+async function runStorageTest(){
+ try{
+  FS.mkdir('/storage-qa');FS.mount(IDBFS,{},'/storage-qa');
+  output.textContent='PENDING: restoring IndexedDB';await sync(true);
+  output.textContent='PENDING: loading real '+expectedLength+'-byte world';
+  const response=await fetch('world.json',{cache:'no-store'});if(!response.ok)throw Error('World fixture HTTP '+response.status);
+  const reference=new Uint8Array(await response.arrayBuffer());
+  if(reference.length!==expectedLength||await sha(reference)!==expectedSHA)throw Error('Source fixture length/checksum mismatch');
+  const file='/storage-qa/world.json';
+  if(location.search.includes('read')){
+   output.textContent='PENDING: comparing restored full-world bytes';
+   const actual=FS.readFile(file);
+   if(actual.length!==reference.length)throw Error('Restored length '+actual.length+' differs from '+reference.length);
+   for(let i=0;i<actual.length;i++)if(actual[i]!==reference[i])throw Error('Byte mismatch at '+i);
+   const hash=await sha(actual);if(hash!==expectedSHA)throw Error('Restored checksum mismatch');
+   output.textContent='PASS READ: real full-world JSON restored in a fresh document/WASM instance; bytes='+actual.length+'; exact byte equality; SHA-256='+hash;
+  }else{
+   output.textContent='PENDING: writing '+reference.length+' bytes and committing IndexedDB';
+   FS.writeFile(file,reference);await sync(false);
+   output.textContent='PASS WRITE: real full-world JSON committed to IndexedDB; bytes='+reference.length+'; SHA-256='+expectedSHA;
+  }
+ }catch(error){output.textContent='FAIL: '+(error?.stack||error);}
+}
+var Module={onRuntimeInitialized(){void runStorageTest();},printErr(error){output.textContent+='\n'+error;}};
+</script>{{{ SCRIPT }}}</body></html>
