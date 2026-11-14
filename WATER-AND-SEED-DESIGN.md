@@ -1,6 +1,6 @@
 # Proposed next ecological states: conserved water first, distinct fire strategies later
 
-**Design only. No new persistent state implemented.** The current shoreline experiment remains isolated and unaccepted for release. Drought and fire functions below are proposals, not completed game features or validated species physiology.
+**Status update: Stage A reserve-only prototype is implemented and tested in the isolated lab, not deployed; numerical bridge review is ongoing. Stage B seed/fire strategies remain design only.** The current shoreline experiment remains isolated and unaccepted for release. Drought and fire functions below are proposals, not completed game features or validated species physiology.
 
 ## Why a water reserve is needed
 

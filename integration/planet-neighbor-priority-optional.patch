@@ -1,0 +1,25 @@
+--- a/src/simulation/planet.zig
++++ b/src/simulation/planet.zig
+@@ -1577,7 +1577,9 @@
+             for (0..cell.cohorts.len) |donor_offset| {
+                 const cohort = (donor_start + donor_offset) % cell.cohorts.len;
+                 if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
+-                if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
++                const prefer_neighbor=Microbes.neighborFirst(&cell.rng);
++                if (!prefer_neighbor and Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
++                var dispersed=false;
+                 const neighbors = self.getNeighbours(i);
+                 const start: usize = @intCast(Microbes.random(&cell.rng) % neighbors.len);
+                 for (0..neighbors.len) |offset| {
+@@ -1585,9 +1587,11 @@
+                     const env = self.microbeEnvironment(n, 1);
+                     if (!Microbes.dispersalHabitat(env.depth_km, env.temperature)) continue;
+                     if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)) {
++                        dispersed=true;
+                         break;
+                     }
+                 }
++                if(prefer_neighbor and !dispersed)_=Microbes.reproduce(cell,cohort,cell,&self.microbeStats,true);
+             }
+         }
+     }

@@ -10,6 +10,6 @@ Schema-only work in the isolated shore lab; not deployed.
 
 Two new tests cover a literal v6 producer wire migrated with zero water fields, and v7 exact sparse roundtrip plus invalid values/capacity/legacy-version rejection.
 
-Final aggregate against real reserve implementation: **50/50 passed**, including all 15 schema tests and four new model water-ledger tests. Earlier depth-zero assertion failures were corrected by the model owner to distinguish external water from usable stored reserve. Native atomic save/load acceptance remains a separate full-world harness check; it is not claimed by the unit aggregate.
+Final aggregate against real reserve implementation: **50/50 passed**, including all 15 schema tests and four new model water-ledger tests. Earlier depth-zero assertion failures were corrected by the model owner to distinguish external water from usable stored reserve. Native full-world v7 checks subsequently passed invalid-save rejection, unchanged state after rejection, and exact restoration in every completed100-day enabled/disabled comparison (single-founder and expanded-seeding, worlds1337 and1338). These are separate executed native checks, not inferred from unit tests. Independent numerical water-bridge review remains open; exact save restoration does not establish coupled water conservation.
 
 The existing native migration fixture now asserts the current schema.VERSION instead of hardcoding version 6. Its v5 legacy-input validation remains unchanged.

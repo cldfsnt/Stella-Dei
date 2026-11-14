@@ -20,8 +20,11 @@ needle='            if(i%60==59){\n              const Microbes='
 insert='''            if(i>=1200 and i%60==59){
                 const M=@import("simulation/microbes.zig");const shore=state.planet.getNeighbours(idx)[0];
                 const cell=state.planet.microbeCells[shore];var capable:u32=0;var protection:f32=0;
+                for(state.planet.microbeCells[idx].cohorts)|co|if(co.biomass>0){std.debug.print("SHORE_DONOR day={d} id={d} mass={d} credit={d} organization={d} support={d} structure={d} protection={d}\\n",.{(i+1)/60,co.lineage,co.biomass,co.reproduction_credit,co.organization,co.support_mass,co.structure,M.shoreProtection(co)});};
                 for(cell.cohorts)|co|{if(co.biomass>0 and M.shoreCapable(co))capable+=1;protection=@max(protection,M.shoreProtection(co));}
-                std.debug.print("SHORE_DAY day={d} depth_m={d} biomass={d} capable={d} max_protection={d}\\n",.{(i+1)/60,state.planet.waterMass[shore]*state.planet.getKmPerWaterMass()*1000,M.biomass(cell),capable,protection});
+                std.debug.print("SHORE_DAY day={d} depth_m={d} biomass={d} reserve={d} capable={d} max_protection={d}\\n",.{(i+1)/60,state.planet.waterMass[shore]*state.planet.getKmPerWaterMass()*1000,M.biomass(cell),M.storedWater(cell),capable,protection});
             }
 '''
-assert needle in s;s=s.replace(needle,insert+needle,1);p.write_text(s)
+assert needle in s;s=s.replace(needle,insert+needle,1)
+s=s.replace('        std.debug.print("TOTAL_WATER', '        var tissue_water:f64=0;for(state.planet.microbeCells)|cell|tissue_water+=@as(f64,@import("simulation/microbes.zig").storedWater(cell))*state.planet.getMeanPointArea()/1e9;\n        std.debug.print("TISSUE_WATER billion_kg={d}\\n",.{tissue_water});water_end+=tissue_water;\n        std.debug.print("TOTAL_WATER')
+p.write_text(s)
