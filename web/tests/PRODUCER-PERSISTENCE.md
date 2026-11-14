@@ -1,4 +1,4 @@
-# Producer persistence contract (v6 candidate)
+# Producer persistence contract (v6)
 
 New writes use save version6 and Origin model revision5. All prior formats1–5
 remain readable. Existing organism, lineage, climate, nutrient, carbon, PRNG,
@@ -20,10 +20,24 @@ and full dense worst-case support remain unchanged.
 allocation and topology preconditions precede commit. These two new scalars use
 the existing exact cohort assignment, not a new mutation path.
 
-Unit tests include actual v5-shaped wire with absent new fields; v6 sparse
-roundtrip preserving feeding/motion/lineage/RNG; invalid, nonfinite and excessive
-support; old-version contradictions; and signedzero preservation. Actual full
-world migration and invalid-load/live-unchanged evidence is a separate gate,
-not inferred from these DTO unit tests. Results will be recorded after execution.
+## Verified acceptance
 
-Execution: schema suite29/29 passed against integrated fields (Zig0.13). Full-world gates remain separate.
+The final Zig 0.13 schema/model suite passes **34/34 tests**. Coverage includes
+v5-shaped wire with absent new fields; v6 sparse roundtrip preserving feeding,
+motion, lineage and RNG; invalid, nonfinite and excessive support; old-version
+contradictions; and signed-zero preservation.
+
+Actual engine tests independently restored a genuine historical v5 world through
+production `replaceWorld`: all 40,962 cells, old cohort values, resources, RNG and
+stats remained exact. Six feeding histories and one living movement history were
+preserved; organization and support defaulted to zero. Invalid support greater
+than biomass was rejected without changing the live world. The migrated v6
+world roundtripped exactly.
+
+A separate living v6 world contained four cohorts with nonzero support. After
+explicitly clearing their support, loading restored the entire serialized world
+exactly. This tests restoration of real support, not only zero defaults.
+
+See [Producer actual-engine acceptance](PRODUCER-ENGINE-QA.md) for scenarios,
+reproduction and limitations. These native results do not establish browser
+storage durability or physical Android performance for this release.
