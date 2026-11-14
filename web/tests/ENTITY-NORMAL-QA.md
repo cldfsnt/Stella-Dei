@@ -28,7 +28,7 @@ shutdown GPA leak. No phone-GPU timing or WebGL runtime claim.
 
 Integration scope: entity-normal.patch only (entity.vs and entity.fs).
 Proof to checkpoint: src/entity_normal_test.zig; web/tests/egl-normal-prepare.py;
-results/stella-normal-unit.log; results/stella-normal-before.log;
-results/stella-normal-after.log; results/stella-normal-web.log;
-results/stella-normal-pair-25.png; results/stella-normal-crop-25.png.
+results/entity-normal/stella-normal-unit.log; results/entity-normal/stella-normal-before.log;
+results/entity-normal/stella-normal-after.log; results/entity-normal/stella-normal-web.log;
+results/entity-normal/stella-normal-pair-25.png; results/entity-normal/stella-normal-crop-25.png.
 The before shaders are fixture-only and not production assets.

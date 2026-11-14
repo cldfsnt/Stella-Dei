@@ -1,0 +1,3 @@
+39437f510361f8a79d98cf3043ec85e6163dd63bf0f789077812f817d52c549a  /tmp/fit-life-qa/main.zig
+5f5ce772957f96456e23b3694a75b7c894e7cf89f0460957b3339d25d6dac5bb  /tmp/fit-life-qa/states/play.zig
+f1be71a7ca0c33affdcce6371e055d2e9aaa263e7ce91053ec834d84611e28ce  /tmp/fit-life-qa/life_camera.zig

@@ -1,0 +1,56 @@
+[
+  {
+    "case": "fit-2027-320",
+    "visible_before": 3,
+    "visible_after": 5,
+    "connected_count": 5,
+    "camera_before": 5285.4443,
+    "camera_after": 5442.391,
+    "glyph_scale_change_percent": -1.543368461133332
+  },
+  {
+    "case": "fit-2027-390",
+    "visible_before": 4,
+    "visible_after": 5,
+    "connected_count": 5,
+    "camera_before": 5285.4443,
+    "camera_after": 5360.206,
+    "glyph_scale_change_percent": -0.7351849378209985
+  },
+  {
+    "case": "fit-2027-800",
+    "visible_before": 3,
+    "visible_after": 5,
+    "connected_count": 5,
+    "camera_before": 5285.4443,
+    "camera_after": 5403.7188,
+    "glyph_scale_change_percent": -1.163077229762155
+  },
+  {
+    "case": "fit-42-320",
+    "visible_before": 6,
+    "visible_after": 8,
+    "connected_count": 8,
+    "camera_before": 5296.4697,
+    "camera_after": 5578.647,
+    "glyph_scale_change_percent": -2.7778617409280004
+  },
+  {
+    "case": "fit-42-390",
+    "visible_before": 6,
+    "visible_after": 8,
+    "connected_count": 8,
+    "camera_before": 5296.4697,
+    "camera_after": 5459.35,
+    "glyph_scale_change_percent": -1.6034562444281475
+  },
+  {
+    "case": "fit-42-800",
+    "visible_before": 8,
+    "visible_after": 8,
+    "connected_count": 8,
+    "camera_before": 5296.4697,
+    "camera_after": 5360.5215,
+    "glyph_scale_change_percent": -0.630550524998208
+  }
+]

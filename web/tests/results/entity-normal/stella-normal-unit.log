@@ -1,0 +1,8 @@
+1/7 entity_normal_test.test.rabbit local upward normal follows world radial under actual grounded model...OK
+2/7 entity_normal_test.test.uniform scale cancels after normalization and fragment normal remains unit...OK
+3/7 biology_visuals.test.rabbit feet rest on surface and Y up follows radial at all axes...OK
+4/7 biology_visuals.test.sprouts scale with real biomass and remain visible on globe but not overlays...OK
+5/7 biology_visuals.test.feeding marker requires living capability and recorded intake...OK
+6/7 biology_visuals.test.producer schematic requires actual tissue and bounded height...OK
+7/7 biology_visuals.test.map markers remain visible at distance with bounded size...OK
+All 7 tests passed.

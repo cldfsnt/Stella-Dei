@@ -1381,6 +1381,21 @@ pub const PlayState = struct {
         }
     }
 
+    /// Explicit read-only local framing; never follows life automatically.
+    pub fn fitLivingCluster(self:*PlayState,width:f32,height:f32) bool {
+        if(self.planet.worldMode!=.origin)return false;
+        const start=self.planet.getNearestPointTo(self.targetCameraPos);
+        const fitted=@import("../life_camera.zig").fit(&self.planet,start,width,height) orelse {
+            self.mobileFeedback="No nearby connected life to fit";self.mobileFeedbackSeconds=4;return false;
+        };
+        self.targetCameraPos=Vec3.new(fitted.direction[0],fitted.direction[1],fitted.direction[2]);
+        self.setOrbitDistance(fitted.distance,true);
+        self.cameraGroundPoint=self.planet.getNearestPointTo(self.cameraPos);
+        self.mobileFeedback=if(fitted.truncated) "Fitted bounded nearby life; distant colonies excluded" else "Fitted nearby connected life";
+        self.mobileFeedbackSeconds=4;
+        return true;
+    }
+
     pub fn watchLife(self: *PlayState) void {
         self.watchLifeView = true;
         self.selectedTool = .None;

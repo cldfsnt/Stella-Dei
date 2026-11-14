@@ -100,4 +100,10 @@ speedAccept=false;el('speed-slow').onclick();assert.match(el('speed-result').tex
 el('close-speed').onclick();assert.equal(el('speed-sheet').open,false);el('starter-speed').onclick();assert.equal(el('speed-sheet').open,true);
 sandbox.Module.ccall=()=>'{bad';el('refresh-speed').onclick();assert.equal(el('speed-fast').disabled,true);const speedCallCount=speedCalls.length;el('speed-fast').onclick();assert.equal(speedCalls.length,speedCallCount);
 sandbox.Module.started=false;el('starter-speed').onclick();assert.match(el('speed-readout').textContent,/Start or load/);el('close-speed').onclick();sandbox.Module.started=true;
+let fits=0;sandbox.Module._stella_fit_life=()=>{fits++;return 1};
+el('more-toggle').onclick();el('fit-life').onclick();assert.equal(fits,1);assert.equal(el('more-menu').open,false);assert.match(el('notice').textContent,/Framed nearby connected life/);
+sandbox.Module._stella_fit_life=()=>0;el('fit-life').onclick();assert.match(el('notice').textContent,/Pan toward a living patch/);
+sandbox.Module._stella_fit_life=()=>-1;el('fit-life').onclick();assert.match(el('notice').textContent,/unavailable/);
+sandbox.Module.started=false;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);sandbox.Module.started=true;
+delete sandbox.Module._stella_fit_life;el('fit-life').onclick();assert.match(el('notice').textContent,/Start or load/);
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

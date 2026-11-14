@@ -1,0 +1,4 @@
+    {const before=state.cameraPos;const size=window.getFramebufferSize();std.debug.assert(!state.fitLivingCluster(@floatFromInt(size.width),@floatFromInt(size.height)));std.debug.assert(state.cameraPos.distance(before)==0);
+    game.state_init=false;std.debug.assert(stella_fit_life()==-1);game.state_init=true;
+    std.debug.print("FIT_EMPTY no_life_unchanged=true no_world_rejected=true\n",.{});}
+

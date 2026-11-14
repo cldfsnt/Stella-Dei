@@ -1,0 +1,32 @@
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+EGL surface=0x12d765a0 context=0x12d76bb0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x56515a3d31eed56d
+info: Sea Level: -1.925293 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5030.3174
+Captured /tmp/stella-bio-before-001.ppm
+QA frame=25 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5090.1313
+Captured /tmp/stella-bio-before-025.ppm
+QA frame=26 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5025.332
+Captured /tmp/stella-bio-before-026.ppm
+QA frame=50 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5085.146
+Captured /tmp/stella-bio-before-050.ppm
+QA frame=51 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5009.3267
+Captured /tmp/stella-bio-before-051.ppm
+QA frame=75 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5069.14
+Captured /tmp/stella-bio-before-075.ppm
+QA frame=76 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5071.0645
+Captured /tmp/stella-bio-before-076.ppm
+QA frame=100 selected=3671 elevation=5013.6753 water=0 vegetation=0 rabbits=1 time=0 paused=true tool=None camera=5130.8784
+Captured /tmp/stella-bio-before-100.ppm
+info: deinit audio
+error(gpa): memory address 0x7fe8ac172000 leaked: 
+

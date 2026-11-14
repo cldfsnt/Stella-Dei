@@ -435,6 +435,12 @@ export fn stella_speed_snapshot()[*:0]const u8 {
     return text.ptr;
 }
 
+export fn stella_fit_life() i32 {
+    const state=webPlayState() orelse return -1;
+    const size=game.window.getFramebufferSize();
+    return @intFromBool(state.fitLivingCluster(@floatFromInt(size.width),@floatFromInt(size.height)));
+}
+
 export fn stella_watch_life() i32 {
     const state=webPlayState() orelse return 0;
     state.watchLife();
