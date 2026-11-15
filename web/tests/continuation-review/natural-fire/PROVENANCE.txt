@@ -1,0 +1,7 @@
+5885e05e26cf4774ed6cf3b450791216550a3034ce94f3c126fbb7820a62ad54  web/tests/egl-natural-fire-prepare.py
+94324156a97f03dbb6b024b4f05349e5c5204ad304ca27067106f6e2bdd7efa1  web/tests/egl-water-paired-prepare.py
+76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7  ../site-tmp/natural60-day60.json
+7f86a9ac379827365707b22ebc94921cfb21a1795ccc340523a3b73cb6214e2d  ../site-tmp/natural-fire/src/main.zig
+2cc5bba9b1fd8bd47638b55d746fdd4f7c742d632e740df94cdf5666eed30172  ../site-tmp/natural-fire/src/states/play.zig
+cb3b380d303a6c06d8e9e001c2dbb06f64bd19afc812d1233c395edcfda48131  ../site-tmp/natural-fire/src/experimental/planet_ignition.zig
+9c66ca04d12d9c867c929c74c5c8dd2b5e44cd47b2825f2987271249264b54d9  ../site-tmp/natural-fire/build/bin/stella-egl

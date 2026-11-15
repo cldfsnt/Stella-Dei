@@ -1,0 +1,218 @@
+[
+  {
+    "width": 390,
+    "height": 700,
+    "world": "early",
+    "repeat": 1,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 300148
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "early",
+    "repeat": 1,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 306552
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "early",
+    "repeat": 2,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 263596
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "early",
+    "repeat": 2,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 259860
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "early",
+    "repeat": 3,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 259808
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "early",
+    "repeat": 3,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 259952
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "established30d",
+    "repeat": 1,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 302984
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "established30d",
+    "repeat": 1,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 303260
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "established30d",
+    "repeat": 2,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 263664
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "established30d",
+    "repeat": 2,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 263172
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "established30d",
+    "repeat": 3,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 263820
+  },
+  {
+    "width": 390,
+    "height": 700,
+    "world": "established30d",
+    "repeat": 3,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 263000
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "early",
+    "repeat": 1,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 332992
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "early",
+    "repeat": 1,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 332772
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "early",
+    "repeat": 2,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 292284
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "early",
+    "repeat": 2,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 292400
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "early",
+    "repeat": 3,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 292440
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "early",
+    "repeat": 3,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 292324
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "established30d",
+    "repeat": 1,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 335788
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "established30d",
+    "repeat": 1,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 336140
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "established30d",
+    "repeat": 2,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 295724
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "established30d",
+    "repeat": 2,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 295424
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "established30d",
+    "repeat": 3,
+    "kind": "base",
+    "exit": 0,
+    "rss_kib": 295708
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "world": "established30d",
+    "repeat": 3,
+    "kind": "branch",
+    "exit": 0,
+    "rss_kib": 295668
+  }
+]
