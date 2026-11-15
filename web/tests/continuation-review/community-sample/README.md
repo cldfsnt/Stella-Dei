@@ -1,3 +1,13 @@
+# Sampled global community status — candidate
+
+Not a live-release claim. Native acceptance is documented below after the original candidate description.
+
+The existing periodic goal-stage inspection now computes current positive finite, nonzero-ID colony and occupied-patch counts in the same pass. Original journey classification still uses its existing biomass>0.001 threshold. Counts include smaller positive living cohorts and are not cumulative births or arrivals. The resulting transient sample is keyed by world serial, storage identity and simulation time. Rendering only formats this fixed-size sample; no new per-frame world traversal occurs.
+
+Before the first valid sample, across world/storage changes or rewind, the footer reads Global count pending. Observed empty populations explicitly show zero. Successful save application clears the transient sample after its validation/allocation boundary; failed apply paths do not touch it. Cache is not part of saved ecology. No-pin Watch replaces the session-counter line with Last count; pinned local inspection and the tracked-event legend are unchanged.
+
+Unit acceptance: Zig0.13.0 ReleaseSafe, community_sample.zig1test passed, habitat_feedback.zig36tests passed (including imported existing microbial regression tests). Test commands: zig test src/community_sample.zig -O ReleaseSafe; zig test src/habitat_feedback.zig -O ReleaseSafe. Logs and source hashes correspond to this candidate. No FPS or complete-game claim.
+
 # Actual native sampled global Watch status
 
 Both320×700 and390×700 native EGL llvmpipe runs exit0. Preserved actual natural60-day world contains64living colonies/37occupiedpatches; the sampled HUD shows exactly that and remains legible atbothwidths. Contact sheet and individual screenshots inspected. No biological assignments; loaded real savedworld. Native browser-policy proxy, not Android/WebGL or actual screenreader proof.

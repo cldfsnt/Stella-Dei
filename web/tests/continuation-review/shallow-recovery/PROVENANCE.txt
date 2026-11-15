@@ -1,0 +1,4 @@
+edd8dbb0da7f1b7ec32ae4ac8cd0b50c627a29cd68b57f5dc19e31f6b4240151  web/tests/egl-shallow-recovery-prepare.py
+94324156a97f03dbb6b024b4f05349e5c5204ad304ca27067106f6e2bdd7efa1  web/tests/egl-water-paired-prepare.py
+76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7  ../site-tmp/natural60-day60.json
+7e27797f064b0b8453198d15775014294009a607e718b040a39b314a58981339  ../site-tmp/shallow-recovery/build/bin/stella-egl

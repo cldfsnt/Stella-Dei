@@ -372,7 +372,7 @@ pub fn lifeSnapshotForState(state:*PlayState) [*:0]const u8 {
     }
     var stream = std.io.fixedBufferStream(lifeSnapshotBuffer[0 .. lifeSnapshotBuffer.len - 1]);
     std.json.stringify(.{
-        .status = "origin", .cell = point, .day = state.gameTime / 86400,
+        .status = "origin", .cell = point, .day = state.gameTime / 86400, .world_serial = PerformanceDetails.world_serial, .paused = state.paused,
         .seed_reason = @tagName(state.planet.seedEligibility(point)),
         .producer_habitat = @import("producer_habitat.zig").inspect(cell,depth,state.planet.temperature[point]),
         .temperature_c = state.planet.temperature[point] - 273.15,
@@ -465,6 +465,18 @@ var patch_watch_json:[4096]u8=undefined;
 export fn stella_patch_watch_start(expected:i32)i32 {
  const state=webPlayState() orelse return -1;
  return patchWatchStartForState(state,expected);
+}
+export fn stella_patch_watch_start_checked(expected:i32,world:u32,resume_explicit:i32)i32 {
+ const state=webPlayState() orelse return -1;
+ return patchWatchStartCheckedForState(state,expected,world,resume_explicit==1);
+}
+pub fn patchWatchStartCheckedForState(state:*PlayState,expected:i32,world:u32,resume_explicit:bool)i32 {
+ if(world!=PerformanceDetails.world_serial or state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails or (state.paused and !resume_explicit))return -2;
+ // No simulation can run between this synchronous resume and baseline capture.
+ const was_paused=state.paused;const previous_watch=PatchWatch.current;state.paused=false;
+ const result=patchWatchStartForState(state,expected);
+ if(result!=1){state.paused=was_paused;PatchWatch.current=previous_watch;}
+ return result;
 }
 pub fn patchWatchStartForState(state:*PlayState,expected:i32)i32 {
  if(state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.paused or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails)return -2;

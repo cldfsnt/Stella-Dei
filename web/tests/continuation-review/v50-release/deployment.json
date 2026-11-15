@@ -1,0 +1,21 @@
+{
+  "id": "appgdep_6af92d42ac7881919bd51516b860edb7",
+  "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+  "title": "Stella Dei Browser Port",
+  "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_83aa606455c881918c432f7c63400934",
+  "type": "publish",
+  "status": "succeeded",
+  "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+  "has_mcp": false,
+  "screenshot_asset_pointer": null,
+  "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+  "failure_message": null,
+  "env_set_revision": 0,
+  "updated_at": "2026-11-15T03:55:55.301483+00:00",
+  "site_source_commit": "34ee4f1effffb1d552d50f706df519aad73d1164",
+  "source_fork_commit": "3750d706ec8ea01575ad7c492d92b18cb66c17ee",
+  "local_release_commit": "5abf20045dd1abde5267e47344cbacf37e06b110",
+  "source_tree": "01c4ee10f6b8ce6c3a95f2d12a5794f49bb68e58",
+  "build_verified": "29 static hashes; built assets identical to source build",
+  "runtime_caveat": "Native EGL/software rendered tests only; no new actual Android/laptop/browser runtime claim"
+}

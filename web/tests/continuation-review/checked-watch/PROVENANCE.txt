@@ -1,0 +1,5 @@
+a10c80c697e43992f8c1d4027c31ae9ff42458627b6daf51ef073b2f8cdf6e07  web/tests/egl-checked-watch-prepare.py
+a4ed2baa5c734d0d2482d8e8424d2b8c8e3ca9db01348fa4ec4cc3984281c8a5  src/main.zig
+bd3d4ca0104e57a3af72fd8e4765484463cd212aa614f34e0405149854516055  src/patch_watch.zig
+76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7  ../site-tmp/natural60-day60.json
+d75d4946c5666c9dd862c8645211819bff546c74c43c9ba37e2f2d08d8447766  ../site-tmp/checked-watch/build/bin/stella-egl

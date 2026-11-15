@@ -1,0 +1,22 @@
+# Experimental whole-colony god transport: actual mature donor
+
+Research ONLY: no production import/UI/export/hosting. `experimental/manual_transplant.zig` offers paused-only ticket prepare/execute, using real Planet adjacency, exact world/owner/time/source/target/stats checks. It transfers one whole existing Cohort verbatim into a vacant neighboring slot and zeros the source slot. No reproduction threshold, generated life, mutation, new ID, ancestry change, RNG, birth or autonomous-movement counters, elapsed time, nutrient/water/gas input. Source presence is the cost. Destination capacity<=1kg C/m² and valid cells required; already-autonomously-relocated donors and nonzero movement-history fields are refused rather than rewritten.
+
+## Actual natural-world execution
+Loaded natural day60 save, no traits/tissue/credit assigned. ID120, cell12344slot3, mass .1454830319, support .0224130228, earned credit .0067930445, generation4/parent55. Actual first empty neighbor from Planet.getNeighbours was13594 (the patch naturally extinct byday60). Transfer succeeded despite low reproductioncredit because it is manual whole transport, NOT a new daughter. Donor gene/tissue/ancestry/history values preserved exactly.
+
+Full saved bytes frozen before action, parsed to independent storage. Actual postaction bytes equal an independent restored reference modified in exactly source and destination cohort slots, nothing else. Actual moved snapshot parsed/applied and reserialized identically. Thus all dense terrain/climate arrays, resources, gases, stats, RNG and other cohorts are checked, not just sparse cells. Source dissolved nutrient and detritus remain in source; recipient gets only living tissue and its already-bound nutrient. Source and target use the same `Planet.getMeanPointArea()` =4π(radius·1000)²/vertexcount, as all current microbe flux accounting does. Therefore conserving identical per-area living carbon/support and bound nutrient also conserves their actual model-scaled amounts; this is not a heterogeneous-area density swap. No new whole-trajectory conservation claim is inferred.
+
+## Three simulated-day paired outcome
+Both arms restore identical independent parsed natural baseline. Untreated versus moved run180coupled ticks×1440s, unchanged solar/climate scheduler. ID120 survives both:
+- Untreated remains12344, biomass .1837133/support .028302751; empty13594 independently recolonizes to .012106063.
+- Moved remains13594, biomass .111904636/support .017239999; original12344 recolonizes to .0137993805.
+- Both ID120 relocation counters remain0 because this god action is not autonomous motility. Total cumulative births1742 untreated vs1720 moved; no claim transplantation improves fitness. These are one donor/neighbor, not generalized habitat trials.
+
+## Refusals / tests
+Native6atomic refusals: stale world,time,ID,owner,target and unpaused action. Pure controlled mock tests cover historical autonomous movement, invalid movement-time residue, full4slot target, density cap, unpaused/NaNtime/Sandbox, stale source/ID/stats; exact no mutation on refusal. All34 Zig tests pass (including imported physiology tests). First test-only mock method visibility error corrected and original log preserved. Native build/run exit0 with inherited teardown GPA leaks; no leak-clean or browser-playability proof.
+
+## Important UX/provenance restriction before any shipping
+Only63of64 living day60 donors had no recorded autonomous moves. UI must state the restriction, source removal, whole-cohort transfer, existing target conditions and lack of survival guarantee. Same identity at new position persists in ordinary save; the save does NOT record manual-transport cause/history. A session receipt can truthfully explain the action while running, but no saved manual journey provenance exists. Supporting previously moved organisms or persistent manual history needs deliberate schema design, not reset/increment of autonomous history. Two-step source/target paused workflow, escape/cancel and explicit preview still unimplemented. This experiment does not itself establish a useful or accessible shipping tool.
+
+Reproduce egl-manual-transplant-prepare.py +egl-propagule-visual-build.zig; QA_PULSE_SAVE=<natural60-day60.json>, usual STELLA_ORIGIN_COUPLED/FAST/PRODUCER_LONG/FORMS_SINGLE=1, width390, LIBGL_ALWAYS_SOFTWARE=1. Unit: zig test src/qa_manual_transplant.zig -O ReleaseSafe. Native fixed-step evidence is not measured laptop/Android/browser pace.

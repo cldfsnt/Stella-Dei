@@ -239,4 +239,34 @@ feedingResults=[1];sandbox.Module.ccall=()=>JSON.stringify({status:'origin',coho
  await el('copy-gameplay-report').onclick();assert.equal(el('gameplay-report-text').hidden,false);assert.equal(el('gameplay-report-text').value,report);assert.equal(el('gameplay-report-text').selected,true);assert.match(el('copy-gameplay-status').textContent,/Automatic copy is unavailable/);
  let copied='';sandbox.navigator={clipboard:{writeText:async text=>copied=text}};await el('copy-gameplay-report').onclick();assert.equal(copied,report);assert.match(el('copy-gameplay-status').textContent,/Sample copied/);
 
+
+// Post-water watch is explicitly resumed only with same current patch/world.
+sandbox.StellaColonyWatchDetails=require('../colony-watch-details.js');
+let waterState={status:'origin',cell:12,world_serial:7,paused:true,day:4,water_m:1,temperature_c:25,cohorts:[{biomass:.1,lineage:'3'}]};
+let changed=.1,checkedCalls=[],watching=false,requestedSpeed=21600;
+sandbox.Module.started=true;sandbox.Module.failed=false;
+for(const name of ['_stella_adjust_water','_stella_set_water_target','_stella_life_snapshot','_stella_patch_watch_start_checked'])sandbox.Module[name]=()=>1;
+sandbox.Module.ccall=(name,t,a,v)=>{
+ if(name==='stella_life_snapshot')return JSON.stringify(waterState);
+ if(name==='stella_adjust_water'||name==='stella_set_water_target')return changed;
+ if(name==='stella_patch_watch_start_checked'){checkedCalls.push([...v]);if(v[0]!==waterState.cell||v[1]!==waterState.world_serial||waterState.paused&&!v[2])return -2;if(v[2])waterState.paused=false;watching=true;return 1;}
+ if(name==='stella_patch_watch_stop'){watching=false;return;}
+ if(name==='stella_patch_watch_snapshot')return JSON.stringify({active:watching,status:'watching',cell:12,elapsed:0,consumed:0,ticks:0,fixed:0,recycled:0,start_biomass:.1,end_biomass:.1,start_colonies:1,end_colonies:1});
+ throw Error('Unexpected '+name);
+};
+function prepareWater(){sandbox.patchWatch?.cancel?.();for(const id of ['more-menu','god-sheet','speed-sheet'])el(id).open=false;el('life-sheet').open=true;el('refresh-life').onclick();}
+const noticeBeforeWater=el('notice').textContent;prepareWater();el('water-plus').onclick();assert.equal(el('watch-water-change').hidden,false);assert.match(el('watch-water-change').textContent,/Resume & watch/);el('watch-water-change').onclick();assert.deepEqual(checkedCalls.pop(),[12,7,1]);assert.equal(waterState.paused,false);assert.equal(requestedSpeed,21600);assert.equal(el('notice').textContent,noticeBeforeWater);assert.match(el('patch-watch-readout').textContent,/Watching/);assert.match(html,/Observation starts when you click, after the edit/);
+// Running worlds do not get an implicit resume/pause toggle.
+prepareWater();el('water-minus').onclick();assert.equal(el('watch-water-change').textContent,'Watch this patch');el('watch-water-change').onclick();assert.deepEqual(checkedCalls.pop(),[12,7,0]);
+// Changing selection or replacing a same-index world never starts the action.
+for(const key of ['cell','world_serial']){prepareWater();el('water-plus').onclick();waterState[key]++;const n=checkedCalls.length;el('watch-water-change').onclick();assert.equal(checkedCalls.length,n);assert.match(el('water-feedback').textContent,/changed/);waterState[key]--;}
+// Pause after editing requires a newly labelled second click, not silent resume.
+prepareWater();el('water-plus').onclick();waterState.paused=true;let n=checkedCalls.length;el('watch-water-change').onclick();assert.equal(checkedCalls.length,n);assert.match(el('watch-water-change').textContent,/Resume & watch/);el('watch-water-change').onclick();assert.deepEqual(checkedCalls.pop(),[12,7,1]);
+for(const value of [0,NaN]){prepareWater();changed=value;el('water-plus').onclick();assert.equal(el('watch-water-change').hidden,true);}
+changed=.2;prepareWater();el('water-shallow').onclick();assert.equal(el('watch-water-change').hidden,false);el('life-sheet').handlers.close();assert.equal(el('watch-water-change').hidden,true);
+prepareWater();el('water-plus').onclick();el('life-sheet').handlers.cancel();assert.equal(el('watch-water-change').hidden,true);
+changed=0;prepareWater();el('water-shallow').onclick();assert.equal(el('watch-water-change').hidden,true);
+changed=.1;prepareWater();el('water-plus').onclick();await sandbox.storageAction('load');assert.equal(el('watch-water-change').hidden,true);
+console.log('PASS post-water watch: explicit resume, running, stale world/selection, relabel on pause, zero/refusal and close/cancel; observation begins after edit');
+
 console.log('PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load');})().catch(e=>{console.error(e);process.exit(1)});

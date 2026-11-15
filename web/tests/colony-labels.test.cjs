@@ -9,6 +9,8 @@ const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,{textContent:'',h
 let snapshot={status:'origin',cell:1,day:2,cohorts:[{lineage:20599,parent:17,generation:3,biomass:.1},{lineage:20600,parent:20599,generation:4,biomass:1e-8},{lineage:0,parent:0,generation:0,biomass:0}]};
 const context={document:{getElementById:node},Module:{started:true,_stella_life_snapshot(){},ccall:()=>JSON.stringify(snapshot)},lifeTrend:{sample:()=>null},seedReasons:{},producerHabitatFeedback:()=>'',producerFeedback:()=>'',movementFeedback:()=>'',movementOpportunity:()=>'',livingTraitLabel:()=>''};
 vm.createContext(context);
+// Include the production refresh dependency, not a no-op stand-in.
+vm.runInContext(html.slice(html.indexOf('let lifePoint='),html.indexOf('function livingTraitLabel(')),context);
 vm.runInContext(html.slice(html.indexOf('function competitionFeedback('),html.indexOf("document.getElementById('life-toggle').onclick=")),context);
 const original=JSON.stringify(snapshot);context.refreshLife();
 assert.match(node('life-summary').textContent,/2 living colonies/);
@@ -16,6 +18,7 @@ assert.match(node('life-competition').textContent,/2 living colonies/);
 assert.match(node('life-cohorts').textContent,/Colony ID #20599 · parent ID #17\nGeneration 3/);
 assert.match(node('life-cohorts').textContent,/Colony ID #20600/);
 assert.equal(JSON.stringify(snapshot),original,'UI must not mutate ecosystem');
+assert(node('watch-water-change').hidden);assert(node('watch-water-note').hidden);
 snapshot={...snapshot,cohorts:[]};context.refreshLife();assert.match(node('life-summary').textContent,/0 living colonies/);
 snapshot={...snapshot,cohorts:[{lineage:1,parent:0,generation:0,biomass:.1}]};context.refreshLife();assert.match(node('life-summary').textContent,/1 living colony/);assert.match(node('life-cohorts').textContent,/seeded ancestor/);
 console.log('PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots');
