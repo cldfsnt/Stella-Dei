@@ -2023,7 +2023,7 @@ pub const PlayState = struct {
         vg.fontFace("sans-serif");
         vg.fillColor(nvg.rgb(190, 214, 232));
         var ecologyText: [160]u8 = undefined;
-        const ecologyLabel = if (origin and self.watchLifeView) @import("../watch_feedback.zig").line(&ecologyText,self.planet.propaguleArrivals,self.planet.propaguleTrackedLosses) else if (origin) std.fmt.bufPrint(&ecologyText, "Microbial births {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        const ecologyLabel = if (origin and self.watchLifeView) @import("../watch_feedback.zig").line(&ecologyText,self.planet.propaguleArrivals,self.planet.propaguleTrackedLosses) else if (origin) std.fmt.bufPrint(&ecologyText, "Births since start {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
         var ecologyBounds: [4]f32 = undefined;
         _ = vg.textBounds(0,0,ecologyLabel,&ecologyBounds);
         const ecologyWidth=ecologyBounds[2]-ecologyBounds[0];
@@ -2111,7 +2111,7 @@ pub const PlayState = struct {
                     mobileDetailLabel(vg, game, "Water {d:.2}m · {d:.1}°C", .{self.planet.waterMass[point]*self.planet.getKmPerWaterMass()*1000,self.planet.temperature[point]-273.15}, px+16,py+94,pw-32);
                     mobileDetailLabel(vg, game, "Nutrients: {d:.3} kg/m²", .{cell.nutrient},px+16,py+126,pw-32);
                     if (c.biomass > 0) {
-                        mobileDetailLabel(vg, game, "Dominant lineage {d} · Gen {d}", .{c.lineage,c.generation},px+16,py+158,pw-32);
+                        mobileDetailLabel(vg, game, "Colony ID #{d} · Generation {d}", .{c.lineage,c.generation},px+16,py+158,pw-32);
                         mobileDetailLabel(vg, game, "Optimum {d:.1}°C · Light {d:.2}x", .{c.optimum-273.15,c.efficiency},px+16,py+190,pw-32);
                     } else mobileDetailLabel(vg, game, "No living colony at this point", .{},px+16,py+158,pw-32);
                     if (c.biomass > 0) mobileDetailLabel(vg, game, "Structure: {d:.0}% · drying protection", .{c.structure*100},px+16,py+232,pw-32) else mobileDetailLabel(vg, game, "Existing life seeded; not abiogenesis", .{},px+16,py+232,pw-32);

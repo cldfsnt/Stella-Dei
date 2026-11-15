@@ -1,0 +1,3 @@
+1/1 qa_geometry_cache.test.packed basis preserves original Vec3 operations and ignores SIMD padding...BASIS_CACHE exact_wind_vectors=1200 float_component_bits=3600 packed_bytes_per_point=42 stale_reverse_hint_fallback=true
+OK
+All 1 tests passed.
