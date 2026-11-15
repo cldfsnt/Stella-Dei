@@ -99,6 +99,7 @@ pub const CLContext = if (!USE_OPENCL) struct {} else struct {
 };
 
 pub const Planet = struct {
+    sandboxDefense:Ecology.DefenseConfig=. {},
     mesh: IcosphereMesh,
     atmosphereMesh: IcosphereMesh,
 
@@ -1428,6 +1429,7 @@ pub const Planet = struct {
         for (self.vegetation) |cover| if (cover > 0) return error.SandboxHasLife;
         try self.ensureMicrobeStorage();
         self.worldMode = .origin;
+        self.sandboxDefense=.{};
     }
 
     /// Explicit selected-patch target, never a persistent irrigation policy.
@@ -1609,18 +1611,22 @@ pub const Planet = struct {
         self.plantColorWavelength = 530;
         for (start..end) |i| {
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector));
-            var cover = Ecology.grow(self.vegetationSnapshot[i], self.temperature[i], self.plantTraits[i].optimum, self.waterMass[i] * self.getKmPerWaterMass(), light, self.averageCarbonDioxideMass > 0, dt);
+            var cover = Ecology.growTough(self.vegetationSnapshot[i], self.temperature[i], self.plantTraits[i].optimum, self.waterMass[i] * self.getKmPerWaterMass(), light, self.averageCarbonDioxideMass > 0, dt,self.plantTraits[i].toughness);
             if (self.waterMass[i] * self.getKmPerWaterMass() <= 0.0005 and self.temperature[i] > 250 and self.temperature[i] < 350) {
                 for (self.getNeighbours(i)) |n| {
-                    if (self.vegetationSnapshot[n] < 0.25) continue;
+                    if (self.vegetationSnapshot[n] < 0.25 or self.plantTraits[n].toughness>=1) continue;
                     if (cover < 0.0001 or (cover < 0.35 and Ecology.fitness(self.temperature[i], self.plantTraits[n].optimum) > Ecology.fitness(self.temperature[i], self.plantTraits[i].optimum) + 0.1)) {
+                        if(self.sandboxDefense.enabled or self.plantTraits[n].toughness!=0){
+                            const gift=@min(@as(f32,0.08),dt/86400*self.vegetationSnapshot[n])*(1-self.plantTraits[n].toughness);
+                            if(!std.math.isFinite(gift) or gift<=0 or !(cover+gift>cover))continue;
+                        }
                         const epoch: u64 = @intFromFloat(@max(0, options.gameTime / 3600));
-                        const child = Ecology.offspring(self.plantTraits[n], self.seed ^ (@as(u64, @intCast(i)) *% 0x9e3779b97f4a7c15) ^ epoch);
+                        const child = Ecology.offspringWithDefense(self.plantTraits[n], self.seed ^ (@as(u64, @intCast(i)) *% 0x9e3779b97f4a7c15) ^ epoch,self.sandboxDefense);
                         if (Ecology.fitness(self.temperature[i], child.optimum) < 0.15) continue;
                         self.plantTraits[i] = child;
                         self.plantGenerations = @max(self.plantGenerations, child.generation);
                         self.plantBirths += 1;
-                        cover += @min(0.08, dt / 86400 * self.vegetationSnapshot[n]);
+                        cover += if(self.plantTraits[n].toughness==0) @min(0.08, dt / 86400 * self.vegetationSnapshot[n]) else @min(0.08, dt / 86400 * self.vegetationSnapshot[n])*(1-self.plantTraits[n].toughness);
                         break;
                     }
                 }

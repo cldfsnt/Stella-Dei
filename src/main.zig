@@ -331,6 +331,26 @@ fn webPlayState() ?*PlayState {
     };
 }
 fn webEditableState() ?*PlayState {if(AdvanceDay.blocksInput())return null;return webPlayState();}
+var defense_json:[768]u8=undefined;
+pub fn defenseSnapshot(state:?*PlayState,status:[]const u8)[*:0]const u8 {
+ const v=state orelse return "{\"status\":\"unavailable\"}";
+ var out=std.io.fixedBufferStream(&defense_json);
+ const preview=@import("sandbox_defense.zig").previewPlantDefended(&v.planet,v.selectedPoint,if(v.defensePlantKind==1)0.5 else 0);
+ std.json.stringify(.{.eligibility=@tagName(preview.status),.depth_m=preview.depth_m,.status=status,.world=PerformanceDetails.world_serial,.cell=v.selectedPoint,.mode=if(v.planet.worldMode==.sandbox) "sandbox" else "origin",.enabled=v.planet.sandboxDefense.enabled,.kind=v.defensePlantKind},.{},out.writer()) catch return "{}";
+ const n=out.pos;defense_json[n]=0;return defense_json[0..n:0].ptr;
+}
+export fn stella_defense_status()[*:0]const u8 {return defenseSnapshot(webPlayState(),"ready");}
+export fn stella_defense_action(world:u32,cell:u32,action:i32)[*:0]const u8 {
+ const v=webEditableState() orelse return defenseSnapshot(null,"unavailable");
+ if(world!=PerformanceDetails.world_serial or cell!=v.selectedPoint)return defenseSnapshot(v,"stale");
+ if(v.planet.worldMode!=.sandbox)return defenseSnapshot(v,"wrong_mode");
+ if(action==0){const receipt=@import("sandbox_defense.zig").enableDefenses(&v.planet);return defenseSnapshot(v,@tagName(receipt.status));}
+ if(action==3){v.defensePlantKind=-1;v.selectedTool=.None;return defenseSnapshot(v,"cancelled");}
+ if(action!=1 and action!=2)return defenseSnapshot(v,"invalid");
+ if(!v.planet.sandboxDefense.enabled)return defenseSnapshot(v,"disabled");
+ v.defensePlantKind=action-1;v.selectGameTool(.PlaceVegetation);v.showPointDetails=false;v.showPlanetControl=false;v.showEscapeMenu=false;
+ return defenseSnapshot(v,"selected");
+}
 var advance_json:[768]u8=undefined;
 pub fn advanceStatusForState(state:?*PlayState,ok:bool)[*:0]const u8 {
  const c=&AdvanceDay.current;var stream=std.io.fixedBufferStream(advance_json[0..advance_json.len-1]);

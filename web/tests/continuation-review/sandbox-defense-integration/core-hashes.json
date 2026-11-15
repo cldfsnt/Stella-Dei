@@ -1,0 +1,8 @@
+{
+  "simulation/ecology.zig": "2f640d3c00afdfbb2337e62d3981bf4bae9af03340df313cbeb084911def337d",
+  "simulation/foraging.zig": "b44fb39e1eb7f96407503695841ef4380794281cec46a0b75d3a306e6d3cd521",
+  "simulation/life.zig": "e0291dbca1f4ea1f16e1ca3d3b056e217df0ff007b8288ed38f3ad34d7af83b2",
+  "simulation/planet.zig": "4a383a1101428a666ab333877f5042dd7b968d9da6579583000e27eb6cf6e05a",
+  "sandbox_defense.zig": "d877b47aed65a186745787555aac385fbf2a93911b3932c9a94f201552e2eb22",
+  "toughness_mutation.zig": "e249238d96ead5aee0e34e3b81aaee865097d346a64ad5453169e9470369f60a"
+}

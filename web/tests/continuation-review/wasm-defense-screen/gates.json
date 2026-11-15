@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "endpoint_sha256": "98340832edf0c03a10e601aaf9da6c612545e5ea4ade523190645543a14e4fdc",
+    "bytes": 7049427,
+    "layout": "LAYOUT plant=8 planet=2920 cells=40962",
+    "positive_toughness_patches": 0,
+    "max_toughness": 0,
+    "continuation_exact": true
+  },
+  "classic": {
+    "endpoint_sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+    "bytes": 7704842,
+    "layout": "LAYOUT plant=12 planet=2936 cells=40962",
+    "positive_toughness_patches": 0,
+    "max_toughness": 0.0,
+    "continuation_exact": true
+  },
+  "enabled": {
+    "endpoint_sha256": "16ab7f29217fd2cba5ecc035792c310ac62729a56c8da514851bb6e32599f3b2",
+    "bytes": 7704913,
+    "layout": "LAYOUT plant=12 planet=2936 cells=40962",
+    "positive_toughness_patches": 0,
+    "max_toughness": 0.0,
+    "continuation_exact": true
+  }
+}

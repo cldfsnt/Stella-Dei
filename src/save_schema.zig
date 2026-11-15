@@ -1,6 +1,8 @@
 //! Versioned, graphics-independent browser save format. Never includes pointers.
 const std = @import("std");
-pub const VERSION: u32 = 6;
+pub const VERSION: u32 = 7;
+pub const CURRENT_ORIGIN_REVISION:u32=5;
+pub fn originRevision(version:u32)u32{return if(version>=7) CURRENT_ORIGIN_REVISION else version-1;}
 pub const Microbes = @import("simulation/microbes.zig");
 pub const WorldMode = Microbes.Mode;
 /// Wire representation accepts legacy two-slot data without advancing biology.
@@ -108,6 +110,7 @@ pub const Save = struct {
     version: u32 = 1,
     mode: WorldMode = .sandbox,
     origin: ?Origin = null,
+    sandbox_defense: ?@import("simulation/ecology.zig").DefenseConfig = null,
     radius: f32,
     subdivisions: usize,
     seed: u64,
@@ -146,6 +149,10 @@ pub const Save = struct {
     pub fn validate(self: Save) !void {
         if ((self.version < 1 or self.version > VERSION) or self.subdivisions > 7 or self.radius != 5000) return error.IncompatibleSave;
         if (self.version == 1 and (self.mode != .sandbox or self.origin != null)) return error.IncompatibleSave;
+        if(self.version<7 and self.sandbox_defense!=null)return error.IncompatibleSave;
+        if(self.sandbox_defense)|cfg|{
+            if(self.mode!=.sandbox or !cfg.enabled or !@import("sandbox_defense.zig").validConfig(cfg))return error.InvalidValue;
+        }
         const count = 10 * std.math.pow(usize, 4, self.subdivisions) + 2;
         if (self.elevation.len != count or self.temperature.len != count or self.vegetation.len != count or self.water.len != count or self.vapor.len != count or self.rainfall.len != count or self.wind.len != count or self.wind_error.len != count or self.plants.len != count or self.rabbits.len > 100000) return error.InvalidShape;
         switch (self.mode) {
@@ -153,7 +160,7 @@ pub const Save = struct {
             .origin => {
                 const origin = self.origin orelse return error.InvalidShape;
                 if (origin.cells.len != count) return error.InvalidShape;
-                if (origin.model_revision != self.version - 1) return error.IncompatibleSave;
+                if (origin.model_revision != originRevision(self.version)) return error.IncompatibleSave;
                 if (origin.stats.next_lineage == 0 or origin.stats.next_lineage > 1_000_000_000_000_000 or origin.stats.births >= origin.stats.next_lineage) return error.InvalidValue;
                 try finiteRange(origin.stats.fixed_carbon, 0, 1e30);
                 try finiteRange(origin.stats.recycled_carbon, 0, 1e30);
@@ -230,7 +237,11 @@ pub const Save = struct {
         for (self.wind_error) |vector| for (vector) |v| {
             try finiteRange(v, -1e10, 1e10);
         };
-        for (self.plants) |plant| try finiteRange(plant.optimum, 100, 1000);
+        for (self.plants) |plant| {
+            try finiteRange(plant.optimum,100,1000);try finiteRange(plant.toughness,0,1);
+            if(self.version<7 and plant.toughness!=0)return error.IncompatibleSave;
+            if(self.mode==.sandbox and self.sandbox_defense==null and plant.toughness!=0)return error.InvalidValue;
+        }
         for (self.rabbits) |rabbit| {
             for (rabbit.position) |v| try finiteRange(v, -1e8, 1e8);
             if (length2(rabbit.position) < 1) return error.InvalidValue;
@@ -377,7 +388,7 @@ test "Origin v5 preserves cohorts lineage resources RNG and deterministic contin
     original.mode = .origin;
     var saved_cells: [12]SavedCell = undefined;
     for (&cells, &saved_cells) |*cell, *out| out.* = SavedCell.capture(cell);
-    original.origin = .{ .model_revision = VERSION - 1, .cells = &saved_cells, .stats = stats };
+    original.origin = .{ .model_revision = CURRENT_ORIGIN_REVISION, .cells = &saved_cells, .stats = stats };
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, original, .{});
     defer std.testing.allocator.free(bytes);
     var parsed = try parse(std.testing.allocator, bytes);
@@ -399,7 +410,7 @@ test "Origin rejects absent state invalid shape resources lineage RNG and versio
     var cells = [_]Microbes.Cell{Microbes.initialized(42)} ** 12;
     var saved_cells: [12]SavedCell = undefined;
     for (&cells, &saved_cells) |*cell, *out| out.* = SavedCell.capture(cell);
-    saved.origin = .{ .model_revision = VERSION - 1, .cells = &saved_cells, .stats = .{} };
+    saved.origin = .{ .model_revision = CURRENT_ORIGIN_REVISION, .cells = &saved_cells, .stats = .{} };
     try saved.validate();
     cells[0].nutrient = std.math.nan(f32);
     saved_cells[0] = SavedCell.capture(&cells[0]);
@@ -452,7 +463,7 @@ test "v2 wire migration preserves tiny colonies resources IDs RNG and pads only"
     try saved.validate();
     const new_cells = [_]SavedCell{SavedCell.capture(&migrated)} ** 12;
     saved.version = VERSION;
-    saved.origin.?.model_revision = VERSION - 1;
+    saved.origin.?.model_revision = CURRENT_ORIGIN_REVISION;
     saved.origin.?.cells = &new_cells;
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
     defer std.testing.allocator.free(bytes);
@@ -482,7 +493,7 @@ test "v3 structural state migrates with zero feeding then v4 preserves real cons
     migrated.cohorts[0].lifetime_grazed = 0.125;
     const new_cells = [_]SavedCell{SavedCell.capture(&migrated)} ** 12;
     saved.version = VERSION;
-    saved.origin.?.model_revision = VERSION - 1;
+    saved.origin.?.model_revision = CURRENT_ORIGIN_REVISION;
     saved.origin.?.cells = &new_cells;
     saved.origin.?.stats.grazed_carbon = 12345.125;
     saved.origin.?.stats.grazing_respired_carbon = 4567.25;
@@ -515,7 +526,7 @@ test "sparse exactness retains inactive history signed zero and movement events"
     var saved = fixture();
     saved.version = VERSION;
     saved.mode = .origin;
-    saved.origin = .{ .model_revision = VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 100, .relocations = 2, .movement_respired_carbon = 0.0125 } };
+    saved.origin = .{ .model_revision = CURRENT_ORIGIN_REVISION, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 100, .relocations = 2, .movement_respired_carbon = 0.0125 } };
     try saved.validate();
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
     defer std.testing.allocator.free(bytes);
@@ -577,7 +588,7 @@ test "v4 grazing wire defaults movement fields without altering feeding history"
     defer sparse.deinit(std.testing.allocator);
     var migrated = old;
     migrated.version = VERSION;
-    migrated.origin.?.model_revision = VERSION - 1;
+    migrated.origin.?.model_revision = CURRENT_ORIGIN_REVISION;
     migrated.origin.?.cohort_encoding = .sparse_indexed;
     migrated.origin.?.cells = sparse.cells;
     try migrated.validate();
@@ -605,7 +616,7 @@ test "v5 motion wire migrates producer fields as zero without changing history" 
     try old.validate();
     var migrated = old;
     migrated.version = VERSION;
-    migrated.origin.?.model_revision = VERSION - 1;
+    migrated.origin.?.model_revision = CURRENT_ORIGIN_REVISION;
     try migrated.validate();
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, migrated, .{});
     defer std.testing.allocator.free(bytes);
@@ -629,7 +640,7 @@ test "v6 support subset finite bounds and sparse signed zero remain exact" {
     var saved = fixture();
     saved.version = VERSION;
     saved.mode = .origin;
-    saved.origin = .{ .model_revision = VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 2 } };
+    saved.origin = .{ .model_revision = CURRENT_ORIGIN_REVISION, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = .{ .next_lineage = 2 } };
     try saved.validate();
     const bytes = try std.json.stringifyAlloc(std.testing.allocator, saved, .{});
     defer std.testing.allocator.free(bytes);
@@ -658,4 +669,27 @@ test "v6 support subset finite bounds and sparse signed zero remain exact" {
     saved.version = 5;
     saved.origin.?.model_revision = 4;
     try std.testing.expectError(error.IncompatibleSave, saved.validate());
+}
+
+test "v7 defense strict identity legacy refusal and Origin revision unchanged" {
+ var saved=fixture();saved.version=7;try saved.validate();
+ var plants=[_]Plant{.{.optimum=302,.toughness=0.5}}**12;saved.plants=&plants;
+ try std.testing.expectError(error.InvalidValue,saved.validate());
+ saved.sandbox_defense=.{.enabled=true,.law=1,.mutation_law=2,.stream_seed=std.math.maxInt(u64)};try saved.validate();
+ const json=try std.json.stringifyAlloc(std.testing.allocator,saved,.{});defer std.testing.allocator.free(json);
+ const parsed=try std.json.parseFromSlice(Save,std.testing.allocator,json,.{});defer parsed.deinit();try parsed.value.validate();try std.testing.expectEqualDeep(saved.sandbox_defense,parsed.value.sandbox_defense);
+ for(1..7)|version|{saved.version=@intCast(version);try std.testing.expectError(error.IncompatibleSave,saved.validate());saved.sandbox_defense=null;try std.testing.expectError(error.IncompatibleSave,saved.validate());saved.sandbox_defense=.{.enabled=true,.law=1,.mutation_law=2,.stream_seed=0};}
+ saved.version=7;saved.sandbox_defense.?.law=2;try std.testing.expectError(error.InvalidValue,saved.validate());saved.sandbox_defense.?.law=1;
+ plants[11].toughness=std.math.nan(f32);try std.testing.expectError(error.InvalidValue,saved.validate());plants[11].toughness=0.5;
+ try std.testing.expectEqual(@as(u32,5),originRevision(6));try std.testing.expectEqual(@as(u32,5),originRevision(7));
+}
+
+test "v7 Origin keeps dormant traits inert and rejects enabled Sandbox configuration" {
+ var saved=fixture();saved.version=7;saved.mode=.origin;
+ const cohorts=[_]Microbes.Cohort{.{}}**4;const cells=[_]SavedCell{.{.cohorts=&cohorts}}**12;
+ saved.origin=.{.model_revision=5,.cells=&cells,.stats=.{}};
+ const plants=[_]Plant{.{.toughness=0.5}}**12;saved.plants=&plants;try saved.validate();
+ saved.sandbox_defense=.{.enabled=true,.law=1,.mutation_law=2,.stream_seed=0};try std.testing.expectError(error.InvalidValue,saved.validate());
+ saved.sandbox_defense=null;saved.origin.?.model_revision=6;try std.testing.expectError(error.IncompatibleSave,saved.validate());
+ saved.origin.?.model_revision=5;saved.version=6;try std.testing.expectError(error.IncompatibleSave,saved.validate());
 }

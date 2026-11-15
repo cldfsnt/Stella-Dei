@@ -1,0 +1,474 @@
+{
+  "exports": [
+    {
+      "name": "stella_adjust_water",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "fb213fc6dfa8263189d1d847f2d2445911725f5b07f720bd4bed08f945e87b45",
+      "copied_sha256": "fb213fc6dfa8263189d1d847f2d2445911725f5b07f720bd4bed08f945e87b45"
+    },
+    {
+      "name": "stella_advance_cancel",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "d6f346918f3738e8eee527d55e0da92e40260faa067c0571c148d7d7cf749fa0",
+      "copied_sha256": "d6f346918f3738e8eee527d55e0da92e40260faa067c0571c148d7d7cf749fa0"
+    },
+    {
+      "name": "stella_advance_dismiss",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "2d19342a31b7c52ff4a39d99927d1c30390004ec523c2c6607369587839efce8",
+      "copied_sha256": "2d19342a31b7c52ff4a39d99927d1c30390004ec523c2c6607369587839efce8"
+    },
+    {
+      "name": "stella_advance_environment",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "ceefaa739d0fa9d2f6d74ef5d5b17c3a4fd65f425dc628131d52dc5a1a5e8dd7",
+      "copied_sha256": "ceefaa739d0fa9d2f6d74ef5d5b17c3a4fd65f425dc628131d52dc5a1a5e8dd7"
+    },
+    {
+      "name": "stella_advance_start",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "6520abf50ca4260152932efed707bfae237aefc50af4d1ba834e55d6747e9d2a",
+      "copied_sha256": "6520abf50ca4260152932efed707bfae237aefc50af4d1ba834e55d6747e9d2a"
+    },
+    {
+      "name": "stella_advance_status",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "5eecea914528810dfe6d7781a411809723995e923cf62caceefe87fe49e3b034",
+      "copied_sha256": "5eecea914528810dfe6d7781a411809723995e923cf62caceefe87fe49e3b034"
+    },
+    {
+      "name": "stella_arrival_effects",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "d00fa0230f41f97ae8efc08ef4d7a4e37e0f40087e2a9ffdf1b4329ea78c7532",
+      "copied_sha256": "d00fa0230f41f97ae8efc08ef4d7a4e37e0f40087e2a9ffdf1b4329ea78c7532"
+    },
+    {
+      "name": "stella_auto_seed_apply",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "e6cafb4eeee4cd173026afc8aeb190d354b86803abdb39fc4035f4bb5f50fc77",
+      "copied_sha256": "e6cafb4eeee4cd173026afc8aeb190d354b86803abdb39fc4035f4bb5f50fc77"
+    },
+    {
+      "name": "stella_auto_seed_cancel",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "4514dc2d76106ecadef03011da0ba94fb327e65f63aea1ef9325002312fe7aee",
+      "copied_sha256": "4514dc2d76106ecadef03011da0ba94fb327e65f63aea1ef9325002312fe7aee"
+    },
+    {
+      "name": "stella_auto_seed_start",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "7c4482fb394e1b6490d130d68ae88c341d56409987e238f48afd44b933207d53",
+      "copied_sha256": "7c4482fb394e1b6490d130d68ae88c341d56409987e238f48afd44b933207d53"
+    },
+    {
+      "name": "stella_auto_seed_status",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "f4e349dbd272bd5c6efe578b7565db97cdadd2e019004078500c4500092a81de",
+      "copied_sha256": "f4e349dbd272bd5c6efe578b7565db97cdadd2e019004078500c4500092a81de"
+    },
+    {
+      "name": "stella_auto_seed_step",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "1a8e8c3866c91303c2f5ca5efdb0c9c7d6687eb3759182116debf826ea43ed48",
+      "copied_sha256": "1a8e8c3866c91303c2f5ca5efdb0c9c7d6687eb3759182116debf826ea43ed48"
+    },
+    {
+      "name": "stella_camera_distance",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "08d1d945047bfdde4531cc0056ef2dbcb169f1b8234355a6e0ca654e9caee251",
+      "copied_sha256": "08d1d945047bfdde4531cc0056ef2dbcb169f1b8234355a6e0ca654e9caee251"
+    },
+    {
+      "name": "stella_defense_action",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "782b0d696e17363f22be489b31592ca2308f6bd74197201d57515851b239697d",
+      "copied_sha256": "782b0d696e17363f22be489b31592ca2308f6bd74197201d57515851b239697d"
+    },
+    {
+      "name": "stella_defense_status",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "ad8fee514d8acc8c35bfb67fa1824d5f76cc6b0c430534f7eabd081fe3cb72a6",
+      "copied_sha256": "ad8fee514d8acc8c35bfb67fa1824d5f76cc6b0c430534f7eabd081fe3cb72a6"
+    },
+    {
+      "name": "stella_find_detritus",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "cb42b4bb5e5b3bb9211467c36ee66e053e7a1e59b86d14c36e22f10dadce8b05",
+      "copied_sha256": "cb42b4bb5e5b3bb9211467c36ee66e053e7a1e59b86d14c36e22f10dadce8b05"
+    },
+    {
+      "name": "stella_find_feeding",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "b90d8a023d525e69d5da1b157056b77cbfd0af0438a7a19309a8e031371e0cea",
+      "copied_sha256": "b90d8a023d525e69d5da1b157056b77cbfd0af0438a7a19309a8e031371e0cea"
+    },
+    {
+      "name": "stella_find_life",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "77cfba65df7306f6cb70f3b28a2a85542d56ddce3225745a886bc5d3b9648e44",
+      "copied_sha256": "77cfba65df7306f6cb70f3b28a2a85542d56ddce3225745a886bc5d3b9648e44"
+    },
+    {
+      "name": "stella_find_offspring",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "66c8e78b849d2d21c75f35f03e76452bbc1ffa509762be09f2c3a45f6bbbabfa",
+      "copied_sha256": "66c8e78b849d2d21c75f35f03e76452bbc1ffa509762be09f2c3a45f6bbbabfa"
+    },
+    {
+      "name": "stella_find_sandbox_life",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "1482ba109913f4b68a64975af4f6f0e42358a1c2aeb3d52893c63d0a3d08af7d",
+      "copied_sha256": "1482ba109913f4b68a64975af4f6f0e42358a1c2aeb3d52893c63d0a3d08af7d"
+    },
+    {
+      "name": "stella_fit_life",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "23131613f5ada840f889a30863834efb53b3a41fa8bbd1c6d9d749abde46ce1b",
+      "copied_sha256": "23131613f5ada840f889a30863834efb53b3a41fa8bbd1c6d9d749abde46ce1b"
+    },
+    {
+      "name": "stella_focus_land",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "194faf5cd846e9194ef9189dff35de064b865b4bdd7ae0b397fcc0da9a2356ae",
+      "copied_sha256": "194faf5cd846e9194ef9189dff35de064b865b4bdd7ae0b397fcc0da9a2356ae"
+    },
+    {
+      "name": "stella_goal_stage",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "72ed2d0e04d1655269601984c7196b26449307db927e155bfe23977a28db928f",
+      "copied_sha256": "72ed2d0e04d1655269601984c7196b26449307db927e155bfe23977a28db928f"
+    },
+    {
+      "name": "stella_god_action",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "507faa7fb17f0b1a79b94290a4ef4cdfa4dab9d38edb12b011bad0c6cd1fa110",
+      "copied_sha256": "507faa7fb17f0b1a79b94290a4ef4cdfa4dab9d38edb12b011bad0c6cd1fa110"
+    },
+    {
+      "name": "stella_god_target",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "8702f8486de8192f98347f659fc609a7f4978fb4f4c5bb1a0926999a46d6d9b8",
+      "copied_sha256": "8702f8486de8192f98347f659fc609a7f4978fb4f4c5bb1a0926999a46d6d9b8"
+    },
+    {
+      "name": "stella_habitat_cancel",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "8d7c1906ba6d0f3c360ddb53c958e196babfb567ee147ed0b189d0f4ff393160",
+      "copied_sha256": "8d7c1906ba6d0f3c360ddb53c958e196babfb567ee147ed0b189d0f4ff393160"
+    },
+    {
+      "name": "stella_habitat_execute",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "4d99b200ac08394bc4e675c4108b94a98052b49f84ebdf9858cbf48afa8f8048",
+      "copied_sha256": "4d99b200ac08394bc4e675c4108b94a98052b49f84ebdf9858cbf48afa8f8048"
+    },
+    {
+      "name": "stella_habitat_prepare",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "a447eae479d2e2810ecb7410767d6e9fa365edf2b5f390395086f2fcc04300e1",
+      "copied_sha256": "a447eae479d2e2810ecb7410767d6e9fa365edf2b5f390395086f2fcc04300e1"
+    },
+    {
+      "name": "stella_habitat_status",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "aef7425e7e9e9bfc2b71a1dc4f24c6478982b58b0b1ac0c006d6d011a0a0ac43",
+      "copied_sha256": "aef7425e7e9e9bfc2b71a1dc4f24c6478982b58b0b1ac0c006d6d011a0a0ac43"
+    },
+    {
+      "name": "stella_life_snapshot",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "8e2c2d7eed319005256ae9d1a41ea5fea629862dcfa8d4644cfb0a59dd792b11",
+      "copied_sha256": "8e2c2d7eed319005256ae9d1a41ea5fea629862dcfa8d4644cfb0a59dd792b11"
+    },
+    {
+      "name": "stella_load",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "2259223eda296025f6e6820e5b8a2f7acdf190ea4d8ff01515c5e6e86469850d",
+      "copied_sha256": "2259223eda296025f6e6820e5b8a2f7acdf190ea4d8ff01515c5e6e86469850d"
+    },
+    {
+      "name": "stella_main",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "f04e297fe0ae6783898bfd5fb637143095aa53a5ac8d9e2860cacc87c0119961",
+      "copied_sha256": "f04e297fe0ae6783898bfd5fb637143095aa53a5ac8d9e2860cacc87c0119961"
+    },
+    {
+      "name": "stella_make_nursery",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "148354fb296939f93501a44797bf0b639a3d685f98e579c816ef3f43aadac175",
+      "copied_sha256": "148354fb296939f93501a44797bf0b639a3d685f98e579c816ef3f43aadac175"
+    },
+    {
+      "name": "stella_make_pond",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "fa89a4d2af65748e8c7fdbb0313ba6d3fcfe1bb091c7065fd07c126c8b701ebd",
+      "copied_sha256": "fa89a4d2af65748e8c7fdbb0313ba6d3fcfe1bb091c7065fd07c126c8b701ebd"
+    },
+    {
+      "name": "stella_patch_watch_snapshot",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "7fb649cd1987e4e70b389ab5853533d226b3ebaeaa55995481cec218fd42176c",
+      "copied_sha256": "7fb649cd1987e4e70b389ab5853533d226b3ebaeaa55995481cec218fd42176c"
+    },
+    {
+      "name": "stella_patch_watch_start",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "af761cc0089b524c9ec701a54347b663d25b177bd7602c47cb80a3d3c3d21a01",
+      "copied_sha256": "af761cc0089b524c9ec701a54347b663d25b177bd7602c47cb80a3d3c3d21a01"
+    },
+    {
+      "name": "stella_patch_watch_start_checked",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "c50ca9eebf79beb28b3f11cb45a0b7cb9d47356013e26e985e9a2bf9249734b1",
+      "copied_sha256": "c50ca9eebf79beb28b3f11cb45a0b7cb9d47356013e26e985e9a2bf9249734b1"
+    },
+    {
+      "name": "stella_patch_watch_stop",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "13bb354b37f6b28d92cc38eb0aae0402f5836ad45667d7ea67b4b5c2268d2e6d",
+      "copied_sha256": "13bb354b37f6b28d92cc38eb0aae0402f5836ad45667d7ea67b4b5c2268d2e6d"
+    },
+    {
+      "name": "stella_performance_enable",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "204e1c9bc339ef88768df9ad1d4dcfcc8edc7e7dcf137042ab036ae5871cd5f7",
+      "copied_sha256": "204e1c9bc339ef88768df9ad1d4dcfcc8edc7e7dcf137042ab036ae5871cd5f7"
+    },
+    {
+      "name": "stella_performance_snapshot",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "ad3deca6ff54d1447a89483b1d111aa029f76228d0cc73c61e51c14be89bd3f7",
+      "copied_sha256": "ad3deca6ff54d1447a89483b1d111aa029f76228d0cc73c61e51c14be89bd3f7"
+    },
+    {
+      "name": "stella_reset_view",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "9649050f50d6a4a9f36c480704c5bc9f26d2a0dcb1efab591e038e27d0f5d5e1",
+      "copied_sha256": "9649050f50d6a4a9f36c480704c5bc9f26d2a0dcb1efab591e038e27d0f5d5e1"
+    },
+    {
+      "name": "stella_resize",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "dd720317d527168d003ce2e09d59b7485c0839abbf0861006a445d8a65dd417f",
+      "copied_sha256": "dd720317d527168d003ce2e09d59b7485c0839abbf0861006a445d8a65dd417f"
+    },
+    {
+      "name": "stella_save",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "2511b564b49d46518af1428a12dc4b656f1a9971f38d43158cf42e082a056fa5",
+      "copied_sha256": "2511b564b49d46518af1428a12dc4b656f1a9971f38d43158cf42e082a056fa5"
+    },
+    {
+      "name": "stella_scene_resolution_get",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "8ddfbaf4bf4d9624a824eab606e2021cd5df9c613d84ead4c740d13fa6910953",
+      "copied_sha256": "8ddfbaf4bf4d9624a824eab606e2021cd5df9c613d84ead4c740d13fa6910953"
+    },
+    {
+      "name": "stella_scene_resolution_set",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "cc3d3dc43bb87bc452902732fde36aa94d93de0e010b58a23a84c2a8362bdaf4",
+      "copied_sha256": "cc3d3dc43bb87bc452902732fde36aa94d93de0e010b58a23a84c2a8362bdaf4"
+    },
+    {
+      "name": "stella_seed_colony",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "59d8d9dea49a0083266fd02ee575ff3088b7902a57eb6373fc058a36cbf218a9",
+      "copied_sha256": "59d8d9dea49a0083266fd02ee575ff3088b7902a57eb6373fc058a36cbf218a9"
+    },
+    {
+      "name": "stella_seed_targets",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "36a37ca8fd1785ac328b15e5a84c47f2283924081d60d13763e4543777af05b4",
+      "copied_sha256": "36a37ca8fd1785ac328b15e5a84c47f2283924081d60d13763e4543777af05b4"
+    },
+    {
+      "name": "stella_selected_elevation",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "f6567e021ee9f9d66925a63c3f0aca4d440b21b339b8029a90555cd60ba214b6",
+      "copied_sha256": "f6567e021ee9f9d66925a63c3f0aca4d440b21b339b8029a90555cd60ba214b6"
+    },
+    {
+      "name": "stella_selected_point",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "aac6b6c189054ae173272c21be4366d0412a971f4424d062261df9b5456630ee",
+      "copied_sha256": "aac6b6c189054ae173272c21be4366d0412a971f4424d062261df9b5456630ee"
+    },
+    {
+      "name": "stella_selected_vegetation",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "44657d1d34257743e9574d79031ee8c5245207ca35a7d71a87dc7d6a925c198b",
+      "copied_sha256": "44657d1d34257743e9574d79031ee8c5245207ca35a7d71a87dc7d6a925c198b"
+    },
+    {
+      "name": "stella_selected_water",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "bf78ef91fa4391fc87b6b1444df36e22a1fd16dd427a33408c0cb4a5e74a8aaa",
+      "copied_sha256": "bf78ef91fa4391fc87b6b1444df36e22a1fd16dd427a33408c0cb4a5e74a8aaa"
+    },
+    {
+      "name": "stella_set_speed",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "244b1cade2de25e62c8c8b7d3ebafb0540e8af58cb2dd399ada399ebedec6c27",
+      "copied_sha256": "244b1cade2de25e62c8c8b7d3ebafb0540e8af58cb2dd399ada399ebedec6c27"
+    },
+    {
+      "name": "stella_set_water_target",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "f63992085ae953f3ce04ab355496b8b0acb5cc34e97f096f30b7f70a4d0c4f56",
+      "copied_sha256": "f63992085ae953f3ce04ab355496b8b0acb5cc34e97f096f30b7f70a4d0c4f56"
+    },
+    {
+      "name": "stella_speed_snapshot",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "8706f8551183e527b2cdd515910dc0e06961e53686652e8de6a55d063c4f8ef2",
+      "copied_sha256": "8706f8551183e527b2cdd515910dc0e06961e53686652e8de6a55d063c4f8ef2"
+    },
+    {
+      "name": "stella_target_distance",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "2c68f2df1e782442596068f826eddbe4e740862b2c151acf6d5a61695d678f90",
+      "copied_sha256": "2c68f2df1e782442596068f826eddbe4e740862b2c151acf6d5a61695d678f90"
+    },
+    {
+      "name": "stella_test_action",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "726ee26ee11311d19afd9680540c4654fed9513b07a3e234146e579b0003488c",
+      "copied_sha256": "726ee26ee11311d19afd9680540c4654fed9513b07a3e234146e579b0003488c"
+    },
+    {
+      "name": "stella_test_pick",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "5a3b4ac808b8e8934917a88a9f6b2081002f988cb7857848922c1abdf01d0b84",
+      "copied_sha256": "5a3b4ac808b8e8934917a88a9f6b2081002f988cb7857848922c1abdf01d0b84"
+    },
+    {
+      "name": "stella_transport_cancel",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "89516d0a2122cc161cb634eb9232fe9989bede66b75406eb6bd43c1ab0c6d4ad",
+      "copied_sha256": "89516d0a2122cc161cb634eb9232fe9989bede66b75406eb6bd43c1ab0c6d4ad"
+    },
+    {
+      "name": "stella_transport_execute",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "397bcb2f0cfd91d5b007d8fe8b081eceaa65bf7c186e24c4f55c248a3b097d7d",
+      "copied_sha256": "397bcb2f0cfd91d5b007d8fe8b081eceaa65bf7c186e24c4f55c248a3b097d7d"
+    },
+    {
+      "name": "stella_transport_inspect",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "22e13eaba0e8d65de75b1e18d455a86e389c08720932b816a9dc2b9a87288435",
+      "copied_sha256": "22e13eaba0e8d65de75b1e18d455a86e389c08720932b816a9dc2b9a87288435"
+    },
+    {
+      "name": "stella_transport_options",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "e7bb98b7f91139d147e233aedd9da206ab90a2ba303a5844f206c865715ac65c",
+      "copied_sha256": "e7bb98b7f91139d147e233aedd9da206ab90a2ba303a5844f206c865715ac65c"
+    },
+    {
+      "name": "stella_transport_prepare",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "369b3262eb6084e90b99b9738317712b50860bda5a1220d4bca0222671c063b4",
+      "copied_sha256": "369b3262eb6084e90b99b9738317712b50860bda5a1220d4bca0222671c063b4"
+    },
+    {
+      "name": "stella_transport_status",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "b487807c550806b179b3cd43f0675c65d58d90a038310f56e575e6d8d3693703",
+      "copied_sha256": "b487807c550806b179b3cd43f0675c65d58d90a038310f56e575e6d8d3693703"
+    },
+    {
+      "name": "stella_watch_life",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "1741bed34242a63ec042f5eada19359a602eba51292d7c989529bd591c52c4d5",
+      "copied_sha256": "1741bed34242a63ec042f5eada19359a602eba51292d7c989529bd591c52c4d5"
+    },
+    {
+      "name": "stella_world_ecology",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "de11bf450b28d5ea9c6e64985b0d0c90797f53d4cf606d9339f62350b86b16ef",
+      "copied_sha256": "de11bf450b28d5ea9c6e64985b0d0c90797f53d4cf606d9339f62350b86b16ef"
+    },
+    {
+      "name": "stella_world_mode",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "325af963487193a63636d9747b069fd5ae2868e606132652cb51ba69e2d20b8c",
+      "copied_sha256": "325af963487193a63636d9747b069fd5ae2868e606132652cb51ba69e2d20b8c"
+    },
+    {
+      "name": "stella_zoom",
+      "exact": true,
+      "explicit_exception": false,
+      "production_sha256": "782f84cc21494f668d8cbe945b747c5ff3504ccf0b2e27887eefe962d5f49f27",
+      "copied_sha256": "782f84cc21494f668d8cbe945b747c5ff3504ccf0b2e27887eefe962d5f49f27"
+    }
+  ],
+  "unexplained_mismatches": []
+}

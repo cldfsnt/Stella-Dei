@@ -107,6 +107,7 @@ const GameTool = enum {
 };
 
 pub const PlayState = struct {
+    defensePlantKind:i32=-1,
     /// The previous mouse position that was recorded during dragging (to move the camera).
     dragStart: Vec2,
     planet: Planet,
@@ -919,6 +920,17 @@ pub const PlayState = struct {
             self.mobileFeedbackSeconds = 3;
             return success;
         }
+        if(self.planet.worldMode==.sandbox and tool==.PlaceVegetation and self.planet.sandboxDefense.enabled){
+            if(!tap)return false;
+            const receipt=@import("../sandbox_defense.zig").plantDefended(&self.planet,self.selectedPoint,if(self.defensePlantKind==1)0.5 else 0);
+            self.mobileFeedback=switch(receipt.status){
+                .planted=>if(self.defensePlantKind==1) "Tough founder planted: external cover added" else "Tender founder planted: external cover added",
+                .occupied=>"Existing plants retained. Choose an empty patch",
+                .water=>"Choose dry or shallow ground (at most 0.5 m water)",
+                .disabled=>"Enable inherited defenses first",
+                else=>"Planting refused; world unchanged",
+            };self.mobileFeedbackSeconds=5;return receipt.status==.planted;
+        }
         if (tool == .None or tool == .PlaceLife) return false;
         const planet = &self.planet;
         if (tool == .EmitWater) {
@@ -1066,6 +1078,11 @@ pub const PlayState = struct {
             self.mobileFeedbackSeconds=5;
         }
         return count;
+    }
+
+    pub fn selectGameTool(self: *PlayState, tool: GameTool) void {
+        self.selectedTool = tool;
+        if (tool == .PlaceVegetation and self.planet.worldMode == .sandbox and self.planet.sandboxDefense.enabled and (self.defensePlantKind < 0 or self.defensePlantKind > 1)) self.defensePlantKind = 0;
     }
 
     pub fn testAction(self: *PlayState, tool_id: i32) bool {
@@ -1389,25 +1406,25 @@ pub const PlayState = struct {
             vg.fill();
 
             if (ui.toolButton(vg, game, "no-tool", panelX, panelY, 50, 50, renderer.textureCache.get("ui/no-tool"))) {
-                self.selectedTool = .None;
+                self.selectGameTool(.None);
             }
             if (ui.toolButton(vg, game, "emit-water", panelX + 70, panelY, 50, 50, renderer.textureCache.get("ui/emit-water"))) {
-                self.selectedTool = .EmitWater;
+                self.selectGameTool(.EmitWater);
             }
             if (ui.toolButton(vg, game, "drain-water", panelX + 140, panelY, 50, 50, renderer.textureCache.get("ui/drain-water"))) {
-                self.selectedTool = .DrainWater;
+                self.selectGameTool(.DrainWater);
             }
             if (ui.toolButton(vg, game, "place-vegetation", panelX + 210, panelY, 50, 50, renderer.textureCache.get("ui/place-vegetation"))) {
-                self.selectedTool = .PlaceVegetation;
+                self.selectGameTool(.PlaceVegetation);
             }
             if (ui.toolButton(vg, game, "raise-terrain", panelX + 280, panelY, 50, 50, renderer.textureCache.get("ui/raise-terrain"))) {
-                self.selectedTool = .RaiseTerrain;
+                self.selectGameTool(.RaiseTerrain);
             }
             if (ui.toolButton(vg, game, "lower-terrain", panelX + 350, panelY, 50, 50, renderer.textureCache.get("ui/lower-terrain"))) {
-                self.selectedTool = .LowerTerrain;
+                self.selectGameTool(.LowerTerrain);
             }
             if (ui.toolButton(vg, game, "place-vegetation", panelX + 420, panelY, 50, 50, renderer.textureCache.get("ui/place-vegetation"))) {
-                self.selectedTool = .PlaceLife;
+                self.selectGameTool(.PlaceLife);
             }
         }
 
@@ -1928,7 +1945,7 @@ pub const PlayState = struct {
                 }
             } else {
                 const color=biology_visuals.lineageColor(self.planet.plantTraits[index].optimum);
-                renderProducerGlyph(vg,"branching",color);
+                renderToughnessGlyph(vg,self.planet.plantTraits[index].toughness,color);
             }
             vg.restore();
         }
@@ -1966,6 +1983,27 @@ pub const PlayState = struct {
     }
 
     /// Crisp vector silhouettes for expressed population morphology, not individual trees.
+    // Prescribed handling-resistance illustration, not a new plant species.
+    // Identical path/draw budget: stem, three paired leaves, one highlight.
+    fn renderToughnessGlyph(vg:nvg,d:f32,color:[3]u8) void {
+        if(d<=0 or !std.math.isFinite(d)){renderProducerGlyph(vg,"branching",color);return;}
+        const t=std.math.clamp(d*2,0,1);
+        const edge=nvg.rgb(12,49,44);
+        vg.strokeColor(edge);vg.strokeWidth(2.2);vg.fillColor(nvg.rgb(color[0],color[1],color[2]));
+        vg.beginPath();vg.moveTo(0,0);vg.lineTo(0,-32);vg.strokeColor(edge);vg.strokeWidth(4);vg.stroke();
+        var i:usize=0;while(i<3):(i+=1){
+            const y=-8-@as(f32,@floatFromInt(i))*8;
+            const w=(13-@as(f32,@floatFromInt(i))*3)*(0.55+0.45*t);
+            const h=2+6*t;
+            vg.strokeWidth(2);vg.beginPath();vg.moveTo(0,y+4);
+            vg.bezierTo(-w,y+4,-w-3,y+3,-w,y-h);
+            vg.bezierTo(-w+2,y-h,-1,y,0,y+4);
+            vg.moveTo(0,y);vg.bezierTo(w,y,w+3,y-1,w,y-h-4);
+            vg.bezierTo(w-2,y-h-4,1,y-4,0,y);vg.fill();vg.stroke();
+        }
+        vg.beginPath();vg.fillColor(nvg.rgba(230,255,223,220));vg.circle(-3,-12,1.7);vg.fill();
+    }
+
     fn renderProducerGlyph(vg:nvg, form:[]const u8, color:[3]u8) void {
         const leaf=nvg.rgb(color[0],color[1],color[2]);
         const edge=nvg.rgb(12,49,44);
@@ -2141,13 +2179,13 @@ pub const PlayState = struct {
         }
         if (ui.button(vg, game, "mobile-menu", 24 + 2 * topW, 6, topW, 44, "Menu")) { self.showEscapeMenu = !self.showEscapeMenu; self.leavePlanetArmed = false; }
         const tools = [_]GameTool{ .None, .EmitWater, .DrainWater, .PlaceVegetation, .RaiseTerrain, .LowerTerrain, .PlaceLife };
-        const names = [_][]const u8{ "Inspect", "Water +", "Water -", if (origin) "Seed" else "Plants", "Land +", "Land -", if (origin) "Nutr. +" else "Rabbits" };
+        const names = [_][]const u8{ "Inspect", "Water +", "Water -", if (origin) "Seed" else if(self.planet.sandboxDefense.enabled) (if(self.defensePlantKind==1) "Tough" else "Tender") else "Plants", "Land +", "Land -", if (origin) "Nutr. +" else "Rabbits" };
         const columns: usize = if (width >= 650) 7 else 4;
         const bw = (width - 16 - @as(f32, @floatFromInt(columns - 1)) * 6) / @as(f32, @floatFromInt(columns));
         for (tools, names, 0..) |tool, name, i| {
             const x = 8 + @as(f32, @floatFromInt(i % columns)) * (bw + 6);
             const y = 58 + @as(f32, @floatFromInt(i / columns)) * 54;
-            if (ui.button(vg, game, name, x, y, bw, 44, name)) self.selectedTool = tool;
+            if (ui.button(vg, game, name, x, y, bw, 44, name)) self.selectGameTool(tool);
             if (self.selectedTool == tool) {
                 vg.beginPath();
                 vg.fillColor(nvg.rgb(92, 214, 255));
@@ -2195,7 +2233,7 @@ pub const PlayState = struct {
             .None => if (self.planet.lifeforms.items.len == 0) "Plant food, add rabbits, press Play" else if (self.paused) "Paused: press Play to watch your habitat" else if (self.planet.rabbitBirths == 0) "Watch grazing; births need food and time" else "Births recorded. Inspect or change climate",
             .EmitWater => "Paint mode: drag to add water",
             .DrainWater => "Water -: selected patch only, 1 m/tap or 5 m/sec held",
-            .PlaceVegetation => guidance.plantWarning(depth) orelse "Paint mode: drag to plant food",
+            .PlaceVegetation => if(self.planet.sandboxDefense.enabled) "Tap empty dry/shallow ground; existing plants retained" else guidance.plantWarning(depth) orelse "Paint mode: drag to plant food",
             .RaiseTerrain => "Paint mode: drag to raise land",
             .LowerTerrain => "Paint mode: drag to lower land",
             .PlaceLife => guidance.rabbitWarning(depth, self.planet.temperature[self.selectedPoint], self.planet.vegetation[self.selectedPoint]) orelse "Tap planted land to add a rabbit pair",
@@ -2299,6 +2337,7 @@ pub const PlayState = struct {
                     mobileDetailLabel(vg, game, "Water depth: {d:.2} m", .{self.planet.waterMass[point] * self.planet.getKmPerWaterMass() * 1000}, px + 16, py + 172, pw - 32);
                     mobileDetailLabel(vg, game, "Plant cover: {d:.0}% · Gen {d}", .{ self.planet.vegetation[point] * 100, self.planet.plantTraits[point].generation }, px + 16, py + 202, pw - 32);
                     mobileDetailLabel(vg, game, "Adapted to: {d:.1}°C", .{self.planet.plantTraits[point].optimum - 273.15}, px + 16, py + 232, pw - 32);
+                    if(self.planet.sandboxDefense.enabled)mobileDetailLabel(vg,game,"Plant toughness: {d:.3}",.{self.planet.plantTraits[point].toughness},px+16,py+262,pw-32);
                 }
                 }
             }

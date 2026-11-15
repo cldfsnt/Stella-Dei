@@ -113,7 +113,7 @@ pub const Lifeform = struct {
             // Search/handling takes time, especially in sparse vegetation. Every
             // satiety gain is funded by actual cover removed; no refuge floor.
             const Foraging = @import("foraging.zig");
-            const bite = Foraging.take(planet.vegetation[idx], self.satiety, dt);
+            const bite = Foraging.takeTough(planet.vegetation[idx], self.satiety, dt,planet.plantTraits[idx].toughness);
             if (bite.eaten > 0) {
                 planet.vegetation[idx] = bite.after;
                 self.satiety = Foraging.fedSatiety(self.satiety, bite.eaten);

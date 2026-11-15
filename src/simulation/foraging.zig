@@ -21,6 +21,24 @@ pub fn take(cover:f32,satiety:f32,seconds:f32) Bite {
     if(paid<=0 or paid>budget or after<0 or after>cover)return no;
     return .{.after=after,.eaten=paid,.budget=budget,.fragment=fragment};
 }
+pub fn takeTough(cover:f32,satiety:f32,seconds:f32,d:f32) Bite {
+    if(d==0)return take(cover,satiety,seconds);
+    if(!std.math.isFinite(d) or d<0 or d>1)return .{.after=cover};
+    @setFloatMode(.strict);
+    const no=Bite{.after=cover};
+    if(!std.math.isFinite(cover) or cover<=0 or cover>1 or !std.math.isFinite(satiety) or satiety<0 or satiety>=100 or !std.math.isFinite(seconds) or seconds<=0)return no;
+    const c:@TypeOf(@as(f64,0))=cover;
+    const maximum=maximum_per_day*(@as(f64,seconds)/86400)/(1+2*@as(f64,d));
+    const budget=@min(c,@min((100-@as(f64,satiety))/150,maximum));
+    const desired=@min(budget,maximum*(c/(c+half_saturation)));
+    const fragment=c-desired<fragment_resolution and c<=budget;
+    var after:f32=if(fragment)0 else @floatCast(@max(0,c-desired));
+    // A rounded receiver must never increase the actual debit beyond the hard budget.
+    if(c-@as(f64,after)>budget)after=std.math.nextAfter(f32,after,std.math.inf(f32));
+    const paid=c-@as(f64,after);
+    if(paid<=0 or paid>budget or after<0 or after>cover)return no;
+    return .{.after=after,.eaten=paid,.budget=budget,.fragment=fragment};
+}
 test "actual cover debit funds food under finite time and hunger caps" {
  for([_]f32{0,1e-7,0.00005,0.001,0.01,0.1,0.35,1})|c|for([_]f32{0,50,84.99,99.99,100})|s|for([_]f32{0,0.0001,1,360,720,1440,86400,1e7})|dt|{
   const b=take(c,s,dt);try std.testing.expect(b.after>=0 and b.after<=c);try std.testing.expectEqual(@as(f64,c)-b.after,b.eaten);

@@ -1,0 +1,23 @@
+[
+  {
+    "seed": 0,
+    "unchanged": 64540,
+    "plus": 517,
+    "minus": 479,
+    "independent_hashlib_count_match": true
+  },
+  {
+    "seed": 1,
+    "unchanged": 64513,
+    "plus": 533,
+    "minus": 490,
+    "independent_hashlib_count_match": true
+  },
+  {
+    "seed": 42,
+    "unchanged": 64501,
+    "plus": 544,
+    "minus": 491,
+    "independent_hashlib_count_match": true
+  }
+]

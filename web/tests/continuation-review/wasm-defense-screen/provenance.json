@@ -1,0 +1,12 @@
+{
+  "scope": "Actual wasm32 Emscripten ReleaseSafe full Planet.simulate in Node; no rendering, browser, rAF or device FPS. Single fixed warm world; 12 warmup +60 measured ticks; fixed ABBA twice, no repeats selected.",
+  "input_sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+  "graph_sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+  "binary_sha256": {
+    "baseline": "d619fce870b7f273cec7eb014f9d112630db2aeff9d5b392843a3efa9c743ddf",
+    "candidate": "b7c2ecbfc1816a1ea9e6f54bc6024f060a2cfcb94bf20fecff252b3bf39fcae6"
+  },
+  "enabled_same_as_classic_except_config": true,
+  "normalization": "Ignore schema version, null sandbox_defense, and verified zero toughness only. All remaining serialized fields including each rabbit RNG exact. Enabled new-law config preserved on fresh-process restart.",
+  "raw": "/workspace/scratch/f67c3ac60ca3/site-tmp/wasm-defense-screen"
+}

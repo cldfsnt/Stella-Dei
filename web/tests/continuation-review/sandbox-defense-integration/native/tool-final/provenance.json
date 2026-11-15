@@ -1,0 +1,26 @@
+{
+  "exit_code": 0,
+  "classic_oldstate_rng_exact": true,
+  "files": [
+    {
+      "path": "../site-tmp/sandbox-defense-native/classic-ten.json",
+      "sha256": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd",
+      "bytes": 7699884
+    },
+    {
+      "path": "../site-tmp/sandbox-defense-native/planted.json",
+      "sha256": "51efba0d9a9904c7476376bf95f50dbc2f9db7bc55e51b93a1f595cb1941c4b9",
+      "bytes": 7700228
+    },
+    {
+      "path": "../site-tmp/sandbox-defense-native/day1.json",
+      "sha256": "dbc4a9b2dcaa6a0b0fe2fbdc41d5b1c8b8796080979c093daf1f1c4929a90e85",
+      "bytes": 7705847
+    },
+    {
+      "path": "../site-tmp/sandbox-defense-native/install/bin/stella-egl",
+      "sha256": "09e0718c9b724588fa944321563b0ecd1ee224cc09bea7c656568196cf7e92f2",
+      "bytes": 12245128
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Final tool-selection correction acceptance
+
+Final source includes fdf149d shared selectGameTool path and Plant toughness detail label. Actual native public selection chooses Tough; Inspect, Water and reselect Plant preserve kind1. Explicit Cancel leaves kind-1 through Inspect, then selecting Plant defaults Tender0. Complete save/RNG unchanged by all tool selections. All preceding actual planting/refusal/atomicload/legacy/Origin/one-day replay/truecontinuation checks rerun successfully. Classic ten-tick old-state/RNG parity reverified with exactly the prior serialization-only exclusions. Exit0,67exact public export bodies. No further native changes requested.
+
+Updated native portrait images retain the same explicit scope as the parent README: selected-phenotype inspection AFTER deliberate wet refusal, not immediate planting-success feedback. Native assertions separately verify successful Tender/Tough planting replaces old refusal text. These are actual software-rendered native captures, not browser/device proof. Production promotion and finalWASM belong to the coordinator.

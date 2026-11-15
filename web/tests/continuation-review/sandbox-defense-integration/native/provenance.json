@@ -1,0 +1,61 @@
+{
+  "exit_code": 0,
+  "classic_10_tick_old_state_rng_exact": true,
+  "exact_exclusions": [
+    "version7->6",
+    "sandbox_defense:null removed",
+    "every Plant.toughness:0 removed"
+  ],
+  "founders": [
+    {
+      "patch": 26790,
+      "trait": {
+        "toughness": 0.0,
+        "optimum": 295.1499938964844,
+        "generation": 0
+      },
+      "start_cover": 0.3499999940395355,
+      "day1_cover": 0.5070450901985168
+    },
+    {
+      "patch": 26788,
+      "trait": {
+        "toughness": 0.5,
+        "optimum": 295.1499938964844,
+        "generation": 0
+      },
+      "start_cover": 0.3499999940395355,
+      "day1_cover": 0.2844742238521576
+    }
+  ],
+  "day1_rabbits": 95,
+  "day1_plant_births": 6,
+  "day1_feeding_events": 3173,
+  "files": [
+    {
+      "path": "../site-tmp/sandbox-defense-native/classic-ten.json",
+      "bytes": 7699884,
+      "sha256": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd"
+    },
+    {
+      "path": "../site-tmp/sandbox-defense-native/planted.json",
+      "bytes": 7700228,
+      "sha256": "51efba0d9a9904c7476376bf95f50dbc2f9db7bc55e51b93a1f595cb1941c4b9"
+    },
+    {
+      "path": "../site-tmp/sandbox-defense-native/day1.json",
+      "bytes": 7705847,
+      "sha256": "dbc4a9b2dcaa6a0b0fe2fbdc41d5b1c8b8796080979c093daf1f1c4929a90e85"
+    },
+    {
+      "path": "../site-tmp/sandbox-defense-native/install/bin/stella-egl",
+      "bytes": 12236488,
+      "sha256": "057f15b6cbbc71300ed0fd82b54c6e045502c454993c9c9e89a8fe2b43476941"
+    },
+    {
+      "path": "../site-tmp/foraging-production/warm-actual-end.json",
+      "bytes": 7044707,
+      "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "native_exit": 0,
+  "pure_exit": 0,
+  "off_old_state_exact": true,
+  "files": [
+    {
+      "path": "../site-tmp/toughness-mutation/enabled-false.json",
+      "sha256": "a37d158f5cd31bb59175bf16868da2ce6967f5b34e03645b78cddba2d34327f4"
+    },
+    {
+      "path": "../site-tmp/toughness-mutation/enabled-true.json",
+      "sha256": "82768c87ea3132e19f09243ebff2b4cc80da7fabc69d40f1c84b62aeba6b02a3"
+    },
+    {
+      "path": "../site-tmp/toughness-mutation/install/bin/stella-egl",
+      "sha256": "33580fe614321de0ca13ff70ad390622e2c76b78ff94b0b26684ff6d865b3f13"
+    }
+  ]
+}

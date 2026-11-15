@@ -1,0 +1,28 @@
+          _=pm;_=pw;const V2=@import("toughness_save_v2.zig");const E=@import("simulation/ecology.zig");const Life=@import("simulation/life.zig");
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          for([_]u64{0,1,42})|seed|{
+            try V2.applyLegacy(state,initial.value);state.planet.toughnessMutation=.{.enabled=true,.stream_seed=seed};
+            for(state.planet.plantTraits)|p|std.debug.assert(p.toughness==0);
+            E.qa_calls=0;E.qa_accepted=0;E.qa_plus=0;E.qa_minus=0;E.qa_clipped=0;E.qa_changed=0;Life.qa_removed=0;Life.qa_credit=0;Life.qa_error=0;
+            const stocked=state.planet.lifeforms.items.len;const births0=state.planet.rabbitBirths;const deaths0=state.planet.rabbitDeaths;const plants0=state.planet.plantBirths;
+            std.debug.print("ACCESS_START seed={} all_zero=true rabbits={}\n",.{seed,stocked});
+            for(0..7)|day|{
+              for(0..60)|_|{loop.pump(16);state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;loop.pump(16);std.debug.assert(stocked+state.planet.rabbitBirths-births0-(state.planet.rabbitDeaths-deaths0)==state.planet.lifeforms.items.len);}
+              var counts=[_]usize{0}**33;var covers=[_]f64{0}**33;var empty_traits:usize=0;
+              for(state.planet.vegetation,state.planet.plantTraits,0..)|v,p,i|{std.debug.assert(p.toughness>=0 and p.toughness<=1);const trait_bin:usize=@intFromFloat(p.toughness*32);std.debug.assert(@as(f32,@floatFromInt(trait_bin))/32==p.toughness);if(v>0){counts[trait_bin]+=1;covers[trait_bin]+=v;}else if(p.toughness>0){empty_traits+=1;}
+               if(p.toughness>0)std.debug.print("ACCESS_PATCH {s}\n",.{try std.json.stringifyAlloc(a,.{.seed=seed,.day=day+1,.patch=i,.cover=v,.d=p.toughness,.generation=p.generation,.temperature=state.planet.temperature[i],.depth_m=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000},.{})});
+              }
+              std.debug.print("ACCESS_DAY {s}\n",.{try std.json.stringifyAlloc(a,.{.seed=seed,.day=day+1,.calls=E.qa_calls,.accepted=E.qa_accepted,.plus=E.qa_plus,.minus=E.qa_minus,.clipped=E.qa_clipped,.changed=E.qa_changed,.counts=counts,.cover=covers,.empty_positive_traits=empty_traits,.rabbits=state.planet.lifeforms.items.len,.births=state.planet.rabbitBirths-births0,.deaths=state.planet.rabbitDeaths-deaths0,.plant_births=state.planet.plantBirths-plants0,.removed=Life.qa_removed,.credit=Life.qa_credit},.{})});
+            }
+            const bytes=try std.json.stringifyAlloc(a,try V2.capture(a,state),.{});const endpoint=try std.json.parseFromSlice(V2.Envelope,a,bytes,.{.allocate=.alloc_always});
+            try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/seed-{}-end.json",.{seed}),.data=bytes});
+            std.debug.print("ACCESS_HORIZON_END seed={}\n",.{seed});
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            const uninterrupted=try std.json.stringifyAlloc(a,try V2.capture(a,state),.{});try V2.applyLegacy(state,initial.value);try V2.apply(state,endpoint.value);
+            std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try V2.capture(a,state),.{})));
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            std.debug.assert(std.mem.eql(u8,uninterrupted,try std.json.stringifyAlloc(a,try V2.capture(a,state),.{})));
+            try V2.applyLegacy(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            std.debug.print("ACCESS_PASS seed={} full_traits_reload=true true_continuation=true original_restored=true\n",.{seed});
+          }
+        }

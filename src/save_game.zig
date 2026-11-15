@@ -30,9 +30,9 @@ pub fn capture(allocator: std.mem.Allocator, state: anytype) !schema.Save {
     var origin: ?schema.Origin = null;
     if (p.worldMode == .origin) {
         const sparse = try schema.captureSparse(allocator, p.microbeCells);
-        origin = .{ .model_revision = schema.VERSION - 1, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = p.microbeStats };
+        origin = .{ .model_revision = schema.CURRENT_ORIGIN_REVISION, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = p.microbeStats };
     }
-    return .{ .version = schema.VERSION, .mode = p.worldMode, .origin = origin, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = p.waterVaporMass, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
+    return .{ .version = schema.VERSION, .mode = p.worldMode, .origin = origin, .sandbox_defense = if(p.worldMode==.sandbox and p.sandboxDefense.enabled) p.sandboxDefense else null, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = p.waterVaporMass, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
 }
 pub fn write(state: anytype, allocator: std.mem.Allocator) !void {
     var arena = std.heap.ArenaAllocator.init(allocator);
@@ -63,6 +63,8 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     if (@hasField(@TypeOf(state.*), "ignitionCueSeconds")) state.ignitionCueSeconds = 0;
     @import("manual_transport.zig").reset();@import("habitat_preview.zig").cancel();@import("advance_day.zig").invalidate("world changed");
     p.worldMode = saved.mode;
+    p.sandboxDefense=saved.sandbox_defense orelse .{};
+    if(@hasField(@TypeOf(state.*),"defensePlantKind"))state.defensePlantKind=-1;
     if (saved.origin) |origin| {
         for (p.microbeCells, origin.cells) |*cell, saved_cell| cell.* = saved_cell.runtime();
         p.microbeStats = origin.stats;

@@ -1,0 +1,9 @@
+{
+  "src/save_schema.zig": "e61b8a4687856c27d4d9c6155c34c1af2b5c8d3a41eaf1d5e6c1f881712a35b5",
+  "src/save_game.zig": "a27e0601aff904f1850c0506ff19431652446b223233310e8f759ad32a579761",
+  "src/states/play.zig": "b574c3a9706821233ef4278ead53b3105124287163ea23065034c7099fafaee7",
+  "src/main.zig": "1b218cbd47c883ed880f9fbd5fed95c4b024c1b94db537a797547a4f3ca81844",
+  "web/shell.html": "7d770d3bf47694b3b7e94bca00524b8fd5e751e02e2abecfa24c0e5e886345b7",
+  "web/sandbox-defense.js": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3",
+  "web/build.sh": "9d2d88b64076d2552c7ce841e49cb052e95334b1ec3ea6f1c5a5d3b407cbef50"
+}

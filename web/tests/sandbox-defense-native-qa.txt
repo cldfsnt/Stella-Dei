@@ -1,0 +1,67 @@
+          _=pm;_=pw;const DA=@import("sandbox_defense.zig");const E=@import("simulation/ecology.zig");
+          std.debug.assert(state.planet.worldMode==.sandbox and !state.planet.sandboxDefense.enabled);
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+          try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/classic-ten.json",.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});try saves.apply(state,initial.value);
+          const world=PerformanceDetails.world_serial;
+          var tender:?usize=null;var tough:?usize=null;var wet:?usize=null;var best:f32=-2;
+          const focus=state.planet.transformedPoints[436].norm();
+          for(state.planet.vegetation,0..)|v,i|{const depth=state.planet.waterMass[i]*state.planet.getKmPerWaterMass();if(depth>0.0005 and wet==null)wet=i;if(v==0 and depth<=0.0005){const score=focus.dot(state.planet.transformedPoints[i].norm());if(score>best){best=score;tender=i;}}}
+          const p0=tender orelse return error.NoEmptyShallowPatch;best=-2;
+          for(state.planet.vegetation,0..)|v,i|{if(i!=p0 and v==0 and state.planet.waterMass[i]*state.planet.getKmPerWaterMass()<=0.0005){const score=state.planet.transformedPoints[p0].norm().dot(state.planet.transformedPoints[i].norm());if(score>best){best=score;tough=i;}}}
+          const p1=tough orelse return error.NoSecondEmptyPatch;state.selectedPoint=p0;
+          std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world+%1,@intCast(p0),0)),"stale")!=null);
+          std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world,@intCast(p0),2)),"disabled")!=null);
+          std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world,@intCast(p0),0)),"enabled")!=null);
+          var expected=(try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always})).value;expected.sandbox_defense=.{.enabled=true,.law=1,.mutation_law=2,.stream_seed=state.planet.seed};
+          std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(a,expected,.{}),try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          _=stella_defense_action(world,@intCast(p0),0);std.debug.assert(state.planet.sandboxDefense.stream_seed==state.planet.seed);
+          for([_]usize{p0,p1},0..)|patch,kind|{
+            state.selectedPoint=patch;const before=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+            std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world,@intCast(patch),@intCast(kind+1))),"selected")!=null);
+            std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            std.debug.assert(DA.previewPlantDefended(&state.planet,patch,if(kind==1)0.5 else 0).status==.eligible);
+            std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_status()),"eligible")!=null);
+            state.pointerOnPlanet=true;state.mobileFeedback="Previous action refused";state.mobileFeedbackSeconds=3;std.debug.assert(state.testAction(3));std.debug.assert(std.mem.indexOf(u8,state.mobileFeedback,if(kind==1) "Tough founder planted" else "Tender founder planted")!=null);
+            @constCast(expected.vegetation)[patch]=0.35;@constCast(expected.plants)[patch]=E.Plant{.toughness=if(kind==1)0.5 else 0};
+            std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(a,expected,.{}),try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            const planted=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(!state.testAction(3));std.debug.assert(std.mem.eql(u8,planted,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          }
+          state.selectedPoint=wet orelse return error.NoWetPatch;_=stella_defense_action(world,@intCast(state.selectedPoint),2);const before_wet=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(!state.testAction(3));std.debug.assert(std.mem.eql(u8,before_wet,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          // Real toolbar/HTML shared selection path must not silently change Tough.
+          state.selectedPoint=p1;_=stella_defense_action(world,@intCast(p1),2);const tool_state=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+          state.selectGameTool(.None);std.debug.assert(state.defensePlantKind==1);state.selectGameTool(.EmitWater);std.debug.assert(state.defensePlantKind==1);state.selectGameTool(.PlaceVegetation);std.debug.assert(state.defensePlantKind==1);
+          std.debug.assert(std.mem.eql(u8,tool_state,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          _=stella_defense_action(world,@intCast(p1),3);std.debug.assert(state.defensePlantKind == -1);state.selectGameTool(.None);std.debug.assert(state.defensePlantKind == -1);state.selectGameTool(.PlaceVegetation);std.debug.assert(state.defensePlantKind==0);
+          std.debug.assert(std.mem.eql(u8,tool_state,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));_=stella_defense_action(world,@intCast(p1),2);
+          std.debug.print("DEFENSE_TOOL_PASS tough_retained_across_inspect_water_plant=true cancelled_none_unset=true cancelled_plant_defaults_tender=true fullsave_rng_exact=true\n",.{});
+          const planted_state=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/planted.json",.data=planted_state});
+          const invalid_owned=try std.json.parseFromSlice(saves.schema.Save,a,planted_state,.{.allocate=.alloc_always});
+          var badsave=invalid_owned.value;badsave.sandbox_defense.?.law=255;if(saves.apply(state,badsave)) |_| return error.InvalidLawAccepted else |_| {}
+          badsave=invalid_owned.value;badsave.version=6;if(saves.apply(state,badsave)) |_| return error.LegacyDisguiseAccepted else |_| {}
+          badsave=invalid_owned.value;badsave.sandbox_defense=null;if(saves.apply(state,badsave)) |_| return error.UnownedDefenseAccepted else |_| {}
+          const valid_d=invalid_owned.value.plants[p1].toughness;@constCast(invalid_owned.value.plants)[p1].toughness=std.math.nan(f32);if(saves.apply(state,invalid_owned.value)) |_| return error.InvalidTraitAccepted else |_| {}
+          @constCast(invalid_owned.value.plants)[p1].toughness=valid_d;
+          std.debug.assert(std.mem.eql(u8,planted_state,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          for([_]usize{p0,p1},0..)|patch,kind|{
+            state.selectedPoint=patch;state.selectedTool=.None;state.showEscapeMenu=false;state.showPlanetControl=false;state.showPointDetails=false;
+            const pos=state.planet.transformedPoints[patch];state.cameraPos=pos.norm().scale(pos.length()+200);state.targetCameraPos=state.cameraPos;state.cameraDistance=state.cameraPos.length();state.targetCameraDistance=state.cameraDistance;state.cameraGroundPoint=patch;
+            render(window);gl.finish();window.swapBuffers();qa_capture(try a.dupeZ(u8,try std.fmt.allocPrint(a,"OUTPUT/plant-{}.ppm",.{kind})));
+            state.showPointDetails=true;state.clickedPoint=patch;render(window);gl.finish();window.swapBuffers();qa_capture(try a.dupeZ(u8,try std.fmt.allocPrint(a,"OUTPUT/details-{}.ppm",.{kind})));state.showPointDetails=false;
+          }
+          const checkpoint=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const owned=try std.json.parseFromSlice(saves.schema.Save,a,checkpoint,.{.allocate=.alloc_always});
+          for(0..60)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+          const endpoint_bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const endpoint=try std.json.parseFromSlice(saves.schema.Save,a,endpoint_bytes,.{.allocate=.alloc_always});try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/day1.json",.data=endpoint_bytes});
+          try saves.apply(state,owned.value);std.debug.assert(std.mem.eql(u8,checkpoint,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          for(0..60)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+          std.debug.assert(std.mem.eql(u8,endpoint_bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+          const continuation=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try saves.apply(state,initial.value);try saves.apply(state,endpoint.value);
+          for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+          std.debug.assert(std.mem.eql(u8,continuation,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          try saves.apply(state,initial.value);std.debug.assert(!state.planet.sandboxDefense.enabled);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          const legacybytes=try std.fs.cwd().readFileAlloc(a,std.posix.getenv("QA_PULSE_SAVE").?,128*1024*1024);const legacy=try std.json.parseFromSlice(saves.schema.Save,a,legacybytes,.{.allocate=.alloc_always});try saves.apply(state,legacy.value);std.debug.assert(!state.planet.sandboxDefense.enabled);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          try saves.apply(state,untouched_origin.value);std.debug.assert(state.planet.worldMode==.origin and !state.planet.sandboxDefense.enabled);std.debug.assert((try saves.capture(a,state)).origin.?.model_revision==5);std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world,@intCast(state.selectedPoint),0)),"wrong_mode")!=null);std.debug.assert(std.mem.eql(u8,untouched_origin_bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          std.debug.print("DEFENSE_NATIVE_PASS tender={} tough={} public_selection_pure=true planting_only_founder_delta=true occupied_water_refuse=true exact_day_replay=true true_continuation=true original_restored=true invalid_load_atomic=true\n",.{p0,p1});
+        }

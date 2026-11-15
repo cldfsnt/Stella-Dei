@@ -1,0 +1,66 @@
+{
+  "start": "2026-11-15T16:27:26.947720+00:00",
+  "end": "2026-11-15T16:27:48.294627+00:00",
+  "rows": [
+    {
+      "group": "classic",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 29.828386716666667
+    },
+    {
+      "group": "classic",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 26.941918533333332
+    },
+    {
+      "group": "classic",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 31.346721733333332
+    },
+    {
+      "group": "classic",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 28.771595116666667
+    },
+    {
+      "group": "enabled",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 29.770447833333332
+    },
+    {
+      "group": "enabled",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 31.380872466666666
+    },
+    {
+      "group": "enabled",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 27.23136425
+    },
+    {
+      "group": "enabled",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 30.88528115
+    }
+  ],
+  "summary": {
+    "classic": {
+      "baseline": 29.299990916666665,
+      "candidate": 29.14432013333333,
+      "percent": -0.5312997665292252
+    },
+    "enabled": {
+      "baseline": 30.327864491666666,
+      "candidate": 29.306118358333332,
+      "percent": -3.3690012483868936
+    }
+  }
+}
