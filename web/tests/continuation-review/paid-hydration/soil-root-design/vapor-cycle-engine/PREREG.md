@@ -1,0 +1,13 @@
+# Fixed actual scheduler feasibility gate, before outcomes
+
+Input frozen day61 root25k10 (`root-world-qa/day60-arm-3.json`, SHA777a4c3f2565aac35c40e64aaa2cd2cf30f07216ad6fb8a562fd62614f39f0eb). Two independently restored arms: no action versus one existing1m Water− on12352. Three1440s full scheduler ticks each. Repeat same input/arms with strict cross-unit equal-or-refuse bridge. No trait/rate/target search, new water, storage or mutation. Common pause metadata, direct native solver, not browser workflow.
+
+Fresh copied root-only source retains real heat/liquid transport, actual saturation, all-patch soil, full six-neighbor atmospheric gather and real microbes. Two authoritative vapor buffers nowf64nativeunits; separate f64 coefficients. Phase f32 liquid exchanges exact-or-refuse; soil infiltration unchanged. Atmosphere transport retains same edge rates and gather order, not claimed exact. Strict f128 comparison is a QA bridge gate: require exact single-f64 source/receiver differences, then compare densitydelta*area versus nativedelta*1e9; products of two f64 values fit f128 significand. Offline Fraction independently checks actual operands.
+
+Diagnostic bridge permits conservative source-funded/receiver-funded signal, logging any conversion loss. Any nonzero cross-unit residual is a FAILED conservation gate, not approved tolerance. Strict branch refuses that entire exchange unchanged, with zero corresponding signal. No hidden corrections, escrow or loss redistribution.
+
+Private typed import adapter rounds legacy shortest-decimal vapor back to its originalf32 then widens exactly. No supported save schema/model migration, capture/reload promise or deployment. The copied legacy binary writer is not invoked and its output is unsupported. Test exits before inherited save checks. Real productionexport bodies stay unchanged; import/storage internals are QA-only.
+
+Record raw binary pre/postphase liquidf32/vaporf64/soilf64, postadvectionvapor and postrootpools, plus actual root demands/credits/h bits. This permits exact offline stage inventory rather than sum-subtraction inference. Initial source bridge and each phase may fail kinetics; retain all refusals/losses. The previous two originalfailed pulse values remain in sibling cycle results; new model may legitimately yield different actual doses due climate changes.
+
+No new material budget: exact bridge/source funding is hard gate; aggregate stage errors remain reported, including inherited liquid losses. No land benefit, universal conservation, performance or browser claim. Build/source audit before execution; coordinate CPU with performance worker.

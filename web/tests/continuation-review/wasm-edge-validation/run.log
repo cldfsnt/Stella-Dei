@@ -1,0 +1,57 @@
+ALL_COMPLETE_OUTPUT_GATES_PASS
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1073.983708, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 40.80882600000001, "remaining_per_tick_ms": 17.5114386779661, "day": 30, "kind": "baseline", "stage_instrumented": false, "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a", "repeat": 0}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 972.2501240000001, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 22.40602800000002, "remaining_per_tick_ms": 16.099052474576272, "day": 30, "kind": "candidate", "stage_instrumented": false, "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a", "repeat": 0}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1074.304948, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 21.627857000000006, "remaining_per_tick_ms": 17.84198459322034, "day": 30, "kind": "candidate", "stage_instrumented": false, "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a", "repeat": 1}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1117.383758, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 21.307423, "remaining_per_tick_ms": 18.577565, "day": 30, "kind": "baseline", "stage_instrumented": false, "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a", "repeat": 1}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 954.51157, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 20.57798600000001, "remaining_per_tick_ms": 15.829382779661017, "day": 30, "kind": "baseline", "stage_instrumented": false, "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a", "repeat": 2}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 931.676905, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 22.173067000000003, "remaining_per_tick_ms": 15.415319288135594, "day": 30, "kind": "candidate", "stage_instrumented": false, "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a", "repeat": 2}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1061.239048, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 27.687390000000022, "remaining_per_tick_ms": 17.517824711864403, "day": 60, "kind": "baseline", "stage_instrumented": false, "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8", "repeat": 0}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1043.872309, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 38.968164, "remaining_per_tick_ms": 17.032273644067796, "day": 60, "kind": "candidate", "stage_instrumented": false, "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8", "repeat": 0}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1016.992661, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 34.941171000000026, "remaining_per_tick_ms": 16.644940508474576, "day": 60, "kind": "candidate", "stage_instrumented": false, "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8", "repeat": 1}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 987.891659, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 22.08106699999999, "remaining_per_tick_ms": 16.369671050847458, "day": 60, "kind": "baseline", "stage_instrumented": false, "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8", "repeat": 1}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1081.091559, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 23.78482299999999, "remaining_per_tick_ms": 17.920453152542372, "day": 60, "kind": "baseline", "stage_instrumented": false, "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8", "repeat": 2}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 932.648229, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 20.82321300000001, "remaining_per_tick_ms": 15.454661288135593, "day": 60, "kind": "candidate", "stage_instrumented": false, "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8", "repeat": 2}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1001.17166, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 36.750531000000024, "remaining_per_tick_ms": 16.346120830508475, "day": 90, "kind": "baseline", "stage_instrumented": false, "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b", "repeat": 0}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1003.874071, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 21.158461999999986, "remaining_per_tick_ms": 16.656196762711865, "day": 90, "kind": "candidate", "stage_instrumented": false, "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b", "repeat": 0}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 968.181513, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 24.246081000000004, "remaining_per_tick_ms": 15.998905627118644, "day": 90, "kind": "candidate", "stage_instrumented": false, "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b", "repeat": 1}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1014.272177, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 33.34390100000002, "remaining_per_tick_ms": 16.62590298305085, "day": 90, "kind": "baseline", "stage_instrumented": false, "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b", "repeat": 1}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 1049.100334, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 21.586753999999985, "remaining_per_tick_ms": 17.41548440677966, "day": 90, "kind": "baseline", "stage_instrumented": false, "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b", "repeat": 2}
+{"ticks": 60.0, "cells": 40962.0, "width": 4.0, "parallel": 1.0, "total_ms": 963.2424589999999, "temperature_ms": 0.0, "liquid_wind_ms": 0.0, "atmosphere_ms": 0.0, "ecology_ms": 0.0, "first_ms": 21.077345999999977, "remaining_per_tick_ms": 15.968900220338984, "day": 90, "kind": "candidate", "stage_instrumented": false, "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b", "repeat": 2}
+{
+  "30": {
+    "remaining_medians_ms": {
+      "baseline": 17.5114386779661,
+      "candidate": 16.099052474576272
+    },
+    "median_change_percent": -8.065506377651166,
+    "paired_change_percent": [
+      -8.065506377651166,
+      -3.95950926173404,
+      -2.6157905035782525
+    ]
+  },
+  "60": {
+    "remaining_medians_ms": {
+      "baseline": 17.517824711864403,
+      "candidate": 16.644940508474576
+    },
+    "median_change_percent": -4.98283444290114,
+    "paired_change_percent": [
+      -2.771754346118982,
+      1.6815820963785866,
+      -13.759651295742803
+    ]
+  },
+  "90": {
+    "remaining_medians_ms": {
+      "baseline": 16.62590298305085,
+      "candidate": 15.998905627118644
+    },
+    "median_change_percent": -3.7712078349752987,
+    "paired_change_percent": [
+      1.8969389460566255,
+      -3.7712078349752987,
+      -8.306310365260572
+    ]
+  }
+}

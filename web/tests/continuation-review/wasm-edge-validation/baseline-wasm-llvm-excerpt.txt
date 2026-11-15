@@ -1,0 +1,118 @@
+  %277 = load float, ptr %276, align 16, !dbg !5538
+  %278 = getelementptr inbounds <3 x float>, ptr %276, i32 0, i32 1, !dbg !5545
+  %279 = load float, ptr %278, align 4, !dbg !5545
+  %280 = getelementptr inbounds <3 x float>, ptr %276, i32 0, i32 2, !dbg !5552
+  %281 = load float, ptr %280, align 8, !dbg !5552
+  %282 = fpext float %277 to double, !dbg !5554
+  %283 = fpext float %279 to double, !dbg !5554
+  %284 = fpext float %281 to double, !dbg !5554
+  %285 = and i8 %.sroa.7.i.0..sroa.7.i.0..sroa.7.i.0..sroa.7.i.0..sroa.7.i.0..sroa.7.0..sroa.7.0..sroa.7.0.copyload619.i, 1, !dbg !5556
+  %.not763.i = icmp eq i8 %285, 0, !dbg !5556
+  br i1 %.not763.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, label %Then2.preheader.i.i, !dbg !5556
+
+Then2.preheader.i.i:                              ; preds = %Then17.i
+  %286 = tail call double @llvm.fabs.f64(double %282), !dbg !5571
+  %287 = bitcast double %286 to i64, !dbg !5571
+  %288 = icmp ult i64 %287, 9218868437227405312, !dbg !5572
+  br i1 %288, label %Then4.i561.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, !dbg !5573
+
+Then4.i561.i:                                     ; preds = %Then2.preheader.i.i
+  %289 = tail call double @llvm.fabs.f64(double %283), !dbg !5571
+  %290 = bitcast double %289 to i64, !dbg !5571
+  %291 = icmp ult i64 %290, 9218868437227405312, !dbg !5572
+  br i1 %291, label %Then4.1.i562.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, !dbg !5573
+
+Then4.1.i562.i:                                   ; preds = %Then4.i561.i
+  %292 = tail call double @llvm.fabs.f64(double %284), !dbg !5571
+  %293 = bitcast double %292 to i64, !dbg !5571
+  %294 = icmp ult i64 %293, 9218868437227405312, !dbg !5572
+  br i1 %294, label %Then4.2.i563.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, !dbg !5573
+
+Then4.2.i563.i:                                   ; preds = %Then4.1.i562.i
+  %295 = fsub double %282, %241, !dbg !5576
+  %296 = fmul double %.sroa.0.0.i, %295, !dbg !5578
+  %297 = fadd double %296, 0.000000e+00, !dbg !5580
+  %298 = fsub double %283, %242, !dbg !5576
+  %299 = fmul double %.sroa.4.0.i, %298, !dbg !5578
+  %300 = fadd double %299, %297, !dbg !5580
+  %301 = fmul double %295, %295, !dbg !5581
+  %302 = fmul double %298, %298, !dbg !5581
+  %303 = fadd double %301, %302, !dbg !5582
+  %304 = fsub double %284, %243, !dbg !5576
+  %305 = fmul double %304, %304, !dbg !5581
+  %306 = fadd double %305, %303, !dbg !5582
+  %307 = fmul double %.sroa.6.0.i, %304, !dbg !5578
+  %308 = fadd double %307, %300, !dbg !5580
+  %309 = fcmp ugt double %306, 0.000000e+00, !dbg !5583
+  br i1 %309, label %Else7.i.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, !dbg !5585
+
+Else7.i.i:                                        ; preds = %Then4.2.i563.i
+  %310 = tail call double @llvm.fabs.f64(double %306), !dbg !5592
+  %311 = bitcast double %310 to i64, !dbg !5592
+  %312 = icmp ult i64 %311, 9218868437227405312, !dbg !5593
+  br i1 %312, label %Else8.i.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, !dbg !5594
+
+Else8.i.i:                                        ; preds = %Else7.i.i
+  %313 = tail call double @llvm.fabs.f64(double %308), !dbg !5602
+  %314 = bitcast double %313 to i64, !dbg !5602
+  %315 = icmp ult i64 %314, 9218868437227405312, !dbg !5603
+  br i1 %315, label %Else9.i.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.i, !dbg !5604
+
+Else9.i.i:                                        ; preds = %Else8.i.i
+  %316 = fdiv double %308, %306, !dbg !5606
+  %317 = tail call double @llvm.maxnum.f64(double %316, double 0.000000e+00), !dbg !5606
+  br label %simulation.atmosphere_water.EdgeSource.rate.exit.i
+
+simulation.atmosphere_water.EdgeSource.rate.exit.i: ; preds = %Else9.i.i, %Else8.i.i, %Else7.i.i, %Then4.2.i563.i, %Then4.1.i562.i, %Then4.i561.i, %Then2.preheader.i.i, %Then17.i
+  %common.ret.op.i560.i = phi double [ %317, %Else9.i.i ], [ 0.000000e+00, %Then17.i ], [ 0.000000e+00, %Else7.i.i ], [ 0.000000e+00, %Then4.2.i563.i ], [ 0.000000e+00, %Else8.i.i ], [ 0.000000e+00, %Then4.1.i562.i ], [ 0.000000e+00, %Then4.i561.i ], [ 0.000000e+00, %Then2.preheader.i.i ]
+  store double %common.ret.op.i560.i, ptr %lsr.iv707, align 8, !dbg !5607
+  %sunkaddr833 = getelementptr inbounds i8, ptr %0, i32 2524, !dbg !5506
+  %.unpack478.1.i = load i32, ptr %sunkaddr833, align 4, !dbg !5506
+  %318 = icmp ult i32 %270, %.unpack478.1.i, !dbg !5507
+  br i1 %318, label %Then17.1.i, label %Else16.i, !dbg !5508
+
+Then17.1.i:                                       ; preds = %simulation.atmosphere_water.EdgeSource.rate.exit.i
+  %319 = icmp eq i8 %285, 0, !dbg !5556
+  %sunkaddr834 = getelementptr inbounds i8, ptr %0, i32 2520, !dbg !5506
+  %.unpack476.1.i = load ptr, ptr %sunkaddr834, align 8, !dbg !5506
+  %320 = getelementptr inbounds %"generic_vector.GenericVector(3,f32)", ptr %.unpack476.1.i, i32 %270, !dbg !5524
+  %321 = load float, ptr %320, align 16, !dbg !5538
+  %322 = getelementptr inbounds <3 x float>, ptr %320, i32 0, i32 1, !dbg !5545
+  %323 = load float, ptr %322, align 4, !dbg !5545
+  %324 = getelementptr inbounds <3 x float>, ptr %320, i32 0, i32 2, !dbg !5552
+  %325 = load float, ptr %324, align 8, !dbg !5552
+  %326 = fpext float %321 to double, !dbg !5554
+  %327 = fpext float %323 to double, !dbg !5554
+  %328 = fpext float %325 to double, !dbg !5554
+  br i1 %319, label %simulation.atmosphere_water.EdgeSource.rate.exit.1.i, label %Then2.preheader.i.1.i, !dbg !5556
+
+Then2.preheader.i.1.i:                            ; preds = %Then17.1.i
+  %329 = tail call double @llvm.fabs.f64(double %326), !dbg !5571
+  %330 = bitcast double %329 to i64, !dbg !5571
+  %331 = icmp ult i64 %330, 9218868437227405312, !dbg !5572
+  br i1 %331, label %Then4.i561.1.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.1.i, !dbg !5573
+
+Then4.i561.1.i:                                   ; preds = %Then2.preheader.i.1.i
+  %332 = tail call double @llvm.fabs.f64(double %327), !dbg !5571
+  %333 = bitcast double %332 to i64, !dbg !5571
+  %334 = icmp ult i64 %333, 9218868437227405312, !dbg !5572
+  br i1 %334, label %Then4.1.i562.1.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.1.i, !dbg !5573
+
+Then4.1.i562.1.i:                                 ; preds = %Then4.i561.1.i
+  %335 = tail call double @llvm.fabs.f64(double %328), !dbg !5571
+  %336 = bitcast double %335 to i64, !dbg !5571
+  %337 = icmp ult i64 %336, 9218868437227405312, !dbg !5572
+  br i1 %337, label %Then4.2.i563.1.i, label %simulation.atmosphere_water.EdgeSource.rate.exit.1.i, !dbg !5573
+
+Then4.2.i563.1.i:                                 ; preds = %Then4.1.i562.1.i
+  %338 = fsub double %326, %241, !dbg !5576
+  %339 = fmul double %.sroa.0.0.i, %338, !dbg !5578
+  %340 = fadd double %339, 0.000000e+00, !dbg !5580
+  %341 = fsub double %327, %242, !dbg !5576
+  %342 = fmul double %.sroa.4.0.i, %341, !dbg !5578
+  %343 = fadd double %342, %340, !dbg !5580
+  %344 = fmul double %338, %338, !dbg !5581
+  %345 = fmul double %341, %341, !dbg !5581
+  %346 = fadd double %344, %345, !dbg !5582
+  %347 = fsub double %328, %243, !dbg !5576
+  %348 = fmul double %347, %347, !dbg !5581

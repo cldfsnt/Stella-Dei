@@ -1,0 +1,24 @@
+{
+  "baseline_llvm_sha256": "814c39ab112cca634181714628cf99379e851f5980c6ebad790551838fae248b",
+  "source_artifacts": {
+    "plain/src/simulation/planet.zig": "eaa4f4de1332317a36930b6ef2ace57735c25e5e4c39c34fbab515cbf6c6c424",
+    "plain/src/simulation/atmosphere_water.zig": "3b6e29773bf9487a41b1cf2c218aa4e2411313d9e2afecaf04420585fc26e9df",
+    "plain/src/qa_wasm_planet.zig": "5c924eb03d2938d53cf21ee9f9b59320b255c06dc311773a057e484ce3b018ce",
+    "plain/src/loop.zig": "42dac83bc4714a512f2284cea4163f062cf3e9d0d61f65526ebc239e9e66a1f0",
+    "plain/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "plain/profile.wasm": "e00fcb6784dcb6eff8e2af6e6c82f048b646334cc4def2918a16aa0a8692ad4d",
+    "plain/build/lib/libstella.a": "d761fe5bfd31166d414282ac48993fa3024fe4ea43afc8e70af221659d6beb66",
+    "baseline-plain/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "baseline-plain/profile.wasm": "1bae5580f736b3e77c27a0352c1645bf70433628fa2ce397e2d7c4e1e4b33692",
+    "stages/src/simulation/planet.zig": "0bb75ca8125d53da5d6d40e2ecb935fdac3c99b4943adb32e77789f7748c7ed6",
+    "stages/src/simulation/atmosphere_water.zig": "3b6e29773bf9487a41b1cf2c218aa4e2411313d9e2afecaf04420585fc26e9df",
+    "stages/src/qa_wasm_planet.zig": "5c924eb03d2938d53cf21ee9f9b59320b255c06dc311773a057e484ce3b018ce",
+    "stages/src/loop.zig": "42dac83bc4714a512f2284cea4163f062cf3e9d0d61f65526ebc239e9e66a1f0",
+    "stages/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "stages/profile.wasm": "f7afbb318755db9bbb0c3b8715f09918871f4f0e97a71abfd0248c0907c3bd05",
+    "stages/build/lib/libstella.a": "512a52a2587309911b20802aa7609b9abccabadf693cb80f2d1bd64d63d9a87c",
+    "baseline-stages/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "baseline-stages/profile.wasm": "b8b7515b8486fb8727d4a18c763443ae5cfac3250fc76b3e71e93b3701a7d859"
+  },
+  "no_persistent_memory_added": true
+}

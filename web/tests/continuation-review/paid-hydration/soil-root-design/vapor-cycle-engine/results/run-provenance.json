@@ -1,0 +1,23 @@
+{
+  "files": {
+    "../site-tmp/vapor-cycle-engine/install/bin/stella-egl": "92fe03c0c5a4f95fe186f6ecad519385b3c6a07b553185791d22b26604bf0eb8",
+    "../site-tmp/root-world-qa/day60-arm-3.json": "777a4c3f2565aac35c40e64aaa2cd2cf30f07216ad6fb8a562fd62614f39f0eb",
+    "web/tests/egl-vapor-cycle-prepare.py": "0ac6b99e4ede543b15c81ac345930d16ffe7d98eaeb9b638659b68b79b1a1943",
+    "web/tests/analyze-vapor-cycle-engine.py": "66fbb927db525eec00230cd33cea979a800e982f9750fc57114ea9db2bda25cd"
+  },
+  "run_exits": {
+    "diagnostic": 0,
+    "strict": 0
+  },
+  "diagnostic_oracle_exit": 2,
+  "strict_oracle_exit": 0,
+  "input_env": "QA_PULSE_SAVE",
+  "common_env": {
+    "STELLA_ORIGIN_COUPLED": "1",
+    "STELLA_ORIGIN_FAST": "1"
+  },
+  "strict_env": "QA_VAPOR_STRICT=1",
+  "raw_stage_directory": "/workspace/scratch/f67c3ac60ca3/site-tmp/vapor-cycle-engine",
+  "raw_stage_count": 108,
+  "raw_stage_bytes": 31458816
+}

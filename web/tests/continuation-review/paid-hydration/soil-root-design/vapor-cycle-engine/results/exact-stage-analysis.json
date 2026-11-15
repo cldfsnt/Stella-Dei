@@ -1,0 +1,662 @@
+{
+  "diagnostic": {
+    "steps": [
+      {
+        "liquid_transport": null,
+        "serial": 1,
+        "action": 0,
+        "tick": 1,
+        "phase": {
+          "signed_kg_exact": "-20866529975/17592186044416",
+          "sumabs_kg_exact": "20866529975/17592186044416",
+          "signed_kg": -0.0011861249035405308,
+          "sumabs_kg": 0.0011861249035405308,
+          "maxabs_kg": 6.2009206658331095e-06,
+          "nonzero_cells": 3531
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-6581056640625/140737488355328",
+        "advection_signed_kg": -0.04676121989621862,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-81805923567287109375/2097152",
+          "signed_kg": -39008104118007.234,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 2,
+        "action": 0,
+        "tick": 2,
+        "phase": {
+          "signed_kg_exact": "-5591509975/17592186044416",
+          "sumabs_kg_exact": "5591509975/17592186044416",
+          "signed_kg": -0.00031784054357331115,
+          "sumabs_kg": 0.00031784054357331115,
+          "maxabs_kg": 0.00011119987846086588,
+          "nonzero_cells": 548
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "10413083984375/562949953421312",
+        "advection_signed_kg": 0.018497352954893742,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-41061537299169921875/1048576",
+          "signed_kg": -39159333514375.61,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 3,
+        "action": 0,
+        "tick": 3,
+        "phase": {
+          "signed_kg_exact": "-1762067675/17592186044416",
+          "sumabs_kg_exact": "1762067675/17592186044416",
+          "signed_kg": -0.00010016195091111513,
+          "sumabs_kg": 0.00010016195091111513,
+          "maxabs_kg": 8.341260127053829e-07,
+          "nonzero_cells": 361
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-69601208984375/2251799813685248",
+        "advection_signed_kg": -0.030909145902480173,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": null,
+        "serial": 4,
+        "action": 1,
+        "tick": 1,
+        "phase": {
+          "signed_kg_exact": "-20868861375/17592186044416",
+          "sumabs_kg_exact": "20868861375/17592186044416",
+          "signed_kg": -0.0011862574282872629,
+          "sumabs_kg": 0.0011862574282872629,
+          "maxabs_kg": 6.2009206658331095e-06,
+          "nonzero_cells": 3531
+        },
+        "root": {
+          "signed_kg_exact": "-665710725/4398046511104",
+          "sumabs_kg_exact": "665710725/4398046511104",
+          "signed_kg": -0.0001513650943252287,
+          "sumabs_kg": 0.0001513650943252287,
+          "maxabs_kg": 0.0001513650943252287,
+          "nonzero_cells": 1
+        },
+        "advection_signed_kg_exact": "-6581056640625/140737488355328",
+        "advection_signed_kg": -0.04676121989621862,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-81800416831287109375/2097152",
+          "signed_kg": -39005478301662.02,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 5,
+        "action": 1,
+        "tick": 2,
+        "phase": {
+          "signed_kg_exact": "-5593193075/17592186044416",
+          "sumabs_kg_exact": "5593193075/17592186044416",
+          "signed_kg": -0.0003179362167315958,
+          "sumabs_kg": 0.0003179362167315958,
+          "maxabs_kg": 0.00011119987846086588,
+          "nonzero_cells": 549
+        },
+        "root": {
+          "signed_kg_exact": "-68935525/549755813888",
+          "sumabs_kg_exact": "68935525/549755813888",
+          "signed_kg": -0.00012539298950287048,
+          "sumabs_kg": 0.00012539298950287048,
+          "maxabs_kg": 0.00012539298950287048,
+          "nonzero_cells": 1
+        },
+        "advection_signed_kg_exact": "10605083984375/562949953421312",
+        "advection_signed_kg": 0.01883841346805859,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-41061370675169921875/1048576",
+          "signed_kg": -39159174609346.31,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 6,
+        "action": 1,
+        "tick": 3,
+        "phase": {
+          "signed_kg_exact": "-1762067675/17592186044416",
+          "sumabs_kg_exact": "1762067675/17592186044416",
+          "signed_kg": -0.00010016195091111513,
+          "sumabs_kg": 0.00010016195091111513,
+          "maxabs_kg": 8.341260127053829e-07,
+          "nonzero_cells": 361
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-69089208984375/2251799813685248",
+        "advection_signed_kg": -0.03068177222703694,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      }
+    ],
+    "fixed_pulses": [
+      {
+        "index": 0,
+        "strict": false,
+        "soil_before": 0.9999999167069676,
+        "vapor_before": 1680.0450439453125,
+        "requested_density": 5.445914790658257e-05,
+        "area_m2": 7669529600.0,
+        "receipt": {
+          "soil": 0.9999454575590611,
+          "vapor": 1680.0454616213592,
+          "paid": 5.445914790658257e-05,
+          "funded": 5.445914788684666e-05,
+          "native_received": 0.000417676046708948,
+          "residual_density": -1.9735901552343088e-14
+        }
+      },
+      {
+        "index": 1,
+        "strict": false,
+        "soil_before": 0.9999991749741014,
+        "vapor_before": 1635.706298828125,
+        "requested_density": 1.3555834952327928e-06,
+        "area_m2": 7669529600.0,
+        "receipt": {
+          "soil": 0.9999978193906062,
+          "vapor": 1635.7063092248127,
+          "paid": 1.3555834952327928e-06,
+          "funded": 1.3555834878045368e-06,
+          "native_received": 1.0396687684988137e-05,
+          "residual_density": -7.428255542480376e-15
+        }
+      }
+    ],
+    "root_events": [
+      {
+        "soil_before": 0.9999999167069676,
+        "soil_after": 0.9999454575590611,
+        "vapor_before": 1680.04511259659,
+        "vapor_after": 1680.0455302726366,
+        "area_m2": 7669529600,
+        "wanted": 5.4459147906673584e-05,
+        "paid": 5.445914790658257e-05,
+        "funded": 5.445914788684666e-05,
+        "demands": [
+          0,
+          5.445914790667359e-05,
+          0,
+          0
+        ],
+        "credits": [
+          0,
+          5.445914788684664e-05,
+          0,
+          0
+        ],
+        "h_bits": [
+          0,
+          1065353215,
+          0,
+          0
+        ]
+      },
+      {
+        "soil_before": 0.9999991749741014,
+        "soil_after": 0.9999978193986611,
+        "vapor_before": 1635.7071883129593,
+        "vapor_after": 1635.707198709585,
+        "area_m2": 7669529600,
+        "wanted": 1.3555754403928082e-06,
+        "paid": 1.3555754403427045e-06,
+        "funded": 1.3555754239932021e-06,
+        "demands": [
+          0,
+          1.3555754403928084e-06,
+          0,
+          0
+        ],
+        "credits": [
+          0,
+          1.3555754239932017e-06,
+          0,
+          0
+        ],
+        "h_bits": [
+          0,
+          1065353215,
+          0,
+          0
+        ]
+      }
+    ],
+    "ticks": [
+      {
+        "action": 0,
+        "tick": 1,
+        "liquid_native": 5409.4013671875,
+        "vapor_native": 1682.0481918451865,
+        "soil_density": 0.9999874821201528,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.12159422785043716
+      },
+      {
+        "action": 0,
+        "tick": 2,
+        "liquid_native": 5413.41845703125,
+        "vapor_native": 1670.0080091347616,
+        "soil_density": 0.9999874821201528,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.12138835340738297
+      },
+      {
+        "action": 0,
+        "tick": 3,
+        "liquid_native": 5417.80810546875,
+        "vapor_native": 1657.9706567196388,
+        "soil_density": 0.9999874821201528,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.12117673456668854
+      },
+      {
+        "action": 1,
+        "tick": 1,
+        "liquid_native": 57.75603485107422,
+        "vapor_native": 1680.0455302726366,
+        "soil_density": 0.9999454575590611,
+        "root_paid": 5.445914790658257e-05,
+        "root_demand": 5.445914790667359e-05,
+        "root_credited": 5.445914788684664e-05,
+        "biomass478": 0.121547169983387
+      },
+      {
+        "action": 1,
+        "tick": 2,
+        "liquid_native": 149.5283203125,
+        "vapor_native": 1635.707198709585,
+        "soil_density": 0.9999978193986611,
+        "root_paid": 1.3555754403427045e-06,
+        "root_demand": 1.3555754403928084e-06,
+        "root_credited": 1.3555754239932017e-06,
+        "biomass478": 0.12125244736671448
+      },
+      {
+        "action": 1,
+        "tick": 3,
+        "liquid_native": 261.1917419433594,
+        "vapor_native": 1576.610688921356,
+        "soil_density": 0.9999978193986611,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.11968854069709778
+      }
+    ]
+  },
+  "strict": {
+    "steps": [
+      {
+        "liquid_transport": null,
+        "serial": 1,
+        "action": 0,
+        "tick": 1,
+        "phase": {
+          "signed_kg_exact": "-20757442225/17592186044416",
+          "sumabs_kg_exact": "20757442225/17592186044416",
+          "signed_kg": -0.0011799239828746977,
+          "sumabs_kg": 0.0011799239828746977,
+          "maxabs_kg": 8.447841537417844e-07,
+          "nonzero_cells": 3530
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-6581056640625/140737488355328",
+        "advection_signed_kg": -0.04676121989621862,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-81805923567287109375/2097152",
+          "signed_kg": -39008104118007.234,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 2,
+        "action": 0,
+        "tick": 2,
+        "phase": {
+          "signed_kg_exact": "-3635261025/17592186044416",
+          "sumabs_kg_exact": "3635261025/17592186044416",
+          "signed_kg": -0.00020664066511244528,
+          "sumabs_kg": 0.00020664066511244528,
+          "maxabs_kg": 8.341260127053829e-07,
+          "nonzero_cells": 547
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "10285083984375/562949953421312",
+        "advection_signed_kg": 0.01826997927945051,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-41061537283169921875/1048576",
+          "signed_kg": -39159333499116.82,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 3,
+        "action": 0,
+        "tick": 3,
+        "phase": {
+          "signed_kg_exact": "-1762067675/17592186044416",
+          "sumabs_kg_exact": "1762067675/17592186044416",
+          "signed_kg": -0.00010016195091111513,
+          "sumabs_kg": 0.00010016195091111513,
+          "maxabs_kg": 8.341260127053829e-07,
+          "nonzero_cells": 361
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-70369208984375/2251799813685248",
+        "advection_signed_kg": -0.03125020641564502,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": null,
+        "serial": 4,
+        "action": 1,
+        "tick": 1,
+        "phase": {
+          "signed_kg_exact": "-20759773625/17592186044416",
+          "sumabs_kg_exact": "20759773625/17592186044416",
+          "signed_kg": -0.0011800565076214298,
+          "sumabs_kg": 0.0011800565076214298,
+          "maxabs_kg": 8.447841537417844e-07,
+          "nonzero_cells": 3530
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-6581056640625/140737488355328",
+        "advection_signed_kg": -0.04676121989621862,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-81800416831287109375/2097152",
+          "signed_kg": -39005478301662.02,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 5,
+        "action": 1,
+        "tick": 2,
+        "phase": {
+          "signed_kg_exact": "-3635261025/17592186044416",
+          "sumabs_kg_exact": "3635261025/17592186044416",
+          "signed_kg": -0.00020664066511244528,
+          "sumabs_kg": 0.00020664066511244528,
+          "maxabs_kg": 8.341260127053829e-07,
+          "nonzero_cells": 547
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "10349083984375/562949953421312",
+        "advection_signed_kg": 0.018383666117172126,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      },
+      {
+        "liquid_transport": {
+          "signed_kg_exact": "-41061370675169921875/1048576",
+          "signed_kg": -39159174609346.31,
+          "scope": "liquid transport between recorded ticks; no root/soil liquid writes after prior phase"
+        },
+        "serial": 6,
+        "action": 1,
+        "tick": 3,
+        "phase": {
+          "signed_kg_exact": "-1762067675/17592186044416",
+          "sumabs_kg_exact": "1762067675/17592186044416",
+          "signed_kg": -0.00010016195091111513,
+          "sumabs_kg": 0.00010016195091111513,
+          "maxabs_kg": 8.341260127053829e-07,
+          "nonzero_cells": 361
+        },
+        "root": {
+          "signed_kg_exact": "0",
+          "sumabs_kg_exact": "0",
+          "signed_kg": 0.0,
+          "sumabs_kg": 0.0,
+          "maxabs_kg": 0.0,
+          "nonzero_cells": 0
+        },
+        "advection_signed_kg_exact": "-71137208984375/2251799813685248",
+        "advection_signed_kg": -0.03159126692880987,
+        "advection_note": "global net only; per-cell redistribution is not an error"
+      }
+    ],
+    "fixed_pulses": [
+      {
+        "index": 0,
+        "strict": true,
+        "soil_before": 0.9999999167069676,
+        "vapor_before": 1680.0450439453125,
+        "requested_density": 5.445914790658257e-05,
+        "area_m2": 7669529600.0,
+        "receipt": {
+          "soil": 0.9999999167069676,
+          "vapor": 1680.0450439453125,
+          "paid": 0.0,
+          "funded": 0.0,
+          "native_received": 0.0,
+          "residual_density": 0.0
+        }
+      },
+      {
+        "index": 1,
+        "strict": true,
+        "soil_before": 0.9999991749741014,
+        "vapor_before": 1635.706298828125,
+        "requested_density": 1.3555834952327928e-06,
+        "area_m2": 7669529600.0,
+        "receipt": {
+          "soil": 0.9999991749741014,
+          "vapor": 1635.706298828125,
+          "paid": 0.0,
+          "funded": 0.0,
+          "native_received": 0.0,
+          "residual_density": 0.0
+        }
+      }
+    ],
+    "root_events": [
+      {
+        "soil_before": 0.9999999167069676,
+        "soil_after": 0.9999999167069676,
+        "vapor_before": 1680.04511259659,
+        "vapor_after": 1680.04511259659,
+        "area_m2": 7669529600,
+        "wanted": 5.4459147906673584e-05,
+        "paid": 0,
+        "funded": 0,
+        "demands": [
+          0,
+          5.445914790667359e-05,
+          0,
+          0
+        ],
+        "credits": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "h_bits": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "soil_before": 0.9999999167069676,
+        "soil_after": 0.9999999167069676,
+        "vapor_before": 1635.7069377784148,
+        "vapor_after": 1635.7069377784148,
+        "area_m2": 7669529600,
+        "wanted": 9.474383841814055e-07,
+        "paid": 0,
+        "funded": 0,
+        "demands": [
+          0,
+          9.474383841814056e-07,
+          0,
+          0
+        ],
+        "credits": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "h_bits": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "ticks": [
+      {
+        "action": 0,
+        "tick": 1,
+        "liquid_native": 5409.4013671875,
+        "vapor_native": 1682.0481918451865,
+        "soil_density": 0.9999874821201528,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.12159422785043716
+      },
+      {
+        "action": 0,
+        "tick": 2,
+        "liquid_native": 5413.41845703125,
+        "vapor_native": 1670.0080091347616,
+        "soil_density": 0.9999874821201528,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.12138835340738297
+      },
+      {
+        "action": 0,
+        "tick": 3,
+        "liquid_native": 5417.80810546875,
+        "vapor_native": 1657.9706567196388,
+        "soil_density": 0.9999874821201528,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.12117673456668854
+      },
+      {
+        "action": 1,
+        "tick": 1,
+        "liquid_native": 57.75603485107422,
+        "vapor_native": 1680.04511259659,
+        "soil_density": 0.9999999167069676,
+        "root_paid": 0.0,
+        "root_demand": 5.445914790667359e-05,
+        "root_credited": 0.0,
+        "biomass478": 0.1159425675868988
+      },
+      {
+        "action": 1,
+        "tick": 2,
+        "liquid_native": 149.52859497070312,
+        "vapor_native": 1635.7069377784148,
+        "soil_density": 0.9999999167069676,
+        "root_paid": 0.0,
+        "root_demand": 9.474383841814056e-07,
+        "root_credited": 0.0,
+        "biomass478": 0.11440721154212952
+      },
+      {
+        "action": 1,
+        "tick": 3,
+        "liquid_native": 261.19189453125,
+        "vapor_native": 1576.6105511909611,
+        "soil_density": 0.9999999167069676,
+        "root_paid": 0.0,
+        "root_demand": 0.0,
+        "root_credited": 0.0,
+        "biomass478": 0.11293159425258636
+      }
+    ]
+  }
+}
