@@ -1,0 +1,65 @@
+{
+  "natural-baseline": {
+    "sha256": "dfe2864c9e1b53a7e875baf8e932eb8897adf587ff8d53749591be6b9e3553a8",
+    "bytes": 11131292,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=2936 cells=40962"
+    ]
+  },
+  "natural-candidate": {
+    "sha256": "fb81570cc16d50989f710240ec27656993c9c369f0d99e8a5584269694be0035",
+    "bytes": 11663798,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3000 cells=40962",
+      "BETA_LAYOUT enabled=false soil_bytes=0 vapor_bytes=0 scratch_bytes=0 cohort_bytes=88"
+    ]
+  },
+  "warm-baseline": {
+    "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+    "bytes": 7704842,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=2936 cells=40962"
+    ]
+  },
+  "warm-candidate": {
+    "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+    "bytes": 7704842,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3000 cells=40962",
+      "BETA_LAYOUT enabled=false soil_bytes=0 vapor_bytes=0 scratch_bytes=0 cohort_bytes=88"
+    ]
+  },
+  "empty-baseline": {
+    "sha256": "25a416184ff056fa52bdb2dc9fe2ff7034a6099124924887bebd47a7d09c020f",
+    "bytes": 10977036,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=2936 cells=40962"
+    ]
+  },
+  "empty-candidate": {
+    "sha256": "f1f590482e4961a562c16b377992ab0f993cdf1b0681240edc18c677cb36a7c2",
+    "bytes": 11509542,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3000 cells=40962",
+      "BETA_LAYOUT enabled=false soil_bytes=0 vapor_bytes=0 scratch_bytes=0 cohort_bytes=88"
+    ]
+  },
+  "beta-candidate": {
+    "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+    "bytes": 12034989,
+    "continuation_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3000 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=1310784 cohort_bytes=88"
+    ],
+    "soil_sum_density": 932.6706860040337,
+    "soil_max": 0.9999874821201532,
+    "soil_positive": 2602
+  }
+}

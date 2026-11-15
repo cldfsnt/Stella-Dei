@@ -1,0 +1,34 @@
+{
+  "natural": {
+    "baseline": {
+      "bytes": 11129207,
+      "sha256": "dfad46dffda2b14c2f8267dddca4e5dab6222e8e64d2c878a9f524f6ed7432d0"
+    },
+    "candidate": {
+      "bytes": 11661713,
+      "sha256": "6dbfc3ebb97b1c2ae9920883db7ab753e00b77048007d3ad5e526bbc3e7da4d6"
+    },
+    "compact": {
+      "bytes": 11129207,
+      "sha256": "dfad46dffda2b14c2f8267dddca4e5dab6222e8e64d2c878a9f524f6ed7432d0"
+    },
+    "old_reader_typed_and_canonical_exact": true,
+    "compact_raw_baseline_exact": true
+  },
+  "warm": {
+    "baseline": {
+      "bytes": 7699884,
+      "sha256": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd"
+    },
+    "candidate": {
+      "bytes": 7699884,
+      "sha256": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd"
+    },
+    "compact": {
+      "bytes": 7699884,
+      "sha256": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd"
+    },
+    "old_reader_typed_and_canonical_exact": true,
+    "compact_raw_baseline_exact": true
+  }
+}

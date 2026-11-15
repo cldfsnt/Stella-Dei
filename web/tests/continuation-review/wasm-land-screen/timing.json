@@ -1,0 +1,124 @@
+{
+  "start": "2026-11-15T18:38:39.239176+00:00",
+  "end": "2026-11-15T18:39:13.487399+00:00",
+  "rows": [
+    {
+      "scenario": "natural",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 17.60972506666667
+    },
+    {
+      "scenario": "natural",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 15.515726933333333
+    },
+    {
+      "scenario": "natural",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 15.031308266666667
+    },
+    {
+      "scenario": "natural",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 19.017143566666668
+    },
+    {
+      "scenario": "warm",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 29.025909416666664
+    },
+    {
+      "scenario": "warm",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 24.05763686666667
+    },
+    {
+      "scenario": "warm",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 24.172585166666668
+    },
+    {
+      "scenario": "warm",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 28.64895175
+    },
+    {
+      "scenario": "empty",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 16.105916
+    },
+    {
+      "scenario": "empty",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 12.672710366666669
+    },
+    {
+      "scenario": "empty",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 12.3151283
+    },
+    {
+      "scenario": "empty",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 18.058224233333338
+    },
+    {
+      "scenario": "beta",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 17.04363556666667
+    },
+    {
+      "scenario": "beta",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 31.127483199999997
+    },
+    {
+      "scenario": "beta",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 30.339761633333335
+    },
+    {
+      "scenario": "beta",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 16.139954316666667
+    }
+  ],
+  "summary": {
+    "natural": {
+      "baseline_ms": 18.31343431666667,
+      "candidate_ms": 15.2735176,
+      "percent": -16.599380892201665
+    },
+    "warm": {
+      "baseline_ms": 28.83743058333333,
+      "candidate_ms": 24.115111016666667,
+      "percent": -16.375659936207843
+    },
+    "empty": {
+      "baseline_ms": 17.08207011666667,
+      "candidate_ms": 12.493919333333334,
+      "percent": -26.85945410595616
+    },
+    "beta": {
+      "baseline_ms": 16.59179494166667,
+      "candidate_ms": 30.733622416666666,
+      "percent": 85.23386122309095
+    }
+  }
+}

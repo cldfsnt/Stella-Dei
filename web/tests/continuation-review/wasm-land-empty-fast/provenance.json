@@ -1,0 +1,62 @@
+{
+  "reference": "c6819a0 frozen beta through ebc2393 WASM harness",
+  "outputs": {
+    "time-2.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "prescribed-root-candidate.json": {
+      "sha256": "f39edb11f29a74ae110b4651c4f7b6f45cb18bb2dafe32d8fee63d39cce05eaf",
+      "bytes": 11342655
+    },
+    "empty-candidate.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "timing.json": {
+      "sha256": "aba5d606332a933c68f9add8f1727fa1435bcbfb8be90f7cea180f128dc0524a",
+      "bytes": 594
+    },
+    "live-candidate.json": {
+      "sha256": "0a218dfd116983f817a1e159528d15410068aa366b468a4b4bdcb0c434664d25",
+      "bytes": 11342652
+    },
+    "gates.json": {
+      "sha256": "260d6179f01c9050ea9ac90c2b118b4f16baf81925037893ba9482e3c3879ffe",
+      "bytes": 1115
+    },
+    "prescribed-root-baseline.json": {
+      "sha256": "f39edb11f29a74ae110b4651c4f7b6f45cb18bb2dafe32d8fee63d39cce05eaf",
+      "bytes": 11342655
+    },
+    "prescribed-root-fallback.json": {
+      "sha256": "4eada56baa6326fe107d5ac41410b74ec51fe487d8a79667021d2daf735de840",
+      "bytes": 9548625
+    },
+    "time-0.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "empty-baseline.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "time-1.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "time-3.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "live-baseline.json": {
+      "sha256": "0a218dfd116983f817a1e159528d15410068aa366b468a4b4bdcb0c434664d25",
+      "bytes": 11342652
+    },
+    "graph.json": {
+      "sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+      "bytes": 3987201
+    }
+  },
+  "timing": "single ABBA, no repetitions"
+}

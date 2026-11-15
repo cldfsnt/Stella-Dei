@@ -1,0 +1,39 @@
+    const saves=@import("save_game.zig");const P=@import("simulation/planet.zig").Planet;const M=@import("simulation/microbes.zig");const Audit=@import("simulation/land_journey_audit.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();var state=&game.state.Playing;
+    state.paused=true;state.showEscapeMenu=false;state.showPointDetails=false;state.showPlanetControl=false;state.selectedTool=.None;web_initialized=true;
+    const mode=std.posix.getenv("QA_JOURNEY_MODE") orelse "preview";var timer=try std.time.Timer.start();
+    if(std.mem.eql(u8,mode,"preview")){
+      state.planet=try P.generate(allocator,6,5000,42,.{.land_beta=true});state.gameTime=0;
+      std.debug.assert(state.planet.landBeta.enabled);for(state.planet.landSoil)|v|std.debug.assert(v==0);for(state.planet.landVapor,state.planet.waterVaporMass)|v,f|std.debug.assert(v==f);for(state.planet.microbeCells)|cell|for(cell.cohorts)|co|{std.debug.assert(co.biomass==0 and co.root_fraction==0);};
+      const initial=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/initial.json",.data=initial});const owned=try std.json.parseFromSlice(saves.schema.Save,a,initial,.{.allocate=.alloc_always});
+      const ids=try a.alloc(bool,state.planet.microbeCells.len);var count:usize=0;for(ids,0..)|*yes,i|{yes.*=state.planet.seedEligibility(i)==.eligible;if(yes.*)count+=1;}
+      var response=try std.json.parseFromSlice(std.json.Value,a,std.mem.span(stella_auto_seed_start(PerformanceDetails.world_serial)),.{.allocate=.alloc_always});std.debug.assert(response.value.object.get("ok").?.bool);const ticket:u32=@intCast(response.value.object.get("token").?.integer);var chunks:usize=0;
+      while(std.mem.eql(u8,response.value.object.get("phase").?.string,"planning")){response=try std.json.parseFromSlice(std.json.Value,a,std.mem.span(stella_auto_seed_step(ticket)),.{.allocate=.alloc_always});chunks+=1;std.debug.assert(response.value.object.get("ok").?.bool);}
+      std.debug.assert(std.mem.eql(u8,response.value.object.get("phase").?.string,"ready") and response.value.object.get("eligible").?.integer==count);
+      const ready=try std.json.stringifyAlloc(a,response.value,.{});try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/preview.json",.data=ready});std.debug.print("PREVIEW {s}\n",.{ready});
+      std.debug.assert(std.mem.eql(u8,initial,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+      if(count==0 or response.value.object.get("planted").?.integer==0){_=stella_auto_seed_cancel(ticket);std.debug.print("JOURNEY_STOP no_paid_seed=true\n",.{});std.process.exit(2);}
+      const receipt=try a.dupe(u8,std.mem.span(stella_auto_seed_apply(ticket)));std.debug.assert(std.mem.indexOf(u8,receipt,"\"ok\":true")!=null);
+      const planted=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/day-0.json",.data=planted});std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_auto_seed_apply(ticket)),"\"ok\":false")!=null);std.debug.assert(std.mem.eql(u8,planted,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+      try saves.apply(state,owned.value);var direct:usize=0;Audit.enabled=true;
+      for(ids,0..)|yes,i|{if(!yes)continue;const before=state.planet.microbeCells[i];const co2=state.planet.averageCarbonDioxideMass;const oxygen=state.planet.averageOxygenMass;const stats=state.planet.microbeStats;const ok=state.planet.seedMicrobes(i);if(ok)direct+=1;
+       Audit.emit("SEED_ROW",.{.cell=i,.ok=ok,.before=before,.after=state.planet.microbeCells[i],.co2_before=co2,.co2_after=state.planet.averageCarbonDioxideMass,.oxygen_before=oxygen,.oxygen_after=state.planet.averageOxygenMass,.stats_before=stats,.stats_after=state.planet.microbeStats,.area=state.planet.getMeanPointArea(),.cells=ids.len});
+      }
+      std.debug.assert(direct==response.value.object.get("planted").?.integer);std.debug.assert(std.mem.eql(u8,planted,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+      for(state.planet.microbeCells)|cell|for(cell.cohorts)|co|{std.debug.assert(co.root_fraction==0 and co.support_mass==0 and co.reproduction_credit==0);};
+      std.debug.print("PREVIEW_GATE eligible={} paid={} chunks={} full_planning_purity=true direct_reference_exact=true duplicate_inert=true founder_root_support_credit_zero=true elapsed_ms={}\n",.{count,direct,chunks,timer.read()/1000000});std.process.exit(0);
+    }
+    const resumed=std.mem.eql(u8,mode,"resume");const input=if(resumed)"OUTPUT/day-3.json"else "OUTPUT/day-0.json";
+    const bytes=try std.fs.cwd().readFileAlloc(a,input,128*1024*1024);const parsed=try std.json.parseFromSlice(saves.schema.Save,a,bytes,.{.allocate=.alloc_always});try saves.apply(state,parsed.value);std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+    Audit.enabled=true;const start:usize=if(resumed)180 else 0;
+    for(start..420)|tick|{
+      Audit.tick=tick+1;state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;
+      var living:usize=0;var roots:usize=0;var mass:f64=0;var maxgen:u32=0;
+      for(state.planet.microbeCells,0..)|cell,i|{std.debug.assert(M.validCell(cell,state.planet.microbeStats.next_lineage));for(cell.cohorts)|co|{if(co.biomass<=0)continue;living+=1;mass+=co.biomass;maxgen=@max(maxgen,co.generation);if(co.root_fraction>0){roots+=1;Audit.emit("ROOT_FATE",.{.tick=tick+1,.cell=i,.cohort=co,.soil=state.planet.landSoil[i],.depth_m=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000,.temperature=state.planet.temperature[i]});}}}
+      for(state.planet.landSoil)|v|std.debug.assert(std.math.isFinite(v) and v>=0 and v<=1);for(state.planet.landVapor)|v|std.debug.assert(std.math.isFinite(v) and v>=0);
+      std.debug.print("TICK tick={} living={} roots={} mass={d} maxgen={} births={} next_lineage={} elapsed_ms={}\n",.{tick+1,living,roots,mass,maxgen,state.planet.microbeStats.births,state.planet.microbeStats.next_lineage,timer.read()/1000000});
+      if((tick+1)%60==0){var save_arena=std.heap.ArenaAllocator.init(allocator);const sa=save_arena.allocator();const saved=try std.json.stringifyAlloc(sa,try saves.capture(sa,state),.{});const path=try std.fmt.allocPrint(sa,"OUTPUT/{s}day-{}.json",.{if(resumed)"resume-"else "",(tick+1)/60});try std.fs.cwd().writeFile(.{.sub_path=path,.data=saved});save_arena.deinit();}
+      if(timer.read()>900*std.time.ns_per_s)return error.FixedRuntimeBudget;
+    }
+    std.debug.print("JOURNEY_COMPLETE mode={s} ticks={} elapsed_ms={}\n",.{mode,420-start,timer.read()/1000000});std.process.exit(0);
+}

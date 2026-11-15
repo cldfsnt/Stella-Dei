@@ -1,0 +1,23 @@
+# Fixed new-beta Auto-seed accessibility journey
+
+This supersedes unexecuted70592b6 before outcomes. Preparation only until actual-WASM cost gate releases and parent authorizes execution. Production unchanged.
+
+## Initial world and one explicit action
+
+Use frozen actual isolated c6819a0 integration and its tested modern experimental schema8 save adapter (plus explicitly recorded non-model compatibility fixes only). Generate seed42/subdivision6/radius5000 with land_beta=true. Existing tested law1/conductance10/day and world-seeded root mutation law1 remain unchanged. Check all cohorts empty/root0, soil0, f64 vapor exactly widened from generation. No search among seeds or outcome-conditioned setup.
+
+While paused, call actual Auto-seed world's start/step/review/apply API once. Enumerate ALL seed points eligible in the initial snapshot, one paid seed per point, no sample cap or visible-only filtering. Keep native batch512 staging and all actual funding/identity skips. Freeze complete ready receipt (eligible/planned/skipped/reasons, world/token), per-point initial eligibility and resource ledger before Apply. If eligible=0 or no paid seeds can be staged, preserve the failure and stop; do not use nursery, retarget or add resources. No terrain, water, nutrient, temperature, light, atmosphere or trait adjustment beyond existing paid seed operation. This is explicit batch seeding, not natural abiogenesis.
+
+Audit current seedMicrobes write set before execution: cohort/nutrient arrays, microbeStats and atmospheric C/O scalar values only. The staged Planet shares beta physical arrays but must not write them. Compare live complete save before/after planning; soil/f64 vapor/config, geometry, water/temperature, camera/selection and RNG must remain unchanged. Compare committed cells/stats/C/O against the direct existing seedMicrobes reference in the identical frozen index order, with the same initial-eligibility list. Record actual represented per-row debits/credits and conversion residuals; don't invent exact real-number closure. All paid founders must remain root0 and start without fabricated support or earned reproductive credit. Apply must match reviewed counts and a duplicate Apply must refuse without change.
+
+## Fixed main trajectory
+
+420 actual coupled scheduler ticks of1440s (seven days), one world/stream, no later tools, reseeding, refills, care, genotype assignment, rate changes or horizon extension. If mutation or establishment is absent, retain that result. The larger initially seeded population is chosen BEFORE outcomes to give rare mutation meaningful opportunities, not to force a positive trait or survivor. It is not a sample of independent worlds.
+
+Observe all actual paid birth events at the read-only QA seam: parent/child identity and generation, root before/proposal/after, actual parent/child biomass/support/earned-credit arithmetic and six-draw RNG endpoints. Failed attempts are separate from births. Capture all positive-root lineages, including transient ones, without choosing successful cases. For every tick record current identity, mass/support/root tissue, source-funded root-water receipts/h, depth/T/light/soil, moves and deaths. Map pre-physiology water receipts to the actual phase's lineage, not a later reused cohort slot. Root allocation is not automatically root tissue, water uptake, adaptation or terrestrial establishment.
+
+Initial/day3/day7 complete snapshots and daily summaries. Save/deep-own day3 at tick180. In a fresh process reload day3 and run the remaining240ticks; require exact complete endpoint equality to uninterrupted day7: physical arrays, f64 vapor, soil, config/seed, all cohort traits and RNG. Separate continuation events from the420-tick main event ledger. If no positive-root organism exists at checkpoint, report that absence; never manufacture one to make the test pass. Day3 restart follows only the existing configuration, not a new mutation-off invalid beta variant.
+
+## Bounds and disclosure
+
+No new biology model or production save format is chosen by this trial. Soil can evaporate/refill; no claim of prolonged dry survival unless actual recorded depths support it. Existing f32 liquid transport, gas-conversion arithmetic and omitted soil/latent heat limitations remain. Prior strict conservation failures stay failed; reviewed practical bridge budgets are not a claim of perfect global closure. Abort on invalid state, failed exact restart or resource-transaction mismatch, preserving all outputs rather than tuning. Main observation runtime cap15minutes, and independent continuation cap15minutes; a cap hit yields partial/incomplete evidence, not a longer or smaller replacement world. Runtime is native test elapsed time, not browser/mobile pace.

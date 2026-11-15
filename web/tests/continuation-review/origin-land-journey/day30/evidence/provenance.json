@@ -1,0 +1,26 @@
+{
+  "prereg": "c662e3d",
+  "driver": "027c190",
+  "model": "c6819a0",
+  "input_sha256": "982357c61ad0b05a2a902c70dde8d5a658bef721a02255aea84d69b0f3f45e95",
+  "binary_sha256": "5540d4827230eb2063c06ba0227c5ee42a4458dacaaa8c52c7f5e447b4defb86",
+  "main_ticks": 1380,
+  "resume_ticks": 960,
+  "main_ms": 25460,
+  "resume_ms": 18729,
+  "main_max_tick_ms": 94.617744,
+  "resume_max_tick_ms": 181.087483,
+  "peak_living": 1036,
+  "all_exit_codes": 0,
+  "input_unchanged": true,
+  "model_core_byte_identical_to_seven_day": true,
+  "native_not_browser": true,
+  "snapshots": {
+    "day-30.json": "6ce4bac879a104a44911190413d1e08561c696bf23e846f7c76bbf2d8d5d2545",
+    "day-21.json": "b73d409ad8bdc31a609cda58a4b83701da18ca2d06f6cf1a26404614fa97b0b6",
+    "first-positive.json": "8f0b46d9e8667e6d036a228f1312ac1532ce4f9b4837bb74a9649b706a618377",
+    "resume-day-30.json": "6ce4bac879a104a44911190413d1e08561c696bf23e846f7c76bbf2d8d5d2545",
+    "day-14.json": "ad751454b67ed9cba3ceb6476e4ac6eb6d06538293f3078a83bdf0b74c29242b",
+    "resume-day-21.json": "b73d409ad8bdc31a609cda58a4b83701da18ca2d06f6cf1a26404614fa97b0b6"
+  }
+}

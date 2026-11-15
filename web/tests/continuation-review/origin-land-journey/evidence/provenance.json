@@ -1,0 +1,31 @@
+{
+  "source_model": "c6819a0",
+  "harness_freeze": "a956052",
+  "prereg": "012a8f9",
+  "seed": 42,
+  "subdivision": 6,
+  "radius": 5000,
+  "binary_sha256": "8114ce5922ad04ae7f110900bb799e978f2a93bebc2b193b7700b9c568d9b334",
+  "runs": [
+    {
+      "mode": "preview",
+      "exit": 0,
+      "native_pipeline_ms": 583
+    },
+    {
+      "mode": "main",
+      "ticks": 420,
+      "exit": 0,
+      "native_pipeline_ms": 8594
+    },
+    {
+      "mode": "resume",
+      "ticks": 240,
+      "exit": 0,
+      "native_pipeline_ms": 5208
+    }
+  ],
+  "main_horizon_days": 7,
+  "model_changes": false,
+  "actual_browser": false
+}

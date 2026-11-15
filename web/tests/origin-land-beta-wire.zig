@@ -1,6 +1,16 @@
 // QA-only old wire adapter: reflect actual legacy fields without beta extensions.
 fn legacyWire(value:anytype,writer:anytype) @TypeOf(writer.*).Error!void {
  const T=@TypeOf(value);
+ if(comptime T==SavedCell){
+  // Match the original cell wire contract: exactly one cohort encoding field.
+  try writer.beginObject();
+  if(value.sparse)|entries|{try writer.objectField("sparse");try legacyWire(entries,writer);}
+  else {try writer.objectField("cohorts");try legacyWire(value.cohorts,writer);}
+  try writer.objectField("nutrient");try writer.write(value.nutrient);
+  try writer.objectField("detritus");try writer.write(value.detritus);
+  try writer.objectField("rng");try writer.write(value.rng);
+  try writer.endObject();return;
+ }
  switch(@typeInfo(T)){
   .Optional=>if(value)|v|{try legacyWire(v,writer);}else try writer.write(null),
   .Struct=>{

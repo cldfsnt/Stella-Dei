@@ -1,0 +1,203 @@
+{
+  "frozen_integration": "c6819a0",
+  "source": "origin-land-gate tested baseline/candidate copies",
+  "outputs": {
+    "natural-candidate-72.json": {
+      "sha256": "fb81570cc16d50989f710240ec27656993c9c369f0d99e8a5584269694be0035",
+      "bytes": 11663798
+    },
+    "empty-baseline-82.json": {
+      "sha256": "5f98414265f4f7480cd230a7915ac1374cc0544c8fcdbf5c3cb0ee4224fd7945",
+      "bytes": 10994834
+    },
+    "warm-baseline-resume.json": {
+      "sha256": "17cf0879c2791f9a790521d20d9ebfba323fd104f4a07fa5506649313ada6ff5",
+      "bytes": 7708796
+    },
+    "time-natural-0.json": {
+      "sha256": "dfe2864c9e1b53a7e875baf8e932eb8897adf587ff8d53749591be6b9e3553a8",
+      "bytes": 11131292
+    },
+    "empty-baseline-zero.json": {
+      "sha256": "c4e2d4f513ddf7bba81f203e1acedb0a05557ed52a738e9ebb6270566c2016e3",
+      "bytes": 10612631
+    },
+    "warm-baseline-zero.json": {
+      "sha256": "93e18aa89218cba3ca0424a73cdacff9a7351179319ba2105da26c6f5d83ce8a",
+      "bytes": 7700122
+    },
+    "natural-candidate-82.json": {
+      "sha256": "0b28e4697949ffdfbfaeaa9c2495c635dc831f514de993ee706c75ea826d198e",
+      "bytes": 11668448
+    },
+    "time-warm-3.json": {
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842
+    },
+    "warm-baseline-72.json": {
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842
+    },
+    "time-warm-2.json": {
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842
+    },
+    "time-empty-0.json": {
+      "sha256": "25a416184ff056fa52bdb2dc9fe2ff7034a6099124924887bebd47a7d09c020f",
+      "bytes": 10977036
+    },
+    "time-warm-0.json": {
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842
+    },
+    "time-beta-1.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "time-natural-3.json": {
+      "sha256": "dfe2864c9e1b53a7e875baf8e932eb8897adf587ff8d53749591be6b9e3553a8",
+      "bytes": 11131292
+    },
+    "timing.json": {
+      "sha256": "ca6097c259927f3c3d815f75e59a31b18cf31147c572ce0961d7ce3e1cd4dc6a",
+      "bytes": 2631
+    },
+    "time-empty-3.json": {
+      "sha256": "25a416184ff056fa52bdb2dc9fe2ff7034a6099124924887bebd47a7d09c020f",
+      "bytes": 10977036
+    },
+    "warm-candidate-72.json": {
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842
+    },
+    "empty-candidate-zero.json": {
+      "sha256": "eaf6a0e30165a34f77d35bfcd4d466f3eda98cc23f9ae2be6d7c1c921cec8163",
+      "bytes": 11145137
+    },
+    "time-natural-2.json": {
+      "sha256": "fb81570cc16d50989f710240ec27656993c9c369f0d99e8a5584269694be0035",
+      "bytes": 11663798
+    },
+    "time-empty-2.json": {
+      "sha256": "f1f590482e4961a562c16b377992ab0f993cdf1b0681240edc18c677cb36a7c2",
+      "bytes": 11509542
+    },
+    "warm-baseline-82.json": {
+      "sha256": "17cf0879c2791f9a790521d20d9ebfba323fd104f4a07fa5506649313ada6ff5",
+      "bytes": 7708796
+    },
+    "natural-candidate-zero.json": {
+      "sha256": "36c4f622fb8d0a5dc32d7de5aceacdbf3b34519313add046926235be45bdfeb4",
+      "bytes": 11662574
+    },
+    "beta-candidate-82.json": {
+      "sha256": "aebfc4816475e43f1af158e9da1c75b043deb4d4413d64bc105fc035819d2f4b",
+      "bytes": 12055124
+    },
+    "beta-candidate-72.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "natural-candidate-resume.json": {
+      "sha256": "0b28e4697949ffdfbfaeaa9c2495c635dc831f514de993ee706c75ea826d198e",
+      "bytes": 11668448
+    },
+    "time-beta-0.json": {
+      "sha256": "25a416184ff056fa52bdb2dc9fe2ff7034a6099124924887bebd47a7d09c020f",
+      "bytes": 10977036
+    },
+    "empty-beta.json": {
+      "sha256": "17718c19422f833cc086a1cda800aa61db2b3bb20fe6ef9e7bbdf8f2f37ca089",
+      "bytes": 11314203
+    },
+    "natural-baseline-resume.json": {
+      "sha256": "65b9cc1d88dce7a9ab2ba5fa033c4060455c7e6423a942729f6c555d2966a3fb",
+      "bytes": 11135942
+    },
+    "warm-candidate-zero.json": {
+      "sha256": "93e18aa89218cba3ca0424a73cdacff9a7351179319ba2105da26c6f5d83ce8a",
+      "bytes": 7700122
+    },
+    "gates.json": {
+      "sha256": "7cb8634a08b15976063c72e07887c86f55adfac01b7ca15e7e36ef84a19c503a",
+      "bytes": 2140
+    },
+    "beta-candidate-zero.json": {
+      "sha256": "17718c19422f833cc086a1cda800aa61db2b3bb20fe6ef9e7bbdf8f2f37ca089",
+      "bytes": 11314203
+    },
+    "natural-baseline-82.json": {
+      "sha256": "65b9cc1d88dce7a9ab2ba5fa033c4060455c7e6423a942729f6c555d2966a3fb",
+      "bytes": 11135942
+    },
+    "natural-baseline-72.json": {
+      "sha256": "dfe2864c9e1b53a7e875baf8e932eb8897adf587ff8d53749591be6b9e3553a8",
+      "bytes": 11131292
+    },
+    "time-beta-2.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "time-beta-3.json": {
+      "sha256": "25a416184ff056fa52bdb2dc9fe2ff7034a6099124924887bebd47a7d09c020f",
+      "bytes": 10977036
+    },
+    "empty-candidate-72.json": {
+      "sha256": "f1f590482e4961a562c16b377992ab0f993cdf1b0681240edc18c677cb36a7c2",
+      "bytes": 11509542
+    },
+    "empty-candidate-82.json": {
+      "sha256": "678c374a8d052a5f334969e9de864b7f0a2900703c412ab92e3597ed9a553c9f",
+      "bytes": 11527340
+    },
+    "time-natural-1.json": {
+      "sha256": "fb81570cc16d50989f710240ec27656993c9c369f0d99e8a5584269694be0035",
+      "bytes": 11663798
+    },
+    "natural-baseline-zero.json": {
+      "sha256": "f783fc462a269233e9932cefad95eb39ac2c798d0eae7ba7de138d7c825bbbf7",
+      "bytes": 11130068
+    },
+    "time-empty-1.json": {
+      "sha256": "f1f590482e4961a562c16b377992ab0f993cdf1b0681240edc18c677cb36a7c2",
+      "bytes": 11509542
+    },
+    "empty-baseline-resume.json": {
+      "sha256": "5f98414265f4f7480cd230a7915ac1374cc0544c8fcdbf5c3cb0ee4224fd7945",
+      "bytes": 10994834
+    },
+    "empty-baseline-72.json": {
+      "sha256": "25a416184ff056fa52bdb2dc9fe2ff7034a6099124924887bebd47a7d09c020f",
+      "bytes": 10977036
+    },
+    "graph.json": {
+      "sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+      "bytes": 3987201
+    },
+    "beta-candidate-resume.json": {
+      "sha256": "aebfc4816475e43f1af158e9da1c75b043deb4d4413d64bc105fc035819d2f4b",
+      "bytes": 12055124
+    },
+    "warm-candidate-82.json": {
+      "sha256": "17cf0879c2791f9a790521d20d9ebfba323fd104f4a07fa5506649313ada6ff5",
+      "bytes": 7708796
+    },
+    "time-warm-1.json": {
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842
+    },
+    "warm-candidate-resume.json": {
+      "sha256": "17cf0879c2791f9a790521d20d9ebfba323fd104f4a07fa5506649313ada6ff5",
+      "bytes": 7708796
+    },
+    "empty-off.json": {
+      "sha256": "0b1c209e5bfb62c125e720d76eae8da1d4e4b0be9b1ebfe4a56afadcbbc80285",
+      "bytes": 10256198
+    },
+    "empty-candidate-resume.json": {
+      "sha256": "678c374a8d052a5f334969e9de864b7f0a2900703c412ab92e3597ed9a553c9f",
+      "bytes": 11527340
+    }
+  },
+  "scope": "actual Node WASM full scheduler, not browser or rendering"
+}

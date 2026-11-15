@@ -1,0 +1,26 @@
+{
+  "empty": {
+    "input_sha256": "17718c19422f833cc086a1cda800aa61db2b3bb20fe6ef9e7bbdf8f2f37ca089",
+    "endpoint_sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+    "ticks": 72,
+    "fullstate_exact": true,
+    "delivered_hash": "9805383547396052876",
+    "guard": "FAST_GUARD wet=35044 dry=5918 living=0 invalid_live_refused=true"
+  },
+  "live": {
+    "input_sha256": "9698fef7fe22d97e31ce3b9889db3057bfe95423e74e65e19630c26eba8d1850",
+    "endpoint_sha256": "0a218dfd116983f817a1e159528d15410068aa366b468a4b4bdcb0c434664d25",
+    "ticks": 2,
+    "fullstate_exact": true,
+    "delivered_hash": "7601867112635412972",
+    "guard": "FAST_GUARD wet=34966 dry=5918 living=78 invalid_live_refused=true"
+  },
+  "prescribed-root": {
+    "input_sha256": "4eada56baa6326fe107d5ac41410b74ec51fe487d8a79667021d2daf735de840",
+    "endpoint_sha256": "f39edb11f29a74ae110b4651c4f7b6f45cb18bb2dafe32d8fee63d39cce05eaf",
+    "ticks": 2,
+    "fullstate_exact": true,
+    "delivered_hash": "7601867112635412972",
+    "guard": "FAST_GUARD wet=34966 dry=5918 living=78 invalid_live_refused=true"
+  }
+}
