@@ -1,0 +1,7 @@
+{
+  "src/qa_hybrid_attribution.zig": "fdd41b05cc5960edcd8cbed51efd7561c7703e5798ebf303e10f2e4634e419fc",
+  "web/tests/attribute-hybrid-precision.py": "bedcc0e0aeaf7ac65444f7bc6fda5a2c3d50d0043ee0c33477fc74e9c01424cf",
+  "src/experimental/hybrid_abiotic.zig": "fa412fd8df04cd9aaa884cb2f2fb3ae28b3d341ae5b65d18342f7a70e4c5e615",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/hybrid-attribution/summary.json": "61bd3a9fef733de6e901852793c8b25ac52b64e7ae7dbb8a5fdd6626564d6399",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/hybrid-attribution/run.log.gz": "e5d3c3e7a7672beceb80dc48e4f71a6a4d08490f2ecc3dfecad0618540c2a9b4"
+}

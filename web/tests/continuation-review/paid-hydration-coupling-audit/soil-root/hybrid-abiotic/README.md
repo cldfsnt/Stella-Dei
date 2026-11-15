@@ -1,0 +1,7 @@
+# Independent hybrid abiotic structural audit
+
+Reviewed c39e699, no source changes.1200 new native pure cases spanning meanarea2^30…2^40,dt180…3600s,cold/warm/wet/dry, finite randomized standing/vapor/soil. Disabled output liquid/vapor/rain bits exactly match original PhaseStep, and soil remains unchanged, within tested valid new-parameter domain. Cold preserves soil; represented residual standing water blocks soil evaporation. No root physiology/RNG introduced.
+
+Offline Fraction verifies all five phase density ledgers within conservative endpointULP/conversion bounds, infiltration soil credit<=actual represented f32 standing debit, and combined standing+soil source evaporation<=ONE initial deficit-relaxation budget. Condensation receipt is source-funded. Stages show condensation once before infiltration/drainage. No double dry-time attenuation: exposed_seconds is observational, not another multiplier.
+
+Diagnostic maxSUMABS5.828653641737347e-6kg/m² perstep;588/1200 exceed the oldlocalf64 1e-9 comparison. This random set uses smaller vapor magnitudes than owner's actual world cases; it does not replace actualfixture max5.62e-5. Structural arithmetic pass is NOT engine practical-budget approval. Nativef32 drainage/condensation rounding remains material relative to a small soil supply, and cumulative/full-scheduler error needs independent policy before biological integration. No full climate, latentheat or production claims.

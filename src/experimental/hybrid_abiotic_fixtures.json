@@ -1,0 +1,110 @@
+[
+  {
+    "name": "natural60-day30.json",
+    "sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "cell": 12352,
+    "state": {
+      "liquid": 5068.2578125,
+      "vapor": 1677.9036865234375,
+      "soil": 0,
+      "rain": 2.4083973926281033e-08
+    },
+    "temperature": 295.6156311035156
+  },
+  {
+    "name": "natural60-day60.json",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "cell": 12352,
+    "state": {
+      "liquid": 5411.47314453125,
+      "vapor": 1699.0225830078125,
+      "soil": 0,
+      "rain": 2.2536862945401852e-21
+    },
+    "temperature": 295.8623962402344
+  },
+  {
+    "name": "grazing-coupled/arm-0-day90.json",
+    "sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "cell": 12352,
+    "state": {
+      "liquid": 5613.7509765625,
+      "vapor": 1711.436279296875,
+      "soil": 0,
+      "rain": 2.1089156143131393e-34
+    },
+    "temperature": 295.9525451660156
+  },
+  {
+    "name": "retention-coupled/arm-0.json",
+    "sha256": "41a41638d82cdc0e203372632c566689822347a4800cf5f8464b14172d0f024f",
+    "cell": 12352,
+    "state": {
+      "liquid": 5480.748046875,
+      "vapor": 1703.5245361328125,
+      "soil": 0,
+      "rain": 1.0231718841859753e-25
+    },
+    "temperature": 295.89849853515625
+  },
+  {
+    "name": "retention-coupled/arm-1.json",
+    "sha256": "4382e60ca824e5727aadae48aa4d84b4be101a2733e370a55011eaed8bdfaa33",
+    "cell": 12352,
+    "state": {
+      "liquid": 5480.748046875,
+      "vapor": 1703.5245361328125,
+      "soil": 0,
+      "rain": 1.0231718841859753e-25
+    },
+    "temperature": 295.89849853515625
+  },
+  {
+    "name": "retention-coupled/arm-2.json",
+    "sha256": "af0d8bf810efbb339ee54a73766b4b6cfeadccc78fd91f8364a813086371e30c",
+    "cell": 12352,
+    "state": {
+      "liquid": 5480.748046875,
+      "vapor": 1703.5245361328125,
+      "soil": 0,
+      "rain": 1.0231718841859753e-25
+    },
+    "temperature": 295.89849853515625
+  },
+  {
+    "name": "retention-coupled/arm-3.json",
+    "sha256": "e09e29f126bd4fc3ac75da56cb8fa1672ed39b5f3cb724a6909f4b6007659efe",
+    "cell": 12352,
+    "state": {
+      "liquid": 5480.748046875,
+      "vapor": 1703.5245361328125,
+      "soil": 0,
+      "rain": 1.0231718841859753e-25
+    },
+    "temperature": 295.89849853515625
+  },
+  {
+    "name": "retention-coupled/arm-4.json",
+    "sha256": "83f54c8a60ccda1ce58dd547b79b33f78b9212ad23e59eb50af6c8e272406caf",
+    "cell": 12352,
+    "state": {
+      "liquid": 5480.748046875,
+      "vapor": 1703.5245361328125,
+      "soil": 0,
+      "rain": 1.0231718841859753e-25
+    },
+    "temperature": 295.89849853515625
+  },
+  {
+    "name": "retention-coupled/arm-5.json",
+    "sha256": "cd8fc049ed5ce08286468ca2d4949808649a4834fdc397caf84024d2233b02a6",
+    "cell": 12352,
+    "state": {
+      "liquid": 5480.748046875,
+      "vapor": 1703.5245361328125,
+      "soil": 0,
+      "rain": 1.0231718841859753e-25
+    },
+    "temperature": 295.89849853515625
+  }
+]
