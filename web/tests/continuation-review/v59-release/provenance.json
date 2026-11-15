@@ -1,0 +1,18 @@
+{
+  "source_local": "d63ba46ddae26be3a79b10408bfa01eebdf584d9",
+  "source_fork": "b079fc14781c05cca62b02610e28d1e348fc76ff",
+  "build_exit": 0,
+  "js_tests": 66,
+  "unit_picking_tests": 9,
+  "schema": 6,
+  "toolchain": "Zig0.13 ReleaseSafe singlethreaded; Emscripten3.1.64 O2",
+  "files": {
+    "src/states/play.zig": "0baf5f97f08ba9c685375ee1eef8f00ee6799eab5fa87cf94478231d02379bef",
+    "web/shell.html": "9947eac97a7ecc392798cdbc5b3be63651ee1486519f4bcfa0be66002314c3c9",
+    "web/dist/index.wasm": "e84b96fd61eec71bdb5a54dfa27878a8a35b2fb18f7ca3e063d162f2b7b41e84",
+    "web/dist/index.js": "18a7c465d080f3956c8b7a70f6577828912afc54ac5760edb02b3fc664173915",
+    "web/dist/index.html": "ebc2767b92f93be367e898fc4194f6109a1a3e3cfd182db4bdcb1cdb22def213"
+  },
+  "site_manifest_files": 33,
+  "limitations": "Native paused presentation proxy, not running simulation or browser/device FPS. Globe timing noisy. Experimental water/root physiology not imported."
+}
