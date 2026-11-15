@@ -27,3 +27,11 @@ Root478 is the source phenotype, not a new naturally evolved root lineage. IDs90
 This supplies the shared-resource competitive-cost evidence absent from the earlier single-colony assay. It complements, but does not substitute for, separate paid dry-survival/recovery tests and still-blocked physical-water integration gates. No production behavior or save schema changed.
 
 Reproduce with pinned Zig0.13: `zig test src/qa_root_wet_competition.zig -O ReleaseSafe`. Source and input hashes, exact binary hash, all run/build logs, full compressed daily results and endpoint summary are included. Read PREREG.md for fixedmatrix design and independent review limitations.
+
+## Combined evidence statement (separate experiments)
+
+“In separate controlled tests of the experimental model, prescribed roots let phenotype478 survive seven days when supplied by finite, scheduled recharge, but reduced its initial share of light against an otherwise matched root-free competitor in a wet patch. In that wet paired test, the root-allocating cohort disappeared while the root-free cohort survived; grazing remained part of the interaction. This demonstrates a candidate benefit and a relative competitive cost, not naturally evolved adaptation or a completed whole-world land ecosystem.”
+
+The earlier physiology-f64 assay used one unsplit colony, root allocation0/.25, conductance1/10, fixed wet/scarce/recharge regimes and a finite laboratory held reservoir; root10+recharge survived, the same roots without recharge died aroundday5.95, root0 aroundday.98, and conductance1 aroundday1.11 before recharge. The present wet test instead splits the same donor phenotype into two prescribed competitors and does not run soil hydrology or exposed uptake. They are not one replicated environmental-switch, descendant-fitness or evolutionary-selection test. Do not combine their endpoint biomass into a common fitness ratio or imply the current live game already has roots/land plants.
+
+Independent result audit: fire_feasibility parsed all252 records/36 endpoints, verified all12 unequal outcomes, exact50/50 equal controls, identical results under ID swaps after removing labels, and maximum slot biomass difference1.4901161193847656e−8. No blocking accounting/priority defect or overclaim found. This was a result/source audit, not an additional parameter trial.

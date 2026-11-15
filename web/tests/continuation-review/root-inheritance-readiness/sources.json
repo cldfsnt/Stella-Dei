@@ -1,0 +1,10 @@
+{
+  "read_only": true,
+  "no_new_tests_executed": true,
+  "sha256": {
+    "src/experimental/soil_physiology_core.zig": "c4b137ae9f81935e7ccc42d6deabf93c4e42d8bc189f6cd0de6a08a52db0153e",
+    "src/experimental/retention_mutation.zig": "671f8f783aaa1125db85233257c2f30b970a4a97909f316d0ca44b39ac6eae8c",
+    "src/experimental/hydration_mutation_core.zig": "26d1d1d3993248d12ff6e2c4c17742b2ebba974fe7cea811889aac0aa9ca179f",
+    "src/simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651"
+  }
+}
