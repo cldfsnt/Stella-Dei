@@ -1,0 +1,11 @@
+{
+  "src/main.zig": "9cdddcb9ccca79c0bb1bd11fecda028c7cac322c8fea8e5568697969a5df34bb",
+  "src/propagule_visuals.zig": "b7081b66821ae1fad770330ab45a1d7cf00101b4f3c8abca0a7b995918182e5d",
+  "src/performance_details.zig": "20dfeb12a5a1a66d8d180079450a0507ccda57e68e635ac5d72978799d56b16b",
+  "web/shell.html": "5ea803366f09c0511a75291409cf56c1b9585e2c5230ad1dca48b974ab45e825",
+  "web/world-ecology.js": "1d1a91bfab08285d8271b600e7b12134f28c1684af68b3172b6ff14da5c24fa3",
+  "web/build.sh": "b92822a06a59ca313ef5cfb6bb85a9b494b522aeb386c98e6cc13aeb14d5b909",
+  "web/tests/arrival-effects.test.cjs": "a88ec8a28ba8b1305f91e4b8c3edce64d8f49233e260397f39ecd66c3f6a1326",
+  "web/tests/world-ecology.test.cjs": "f4946c019172a5ceb19fbf28c7d7b98a87ef27c8dbf304c6b4e2c60aec32f21c",
+  "web/tests/shell.test.cjs": "4060ea040cfea486a68573c3e6dfab504712913503f729ad2a4f4bf74297d7f0"
+}

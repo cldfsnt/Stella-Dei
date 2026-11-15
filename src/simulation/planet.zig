@@ -1528,6 +1528,8 @@ pub const Planet = struct {
         // OOM preserves the original full scans. No persistent or saved cache.
         const active:?[]u64=ActiveCells.init(self.allocator,self.microbeCells.len) catch null;
         defer if(active)|bits|self.allocator.free(bits);
+        const WorldEcology=@import("../world_ecology.zig");const world=@import("../performance_details.zig").world_serial;
+        WorldEcology.record(self,world,options.gameTime,0,0);const birth_start=self.microbeStats.births;var physiology_deaths:u64=0;
         const watch=&@import("../patch_watch.zig").current;
         const observing=if(watch.active and watch.owner==@intFromPtr(self))watch.beginTick(@intFromPtr(self),options.gameTime,@import("../patch_watch.zig").nowMs()) else false;
         for (self.microbeCells, 0..) |*cell, i| {
@@ -1536,6 +1538,7 @@ pub const Planet = struct {
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
             const before_cohorts=cell.cohorts;
             const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+            physiology_deaths +|= WorldEcology.physiologyDeaths(before_cohorts,cell.cohorts);
             if(observing)watch.recordFlux(i,flux.fixed,flux.recycled,flux.grazed);
             for(before_cohorts,0..)|old,slot|{
                 if(old.biomass>0 and cell.cohorts[slot].biomass==0 and self.propaguleFeedback.failed(i,old.lineage,options.gameTime))self.propaguleTrackedLosses+|=1;
@@ -1605,6 +1608,8 @@ pub const Planet = struct {
                 }
             }
         }
+        WorldEcology.record(self,world,options.gameTime+dt,self.microbeStats.births-|birth_start,physiology_deaths);
+        if(self.microbeStats.births==std.math.maxInt(u64))WorldEcology.markSaturated(self,world);
         if(observing)watch.finishPopulationTick(options.gameTime,dt,@import("../patch_watch.zig").Watch.population(self.microbeCells[watch.cell].cohorts));
     }
 
@@ -1638,6 +1643,9 @@ pub const Planet = struct {
     }
 
     pub fn simulate(self: *Planet, loop: *EventLoop, options: SimulationOptions) void {
+        const ecology_births=self.rabbitBirths;const ecology_deaths=self.rabbitDeaths;
+        if(self.worldMode==.sandbox)@import("../world_ecology.zig").record(self,@import("../performance_details.zig").world_serial,options.gameTime,0,0);
+
         //const zone = tracy.ZoneN(@src(), "Simulate planet");
         //defer zone.End();
 
@@ -1775,6 +1783,9 @@ pub const Planet = struct {
         }
 
         if (self.worldMode == .origin) self.simulateMicrobes(options) else self.simulateVegetation(options, 0, self.vegetation.len);
+        if(self.worldMode==.sandbox)@import("../world_ecology.zig").record(self,@import("../performance_details.zig").world_serial,options.gameTime+@max(0,options.dt*options.timeScale),self.rabbitBirths-|ecology_births,self.rabbitDeaths-|ecology_deaths);
+        if(self.worldMode==.sandbox and (self.rabbitBirths==std.math.maxInt(u64) or self.rabbitDeaths==std.math.maxInt(u64)))@import("../world_ecology.zig").markSaturated(self,@import("../performance_details.zig").world_serial);
+
     }
 
     /// Simulation already owns lifeformsLock and reserved capacity for births.

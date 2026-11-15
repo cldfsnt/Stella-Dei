@@ -1,0 +1,9 @@
+{
+  "head": "2333ac4c0d6d78355fb58c24d25bc551d4c9b853",
+  "files": {
+    "main.zig": "cb1ddf87376cc04f853a2af38689f5ac171b3dc25d4a644856887cec4c205517",
+    "states/play.zig": "e66f1b9dfc5d8833c0dde66ed32436bb887b595a873baacade2d57299c3fcdf6",
+    "propagule_visuals.zig": "b7081b66821ae1fad770330ab45a1d7cf00101b4f3c8abca0a7b995918182e5d",
+    "simulation/planet.zig": "b0060d3eec2a9882fabfeb73719cbb7fd6fe9d3b67f7cd0f1e24da6bb57b6004"
+  }
+}

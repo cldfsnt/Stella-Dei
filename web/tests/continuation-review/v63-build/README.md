@@ -1,0 +1,9 @@
+# v63 aggregate build candidate
+
+Frozen production source e6b1ba9. Full JS 79/79, visual Pool/tracker six ReleaseSafe tests, and pinned production WebAssembly build all pass. Every inventoried source hash was compared again after build and is unchanged. Build exit0 observed. No deployment by this worker. Raw artifacts retain the source label; coordinator packaging supplies final v63 label/manifest separately.
+
+Integrated changes: independent arrival/loss visual control, bounded on-demand 512-cell community sample, session event history, actual successful ignition receipt cue. Existing rabbit-foraging and v61 controls retained. No new biology, saved model fields, or global ecology claim. Origin recent counts mean paid births and physiology losses, exclude seeding/moves/god-tool losses; Sandbox counts rabbit births/deaths only. The helper uses current plus previous23 simulation-hour buckets, not an exact rolling24-hour window. UI explicitly says up to24 simulation hours, grouped in hourly buckets, and displays actual observed duration. Unknown history remains unavailable, not zero. Form rankings are summed patch biomass density, not species or total global mass.
+
+Separate native acceptance gates are owned by the gameplay worker; final combined stats/ignition runtime gate was still pending when the build completed. Actual effects gate already passed. Coordinator mock DOM review passed (effects-community-ui evidence); no actual WebGL/device performance claim. Production build success does not override a failing native gate. No release readiness until that independent runtime gate is accepted.
+
+Reproduce with the exact command in provenance.json and node --test web/tests/*.test.cjs. Source inventory includes standalone experimental files for identity; it does not imply they are linked. No binaries committed.

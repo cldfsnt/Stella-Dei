@@ -201,11 +201,14 @@ pub const PlayState = struct {
     colonyTargetWorld:usize=0,
     seedTargets: SeedTargets.List = .{},
     seedTargetsVisible: bool = true,
+    arrivalEffectsVisible: bool = true,
     seedTargetWidth:f32=0,
     seedTargetHeight:f32=0,
     seedTargetWorld:usize=0,
     godReceipt: ?@import("../god_actions.zig").Receipt = null,
     godEffectSeconds: f32 = 0,
+    ignitionCue: ?@import("../ignition_visuals.zig").Cue = null,
+    ignitionCueSeconds: f32 = 0,
     detritusFinder: @import("../detritus_finder.zig").Scanner = .{},
     feedingFinder: @import("../detritus_finder.zig").Scanner = .{},
     offspringFinder: @import("../offspring_finder.zig").Search = .{},
@@ -719,6 +722,7 @@ pub const PlayState = struct {
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
         self.propaguleVisuals.advance(dt);
         self.godEffectSeconds = @max(0,self.godEffectSeconds-dt);
+        self.ignitionCueSeconds = @max(0,self.ignitionCueSeconds-dt);
         const raw_dt=self.rawFrameDelta orelse dt;self.rawFrameDelta=null;
         self.simulationStepsLastFrame=0;
         self.simulationClock.begin(raw_dt,self.timeScale,simulation_step_seconds,self.paused or self.showEscapeMenu);
@@ -1023,6 +1027,9 @@ pub const PlayState = struct {
         const result=@import("../experimental/planet_ignition.zig").ignite(&self.planet,expected,self.selectedPoint);
         // A prior wave/scorch animation is not evidence of this distinct reaction.
         self.godReceipt=null;self.godEffectSeconds=0;
+        const Cue=@import("../ignition_visuals.zig");
+        self.ignitionCue=Cue.fromReceipt(result,@import("../performance_details.zig").world_serial,@intFromPtr(self.planet.microbeCells.ptr));
+        self.ignitionCueSeconds=if(self.ignitionCue!=null) Cue.lifetime else 0;
         self.mobileFeedback=if(result.success()) "Exposed dead carbon oxidized; heat and gas changed, no wildfire" else "Detritus ignition blocked; inspect target conditions";
         self.mobileFeedbackSeconds=5;
         return result;
@@ -1170,6 +1177,12 @@ pub const PlayState = struct {
     }
     /// Exact visible target, never redirected if ecology changed after rendering.
     /// The action separately rechecks eligibility before any state mutation.
+    pub fn setArrivalEffectsVisible(self:*PlayState,visible:bool)void {
+        if(self.arrivalEffectsVisible!=visible or !visible)
+            self.propaguleVisuals.discardThrough(self.planet.propaguleFeedback.next_serial-1);
+        self.arrivalEffectsVisible=visible;
+    }
+
     pub fn setSeedTargetsVisible(self:*PlayState,visible:bool)void{self.seedTargetsVisible=visible;self.seedTargets.count=0;}
     pub fn pickSeedTarget(self:*PlayState,x:f32,y:f32) ?usize {
         if(!self.seedTargetsVisible)return null;
@@ -1635,6 +1648,20 @@ pub const PlayState = struct {
         return p.ypos < self.mobileToolbarBottom(size.x()) or p.ypos > size.y() - 84;
     }
 
+    /// A fading ember/heat receipt, not continuing combustion or spreading fire.
+    fn renderIgnitionCue(self:*PlayState,vg:nvg,vp:Mat4,width:f32,height:f32,top:f32) void {
+        const cue=self.ignitionCue orelse return;const Cue=@import("../ignition_visuals.zig");
+        if(self.planet.worldMode!=.origin or !Cue.visible(cue,self.ignitionCueSeconds,@import("../performance_details.zig").world_serial,@intFromPtr(self.planet.microbeCells.ptr)))return;
+        const pos=self.propaguleScreen(cue.cell,vp,width,height,top) orelse return;
+        const alpha=Cue.fade(self.ignitionCueSeconds);const x=pos.x();const y=pos.y();
+        vg.beginPath();vg.ellipse(x,y,18,10);vg.fillColor(nvg.rgba(87,35,12,@intFromFloat(150*alpha)));vg.fill();
+        // Fixed embers fade monotonically; no jitter, flashing, or spreading fronts.
+        for(0..3)|i|{const offset=(@as(f32,@floatFromInt(i))-1)*8;vg.beginPath();vg.circle(x+offset,y-3-@as(f32,@floatFromInt(i%2))*7,3);vg.fillColor(nvg.rgba(255,174,67,@intFromFloat(245*alpha)));vg.fill();}
+        vg.beginPath();vg.ellipse(x,y-4,22+(1-alpha)*8,15+(1-alpha)*5);vg.strokeColor(nvg.rgba(255,192,99,@intFromFloat(180*alpha)));vg.strokeWidth(2);vg.stroke();
+        vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.center,.vertical=.middle});vg.fillColor(nvg.rgba(255,226,180,@intFromFloat(255*alpha)));
+        _=vg.text(x,y+26,"Dead carbon burned · heat added");
+    }
+
     /// Feedback depicts only cells changed by a successful explicit intervention.
     /// Real-time, monotonic fade: no repeated lightning flashes or full-screen flash.
     fn renderGodEffects(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
@@ -1689,6 +1716,10 @@ pub const PlayState = struct {
     /// Cyan diamonds are real arrivals, amber crosses actual tracked colony losses.
     /// Neither denotes established life; green + targets retain their own meaning.
     fn renderPropaguleFeedback(self:*PlayState,vg:nvg,vp:Mat4,width:f32,height:f32,top:f32) void {
+        if(!self.arrivalEffectsVisible){
+            self.propaguleVisuals.discardThrough(self.planet.propaguleFeedback.next_serial-1);
+            return;
+        }
         if(self.planet.worldMode!=.origin or self.displayMode!=.Normal)return;
         const tracker=&self.planet.propaguleFeedback;
         const latest=tracker.next_serial-1;
@@ -2006,6 +2037,7 @@ pub const PlayState = struct {
         self.renderSprouts(vg, vp, width, height, toolBottom);
         self.renderPropaguleFeedback(vg,vp,width,height,toolBottom);
         self.renderGodEffects(vg, vp, width, height, toolBottom);
+        self.renderIgnitionCue(vg, vp, width, height, toolBottom);
         // Terminal advance redraw refreshes living glyphs and pick targets, never controls.
         if(@import("../advance_day.zig").blocksInput())return;
         // Screen-space selection only; not a representation of brush radius.

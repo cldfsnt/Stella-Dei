@@ -5,6 +5,8 @@ pub const duration:f32=1.6;
 pub const Pulse=struct{event:Feedback.Event=.{},remaining:f32=0};
 pub const Pool=struct{
  pulses:[12]Pulse=.{.{}}**12,last_serial:u64=0,
+ /// Drop visual receipts only, including any events emitted while hidden.
+ pub fn discardThrough(self:*Pool,serial:u64) void {self.*=.{.last_serial=serial};}
  pub fn advance(self:*Pool,dt:f32) void {
   if(!std.math.isFinite(dt) or dt<=0)return;
   for(&self.pulses)|*p|p.remaining=@max(0,p.remaining-dt);
@@ -28,4 +30,13 @@ test "actual failure replaces arrival pulse instead of leaving ghost success" {
  var p=Pool{};p.take(.{.serial=1,.lineage=7});p.take(.{.serial=2,.lineage=7,.kind=.failed});
  var active:usize=0;for(p.pulses)|v|{if(v.remaining>0){active+=1;try std.testing.expectEqual(Feedback.Kind.failed,v.event.kind);}}
  try std.testing.expectEqual(@as(usize,1),active);
+}
+
+test "discard removes all pulses and moves cursor without replay across reset" {
+ var p=Pool{};for(1..14)|i|p.take(.{.serial=i,.lineage=i});
+ p.discardThrough(50);for(p.pulses)|v|try std.testing.expectEqual(@as(f32,0),v.remaining);
+ try std.testing.expectEqual(@as(u64,50),p.last_serial);
+ p.discardThrough(80);try std.testing.expectEqual(@as(u64,80),p.last_serial);
+ p.discardThrough(0);try std.testing.expectEqual(@as(u64,0),p.last_serial);
+ p.take(.{.serial=1,.lineage=7});try std.testing.expect(p.pulses[0].remaining>0);
 }

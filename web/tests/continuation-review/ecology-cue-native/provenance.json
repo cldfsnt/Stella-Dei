@@ -1,0 +1,23 @@
+{
+  "files": {
+    "../site-tmp/natural60-day60.json": {
+      "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "bytes": 10474653
+    },
+    "../site-tmp/ecology-cue/install/bin/stella-egl": {
+      "sha256": "95f7402d0660b73e0dacb401aff50dc5ec4db9947fcc2183c7200a84b45d2029",
+      "bytes": 12293896
+    },
+    "web/tests/egl-ecology-cue-prepare.py": {
+      "sha256": "d68bbe893c9120e6899f3ba1f849cc1c49d711f4da0cc1c5c640a971919f296b",
+      "bytes": 6943
+    }
+  },
+  "build_exit": 0,
+  "run_exit": 0,
+  "ticks_per_observer_arm": 30,
+  "dt_seconds": 1440,
+  "no_injected_fuel": true,
+  "width": 390,
+  "height": 700
+}

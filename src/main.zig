@@ -596,6 +596,21 @@ export fn stella_seed_targets(mode:i32)i32 {
     return @intFromBool(state.seedTargetsVisible);
 }
 
+/// Bounded read-only world census and session event history.
+export fn stella_world_ecology(restart:u32)[*:0]const u8 {
+    const state=webPlayState() orelse return "{\"status\":\"unavailable\"}";
+    if(restart>1)return "{\"status\":\"unavailable\"}";
+    return @import("world_ecology.zig").snapshot(&state.planet,PerformanceDetails.world_serial,state.gameTime,restart==1).ptr;
+}
+
+/// Hides visual arrival/loss receipts, not the underlying event tracker.
+export fn stella_arrival_effects(mode:i32)i32 {
+    const state=webPlayState() orelse return -1;
+    if(state.planet.worldMode!=.origin or mode < -1 or mode > 1)return -1;
+    if(mode>=0){_ = webEditableState() orelse return -1;state.setArrivalEffectsVisible(mode==1);}
+    return @intFromBool(state.arrivalEffectsVisible);
+}
+
 export fn stella_seed_colony(expected_point:u32) i32 {
     const state=webEditableState() orelse return -1;
     return state.seedSelectedColony(expected_point);
