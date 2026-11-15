@@ -1,6 +1,6 @@
 //! Stage a real paid packet and its deposition before committing any state.
 const std=@import("std");const M=@import("microbes.zig");const G=@import("wind_genetics.zig");
-pub const Receipt=struct{arrived:bool,carbon_paid:f64,nitrogen_paid:f64,support_paid:f64,carbon_received:f64,nitrogen_received:f64,carbon_returned:f64,nitrogen_returned:f64,carbon_residual:f64,nitrogen_residual:f64,carbon_bound:f64,nitrogen_bound:f64,lineage:u64=0};
+pub const Receipt=struct{arrived:bool,outcome:enum{arrival,viability_failure,capacity_failure},carbon_paid:f64,nitrogen_paid:f64,support_paid:f64,carbon_received:f64,nitrogen_received:f64,carbon_returned:f64,nitrogen_returned:f64,carbon_residual:f64,nitrogen_residual:f64,carbon_bound:f64,nitrogen_bound:f64,lineage:u64=0};
 fn density(budget:f64,area:f64)?f32{const x=budget/area;if(!std.math.isFinite(x) or x<0 or x>std.math.floatMax(f32))return null;var y:f32=@floatCast(x);if(@as(f64,y)*area>budget)y=std.math.nextAfter(f32,y,0);return y;}
 fn add(pool:f32,budget:f64,area:f64)?f32{if(!std.math.isFinite(pool) or pool<0)return null;const inc=density(budget,area) orelse return null;const exact=@as(f64,pool)+inc;if(exact>std.math.floatMax(f32))return null;var out:f32=@floatCast(exact);if((@as(f64,out)-pool)*area>budget)out=std.math.nextAfter(f32,out,pool);return out;}
 pub fn launch(donor:*M.Cell,slot:usize,target:*M.Cell,stats:*M.Stats,area_source:f64,area_target:f64,viable:bool,config:G.Config)?Receipt{
@@ -33,7 +33,7 @@ pub fn launch(donor:*M.Cell,slot:usize,target:*M.Cell,stats:*M.Stats,area_source
  if(residual<0 or residual_n<0 or !std.math.isFinite(bound) or !std.math.isFinite(nbound) or residual>bound or residual_n>nbound)return null;
  if(!M.validCell(paid,trial_stats.next_lineage) or !M.validCell(next,trial_stats.next_lineage))return null;
  donor.*=paid;target.*=next;if(arrived)stats.*=trial_stats;
- return .{.arrived=arrived,.carbon_paid=c,.nitrogen_paid=n,.support_paid=support,.carbon_received=received,.nitrogen_received=received_n,.carbon_returned=returned,.nitrogen_returned=returned_n,.carbon_residual=residual,.nitrogen_residual=residual_n,.carbon_bound=bound,.nitrogen_bound=nbound,.lineage=lineage};
+ return .{.arrived=arrived,.outcome=if(arrived).arrival else if(!viable).viability_failure else .capacity_failure,.carbon_paid=c,.nitrogen_paid=n,.support_paid=support,.carbon_received=received,.nitrogen_received=received_n,.carbon_returned=returned,.nitrogen_returned=returned_n,.carbon_residual=residual,.nitrogen_residual=residual_n,.carbon_bound=bound,.nitrogen_bound=nbound,.lineage=lineage};
 }
 test "paid success and failed launch conserve absolute budgets across unequal areas"{
  const areas=[_][2]f64{.{1,1},.{1,2},.{2,1},.{1,10},.{10,1}};
@@ -61,4 +61,16 @@ test "actual represented C N ledger and invalid extremes"{
  const nafter=(@as(f64,donor.cohorts[0].biomass)*M.nutrient_per_carbon+donor.nutrient)*10+dst.nutrient;
  try std.testing.expect(@abs((cbefore-cafter)-r.carbon_residual)<=1e-14);try std.testing.expect(@abs((nbefore-nafter)-r.nitrogen_residual)<=1e-14);
  std.debug.print("WIND_LAYOUT cohort_bytes{} cell_bytes{} receipt_bytes{}\n",.{@sizeOf(M.Cohort),@sizeOf(M.Cell),@sizeOf(Receipt)});
+}
+test "all three successful birth routes mutate aerial exactly once and off retains old RNG"{
+ var initial=M.Cell{};initial.cohorts[0]=.{.lineage=1,.biomass=0.1,.support_mass=0.02,.reproduction_credit=0.1,.aerial_allocation=0.5};const cfg=G.Config{.enabled=true,.law=1,.stream_seed=42};
+ for(0..3)|route|{
+  var d=initial;var t=M.Cell{};var stats=M.Stats{.next_lineage=2};
+  if(route==0){try std.testing.expect(M.prepareWindPacket(&d,0,&t,&stats,true,cfg));}else if(route==1){try std.testing.expect(M.reproduceWithWind(&d,0,&t,&stats,cfg));}else{try std.testing.expect(launch(&d,0,&t,&stats,1,1,true,cfg).?.arrived);}
+  try std.testing.expectEqual(G.mutation(0.5,42,1,2,1),t.cohorts[0].aerial_allocation);try std.testing.expectEqual(@as(u64,1),stats.births);try std.testing.expectEqual(@as(f32,0),t.cohorts[0].reproduction_credit);
+ }
+ initial.cohorts[0].aerial_allocation=0;var a=initial;var b=initial;var ta=M.Cell{};var tb=M.Cell{};var sa=M.Stats{.next_lineage=2};var sb=sa;
+ try std.testing.expect(M.propagate(&a,0,&ta,&sa));try std.testing.expect(M.prepareWindPacket(&b,0,&tb,&sb,true,.{}));try std.testing.expectEqualDeep(a,b);try std.testing.expectEqualDeep(ta,tb);try std.testing.expectEqualDeep(sa,sb);
+ a=initial;b=initial;ta=.{};tb=.{};sa=.{.next_lineage=2};sb=sa;
+ try std.testing.expect(M.reproduce(&a,0,&ta,&sa,true));try std.testing.expect(M.reproduceWithWind(&b,0,&tb,&sb,.{}));try std.testing.expectEqualDeep(a,b);try std.testing.expectEqualDeep(ta,tb);try std.testing.expectEqualDeep(sa,sb);
 }

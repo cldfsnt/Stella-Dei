@@ -1,0 +1,43 @@
+    const saves=@import("save_game.zig");const M=@import("simulation/microbes.zig");const A=@import("simulation/wind_audit.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();const state=&game.state.Playing;web_initialized=true;loop.pump(4096);
+    state.paused=true;state.showEscapeMenu=false;state.showPointDetails=false;state.showPlanetControl=false;state.selectedTool=.None;
+    const pioneer=std.posix.getenv("QA_PIONEER")!=null;const resumed=std.posix.getenv("QA_RESUME")!=null;const arm=if(pioneer)"pioneer"else "ordinary";var timer=try std.time.Timer.start();
+    if(std.posix.getenv("QA_CAPTURE_ONLY")!=null){
+      const bytes=try std.fs.cwd().readFileAlloc(a,try std.fmt.allocPrint(a,"OUTPUT/{s}-day7.json",.{arm}),128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);const before=try saves.capture(a,state);const exact=try std.json.stringifyAlloc(a,before,.{});
+      const visited=stella_visit_growth_form(PerformanceDetails.world_serial,0);std.debug.assert(visited==1 and state.colonyPeek.focused==1);state.cameraPos=state.targetCameraPos.norm().scale(state.targetCameraDistance);state.cameraDistance=state.targetCameraDistance;loop.pump(4096);render(window);gl.finish();window.swapBuffers();qa_capture(if(pioneer)"OUTPUT/pioneer-day7.ppm"else "OUTPUT/ordinary-day7.ppm");
+      var after=try saves.capture(a,state);after.camera=before.camera;after.camera_target=before.camera_target;after.camera_distance=before.camera_distance;after.target_distance=before.target_distance;std.debug.assert(std.mem.eql(u8,exact,try std.json.stringifyAlloc(a,after,.{})));std.debug.print("CAPTURE_ONLY arm={s} saved_physics_rng_exact=true\n",.{arm});std.process.exit(0);
+    }
+    if(resumed){const path=try std.fmt.allocPrint(a,"OUTPUT/{s}-day3.json",.{arm});const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));}else{
+      std.debug.assert(state.planet.windDispersal.enabled);if(!pioneer)qaWindControls(state);var index:?usize=null;for(0..state.planet.microbeCells.len)|i|{if(state.planet.seedEligibility(i)==.eligible){index=i;break;}}const point=index orelse return error.NoEligibleFounder;
+      const before=state.planet.microbeCells[point];const co2=state.planet.averageCarbonDioxideMass;const oxygen=state.planet.averageOxygenMass;std.debug.assert(if(pioneer)state.planet.seedPioneer(point)else state.planet.seedMicrobes(point));
+      qaWindEmit("FOUNDER",.{.arm=arm,.cell=point,.before=before,.after=state.planet.microbeCells[point],.co2_before=co2,.co2_after=state.planet.averageCarbonDioxideMass,.oxygen_before=oxygen,.oxygen_after=state.planet.averageOxygenMass,.area=state.planet.getMeanPointArea(),.config=state.planet.windDispersal});
+      const initial=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/{s}-initial.json",.{arm}),.data=initial});
+      A.enabled=false;qaWindTick(state);qaWindTick(state);const off=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const parsed=try saves.schema.parse(a,initial);try saves.apply(state,parsed.value);A.enabled=true;qaWindTick(state);qaWindTick(state);std.debug.assert(std.mem.eql(u8,off,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));try saves.apply(state,parsed.value);std.debug.print("OBSERVER_PARITY arm={s} passed=true\n",.{arm});
+    }
+    A.enabled=true;for(if(resumed)@as(usize,180)else 0..420)|tick|{
+      qaWindEmit("TICK_START",.{.arm=arm,.tick=tick+1,.time=state.gameTime});qaWindTick(state);
+      var living:usize=0;var occupied:usize=0;var mass:f64=0;var aerial:usize=0;var forms=[_]usize{0}**6;
+      for(state.planet.microbeCells,0..)|cell,i|{std.debug.assert(M.validCell(cell,state.planet.microbeStats.next_lineage));if(M.biomass(cell)>0)occupied+=1;for(cell.cohorts)|c|{if(c.biomass<=0)continue;living+=1;mass+=c.biomass;forms[@intFromEnum(M.producerForm(c))]+=1;if(c.aerial_allocation>0)aerial+=1;qaWindEmit("COHORT",.{.tick=tick+1,.cell=i,.cohort=c});}}
+      qaWindEmit("TICK",.{.arm=arm,.tick=tick+1,.living=living,.occupied=occupied,.mass=mass,.aerial=aerial,.forms=forms,.births=state.planet.microbeStats.births,.serial=state.planet.windDispersal.serial,.elapsed_ms=timer.read()/1000000});
+      if(tick+1==180 or tick+1==420){const path=try std.fmt.allocPrint(a,"OUTPUT/{s}{s}-day{}.json",.{if(resumed)"resume-"else "",arm,(tick+1)/60});try std.fs.cwd().writeFile(.{.sub_path=path,.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});}
+      if(timer.read()>900*std.time.ns_per_s)return error.RuntimeBudget;
+    }
+    std.debug.print("WIND_PLAYER_COMPLETE arm={s} resumed={} elapsed_ms={}\n",.{arm,resumed,timer.read()/1000000});std.process.exit(0);
+}
+fn qaWindTick(state:*PlayState)void{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+fn qaWindEmit(comptime tag:[]const u8,v:anytype)void{var b:[8192]u8=undefined;var out=std.io.fixedBufferStream(&b);std.json.stringify(v,.{},out.writer()) catch unreachable;std.debug.print("{s} {s}\n",.{tag,out.getWritten()});}
+fn qaWindControls(state:*PlayState)void{
+ const M=@import("simulation/microbes.zig");const P=@import("simulation/wind_packet.zig");const W=@import("simulation/wind_dispersal.zig");
+ for(0..64)|k|{const source=k*640;for([_]f64{0,0.5,0.9,0.99})|u|{
+   const normal=state.planet.transformedPoints[source].norm();var right=normal.cross(@TypeOf(normal).back());if(right.length()<0.000001)right=normal.cross(@TypeOf(normal).new(0,1,0));right=right.norm();const up=normal.cross(right).norm();const velocity=state.planet.airVelocity[source];const wind=right.scale(velocity.x()).add(up.scale(velocity.y()));
+   const result=W.route(state.planet.transformedPoints,state.planet.verticesNeighbours,source,.{wind.x(),wind.y(),wind.z()},state.planet.radius,u) catch |err|{qaWindEmit("CONTROL_ROUTE",.{.source=source,.u=u,.refusal=@errorName(err)});continue;};qaWindEmit("CONTROL_ROUTE",.{.source=source,.u=u,.route=result});
+ }}
+ for([_][2]f64{.{1,1},.{1,2},.{2,1},.{1,10},.{10,1}})|areas|for([_]usize{0,1,4})|occupied|for([_]bool{false,true})|viable|{
+  var donor=M.Cell{};donor.cohorts[0]=.{.lineage=1,.biomass=0.1,.support_mass=0.02,.reproduction_credit=0.1,.aerial_allocation=0.5};var target=M.Cell{};for(0..occupied)|i|target.cohorts[i]=.{.lineage=i+2,.biomass=0.1};var stats=M.Stats{.next_lineage=6};const db=donor;const tb=target;const sb=stats;
+  const receipt=P.launch(&donor,0,&target,&stats,areas[0],areas[1],viable,state.planet.windDispersal) orelse unreachable;
+  qaWindEmit("CONTROL_PACKET",.{.areas=areas,.occupied=occupied,.viable=viable,.before_donor=db,.after_donor=donor,.before_target=tb,.after_target=target,.before_stats=sb,.after_stats=stats,.receipt=receipt});
+  std.debug.assert(receipt.arrived==(viable and occupied<4));std.debug.assert(donor.cohorts[0].reproduction_credit<db.cohorts[0].reproduction_credit);
+  const after_donor=donor;const after_target=target;const after_stats=stats;std.debug.assert(P.launch(&donor,0,&target,&stats,0,areas[1],viable,state.planet.windDispersal)==null);std.debug.assert(std.meta.eql(after_donor,donor) and std.meta.eql(after_target,target) and std.meta.eql(after_stats,stats));
+ };
+ std.debug.print("CONTROL_COMPLETE packet_cases=30 source_unchanged=true\n",.{});
+}

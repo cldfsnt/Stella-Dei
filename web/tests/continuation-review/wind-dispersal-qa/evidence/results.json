@@ -1,0 +1,813 @@
+{
+  "ordinary": {
+    "founder": {
+      "arm": "ordinary",
+      "cell": 180,
+      "before": {
+        "cohorts": [
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 17255501439659759195
+      },
+      "after": {
+        "cohorts": [
+          {
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 1,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 17255501439659759195
+      },
+      "co2_before": 754.3577270507812,
+      "co2_after": 754.3577133201978,
+      "oxygen_before": 26334.626953125,
+      "oxygen_after": 26334.626963110877,
+      "area": 7669529600.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "stream_seed": 15021278609987233951,
+        "serial": 0
+      }
+    },
+    "first_tick": {
+      "arm": "ordinary",
+      "tick": 1,
+      "living": 1,
+      "occupied": 1,
+      "mass": 0.020023534074425697,
+      "aerial": 0,
+      "forms": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "births": 0,
+      "serial": 0,
+      "elapsed_ms": 530
+    },
+    "last_tick": {
+      "arm": "ordinary",
+      "tick": 420,
+      "living": 1,
+      "occupied": 1,
+      "mass": 0.006213937886059284,
+      "aerial": 0,
+      "forms": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "births": 0,
+      "serial": 0,
+      "elapsed_ms": 6318
+    },
+    "packet_count": 0,
+    "opportunity_count": 0,
+    "outcomes": {},
+    "all_opportunity_serials_unique": true,
+    "control_exact_audit": [
+      {
+        "areas": [
+          1.0,
+          1.0
+        ],
+        "occupied": 0,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          1.0
+        ],
+        "occupied": 0,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          1.0,
+          1.0
+        ],
+        "occupied": 1,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          1.0
+        ],
+        "occupied": 1,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          1.0,
+          1.0
+        ],
+        "occupied": 4,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          1.0
+        ],
+        "occupied": 4,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          2.0
+        ],
+        "occupied": 0,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          2.0
+        ],
+        "occupied": 0,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          1.0,
+          2.0
+        ],
+        "occupied": 1,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          2.0
+        ],
+        "occupied": 1,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          1.0,
+          2.0
+        ],
+        "occupied": 4,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          2.0
+        ],
+        "occupied": 4,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          2.0,
+          1.0
+        ],
+        "occupied": 0,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/9007199254740992"
+      },
+      {
+        "areas": [
+          2.0,
+          1.0
+        ],
+        "occupied": 0,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          2.0,
+          1.0
+        ],
+        "occupied": 1,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/9007199254740992"
+      },
+      {
+        "areas": [
+          2.0,
+          1.0
+        ],
+        "occupied": 1,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          2.0,
+          1.0
+        ],
+        "occupied": 4,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/9007199254740992"
+      },
+      {
+        "areas": [
+          2.0,
+          1.0
+        ],
+        "occupied": 4,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/9007199254740992"
+      },
+      {
+        "areas": [
+          1.0,
+          10.0
+        ],
+        "occupied": 0,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          10.0
+        ],
+        "occupied": 0,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "40265319/2305843009213693952"
+      },
+      {
+        "areas": [
+          1.0,
+          10.0
+        ],
+        "occupied": 1,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          10.0
+        ],
+        "occupied": 1,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "40265319/2305843009213693952"
+      },
+      {
+        "areas": [
+          1.0,
+          10.0
+        ],
+        "occupied": 4,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          1.0,
+          10.0
+        ],
+        "occupied": 4,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "13529147/18014398509481984"
+      },
+      {
+        "areas": [
+          10.0,
+          1.0
+        ],
+        "occupied": 0,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "536871/9007199254740992"
+      },
+      {
+        "areas": [
+          10.0,
+          1.0
+        ],
+        "occupied": 0,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          10.0,
+          1.0
+        ],
+        "occupied": 1,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "536871/9007199254740992"
+      },
+      {
+        "areas": [
+          10.0,
+          1.0
+        ],
+        "occupied": 1,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "0"
+      },
+      {
+        "areas": [
+          10.0,
+          1.0
+        ],
+        "occupied": 4,
+        "viable": false,
+        "carbon_error": "0",
+        "nitrogen_error": "536871/9007199254740992"
+      },
+      {
+        "areas": [
+          10.0,
+          1.0
+        ],
+        "occupied": 4,
+        "viable": true,
+        "carbon_error": "0",
+        "nitrogen_error": "536871/9007199254740992"
+      }
+    ],
+    "first_newborn": null,
+    "last_cohorts": [
+      {
+        "tick": 420,
+        "cell": 180,
+        "cohort": {
+          "biomass": 0.006213937886059284,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "optimum": 303.0,
+          "efficiency": 1.0,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 0,
+          "lineage": 1,
+          "parent": 0,
+          "reproduction_credit": 0.005570247769355774
+        }
+      }
+    ],
+    "restart_exact": true,
+    "day7_sha256": "08f81aecdd293fa2993403e44566cb795940a6a1e86a3390738594ecb9a4864c"
+  },
+  "pioneer": {
+    "founder": {
+      "arm": "pioneer",
+      "cell": 180,
+      "before": {
+        "cohorts": [
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 17255501439659759195
+      },
+      "after": {
+        "cohorts": [
+          {
+            "aerial_allocation": 0.5,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 1,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 17255501439659759195
+      },
+      "co2_before": 754.3577270507812,
+      "co2_after": 754.3577133201978,
+      "oxygen_before": 26334.626953125,
+      "oxygen_after": 26334.626963110877,
+      "area": 7669529600.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "stream_seed": 15021278609987233951,
+        "serial": 0
+      }
+    },
+    "first_tick": {
+      "arm": "pioneer",
+      "tick": 1,
+      "living": 1,
+      "occupied": 1,
+      "mass": 0.020023534074425697,
+      "aerial": 1,
+      "forms": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "births": 0,
+      "serial": 0,
+      "elapsed_ms": 451
+    },
+    "last_tick": {
+      "arm": "pioneer",
+      "tick": 420,
+      "living": 1,
+      "occupied": 1,
+      "mass": 0.006213937886059284,
+      "aerial": 1,
+      "forms": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "births": 0,
+      "serial": 0,
+      "elapsed_ms": 6582
+    },
+    "packet_count": 0,
+    "opportunity_count": 0,
+    "outcomes": {},
+    "all_opportunity_serials_unique": true,
+    "control_exact_audit": [],
+    "first_newborn": null,
+    "last_cohorts": [
+      {
+        "tick": 420,
+        "cell": 180,
+        "cohort": {
+          "aerial_allocation": 0.5,
+          "biomass": 0.006213937886059284,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "optimum": 303.0,
+          "efficiency": 1.0,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 0,
+          "lineage": 1,
+          "parent": 0,
+          "reproduction_credit": 0.005570247769355774
+        }
+      }
+    ],
+    "restart_exact": true,
+    "day7_sha256": "1b23fff9eed17d5520b0fefff81ed221ec9ebd49096e5d5f5a5fdfb3c0c6bdc0"
+  }
+}

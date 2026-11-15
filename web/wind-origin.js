@@ -1,0 +1,20 @@
+//! Staged main-game controller. Not loaded by released main or Wetlands.
+(function(root){'use strict';
+const uint=n=>Number.isInteger(n)&&n>=0&&n<=4294967295;
+function valid(s){return !!s&&uint(s.world_serial)&&['unavailable','classic','wind'].includes(s.status)&&typeof s.enabled==='boolean'&&((s.status==='unavailable'&&!s.enabled&&s.writer_version===0)||(s.status==='classic'&&!s.enabled&&s.writer_version===7&&s.law===0)||(s.status==='wind'&&s.enabled&&s.writer_version===11&&s.law===1&&uint(s.cell)));}
+function describe(s){if(!valid(s))return 'Wind dispersal status unavailable. No world changed.';if(s.status==='unavailable')return 'No active world. Start a fresh wind-dispersal Origin world explicitly.';if(s.status==='classic')return 'Classic world: wind dispersal is off. Existing lineages are unchanged.';return 'Wind dispersal active · law 1. Ordinary Seed starts at 0; paid Pioneer Seed starts at 50% aerial allocation. Allocation redirects existing reproductive opportunities, not extra offspring. Wind direction and distance affect arrival; released failures deposit dead carbon and nutrients at the destination. Establishment is not guaranteed.';}
+function create(h){let current=null;
+ function refresh(){try{const s=h.read();current=valid(s)?s:null;}catch{current=null;}h.render(current,describe(current));return current;}
+ function result(code,fresh){const previous=current;refresh();if(code===1&&(!current||current.status!=='wind'||(fresh?current.world_serial===previous.world_serial:current.world_serial!==previous.world_serial||current.cell!==previous.cell))){h.message('Action result could not be verified. Inspect the world before retrying.',true);return false;}const text=code===1?(fresh?'Fresh wind-dispersal Origin created. Nothing saved or seeded automatically.':'Paid Pioneer seeded with 50% aerial allocation; no successful flight is implied.'):code===0?'Seeding refused: habitat, resources or space unavailable.':code===-2?'World or selected patch changed. Refresh before retrying.':code===-3?'An action or save is busy. Wait, then review again.':'Action unavailable. No further action requested.';h.message(text,code!==1);if(code===1&&h.changed)h.changed(fresh);return code===1;}
+ function fresh(){const old=current;if(!old||!h.available())return false;if(!h.confirm('Create a fresh wind-dispersal Origin world? This discards unsaved progress in the current world. It does not save, overwrite your browser save, or change existing lineages. Save first if needed.'))return false;
+  let now;try{now=h.read();}catch{}if(!h.available()||!valid(now)||now.world_serial!==old.world_serial){h.message('World changed or an action is busy. Nothing created.',true);refresh();return false;}
+  try{return result(h.fresh(old.world_serial),true);}catch{h.message('Creation result unknown. Inspect the world before retrying.',true);return false;}
+ }
+ function pioneer(){const old=current;let now;try{now=h.read();}catch{}if(!old||old.status!=='wind'||!h.available()||!valid(now)||now.status!=='wind'||now.world_serial!==old.world_serial||now.cell!==old.cell){h.message('Wind world or selected patch changed, or an action is busy. Refresh first.',true);refresh();return false;}
+  try{return result(h.pioneer(old.world_serial,old.cell),false);}catch{h.message('Seed result unknown. Inspect the patch before retrying.',true);return false;}
+ }
+ return {refresh,fresh,pioneer};
+}
+function mount(doc,h){const ui=create({...h,render:(s,text)=>{doc.getElementById('wind-law-status').textContent=text;doc.getElementById('wind-new').disabled=!s||!h.available();doc.getElementById('wind-pioneer').disabled=!s||s.status!=='wind'||!h.available();}});doc.getElementById('wind-new').onclick=ui.fresh;doc.getElementById('wind-pioneer').onclick=ui.pioneer;doc.getElementById('wind-refresh').onclick=ui.refresh;ui.refresh();return ui;}
+const api={valid,describe,create,mount};if(typeof module==='object'&&module.exports)module.exports=api;else root.StellaWind=api;
+})(typeof globalThis==='undefined'?this:globalThis);

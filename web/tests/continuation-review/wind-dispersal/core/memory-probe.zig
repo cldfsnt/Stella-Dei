@@ -1,0 +1,1 @@
+const std=@import("std");pub fn main()void{const Old=@import("simulation/wind_old_microbes.zig");const New=@import("simulation/microbes.zig");std.debug.print("MEMORY old_cohort={} new_cohort={} old_cell={} new_cell={} extra40962={}\n",.{@sizeOf(Old.Cohort),@sizeOf(New.Cohort),@sizeOf(Old.Cell),@sizeOf(New.Cell),(@sizeOf(New.Cell)-@sizeOf(Old.Cell))*40962});}

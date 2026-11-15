@@ -29,7 +29,7 @@
          return planet;
      }
  
-@@ -1490,6 +1494,32 @@
+@@ -1490,6 +1494,33 @@
          if (fixed <= 0) return false;
          self.applyMicrobeFlux(.{ .fixed = fixed });
          return true;
@@ -52,17 +52,18 @@
 +        const c=self.microbeCells[index].cohorts[slot];
 +        if(!std.math.isFinite(c.aerial_allocation) or c.aerial_allocation<=0 or c.aerial_allocation>1 or c.biomass<0.02 or c.reproduction_credit<0.01 or c.lineage==0)return null;
 +        const event=cfg.serial;cfg.serial+=1;
-+        if(G.draw(cfg.stream_seed,event,c.lineage,0x57494e44524f5554)>=c.aerial_allocation)return null;
-+        const route=@import("wind_dispersal.zig").route(self.transformedPoints,self.verticesNeighbours,index,self.atmosphericWind(index),self.radius,G.draw(cfg.stream_seed,event,c.lineage,0x57494e4444495354)) catch return null;
++        if(G.draw(cfg.stream_seed,event,c.lineage,0x57494e44524f5554)>=c.aerial_allocation){@import("wind_audit.zig").opportunity(.{.time=time,.event=event,.from=index,.parent=c.lineage,.outcome="local_allocation"});return null;}
++        const route=@import("wind_dispersal.zig").route(self.transformedPoints,self.verticesNeighbours,index,self.atmosphericWind(index),self.radius,G.draw(cfg.stream_seed,event,c.lineage,0x57494e4444495354)) catch |err|{@import("wind_audit.zig").opportunity(.{.time=time,.event=event,.from=index,.parent=c.lineage,.outcome="prelaunch_route_refusal",.reason=@errorName(err)});return null;};
 +        const viable=G.draw(cfg.stream_seed,event,c.lineage,0x57494e4456494142)<route.survival;
-+        const receipt=@import("wind_packet.zig").launch(&self.microbeCells[index],slot,&self.microbeCells[route.index],&self.microbeStats,self.getMeanPointArea(),self.getMeanPointArea(),viable,cfg.*) orelse return null;
++        const receipt=@import("wind_packet.zig").launch(&self.microbeCells[index],slot,&self.microbeCells[route.index],&self.microbeStats,self.getMeanPointArea(),self.getMeanPointArea(),viable,cfg.*) orelse {@import("wind_audit.zig").opportunity(.{.time=time,.event=event,.from=index,.parent=c.lineage,.outcome="prelaunch_packet_refusal",.route=route});return null;};
++        @import("wind_audit.zig").opportunity(.{.time=time,.event=event,.from=index,.parent=c.lineage,.outcome=@tagName(receipt.outcome),.route=route,.receipt=receipt});
 +        @import("wind_audit.zig").emit(.{.time=time,.event=event,.from=index,.to=route.index,.parent=c.lineage,.route=route,.receipt=receipt});
 +        if(receipt.arrived){self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(index,route.index,receipt.lineage,time);}
 +        self.propaguleAttempts+|=1;return route.index;
      }
  
      /// Explicit player-supplied nutrient input, not an endogenous source.
-@@ -1572,6 +1602,7 @@
+@@ -1572,6 +1603,7 @@
              for (0..cell.cohorts.len) |donor_offset| {
                  const cohort = (donor_start + donor_offset) % cell.cohorts.len;
                  if(cell.cohorts[cohort].reproduction_credit>=0.01 and cell.cohorts[cohort].biomass>=0.02){
@@ -70,7 +71,7 @@
                      const adjacent=self.getNeighbours(i);
                      const n=adjacent[@intCast(Microbes.random(&cell.rng)%adjacent.len)];
                      // Pentagon adjacency pads with self: not a dispersal attempt.
-@@ -1581,7 +1612,7 @@
+@@ -1581,7 +1613,7 @@
                      // Exploration includes harsh real habitats; no favorable-condition gate.
                      if(std.math.isFinite(env.depth_km) and std.math.isFinite(env.temperature)){
                          const lineage=self.microbeStats.next_lineage;
@@ -79,7 +80,7 @@
                              if(active)|bits|ActiveCells.mark(bits,n);
                              self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(i,n,lineage,options.gameTime);
                              continue;
-@@ -1589,14 +1620,14 @@
+@@ -1589,14 +1621,14 @@
                      }
                  }
                  if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;

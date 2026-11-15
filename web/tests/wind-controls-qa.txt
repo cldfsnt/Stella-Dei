@@ -1,0 +1,15 @@
+fn qaWindControls(state:*PlayState)void{
+ const M=@import("simulation/microbes.zig");const P=@import("simulation/wind_packet.zig");const W=@import("simulation/wind_dispersal.zig");
+ for(0..64)|k|{const source=k*640;for([_]f64{0,0.5,0.9,0.99})|u|{
+   const normal=state.planet.transformedPoints[source].norm();var right=normal.cross(@TypeOf(normal).back());if(right.length()<0.000001)right=normal.cross(@TypeOf(normal).new(0,1,0));right=right.norm();const up=normal.cross(right).norm();const velocity=state.planet.airVelocity[source];const wind=right.scale(velocity.x()).add(up.scale(velocity.y()));
+   const result=W.route(state.planet.transformedPoints,state.planet.verticesNeighbours,source,.{wind.x(),wind.y(),wind.z()},state.planet.radius,u) catch |err|{qaWindEmit("CONTROL_ROUTE",.{.source=source,.u=u,.refusal=@errorName(err)});continue;};qaWindEmit("CONTROL_ROUTE",.{.source=source,.u=u,.route=result});
+ }}
+ for([_][2]f64{.{1,1},.{1,2},.{2,1},.{1,10},.{10,1}})|areas|for([_]usize{0,1,4})|occupied|for([_]bool{false,true})|viable|{
+  var donor=M.Cell{};donor.cohorts[0]=.{.lineage=1,.biomass=0.1,.support_mass=0.02,.reproduction_credit=0.1,.aerial_allocation=0.5};var target=M.Cell{};for(0..occupied)|i|target.cohorts[i]=.{.lineage=i+2,.biomass=0.1};var stats=M.Stats{.next_lineage=6};const db=donor;const tb=target;const sb=stats;
+  const receipt=P.launch(&donor,0,&target,&stats,areas[0],areas[1],viable,state.planet.windDispersal) orelse unreachable;
+  qaWindEmit("CONTROL_PACKET",.{.areas=areas,.occupied=occupied,.viable=viable,.before_donor=db,.after_donor=donor,.before_target=tb,.after_target=target,.before_stats=sb,.after_stats=stats,.receipt=receipt});
+  std.debug.assert(receipt.arrived==(viable and occupied<4));std.debug.assert(donor.cohorts[0].reproduction_credit<db.cohorts[0].reproduction_credit);
+  const after_donor=donor;const after_target=target;const after_stats=stats;std.debug.assert(P.launch(&donor,0,&target,&stats,0,areas[1],viable,state.planet.windDispersal)==null);std.debug.assert(std.meta.eql(after_donor,donor) and std.meta.eql(after_target,target) and std.meta.eql(after_stats,stats));
+ };
+ std.debug.print("CONTROL_COMPLETE packet_cases=30 source_unchanged=true\n",.{});
+}
