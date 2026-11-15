@@ -1,0 +1,13 @@
+1/3 qa_hydraulic_head_probe.test.frozen radius scale heads erase or exaggerate represented centimeter water changes...HEAD_NATIVE label=day30 requested_m=0.01 represented_m=0.010000017937272787 current_head_m=0 old_proposal=0 relative_proposal=0.3681380835962457
+HEAD_NATIVE label=day30 requested_m=0.02 represented_m=0.020000035874545574 current_head_m=0 old_proposal=0 relative_proposal=0.7362761671924914
+HEAD_NATIVE label=day30 requested_m=0.05 represented_m=0.05000003147870302 current_head_m=0 old_proposal=0 relative_proposal=1.8406882751393983
+HEAD_NATIVE label=day60 requested_m=0.01 represented_m=0.010000017937272787 current_head_m=0 old_proposal=0 relative_proposal=0.3681380835962457
+HEAD_NATIVE label=day60 requested_m=0.02 represented_m=0.020000035874545574 current_head_m=0 old_proposal=0 relative_proposal=0.7362761671924914
+HEAD_NATIVE label=day60 requested_m=0.05 represented_m=0.05000003147870302 current_head_m=0.48828125 old_proposal=17.97546 relative_proposal=1.8406882751393983
+HEAD_NATIVE label=day90 requested_m=0.01 represented_m=0.009999959729611874 current_head_m=0.48828125 old_proposal=17.97546 relative_proposal=0.36813594075441547
+HEAD_NATIVE label=day90 requested_m=0.02 represented_m=0.01999997766688466 current_head_m=0.48828125 old_proposal=17.97546 relative_proposal=0.7362740243506612
+HEAD_NATIVE label=day90 requested_m=0.05 represented_m=0.04999997327104211 current_head_m=0.48828125 old_proposal=17.97546 relative_proposal=1.840686132297568
+OK
+2/3 simulation.surface_physics.test.water thermal capacity uses depth, not grid size, and dry ground unchanged...OK
+3/3 simulation.surface_physics.test.closed water exchange conserves water plus vapor and cannot overshoot or go negative...OK
+All 3 tests passed.

@@ -1,0 +1,259 @@
+{
+  "scope": "local arithmetic; no actual scheduler or aggregate-flow claim",
+  "km_per_mass_f32": 1.303860983625782e-07,
+  "fraction_f32": 0.004800000227987766,
+  "worlds": [
+    {
+      "label": "day30",
+      "source_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "unperturbed_all": {
+        "edges": 245760,
+        "routing_disagreements": 50443,
+        "f32_ties_with_nonzero_relative_head": 100886,
+        "different_proposed_transfer": 104764,
+        "max_head_error_m": 0.48828125,
+        "sum_abs_transfer_difference_native": 777586.748629402
+      },
+      "unperturbed_shallow_source": {
+        "edges": 7703,
+        "routing_disagreements": 2,
+        "f32_ties_with_nonzero_relative_head": 3,
+        "different_proposed_transfer": 2,
+        "max_head_error_m": 0.4395568248583004,
+        "sum_abs_transfer_difference_native": 5.4482200145721436
+      },
+      "perturbations": [
+        {
+          "added_m_requested": 0.01,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 25350,
+          "shallow_cells": 1284,
+          "shallow_changes_lost_in_head": 1284,
+          "actual_edges_current_transfer_changes": 73318,
+          "actual_edges_relative_transfer_changes": 148431,
+          "head_sensitivity_recovered_but_cap_still_equal": 68680
+        },
+        {
+          "added_m_requested": 0.02,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 23872,
+          "shallow_cells": 1284,
+          "shallow_changes_lost_in_head": 1284,
+          "actual_edges_current_transfer_changes": 79532,
+          "actual_edges_relative_transfer_changes": 153750,
+          "head_sensitivity_recovered_but_cap_still_equal": 64030
+        },
+        {
+          "added_m_requested": 0.05,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 22176,
+          "shallow_cells": 1284,
+          "shallow_changes_lost_in_head": 1244,
+          "actual_edges_current_transfer_changes": 86203,
+          "actual_edges_relative_transfer_changes": 159337,
+          "head_sensitivity_recovered_but_cap_still_equal": 57553
+        }
+      ],
+      "synthetic_equal_level_pair_at_12352_scale": [
+        {
+          "added_m_requested": 0.01,
+          "represented_depth_increase_m": 0.010000017937272787,
+          "current_head_increase_m": 0.0,
+          "current_transfer_native": 0.0,
+          "relative_transfer_native": 0.3681380835962457
+        },
+        {
+          "added_m_requested": 0.02,
+          "represented_depth_increase_m": 0.020000035874545574,
+          "current_head_increase_m": 0.0,
+          "current_transfer_native": 0.0,
+          "relative_transfer_native": 0.7362761671924914
+        },
+        {
+          "added_m_requested": 0.05,
+          "represented_depth_increase_m": 0.05000003147870302,
+          "current_head_increase_m": 0.0,
+          "current_transfer_native": 0.0,
+          "relative_transfer_native": 1.8406882751393983
+        }
+      ]
+    },
+    {
+      "label": "day60",
+      "source_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "unperturbed_all": {
+        "edges": 245760,
+        "routing_disagreements": 42028,
+        "f32_ties_with_nonzero_relative_head": 84056,
+        "different_proposed_transfer": 104655,
+        "max_head_error_m": 0.48828125,
+        "sum_abs_transfer_difference_native": 798978.7566896186
+      },
+      "unperturbed_shallow_source": {
+        "edges": 7679,
+        "routing_disagreements": 3,
+        "f32_ties_with_nonzero_relative_head": 4,
+        "different_proposed_transfer": 3,
+        "max_head_error_m": 0.4434110160218552,
+        "sum_abs_transfer_difference_native": 5.862864285707474
+      },
+      "perturbations": [
+        {
+          "added_m_requested": 0.01,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 23883,
+          "shallow_cells": 1280,
+          "shallow_changes_lost_in_head": 1280,
+          "actual_edges_current_transfer_changes": 76344,
+          "actual_edges_relative_transfer_changes": 145357,
+          "head_sensitivity_recovered_but_cap_still_equal": 65131
+        },
+        {
+          "added_m_requested": 0.02,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 22311,
+          "shallow_cells": 1280,
+          "shallow_changes_lost_in_head": 1280,
+          "actual_edges_current_transfer_changes": 82359,
+          "actual_edges_relative_transfer_changes": 149799,
+          "head_sensitivity_recovered_but_cap_still_equal": 60494
+        },
+        {
+          "added_m_requested": 0.05,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 20801,
+          "shallow_cells": 1280,
+          "shallow_changes_lost_in_head": 1234,
+          "actual_edges_current_transfer_changes": 87666,
+          "actual_edges_relative_transfer_changes": 153561,
+          "head_sensitivity_recovered_but_cap_still_equal": 55290
+        }
+      ],
+      "synthetic_equal_level_pair_at_12352_scale": [
+        {
+          "added_m_requested": 0.01,
+          "represented_depth_increase_m": 0.010000017937272787,
+          "current_head_increase_m": 0.0,
+          "current_transfer_native": 0.0,
+          "relative_transfer_native": 0.3681380835962457
+        },
+        {
+          "added_m_requested": 0.02,
+          "represented_depth_increase_m": 0.020000035874545574,
+          "current_head_increase_m": 0.0,
+          "current_transfer_native": 0.0,
+          "relative_transfer_native": 0.7362761671924914
+        },
+        {
+          "added_m_requested": 0.05,
+          "represented_depth_increase_m": 0.05000003147870302,
+          "current_head_increase_m": 0.48828125,
+          "current_transfer_native": 17.975460052490234,
+          "relative_transfer_native": 1.8406882751393983
+        }
+      ]
+    },
+    {
+      "label": "day90",
+      "source_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+      "unperturbed_all": {
+        "edges": 245760,
+        "routing_disagreements": 38310,
+        "f32_ties_with_nonzero_relative_head": 76620,
+        "different_proposed_transfer": 104645,
+        "max_head_error_m": 0.48828125,
+        "sum_abs_transfer_difference_native": 802399.0504226218
+      },
+      "unperturbed_shallow_source": {
+        "edges": 7823,
+        "routing_disagreements": 2,
+        "f32_ties_with_nonzero_relative_head": 3,
+        "different_proposed_transfer": 2,
+        "max_head_error_m": 0.44187593448441476,
+        "sum_abs_transfer_difference_native": 5.582602620124817
+      },
+      "perturbations": [
+        {
+          "added_m_requested": 0.01,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 23303,
+          "shallow_cells": 1304,
+          "shallow_changes_lost_in_head": 1304,
+          "actual_edges_current_transfer_changes": 77360,
+          "actual_edges_relative_transfer_changes": 143919,
+          "head_sensitivity_recovered_but_cap_still_equal": 63821
+        },
+        {
+          "added_m_requested": 0.02,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 21589,
+          "shallow_cells": 1304,
+          "shallow_changes_lost_in_head": 1304,
+          "actual_edges_current_transfer_changes": 83772,
+          "actual_edges_relative_transfer_changes": 148093,
+          "head_sensitivity_recovered_but_cap_still_equal": 58899
+        },
+        {
+          "added_m_requested": 0.05,
+          "cells": 40962,
+          "mass_unchanged": 0,
+          "depth_unchanged": 0,
+          "represented_depth_changes": 40962,
+          "represented_changes_lost_in_head": 20106,
+          "shallow_cells": 1304,
+          "shallow_changes_lost_in_head": 1264,
+          "actual_edges_current_transfer_changes": 88890,
+          "actual_edges_relative_transfer_changes": 151385,
+          "head_sensitivity_recovered_but_cap_still_equal": 53957
+        }
+      ],
+      "synthetic_equal_level_pair_at_12352_scale": [
+        {
+          "added_m_requested": 0.01,
+          "represented_depth_increase_m": 0.009999959729611874,
+          "current_head_increase_m": 0.48828125,
+          "current_transfer_native": 17.975460052490234,
+          "relative_transfer_native": 0.36813594075441547
+        },
+        {
+          "added_m_requested": 0.02,
+          "represented_depth_increase_m": 0.01999997766688466,
+          "current_head_increase_m": 0.48828125,
+          "current_transfer_native": 17.975460052490234,
+          "relative_transfer_native": 0.7362740243506612
+        },
+        {
+          "added_m_requested": 0.05,
+          "represented_depth_increase_m": 0.04999997327104211,
+          "current_head_increase_m": 0.48828125,
+          "current_transfer_native": 17.975460052490234,
+          "relative_transfer_native": 1.840686132297568
+        }
+      ]
+    }
+  ]
+}

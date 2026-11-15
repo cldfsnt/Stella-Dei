@@ -1,0 +1,37 @@
+{
+  "source_head_expression": "production planet.zig lines1039/1351, surface_physics.heightLimitedMass unchanged",
+  "artifacts": {
+    "web/tests/probe-hydraulic-head.py": {
+      "sha256": "a60af366267852e48376f1cf603420023ca8b429eae96004478327225d21548b",
+      "bytes": 4529
+    },
+    "src/qa_hydraulic_head_probe.zig": {
+      "sha256": "ccd8b98ee8f51aed8e9bf17fc2670d926ed0d031ae65b15c312411a410eafdbf",
+      "bytes": 1413
+    },
+    "src/experimental/head_probe_fixture.json": {
+      "sha256": "f24d6c1ceb06a8eca821e3704534d11cd475fd5ba8a3f194a2ee76be73967169",
+      "bytes": 221
+    },
+    "web/tests/continuation-review/paid-hydration/soil-root-design/terrestrial-opportunity/head-native.log": {
+      "sha256": "93f135fd9c62371a00d8e98a1a26b877b6d9448e3b8ab498481274a665fe34ab",
+      "bytes": 1748
+    },
+    "web/tests/continuation-review/paid-hydration/soil-root-design/terrestrial-opportunity/head-probe.json": {
+      "sha256": "37cb02eaec5facf6e5f679a4101a771f1ec05e0256650d753a79c24d380132d5",
+      "bytes": 9744
+    },
+    "web/tests/continuation-review/paid-hydration/soil-root-design/terrestrial-opportunity/head-edges-day60.npz": {
+      "sha256": "4c3b6a21847eebf72fb13f95a1e8e5e8cc26cd71747d38f315a14eede9113fc8",
+      "bytes": 1908273
+    },
+    "web/tests/continuation-review/paid-hydration/soil-root-design/terrestrial-opportunity/head-edges-day30.npz": {
+      "sha256": "e9e3765f891602567a43c71921518be4416bbb2c6c7b2d6ede2a3d6db5bfe92e",
+      "bytes": 1874050
+    },
+    "web/tests/continuation-review/paid-hydration/soil-root-design/terrestrial-opportunity/head-edges-day90.npz": {
+      "sha256": "e9b95e57f362138c23193d8fe0c21a5994cb31878265faafd93b41125c2610c4",
+      "bytes": 1922397
+    }
+  }
+}
