@@ -1,0 +1,5 @@
+{
+  "src/qa_root_wet_competition.zig": "a5473227a36a1761bde21f8f875f80d4ae8fa5d74396e8127431479f712418cc",
+  "src/experimental/soil_physiology_core.zig": "c4b137ae9f81935e7ccc42d6deabf93c4e42d8bc189f6cd0de6a08a52db0153e",
+  "src/experimental/soil_physiology_fixture.json": "5f12b772eb0b05929b4a42f5aca22de7c170cb72f22584d5cc9e7733a3c9bf68"
+}
