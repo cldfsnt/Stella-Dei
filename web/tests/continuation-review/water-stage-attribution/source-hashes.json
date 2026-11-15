@@ -1,0 +1,12 @@
+{
+  "production": {
+    "main.zig": "65f9af31b4b91bfa010c975dbd8f13f85fce1562b12b1bb1d8caa856e3f72e59",
+    "simulation/planet.zig": "08e18f2656d37aaf5d6135b64f330fedddca63de01d8172d7e9b840ae012a957",
+    "simulation/water_stage_audit.zig": "270aa311febb4a7c65790910835ca92b30f623338dd0be73879d163272080dce"
+  },
+  "candidate": {
+    "main.zig": "949b4ddff6de8af90e3576282d41ef32bb032d504153853c1d0db9af09ec9260",
+    "simulation/planet.zig": "0869e6d3e7eee38aefa26c552b6b37a7a34697dd07c9d8619cd0533b6c6d4613",
+    "simulation/water_stage_audit.zig": "270aa311febb4a7c65790910835ca92b30f623338dd0be73879d163272080dce"
+  }
+}

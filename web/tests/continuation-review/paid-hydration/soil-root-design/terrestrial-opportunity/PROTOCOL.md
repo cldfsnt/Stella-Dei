@@ -1,0 +1,11 @@
+# Read-only terrestrial opportunity census, fixed before calculation
+
+Use all cells and all living cohorts in frozen production naturalday30,day60 and unablatedday90 snapshots. No candidate model or simulation ticks. Reuse exact existing native topology dump (40962cells) only for adjacency, excluding self/padded repeated neighbors. Verify common radius/subdivision/count; no candidate selection or follow-up run.
+
+Fixed all-cell depth bins: exactlydry0; positive<0.2m;0.2–50m;>50m. Warm photosynthesis-compatible temperature: strictly273.15<T<355K. Existing aquatic reproductive gate reported separately260<T<355 and0.2–50m. Cohort exposure uses actual existing paid height producerHeightMeters formula, fronds=biomass−support, no root allocation. Classify living submerged versus height>standingdepth, and zeroheight dry separately. Report all phenotype ranges, biomass/support and occupancy, not preferred examples.
+
+Physical soil is ABSENT in these legacy snapshots, so neither capacity1 nor a warm/rain-bearing patch is an actual soil reservoir. Report hypothetical1kg/m² capacity opportunity separately, with standing water/source quantum and nonzero actual saved rainfall diagnostic. Rainfall is historical filtered phase condensation, not continuous precipitation or measured moisture. Intersections of dry/warm/shallow indices across30/60/90 are only repeated snapshots, NOT proof of continuous exposure or persistence.
+
+Hydrologic setting: native equal-area depth fromwater and actualmeanarea. At fixed existing12352, report all unique immediate neighbors' terrain+water head relative to source before and after one hypothetical current1m Water− removal. Native transport compares f32 elevation+depth in km; report f32-rounded head differences plus finer f64 reconstruction explicitly. This is structural explanation, not measured full transport flux. Native previously executed drained traces give actual refill timing; no new intervention or changed terrain.
+
+Actionable interpretation must distinguish absent land, absent exposed living phenotype, source precision and unimplemented biology. No cherry-picked habitat trial, rate adjustment, longer-run assumption or guaranteed animal/plant claim.

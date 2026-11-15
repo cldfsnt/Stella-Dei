@@ -1,0 +1,7 @@
+# Receiver precision: isolated transactional feasibility
+
+Frozen before execution. Keep actual two paid requests from root25k10 action1 ticks1/2. No physiology/rate changes or favorable seed search. Compare current f32 native vapor rounding to an experimental **authoritative physical f64 vapor density**, not a residual/escrow or mirrored extra pool. Initial conversion uses actual area7669529600m² once. Never cast resulting vapor back to f32 in this experiment.
+
+Candidate accepts only a common exactly represented source-debit/receiver-credit amount, <=request and <=source. Receiver addition is rounded downward first; source removal bounded by represented receiver delta; second receiver proposal is bounded by source actual debit. Require error-free difference decompositions have zero residual and exactly equal high parts before committing. Otherwise reject entire transfer. Signal may spend only this receipt, never original request. No mutation on refused/invalid operation. This may reject sub-ULP flows; report them, no accumulated hidden credit.
+
+Test the two actual pulses, zero/weak/huge-scale cases, repeated depletion/unchanged no-double-count and a fixed10000-case exponent/request matrix. Exact closure here means equality of represented endpoint differences checked with error-free two-difference, not asserting arbitrary precision for climate. Compare f32 and f64 receipt efficiency; no device/fullscheduler claim. No live/frozen candidate source edits.

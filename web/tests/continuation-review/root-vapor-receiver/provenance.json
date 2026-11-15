@@ -1,0 +1,9 @@
+{
+  "src/experimental/root_vapor_receipt.zig": "5ebed36f9088eb2c82ab7f4377bb736e44e4658b92629892dcd5d78d0e58448c",
+  "src/qa_root_vapor_receipt.zig": "b3254ed5313845f2187a23fe026e4a73885bb634123979b3b9efda9d3ed7f23b",
+  "src/experimental/physical_water_f64.zig": "20de50e7339ed1399c31d80f2e7a6c076fab817ba6a081d7e224a5792606decd",
+  "src/experimental/root_throughflow.zig": "47f41ecfb9c415457b3a8edb216bf523668fe299bac0fd4d7f2e63cfa47a3ec9",
+  "src/simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+  "src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+  "frozen_root25k10.log": "8a47ab6ddcc010d4728ce82009c2a1a8d7f2d8870b0d25708ca72787cb40f73a"
+}

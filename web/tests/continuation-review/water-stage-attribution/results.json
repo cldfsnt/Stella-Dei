@@ -1,0 +1,104 @@
+[
+  {
+    "mode": "production",
+    "label": "day30",
+    "exit": 0,
+    "endpoint_exact": true,
+    "endpoint_sha256": "a305ece1e938bab48e7231ec54d7de5d75d82ef296aebb792220254c19c6f962",
+    "record_count": 90,
+    "first60": {
+      "transport": -2045441.4592285156,
+      "phase_inventory": 18302.755615234375,
+      "advection": 0.1123046875,
+      "same_input_legacy": 18302.87906715274,
+      "same_input_legacy_abs": 2182523.2097678417,
+      "executed_atmos": 18302.87906715274,
+      "soil_boundary": 0.0
+    }
+  },
+  {
+    "mode": "production",
+    "label": "day60",
+    "exit": 0,
+    "endpoint_exact": true,
+    "endpoint_sha256": "0e88adb1df2728cda475676f8ab87d9ef10b82a9bdb88db5a83825c0af471985",
+    "record_count": 90,
+    "first60": {
+      "transport": -2291284.236328125,
+      "phase_inventory": 27230.081787109375,
+      "advection": 0.067626953125,
+      "same_input_legacy": 27230.077512627468,
+      "same_input_legacy_abs": 2177506.541268796,
+      "executed_atmos": 27230.077512627468,
+      "soil_boundary": 0.0
+    }
+  },
+  {
+    "mode": "production",
+    "label": "day90",
+    "exit": 0,
+    "endpoint_exact": true,
+    "endpoint_sha256": "fbed725076ee00a9cd20a62a132bf41e788520810c13746b1830b51a2f11b699",
+    "record_count": 90,
+    "first60": {
+      "transport": -2372843.2763671875,
+      "phase_inventory": 31255.529541015625,
+      "advection": 0.03466796875,
+      "same_input_legacy": 31255.490032007685,
+      "same_input_legacy_abs": 2182254.5287643215,
+      "executed_atmos": 31255.490032007685,
+      "soil_boundary": 0.0
+    }
+  },
+  {
+    "mode": "candidate",
+    "label": "day30",
+    "exit": 0,
+    "endpoint_exact": true,
+    "endpoint_sha256": "00068f681d0a1e5e4074795b2d4630d73748d429a6b26d3ecb7bd30f64008f6a",
+    "record_count": 80,
+    "first60": {
+      "transport": -2095909.4968261719,
+      "phase_inventory": -2610.35888671875,
+      "advection": -0.004638671875,
+      "same_input_legacy": -68760.44487223751,
+      "same_input_legacy_abs": 2030569.4233496024,
+      "executed_atmos": -2610.368985007517,
+      "soil_boundary": -4.875355848199536e-11
+    }
+  },
+  {
+    "mode": "candidate",
+    "label": "day60",
+    "exit": 0,
+    "endpoint_exact": true,
+    "endpoint_sha256": "2331857a5f849f83bd2ca300625fb957c53f106a34b44a8305fae2b04b61dc88",
+    "record_count": 80,
+    "first60": {
+      "transport": -2338294.4692382812,
+      "phase_inventory": -2285.667236328125,
+      "advection": -0.044189453125,
+      "same_input_legacy": -47163.97987354244,
+      "same_input_legacy_abs": 2035524.4992578325,
+      "executed_atmos": -2285.675892990927,
+      "soil_boundary": -4.8871490188062694e-11
+    }
+  },
+  {
+    "mode": "candidate",
+    "label": "day90",
+    "exit": 0,
+    "endpoint_exact": true,
+    "endpoint_sha256": "b4fca3b7d9381409dd87654543917e192bcda431522d1b48ea28ac98638538a2",
+    "record_count": 80,
+    "first60": {
+      "transport": -2412942.541748047,
+      "phase_inventory": -3073.761474609375,
+      "advection": -0.256591796875,
+      "same_input_legacy": -41740.47343994235,
+      "same_input_legacy_abs": 2039535.0221247978,
+      "executed_atmos": -3073.892252063162,
+      "soil_boundary": -4.886115123614587e-11
+    }
+  }
+]
