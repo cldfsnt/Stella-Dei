@@ -1,0 +1,48 @@
+{
+  "source": "83a875c",
+  "nearest_source": "bc2b4ee",
+  "portrait_exit": 0,
+  "landscape_exit": 0,
+  "files": [
+    {
+      "path": "../site-tmp/sandbox-warm30/day30.json",
+      "sha256": "5757123847115a4f75012d4bad7a28d10c76659c61a1eed10548920cc688c4fe",
+      "bytes": 7048160
+    },
+    {
+      "path": "../site-tmp/sandbox-find/day30-running.json",
+      "sha256": "4953c4072fea61cdf9521f32c9e4068bb6ff4ada7d31689b6263f4469597da67",
+      "bytes": 7048161
+    },
+    {
+      "path": "../site-tmp/sandbox-find/install/bin/stella-egl",
+      "sha256": "ad33617f23334f423d96c0c54952ea8b01bde0c3f520377d5d320dfb8e001428",
+      "bytes": 11998704
+    },
+    {
+      "path": "../site-tmp/sandbox-find/src/sandbox_finder.zig",
+      "sha256": "7f93f245b7781b43a3bc7f3917a9981a57d32cfefd031bfff0a7363c76182561",
+      "bytes": 5138
+    },
+    {
+      "path": "../site-tmp/sandbox-find/src/simulation/planet.zig",
+      "sha256": "763e8580f63905be5cc2404419f7e6910f4e76d41bc50ddc1e9ba0cdd7d95733",
+      "bytes": 94575
+    },
+    {
+      "path": "../site-tmp/sandbox-find/src/main.zig",
+      "sha256": "af05383851805f32f471c6415449712ff7ca891d6c8e5d68a3e1c3eadcaa25f6",
+      "bytes": 72693
+    },
+    {
+      "path": "web/tests/egl-sandbox-find-prepare.py",
+      "sha256": "543b047f29d10cbb6a55095c8b741892f065e85e5179dae2417ac41bb44f1d24",
+      "bytes": 3524
+    },
+    {
+      "path": "../site-tmp/sandbox-find/src/nearest_point.zig",
+      "bytes": 639,
+      "sha256": "61d01b01bfd1ba9c24b5f2929aba4709d14a3dde4e05e19fc00c5fa8deb52240"
+    }
+  ]
+}

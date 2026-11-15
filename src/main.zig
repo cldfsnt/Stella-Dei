@@ -583,6 +583,12 @@ export fn stella_find_offspring(restart:u32,world:u32,source:u32,parent_text:[*:
     return state.findOffspring(restart==1,world,source,parent);
 }
 
+export fn stella_find_sandbox_life(kind:u32) i32 {
+    const state=webEditableState() orelse return -1;
+    const size=game.window.getFramebufferSize();
+    return state.findSandboxLife(kind,@floatFromInt(size.width),@floatFromInt(size.height));
+}
+
 export fn stella_find_life() i32 {
     const state=webEditableState() orelse return -1;
     const size=game.window.getFramebufferSize();

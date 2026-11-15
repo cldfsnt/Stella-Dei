@@ -1,0 +1,7 @@
+# Exact sqrt pruning, fixed before outcomes
+
+Isolated only. Same immutable warm16 day14 world (82 rabbits,40,962 points) as the measured attribution. Candidate skips sqrt only when identical f32 delta.dot(delta) is >= the accepted winner's squared distance. Smaller squared values still use original rounded sqrt and strict < comparison; ascending first-index tie unchanged. No cache, no approximation, no head/physics/fidelity change. Empty/all-nonfinite/no-finite-distance winner domain remains undefined exactly as original, not tested or claimed equivalent.
+
+First: actual metric helper adversarial tests (rounded sqrt ties with distinct squared distances, signedzero, mixtures of NaN/Inf/overflow with defined winner, deterministic finite ranges and changed points). Then exhaustive query parity for every actual terrain point, every actual rabbit position and four actual camera-scaled positions; same-count geometry edit control.
+
+Only after correctness: fixed baseline/candidate/candidate/baseline once,12 warmup+60 timed actual1440s coupled ticks each from deep-frozen input. Complete save/RNG endpoints all equal, input restored. Actual unchanged baseline function retained behind QA dispatch, instrumentation from attribution absent. No rendering/full-frame/browser/device claim. No extra population sweep, tuned repetitions or performance threshold after results; recommend only if consistent useful whole-step gain plus exact correctness. CPU exclusivity explicitly coordinated.

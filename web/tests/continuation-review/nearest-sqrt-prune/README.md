@@ -1,0 +1,13 @@
+# Exact nearest-distance sqrt pruning: isolated native result
+
+Candidate/protocol frozen1cb4f7f before outcomes. Three ReleaseSafe helper tests pass: rounded-sqrt ties despite distinct squared distances, signedzero/nonfinite/overflow mixtures with a defined winner, changed geometry and1,000 deterministic finite-range trials. The first unit-build relative-cache path failure is preserved; absolute-cache rerun passes. Existing no-finite-winner/empty behavior is undefined and expressly not claimed equivalent.
+
+Actual query parity passes for every40,962 terrain query point, all82 saved rabbit positions and four camera-range queries, plus same-count edited geometry. Zalgebra.distance source is exactly sqrt(delta.dot(delta)); candidate retains that expression and strict rounded-distance comparison whenever a squared value can improve. No persistent state or invalidation scheme. Independent coordinator/fire source audits found no blocker.
+
+Fixed clean baseline/candidate/candidate/baseline60-tick actual coupled simulation,12 warmup ticks each, original immutable warm16 day14 save:86→98 rabbits during measured ticks. All four complete saved endpoints/RNG byte-exact. Original input restored. Median step times13.158970 /10.990940 /10.838731 /12.945065ms; paired reductions16.48% and16.27%. Means13.195967 /11.022209 /11.002458 /12.948466ms. One bounded run, no tuning or favorable repeats. No attribution timer/counter code in this binary; old function remains unchanged behind one QA dispatch branch. Restores, serialization, controls and graphics are outside timings.
+
+Explicit CPU release obtained from coordinator, grazing and fire; all held heavy jobs until completion. Native ReleaseSafe software-EGL host, actual simulate only, not full-frame/browser/device measurement. No512-rabbit extrapolation, no actual-WASM claim yet. Recommend narrow production consideration contingent on target-WASM helper parity and combined regression/build gates. No production changes or deployment in this checkpoint.
+
+## Approved narrow production promotion
+
+After coordinator approval, the identical measured helper body was copied to `src/nearest_point.zig`; Planet now delegates its nearest scan there. Production helper passes all three native unit controls and1,008 native/WASM target cases, same result hash8afc1301fc3acc9c. Exact body identity asserted before saving target provenance. No runtime reference implementation, cache or allocation added. Target gate is actual wasm32-emscripten ReleaseSafe/emccO2 under Node, not browser performance. Combined fullWASM and integration regression remain coordinator-gated alongside the separate Sandbox finder.

@@ -1,0 +1,22 @@
+{
+  "cases": 1008,
+  "failure_bits": 0,
+  "native_wasm_result_hash": "8afc1301fc3acc9c",
+  "production_body_exact_measured_candidate": true,
+  "target": "wasm32-emscripten ReleaseSafe single-threaded; emcc O2; Node",
+  "native": "NEAREST_TARGET failures=0 cases=1008 hash=8afc1301fc3acc9c\n",
+  "wasm": "NEAREST_TARGET failures=0 cases=1008 hash=8afc1301fc3acc9c\n",
+  "hashes": {
+    "src/nearest_point.zig": "61d01b01bfd1ba9c24b5f2929aba4709d14a3dde4e05e19fc00c5fa8deb52240",
+    "src/simulation/planet.zig": "30728a507fcfbb6faa1d4160bfa5f11d6bd969f72a967bcd829f65f3e92feebb",
+    "src/qa_nearest_wasm.zig": "90c6e0c13aff18fe726f04269346e751cd0251881ca863c90ce1101f971788ee",
+    "src/qa_nearest_sqrt_prune.zig": "1e33029407c3f40022294df7305309374fd7715f760652a02a95a953ff12c46e",
+    "web/tests/nearest-wasm-run.sh": "5cfc9fdfbc739c8e2564c0b8c31371c87c0b7d5097ee30b436b925f3f40d16d7",
+    "web/tests/nearest-wasm-main.c": "853bfa83ad78d8c5d39805ba1c7a768256d5b554b301215274cade2547195fb4"
+  },
+  "binaries": {
+    "native": "f47967e404ad2d91befc51cec11523bf4f34a2300e426be8a6e0144d4ff10818",
+    "wasm.wasm": "2987920e231f2fa3ae5d627d073afb48cb7bcf01cf22e22c4d968d0b911e975f",
+    "wasm.js": "33a47426d9aa74f5e8220f6867ab3065b6bb2b0450c54d05a01162cb458de955"
+  }
+}

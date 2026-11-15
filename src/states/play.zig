@@ -1600,6 +1600,24 @@ pub const PlayState = struct {
         self.mobileFeedback="Direct living offspring found; inspect inherited traits";self.mobileFeedbackSeconds=5;return 1;
     }
 
+    /// Explicit Sandbox navigation only; no model updates, pause or persistent animal ID.
+    pub fn findSandboxLife(self:*PlayState,kind:u32,width:f32,height:f32)i32 {
+        if(self.planet.worldMode!=.sandbox or kind>1)return -2;
+        const Finder=@import("../sandbox_finder.zig");
+        const found=Finder.find(&self.planet,if(kind==0).plants else .rabbits,self.targetCameraPos.data,width,height) catch |err| {
+            return switch(err){error.NoLife=>0,error.ViewportTooSmall=>-3,error.UnsafeView=>-4,error.InvalidGeometry=>-5};
+        };
+        const point=Vec3.new(found.position[0],found.position[1],found.position[2]);const length=point.length();
+        if(!std.math.isFinite(length) or length<=0)return -5;
+        const patch=if(kind==0)found.index else self.planet.getNearestPointTo(point);
+        if(patch>=self.planet.transformedPoints.len)return -5;
+        self.displayMode=.Normal;self.selectedTool=.None;self.showEscapeMenu=false;self.showPlanetControl=false;self.showPointDetails=false;
+        self.selectedPoint=patch;self.clickedPoint=patch;self.pointerOnPlanet=true;self.colonyPeek.clear();
+        self.targetCameraPos=point.norm();self.setOrbitDistance(length+200,true);self.cameraGroundPoint=patch;
+        self.mobileFeedback=switch(found.visibility){.visible=>"Surviving plants found on this patch",.sparse=>"Very sparse plants here; no visible sprout yet",.submerged=>"Remaining submerged plant cover; not an exposed sprout",.rabbit=>"Living rabbit found; it may move"};self.mobileFeedbackSeconds=6;
+        return switch(found.visibility){.visible,.rabbit=>1,.sparse=>2,.submerged=>3};
+    }
+
     pub fn findLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
         return self.frameLivingCluster(width,height,true);
     }

@@ -1,0 +1,102 @@
+[
+  {
+    "arm": 0,
+    "instrumented": false,
+    "cells": 40962,
+    "rabbits_before": 86,
+    "rabbits_after": 98,
+    "nearest_ns": 0,
+    "nearest_calls": 0,
+    "ai_ns": 0,
+    "ai_calls": 0,
+    "habitat_ns": 0,
+    "habitat_calls": 0,
+    "density_checks": 0,
+    "mate_checks": 0,
+    "fullsave_rng_exact": true,
+    "full_step_ms": {
+      "mean": 14.791650316666667,
+      "median": 14.5049675,
+      "min": 12.912549,
+      "max": 21.441451
+    },
+    "nearest_ms_per_step": 0.0,
+    "nearest_fraction": 0.0,
+    "ai_fraction": 0.0
+  },
+  {
+    "arm": 1,
+    "instrumented": true,
+    "cells": 40962,
+    "rabbits_before": 86,
+    "rabbits_after": 98,
+    "nearest_ns": 341282455,
+    "nearest_calls": 5401,
+    "ai_ns": 343605185,
+    "ai_calls": 5401,
+    "habitat_ns": 1069517,
+    "habitat_calls": 1677,
+    "density_checks": 151384,
+    "mate_checks": 65606,
+    "fullsave_rng_exact": true,
+    "full_step_ms": {
+      "mean": 14.662465116666667,
+      "median": 14.516094,
+      "min": 12.549362,
+      "max": 20.099314
+    },
+    "nearest_ms_per_step": 5.688040916666667,
+    "nearest_fraction": 0.3879321022357374,
+    "ai_fraction": 0.3905723244874966
+  },
+  {
+    "arm": 2,
+    "instrumented": true,
+    "cells": 40962,
+    "rabbits_before": 86,
+    "rabbits_after": 98,
+    "nearest_ns": 336546400,
+    "nearest_calls": 5401,
+    "ai_ns": 338831890,
+    "ai_calls": 5401,
+    "habitat_ns": 1063956,
+    "habitat_calls": 1677,
+    "density_checks": 151384,
+    "mate_checks": 65606,
+    "fullsave_rng_exact": true,
+    "full_step_ms": {
+      "mean": 14.007576933333334,
+      "median": 13.898084,
+      "min": 12.675172,
+      "max": 15.76852
+    },
+    "nearest_ms_per_step": 5.6091066666666665,
+    "nearest_fraction": 0.4004337576271935,
+    "ai_fraction": 0.40315310731781384
+  },
+  {
+    "arm": 3,
+    "instrumented": false,
+    "cells": 40962,
+    "rabbits_before": 86,
+    "rabbits_after": 98,
+    "nearest_ns": 0,
+    "nearest_calls": 0,
+    "ai_ns": 0,
+    "ai_calls": 0,
+    "habitat_ns": 0,
+    "habitat_calls": 0,
+    "density_checks": 0,
+    "mate_checks": 0,
+    "fullsave_rng_exact": true,
+    "full_step_ms": {
+      "mean": 14.305395216666668,
+      "median": 14.362919,
+      "min": 12.733399,
+      "max": 16.692533
+    },
+    "nearest_ms_per_step": 0.0,
+    "nearest_fraction": 0.0,
+    "ai_fraction": 0.0
+  }
+]

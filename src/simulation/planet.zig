@@ -722,17 +722,7 @@ pub const Planet = struct {
     }
 
     pub fn getNearestPointTo(self: Planet, position: Vec3) usize {
-        // TODO: add a BSP for much better performance?
-        var closestPointDist: f32 = std.math.inf(f32);
-        var closestPoint: usize = undefined;
-        for (self.transformedPoints, 0..) |point, i| {
-            const distance = point.distance(position);
-            if (distance < closestPointDist) {
-                closestPoint = i;
-                closestPointDist = distance;
-            }
-        }
-        return closestPoint;
+        return @import("../nearest_point.zig").nearest(self.transformedPoints, position);
     }
 
     pub const SimulationOptions = extern struct {

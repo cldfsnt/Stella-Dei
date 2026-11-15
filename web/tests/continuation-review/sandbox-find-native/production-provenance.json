@@ -1,0 +1,25 @@
+{
+  "head": "83a875cc499195f40cc894df157a5db38e21795e",
+  "source": {
+    "simulation/foraging.zig": {
+      "production": "342e2299e81eae8d57931d807463bac3f2b822d88265b6d23ebcd6ae16d18a92",
+      "copy": "342e2299e81eae8d57931d807463bac3f2b822d88265b6d23ebcd6ae16d18a92"
+    },
+    "simulation/life.zig": {
+      "production": "27bebe0a8cd8db17ad632d098b4484eabc9cb4fc918163ffbc45098958f27d9e",
+      "copy": "27bebe0a8cd8db17ad632d098b4484eabc9cb4fc918163ffbc45098958f27d9e"
+    },
+    "simulation/planet.zig": {
+      "production": "30728a507fcfbb6faa1d4160bfa5f11d6bd969f72a967bcd829f65f3e92feebb",
+      "copy": "763e8580f63905be5cc2404419f7e6910f4e76d41bc50ddc1e9ba0cdd7d95733"
+    },
+    "simulation/ecology.zig": {
+      "production": "140b8c23da5eea837011aeeaf0782149c0707e5e9b3c8526f46f753e85fd0dcc",
+      "copy": "140b8c23da5eea837011aeeaf0782149c0707e5e9b3c8526f46f753e85fd0dcc"
+    },
+    "main.zig": {
+      "production": "1e23867a81dd83d44b3583ed00b4de3e3b661d61baf112360d5be91fb40e0902",
+      "copy": "1b8fa2378208f2158c4d680bb4eeff6e55bd5422336e9b5edcd6c88198cb57f5"
+    }
+  }
+}

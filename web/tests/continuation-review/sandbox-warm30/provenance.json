@@ -1,0 +1,26 @@
+{
+  "head": "c6c9c45486e6d9673770bb668b073a705d05b7f7",
+  "exit_code": 0,
+  "files": [
+    {
+      "path": "../site-tmp/sandbox-warm30/day30.json",
+      "sha256": "5757123847115a4f75012d4bad7a28d10c76659c61a1eed10548920cc688c4fe",
+      "bytes": 7048160
+    },
+    {
+      "path": "../site-tmp/foraging-production/warm-actual-end.json",
+      "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+      "bytes": 7044707
+    },
+    {
+      "path": "../site-tmp/sandbox-warm30/install/bin/stella-egl",
+      "sha256": "828ed7e3edc2719d153a9b80d501f815033a44205937628c4a0bf22a9bf43a15",
+      "bytes": 12039728
+    },
+    {
+      "path": "web/tests/egl-sandbox-warm30-prepare.py",
+      "sha256": "d81b669d0044d4df364f5e2107c9bf22a0f6996758f4fb9eb82bb434ba267a8c",
+      "bytes": 7459
+    }
+  ]
+}
