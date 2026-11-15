@@ -186,6 +186,7 @@ pub const PlayState = struct {
     selectedTool: GameTool = .None,
     meanTemperature: f32 = 293.15,
     mobileFeedback: []const u8 = "",
+    waterFeedbackBuffer: [128]u8 = undefined,
     mobileFeedbackSeconds: f32 = 0,
     // Session-only compact observation UI; never a change to simulation or camera.
     watchLifeView: bool = false,
@@ -927,7 +928,7 @@ pub const PlayState = struct {
         if (tool == .DrainWater) {
             const removal=@import("../water_brush.zig").remove(planet.waterMass,self.selectedPoint,planet.getKmPerWaterMass(),tap,elapsed);
             self.mobileFeedback=switch(removal.status){
-                .changed=>"Water removed from selected patch only (up to 1 m per tap)",
+                .changed=>@import("../water_feedback.zig").lastStep(&self.waterFeedbackBuffer,removal.removed_m,@as(f64,planet.waterMass[self.selectedPoint])*@as(f64,planet.getKmPerWaterMass())*1000),
                 .dry=>"Selected patch is already dry; neighbors unchanged",
                 .no_change=>"No water removed",
                 .precision=>"Water change below map precision; try a shallower patch",

@@ -1,0 +1,9 @@
+# v49: measured water feedback and bounded observation history
+
+A real paired30-day-world Water− test showed exactly one patch lost1m while its overall native appearance changed little. Success now reports the actual last step removed and resulting depth, not an intended maximum or cumulative held-gesture amount. Values below.01m remain visibly nonzero; finite large values are bounded. Text lives in a fixed owned128byte buffer. Refusal messages remain; successful world load clears prior-world action text and failed validation preserves it. No water or biology rule changes.
+
+Native320px screenshot inspected: numerical last-step feedback is legible. Engine/helper/brush boundary checks and paired world evidence are archived in water-feedback and water-paired. The natural paired outcome does not establish that drainage universally improves life or that any colony evolved drought resistance.
+
+UI biomass trend history now retains at most64 actual samples per32patches. Interior samples thin in place; first/latest remain actual observations, and displayed interval remains actual days, potentially longer than2days. Gap detection uses the last real observation before thinning. Three100,000-sample sequences plus existing endpoint/gap/rewind/zero-baseline/LRU tests pass. This prevents unbounded UI history at extremely slow positive pace; it is not evidence of a current laptop FPS improvement.
+
+All current JavaScript tests and real Emscripten WASM build passed. Exact build/source hashes recorded. Existing cloud browser game window-creation limitation remains; native evidence is not Android/hardware-laptop/live-browser gameplay proof. The previously corrected independent deep-frozen Fit oracle passed all four cases; exact provenance in early-three-worlds. Bloom audit confirms prior scene-scale tests already used the zero-bloom browser predicate, with108 records showing zero passes; no additional bloom setting added.

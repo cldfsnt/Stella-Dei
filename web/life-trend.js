@@ -1,6 +1,8 @@
 /* Observed net biomass change, not a fabricated production or survival rate. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.StellaLifeTrend=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
+ // Fixed storage: at most 32 patches × 64 actual observations.
+ const maxSamples=64;
  function create(){
   const cells=new Map();let latestDay=-Infinity;
   function reset(){cells.clear();latestDay=-Infinity;}
@@ -11,11 +13,20 @@
    if(d.day<latestDay)reset();latestDay=d.day;
    let history=cells.get(d.cell)||[];cells.delete(d.cell);cells.set(d.cell,history);
    while(cells.size>32)cells.delete(cells.keys().next().value);
+   // Check the last actual observation BEFORE thinning. Retained samples may
+   // be farther apart after decimation; that is not a real observation gap.
+   if(history.length&&d.day-history[history.length-1].day>2)history.length=0;
    if(!history.length||d.day>history[history.length-1].day)history.push({day:d.day,mass});
    else history[history.length-1]={day:d.day,mass};
    while(history.length>1&&history[1].day<=d.day-2)history.shift();
-   // A long gap is not a continuously observed trend. Restart instead.
-   if(history.length>1&&d.day-history[history.length-2].day>2){history.splice(0,history.length-1);return null;}
+   // Thin only interior observations, preserving actual first/latest endpoints.
+   // No interpolation or clock rounding. The reported days remain the exact
+   // observed interval, which can exceed two days after thinning.
+   if(history.length>maxSamples){
+    let write=1;const last=history.length-1;
+    for(let read=2;read<last;read+=2)history[write++]=history[read];
+    history[write++]=history[last];history.length=write;
+   }
    const first=history[0],days=d.day-first.day;if(days<2||first.mass<=0)return null;
    const delta=mass-first.mass,pct=delta/first.mass*100;
    const direction=mass===0?'lost':Math.abs(delta)<0.0001||Math.abs(pct)<5?'steady':delta>0?'rising':'falling';

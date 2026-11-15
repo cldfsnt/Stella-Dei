@@ -1,0 +1,77 @@
+[
+  {
+    "test": "web/tests/colony-labels.test.cjs",
+    "exit": 0,
+    "output": "PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots\n"
+  },
+  {
+    "test": "web/tests/colony-watch-details.test.cjs",
+    "exit": 0,
+    "output": "PASS bounded exact string IDs, endpoint semantics, invalid data and immutability\nPASS optional third render argument exposes retained endpoint snapshot without extra timers\n"
+  },
+  {
+    "test": "web/tests/colony-watch-ui.test.cjs",
+    "exit": 0,
+    "output": "PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling\n"
+  },
+  {
+    "test": "web/tests/compact-life.test.cjs",
+    "exit": 0,
+    "output": "PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend\n"
+  },
+  {
+    "test": "web/tests/copy-report.test.cjs",
+    "exit": 0,
+    "output": "\u2714 explicit local copy preserves exact report and exposes manual fallback (1.826641ms)\n\u2714 restricted or missing clipboard stays manually copyable (0.401695ms)\n\u2714 missing or oversized report never writes or displays stale data (0.280893ms)\n\u2139 tests 3\n\u2139 suites 0\n\u2139 pass 3\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 9.480379\n"
+  },
+  {
+    "test": "web/tests/gameplay-measure.test.cjs",
+    "exit": 0,
+    "output": "PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation\n"
+  },
+  {
+    "test": "web/tests/harness-mode.test.cjs",
+    "exit": 0,
+    "output": "PASS: Sandbox harness rejects Origin before touching game state\n"
+  },
+  {
+    "test": "web/tests/life-trend.test.cjs",
+    "exit": 0,
+    "output": "PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data\nPASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32\u00d764 storage\n"
+  },
+  {
+    "test": "web/tests/patch-watch.test.cjs",
+    "exit": 0,
+    "output": "\u2714 exact received flux and simulation duration, no lifetime subtraction (1.837026ms)\n\u2714 empty interval and no ticks are explicit (0.323327ms)\n\u2714 pause menu hidden guard cancels without unpause (0.366221ms)\n\u2714 engine selection/load stop is retained, stale timeout cannot stop replacement (0.329616ms)\n\u2714 hard deadline and invalid result terminate (0.235294ms)\n\u2714 photosynthesis without grazing and falling net biomass are not called growth (1.608312ms)\n\u2714 invalid or missing pulse fields stop safely (0.627686ms)\n\u2714 compact pulse is four readable lines and typical length below 350 (0.327002ms)\n\u2139 tests 8\n\u2139 suites 0\n\u2139 pass 8\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 14.484105\n"
+  },
+  {
+    "test": "web/tests/renderer-info.test.cjs",
+    "exit": 0,
+    "output": "PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference\n"
+  },
+  {
+    "test": "web/tests/scene-resolution.test.cjs",
+    "exit": 0,
+    "output": "PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice\n"
+  },
+  {
+    "test": "web/tests/shell.test.cjs",
+    "exit": 0,
+    "output": "PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load\n"
+  },
+  {
+    "test": "web/tests/storage-upgrade.test.cjs",
+    "exit": 0,
+    "output": "PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore\n"
+  },
+  {
+    "test": "web/tests/storage.test.cjs",
+    "exit": 0,
+    "output": "PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage\n"
+  },
+  {
+    "test": "web/tests/touch-controls.test.cjs",
+    "exit": 0,
+    "output": "PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through\nPASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup\n"
+  }
+]

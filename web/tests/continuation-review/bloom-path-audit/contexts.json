@@ -1,0 +1,218 @@
+[
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-0.5-1.log.gz",
+    "sha256": "5b389f95876da57273fb62822e275ae37d5457e49c64f03517272f232f79ff44",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4498 scene_draw_mean_ms=2.6278 postprocess_mean_ms=3.1619 ui_mean_ms=0.8539",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4080 scene_draw_mean_ms=2.6018 postprocess_mean_ms=2.7031 ui_mean_ms=0.8954",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3726 scene_draw_mean_ms=3.6931 postprocess_mean_ms=4.1466 ui_mean_ms=1.0632",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3532 scene_draw_mean_ms=2.9851 postprocess_mean_ms=3.4289 ui_mean_ms=1.5565",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4172 scene_draw_mean_ms=3.0633 postprocess_mean_ms=3.3925 ui_mean_ms=1.7120",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4367 scene_draw_mean_ms=3.0139 postprocess_mean_ms=3.1387 ui_mean_ms=1.8154"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-0.5-2.log.gz",
+    "sha256": "0ca69450c2e1fd9d606933208d1381b1c6e5f850646762bbc00f9886dd47427a",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3560 scene_draw_mean_ms=2.4537 postprocess_mean_ms=2.7913 ui_mean_ms=0.9123",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2839 scene_draw_mean_ms=2.3560 postprocess_mean_ms=2.6330 ui_mean_ms=0.8650",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3359 scene_draw_mean_ms=2.4591 postprocess_mean_ms=2.4552 ui_mean_ms=0.9265",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2862 scene_draw_mean_ms=2.7427 postprocess_mean_ms=3.5477 ui_mean_ms=1.4653",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2770 scene_draw_mean_ms=2.6716 postprocess_mean_ms=2.8210 ui_mean_ms=1.5287",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3321 scene_draw_mean_ms=2.7541 postprocess_mean_ms=2.9289 ui_mean_ms=1.7884"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-0.5-3.log.gz",
+    "sha256": "9e534426ce11559ea5f375a37775751d205c0efd72185b2b1763960d2878bc27",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2829 scene_draw_mean_ms=2.2464 postprocess_mean_ms=2.3576 ui_mean_ms=0.7649",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2910 scene_draw_mean_ms=2.3677 postprocess_mean_ms=2.2665 ui_mean_ms=0.8002",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3121 scene_draw_mean_ms=2.4052 postprocess_mean_ms=2.3559 ui_mean_ms=0.8927",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3046 scene_draw_mean_ms=2.9364 postprocess_mean_ms=3.1032 ui_mean_ms=1.5591",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3292 scene_draw_mean_ms=3.0415 postprocess_mean_ms=3.1907 ui_mean_ms=1.6029",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=683x384 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3128 scene_draw_mean_ms=2.7079 postprocess_mean_ms=2.8732 ui_mean_ms=1.8439"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-0.75-1.log.gz",
+    "sha256": "986d6c0d78544b86ac84b761b27ed01eb13884d4e151e4494cb2e8d7e2880675",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2889 scene_draw_mean_ms=2.3558 postprocess_mean_ms=3.7727 ui_mean_ms=0.7781",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3123 scene_draw_mean_ms=2.5512 postprocess_mean_ms=4.7043 ui_mean_ms=0.9527",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3298 scene_draw_mean_ms=2.4800 postprocess_mean_ms=4.6013 ui_mean_ms=4.0518",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3696 scene_draw_mean_ms=3.2384 postprocess_mean_ms=4.9090 ui_mean_ms=1.6409",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3739 scene_draw_mean_ms=3.1380 postprocess_mean_ms=5.2784 ui_mean_ms=1.5763",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3237 scene_draw_mean_ms=2.7427 postprocess_mean_ms=4.3163 ui_mean_ms=1.7561"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-0.75-2.log.gz",
+    "sha256": "19335a7497c936d98fc63b60fee4f78f6fc32d4706f1cdd8431b91cb8ae581ff",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2902 scene_draw_mean_ms=2.6500 postprocess_mean_ms=4.3506 ui_mean_ms=0.9264",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3002 scene_draw_mean_ms=2.6313 postprocess_mean_ms=4.2196 ui_mean_ms=0.9186",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3516 scene_draw_mean_ms=2.6353 postprocess_mean_ms=4.2905 ui_mean_ms=0.9912",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3411 scene_draw_mean_ms=2.8955 postprocess_mean_ms=4.4964 ui_mean_ms=1.5443",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2794 scene_draw_mean_ms=2.8082 postprocess_mean_ms=4.6610 ui_mean_ms=1.5186",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3398 scene_draw_mean_ms=2.7557 postprocess_mean_ms=4.6332 ui_mean_ms=1.8415"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-0.75-3.log.gz",
+    "sha256": "c0c3e7453d669e8bee4222f2dce9ce1174ed61290b88ebe994c944840bef8a47",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2940 scene_draw_mean_ms=2.4958 postprocess_mean_ms=4.3143 ui_mean_ms=0.9225",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2891 scene_draw_mean_ms=2.5318 postprocess_mean_ms=4.3215 ui_mean_ms=0.8697",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3287 scene_draw_mean_ms=2.4844 postprocess_mean_ms=4.1615 ui_mean_ms=0.9570",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3184 scene_draw_mean_ms=2.9742 postprocess_mean_ms=4.3753 ui_mean_ms=1.4592",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3227 scene_draw_mean_ms=3.1742 postprocess_mean_ms=5.1654 ui_mean_ms=1.5665",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=1024x576 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3549 scene_draw_mean_ms=2.8752 postprocess_mean_ms=4.3797 ui_mean_ms=1.8452"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-1-1.log.gz",
+    "sha256": "8cf4e841a4ed36cdf0d89ff3ce5612e6d186a3b5a4324a7d022706f9acb33090",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4241 scene_draw_mean_ms=2.8039 postprocess_mean_ms=6.4632 ui_mean_ms=1.2301",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2837 scene_draw_mean_ms=2.5105 postprocess_mean_ms=6.1236 ui_mean_ms=0.8445",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3258 scene_draw_mean_ms=2.5420 postprocess_mean_ms=5.9021 ui_mean_ms=0.9310",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3656 scene_draw_mean_ms=2.9824 postprocess_mean_ms=6.7175 ui_mean_ms=1.5174",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4336 scene_draw_mean_ms=3.2138 postprocess_mean_ms=6.7509 ui_mean_ms=1.5273",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3132 scene_draw_mean_ms=3.3603 postprocess_mean_ms=7.0873 ui_mean_ms=1.7815"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-1-2.log.gz",
+    "sha256": "b6fb588b270c9447b1c39fb4e5d75a4e77ea3e4eac8a3dc99e65525a222097a4",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3654 scene_draw_mean_ms=2.5678 postprocess_mean_ms=6.3548 ui_mean_ms=0.8365",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3946 scene_draw_mean_ms=2.7028 postprocess_mean_ms=6.1157 ui_mean_ms=0.8343",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4889 scene_draw_mean_ms=2.9200 postprocess_mean_ms=6.7612 ui_mean_ms=0.9543",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3746 scene_draw_mean_ms=3.2481 postprocess_mean_ms=7.6219 ui_mean_ms=1.4671",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3540 scene_draw_mean_ms=3.2933 postprocess_mean_ms=6.9934 ui_mean_ms=1.6263",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3710 scene_draw_mean_ms=3.1089 postprocess_mean_ms=7.9798 ui_mean_ms=1.8221"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/1366-1-3.log.gz",
+    "sha256": "74e63c28070dd8a54169b40b245b855d5a968cdf37c3c574109d135522adaed6",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3813 scene_draw_mean_ms=2.5997 postprocess_mean_ms=6.7430 ui_mean_ms=0.8800",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3532 scene_draw_mean_ms=2.6610 postprocess_mean_ms=6.7485 ui_mean_ms=0.9332",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3695 scene_draw_mean_ms=2.8683 postprocess_mean_ms=6.3951 ui_mean_ms=0.9844",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3167 scene_draw_mean_ms=2.7444 postprocess_mean_ms=6.5102 ui_mean_ms=1.3679",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3374 scene_draw_mean_ms=3.0505 postprocess_mean_ms=6.7813 ui_mean_ms=1.5360",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=1366x768 scene=1366x768 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3054 scene_draw_mean_ms=3.0629 postprocess_mean_ms=7.2185 ui_mean_ms=1.7829"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-0.5-1.log.gz",
+    "sha256": "92451816359f358aeea5b90892a56d9b08b0292e9bf791e94ed1d50b631027e4",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2543 scene_draw_mean_ms=2.0160 postprocess_mean_ms=1.0811 ui_mean_ms=0.8568",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2189 scene_draw_mean_ms=1.9727 postprocess_mean_ms=1.1963 ui_mean_ms=0.8306",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2344 scene_draw_mean_ms=2.0569 postprocess_mean_ms=1.1627 ui_mean_ms=1.0360",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2056 scene_draw_mean_ms=2.0405 postprocess_mean_ms=1.0937 ui_mean_ms=1.3038",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2492 scene_draw_mean_ms=2.1168 postprocess_mean_ms=1.1350 ui_mean_ms=1.3554",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2555 scene_draw_mean_ms=2.1718 postprocess_mean_ms=1.2173 ui_mean_ms=1.5895"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-0.5-2.log.gz",
+    "sha256": "470e0855edaa2821bf2dcd5a96dac582c34eee2d8fae7b14d06aff086b7f75e2",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2281 scene_draw_mean_ms=2.0567 postprocess_mean_ms=0.9976 ui_mean_ms=0.7684",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2575 scene_draw_mean_ms=2.3536 postprocess_mean_ms=1.4379 ui_mean_ms=0.7325",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2599 scene_draw_mean_ms=2.1095 postprocess_mean_ms=1.0773 ui_mean_ms=0.8490",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2045 scene_draw_mean_ms=2.0984 postprocess_mean_ms=1.3007 ui_mean_ms=1.6184",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2544 scene_draw_mean_ms=2.1954 postprocess_mean_ms=1.1807 ui_mean_ms=1.8134",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2799 scene_draw_mean_ms=2.2945 postprocess_mean_ms=1.1563 ui_mean_ms=2.2334"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-0.5-3.log.gz",
+    "sha256": "fc3b8b78545cdd728856c8052f3516cf2fa45cc6588af2cffdba7531175a7c77",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2406 scene_draw_mean_ms=2.0217 postprocess_mean_ms=1.1615 ui_mean_ms=0.7051",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2275 scene_draw_mean_ms=2.0604 postprocess_mean_ms=0.9763 ui_mean_ms=0.6821",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3200 scene_draw_mean_ms=2.1773 postprocess_mean_ms=1.0987 ui_mean_ms=1.0472",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2372 scene_draw_mean_ms=2.1426 postprocess_mean_ms=1.1677 ui_mean_ms=1.6125",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2602 scene_draw_mean_ms=2.1870 postprocess_mean_ms=1.2125 ui_mean_ms=1.5266",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=195x350 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2706 scene_draw_mean_ms=2.2574 postprocess_mean_ms=1.2673 ui_mean_ms=1.9190"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-0.75-1.log.gz",
+    "sha256": "3a9b146ec6eb59076c6a0b22d377cfc9488f3dfead3ac4b7cc946efc5e1f29f6",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2521 scene_draw_mean_ms=2.0248 postprocess_mean_ms=1.2790 ui_mean_ms=0.8462",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3475 scene_draw_mean_ms=2.3729 postprocess_mean_ms=1.9673 ui_mean_ms=0.9242",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2608 scene_draw_mean_ms=2.1231 postprocess_mean_ms=1.4554 ui_mean_ms=0.8566",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3336 scene_draw_mean_ms=2.2667 postprocess_mean_ms=1.8884 ui_mean_ms=1.3408",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2243 scene_draw_mean_ms=2.0485 postprocess_mean_ms=1.3797 ui_mean_ms=1.1632",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3037 scene_draw_mean_ms=2.3523 postprocess_mean_ms=1.4950 ui_mean_ms=1.6412"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-0.75-2.log.gz",
+    "sha256": "2a58028bf8f6ebecb9029fa24114dab39ee0f315bdcd15dd562f439be963f64f",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2278 scene_draw_mean_ms=1.9412 postprocess_mean_ms=1.4952 ui_mean_ms=0.8340",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2448 scene_draw_mean_ms=1.9976 postprocess_mean_ms=1.4621 ui_mean_ms=0.8105",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3326 scene_draw_mean_ms=2.2210 postprocess_mean_ms=1.6924 ui_mean_ms=1.1100",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3196 scene_draw_mean_ms=2.3589 postprocess_mean_ms=1.8231 ui_mean_ms=1.4327",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3831 scene_draw_mean_ms=2.4865 postprocess_mean_ms=1.4228 ui_mean_ms=1.3434",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2517 scene_draw_mean_ms=2.1704 postprocess_mean_ms=1.5258 ui_mean_ms=1.8795"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-0.75-3.log.gz",
+    "sha256": "b6d82173b1b28ce16c19856ff8d0df5c369c3607778f9e40db9240d319df2bbc",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2770 scene_draw_mean_ms=2.1237 postprocess_mean_ms=1.3451 ui_mean_ms=0.7740",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2254 scene_draw_mean_ms=2.0026 postprocess_mean_ms=1.2990 ui_mean_ms=0.6909",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2591 scene_draw_mean_ms=2.2595 postprocess_mean_ms=1.5863 ui_mean_ms=0.9251",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2128 scene_draw_mean_ms=2.0741 postprocess_mean_ms=1.3425 ui_mean_ms=1.1990",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3015 scene_draw_mean_ms=2.3729 postprocess_mean_ms=1.5260 ui_mean_ms=1.4669",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=292x525 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2503 scene_draw_mean_ms=2.2183 postprocess_mean_ms=1.5414 ui_mean_ms=1.7012"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-1-1.log.gz",
+    "sha256": "bfd89e0eb1135013aede2dbf80249e6ca74f9c37a44d6dcc40e725a5c8566b7a",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2711 scene_draw_mean_ms=2.1339 postprocess_mean_ms=1.8683 ui_mean_ms=0.7675",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2546 scene_draw_mean_ms=2.0960 postprocess_mean_ms=1.9701 ui_mean_ms=0.7475",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2731 scene_draw_mean_ms=2.3066 postprocess_mean_ms=2.3283 ui_mean_ms=0.9416",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2499 scene_draw_mean_ms=2.2711 postprocess_mean_ms=2.4527 ui_mean_ms=1.2987",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2407 scene_draw_mean_ms=2.1950 postprocess_mean_ms=2.3195 ui_mean_ms=1.3419",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2749 scene_draw_mean_ms=2.2437 postprocess_mean_ms=2.3829 ui_mean_ms=1.6374"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-1-2.log.gz",
+    "sha256": "003a9ca0c27a553cc04382bc6743d4589c51a534d741e7334c4952c1cc6c3618",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3495 scene_draw_mean_ms=2.1510 postprocess_mean_ms=2.4863 ui_mean_ms=0.8923",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2248 scene_draw_mean_ms=2.0516 postprocess_mean_ms=2.0008 ui_mean_ms=0.7793",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2499 scene_draw_mean_ms=2.1449 postprocess_mean_ms=2.1028 ui_mean_ms=0.9110",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2068 scene_draw_mean_ms=2.2654 postprocess_mean_ms=2.1622 ui_mean_ms=1.5608",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2445 scene_draw_mean_ms=2.3683 postprocess_mean_ms=2.1708 ui_mean_ms=1.4912",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2268 scene_draw_mean_ms=2.2043 postprocess_mean_ms=2.0928 ui_mean_ms=1.6799"
+    ]
+  },
+  {
+    "file": "web/tests/continuation-review/scene-scale/390-1-3.log.gz",
+    "sha256": "69f9572ec40c5ef6ce874f0d2e8a3521162fa2fe07f0d05e7e8dc2cac66328c1",
+    "context": [
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2208 scene_draw_mean_ms=1.9844 postprocess_mean_ms=1.9114 ui_mean_ms=0.7581",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2530 scene_draw_mean_ms=2.2285 postprocess_mean_ms=2.6828 ui_mean_ms=0.7457",
+      "FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2797 scene_draw_mean_ms=2.1537 postprocess_mean_ms=2.1709 ui_mean_ms=0.8615",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.1991 scene_draw_mean_ms=2.0432 postprocess_mean_ms=2.0988 ui_mean_ms=1.1275",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2668 scene_draw_mean_ms=2.2903 postprocess_mean_ms=2.2192 ui_mean_ms=1.3614",
+      "FRAME_RENDER_CONTEXT stage=cached30d requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.2588 scene_draw_mean_ms=2.3584 postprocess_mean_ms=2.9841 ui_mean_ms=2.0031"
+    ]
+  }
+]

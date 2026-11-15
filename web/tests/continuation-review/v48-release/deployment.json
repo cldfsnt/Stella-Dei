@@ -1,0 +1,21 @@
+{
+  "deployment": {
+    "id": "appgdep_6af92700e4608191ac83cc9260129f7f",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_25aab945a2b481918df4f542b893f33c",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T03:29:13.749306+00:00"
+  },
+  "site_source": "e30a3708cfac739d6a3bec0535350f3ad719126b",
+  "fork_source": "ab7f3ea9c8e003a7a59dba2b7f81a6ce4a1ed35f",
+  "local_source": "1349c0cc17741647f19322af2c6b782be0c63c3b",
+  "tree": "e05158393c9548701f7fd20ac90893f5290cbece"
+}

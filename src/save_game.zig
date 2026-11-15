@@ -3,6 +3,10 @@ const std = @import("std");
 pub const schema = @import("save_schema.zig");
 pub const path = "/saves/world.json";
 
+/// Serialization view, NOT an immutable snapshot: dense planet slices are borrowed.
+/// Serialize immediately, or serialize + parse with alloc_always before mutating
+/// the world when a test/comparison needs independent before-state ownership.
+/// Sparse Origin cohorts, wind and rabbit records are copied into allocator.
 pub fn capture(allocator: std.mem.Allocator, state: anytype) !schema.Save {
     const p = &state.planet;
     const wind = try allocator.alloc([2]f32, p.airVelocity.len);
@@ -137,6 +141,9 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     if (@hasField(@TypeOf(state.*), "detritusFinder")) state.detritusFinder = .{};
     if (@hasField(@TypeOf(state.*), "feedingFinder")) state.feedingFinder = .{};
     if (@hasField(@TypeOf(state.*), "godReceipt")) state.godReceipt = null;
+    // Last-action text belongs to the prior world, not the loaded save.
+    if (@hasField(@TypeOf(state.*), "mobileFeedback")) state.mobileFeedback = "";
+    if (@hasField(@TypeOf(state.*), "mobileFeedbackSeconds")) state.mobileFeedbackSeconds = 0;
     if (@hasField(@TypeOf(state.*), "godEffectSeconds")) state.godEffectSeconds = 0;
     state.selectedTool = .None;
     state.selectedPoint = 0;

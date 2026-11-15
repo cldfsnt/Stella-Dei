@@ -41,7 +41,7 @@ h=r'''
     const failureBefore=try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{});
     std.debug.assert(state.fitLivingClusterResult(1,1)==-3);
     std.debug.assert(std.mem.eql(u8,failureBefore,try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{})));
-    const saved=try saves.capture(aa,state);const oldPause=state.paused;const oldPace=state.timeScale;
+    const saved_bytes=try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{});const saved_parsed=try std.json.parseFromSlice(saves.schema.Save,aa,saved_bytes,.{.allocate=.alloc_always});const saved=saved_parsed.value;const oldPause=state.paused;const oldPace=state.timeScale;
     const compactWidth=(@as(f32,@floatFromInt(size.width))-40)/4;
     qa_pointer(24+2.5*compactWidth,28,1);render(window);gl.finish();
     qa_pointer(24+2.5*compactWidth,28,0);render(window);gl.finish();
