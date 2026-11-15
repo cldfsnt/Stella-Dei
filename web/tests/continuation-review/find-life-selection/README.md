@@ -1,0 +1,11 @@
+# Find life selects the living patch it frames
+
+Actual v65 post-auto-seed journey on immutable `auto-seed/after.json`: 7,933 paid seeds already applied. Native exported Advance completes exactly60 unchanged1440s ticks, paused and requested speed preserved. Bounded world census takes81 calls and exactly matches11,805 living cohorts. Six forms and actual23.0-hour bucket history (4,629 paid births /808 physiology colony deaths) are reported, not a complete24h claim.
+
+The first fixture incorrectly assumed Find selected its destination; its failure is retained. Corrected baseline using an actual rendered glyph click passes: Find framed living colonies but retained empty frozen cell0 (footer−17.9°C); player had to click a glyph to select126. Parent18 has no living direct children, correctly reported after81chunks. This is a concrete Find→Inspect mismatch, not failed biology.
+
+Narrow production fix: successful explicit global Find selects `fitted.anchor`, updates clickedPoint and pins actual current cohorts. No additional search, no model or save-schema change. Local Fit is camera-only as before; early failures do not change selection. Existing watchLife turns tools off, preserving deliberate observation rather than seeding/intervention.
+
+Fixed native journey passes: immediate Life snapshot identifies living patch29254 without pixel hunting; actual glyph click still works. Parent1 has16 actual living direct children; incremental offspring finder focuses126, and real render/pick/inspection succeeds. Full saved state immediately before/after Find is byte-exact after replacing ONLY `camera`, `camera_target`, `camera_distance`, `target_distance` with prior values. No material, RNG, time or pace fields are normalized. Failed-small-viewport selection remains unchanged, local Fit preserves selection, save capture→apply roundtrip exact, original input restored. Both actual390×700 screenshots retained. No browser/device interaction or performance claim.
+
+89 existing JS tests pass. Actual exported API bodies are unchanged in the copied native availability bridge (audit retained). The narrow Play diff is tested in copied native source; final WASM build provenance is a separate subsequent gate. First failure and both successful paths remain, not replaced by later results.

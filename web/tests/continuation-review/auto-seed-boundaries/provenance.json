@@ -1,0 +1,46 @@
+{
+  "production_head": "e304ae7696b4ff1c5551afdbf1ffe676bc3e5d89",
+  "exit_code": 0,
+  "files": [
+    {
+      "path": "src/auto_seed.zig",
+      "sha256": "aab069f1916f9beec78ca3b57f7622227b2e189d0523209a6685031a27035bc8",
+      "bytes": 7425
+    },
+    {
+      "path": "src/simulation/planet.zig",
+      "sha256": "c5ab6fc574747a4dfddf0928e5fe3137124443a366a32a478065d37c12a191f5",
+      "bytes": 94696
+    },
+    {
+      "path": "src/simulation/microbes.zig",
+      "sha256": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "bytes": 70809
+    },
+    {
+      "path": "../site-tmp/auto-seed-boundaries/src/main.zig",
+      "sha256": "78bcc2ed6356069edc18006d2f514529af25b8b15b0338fe9de4f6dd1ad8d665",
+      "bytes": 74757
+    },
+    {
+      "path": "../site-tmp/auto-seed-boundaries/src/simulation/planet.zig",
+      "sha256": "d1063ab31f80464c8f34e2c958c78a06d88086db341565f38fd7fbf5fa7b5ae7",
+      "bytes": 94930
+    },
+    {
+      "path": "../site-tmp/auto-seed-boundaries/install/bin/stella-egl",
+      "sha256": "0f5c914552997dee3c834f47a40dcb14c18e00a07b972667938cf2aa5be2fec4",
+      "bytes": 12258616
+    },
+    {
+      "path": "../site-tmp/sunlit14/day-14.json",
+      "sha256": "db14ebd4ade6c41fa321b4218827fe75c26e84749a92d76b384435cc29bfebc5",
+      "bytes": 10781103
+    },
+    {
+      "path": "web/tests/egl-auto-seed-boundaries-prepare.py",
+      "sha256": "f74d9f58f521e692c050db5777d101b6f37c958e94037de8d8d9b2e58de95087",
+      "bytes": 5874
+    }
+  ]
+}

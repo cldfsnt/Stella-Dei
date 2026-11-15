@@ -1,0 +1,551 @@
+{
+  "input_sha256": "db14ebd4ade6c41fa321b4218827fe75c26e84749a92d76b384435cc29bfebc5",
+  "production_core_sha256": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+  "scope": "Exhaustive availability census of fixed Sunlit14 snapshot, no new simulation or outcome-selected donor",
+  "count": 54,
+  "structure_min": 0.0,
+  "structure_median": 0.017150319181382656,
+  "structure_max": 0.1628342866897583,
+  "cohorts": [
+    {
+      "cell": 126,
+      "slot": 0,
+      "id": 18,
+      "biomass": 0.0038933842442929745,
+      "support": 0.0,
+      "structure": 0.01677192561328411,
+      "dry_mortality_per_day": 3.9446526454761623,
+      "structure_growth_multiplier": 0.9916140371933579
+    },
+    {
+      "cell": 126,
+      "slot": 1,
+      "id": 27,
+      "biomass": 0.016308259218931198,
+      "support": 0.00041408088873140514,
+      "structure": 0.0505426786839962,
+      "dry_mortality_per_day": 3.8332091603428124,
+      "structure_growth_multiplier": 0.9747286606580019
+    },
+    {
+      "cell": 126,
+      "slot": 2,
+      "id": 68,
+      "biomass": 0.012124447152018547,
+      "support": 0.00021850233315490186,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 126,
+      "slot": 3,
+      "id": 33,
+      "biomass": 0.0032479569781571627,
+      "support": 8.66748632688541e-06,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 7352,
+      "slot": 0,
+      "id": 8,
+      "biomass": 0.01719892956316471,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 7352,
+      "slot": 1,
+      "id": 16,
+      "biomass": 0.017665134742856026,
+      "support": 0.0,
+      "structure": 0.0012028455967083573,
+      "dry_mortality_per_day": 3.9960306095308624,
+      "structure_growth_multiplier": 0.9993985772016458
+    },
+    {
+      "cell": 7352,
+      "slot": 2,
+      "id": 26,
+      "biomass": 0.017657829448580742,
+      "support": 2.1837588519701967e-06,
+      "structure": 0.006841327995061874,
+      "dry_mortality_per_day": 3.977423617616296,
+      "structure_growth_multiplier": 0.9965793360024691
+    },
+    {
+      "cell": 7352,
+      "slot": 3,
+      "id": 30,
+      "biomass": 0.01913568004965782,
+      "support": 0.0,
+      "structure": 0.03788116201758385,
+      "dry_mortality_per_day": 3.874992165341973,
+      "structure_growth_multiplier": 0.9810594189912081
+    },
+    {
+      "cell": 7354,
+      "slot": 0,
+      "id": 69,
+      "biomass": 0.0035259039141237736,
+      "support": 9.365300502395257e-05,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 7354,
+      "slot": 1,
+      "id": 79,
+      "biomass": 0.002679526573047042,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 7354,
+      "slot": 2,
+      "id": 81,
+      "biomass": 0.00262879254296422,
+      "support": 1.2483026239351602e-06,
+      "structure": 0.002486206591129303,
+      "dry_mortality_per_day": 3.9917955182492735,
+      "structure_growth_multiplier": 0.9987568967044353
+    },
+    {
+      "cell": 7354,
+      "slot": 3,
+      "id": 85,
+      "biomass": 0.0027067738119512796,
+      "support": 0.0,
+      "structure": 0.0175287127494812,
+      "dry_mortality_per_day": 3.942155247926712,
+      "structure_growth_multiplier": 0.9912356436252594
+    },
+    {
+      "cell": 10071,
+      "slot": 1,
+      "id": 75,
+      "biomass": 0.00274702999740839,
+      "support": 3.706860661623068e-05,
+      "structure": 0.02597135305404663,
+      "dry_mortality_per_day": 3.914294534921646,
+      "structure_growth_multiplier": 0.9870143234729767
+    },
+    {
+      "cell": 10071,
+      "slot": 2,
+      "id": 80,
+      "biomass": 0.0033175693824887276,
+      "support": 6.74258335493505e-05,
+      "structure": 0.0646766647696495,
+      "dry_mortality_per_day": 3.7865670062601566,
+      "structure_growth_multiplier": 0.9676616676151752
+    },
+    {
+      "cell": 29254,
+      "slot": 0,
+      "id": 1,
+      "biomass": 0.024416659027338028,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29254,
+      "slot": 1,
+      "id": 11,
+      "biomass": 0.034643854945898056,
+      "support": 6.621305146836676e-06,
+      "structure": 0.06625093519687653,
+      "dry_mortality_per_day": 3.7813719138503075,
+      "structure_growth_multiplier": 0.9668745324015617
+    },
+    {
+      "cell": 29254,
+      "slot": 2,
+      "id": 19,
+      "biomass": 0.031209414824843407,
+      "support": 0.0017103409627452493,
+      "structure": 0.10632064938545227,
+      "dry_mortality_per_day": 3.6491418570280074,
+      "structure_growth_multiplier": 0.9468396753072739
+    },
+    {
+      "cell": 29254,
+      "slot": 3,
+      "id": 24,
+      "biomass": 0.00610815966501832,
+      "support": 0.0003395940293557942,
+      "structure": 0.01319873332977295,
+      "dry_mortality_per_day": 3.9564441800117494,
+      "structure_growth_multiplier": 0.9934006333351135
+    },
+    {
+      "cell": 29255,
+      "slot": 0,
+      "id": 2,
+      "biomass": 0.01826748624444008,
+      "support": 0.0,
+      "structure": 0.04529144987463951,
+      "dry_mortality_per_day": 3.85053821541369,
+      "structure_growth_multiplier": 0.9773542750626802
+    },
+    {
+      "cell": 29255,
+      "slot": 1,
+      "id": 3,
+      "biomass": 0.01631808653473854,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29255,
+      "slot": 2,
+      "id": 9,
+      "biomass": 0.01869337446987629,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29255,
+      "slot": 3,
+      "id": 25,
+      "biomass": 0.015014723874628544,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29256,
+      "slot": 0,
+      "id": 7,
+      "biomass": 0.03555089235305786,
+      "support": 0.0011585484025999904,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29256,
+      "slot": 1,
+      "id": 50,
+      "biomass": 0.0033924600575119257,
+      "support": 0.00020009242871310562,
+      "structure": 0.15907466411590576,
+      "dry_mortality_per_day": 3.475053608417511,
+      "structure_growth_multiplier": 0.9204626679420471
+    },
+    {
+      "cell": 29256,
+      "slot": 2,
+      "id": 66,
+      "biomass": 0.00910057034343481,
+      "support": 0.00016910470731090754,
+      "structure": 0.03319057449698448,
+      "dry_mortality_per_day": 3.890471104159951,
+      "structure_growth_multiplier": 0.9834047127515078
+    },
+    {
+      "cell": 29256,
+      "slot": 3,
+      "id": 51,
+      "biomass": 0.0033291669096797705,
+      "support": 0.00011023505066987127,
+      "structure": 0.1628342866897583,
+      "dry_mortality_per_day": 3.462646853923798,
+      "structure_growth_multiplier": 0.9185828566551208
+    },
+    {
+      "cell": 29258,
+      "slot": 0,
+      "id": 20,
+      "biomass": 0.0067907460033893585,
+      "support": 0.00021910264331381768,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29258,
+      "slot": 1,
+      "id": 45,
+      "biomass": 0.00886470265686512,
+      "support": 0.0002433018380543217,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29258,
+      "slot": 2,
+      "id": 48,
+      "biomass": 0.00945009384304285,
+      "support": 0.000314220116706565,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29258,
+      "slot": 3,
+      "id": 61,
+      "biomass": 0.007372487336397171,
+      "support": 6.063924229238182e-05,
+      "structure": 0.061251357197761536,
+      "dry_mortality_per_day": 3.797870521247387,
+      "structure_growth_multiplier": 0.9693743214011192
+    },
+    {
+      "cell": 29259,
+      "slot": 0,
+      "id": 54,
+      "biomass": 0.003602126380428672,
+      "support": 0.0001056615510606207,
+      "structure": 0.07216580957174301,
+      "dry_mortality_per_day": 3.761852828413248,
+      "structure_growth_multiplier": 0.9639170952141285
+    },
+    {
+      "cell": 29259,
+      "slot": 1,
+      "id": 72,
+      "biomass": 0.0028713864739984274,
+      "support": 4.0624942698741506e-07,
+      "structure": 0.08061407506465912,
+      "dry_mortality_per_day": 3.733973552286625,
+      "structure_growth_multiplier": 0.9596929624676704
+    },
+    {
+      "cell": 29261,
+      "slot": 0,
+      "id": 36,
+      "biomass": 0.006060585845261812,
+      "support": 0.00024981252499856055,
+      "structure": 0.12535634636878967,
+      "dry_mortality_per_day": 3.586324056982994,
+      "structure_growth_multiplier": 0.9373218268156052
+    },
+    {
+      "cell": 29261,
+      "slot": 1,
+      "id": 47,
+      "biomass": 0.004888208582997322,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29261,
+      "slot": 2,
+      "id": 62,
+      "biomass": 0.004897715989500284,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29261,
+      "slot": 3,
+      "id": 65,
+      "biomass": 0.004858352709561586,
+      "support": 0.00011483934213174507,
+      "structure": 0.02638780139386654,
+      "dry_mortality_per_day": 3.9129202554002402,
+      "structure_growth_multiplier": 0.9868060993030667
+    },
+    {
+      "cell": 29440,
+      "slot": 0,
+      "id": 44,
+      "biomass": 0.004543869290500879,
+      "support": 0.00024215702433139086,
+      "structure": 0.057000722736120224,
+      "dry_mortality_per_day": 3.8118976149708033,
+      "structure_growth_multiplier": 0.9714996386319399
+    },
+    {
+      "cell": 29440,
+      "slot": 1,
+      "id": 84,
+      "biomass": 0.003742246888577938,
+      "support": 9.21097889658995e-05,
+      "structure": 0.12636779248714447,
+      "dry_mortality_per_day": 3.5829862847924234,
+      "structure_growth_multiplier": 0.9368161037564278
+    },
+    {
+      "cell": 29562,
+      "slot": 0,
+      "id": 53,
+      "biomass": 0.00452171778306365,
+      "support": 0.00018202354840468615,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 29562,
+      "slot": 1,
+      "id": 82,
+      "biomass": 0.0033866881858557463,
+      "support": 0.00010414716962259263,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 40248,
+      "slot": 0,
+      "id": 6,
+      "biomass": 0.03837114945054054,
+      "support": 0.0,
+      "structure": 0.066437266767025,
+      "dry_mortality_per_day": 3.7807570196688176,
+      "structure_growth_multiplier": 0.9667813666164875
+    },
+    {
+      "cell": 40248,
+      "slot": 1,
+      "id": 31,
+      "biomass": 0.004305938258767128,
+      "support": 0.00022980001813266426,
+      "structure": 0.07678885757923126,
+      "dry_mortality_per_day": 3.7465967699885367,
+      "structure_growth_multiplier": 0.9616055712103844
+    },
+    {
+      "cell": 40248,
+      "slot": 2,
+      "id": 32,
+      "biomass": 0.004634117241948843,
+      "support": 0.00013885983207728714,
+      "structure": 0.09989064186811447,
+      "dry_mortality_per_day": 3.6703608818352222,
+      "structure_growth_multiplier": 0.9500546790659428
+    },
+    {
+      "cell": 40248,
+      "slot": 3,
+      "id": 34,
+      "biomass": 0.004199882969260216,
+      "support": 9.63188722380437e-05,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 40249,
+      "slot": 0,
+      "id": 4,
+      "biomass": 0.05189714580774307,
+      "support": 0.0009888990316540003,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 40249,
+      "slot": 1,
+      "id": 5,
+      "biomass": 0.007561896461993456,
+      "support": 0.0,
+      "structure": 0.08273746073246002,
+      "dry_mortality_per_day": 3.726966379582882,
+      "structure_growth_multiplier": 0.95863126963377
+    },
+    {
+      "cell": 40249,
+      "slot": 2,
+      "id": 14,
+      "biomass": 0.01636354811489582,
+      "support": 0.00018932545208372176,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 40249,
+      "slot": 3,
+      "id": 21,
+      "biomass": 0.007319441065192223,
+      "support": 5.8399564295541495e-06,
+      "structure": 0.049962032586336136,
+      "dry_mortality_per_day": 3.835125292465091,
+      "structure_growth_multiplier": 0.9750189837068319
+    },
+    {
+      "cell": 40251,
+      "slot": 0,
+      "id": 70,
+      "biomass": 0.0036161867901682854,
+      "support": 0.00011357763287378475,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 40251,
+      "slot": 2,
+      "id": 58,
+      "biomass": 0.004320137202739716,
+      "support": 3.9987342461245134e-05,
+      "structure": 0.07258742302656174,
+      "dry_mortality_per_day": 3.7604615040123464,
+      "structure_growth_multiplier": 0.9637062884867191
+    },
+    {
+      "cell": 40253,
+      "slot": 0,
+      "id": 17,
+      "biomass": 0.00743458978831768,
+      "support": 0.00045852703624404967,
+      "structure": 0.02876608446240425,
+      "dry_mortality_per_day": 3.905071921274066,
+      "structure_growth_multiplier": 0.9856169577687979
+    },
+    {
+      "cell": 40253,
+      "slot": 1,
+      "id": 73,
+      "biomass": 0.004142791032791138,
+      "support": 1.426409107807558e-05,
+      "structure": 0.03988610580563545,
+      "dry_mortality_per_day": 3.868375850841403,
+      "structure_growth_multiplier": 0.9800569470971823
+    },
+    {
+      "cell": 40253,
+      "slot": 2,
+      "id": 78,
+      "biomass": 0.0035216775722801685,
+      "support": 0.0,
+      "structure": 0.0,
+      "dry_mortality_per_day": 4.0,
+      "structure_growth_multiplier": 1.0
+    },
+    {
+      "cell": 40253,
+      "slot": 3,
+      "id": 83,
+      "biomass": 0.0038436390459537506,
+      "support": 4.490794162848033e-05,
+      "structure": 0.05196284130215645,
+      "dry_mortality_per_day": 3.8285226237028835,
+      "structure_growth_multiplier": 0.9740185793489218
+    }
+  ]
+}

@@ -1618,7 +1618,13 @@ pub const PlayState = struct {
             };
             return switch(err){error.NoNearbyLife=>0,error.ViewportTooSmall=>-3,error.PolarView=>-4,error.InvalidGeometry=>-5,error.TooWide=>-6};
         };
-        if(global){self.displayMode=.Normal;self.watchLife();self.colonyPeek.clear();}
+        if(global){
+            self.displayMode=.Normal;self.watchLife();
+            // Explicit Find selects the same living anchor whose cluster is framed.
+            // Local Fit remains camera-only; a failed fit returns before this branch.
+            self.selectedPoint=fitted.anchor;self.clickedPoint=fitted.anchor;
+            self.colonyPeek.set(fitted.anchor,self.planet.microbeCells[fitted.anchor],self.gameTime);
+        }
         self.targetCameraPos=Vec3.new(fitted.direction[0],fitted.direction[1],fitted.direction[2]);
         self.setOrbitDistance(fitted.distance,true);
         self.cameraGroundPoint=self.planet.getNearestPointTo(self.cameraPos);

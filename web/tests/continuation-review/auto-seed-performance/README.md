@@ -17,3 +17,5 @@ The raw log, summary, exact input/binary hashes and timing window are `sunlit14-
 ### Scheduling caveat discovered after completion
 
 This follow-up ran 2026-11-15 14:45:00–14:45:08 UTC. After it completed, the coordinator reported another worker's instrumented build98217 and packaging/archive work. The launch used the previously released window and notified coordinator/grazing, but did not obtain a fresh fire-worker clearance. Until those job timestamps establish otherwise, these timings must be treated as potentially contended, NOT a verified isolated CPU window. This limits quantitative slowdown interpretation; correctness/count/save assertions remain valid. No repeat was made to seek a favorable result.
+
+The other worker subsequently confirmed compilation overlap: build98217 opened its log at14:44:37.103UTC and produced its binary at14:45:48.960UTC. Thus the14:45:00–08 benchmark is confirmed contended, not merely possibly contended. Do not use its ratios as a clean performance estimate. The fixed run remains useful for the actual population, endpoint equality and explicit workload warning; no further timing was authorized or performed.
