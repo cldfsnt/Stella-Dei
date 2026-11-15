@@ -1,0 +1,174 @@
+{
+  "native_unit_kg": 1000000000.0,
+  "sum_native": {
+    "0": {
+      "between_columns_liquid_transport": -510.13036727905273,
+      "column_net": 2064.9216270446777,
+      "condensed": 2514.673973083496,
+      "standing_evaporated": 449.7415084838867,
+      "represented_infiltration": 0.010837554931640625
+    },
+    "1": {
+      "between_columns_liquid_transport": -510.13036727905273,
+      "column_net": 2064.9216270446777,
+      "condensed": 2514.6740188598633,
+      "standing_evaporated": 449.7415084838867,
+      "represented_infiltration": 0.010883331298828125
+    }
+  },
+  "ending_native": {
+    "0": 1554.791259765625,
+    "1": 1554.791259765625
+  },
+  "first_column": {
+    "0": {
+      "before": {
+        "liquid": 0.0,
+        "vapor": 1363.8982586332445,
+        "soil": 0.9985868502613232,
+        "rain": 61.41001510620117
+      },
+      "result": {
+        "root_h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_credits": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bare_credit": 0.0,
+        "state": {
+          "liquid": 43.22875213623047,
+          "vapor": 1320.6586689420824,
+          "soil": 0.9999999167069681,
+          "rain": 103.27625274658203
+        },
+        "stages": [
+          {
+            "liquid": 0.0,
+            "vapor": 1363.8982586332445,
+            "soil": 0.9985868502613232,
+            "rain": 61.41001510620117
+          },
+          {
+            "liquid": 0.0,
+            "vapor": 1363.8982586332445,
+            "soil": 0.9985868502613232,
+            "rain": 61.41001510620117
+          },
+          {
+            "liquid": 43.23958969116211,
+            "vapor": 1320.6586689420824,
+            "soil": 0.9985868502613232,
+            "rain": 103.27625274658203
+          },
+          {
+            "liquid": 43.22875213623047,
+            "vapor": 1320.6586689420824,
+            "soil": 0.9999999167069681,
+            "rain": 103.27625274658203
+          },
+          {
+            "liquid": 43.22875213623047,
+            "vapor": 1320.6586689420824,
+            "soil": 0.9999999167069681,
+            "rain": 103.27625274658203
+          }
+        ],
+        "request_native": 0.0,
+        "standing_evap_native": 0.0,
+        "soil_evap_density": 0.0,
+        "condensed_native": 43.23958969116211,
+        "infiltrated_density": 0.0014130664456448727,
+        "drained_density": 0.0,
+        "exposed_seconds": 0.0,
+        "head_factor": 1.0,
+        "infiltration_requested_density": 0.0014131497386767888
+      },
+      "area": 7669529600.0,
+      "temperature": 288.86474609375,
+      "saturation": 1232.7419910025806,
+      "dt": 1440.0
+    },
+    "1": {
+      "before": {
+        "liquid": 0.0,
+        "vapor": 1363.8982586332445,
+        "soil": 0.9985868502613232,
+        "rain": 61.41001510620117
+      },
+      "result": {
+        "root_h": [
+          0.9999999403953552,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_credits": [
+          6.213881229399474e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bare_credit": 0.0,
+        "state": {
+          "liquid": 43.228721618652344,
+          "vapor": 1320.6587013408393,
+          "soil": 0.9999996714274086,
+          "rain": 103.2762680053711
+        },
+        "stages": [
+          {
+            "liquid": 0.0,
+            "vapor": 1363.8982586332445,
+            "soil": 0.9985868502613232,
+            "rain": 61.41001510620117
+          },
+          {
+            "liquid": 0.0,
+            "vapor": 1363.8983062907905,
+            "soil": 0.9985806363800926,
+            "rain": 61.41001510620117
+          },
+          {
+            "liquid": 43.23960494995117,
+            "vapor": 1320.6587013408393,
+            "soil": 0.9985806363800926,
+            "rain": 103.2762680053711
+          },
+          {
+            "liquid": 43.228721618652344,
+            "vapor": 1320.6587013408393,
+            "soil": 0.9999996714274086,
+            "rain": 103.2762680053711
+          },
+          {
+            "liquid": 43.228721618652344,
+            "vapor": 1320.6587013408393,
+            "soil": 0.9999996714274086,
+            "rain": 103.2762680053711
+          }
+        ],
+        "request_native": 0.0,
+        "standing_evap_native": 0.0,
+        "soil_evap_density": 0.0,
+        "condensed_native": 43.23960494995117,
+        "infiltrated_density": 0.0014190350473159974,
+        "drained_density": 0.0,
+        "exposed_seconds": 0.0,
+        "head_factor": 1.0,
+        "infiltration_requested_density": 0.0014193636199073545
+      },
+      "area": 7669529600.0,
+      "temperature": 288.86474609375,
+      "saturation": 1232.7419910025806,
+      "dt": 1440.0
+    }
+  },
+  "scope": "Exact local represented-liquid stage telescoping, not global mass closure; isolated mature-soil model, not production weather prediction."
+}

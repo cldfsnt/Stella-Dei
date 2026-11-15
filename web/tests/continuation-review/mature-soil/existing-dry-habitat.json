@@ -1,0 +1,178 @@
+{
+  "scope": "Archived four fixed snapshots, no new run. Saturation uses approximate Python implementation of source table interpolation, not bitwise native proof. Candidates far below threshold. Saved rainfall is smoothed rate, not future rainfall.",
+  "snapshots": [
+    {
+      "day": 30,
+      "source_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "game_time": 2592000.0,
+      "day_phase": 0.0,
+      "cells": 40962,
+      "supersaturated_approx": 6584,
+      "exactly_dry": 5,
+      "warm_dry": 4,
+      "eligible": [
+        {
+          "cell": 8474,
+          "temperature_K": 300.0615539550781,
+          "vapor_saturation_ratio_approx": 0.23060934198206268,
+          "rain_rate_native_per_day": 454.97857666015625,
+          "rain_rate_mm_per_day": 59.32287902769894,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 8483,
+          "temperature_K": 297.4371032714844,
+          "vapor_saturation_ratio_approx": 0.2419058800700639,
+          "rain_rate_native_per_day": 424.0013427734375,
+          "rain_rate_mm_per_day": 55.28387852801787,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27014,
+          "temperature_K": 298.32415771484375,
+          "vapor_saturation_ratio_approx": 0.11905848563328078,
+          "rain_rate_native_per_day": 101.36652374267578,
+          "rain_rate_mm_per_day": 13.216784995871947,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27026,
+          "temperature_K": 297.2445983886719,
+          "vapor_saturation_ratio_approx": 0.12348633182281828,
+          "rain_rate_native_per_day": 61.45345687866211,
+          "rain_rate_mm_per_day": 8.01267614622181,
+          "adjacent_living_patches": 0
+        }
+      ]
+    },
+    {
+      "day": 40,
+      "source_sha256": "a13061d2f77c719b095d808794efe324d669cc1226ed10973804522d67324859",
+      "game_time": 3456000.0,
+      "day_phase": 0.0,
+      "cells": 40962,
+      "supersaturated_approx": 6587,
+      "exactly_dry": 5,
+      "warm_dry": 4,
+      "eligible": [
+        {
+          "cell": 8474,
+          "temperature_K": 299.4593811035156,
+          "vapor_saturation_ratio_approx": 0.24648946061883256,
+          "rain_rate_native_per_day": 482.23382568359375,
+          "rain_rate_mm_per_day": 62.876584462702084,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 8483,
+          "temperature_K": 297.03369140625,
+          "vapor_saturation_ratio_approx": 0.2525784807713225,
+          "rain_rate_native_per_day": 440.3468017578125,
+          "rain_rate_mm_per_day": 57.415099063939,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27014,
+          "temperature_K": 298.178466796875,
+          "vapor_saturation_ratio_approx": 0.12140981316731142,
+          "rain_rate_native_per_day": 105.84820556640625,
+          "rain_rate_mm_per_day": 13.801133979117344,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27026,
+          "temperature_K": 297.05828857421875,
+          "vapor_saturation_ratio_approx": 0.12686133194340135,
+          "rain_rate_native_per_day": 66.37557220458984,
+          "rain_rate_mm_per_day": 8.654451533062712,
+          "adjacent_living_patches": 0
+        }
+      ]
+    },
+    {
+      "day": 50,
+      "source_sha256": "470d572d6d4ff131bf1ebd62e41a488ceb8e9656e5e5bcd5df8045bbad1f0e54",
+      "game_time": 4320000.0,
+      "day_phase": 0.0,
+      "cells": 40962,
+      "supersaturated_approx": 6596,
+      "exactly_dry": 5,
+      "warm_dry": 4,
+      "eligible": [
+        {
+          "cell": 8474,
+          "temperature_K": 299.5584411621094,
+          "vapor_saturation_ratio_approx": 0.24846739821924746,
+          "rain_rate_native_per_day": 492.6409912109375,
+          "rain_rate_mm_per_day": 64.23353411543486,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 8483,
+          "temperature_K": 296.9306335449219,
+          "vapor_saturation_ratio_approx": 0.255649670709751,
+          "rain_rate_native_per_day": 445.1798095703125,
+          "rain_rate_mm_per_day": 58.04525607024354,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27014,
+          "temperature_K": 298.09149169921875,
+          "vapor_saturation_ratio_approx": 0.12294456504892555,
+          "rain_rate_native_per_day": 108.50069427490234,
+          "rain_rate_mm_per_day": 14.146981618651337,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27026,
+          "temperature_K": 296.8973083496094,
+          "vapor_saturation_ratio_approx": 0.12991141661042138,
+          "rain_rate_native_per_day": 69.8470687866211,
+          "rain_rate_mm_per_day": 9.107086409396098,
+          "adjacent_living_patches": 0
+        }
+      ]
+    },
+    {
+      "day": 60,
+      "source_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "game_time": 5184000.0,
+      "day_phase": 0.0,
+      "cells": 40962,
+      "supersaturated_approx": 6599,
+      "exactly_dry": 4,
+      "warm_dry": 3,
+      "eligible": [
+        {
+          "cell": 8483,
+          "temperature_K": 296.8800354003906,
+          "vapor_saturation_ratio_approx": 0.2572494921538679,
+          "rain_rate_native_per_day": 447.5679626464844,
+          "rain_rate_mm_per_day": 58.35663801942747,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27014,
+          "temperature_K": 297.9659729003906,
+          "vapor_saturation_ratio_approx": 0.1251280455307509,
+          "rain_rate_native_per_day": 111.76608276367188,
+          "rain_rate_mm_per_day": 14.572742865960368,
+          "adjacent_living_patches": 0
+        },
+        {
+          "cell": 27026,
+          "temperature_K": 296.6440734863281,
+          "vapor_saturation_ratio_approx": 0.13475237963417291,
+          "rain_rate_native_per_day": 75.21867370605469,
+          "rain_rate_mm_per_day": 9.807468988196446,
+          "adjacent_living_patches": 0
+        }
+      ]
+    }
+  ],
+  "all_four_dry_warm_empty_undersaturated": [
+    8483,
+    27014,
+    27026
+  ]
+}
