@@ -2,7 +2,9 @@
 (function(root){'use strict';
 const uint=n=>Number.isInteger(n)&&n>=0&&n<=4294967295;
 function valid(s){return !!s&&uint(s.world_serial)&&['unavailable','classic','wind'].includes(s.status)&&typeof s.enabled==='boolean'&&((s.status==='unavailable'&&!s.enabled&&s.writer_version===0)||(s.status==='classic'&&!s.enabled&&s.writer_version===7&&s.law===0)||(s.status==='wind'&&s.enabled&&s.writer_version===11&&s.law===1&&(s.cell===null||uint(s.cell))));}
-function describe(s){if(!valid(s))return 'Wind dispersal status unavailable. No world changed.';if(s.status==='unavailable')return 'No active world. Start a fresh wind-dispersal Origin world explicitly.';if(s.status==='classic')return 'Classic world: wind dispersal is off. Existing lineages are unchanged.';return 'Wind dispersal active · law 1. Ordinary Seed starts at 0; paid Pioneer Seed starts at 50% aerial allocation. Allocation redirects existing reproductive opportunities, not extra offspring. Wind direction and distance affect arrival; released failures deposit dead carbon and nutrients at the destination. Establishment is not guaranteed.'+allocations(s);}
+function describe(s){if(!valid(s))return 'Wind status unavailable. No world changed.';if(s.status==='unavailable')return 'No active world. Start a fresh wind Origin world.';if(s.status==='classic')return 'Classic world · wind dispersal off.';return 'Wind dispersal on · law 1. Seed a paid Pioneer to explore distant habitats.';}
+function details(s){if(!valid(s)||s.status==='unavailable')return 'Starting a fresh world does not save or seed automatically.';if(s.status==='classic')return 'Existing lineages are unchanged. Wind dispersal requires an explicitly created fresh world.';return 'Ordinary Seed starts at 0; paid Pioneer Seed starts at 50% aerial allocation. Allocation redirects existing reproductive opportunities, not extra offspring. Wind direction and distance affect arrival; released failures deposit dead carbon and nutrients at the destination. Establishment is not guaranteed.'+allocations(s);}
+
 function allocations(s){
  if(s.cell===null)return '\nNo patch selected.';
  if(!Array.isArray(s.aerial_allocations)||s.aerial_allocations.length>4)return '\nSelected inherited allocations unavailable.';
@@ -22,6 +24,6 @@ function create(h){let current=null;
  }
  return {refresh,fresh,pioneer};
 }
-function mount(doc,h){const ui=create({...h,render:(s,text)=>{doc.getElementById('wind-law-status').textContent=text;doc.getElementById('wind-new').disabled=!s||!h.available();doc.getElementById('wind-pioneer').disabled=!s||s.status!=='wind'||!uint(s.cell)||!h.available();}});doc.getElementById('wind-new').onclick=ui.fresh;doc.getElementById('wind-pioneer').onclick=ui.pioneer;doc.getElementById('wind-refresh').onclick=ui.refresh;ui.refresh();return ui;}
-const api={valid,describe,create,mount};if(typeof module==='object'&&module.exports)module.exports=api;else root.StellaWind=api;
+function mount(doc,h){const ui=create({...h,render:(s,text)=>{doc.getElementById('wind-law-status').textContent=text;doc.getElementById('wind-law-details').textContent=details(s);doc.getElementById('wind-new').disabled=!s||!h.available();doc.getElementById('wind-pioneer').disabled=!s||s.status!=='wind'||!uint(s.cell)||!h.available();}});doc.getElementById('wind-new').onclick=ui.fresh;doc.getElementById('wind-pioneer').onclick=ui.pioneer;doc.getElementById('wind-refresh').onclick=ui.refresh;ui.refresh();return ui;}
+const api={valid,describe,details,create,mount};if(typeof module==='object'&&module.exports)module.exports=api;else root.StellaWind=api;
 })(typeof globalThis==='undefined'?this:globalThis);

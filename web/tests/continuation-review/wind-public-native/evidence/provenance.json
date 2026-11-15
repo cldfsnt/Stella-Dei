@@ -1,0 +1,50 @@
+{
+  "owner_adapter": "9d592a1",
+  "qa_prereg": "307d1e6",
+  "final_exit": 0,
+  "first_exit": 130,
+  "first_failure": "direct QA transition before pending geometry drained",
+  "model_edits": false,
+  "simulation_ticks": 0,
+  "viewport": [
+    390,
+    700
+  ],
+  "files": {
+    "first-build.log": {
+      "sha256": "06db029ebab2914806bd6825e157ed0a0ea41feec4025d03d8b7740f94b0f883",
+      "bytes": 2346,
+      "gzip_file": "first-build.log.gz"
+    },
+    "build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "gzip_file": "build.log.gz"
+    },
+    "build-final.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "gzip_file": "build-final.log.gz"
+    },
+    "first-run.log": {
+      "sha256": "f9710d3f0f94085ca9a1ea50ab9dcbf10bf61f07c784acefbd35284bbb40b28b",
+      "bytes": 947,
+      "gzip_file": "first-run.log.gz"
+    },
+    "run-final.log": {
+      "sha256": "dce3d481b55dfec8ef94670df99bc24f9ef77fef74ce2efd9236417e4c40f537",
+      "bytes": 1392,
+      "gzip_file": "run-final.log.gz"
+    },
+    "disk/saves/world.json": {
+      "sha256": "2752a63c24662f7cff39e311568e21f8ff8b2c3addf5cdd2efb1ded559948717",
+      "bytes": 9390130,
+      "gzip_file": "disk-saves-world.json.gz"
+    },
+    "first-run-disk/saves/world.json": {
+      "sha256": "2752a63c24662f7cff39e311568e21f8ff8b2c3addf5cdd2efb1ded559948717",
+      "same_as": "disk/saves/world.json"
+    }
+  },
+  "original_namespaces_untouched": true
+}

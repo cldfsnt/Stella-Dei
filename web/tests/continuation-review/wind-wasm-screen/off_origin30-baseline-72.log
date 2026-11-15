@@ -1,0 +1,4 @@
+LAYOUT plant=12 planet=2936 cells=40962 cohort=80 cell=336 microbe_bytes=13763232
+FIRST_TICK ms=15.645524000000023 stages={ 0e0, 0e0, 0e0, 0e0 } sub={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+ATMOSPHERE_SUBSTAGES ms={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+WASM_PLANET ticks=72 cells=40962 width=4 parallel=1 total_ms=971.6146799999999 temperature_ms=0 liquid_wind_ms=0 atmosphere_ms=0 ecology_ms=0

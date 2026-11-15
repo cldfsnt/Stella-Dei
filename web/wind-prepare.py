@@ -13,7 +13,7 @@ def once(a,b):
  assert s.count(a)==1,a
  s=s.replace(a,b,1)
 once('<script src="stella-storage.js"></script>','<script src="wind-origin.js"></script><script src="stella-storage.js"></script>')
-once('<h3>World</h3>','<h3>World</h3><button id="wind-new">New Origin · wind dispersal…</button><button id="wind-refresh">Refresh wind-law status</button><p id="wind-law-status" role="status"></p>')
+once('<h3>World</h3>','<h3>World</h3><button id="wind-new">New Origin · wind dispersal…</button><button id="wind-refresh">Refresh wind-law status</button><p id="wind-law-status" role="status"></p><details id="wind-disclosure"><summary>How wind dispersal works</summary><p id="wind-law-details" style="white-space:pre-line"></p></details>')
 once('<section id="group-plant" aria-label="Plant"><h3>Plant</h3>','<section id="group-plant" aria-label="Plant"><h3>Plant</h3><button id="wind-pioneer" disabled>Seed Pioneer here · paid, 50% aerial allocation</button>')
 once("const storage=createStellaStorage(Module,feedback,{preserveLegacyThroughVersion:6});", """const storage=createStellaStorage(Module,feedback,{preserveLegacyThroughVersion:6,readWriterIdentity:()=>JSON.parse(Module.ccall('stella_wind_snapshot','string',[],[]))});
 const windUI=StellaWind.mount(document,{
@@ -35,3 +35,16 @@ for p in (root/'tests').glob('*.test.cjs'):shutil.copy2(p,tests/p.name)
 p=tests/'shell.test.cjs';t=p.read_text();needle="sandbox.WorldEcology=require('../world-ecology.js');";assert t.count(needle)==1;t=t.replace(needle,needle+"sandbox.StellaWind=require('../wind-origin.js');");p.write_text(t)
 
 for p in (root/'tests').glob('*.py'):shutil.copy2(p,tests/p.name)
+
+# Build packaging is idempotent and does not change native exports.
+build=out/'build.sh'
+if build.exists():
+ t=build.read_text();line='cp web/wind-origin.js web/dist/wind-origin.js'
+ if line not in t:
+  needle='cp web/stella-storage.js web/dist/stella-storage.js'
+  assert t.count(needle)==1
+  build.write_text(t.replace(needle,needle+'\n'+line))
+
+# Unchanged license and preload packager needed by the isolated full build.
+shutil.copy2(root/'package.py',out/'package.py')
+shutil.copy2(root.parent/'LICENSE',out.parent/'LICENSE')

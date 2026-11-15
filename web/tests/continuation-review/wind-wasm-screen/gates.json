@@ -1,0 +1,62 @@
+{
+  "off_origin30": {
+    "baseline": {
+      "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "sha256": "1b69f9bc6095b8085050c46c97a5ecca1ee94b90d81ca3741370bc517d4ebc30",
+      "bytes": 11110301,
+      "zero_typed_exact": true,
+      "fresh_process_restart_exact": true,
+      "layout": "LAYOUT plant=12 planet=2936 cells=40962 cohort=80 cell=336 microbe_bytes=13763232",
+      "wind_final": null
+    },
+    "candidate": {
+      "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "sha256": "1b69f9bc6095b8085050c46c97a5ecca1ee94b90d81ca3741370bc517d4ebc30",
+      "bytes": 11110301,
+      "zero_typed_exact": true,
+      "fresh_process_restart_exact": true,
+      "layout": "LAYOUT plant=12 planet=2960 cells=40962 cohort=88 cell=368 microbe_bytes=15074016",
+      "wind_final": "WIND_FINAL enabled=false serial=0"
+    }
+  },
+  "off_sandbox82": {
+    "baseline": {
+      "input_sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842,
+      "zero_typed_exact": true,
+      "fresh_process_restart_exact": true,
+      "layout": "LAYOUT plant=12 planet=2936 cells=40962 cohort=80 cell=336 microbe_bytes=0",
+      "wind_final": null
+    },
+    "candidate": {
+      "input_sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+      "sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+      "bytes": 7704842,
+      "zero_typed_exact": true,
+      "fresh_process_restart_exact": true,
+      "layout": "LAYOUT plant=12 planet=2960 cells=40962 cohort=88 cell=368 microbe_bytes=0",
+      "wind_final": "WIND_FINAL enabled=false serial=0"
+    }
+  },
+  "enabled_pioneer_day3": {
+    "baseline": {
+      "input_sha256": "3fdd53eeb8d47ab2cfa15ac4ccb0643d4fa60a1d11c6474e89fbe8b6d130bb81",
+      "sha256": "b218d77b6b05f663078d3d4bce4bd5b38aacfcd0999348e35b1d17c64853a858",
+      "bytes": 11434873,
+      "zero_typed_exact": true,
+      "fresh_process_restart_exact": true,
+      "layout": "LAYOUT plant=12 planet=2936 cells=40962 cohort=80 cell=336 microbe_bytes=13763232",
+      "wind_final": null
+    },
+    "candidate": {
+      "input_sha256": "f81d2577320ebb1f5183430d142c03c0d5e11e05c97fe8c1555a79cee01d2f90",
+      "sha256": "364ad6ee100770fcc6e279a9de3219d2ea9c70e657bdc236787f3662f430f836",
+      "bytes": 11442520,
+      "zero_typed_exact": true,
+      "fresh_process_restart_exact": true,
+      "layout": "LAYOUT plant=12 planet=2960 cells=40962 cohort=88 cell=368 microbe_bytes=15074016",
+      "wind_final": "WIND_FINAL enabled=true serial=131"
+    }
+  }
+}

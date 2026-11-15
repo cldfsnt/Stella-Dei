@@ -7,6 +7,11 @@ def run(label,arm,source,ticks):
  with l.open('w')as f:subprocess.run(['node',str(o/arm/'profile.js'),str(source),str(o/'graph.json'),str(p),str(ticks),'0'],stdout=f,stderr=subprocess.STDOUT,check=True)
  return p,l.read_text()
 def canonical(x):
+ if isinstance(x,dict) and "plants" in x and "version" in x:
+  x=dict(x)
+  if x["version"]<=7:x["version"]=7
+  x.setdefault("sandbox_defense",None)
+  x["plants"]=[dict(p,toughness=p.get("toughness",0))for p in x["plants"]]
  if isinstance(x,dict):return {k:canonical(v)for k,v in x.items() if not(k=='cohorts' and v==[])}
  if isinstance(x,list):return [canonical(v)for v in x]
  return x

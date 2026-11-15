@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/run-wasm-wind-screen.py", line 18, in <module>
+    z,_=run(name+'-'+arm+'-zero',arm,inp,0);assert canonical(json.loads(z.read_text()))==canonical(json.loads(inp.read_text())),(name,arm,'zero')
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('off_origin30', 'baseline', 'zero')

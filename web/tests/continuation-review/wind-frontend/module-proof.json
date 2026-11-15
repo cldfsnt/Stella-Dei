@@ -1,0 +1,30 @@
+{
+  "scope": "Actual built Node Module export and uninitialized guards; no browser graphics or initialized player flow",
+  "exports": [
+    "stella_wind_snapshot",
+    "stella_wind_new",
+    "stella_seed_pioneer",
+    "stella_save_expected"
+  ],
+  "snapshot": {
+    "status": "unavailable",
+    "world_serial": 0,
+    "enabled": false,
+    "writer_version": 0,
+    "law": 0,
+    "cell": null,
+    "aerial_allocations": []
+  },
+  "guards": {
+    "fresh": -1,
+    "pioneer": -1,
+    "save": -1
+  },
+  "sha256": {
+    "index.html": "ffbe5039613ff15365a7c4a1551b13a4e7de8af100682b28d4047fe1c75bd548",
+    "index.js": "4388587133d946bad59b4a2290f4b0b7206c14f81884140444c6812859fe09e9",
+    "index.wasm": "285be5e058fe977d30ccd807c9866c633dfec1127361d6c7a113386501ae7146",
+    "wind-origin.js": "6526e72ed88a763d118307898a8233009e5ce10e39c8ce6924f36e43635fcd65",
+    "stella-storage.js": "0be49da1ffbe98948eba15837f7999fa951aa4d3a622b6f4f3cab184e7beb6f0"
+  }
+}

@@ -1,0 +1,12 @@
+// Instantiate the actual built Emscripten artifact without starting graphics.
+const fs=require('fs'),vm=require('vm'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto');
+const dir=path.resolve(process.argv[2]||'../site-tmp/wind-dispersal/web/dist');
+const hash=f=>crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,f))).digest('hex');
+const Module={noInitialRun:true,getPreloadedPackage(){const b=Buffer.concat([0,1,2,3].map(i=>fs.readFileSync(dir+'/assets-'+i+'.bin')));return b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);},wasmBinary:fs.readFileSync(dir+'/index.wasm'),onRuntimeInitialized(){
+ const names=['stella_wind_snapshot','stella_wind_new','stella_seed_pioneer','stella_save_expected'];for(const name of names)assert.equal(typeof Module['_'+name],'function',name);
+ const snapshot=JSON.parse(Module.ccall('stella_wind_snapshot','string',[],[]));assert.equal(snapshot.status,'unavailable');assert.equal(snapshot.enabled,false);assert.equal(snapshot.writer_version,0);assert.ok(Number.isInteger(snapshot.world_serial));
+ const guards={fresh:Module._stella_wind_new(snapshot.world_serial),pioneer:Module._stella_seed_pioneer(snapshot.world_serial,0),save:Module._stella_save_expected(snapshot.world_serial,11)};assert.deepEqual(guards,{fresh:-1,pioneer:-1,save:-1});
+ const html=fs.readFileSync(dir+'/index.html','utf8');assert.ok(html.indexOf('wind-origin.js')>=0&&html.indexOf('wind-origin.js')<html.indexOf('stella-storage.js'));assert.ok(fs.existsSync(dir+'/wind-origin.js'));assert.match(html,/wind-law-details/);assert.match(html,/How wind dispersal works/);assert.match(fs.readFileSync(dir+'/stella-storage.js','utf8'),/stella_save_expected/);
+ console.log(JSON.stringify({scope:'Actual built Node Module export and uninitialized guards; no browser graphics or initialized player flow',exports:names,snapshot,guards,sha256:Object.fromEntries(['index.html','index.js','index.wasm','wind-origin.js','stella-storage.js'].map(f=>[f,hash(f)]))},null,2));
+}};
+vm.runInNewContext(fs.readFileSync(dir+'/index.js','utf8'),{Module,require,process,Buffer,WebAssembly,console,setTimeout,clearTimeout,setInterval,clearInterval,__dirname:dir,__filename:dir+'/index.js',module:{exports:{}},TextDecoder,TextEncoder,URL,performance,fetch});

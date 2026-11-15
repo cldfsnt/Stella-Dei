@@ -1,0 +1,169 @@
+✔ actual shell: start, cancel, redraw wait, dismiss and repeat (6.432648ms)
+✔ missing native API never calls start or hides game (1.320409ms)
+✔ active input guards block globe and tools but permit accessible actions (1.578158ms)
+✔ context loss calls native environment and shows stopped, not advancing (1.542924ms)
+✔ genuine context loss stays frozen after restored event; explicit durable save then reload path (1.631838ms)
+✔ recovery save failure never claims durable save (1.636585ms)
+✔ context loss outside advancement still exposes reload recovery, never leaves a silently frozen game (1.295552ms)
+✔ browser timer APIs use global-call wrappers, never hook-object receivers (0.290538ms)
+✔ release/cancel events reach guarded native input handlers to clear held state (8.8735ms)
+✔ recovery hides generic final-redraw subtitle (2.201456ms)
+✔ only explicit start; duplicate click never restarts; native redraw required (2.011269ms)
+✔ cancel keeps completed count, blocks dismissal until redraw (0.403929ms)
+✔ malformed, unknown, regressed and wrong-token statuses fail closed (0.401735ms)
+✔ status exception never unlocks or silently retries (0.299632ms)
+✔ hidden/context cancellation waits native acknowledgement; repeated session works (0.323457ms)
+✔ validation rejects incomplete-success and unsafe progress (0.201043ms)
+✔ uncertain start cannot reuse prior completed job as new success (0.503228ms)
+✔ explicit dismissal waits for native neutral-input acknowledgement (0.31164ms)
+✔ rejected dismissal does not unlock; wrong world cannot establish a job (0.346652ms)
+✔ arrival effects control uses authoritative result and is independent of seed hints (2.554147ms)
+✔ native hide discards only visual receipts and export remains guarded (1.933922ms)
+✔ all snapshot points explicitly reviewed, one apply only, no twelve cap (1.376474ms)
+✔ cancel and unavailable invalidate queued planning without applying (0.247062ms)
+✔ changed world or counts refuse before apply (0.344359ms)
+✔ unknown execution receipt never claims unchanged or success (0.195384ms)
+✔ invalid native counts and world refuse planning (0.222836ms)
+✔ malformed newly created plan is cancelled using its verified world/token (0.952605ms)
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ ../site-tmp/wind-dispersal/web/tests/colony-labels.test.cjs (194.099907ms)
+✔ explicit review and one-use whole colony execution, exact string identity (4.060617ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.701086ms)
+✔ ineligible source or full target cannot prepare (0.336948ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.807907ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (1.162481ms)
+✔ unknown execution result is not reported as safe failure or retried (0.460894ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (2.127575ms)
+✔ post-execution malformed receipt never claims successful move (1.082831ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (0.442476ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (0.596818ms)
+✔ changing source or destination consumes pending ticket without refreshing options (0.326572ms)
+✔ actual pentagon five destinations accepted while raw self padding remains rejected (0.23874ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ ../site-tmp/wind-dispersal/web/tests/colony-watch-details.test.cjs (227.904134ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ ../site-tmp/wind-dispersal/web/tests/colony-watch-ui.test.cjs (148.099189ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ ../site-tmp/wind-dispersal/web/tests/compact-life.test.cjs (145.578625ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.270754ms)
+✔ restricted or missing clipboard stays manually copyable (0.283537ms)
+✔ missing or oversized report never writes or displays stale data (0.376947ms)
+✔ Sandbox finite grazing guidance and bite counter do not promise recovery (1.487871ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ ../site-tmp/wind-dispersal/web/tests/gameplay-measure.test.cjs (74.918835ms)
+✔ preview only, explicit one-use application and exact manual receipt (1.891299ms)
+✔ cancel and repeated preparation never apply (0.320332ms)
+✔ stale world selection token pause availability and pending refuse (0.585803ms)
+✔ malformed preview fails closed with real bounded footprint (0.53168ms)
+✔ failed response, thrown response and malformed success never imply application status falsely (0.959546ms)
+✔ actual refusal is one-use, no silent retry (0.391079ms)
+✔ shell routes both player entry points through preview and cancels destructive lifecycle (2.227765ms)
+✔ receipt changed risk counts, depth, token or exact footprint is unknown (0.822789ms)
+✔ receipt does not survive world or selection change (0.646574ms)
+✔ sunlit is explicit kind 2 with exact 5m shelf; deep remains kind 1 (1.954614ms)
+✔ sunlit receipt cannot silently become deep, and stale world refuses (0.429477ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ ../site-tmp/wind-dispersal/web/tests/harness-mode.test.cjs (146.720314ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ ../site-tmp/wind-dispersal/web/tests/life-trend.test.cjs (612.462656ms)
+✔ five coherent groups preserve all action IDs exactly once (2.039762ms)
+✔ group switching is UI-only, community direct access starts bounded sampling (1.747001ms)
+✔ moved direct planet actions dismiss Tools only after success (0.449857ms)
+✔ actual Find and Seed handlers close/focus on success but retain refusal (1.210624ms)
+✔ entire scan continues beyond one512 chunk with exact chosen ID and explicit result (2.113824ms)
+✔ cancel, closed UI, new snapshot and changed source prevent queued navigation (0.496538ms)
+✔ unrelated or dead result never claims offspring; no result is scoped to scan (0.488606ms)
+✔ only explicit valid living parent choices, bounded4 and no unsafe integer coercion (0.406372ms)
+✔ post-navigation snapshot from another world never claims success (0.280733ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (2.94768ms)
+✔ empty interval and no ticks are explicit (0.426682ms)
+✔ pause menu hidden guard cancels without unpause (0.374474ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.440654ms)
+✔ hard deadline and invalid result terminate (0.317819ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (1.089181ms)
+✔ invalid or missing pulse fields stop safely (1.013948ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.317738ms)
+✔ last step is bounded native inspector with explicit units and combined other change (2.740939ms)
+✔ existing snapshot receipt is read-only and changes no export contract (0.247953ms)
+✔ direct water and god tool attempts invalidate prior interval (0.277468ms)
+✔ receipt display uses signed bounded fixed formatting and active tabs (0.58438ms)
+✔ grazing is presented as signed removal, not added cover (0.157708ms)
+✔ observation requires explicit request and sync never rearms (1.012415ms)
+✔ rabbit badge scaling keeps every visible animal and existing two fills, no picking change (1.470015ms)
+✔ web build defaults to explicit false with diagnostic opt in (1.430224ms)
+✔ renderer uses policy and retains independent shader validation (1.419118ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ ../site-tmp/wind-dispersal/web/tests/renderer-info.test.cjs (84.40272ms)
+✔ viewing is inert; explicit enable then choice and cancel never plant (5.2976ms)
+✔ stale selection/world and Origin refuse before command (0.980888ms)
+✔ malformed or mismatched postcommand is unknown not false failed promise (0.621811ms)
+✔ refusal remains visible and no silent focus or retry (0.235344ms)
+✔ isolated shell hides whole Origin auto-seed block across mode flips (8.548937ms)
+✔ tool selection preserves valid phenotype and defaults only Plant; shared native routes (0.772794ms)
+✔ retained seed choice does not promise a planting tap after another tool (0.351079ms)
+✔ Sandbox find controls call distinct kinds without planting or time advancement (2.944976ms)
+✔ Sparse and submerged are not falsely reported as no life (1.179847ms)
+✔ Empty/refused/missing export remain truthful and do not mutate (2.426615ms)
+PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately
+✔ ../site-tmp/wind-dispersal/web/tests/save-size-safety.test.cjs (81.690234ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ ../site-tmp/wind-dispersal/web/tests/scene-resolution.test.cjs (157.344605ms)
+PASS post-water watch: explicit resume, running, stale world/selection, relabel on pause, zero/refusal and close/cancel; observation begins after edit
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ ../site-tmp/wind-dispersal/web/tests/shell.test.cjs (221.882074ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ ../site-tmp/wind-dispersal/web/tests/storage-upgrade.test.cjs (158.019633ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ ../site-tmp/wind-dispersal/web/tests/storage.test.cjs (105.289309ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ ../site-tmp/wind-dispersal/web/tests/touch-controls.test.cjs (105.838126ms)
+✔ actual shell form buttons bind current sample and cancel safely (4.824987ms)
+✔ Watch prepares a private baseline before dismissing only native Inspect (5.756391ms)
+✔ ordinary Watch never resumes; checked Watch requires explicit authorization (0.25856ms)
+✔ generic HTML close and cancel do not trigger native watch transitions (0.361124ms)
+✔ law status never implies enabled classic or trait flight (0.965905ms)
+✔ fresh explicit confirmed new world only; cancel busy and stale do nothing (0.955319ms)
+✔ Pioneer is enabled-only and guards world selection and busy (0.254413ms)
+✔ native refusals and unknown results never retry or claim success (0.295535ms)
+✔ selected allocations are real string identities, not opportunity serial launch counts (0.319561ms)
+✖ mobile primary status stays concise while disclosure retains mechanics (0.450188ms)
+PASS wind candidate: latest v7 protected only before v11, prior backup intact, unknown/mismatch/quota/async identity fail closed, busy gate and retry
+✔ ../site-tmp/wind-dispersal/web/tests/wind-storage.test.cjs (119.524961ms)
+✔ community copy distinguishes sampled forms and unavailable events (2.113884ms)
+✔ bounded census cancels queued work and refuses switched world (0.399271ms)
+✔ Sandbox occupied defense traits use actual range and patch units, not taxonomy (0.593424ms)
+✔ positive tiny toughness does not display as zero (0.250908ms)
+✔ all six stable form identities survive biomass sorting, zero remains honest (0.626453ms)
+✔ visit uses sampled world and enum, never zero or stale/cancelled rows; no retries (1.353208ms)
+✔ current-state refusal never fabricates a match or retries (0.649739ms)
+✔ actual shell uses two-number public contract and accessible six-row controls (1.016401ms)
+ℹ tests 123
+ℹ suites 0
+ℹ pass 122
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 881.842612
+
+✖ failing tests:
+
+test at ../site-tmp/wind-dispersal/web/tests/wind-origin.test.cjs:12:1
+✖ mobile primary status stays concise while disclosure retains mechanics (0.450188ms)
+  Error: ENOENT: no such file or directory, open '/workspace/scratch/f67c3ac60ca3/site-tmp/wind-dispersal/web/wind-prepare.py'
+      at Object.readFileSync (node:fs:483:20)
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/wind-dispersal/web/tests/wind-origin.test.cjs:12:277)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/workspace/scratch/f67c3ac60ca3/site-tmp/wind-dispersal/web/wind-prepare.py'
+  }

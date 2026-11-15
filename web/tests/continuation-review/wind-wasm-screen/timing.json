@@ -1,0 +1,95 @@
+{
+  "start": "2026-11-15T22:06:11.719807+00:00",
+  "end": "2026-11-15T22:06:35.743709+00:00",
+  "rows": [
+    {
+      "scenario": "off_origin30",
+      "arm": "baseline",
+      "index": 0,
+      "ms_per_tick": 15.832596316666667
+    },
+    {
+      "scenario": "off_origin30",
+      "arm": "candidate",
+      "index": 1,
+      "ms_per_tick": 17.138047633333333
+    },
+    {
+      "scenario": "off_origin30",
+      "arm": "candidate",
+      "index": 2,
+      "ms_per_tick": 18.94711518333333
+    },
+    {
+      "scenario": "off_origin30",
+      "arm": "baseline",
+      "index": 3,
+      "ms_per_tick": 19.440675833333334
+    },
+    {
+      "scenario": "off_sandbox82",
+      "arm": "baseline",
+      "index": 0,
+      "ms_per_tick": 27.496547483333334
+    },
+    {
+      "scenario": "off_sandbox82",
+      "arm": "candidate",
+      "index": 1,
+      "ms_per_tick": 27.743560300000006
+    },
+    {
+      "scenario": "off_sandbox82",
+      "arm": "candidate",
+      "index": 2,
+      "ms_per_tick": 31.361520599999995
+    },
+    {
+      "scenario": "off_sandbox82",
+      "arm": "baseline",
+      "index": 3,
+      "ms_per_tick": 26.895232383333337
+    },
+    {
+      "scenario": "enabled_pioneer_day3",
+      "arm": "baseline",
+      "index": 0,
+      "ms_per_tick": 17.495700600000003
+    },
+    {
+      "scenario": "enabled_pioneer_day3",
+      "arm": "candidate",
+      "index": 1,
+      "ms_per_tick": 17.4739776
+    },
+    {
+      "scenario": "enabled_pioneer_day3",
+      "arm": "candidate",
+      "index": 2,
+      "ms_per_tick": 19.240118966666667
+    },
+    {
+      "scenario": "enabled_pioneer_day3",
+      "arm": "baseline",
+      "index": 3,
+      "ms_per_tick": 17.588851183333336
+    }
+  ],
+  "summary": {
+    "off_origin30": {
+      "baseline": 17.636636075,
+      "candidate": 18.042581408333334,
+      "percent": 2.301716334152659
+    },
+    "off_sandbox82": {
+      "baseline": 27.195889933333333,
+      "candidate": 29.552540450000002,
+      "percent": 8.665465709868837
+    },
+    "enabled_pioneer_day3": {
+      "baseline": 17.54227589166667,
+      "candidate": 18.357048283333334,
+      "percent": 4.644621921912173
+    }
+  }
+}
