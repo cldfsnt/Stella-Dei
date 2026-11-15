@@ -1,0 +1,25 @@
+{
+  "cpu-v42/save7.json": {
+    "bytes": 41853056,
+    "sha256": "76ad2152b0c21180e6d252c0fcd12ef28db751847483e14b1733a5ac0bcdcdfc"
+  },
+  "watch-natural-30day.json": {
+    "bytes": 10452371,
+    "sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35"
+  },
+  "src/active_cell_index.zig": {
+    "sha256": "493573880318b287d52b10dc1dd1c84d8fee252807ee1c96a9d56d4d751a05c4"
+  },
+  "src/simulation/planet.zig": {
+    "sha256": "1e04d4df20b55c11825ae6c33f500cf3e219fccc8bf3df0c34304a670bf6501b"
+  },
+  "src/simulation/microbes.zig": {
+    "sha256": "844f077e8a6112fc37261e23ebbc4497af6ccd9bc48d04255ec4a6c045b6d485"
+  },
+  "src/save_game.zig": {
+    "sha256": "436e92701cce0b196e8de7aa1f7e68e44ea431c231a68b6b5f03cb73a0532582"
+  },
+  "src/save_schema.zig": {
+    "sha256": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3"
+  }
+}

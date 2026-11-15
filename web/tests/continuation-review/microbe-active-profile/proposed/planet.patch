@@ -1,0 +1,71 @@
+--- a/src/simulation/planet.zig
++++ b/src/simulation/planet.zig
+@@ -1,5 +1,6 @@
+ const AtmosphereWater = @import("atmosphere_water.zig");
+ const Microbes = @import("microbes.zig");
++const ActiveCells = @import("../active_cell_index.zig");
+ const SurfacePhysics = @import("surface_physics.zig");
+ const builtin = @import("builtin");
+ const std = @import("std");
+@@ -1481,10 +1482,15 @@
+         if (self.microbeCells.len != self.vertices.len) return;
+         const dt = @max(0, options.dt * options.timeScale);
+         if (dt <= 0) return;
++        // Rebuild every tick; all player edits/load/reproduction are reflected.
++        // OOM preserves the original full scans. No persistent or saved cache.
++        const active:?[]u64=ActiveCells.init(self.allocator,self.microbeCells.len) catch null;
++        defer if(active)|bits|self.allocator.free(bits);
+         const watch=&@import("../patch_watch.zig").current;
+         const observing=if(watch.active and watch.owner==@intFromPtr(self))watch.beginTick(@intFromPtr(self),options.gameTime,@import("../patch_watch.zig").nowMs()) else false;
+         for (self.microbeCells, 0..) |*cell, i| {
+             if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
++            if(active)|bits|ActiveCells.mark(bits,i);
+             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
+             const before_cohorts=cell.cohorts;
+             const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+@@ -1500,7 +1506,8 @@
+         if(observing)watch.finishTick(options.gameTime,dt);
+         // A resident cohort may make at most one adjacent relocation per step.
+         // Six neighbor records stay on the stack; no world-sized scratch storage.
+-        for (0..self.microbeCells.len) |i| {
++        var move_cursor:usize=0;
++        while(ActiveCells.nextOrLinear(active,&move_cursor,self.microbeCells.len))|i|{
+             for (0..self.microbeCells[i].cohorts.len) |which| {
+                 const co = self.microbeCells[i].cohorts[which];
+                 if (co.biomass <= 0 or co.feeding <= 0 or co.mobility <= 0) continue;
+@@ -1510,6 +1517,7 @@
+                 for (adjacent, 0..) |n, slot| records[slot] = .{ .index = n, .environment = self.microbeEnvironment(n, 1) };
+                 const moved = Microbes.relocate(self.microbeCells, i, which, self.microbeEnvironment(i, 1), &records, dt, options.gameTime);
+                 if (moved.moved) {
++                    if(active)|bits|ActiveCells.mark(bits,moved.to);
+                     self.propaguleFeedback.forget(co.lineage);
+                     self.applyMicrobeFlux(.{ .recycled = moved.respired });
+                     self.microbeStats.relocations +|= 1;
+@@ -1519,7 +1527,9 @@
+         }
+         // All growth precedes dispersal. Newborn credits start at zero, so no
+         // propagule can grow/reproduce again merely due to grid iteration order.
+-        for (self.microbeCells, 0..) |*cell, i| {
++        var birth_cursor:usize=0;
++        while(ActiveCells.nextOrLinear(active,&birth_cursor,self.microbeCells.len))|i|{
++            const cell=&self.microbeCells[i];
+             if (Microbes.biomass(cell.*) <= 0) continue;
+             const donor_start:usize = @intCast(Microbes.random(&cell.rng) % cell.cohorts.len);
+             for (0..cell.cohorts.len) |donor_offset| {
+@@ -1535,6 +1545,7 @@
+                     if(std.math.isFinite(env.depth_km) and std.math.isFinite(env.temperature)){
+                         const lineage=self.microbeStats.next_lineage;
+                         if(Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats)){
++                            if(active)|bits|ActiveCells.mark(bits,n);
+                             self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(i,n,lineage,options.gameTime);
+                             continue;
+                         }
+@@ -1548,7 +1559,7 @@
+                     const n = neighbors[(start + offset) % neighbors.len];
+                     const env = self.microbeEnvironment(n, 1);
+                     if (!Microbes.habitable(env.depth_km, env.temperature)) continue;
+-                    if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)) break;
++                    if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)){if(active)|bits|ActiveCells.mark(bits,n);break;}
+                 }
+             }
+         }

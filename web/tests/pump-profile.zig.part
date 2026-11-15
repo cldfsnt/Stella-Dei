@@ -1,0 +1,26 @@
+fn profileFrames(label:[]const u8,state:anytype,window:anytype,allocator:std.mem.Allocator)!void{
+ const saves=@import("save_game.zig");const jobs=@import("loop.zig");const perf=@import("performance_details.zig");
+ var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+ const bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+ const frozen=try std.json.parseFromSlice(saves.schema.Save,a,bytes,.{.allocate=.alloc_always});
+ std.debug.print("PUMP_PLATFORM stage={s} renderer={s} parallel={d} cells={d} width={d} height={d}\n",.{label,std.mem.span(gl.getString(gl.RENDERER).?),game.loop.getParallelCount(),state.planet.vertices.len,window.getFramebufferSize().width,window.getFramebufferSize().height});
+ for([_]f32{0,21600,86400})|speed|{
+  game.loop.pump(16);try saves.apply(state,frozen.value);state.paused=speed==0;state.timeScale=speed;state.simulationClock.reset();state.pointerOnPlanet=false;
+  for(0..12)|_|{glfw.pollEvents();game.loop.pump(16);state.setRawFrameDelta(1.0/60.0);state.update(&game,1.0/60.0);game.loop.pump(16);render(window);gl.finish();window.swapBuffers();}
+  perf.metrics.setEnabled(true);jobs.qa_enabled=true;
+  var sums:[7]f64=.{0}**7;var maxima:[7]f64=.{0}**7;var counts:[3]u64=.{0}**3;var jmax:[3]u64=.{0}**3;var frameMax:f64=0;var times:[60]f64=undefined;var ticks:u32=0;
+  for(0..60)|i|{
+   var timer=try std.time.Timer.start();glfw.pollEvents();const poll=@as(f64,@floatFromInt(timer.lap()))/1e6;
+   jobs.qa_reset();game.loop.pump(16);const pre=@as(f64,@floatFromInt(timer.lap()))/1e6;const pre_count=jobs.qa_jobs;const pre_max=jobs.qa_max;
+   jobs.qa_reset();state.setRawFrameDelta(1.0/60.0);state.update(&game,1.0/60.0);const update=@as(f64,@floatFromInt(timer.lap()))/1e6;const update_count=jobs.qa_jobs;const update_max=jobs.qa_max;
+   jobs.qa_reset();game.loop.pump(16);const post=@as(f64,@floatFromInt(timer.lap()))/1e6;const post_count=jobs.qa_jobs;const post_max=jobs.qa_max;
+   render(window);const draw=@as(f64,@floatFromInt(timer.lap()))/1e6;gl.finish();const finish=@as(f64,@floatFromInt(timer.lap()))/1e6;window.swapBuffers();const swap=@as(f64,@floatFromInt(timer.lap()))/1e6;
+   const values=[_]f64{poll,pre,update,post,draw,finish,swap};var total:f64=0;for(values,0..)|v,k|{sums[k]+=v;maxima[k]=@max(maxima[k],v);total+=v;}
+   counts[0]+=pre_count;counts[1]+=update_count;counts[2]+=post_count;jmax[0]=@max(jmax[0],pre_max);jmax[1]=@max(jmax[1],update_max);jmax[2]=@max(jmax[2],post_max);frameMax=@max(frameMax,total);times[i]=total;ticks+=state.simulationStepsLastFrame;
+   std.debug.print("PUMP_FRAME stage={s} speed={d} frame={d} pre_ms={d:.4} update_ms={d:.4} post_ms={d:.4} draw_ms={d:.4} finish_ms={d:.4} swap_ms={d:.4} total_ms={d:.4} pre_jobs={d} update_jobs={d} post_jobs={d}\n",.{label,speed/3600,i,pre,update,post,draw,finish,swap,total,pre_count,update_count,post_count});
+  }
+  jobs.qa_enabled=false;const metrics=perf.metrics.sample();perf.metrics.setEnabled(false);std.mem.sort(f64,&times,{},std.sort.asc(f64));var total:f64=0;for(sums)|v|total+=v;
+  std.debug.print("PUMP_SUMMARY stage={s} speed={d} frames=60 ticks={d} means_poll_pre_update_post_draw_finish_swap={any} maxima={any} jobs_pre_update_post={any} max_job_ns={any} total_mean_ms={d:.4} p95_ms={d:.4} max_ms={d:.4} physics_sum_ms={d:.4}\n",.{label,speed/3600,ticks,@as(@Vector(7,f64),sums)/@as(@Vector(7,f64),@splat(60)),maxima,counts,jmax,total/60,times[56],frameMax,metrics.physics_sum});
+ }
+ game.loop.pump(16);try saves.apply(state,frozen.value);std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("PUMP_RESTORE stage={s} exact_save=true\n",.{label});
+}

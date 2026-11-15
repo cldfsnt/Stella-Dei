@@ -1,0 +1,11 @@
+# Laptop-scale rendering investigation (not shipped)
+
+Native ReleaseSafe, actual engine/renderer/shaders, llvmpipe software OpenGL, same40962-cell generated nursery and provenance-verified30day QA save. Early1 occupied patch versus cached10 patches/18 cohorts. Phone390×700 and laptop1366×768,1920×1080,2560×1440. No rendering quality/resolution reduction is proposed or shipped.
+
+Each pace has12 warmup frames then60 measured frames, actual pre-pump16 → update → post-pump16 → render → gl.finish → swap ordering. Fixed1/60 input delta with paused,6h/s and24h/s targets; compute-throughput field is NOT actual browser achieved simulation pace. Stage-call metrics overlap driver work: scene includes upload; postprocess time may include deferred GPU/driver work. Native software rendering cannot predict Todd's GPU/browser result. Multiple team builds were active, so timing is noisy.
+
+Initial numeric logs (390.log etc.) inherited a harness omission: Play used browser policy but Planet still uploaded native-only atmosphere geometry. Browser-policy-prefixed logs correct that branch and are the applicable browser-policy native proxy. Initial logs remain for transparency. This reduces one unused655392-byte bufferData upload per frame; it is already absent in production browser builds, NOT a newly discovered production optimization.
+
+Counters instrument actual glBufferData/glBufferSubData and drawArrays/drawElements calls. Terrain currently streams1474632 bytes in4 subdata calls each frame at40962 cells, even paused. Candidate exact terrain retention can remove983088 of those bytes without reducing geometry; it is separately investigated, not promoted. Established camera renders roughly177–249 draw calls/frame versus early66–79, including UI. Resolution strongly affects render+finish time in this software proxy; never describe these values as actual laptop GPU performance or blame Zig.
+
+Actual settled render was visually inspected: detailed terrain, producer glyphs and receipt cues are present, not a blank parity image. Controls/cache/viewport instrumentation only; no biology or quality changes. Raw summaries and paired effects results accompany this report. Existing native allocator shutdown warning remains, so this is not a clean leak-check result.

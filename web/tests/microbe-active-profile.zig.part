@@ -1,0 +1,30 @@
+fn profileMicroReplay(state:anytype,allocator:std.mem.Allocator,path:[]const u8)!void{
+ const saves=@import("save_game.zig");const qa=@import("qa_micro_metrics.zig");
+ var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();
+ const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);
+ game.loop.pump(16);try saves.apply(state,parsed.value);
+ const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+ const dense=std.posix.getenv("QA_MICRO_DENSE")!=null;
+ if(dense){
+  // Explicit stress fixture: external water/temperature, real paid seed API.
+  @memset(state.planet.temperature,303);@memset(state.planet.waterMass,0.001/state.planet.getKmPerWaterMass());
+  var seeded:usize=0;for(0..state.planet.microbeCells.len)|i|{if(@import("simulation/microbes.zig").biomass(state.planet.microbeCells[i])==0 and state.planet.seedMicrobes(i))seeded+=1;}
+  var occupied:usize=0;var cohorts:usize=0;for(state.planet.microbeCells)|cell|{if(@import("simulation/microbes.zig").biomass(cell)>0)occupied+=1;for(cell.cohorts)|co|{if(co.biomass>0)cohorts+=1;}}
+  std.debug.print("MICRO_DENSE externally_wetted=true temperature=303 real_paid_seeds={d} cells={d} initial_occupied={d} initial_cohorts={d}\n",.{seeded,state.planet.microbeCells.len,occupied,cohorts});
+ }
+ const basis_bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+ const basis=try saves.schema.parse(a,basis_bytes);
+
+ var baseline:[]const u8=&.{};
+ for([_]bool{false,true,false,true})|candidate|{
+  try saves.apply(state,basis.value);qa.candidate=candidate;qa.sums=.{0}**3;qa.ticks=0;qa.enabled=true;
+  var timer=try std.time.Timer.start();
+  for(0..60)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+  const elapsed=timer.read();qa.enabled=false;
+  var result_arena=std.heap.ArenaAllocator.init(allocator);defer result_arena.deinit();const result_a=result_arena.allocator();
+  const result=try std.json.stringifyAlloc(result_a,try saves.capture(result_a,state),.{});if(!candidate and baseline.len==0)baseline=try a.dupe(u8,result) else try std.testing.expectEqualSlices(u8,baseline,result);
+  var digest:[32]u8=undefined;std.crypto.hash.sha2.Sha256.hash(result,&digest,.{});
+  std.debug.print("MICRO_PROFILE candidate={} cells={d} ticks={d} growth_ms={d:.4} move_ms={d:.4} birth_ms={d:.4} coupled_ms={d:.4} result_hash={s} exact_match=true\n",.{candidate,state.planet.vertices.len,qa.ticks,@as(f64,@floatFromInt(qa.sums[0]))/1e6,@as(f64,@floatFromInt(qa.sums[1]))/1e6,@as(f64,@floatFromInt(qa.sums[2]))/1e6,@as(f64,@floatFromInt(elapsed))/1e6,std.fmt.fmtSliceHexLower(&digest)});
+ }
+ qa.candidate=false;try saves.apply(state,parsed.value);try std.testing.expectEqualSlices(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{}));std.debug.print("MICRO_RESTORE exact_save=true\n",.{});
+}

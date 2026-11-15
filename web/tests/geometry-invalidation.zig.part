@@ -1,0 +1,26 @@
+fn geometryCaseShot(state:anytype,window:anytype,a:std.mem.Allocator,label:[]const u8,step:[]const u8)!void{
+ state.pointerOnPlanet=false;
+ for(0..16)|_|{game.loop.pump(16);state.update(&game,0);game.loop.pump(16);render(window);gl.finish();}
+ game.loop.pump(16);render(window);gl.finish();
+ for(state.planet.transformedPoints,0..)|point,i|{const expected=state.planet.computeNormal(i,point);inline for(0..3)|axis|{if(@as(u32,@bitCast(expected.data[axis]))!=@as(u32,@bitCast(state.planet.normals[i].data[axis]))){std.debug.print("NORMAL_MISMATCH case={s} cell={d} axis={d} expected={d} got={d}\n",.{step,i,axis,expected.data[axis],state.planet.normals[i].data[axis]});std.debug.assert(false);}}}
+ const saves=@import("save_game.zig");const j=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});var hash:[32]u8=undefined;std.crypto.hash.sha2.Sha256.hash(j,&hash,.{});
+ std.debug.print("GEOMETRY_CASE stage={s} case={s} fresh_normals=true hash={s}\n",.{label,step,std.fmt.fmtSliceHexLower(&hash)});
+ if(std.posix.getenv("STELLA_GEOMETRY_PROOF"))|prefix|{const path=try std.fmt.allocPrintZ(a,"{s}-{s}-{s}.ppm",.{prefix,label,step});qa_capture(path);}
+}
+fn geometryCases(state:anytype,window:anytype,allocator:std.mem.Allocator,label:[]const u8)!void{
+ const saves=@import("save_game.zig");var ar=std.heap.ArenaAllocator.init(allocator);defer ar.deinit();const a=ar.allocator();const bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const original=try std.json.parseFromSlice(saves.schema.Save,a,bytes,.{.allocate=.alloc_always});
+ state.paused=true;const point=state.planet.getNearestPointTo(state.cameraPos);
+ for([_]@TypeOf(state.displayMode){.Normal,.WindMagnitude,.Temperature,.WaterVapor,.Rainfall,.Normal},0..)|mode,n|{state.displayMode=mode;const tag=try std.fmt.allocPrint(a,"map-{d}",.{n});try geometryCaseShot(state,window,a,label,tag);}
+ state.selectedPoint=point;state.pointerOnPlanet=true;std.debug.assert(state.testAction(5));try geometryCaseShot(state,window,a,label,"raise");
+ state.selectedPoint=point;state.pointerOnPlanet=true;std.debug.assert(state.testAction(6));try geometryCaseShot(state,window,a,label,"lower");
+ state.axialTilt+=11;try geometryCaseShot(state,window,a,label,"tilt");
+ // Queue a real old-geometry job, then edit twice before it can execute.
+ state.planet.uploadNo=0;state.planet.qa_valid=false;render(window);std.debug.assert(state.planet.normalComputeJob!=null);
+ state.selectedPoint=point;state.pointerOnPlanet=true;std.debug.assert(state.testAction(5));render(window);state.pointerOnPlanet=true;std.debug.assert(state.testAction(5));render(window);
+ try geometryCaseShot(state,window,a,label,"queued-edits");
+ state.planet.uploadNo=0;state.planet.qa_valid=false;render(window);std.debug.assert(state.planet.normalComputeJob!=null);
+ try saves.apply(state,original.value);state.paused=true;render(window);try geometryCaseShot(state,window,a,label,"queued-load");
+ // Exact same elevation values on load must not require spurious geometry changes.
+ try saves.apply(state,original.value);state.paused=true;try geometryCaseShot(state,window,a,label,"same-load");
+ try saves.apply(state,original.value);std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+}

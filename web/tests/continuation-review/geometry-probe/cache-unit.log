@@ -1,0 +1,5 @@
+1/4 terrain_upload_cache.test.exact elevation snapshot does not alias caller or scratch data...OK
+2/4 terrain_upload_cache.test.tilt radius topology and destination buffer invalidate exactly...OK
+3/4 terrain_upload_cache.test.allocation failure and unexpected resize keep legacy path without repeated allocation...OK
+4/4 terrain_upload_cache.test.same geometry reload is reusable; changed values never skip even signed zero...OK
+All 4 tests passed.

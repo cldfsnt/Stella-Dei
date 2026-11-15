@@ -1,0 +1,8 @@
+{
+  "browser-candidate.log": "d838ffefe98d28c9a9e7b58e8c7f5069e7c39d16c9f2d7edd286c3eb2a4dbdc9",
+  "browser-baseline.log": "aaffbbf69bbb8c4e62a4258f0437ead74f854a74dd8d83be8b952775cbd9487d",
+  "baseline.log": "c50a70261005238a4acb7575aecdec6db0583f6ee52b455de5ce49aa64e6b28e",
+  "candidate.log": "e5baaa65ec02aedcd28ca623c8e09e0216339c530db656ce2073da0e45141503",
+  "browser-check-candidate.log": "e0ed2639ae90680f5cdc23e2f93130d36093f835940b42d52602a65fbb1e7180",
+  "browser-check-baseline.log": "e4c0526c8dbdb2feac79eb59a11ed7c1032284b5280f54f58e5bf97c9540dd55"
+}

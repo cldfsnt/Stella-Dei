@@ -1,0 +1,8 @@
+{
+  "main.zig": "51afdaea416e1fc48d90488e70827785b221370f74fd9dac40f556b6affc6500",
+  "simulation/planet.zig": "0757143834096f758efc5db17b091f57d1e64fe535160e21a7194496c886a4f1",
+  "states/play.zig": "dedc121f63bbc3fbcc9789f54fa32fa397d30e0e479ebce07bd5593734e10f04",
+  "shaders/terrain.fs": "2a55e009d154d8e1188b905be23b2257eddaef1b15cdccc1193f129f53fd68e6",
+  "shaders/postprocess.fs": "f4707f7304725199e22cb7ef3fa825029b4e2b191e50821afb3bbf6104d57bc6",
+  "simulation/microbes.zig": "844f077e8a6112fc37261e23ebbc4497af6ccd9bc48d04255ec4a6c045b6d485"
+}
