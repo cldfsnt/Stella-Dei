@@ -1,0 +1,9 @@
+--- production/planet.zig
++++ QA/plain/planet.zig
+@@ -1,3 +1,6 @@
++pub var qa_substages:[5]f64=.{0,0,0,0,0};
++pub var qa_stages:[4]f64=.{0,0,0,0};
++extern fn emscripten_get_now() f64;
+ const AtmosphereWater = @import("atmosphere_water.zig");
+ const Microbes = @import("microbes.zig");
+ const ActiveCells = @import("../active_cell_index.zig");

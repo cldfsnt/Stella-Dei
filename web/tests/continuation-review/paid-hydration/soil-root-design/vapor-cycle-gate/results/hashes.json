@@ -1,0 +1,9 @@
+{
+  "src/experimental/vapor_cycle_probe.zig": "e685fed39b49d88b46b7ff3b907b9bdcf6be655e452546672a4d041d10fcf60e",
+  "src/qa_vapor_cycle_probe.zig": "605ce1980f259fe09ec3479dee378806b159789d2bb7c632a70450bcf96c6bb0",
+  "src/experimental/root_vapor_receipt.zig": "5ebed36f9088eb2c82ab7f4377bb736e44e4658b92629892dcd5d78d0e58448c",
+  "src/experimental/physical_water_f64.zig": "20de50e7339ed1399c31d80f2e7a6c076fab817ba6a081d7e224a5792606decd",
+  "src/simulation/atmosphere_water.zig": "a1addeba8200c858b8b0774e310f3929e38f79c8adbf61ca14cee779015e82b9",
+  "web/tests/audit-vapor-cycle.py": "f5ab8acab3c2d8a8f08f266b6118096a194a2b31041347a08e5617b7ee6421ef",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/vapor-cycle-gate/results/run.log": "c25b6e2eaf8522a0ae503ad68b98bce77eadb72fb6428fadba2c16e3bbf1c0c8"
+}

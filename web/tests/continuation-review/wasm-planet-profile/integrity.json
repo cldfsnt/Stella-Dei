@@ -1,0 +1,26 @@
+{
+  "wasm-30-1": "7b589ad0091a2218372911581b680ab529f361cba5f853227dcc5317e5043c1e",
+  "wasm-30-60": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a",
+  "native-30": {
+    "equal_EGL_complete_save": true,
+    "different_fields": [],
+    "new_sha256": "a305ece1e938bab48e7231ec54d7de5d75d82ef296aebb792220254c19c6f962",
+    "prior_sha256": "a305ece1e938bab48e7231ec54d7de5d75d82ef296aebb792220254c19c6f962"
+  },
+  "wasm-60-1": "8812c3a657e207581a145d98ad4c82bf13a58859b811a626a83e1a593ac5573d",
+  "wasm-60-60": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8",
+  "native-60": {
+    "equal_EGL_complete_save": true,
+    "different_fields": [],
+    "new_sha256": "0e88adb1df2728cda475676f8ab87d9ef10b82a9bdb88db5a83825c0af471985",
+    "prior_sha256": "0e88adb1df2728cda475676f8ab87d9ef10b82a9bdb88db5a83825c0af471985"
+  },
+  "wasm-90-1": "78da5efa4a84ef9055ae499c321ac45d4a1bff830397809829da2f601a23a242",
+  "wasm-90-60": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b",
+  "native-90": {
+    "equal_EGL_complete_save": true,
+    "different_fields": [],
+    "new_sha256": "fbed725076ee00a9cd20a62a132bf41e788520810c13746b1830b51a2f11b699",
+    "prior_sha256": "fbed725076ee00a9cd20a62a132bf41e788520810c13746b1830b51a2f11b699"
+  }
+}

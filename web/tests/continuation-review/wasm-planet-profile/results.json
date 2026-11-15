@@ -1,0 +1,817 @@
+{
+  "start_utc": "2026-11-15T12:10:06.728044+00:00",
+  "end_utc": "2026-11-15T12:10:35.370121+00:00",
+  "records": [
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 973.7833810000001,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 21.627494999999982,
+      "remaining_per_tick_ms": 16.138235355932206,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 30,
+      "repeat": 0,
+      "mode": "plain",
+      "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 995.6971059999998,
+      "temperature_ms": 132.00724300000007,
+      "liquid_wind_ms": 214.73681899999968,
+      "atmosphere_ms": 611.6969209999997,
+      "ecology_ms": 36.796974000000205,
+      "first_ms": 22.298774999999978,
+      "remaining_per_tick_ms": 16.498276796610167,
+      "first_stages_ms": [
+        4.791747999999984,
+        5.334294,
+        11.270865999999984,
+        0.8477169999999887
+      ],
+      "first_atmosphere_ms": [
+        1.0452239999999904,
+        4.6547510000000045,
+        2.303519999999992,
+        1.119466000000017,
+        2.143008000000009
+      ],
+      "atmosphere_substages_ms": [
+        54.49099199999975,
+        246.54456400000012,
+        132.65073400000017,
+        62.26316299999971,
+        115.08611500000058
+      ],
+      "day": 30,
+      "repeat": 0,
+      "mode": "stages",
+      "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1041.851083,
+      "temperature_ms": 136.63829000000047,
+      "liquid_wind_ms": 231.00733600000035,
+      "atmosphere_ms": 622.4798950000006,
+      "ecology_ms": 51.22238899999914,
+      "first_ms": 20.913609999999977,
+      "remaining_per_tick_ms": 17.304024966101696,
+      "first_stages_ms": [
+        3.1581759999999974,
+        5.347565000000003,
+        11.363246000000004,
+        0.9962710000000072
+      ],
+      "first_atmosphere_ms": [
+        1.0394660000000044,
+        4.539949000000007,
+        2.326213999999993,
+        1.0965520000000026,
+        2.355747999999977
+      ],
+      "atmosphere_substages_ms": [
+        56.66606200000052,
+        246.91769000000053,
+        141.11440799999906,
+        63.98001700000057,
+        113.19384999999991
+      ],
+      "day": 30,
+      "repeat": 1,
+      "mode": "stages",
+      "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1148.13825,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 26.681557999999995,
+      "remaining_per_tick_ms": 19.007740542372883,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 30,
+      "repeat": 1,
+      "mode": "plain",
+      "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1285.9849339999998,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 23.72166899999999,
+      "remaining_per_tick_ms": 21.39429262711864,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 30,
+      "repeat": 2,
+      "mode": "plain",
+      "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1021.554933,
+      "temperature_ms": 130.25650799999966,
+      "liquid_wind_ms": 219.22628599999982,
+      "atmosphere_ms": 618.7852999999993,
+      "ecology_ms": 52.712626,
+      "first_ms": 22.46092999999999,
+      "remaining_per_tick_ms": 16.93379666101695,
+      "first_stages_ms": [
+        3.6019850000000133,
+        5.2941629999999975,
+        12.505797000000001,
+        1.0104420000000118
+      ],
+      "first_atmosphere_ms": [
+        1.0630309999999952,
+        4.804296000000022,
+        2.6415589999999725,
+        1.1411090000000286,
+        2.848901000000012
+      ],
+      "atmosphere_substages_ms": [
+        54.50166399999952,
+        243.03049199999992,
+        131.78616799999998,
+        60.440550000000485,
+        127.95631799999938
+      ],
+      "day": 30,
+      "repeat": 2,
+      "mode": "stages",
+      "output_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 983.9825719999999,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 20.879308999999978,
+      "remaining_per_tick_ms": 16.323784118644067,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 60,
+      "repeat": 0,
+      "mode": "plain",
+      "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1076.102277,
+      "temperature_ms": 137.6086059999996,
+      "liquid_wind_ms": 231.19258900000005,
+      "atmosphere_ms": 641.620373,
+      "ecology_ms": 65.4365279999991,
+      "first_ms": 27.030192999999997,
+      "remaining_per_tick_ms": 17.780882779661017,
+      "first_stages_ms": [
+        3.6710390000000075,
+        5.828237999999999,
+        16.499492000000032,
+        0.9837019999999939
+      ],
+      "first_atmosphere_ms": [
+        2.7329260000000204,
+        7.71768400000002,
+        2.4406270000000063,
+        1.3669689999999832,
+        2.2339549999999804
+      ],
+      "atmosphere_substages_ms": [
+        59.505646000000525,
+        245.95852800000006,
+        144.6829689999998,
+        65.66946300000001,
+        124.7431049999999
+      ],
+      "day": 60,
+      "repeat": 0,
+      "mode": "stages",
+      "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 950.614223,
+      "temperature_ms": 125.33440100000033,
+      "liquid_wind_ms": 216.3038460000003,
+      "atmosphere_ms": 572.2348149999997,
+      "ecology_ms": 36.550237999999524,
+      "first_ms": 23.10854600000002,
+      "remaining_per_tick_ms": 15.72043520338983,
+      "first_stages_ms": [
+        3.2444270000000017,
+        7.282619000000011,
+        11.668434999999988,
+        0.865573999999981
+      ],
+      "first_atmosphere_ms": [
+        1.0505719999999883,
+        4.756945000000002,
+        2.4602250000000083,
+        1.1555099999999925,
+        2.2397129999999947
+      ],
+      "atmosphere_substages_ms": [
+        52.92999300000031,
+        224.79530399999985,
+        134.81692400000068,
+        58.48904699999969,
+        100.62472999999915
+      ],
+      "day": 60,
+      "repeat": 1,
+      "mode": "stages",
+      "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 950.042882,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 21.689499000000012,
+      "remaining_per_tick_ms": 15.734803101694913,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 60,
+      "repeat": 1,
+      "mode": "plain",
+      "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1155.878164,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 21.365385000000003,
+      "remaining_per_tick_ms": 19.22903015254237,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 60,
+      "repeat": 2,
+      "mode": "plain",
+      "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1299.091093,
+      "temperature_ms": 154.4525159999996,
+      "liquid_wind_ms": 260.0999970000007,
+      "atmosphere_ms": 773.1980849999998,
+      "ecology_ms": 110.9989849999995,
+      "first_ms": 32.301007,
+      "remaining_per_tick_ms": 21.47101840677966,
+      "first_stages_ms": [
+        4.59459099999998,
+        8.094693000000007,
+        17.551098000000025,
+        1.9959269999999947
+      ],
+      "first_atmosphere_ms": [
+        1.546309000000008,
+        6.843609000000015,
+        4.161289000000011,
+        1.7974179999999933,
+        3.1925990000000297
+      ],
+      "atmosphere_substages_ms": [
+        67.92794400000088,
+        286.3742640000001,
+        180.0713480000005,
+        82.88980699999945,
+        155.17889300000041
+      ],
+      "day": 60,
+      "repeat": 2,
+      "mode": "stages",
+      "output_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1226.993892,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 32.099436999999966,
+      "remaining_per_tick_ms": 20.25244838983051,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 90,
+      "repeat": 0,
+      "mode": "plain",
+      "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1279.948847,
+      "temperature_ms": 167.67621099999997,
+      "liquid_wind_ms": 271.0195870000009,
+      "atmosphere_ms": 786.0038930000003,
+      "ecology_ms": 54.98754299999973,
+      "first_ms": 40.256192999999996,
+      "remaining_per_tick_ms": 21.011739898305084,
+      "first_stages_ms": [
+        4.618616999999972,
+        8.18616099999997,
+        26.13140800000002,
+        1.270653999999979
+      ],
+      "first_atmosphere_ms": [
+        3.0441749999999956,
+        12.910315000000026,
+        4.087557000000004,
+        1.8182180000000017,
+        4.259865999999988
+      ],
+      "atmosphere_substages_ms": [
+        72.43930400000022,
+        296.79231700000037,
+        165.05666699999978,
+        78.79919300000017,
+        172.13716899999986
+      ],
+      "day": 90,
+      "repeat": 0,
+      "mode": "stages",
+      "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1041.2332940000001,
+      "temperature_ms": 132.04084800000078,
+      "liquid_wind_ms": 232.5915469999997,
+      "atmosphere_ms": 632.9954420000005,
+      "ecology_ms": 43.40153799999979,
+      "first_ms": 24.016552999999988,
+      "remaining_per_tick_ms": 17.24096171186441,
+      "first_stages_ms": [
+        3.3568860000000313,
+        7.49300599999998,
+        12.245734000000027,
+        0.8856140000000323
+      ],
+      "first_atmosphere_ms": [
+        1.148680000000013,
+        4.802893999999981,
+        2.4852129999999875,
+        1.111374000000012,
+        2.691063999999983
+      ],
+      "atmosphere_substages_ms": [
+        57.53129799999999,
+        251.95845499999945,
+        142.90063700000047,
+        62.008695000000785,
+        117.96889799999951
+      ],
+      "day": 90,
+      "repeat": 1,
+      "mode": "stages",
+      "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1187.664034,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 25.22975500000001,
+      "remaining_per_tick_ms": 19.702275915254233,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 90,
+      "repeat": 1,
+      "mode": "plain",
+      "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1381.999537,
+      "temperature_ms": 0.0,
+      "liquid_wind_ms": 0.0,
+      "atmosphere_ms": 0.0,
+      "ecology_ms": 0.0,
+      "first_ms": 29.396501999999998,
+      "remaining_per_tick_ms": 22.925475169491524,
+      "first_stages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "first_atmosphere_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "atmosphere_substages_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "day": 90,
+      "repeat": 2,
+      "mode": "plain",
+      "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b"
+    },
+    {
+      "ticks": 60.0,
+      "cells": 40962.0,
+      "width": 4.0,
+      "parallel": 1.0,
+      "total_ms": 1401.237982,
+      "temperature_ms": 158.48079300000052,
+      "liquid_wind_ms": 281.4522590000008,
+      "atmosphere_ms": 750.6261940000006,
+      "ecology_ms": 210.1894460000006,
+      "first_ms": 24.354667000000006,
+      "remaining_per_tick_ms": 23.33700533898305,
+      "first_stages_ms": [
+        3.4320999999999913,
+        6.090865000000008,
+        12.822855000000004,
+        1.962186000000031
+      ],
+      "first_atmosphere_ms": [
+        1.0560609999999997,
+        4.925168999999983,
+        3.116505000000018,
+        1.178494999999998,
+        2.525815000000023
+      ],
+      "atmosphere_substages_ms": [
+        68.79267600000031,
+        286.84367100000037,
+        166.94748599999912,
+        76.86807499999901,
+        149.59318899999982
+      ],
+      "day": 90,
+      "repeat": 2,
+      "mode": "stages",
+      "output_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b"
+    }
+  ],
+  "summary": {
+    "30": {
+      "plain": {
+        "median_per_tick_ms": 19.135637499999998,
+        "median_first_ms": 23.72166899999999,
+        "median_remaining_ms": 19.007740542372883,
+        "remaining_range_ms": [
+          16.138235355932206,
+          21.39429262711864
+        ]
+      },
+      "stages": {
+        "median_per_tick_ms": 17.02591555,
+        "median_first_ms": 22.298774999999978,
+        "median_remaining_ms": 16.93379666101695,
+        "remaining_range_ms": [
+          16.498276796610167,
+          17.304024966101696
+        ],
+        "remaining_stage_medians_ms": {
+          "temperature_ms": 2.156194830508476,
+          "liquid_wind_ms": 3.6259681864406748,
+          "atmosphere_ms": 10.275923779661005,
+          "ecology_ms": 0.8512901355932057
+        },
+        "remaining_atmosphere_medians_ms": {
+          "wind_cache": 0.9058604745762671,
+          "edge_cache": 4.099827338983053,
+          "phase": 2.209274813559325,
+          "coefficient": 1.0363338474576218,
+          "gather": 1.914289949152552
+        }
+      },
+      "instrumentation_percent": -11.025093624395833
+    },
+    "60": {
+      "plain": {
+        "median_per_tick_ms": 16.399709533333333,
+        "median_first_ms": 21.365385000000003,
+        "median_remaining_ms": 16.323784118644067,
+        "remaining_range_ms": [
+          15.734803101694913,
+          19.22903015254237
+        ]
+      },
+      "stages": {
+        "median_per_tick_ms": 17.935037949999998,
+        "median_first_ms": 27.030192999999997,
+        "median_remaining_ms": 17.780882779661017,
+        "remaining_range_ms": [
+          15.72043520338983,
+          21.47101840677966
+        ],
+        "remaining_stage_medians_ms": {
+          "temperature_ms": 2.2701282542372816,
+          "liquid_wind_ms": 3.819734762711865,
+          "atmosphere_ms": 10.595269169491525,
+          "ecology_ms": 1.0924207796610017
+        },
+        "remaining_atmosphere_medians_ms": {
+          "wind_cache": 0.9622494915254323,
+          "edge_cache": 4.037980406779662,
+          "phase": 2.410887152542369,
+          "coefficient": 1.0898727796610173,
+          "gather": 2.076426271186439
+        }
+      },
+      "instrumentation_percent": 9.361924450832637
+    },
+    "90": {
+      "plain": {
+        "median_per_tick_ms": 20.4498982,
+        "median_first_ms": 29.396501999999998,
+        "median_remaining_ms": 20.25244838983051,
+        "remaining_range_ms": [
+          19.702275915254233,
+          22.925475169491524
+        ]
+      },
+      "stages": {
+        "median_per_tick_ms": 21.33248078333333,
+        "median_first_ms": 24.354667000000006,
+        "median_remaining_ms": 21.011739898305084,
+        "remaining_range_ms": [
+          17.24096171186441,
+          23.33700533898305
+        ],
+        "remaining_stage_medians_ms": {
+          "temperature_ms": 2.6279439491525514,
+          "liquid_wind_ms": 4.4548038305084905,
+          "atmosphere_ms": 12.505141338983062,
+          "ecology_ms": 0.9104557457627077
+        },
+        "remaining_atmosphere_medians_ms": {
+          "wind_cache": 1.1480782203389883,
+          "edge_cache": 4.778279694915261,
+          "phase": 2.7282899999999963,
+          "coefficient": 1.2828742372881188,
+          "gather": 2.4926673559322
+        }
+      },
+      "instrumentation_percent": 4.315828737638072
+    }
+  },
+  "inputs": {
+    "30": {
+      "path": "site-tmp/natural60-day30.json",
+      "sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35"
+    },
+    "60": {
+      "path": "site-tmp/natural60-day60.json",
+      "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+    },
+    "90": {
+      "path": "site-tmp/grazing-coupled/arm-0-day90.json",
+      "sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9"
+    }
+  },
+  "graph_sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+  "integrity": {
+    "wasm-30-1": "7b589ad0091a2218372911581b680ab529f361cba5f853227dcc5317e5043c1e",
+    "wasm-30-60": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a",
+    "native-30": {
+      "equal_EGL_complete_save": true,
+      "different_fields": [],
+      "new_sha256": "a305ece1e938bab48e7231ec54d7de5d75d82ef296aebb792220254c19c6f962",
+      "prior_sha256": "a305ece1e938bab48e7231ec54d7de5d75d82ef296aebb792220254c19c6f962"
+    },
+    "wasm-60-1": "8812c3a657e207581a145d98ad4c82bf13a58859b811a626a83e1a593ac5573d",
+    "wasm-60-60": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8",
+    "native-60": {
+      "equal_EGL_complete_save": true,
+      "different_fields": [],
+      "new_sha256": "0e88adb1df2728cda475676f8ab87d9ef10b82a9bdb88db5a83825c0af471985",
+      "prior_sha256": "0e88adb1df2728cda475676f8ab87d9ef10b82a9bdb88db5a83825c0af471985"
+    },
+    "wasm-90-1": "78da5efa4a84ef9055ae499c321ac45d4a1bff830397809829da2f601a23a242",
+    "wasm-90-60": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b",
+    "native-90": {
+      "equal_EGL_complete_save": true,
+      "different_fields": [],
+      "new_sha256": "fbed725076ee00a9cd20a62a132bf41e788520810c13746b1830b51a2f11b699",
+      "prior_sha256": "fbed725076ee00a9cd20a62a132bf41e788520810c13746b1830b51a2f11b699"
+    }
+  }
+}

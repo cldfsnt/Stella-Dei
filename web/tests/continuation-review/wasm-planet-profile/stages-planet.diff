@@ -1,0 +1,88 @@
+--- production/planet.zig
++++ QA/stages/planet.zig
+@@ -1,3 +1,6 @@
++pub var qa_substages:[5]f64=.{0,0,0,0,0};
++pub var qa_stages:[4]f64=.{0,0,0,0};
++extern fn emscripten_get_now() f64;
+ const AtmosphereWater = @import("atmosphere_water.zig");
+ const Microbes = @import("microbes.zig");
+ const ActiveCells = @import("../active_cell_index.zig");
+@@ -1136,11 +1139,13 @@
+     /// Phase relaxation is phenomenological: no latent-heat or real-weather claim.
+     fn simulateAtmosphereWater(self:*Planet,dt:f32) void {
+         if(!std.math.isFinite(dt) or dt<=0)return;
++        var qa_sub=emscripten_get_now();
+         // Velocity jobs have joined. Cache each immutable tangent basis once,
+         // preserving the original f32 components and f64 edge/summation order.
+         if(self.ensureAtmosphericWindScratch())for(self.atmosphericWindScratch,0..)|*cached,i|{
+             const wind=self.atmosphericWind(i);cached.*=.{@floatCast(wind[0]),@floatCast(wind[1]),@floatCast(wind[2])};
+         };
++        qa_substages[0]+=emscripten_get_now()-qa_sub;qa_sub=emscripten_get_now();
+         // No static geometry/velocity cache: rebuild every tick after wind refresh.
+         if(self.ensureAtmosphericEdgeScratch())for(self.atmosphericEdgeScratch,0..)|*rates,i|{
+             const point=self.transformedPoints[i];
+@@ -1153,6 +1158,7 @@
+                 rates[j]=source.rate(.{target.x(),target.y(),target.z()});
+             }
+         };
++        qa_substages[1]+=emscripten_get_now()-qa_sub;qa_sub=emscripten_get_now();
+         const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
+         const phase_step=AtmosphereWater.PhaseStep.init(dt);
+         for(self.waterMass,self.waterVaporMass,0..)|liquid,vapor,i|{
+@@ -1161,6 +1167,7 @@
+             const result=phase_step.phase(liquid,vapor,saturation,temperature,self.rainfall[i]) orelse continue;
+             self.waterMass[i]=@floatCast(result.liquid);self.waterVaporMass[i]=@floatCast(result.vapor);self.rainfall[i]=@floatCast(result.rain_rate);
+         }
++        qa_substages[2]+=emscripten_get_now()-qa_sub;qa_sub=emscripten_get_now();
+         // After the preceding swap, newWaterMass holds stale OLD liquid data.
+         // It is scratch until the NEXT water step overwrites it from waterMass.
+         // Saves and rendering consume current waterMass, never this scratch.
+@@ -1171,12 +1178,14 @@
+             self.newWaterMass[i]=coefficient;
+ 
+         }
++        qa_substages[3]+=emscripten_get_now()-qa_sub;qa_sub=emscripten_get_now();
+         for(self.waterVaporMass,0..)|vapor,i|{
+             var total_rate:f64=0;for(self.getNeighbours(i),0..)|n,j|total_rate+=if(self.atmosphericEdgeScratch.len==self.transformedPoints.len)self.atmosphericEdgeScratch[i][j] else self.atmosphericEdgeRate(i,n);
+             var gathered:f64=@max(0,@as(f64,vapor)-@as(f64,self.newWaterMass[i])*total_rate);
+             for(self.getNeighbours(i))|n|gathered+=@as(f64,self.newWaterMass[n])*self.cachedAtmosphericEdgeRate(n,i);
+             self.newWaterVaporMass[i]=@floatCast(gathered);
+         }
++        qa_substages[4]+=emscripten_get_now()-qa_sub;qa_sub=emscripten_get_now();
+         std.mem.swap([]f32,&self.waterVaporMass,&self.newWaterVaporMass);
+     }
+ 
+@@ -1621,6 +1630,7 @@
+         //defer zone.End();
+ 
+         const newTemp = self.newTemperature;
++        var qa_begin=emscripten_get_now();
+         // Fill newTemp with the current temperatures
+         // NOTE: we can copy using memcpy if another way to avoid negative values is found
+         for (self.vertices, 0..) |_, i| {
+@@ -1655,6 +1665,7 @@
+         // Finish by swapping the new temperature
+         std.mem.swap([]f32, &self.temperature, &self.newTemperature);
+ 
++        qa_stages[0]+=emscripten_get_now()-qa_begin;qa_begin=emscripten_get_now();
+         const dt = options.dt * options.timeScale;
+         // Disable water simulation when timescale is above 100 000
+         if (dt < 15000) {
+@@ -1685,7 +1696,9 @@
+ 
+                 std.mem.swap([]f32, &self.waterMass, &self.newWaterMass);
+                 std.mem.swap([]f32, &self.waterVaporMass, &self.newWaterVaporMass);
++                qa_stages[1]+=emscripten_get_now()-qa_begin;qa_begin=emscripten_get_now();
+                 self.simulateAtmosphereWater(dt);
++                qa_stages[2]+=emscripten_get_now()-qa_begin;qa_begin=emscripten_get_now();
+             }
+         } else {
+             // TODO: use a global water level
+@@ -1754,6 +1767,7 @@
+         }
+ 
+         if (self.worldMode == .origin) self.simulateMicrobes(options) else self.simulateVegetation(options, 0, self.vegetation.len);
++        qa_stages[3]+=emscripten_get_now()-qa_begin;
+     }
+ 
+     /// Simulation already owns lifeformsLock and reserved capacity for births.
