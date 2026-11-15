@@ -21,6 +21,7 @@ cp web/stella-storage.js web/dist/stella-storage.js
 
 cp web/life-trend.js web/dist/life-trend.js
 
+cp web/renderer-info.js web/dist/renderer-info.js
 cp web/gameplay-measure.js web/dist/gameplay-measure.js
 
 cp web/patch-watch.js web/dist/patch-watch.js

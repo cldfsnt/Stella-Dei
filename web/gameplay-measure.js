@@ -1,6 +1,6 @@
 /* One local, bounded gameplay sample; no telemetry or persistent storage. */
 (function(root){
- function create({now,read,enable,notify,durationMs=10000}){
+ function create({now,read,enable,notify,readContext=()=>null,durationMs=10000}){
   let running=null,retained=null,lastNotice='';
   function status(text){const key=text+'|'+!!running;if(key===lastNotice)return;lastNotice=key;notify(text,!!running);}
   function cancel(reason='Measurement canceled.'){if(!running)return;running=null;enable(false);status(reason+(retained?' Previous sample kept.':''));}
@@ -10,7 +10,8 @@
    if(!valid(d)||!Number.isFinite(t)){status('Measurement unavailable. Start a world first.');return false;}
    if(d.paused||d.menu_open){status('Close in-game menus and press Play before measuring.');return false;}
    if(!enable(true)){status('Measurement could not start.');return false;}
-   running={start:t,lastTick:t,world:d.world_serial,game:d.game_time,requested:d.requested};status('Measuring gameplay · 10 seconds');return true;
+   let context=null;try{context=JSON.parse(JSON.stringify(readContext()));}catch{}
+   running={context,start:t,lastTick:t,world:d.world_serial,game:d.game_time,requested:d.requested};status('Measuring gameplay · 10 seconds');return true;
   }
   function tick(){
    if(!running)return;const d=read(),t=now();
@@ -23,7 +24,7 @@
    const elapsed=t-running.start;
    if(elapsed<durationMs){status('Measuring gameplay · '+Math.ceil((durationMs-elapsed)/1000)+' seconds');return;}
    if(!Number.isInteger(d.frames)||d.frames<1||d.frames>60){cancel('Measurement stopped: no completed frames.');return;}
-   retained={sample:JSON.parse(JSON.stringify(d)),elapsed_ms:elapsed,requested:running.requested,achieved:(d.game_time-running.game)/(elapsed/1000)};
+   retained={context:running.context,sample:JSON.parse(JSON.stringify(d)),elapsed_ms:elapsed,requested:running.requested,achieved:(d.game_time-running.game)/(elapsed/1000)};
    running=null;enable(false);status('Gameplay sample ready · open Speed to review.');
   }
   return {start,tick,cancel,isRunning:()=>!!running,result:()=>retained};
