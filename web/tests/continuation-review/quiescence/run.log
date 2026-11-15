@@ -1,0 +1,71 @@
+install
++- run test stderr
+QUIESCENCE habitat=0 resting=0 day=2 active=0.970606800 rest=0.000000000 detritus=0.051471848 air=9.177921321 oxygen=10.822078679 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=-4.8452250211994397e-8 nutrient_error=7.450580596923828e-9
+QUIESCENCE habitat=0 resting=0 day=5 active=0.986185000 rest=0.000000000 detritus=0.140074940 air=9.073740513 oxygen=10.926259487 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=4.3275048255964066e-7 nutrient_error=3.725290298461914e-8
+QUIESCENCE habitat=0 resting=0 day=30 active=0.986187600 rest=0.000000000 detritus=0.373162570 air=8.840564593 oxygen=11.159435407 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=-8.520538705170111e-5 nutrient_error=-8.240342140197754e-6
+QUIESCENCE habitat=0 resting=1 day=2 active=0.854858760 rest=0.083080545 detritus=0.043965490 air=9.218094875 oxygen=10.781905125 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=-3.6816114601379013e-7 nutrient_error=-5.774199962615967e-8
+QUIESCENCE habitat=0 resting=1 day=5 active=0.911288300 rest=0.073685900 detritus=0.133963570 air=9.081061580 oxygen=10.918938420 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=-6.76795245624362e-7 nutrient_error=-5.634501576423645e-8
+QUIESCENCE habitat=0 resting=1 day=30 active=0.958665500 rest=0.027107670 detritus=0.372445230 air=8.841780663 oxygen=11.158219337 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=-9.530709483840383e-7 nutrient_error=-3.5762786865234375e-7
+QUIESCENCE habitat=1 resting=0 day=2 active=0.970606800 rest=0.000000000 detritus=0.051471848 air=9.177921321 oxygen=10.822078679 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=-4.8452250211994397e-8 nutrient_error=7.450580596923828e-9
+QUIESCENCE habitat=1 resting=0 day=5 active=0.000000000 rest=0.000000000 detritus=0.774947800 air=9.425052947 oxygen=10.574947053 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=7.658001663912728e-7 nutrient_error=0e0
+QUIESCENCE habitat=1 resting=0 day=30 active=0.000000000 rest=0.000000000 detritus=0.063610030 air=10.136390659 oxygen=9.863609341 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=6.88616808020015e-7 nutrient_error=0e0
+QUIESCENCE habitat=1 resting=1 day=2 active=0.854858760 rest=0.083080545 detritus=0.043965490 air=9.218094875 oxygen=10.781905125 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=-3.6816114601379013e-7 nutrient_error=-5.774199962615967e-8
+QUIESCENCE habitat=1 resting=1 day=5 active=0.000000000 rest=0.000000000 detritus=0.744532940 air=9.455466159 oxygen=10.544533841 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-9.008612025240836e-7 nutrient_error=-3.725290298461914e-8
+QUIESCENCE habitat=1 resting=1 day=30 active=0.000000000 rest=0.000000000 detritus=0.061113510 air=10.138885486 oxygen=9.861114514 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-1.0069955962421773e-6 nutrient_error=-3.725290298461914e-8
+QUIESCENCE habitat=2 resting=0 day=2 active=0.000000000 rest=0.000000000 detritus=0.167746700 air=10.032253240 oxygen=9.967746760 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=-7.050584827084094e-8 nutrient_error=-4.470348358154297e-8
+QUIESCENCE habitat=2 resting=0 day=5 active=0.000000000 rest=0.000000000 detritus=0.124269460 air=10.075730486 oxygen=9.924269514 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=-5.3480107453651726e-8 nutrient_error=-4.470348358154297e-8
+QUIESCENCE habitat=2 resting=0 day=30 active=0.000000000 rest=0.000000000 detritus=0.010200423 air=10.189799497 oxygen=9.810200503 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=-8.294045983348042e-8 nutrient_error=-4.470348358154297e-8
+QUIESCENCE habitat=2 resting=1 day=2 active=0.000000000 rest=0.000000000 detritus=0.159300600 air=10.040699331 oxygen=9.959300669 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-7.65622019116563e-8 nutrient_error=-1.4901161193847656e-8
+QUIESCENCE habitat=2 resting=1 day=5 active=0.000000000 rest=0.000000000 detritus=0.118012420 air=10.081987471 oxygen=9.918012529 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-1.1105024100288574e-7 nutrient_error=-1.4901161193847656e-8
+QUIESCENCE habitat=2 resting=1 day=30 active=0.000000000 rest=0.000000000 detritus=0.009686819 air=10.190313034 oxygen=9.809686966 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-1.4951640991966997e-7 nutrient_error=-1.4901161193847656e-8
+QUIESCENCE habitat=3 resting=0 day=2 active=0.000000000 rest=0.000000000 detritus=0.167746700 air=10.032253240 oxygen=9.967746760 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=-7.050584827084094e-8 nutrient_error=-4.470348358154297e-8
+QUIESCENCE habitat=3 resting=0 day=5 active=0.000000000 rest=0.000000000 detritus=0.124269460 air=10.075730486 oxygen=9.924269514 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=-5.3480107453651726e-8 nutrient_error=-4.470348358154297e-8
+QUIESCENCE habitat=3 resting=0 day=30 active=0.000000000 rest=0.000000000 detritus=0.010200423 air=10.189799497 oxygen=9.810200503 transition_cost=0.000000000 entered=false woke=false cutoff_losses=1 carbon_error=-8.294045983348042e-8 nutrient_error=-4.470348358154297e-8
+QUIESCENCE habitat=3 resting=1 day=2 active=0.000000000 rest=0.000000000 detritus=0.159300600 air=10.040699331 oxygen=9.959300669 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-7.65622019116563e-8 nutrient_error=-1.4901161193847656e-8
+QUIESCENCE habitat=3 resting=1 day=5 active=0.000000000 rest=0.000000000 detritus=0.118012420 air=10.081987471 oxygen=9.918012529 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-1.1105024100288574e-7 nutrient_error=-1.4901161193847656e-8
+QUIESCENCE habitat=3 resting=1 day=30 active=0.000000000 rest=0.000000000 detritus=0.009686819 air=10.190313034 oxygen=9.809686966 transition_cost=0.010000001 entered=true woke=false cutoff_losses=2 carbon_error=-1.4951640991966997e-7 nutrient_error=-1.4901161193847656e-8
+QUIESCENCE habitat=4 resting=0 day=2 active=0.970606800 rest=0.000000000 detritus=0.051472030 air=9.177921139 oxygen=0.822078861 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=7.954639613672043e-9 nutrient_error=7.450580596923828e-9
+QUIESCENCE habitat=4 resting=0 day=5 active=0.986185000 rest=0.000000000 detritus=0.140075070 air=9.073740376 oxygen=0.926259624 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=4.151463315338333e-7 nutrient_error=3.725290298461914e-8
+QUIESCENCE habitat=4 resting=0 day=30 active=0.986187600 rest=0.000000000 detritus=0.373162570 air=8.840564566 oxygen=1.159435434 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=-8.523246449954058e-5 nutrient_error=-8.240342140197754e-6
+QUIESCENCE habitat=4 resting=1 day=2 active=0.970606800 rest=0.000000000 detritus=0.051472030 air=9.177921139 oxygen=0.822078861 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=7.954639613672043e-9 nutrient_error=7.450580596923828e-9
+QUIESCENCE habitat=4 resting=1 day=5 active=0.986185000 rest=0.000000000 detritus=0.140075070 air=9.073740376 oxygen=0.926259624 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=4.151463315338333e-7 nutrient_error=3.725290298461914e-8
+QUIESCENCE habitat=4 resting=1 day=30 active=0.986187600 rest=0.000000000 detritus=0.373162570 air=8.840564566 oxygen=1.159435434 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=-8.523246449954058e-5 nutrient_error=-8.240342140197754e-6
+QUIESCENCE habitat=5 resting=0 day=2 active=0.200000000 rest=0.000000000 detritus=0.014484525 air=9.985515493 oxygen=10.014484507 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=1.761199541761016e-8 nutrient_error=0e0
+QUIESCENCE habitat=5 resting=0 day=5 active=0.200000000 rest=0.000000000 detritus=0.031440440 air=9.968559450 oxygen=10.031440550 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=-1.1281318279543484e-7 nutrient_error=0e0
+QUIESCENCE habitat=5 resting=0 day=30 active=0.200000000 rest=0.000000000 detritus=0.075928510 air=9.924073525 oxygen=10.075926475 transition_cost=0.000000000 entered=false woke=false cutoff_losses=0 carbon_error=2.0193443504012976e-6 nutrient_error=0e0
+QUIESCENCE habitat=5 resting=1 day=2 active=0.116919830 rest=0.083080545 detritus=0.014474104 air=9.985525892 oxygen=10.014474108 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=3.7384243256610716e-7 nutrient_error=3.632158041000366e-8
+QUIESCENCE habitat=5 resting=1 day=5 active=0.126314940 rest=0.073685900 detritus=0.031432908 air=9.968567102 oxygen=10.031432898 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=8.485561195925584e-7 nutrient_error=8.242204785346985e-8
+QUIESCENCE habitat=5 resting=1 day=30 active=0.172895460 rest=0.027107670 detritus=0.075927490 air=9.924072500 oxygen=10.075927500 transition_cost=0.010000001 entered=true woke=false cutoff_losses=0 carbon_error=3.125399391734618e-6 nutrient_error=3.129243850708008e-7
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.032071132, disabled=0.0041916166, preyfree=0.0036231293, prey=0.029576652, eaten=0.08250110631342977
+FOOD_WEB120 biomass=0.19443813 births=47 gen=2 grazed=0.8482477755169384 cell_bytes=336
+GRAZING_STEP seconds=60 predator=0.0322516 eaten=0.08307878788775724
+GRAZING_STEP seconds=1440 predator=0.032177065 eaten=0.08284673282832955
+GRAZING_STEP seconds=3600 predator=0.032071132 eaten=0.08250110631342977
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.9868515 crowded_support=0.72340095 crowded_flat=0.2393979
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748614356605685
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.00940453 fixed=0.0769931836402975
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857256 fixed=1.0396804702468216
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.66051495 fixed=1.0023239215370268
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911017 fixed=0.9246702608652413
+FILM_MATRIX depth_m=1 variant=0 biomass=0.9237717 fixed=0.9222954493016005
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870434 fixed=0.9155964879319072
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812204 fixed=0.9056189879775047
+RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365966 thermal_reset_control=0.09157571
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268790 thermal_reset_control=0.09157571
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120820 thermal_reset_control=0.08310293
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701172 thermal_reset_control=0.08310293
+BUILD_EXIT=0

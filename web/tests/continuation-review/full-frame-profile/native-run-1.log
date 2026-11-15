@@ -1,0 +1,752 @@
+EGL surface=0x80055a0 context=0x8005bb0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x713206e44a617596
+info: Sea Level: 4.838867 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=13596 elevation=5004.836 water=22469.324 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5948.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0 depth_m=2.9296875 temp=293.15 camera=5948.3594 visiblemats=0
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=13596 elevation=5008.0596 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0.02 depth_m=5 temp=293.15 camera=5348.3594 visiblemats=1
+FRAME_PLATFORM renderer=llvmpipe (LLVM 19.1.7, 256 bits) version=4.5 (Core Profile) Mesa 25.0.7-2+deb13u1
+QA frame=3 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-003.ppm
+QA frame=4 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-004.ppm
+QA frame=5 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-005.ppm
+QA frame=6 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-006.ppm
+QA frame=7 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-007.ppm
+QA frame=8 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-008.ppm
+QA frame=9 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-009.ppm
+QA frame=10 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-010.ppm
+QA frame=11 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-011.ppm
+QA frame=12 selected=0 elevation=4999.175 water=43440692 vegetation=0 rabbits=0 time=0 paused=true tool=None camera=5348.3594
+Captured <workspace>/site-tmp/full-frame-profile/frame-012.ppm
+FRAME_PROFILE stage=early requested_hps=0 frame=0 ticks=0 update_ms=0.0006 render_finish_ms=7.1225 swap_ms=0.0003 total_ms=7.1234
+FRAME_PROFILE stage=early requested_hps=0 frame=1 ticks=0 update_ms=0.0003 render_finish_ms=9.2273 swap_ms=0.0003 total_ms=9.2278
+FRAME_PROFILE stage=early requested_hps=0 frame=2 ticks=0 update_ms=0.0004 render_finish_ms=7.6220 swap_ms=0.0002 total_ms=7.6226
+FRAME_PROFILE stage=early requested_hps=0 frame=3 ticks=0 update_ms=0.0004 render_finish_ms=7.3895 swap_ms=0.0002 total_ms=7.3901
+FRAME_PROFILE stage=early requested_hps=0 frame=4 ticks=0 update_ms=0.0002 render_finish_ms=7.0618 swap_ms=0.0001 total_ms=7.0621
+FRAME_PROFILE stage=early requested_hps=0 frame=5 ticks=0 update_ms=0.0004 render_finish_ms=7.2407 swap_ms=0.0002 total_ms=7.2413
+FRAME_PROFILE stage=early requested_hps=0 frame=6 ticks=0 update_ms=0.0003 render_finish_ms=7.2894 swap_ms=0.0002 total_ms=7.2899
+FRAME_PROFILE stage=early requested_hps=0 frame=7 ticks=0 update_ms=0.0002 render_finish_ms=7.3798 swap_ms=0.0002 total_ms=7.3801
+FRAME_PROFILE stage=early requested_hps=0 frame=8 ticks=0 update_ms=0.0003 render_finish_ms=7.0060 swap_ms=0.0003 total_ms=7.0065
+FRAME_PROFILE stage=early requested_hps=0 frame=9 ticks=0 update_ms=0.0002 render_finish_ms=6.7688 swap_ms=0.0003 total_ms=6.7693
+FRAME_PROFILE stage=early requested_hps=0 frame=10 ticks=0 update_ms=0.0002 render_finish_ms=6.5804 swap_ms=0.0004 total_ms=6.5810
+FRAME_PROFILE stage=early requested_hps=0 frame=11 ticks=0 update_ms=0.0003 render_finish_ms=6.6022 swap_ms=0.0003 total_ms=6.6027
+FRAME_PROFILE stage=early requested_hps=0 frame=12 ticks=0 update_ms=0.0001 render_finish_ms=7.0924 swap_ms=0.0002 total_ms=7.0927
+FRAME_PROFILE stage=early requested_hps=0 frame=13 ticks=0 update_ms=0.0003 render_finish_ms=6.9189 swap_ms=0.0002 total_ms=6.9194
+FRAME_PROFILE stage=early requested_hps=0 frame=14 ticks=0 update_ms=0.0004 render_finish_ms=6.9478 swap_ms=0.0002 total_ms=6.9484
+FRAME_PROFILE stage=early requested_hps=0 frame=15 ticks=0 update_ms=0.0002 render_finish_ms=7.1967 swap_ms=0.0003 total_ms=7.1973
+FRAME_PROFILE stage=early requested_hps=0 frame=16 ticks=0 update_ms=0.0003 render_finish_ms=7.1342 swap_ms=0.0002 total_ms=7.1346
+FRAME_PROFILE stage=early requested_hps=0 frame=17 ticks=0 update_ms=0.0002 render_finish_ms=6.9701 swap_ms=0.0002 total_ms=6.9705
+FRAME_PROFILE stage=early requested_hps=0 frame=18 ticks=0 update_ms=0.0003 render_finish_ms=7.6670 swap_ms=0.0003 total_ms=7.6675
+FRAME_PROFILE stage=early requested_hps=0 frame=19 ticks=0 update_ms=0.0002 render_finish_ms=7.7086 swap_ms=0.0003 total_ms=7.7090
+FRAME_PROFILE stage=early requested_hps=0 frame=20 ticks=0 update_ms=0.0003 render_finish_ms=8.6603 swap_ms=0.0003 total_ms=8.6609
+FRAME_PROFILE stage=early requested_hps=0 frame=21 ticks=0 update_ms=0.0004 render_finish_ms=8.3561 swap_ms=0.0004 total_ms=8.3569
+FRAME_PROFILE stage=early requested_hps=0 frame=22 ticks=0 update_ms=0.0002 render_finish_ms=7.5654 swap_ms=0.0004 total_ms=7.5660
+FRAME_PROFILE stage=early requested_hps=0 frame=23 ticks=0 update_ms=0.0003 render_finish_ms=7.7497 swap_ms=0.0005 total_ms=7.7505
+FRAME_PROFILE stage=early requested_hps=0 frame=24 ticks=0 update_ms=0.0002 render_finish_ms=7.4303 swap_ms=0.0002 total_ms=7.4307
+FRAME_PROFILE stage=early requested_hps=0 frame=25 ticks=0 update_ms=0.0004 render_finish_ms=7.2881 swap_ms=0.0004 total_ms=7.2889
+FRAME_PROFILE stage=early requested_hps=0 frame=26 ticks=0 update_ms=0.0002 render_finish_ms=7.5879 swap_ms=0.0004 total_ms=7.5884
+FRAME_PROFILE stage=early requested_hps=0 frame=27 ticks=0 update_ms=0.0003 render_finish_ms=8.0910 swap_ms=0.0002 total_ms=8.0915
+FRAME_PROFILE stage=early requested_hps=0 frame=28 ticks=0 update_ms=0.0003 render_finish_ms=8.0706 swap_ms=0.0004 total_ms=8.0713
+FRAME_PROFILE stage=early requested_hps=0 frame=29 ticks=0 update_ms=0.0005 render_finish_ms=7.2991 swap_ms=0.0003 total_ms=7.2998
+FRAME_PROFILE stage=early requested_hps=0 frame=30 ticks=0 update_ms=0.0003 render_finish_ms=7.3367 swap_ms=0.0002 total_ms=7.3373
+FRAME_PROFILE stage=early requested_hps=0 frame=31 ticks=0 update_ms=0.0004 render_finish_ms=7.4398 swap_ms=0.0005 total_ms=7.4406
+FRAME_PROFILE stage=early requested_hps=0 frame=32 ticks=0 update_ms=0.0002 render_finish_ms=7.5216 swap_ms=0.0005 total_ms=7.5223
+FRAME_PROFILE stage=early requested_hps=0 frame=33 ticks=0 update_ms=0.0004 render_finish_ms=7.9520 swap_ms=0.0003 total_ms=7.9527
+FRAME_PROFILE stage=early requested_hps=0 frame=34 ticks=0 update_ms=0.0003 render_finish_ms=7.5652 swap_ms=0.0005 total_ms=7.5659
+FRAME_PROFILE stage=early requested_hps=0 frame=35 ticks=0 update_ms=0.0003 render_finish_ms=7.1168 swap_ms=0.0004 total_ms=7.1174
+FRAME_PROFILE stage=early requested_hps=0 frame=36 ticks=0 update_ms=0.0003 render_finish_ms=7.3585 swap_ms=0.0002 total_ms=7.3590
+FRAME_PROFILE stage=early requested_hps=0 frame=37 ticks=0 update_ms=0.0004 render_finish_ms=7.3460 swap_ms=0.0002 total_ms=7.3466
+FRAME_PROFILE stage=early requested_hps=0 frame=38 ticks=0 update_ms=0.0002 render_finish_ms=6.9255 swap_ms=0.0003 total_ms=6.9260
+FRAME_PROFILE stage=early requested_hps=0 frame=39 ticks=0 update_ms=0.0004 render_finish_ms=7.2835 swap_ms=0.0002 total_ms=7.2841
+FRAME_PROFILE stage=early requested_hps=0 frame=40 ticks=0 update_ms=0.0003 render_finish_ms=7.3752 swap_ms=0.0004 total_ms=7.3759
+FRAME_PROFILE stage=early requested_hps=0 frame=41 ticks=0 update_ms=0.0003 render_finish_ms=7.9196 swap_ms=0.0003 total_ms=7.9202
+FRAME_PROFILE stage=early requested_hps=0 frame=42 ticks=0 update_ms=0.0003 render_finish_ms=8.0918 swap_ms=0.0002 total_ms=8.0923
+FRAME_PROFILE stage=early requested_hps=0 frame=43 ticks=0 update_ms=0.0002 render_finish_ms=7.4528 swap_ms=0.0002 total_ms=7.4533
+FRAME_PROFILE stage=early requested_hps=0 frame=44 ticks=0 update_ms=0.0004 render_finish_ms=7.4602 swap_ms=0.0003 total_ms=7.4609
+FRAME_PROFILE stage=early requested_hps=0 frame=45 ticks=0 update_ms=0.0002 render_finish_ms=7.3667 swap_ms=0.0004 total_ms=7.3673
+FRAME_PROFILE stage=early requested_hps=0 frame=46 ticks=0 update_ms=0.0002 render_finish_ms=8.3924 swap_ms=0.0004 total_ms=8.3930
+FRAME_PROFILE stage=early requested_hps=0 frame=47 ticks=0 update_ms=0.0006 render_finish_ms=8.2812 swap_ms=0.0002 total_ms=8.2820
+FRAME_PROFILE stage=early requested_hps=0 frame=48 ticks=0 update_ms=0.0005 render_finish_ms=8.0936 swap_ms=0.0002 total_ms=8.0943
+FRAME_PROFILE stage=early requested_hps=0 frame=49 ticks=0 update_ms=0.0002 render_finish_ms=8.0800 swap_ms=0.0002 total_ms=8.0804
+FRAME_PROFILE stage=early requested_hps=0 frame=50 ticks=0 update_ms=0.0003 render_finish_ms=8.2956 swap_ms=0.0002 total_ms=8.2961
+FRAME_PROFILE stage=early requested_hps=0 frame=51 ticks=0 update_ms=0.0004 render_finish_ms=8.1967 swap_ms=0.0007 total_ms=8.1977
+FRAME_PROFILE stage=early requested_hps=0 frame=52 ticks=0 update_ms=0.0004 render_finish_ms=8.5248 swap_ms=0.0004 total_ms=8.5256
+FRAME_PROFILE stage=early requested_hps=0 frame=53 ticks=0 update_ms=0.0006 render_finish_ms=9.3491 swap_ms=0.0004 total_ms=9.3502
+FRAME_PROFILE stage=early requested_hps=0 frame=54 ticks=0 update_ms=0.0003 render_finish_ms=7.7065 swap_ms=0.0002 total_ms=7.7070
+FRAME_PROFILE stage=early requested_hps=0 frame=55 ticks=0 update_ms=0.0002 render_finish_ms=7.4714 swap_ms=0.0003 total_ms=7.4719
+FRAME_PROFILE stage=early requested_hps=0 frame=56 ticks=0 update_ms=0.0001 render_finish_ms=7.6720 swap_ms=0.0002 total_ms=7.6723
+FRAME_PROFILE stage=early requested_hps=0 frame=57 ticks=0 update_ms=0.0001 render_finish_ms=7.4993 swap_ms=0.0001 total_ms=7.4995
+FRAME_PROFILE stage=early requested_hps=0 frame=58 ticks=0 update_ms=0.0003 render_finish_ms=7.3328 swap_ms=0.0002 total_ms=7.3333
+FRAME_PROFILE stage=early requested_hps=0 frame=59 ticks=0 update_ms=0.0001 render_finish_ms=6.8372 swap_ms=0.0002 total_ms=6.8375
+FRAME_RENDER_CONTEXT stage=early requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3390 scene_draw_mean_ms=2.1218 postprocess_mean_ms=2.4035 ui_mean_ms=0.9889
+FRAME_SUMMARY stage=early requested_hps=0 cells=40962 occupied_start=1 cohorts_start=1 frames=60 ticks=0 sim_hours=0.000 update_mean_ms=0.0003 physics_mean_per_frame_ms=0.0000 physics_max_ms=0.0000 render_finish_mean_ms=7.5711 total_mean_ms=7.5717 total_p95_ms=8.5256 total_max_ms=9.3502 compute_throughput_hps=0.000 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_PROFILE stage=early requested_hps=6 frame=0 ticks=0 update_ms=0.0007 render_finish_ms=7.2745 swap_ms=0.0002 total_ms=7.2754
+FRAME_PROFILE stage=early requested_hps=6 frame=1 ticks=0 update_ms=0.0004 render_finish_ms=7.7884 swap_ms=0.0003 total_ms=7.7891
+FRAME_PROFILE stage=early requested_hps=6 frame=2 ticks=0 update_ms=0.0003 render_finish_ms=7.4399 swap_ms=0.0006 total_ms=7.4407
+FRAME_PROFILE stage=early requested_hps=6 frame=3 ticks=1 update_ms=11.6580 render_finish_ms=8.3205 swap_ms=0.0003 total_ms=19.9787
+FRAME_PROFILE stage=early requested_hps=6 frame=4 ticks=0 update_ms=0.0009 render_finish_ms=7.7089 swap_ms=0.0002 total_ms=7.7101
+FRAME_PROFILE stage=early requested_hps=6 frame=5 ticks=0 update_ms=0.0005 render_finish_ms=7.7034 swap_ms=0.0007 total_ms=7.7045
+FRAME_PROFILE stage=early requested_hps=6 frame=6 ticks=0 update_ms=0.0007 render_finish_ms=8.9897 swap_ms=0.0005 total_ms=8.9909
+FRAME_PROFILE stage=early requested_hps=6 frame=7 ticks=1 update_ms=12.0752 render_finish_ms=10.6837 swap_ms=0.0004 total_ms=22.7594
+FRAME_PROFILE stage=early requested_hps=6 frame=8 ticks=0 update_ms=0.0008 render_finish_ms=9.7937 swap_ms=0.0004 total_ms=9.7949
+FRAME_PROFILE stage=early requested_hps=6 frame=9 ticks=0 update_ms=0.0004 render_finish_ms=7.8752 swap_ms=0.0003 total_ms=7.8759
+FRAME_PROFILE stage=early requested_hps=6 frame=10 ticks=0 update_ms=0.0005 render_finish_ms=7.7975 swap_ms=0.0005 total_ms=7.7986
+FRAME_PROFILE stage=early requested_hps=6 frame=11 ticks=1 update_ms=14.4806 render_finish_ms=17.1977 swap_ms=0.0004 total_ms=31.6786
+FRAME_PROFILE stage=early requested_hps=6 frame=12 ticks=0 update_ms=0.0008 render_finish_ms=10.3425 swap_ms=0.0003 total_ms=10.3436
+FRAME_PROFILE stage=early requested_hps=6 frame=13 ticks=0 update_ms=0.0005 render_finish_ms=33.7355 swap_ms=0.0006 total_ms=33.7366
+FRAME_PROFILE stage=early requested_hps=6 frame=14 ticks=0 update_ms=0.0010 render_finish_ms=40.1989 swap_ms=0.0006 total_ms=40.2005
+FRAME_PROFILE stage=early requested_hps=6 frame=15 ticks=1 update_ms=89.1134 render_finish_ms=9.7997 swap_ms=0.0006 total_ms=98.9137
+FRAME_PROFILE stage=early requested_hps=6 frame=16 ticks=0 update_ms=0.0005 render_finish_ms=6.8415 swap_ms=0.0003 total_ms=6.8423
+FRAME_PROFILE stage=early requested_hps=6 frame=17 ticks=0 update_ms=0.0003 render_finish_ms=6.7324 swap_ms=0.0002 total_ms=6.7330
+FRAME_PROFILE stage=early requested_hps=6 frame=18 ticks=0 update_ms=0.0003 render_finish_ms=6.9336 swap_ms=0.0002 total_ms=6.9340
+FRAME_PROFILE stage=early requested_hps=6 frame=19 ticks=1 update_ms=11.1629 render_finish_ms=7.9601 swap_ms=0.0004 total_ms=19.1233
+FRAME_PROFILE stage=early requested_hps=6 frame=20 ticks=0 update_ms=0.0007 render_finish_ms=7.3391 swap_ms=0.0002 total_ms=7.3400
+FRAME_PROFILE stage=early requested_hps=6 frame=21 ticks=0 update_ms=0.0006 render_finish_ms=7.4074 swap_ms=0.0002 total_ms=7.4082
+FRAME_PROFILE stage=early requested_hps=6 frame=22 ticks=0 update_ms=0.0004 render_finish_ms=7.1658 swap_ms=0.0002 total_ms=7.1664
+FRAME_PROFILE stage=early requested_hps=6 frame=23 ticks=1 update_ms=9.7295 render_finish_ms=8.0605 swap_ms=0.0005 total_ms=17.7905
+FRAME_PROFILE stage=early requested_hps=6 frame=24 ticks=0 update_ms=0.0006 render_finish_ms=7.6995 swap_ms=0.0002 total_ms=7.7003
+FRAME_PROFILE stage=early requested_hps=6 frame=25 ticks=0 update_ms=0.0003 render_finish_ms=7.0935 swap_ms=0.0004 total_ms=7.0943
+FRAME_PROFILE stage=early requested_hps=6 frame=26 ticks=0 update_ms=0.0004 render_finish_ms=7.1392 swap_ms=0.0003 total_ms=7.1399
+FRAME_PROFILE stage=early requested_hps=6 frame=27 ticks=1 update_ms=10.5385 render_finish_ms=7.5675 swap_ms=0.0003 total_ms=18.1063
+FRAME_PROFILE stage=early requested_hps=6 frame=28 ticks=0 update_ms=0.0004 render_finish_ms=6.9454 swap_ms=0.0006 total_ms=6.9463
+FRAME_PROFILE stage=early requested_hps=6 frame=29 ticks=0 update_ms=0.0005 render_finish_ms=7.7688 swap_ms=0.0004 total_ms=7.7696
+FRAME_PROFILE stage=early requested_hps=6 frame=30 ticks=0 update_ms=0.0007 render_finish_ms=7.2570 swap_ms=0.0002 total_ms=7.2580
+FRAME_PROFILE stage=early requested_hps=6 frame=31 ticks=1 update_ms=11.8843 render_finish_ms=7.9339 swap_ms=0.0003 total_ms=19.8184
+FRAME_PROFILE stage=early requested_hps=6 frame=32 ticks=0 update_ms=0.0007 render_finish_ms=7.9304 swap_ms=0.0002 total_ms=7.9313
+FRAME_PROFILE stage=early requested_hps=6 frame=33 ticks=0 update_ms=0.0004 render_finish_ms=6.9793 swap_ms=0.0003 total_ms=6.9800
+FRAME_PROFILE stage=early requested_hps=6 frame=34 ticks=0 update_ms=0.0005 render_finish_ms=6.7634 swap_ms=0.0003 total_ms=6.7642
+FRAME_PROFILE stage=early requested_hps=6 frame=35 ticks=1 update_ms=10.4293 render_finish_ms=6.7770 swap_ms=0.0004 total_ms=17.2067
+FRAME_PROFILE stage=early requested_hps=6 frame=36 ticks=0 update_ms=0.0005 render_finish_ms=6.7554 swap_ms=0.0002 total_ms=6.7560
+FRAME_PROFILE stage=early requested_hps=6 frame=37 ticks=0 update_ms=0.0003 render_finish_ms=6.5527 swap_ms=0.0003 total_ms=6.5533
+FRAME_PROFILE stage=early requested_hps=6 frame=38 ticks=0 update_ms=0.0003 render_finish_ms=6.2391 swap_ms=0.0003 total_ms=6.2397
+FRAME_PROFILE stage=early requested_hps=6 frame=39 ticks=1 update_ms=12.0228 render_finish_ms=10.4334 swap_ms=0.0004 total_ms=22.4565
+FRAME_PROFILE stage=early requested_hps=6 frame=40 ticks=0 update_ms=0.0010 render_finish_ms=6.5413 swap_ms=0.0003 total_ms=6.5425
+FRAME_PROFILE stage=early requested_hps=6 frame=41 ticks=0 update_ms=0.0007 render_finish_ms=6.2875 swap_ms=0.0002 total_ms=6.2884
+FRAME_PROFILE stage=early requested_hps=6 frame=42 ticks=0 update_ms=0.0004 render_finish_ms=6.6727 swap_ms=0.0004 total_ms=6.6735
+FRAME_PROFILE stage=early requested_hps=6 frame=43 ticks=1 update_ms=10.6673 render_finish_ms=7.2738 swap_ms=0.0006 total_ms=17.9417
+FRAME_PROFILE stage=early requested_hps=6 frame=44 ticks=0 update_ms=0.0008 render_finish_ms=6.3957 swap_ms=0.0003 total_ms=6.3969
+FRAME_PROFILE stage=early requested_hps=6 frame=45 ticks=0 update_ms=0.0003 render_finish_ms=6.9437 swap_ms=0.0004 total_ms=6.9443
+FRAME_PROFILE stage=early requested_hps=6 frame=46 ticks=0 update_ms=0.0003 render_finish_ms=8.2918 swap_ms=0.0002 total_ms=8.2923
+FRAME_PROFILE stage=early requested_hps=6 frame=47 ticks=1 update_ms=11.5514 render_finish_ms=7.0096 swap_ms=0.0003 total_ms=18.5613
+FRAME_PROFILE stage=early requested_hps=6 frame=48 ticks=0 update_ms=0.0009 render_finish_ms=6.5963 swap_ms=0.0002 total_ms=6.5975
+FRAME_PROFILE stage=early requested_hps=6 frame=49 ticks=0 update_ms=0.0008 render_finish_ms=6.4006 swap_ms=0.0002 total_ms=6.4016
+FRAME_PROFILE stage=early requested_hps=6 frame=50 ticks=0 update_ms=0.0007 render_finish_ms=6.1734 swap_ms=0.0003 total_ms=6.1745
+FRAME_PROFILE stage=early requested_hps=6 frame=51 ticks=1 update_ms=12.3179 render_finish_ms=7.1077 swap_ms=0.0004 total_ms=19.4260
+FRAME_PROFILE stage=early requested_hps=6 frame=52 ticks=0 update_ms=0.0006 render_finish_ms=7.1903 swap_ms=0.0002 total_ms=7.1911
+FRAME_PROFILE stage=early requested_hps=6 frame=53 ticks=0 update_ms=0.0005 render_finish_ms=6.8869 swap_ms=0.0004 total_ms=6.8878
+FRAME_PROFILE stage=early requested_hps=6 frame=54 ticks=0 update_ms=0.0004 render_finish_ms=7.1201 swap_ms=0.0004 total_ms=7.1209
+FRAME_PROFILE stage=early requested_hps=6 frame=55 ticks=1 update_ms=10.8234 render_finish_ms=7.4124 swap_ms=0.0004 total_ms=18.2362
+FRAME_PROFILE stage=early requested_hps=6 frame=56 ticks=0 update_ms=0.0006 render_finish_ms=6.8512 swap_ms=0.0002 total_ms=6.8520
+FRAME_PROFILE stage=early requested_hps=6 frame=57 ticks=0 update_ms=0.0007 render_finish_ms=6.6921 swap_ms=0.0002 total_ms=6.6930
+FRAME_PROFILE stage=early requested_hps=6 frame=58 ticks=0 update_ms=0.0003 render_finish_ms=6.6377 swap_ms=0.0002 total_ms=6.6382
+FRAME_PROFILE stage=early requested_hps=6 frame=59 ticks=1 update_ms=13.8206 render_finish_ms=7.6523 swap_ms=0.0004 total_ms=21.4733
+FRAME_RENDER_CONTEXT stage=early requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.6308 scene_draw_mean_ms=2.7248 postprocess_mean_ms=2.3789 ui_mean_ms=1.3155
+FRAME_SUMMARY stage=early requested_hps=6 cells=40962 occupied_start=1 cohorts_start=1 frames=60 ticks=15 sim_hours=6.000 update_mean_ms=4.2050 physics_mean_per_frame_ms=4.2043 physics_max_ms=89.1109 render_finish_mean_ms=8.6177 total_mean_ms=12.8230 total_p95_ms=31.6786 total_max_ms=98.9137 compute_throughput_hps=7.798 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_PROFILE stage=early requested_hps=24 frame=0 ticks=1 update_ms=10.4039 render_finish_ms=7.0915 swap_ms=0.0006 total_ms=17.4959
+FRAME_PROFILE stage=early requested_hps=24 frame=1 ticks=1 update_ms=10.4587 render_finish_ms=7.1541 swap_ms=0.0004 total_ms=17.6131
+FRAME_PROFILE stage=early requested_hps=24 frame=2 ticks=1 update_ms=10.8713 render_finish_ms=7.4890 swap_ms=0.0004 total_ms=18.3607
+FRAME_PROFILE stage=early requested_hps=24 frame=3 ticks=1 update_ms=9.9841 render_finish_ms=7.2771 swap_ms=0.0005 total_ms=17.2618
+FRAME_PROFILE stage=early requested_hps=24 frame=4 ticks=1 update_ms=11.1970 render_finish_ms=7.6697 swap_ms=0.0005 total_ms=18.8672
+FRAME_PROFILE stage=early requested_hps=24 frame=5 ticks=1 update_ms=12.0521 render_finish_ms=7.4735 swap_ms=0.0004 total_ms=19.5260
+FRAME_PROFILE stage=early requested_hps=24 frame=6 ticks=1 update_ms=10.3772 render_finish_ms=7.4686 swap_ms=0.0003 total_ms=17.8461
+FRAME_PROFILE stage=early requested_hps=24 frame=7 ticks=1 update_ms=10.6163 render_finish_ms=7.5191 swap_ms=0.0005 total_ms=18.1359
+FRAME_PROFILE stage=early requested_hps=24 frame=8 ticks=1 update_ms=11.6973 render_finish_ms=7.3122 swap_ms=0.0006 total_ms=19.0101
+FRAME_PROFILE stage=early requested_hps=24 frame=9 ticks=1 update_ms=12.6603 render_finish_ms=7.5524 swap_ms=0.0005 total_ms=20.2132
+FRAME_PROFILE stage=early requested_hps=24 frame=10 ticks=1 update_ms=10.4715 render_finish_ms=7.1067 swap_ms=0.0005 total_ms=17.5787
+FRAME_PROFILE stage=early requested_hps=24 frame=11 ticks=1 update_ms=10.9023 render_finish_ms=7.3935 swap_ms=0.0004 total_ms=18.2962
+FRAME_PROFILE stage=early requested_hps=24 frame=12 ticks=1 update_ms=11.1191 render_finish_ms=9.8593 swap_ms=0.0005 total_ms=20.9789
+FRAME_PROFILE stage=early requested_hps=24 frame=13 ticks=1 update_ms=11.9950 render_finish_ms=8.3523 swap_ms=0.0006 total_ms=20.3480
+FRAME_PROFILE stage=early requested_hps=24 frame=14 ticks=1 update_ms=11.5675 render_finish_ms=7.1567 swap_ms=0.0006 total_ms=18.7248
+FRAME_PROFILE stage=early requested_hps=24 frame=15 ticks=1 update_ms=10.6438 render_finish_ms=7.0823 swap_ms=0.0003 total_ms=17.7265
+FRAME_PROFILE stage=early requested_hps=24 frame=16 ticks=1 update_ms=12.4269 render_finish_ms=7.6778 swap_ms=0.0005 total_ms=20.1052
+FRAME_PROFILE stage=early requested_hps=24 frame=17 ticks=1 update_ms=11.0451 render_finish_ms=7.6006 swap_ms=0.0004 total_ms=18.6461
+FRAME_PROFILE stage=early requested_hps=24 frame=18 ticks=1 update_ms=10.4447 render_finish_ms=9.3000 swap_ms=0.0004 total_ms=19.7452
+FRAME_PROFILE stage=early requested_hps=24 frame=19 ticks=1 update_ms=12.3791 render_finish_ms=7.3161 swap_ms=0.0004 total_ms=19.6956
+FRAME_PROFILE stage=early requested_hps=24 frame=20 ticks=1 update_ms=10.1947 render_finish_ms=7.6999 swap_ms=0.0004 total_ms=17.8950
+FRAME_PROFILE stage=early requested_hps=24 frame=21 ticks=1 update_ms=9.9752 render_finish_ms=7.3826 swap_ms=0.0003 total_ms=17.3582
+FRAME_PROFILE stage=early requested_hps=24 frame=22 ticks=1 update_ms=11.3780 render_finish_ms=7.2227 swap_ms=0.0003 total_ms=18.6010
+FRAME_PROFILE stage=early requested_hps=24 frame=23 ticks=1 update_ms=10.5901 render_finish_ms=7.3213 swap_ms=0.0005 total_ms=17.9119
+FRAME_PROFILE stage=early requested_hps=24 frame=24 ticks=1 update_ms=10.0377 render_finish_ms=7.4316 swap_ms=0.0003 total_ms=17.4696
+FRAME_PROFILE stage=early requested_hps=24 frame=25 ticks=1 update_ms=10.8065 render_finish_ms=7.3242 swap_ms=0.0004 total_ms=18.1311
+FRAME_PROFILE stage=early requested_hps=24 frame=26 ticks=1 update_ms=11.1044 render_finish_ms=7.3682 swap_ms=0.0020 total_ms=18.4746
+FRAME_PROFILE stage=early requested_hps=24 frame=27 ticks=1 update_ms=10.0569 render_finish_ms=9.6184 swap_ms=0.0004 total_ms=19.6757
+FRAME_PROFILE stage=early requested_hps=24 frame=28 ticks=1 update_ms=11.6178 render_finish_ms=7.7231 swap_ms=0.0004 total_ms=19.3413
+FRAME_PROFILE stage=early requested_hps=24 frame=29 ticks=1 update_ms=11.6260 render_finish_ms=7.9434 swap_ms=0.0005 total_ms=19.5699
+FRAME_PROFILE stage=early requested_hps=24 frame=30 ticks=1 update_ms=11.3313 render_finish_ms=7.9753 swap_ms=0.0003 total_ms=19.3069
+FRAME_PROFILE stage=early requested_hps=24 frame=31 ticks=1 update_ms=10.0797 render_finish_ms=7.4210 swap_ms=0.0004 total_ms=17.5012
+FRAME_PROFILE stage=early requested_hps=24 frame=32 ticks=1 update_ms=10.3937 render_finish_ms=7.3667 swap_ms=0.0006 total_ms=17.7610
+FRAME_PROFILE stage=early requested_hps=24 frame=33 ticks=1 update_ms=10.2829 render_finish_ms=7.7257 swap_ms=0.0004 total_ms=18.0090
+FRAME_PROFILE stage=early requested_hps=24 frame=34 ticks=1 update_ms=10.0498 render_finish_ms=7.1672 swap_ms=0.0003 total_ms=17.2172
+FRAME_PROFILE stage=early requested_hps=24 frame=35 ticks=1 update_ms=10.0204 render_finish_ms=7.3789 swap_ms=0.0004 total_ms=17.3997
+FRAME_PROFILE stage=early requested_hps=24 frame=36 ticks=1 update_ms=10.6873 render_finish_ms=7.6106 swap_ms=0.0003 total_ms=18.2982
+FRAME_PROFILE stage=early requested_hps=24 frame=37 ticks=1 update_ms=12.0764 render_finish_ms=7.4777 swap_ms=0.0003 total_ms=19.5544
+FRAME_PROFILE stage=early requested_hps=24 frame=38 ticks=1 update_ms=12.3172 render_finish_ms=8.7597 swap_ms=0.0003 total_ms=21.0773
+FRAME_PROFILE stage=early requested_hps=24 frame=39 ticks=1 update_ms=14.5431 render_finish_ms=8.6273 swap_ms=0.0004 total_ms=23.1708
+FRAME_PROFILE stage=early requested_hps=24 frame=40 ticks=1 update_ms=13.0924 render_finish_ms=8.5261 swap_ms=0.0005 total_ms=21.6190
+FRAME_PROFILE stage=early requested_hps=24 frame=41 ticks=1 update_ms=10.9459 render_finish_ms=7.0653 swap_ms=0.0004 total_ms=18.0116
+FRAME_PROFILE stage=early requested_hps=24 frame=42 ticks=1 update_ms=11.4109 render_finish_ms=7.3548 swap_ms=0.0004 total_ms=18.7661
+FRAME_PROFILE stage=early requested_hps=24 frame=43 ticks=1 update_ms=11.8340 render_finish_ms=7.1714 swap_ms=0.0006 total_ms=19.0059
+FRAME_PROFILE stage=early requested_hps=24 frame=44 ticks=1 update_ms=13.2260 render_finish_ms=6.8942 swap_ms=0.0003 total_ms=20.1205
+FRAME_PROFILE stage=early requested_hps=24 frame=45 ticks=1 update_ms=9.9798 render_finish_ms=6.8829 swap_ms=0.0006 total_ms=16.8633
+FRAME_PROFILE stage=early requested_hps=24 frame=46 ticks=1 update_ms=9.9123 render_finish_ms=6.8483 swap_ms=0.0003 total_ms=16.7608
+FRAME_PROFILE stage=early requested_hps=24 frame=47 ticks=1 update_ms=9.9779 render_finish_ms=7.4649 swap_ms=0.0006 total_ms=17.4434
+FRAME_PROFILE stage=early requested_hps=24 frame=48 ticks=1 update_ms=9.8952 render_finish_ms=7.2570 swap_ms=0.0006 total_ms=17.1528
+FRAME_PROFILE stage=early requested_hps=24 frame=49 ticks=1 update_ms=15.7549 render_finish_ms=8.4714 swap_ms=0.0004 total_ms=24.2268
+FRAME_PROFILE stage=early requested_hps=24 frame=50 ticks=1 update_ms=13.0248 render_finish_ms=8.7653 swap_ms=0.0005 total_ms=21.7906
+FRAME_PROFILE stage=early requested_hps=24 frame=51 ticks=1 update_ms=13.0896 render_finish_ms=8.7796 swap_ms=0.0004 total_ms=21.8696
+FRAME_PROFILE stage=early requested_hps=24 frame=52 ticks=1 update_ms=13.1172 render_finish_ms=8.7105 swap_ms=0.0004 total_ms=21.8282
+FRAME_PROFILE stage=early requested_hps=24 frame=53 ticks=1 update_ms=13.0656 render_finish_ms=7.8475 swap_ms=0.0006 total_ms=20.9137
+FRAME_PROFILE stage=early requested_hps=24 frame=54 ticks=1 update_ms=10.5169 render_finish_ms=8.1163 swap_ms=0.0004 total_ms=18.6335
+FRAME_PROFILE stage=early requested_hps=24 frame=55 ticks=1 update_ms=9.9282 render_finish_ms=7.3535 swap_ms=0.0005 total_ms=17.2822
+FRAME_PROFILE stage=early requested_hps=24 frame=56 ticks=1 update_ms=10.4175 render_finish_ms=7.3017 swap_ms=0.0004 total_ms=17.7196
+FRAME_PROFILE stage=early requested_hps=24 frame=57 ticks=1 update_ms=10.1658 render_finish_ms=7.2128 swap_ms=0.0003 total_ms=17.3789
+FRAME_PROFILE stage=early requested_hps=24 frame=58 ticks=1 update_ms=10.2889 render_finish_ms=7.6607 swap_ms=0.0004 total_ms=17.9499
+FRAME_PROFILE stage=early requested_hps=24 frame=59 ticks=1 update_ms=11.3612 render_finish_ms=8.0932 swap_ms=0.0004 total_ms=19.4548
+FRAME_RENDER_CONTEXT stage=early requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4173 scene_draw_mean_ms=2.4223 postprocess_mean_ms=2.2126 ui_mean_ms=1.0681
+FRAME_SUMMARY stage=early requested_hps=24 cells=40962 occupied_start=1 cohorts_start=1 frames=60 ticks=60 sim_hours=24.000 update_mean_ms=11.2248 physics_mean_per_frame_ms=11.2235 physics_max_ms=15.7536 render_finish_mean_ms=7.6863 total_mean_ms=18.9115 total_p95_ms=21.8282 total_max_ms=24.2268 compute_throughput_hps=21.151 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_RESTORE stage=early exact_save=true
+FORMS_PLAYER_INITIAL patch=0 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=10242 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=10244 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=11826 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=30746 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=30748 water_target=15 seeded=false biology_assigned=false
+FORMS_PLAYER_INITIAL patch=0 water_target=15 seeded=false biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+DIAGNOSTIC selected=0 latitude_z=0.8506508 depth_m=5 temp=293.15
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=5 temp=293.15 camera=5348.3594 visiblemats=1
+PROPAGULE_DAY day=1 grow_seconds=4 occupied=2 biomass=0.02602795767597854 attempts=1 arrivals=1 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=1 living=2 counts={ 2, 0, 0, 0, 0, 0 }
+PATCH day=1 index=0 depth=5.048233 temp=292.51315 nutrient=0.02
+PATCH day=1 index=10242 depth=14.821827 temp=292.9278 nutrient=0.02
+PATCH day=1 index=10244 depth=14.828305 temp=292.92123 nutrient=0.02
+PATCH day=1 index=11826 depth=14.81691 temp=292.93695 nutrient=0.02
+PATCH day=1 index=30746 depth=14.838805 temp=292.92773 nutrient=0.02
+PATCH day=1 index=30748 depth=14.82648 temp=292.93747 nutrient=0.02
+PATCH day=1 index=0 depth=5.048233 temp=292.51315 nutrient=0.02
+HOURLY hour=1 temp=292.51..293.15 depth_m=5.000..5.136 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=83680010.6772309
+PROPAGULE_DAY day=2 grow_seconds=8 occupied=3 biomass=0.032969092950224876 attempts=2 arrivals=2 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=2 living=3 counts={ 2, 1, 0, 0, 0, 0 }
+PATCH day=2 index=0 depth=4.954709 temp=291.884 nutrient=0.02
+PATCH day=2 index=10242 depth=14.872328 temp=292.70618 nutrient=0.02
+PATCH day=2 index=10244 depth=14.858007 temp=292.69278 nutrient=0.02
+PATCH day=2 index=11826 depth=14.819481 temp=292.72488 nutrient=0.02
+PATCH day=2 index=30746 depth=14.891682 temp=292.70657 nutrient=0.02
+PATCH day=2 index=30748 depth=14.83428 temp=292.72516 nutrient=0.02
+PATCH day=2 index=0 depth=4.954709 temp=291.884 nutrient=0.02
+HOURLY hour=2 temp=291.88..292.51 depth_m=4.955..5.048 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=100668262.54861218
+PROPAGULE_DAY day=3 grow_seconds=12 occupied=3 biomass=0.040612551383674145 attempts=3 arrivals=3 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=3 living=4 counts={ 2, 1, 1, 0, 0, 0 }
+PATCH day=3 index=0 depth=5.1313314 temp=291.27267 nutrient=0.02
+PATCH day=3 index=10242 depth=14.992114 temp=292.48712 nutrient=0.02
+PATCH day=3 index=10244 depth=14.9334135 temp=292.46704 nutrient=0.02
+PATCH day=3 index=11826 depth=14.931736 temp=292.51462 nutrient=0.02
+PATCH day=3 index=30746 depth=14.921755 temp=292.4874 nutrient=0.02
+PATCH day=3 index=30748 depth=14.920033 temp=292.51508 nutrient=0.02
+PATCH day=3 index=0 depth=5.1313314 temp=291.27267 nutrient=0.02
+HOURLY hour=3 temp=291.27..291.88 depth_m=4.950..5.137 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=118718331.70315975
+PROPAGULE_DAY day=4 grow_seconds=16 occupied=4 biomass=0.04893886763602495 attempts=4 arrivals=4 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=4 living=5 counts={ 2, 2, 1, 0, 0, 0 }
+PATCH day=4 index=0 depth=5.132595 temp=290.68436 nutrient=0.02
+PATCH day=4 index=10242 depth=15.342511 temp=292.27332 nutrient=0.02
+PATCH day=4 index=10244 depth=15.097442 temp=292.2448 nutrient=0.02
+PATCH day=4 index=11826 depth=15.107351 temp=292.3079 nutrient=0.02
+PATCH day=4 index=30746 depth=15.03077 temp=292.27112 nutrient=0.02
+PATCH day=4 index=30748 depth=15.02802 temp=292.3081 nutrient=0.02
+PATCH day=4 index=0 depth=5.132595 temp=290.68436 nutrient=0.02
+HOURLY hour=4 temp=290.68..291.27 depth_m=5.126..5.137 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=136970670.8639341
+PROPAGULE_DAY day=5 grow_seconds=20 occupied=4 biomass=0.057743401266634464 attempts=6 arrivals=6 tracked_colony_losses=0 actual_nursery_api=true
+FORMS_DAY day=5 living=7 counts={ 3, 2, 2, 0, 0, 0 }
+PATCH day=5 index=0 depth=5.2144976 temp=290.11118 nutrient=0.02
+PATCH day=5 index=10242 depth=15.541643 temp=292.0647 nutrient=0.02
+PATCH day=5 index=10244 depth=15.311175 temp=292.02686 nutrient=0.02
+PATCH day=5 index=11826 depth=15.382628 temp=292.10593 nutrient=0.02
+PATCH day=5 index=30746 depth=15.177574 temp=292.05795 nutrient=0.02
+PATCH day=5 index=30748 depth=15.215772 temp=292.1043 nutrient=0.02
+PATCH day=5 index=0 depth=5.2144976 temp=290.11118 nutrient=0.02
+HOURLY hour=5 temp=290.11..290.68 depth_m=5.127..5.214 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=153722140.90144014
+ORIGIN_ENV time=432000 sun=1361 nutrient=0.02 detritus=0 fixed=747150005.2658302 recycled=58928824.924858995 CO2=754.3576654454482 O2=26334.626997928928
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.057547396048903465 occupied=4 births=6 maxgen=1 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=5.2144976 temp=290.11118 camera=5348.3594 visiblemats=3
+PROPAGULE_DAY day=6 grow_seconds=24 occupied=5 biomass=0.06454599904827774 attempts=7 arrivals=7 tracked_colony_losses=1 actual_nursery_api=true
+FORMS_DAY day=6 living=7 counts={ 3, 3, 1, 0, 0, 0 }
+PATCH day=6 index=0 depth=5.592805 temp=289.5717 nutrient=0.02
+PATCH day=6 index=10242 depth=15.860688 temp=291.86096 nutrient=0.02
+PATCH day=6 index=10244 depth=15.395514 temp=291.8126 nutrient=0.02
+PATCH day=6 index=11826 depth=15.442906 temp=291.90762 nutrient=0.02
+PATCH day=6 index=30746 depth=15.385824 temp=291.84875 nutrient=0.02
+PATCH day=6 index=30748 depth=15.403888 temp=291.90448 nutrient=0.02
+PATCH day=6 index=0 depth=5.592805 temp=289.5717 nutrient=0.02
+HOURLY hour=6 temp=289.57..290.11 depth_m=5.214..5.593 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=172171889.3775884
+PROPAGULE_DAY day=7 grow_seconds=28 occupied=5 biomass=0.07359441369771957 attempts=9 arrivals=9 tracked_colony_losses=1 actual_nursery_api=true
+FORMS_DAY day=7 living=9 counts={ 3, 4, 1, 1, 0, 0 }
+PATCH day=7 index=0 depth=5.6718483 temp=289.0661 nutrient=0.02
+PATCH day=7 index=10242 depth=16.0765 temp=291.6621 nutrient=0.02
+PATCH day=7 index=10244 depth=15.641789 temp=291.60196 nutrient=0.02
+PATCH day=7 index=11826 depth=15.855696 temp=291.71335 nutrient=0.02
+PATCH day=7 index=30746 depth=15.565467 temp=291.64346 nutrient=0.02
+PATCH day=7 index=30748 depth=15.601264 temp=291.7085 nutrient=0.02
+PATCH day=7 index=0 depth=5.6718483 temp=289.0661 nutrient=0.02
+HOURLY hour=7 temp=289.07..289.57 depth_m=5.593..5.672 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=182671906.84011936
+PROPAGULE_DAY day=8 grow_seconds=32 occupied=5 biomass=0.08200106676667929 attempts=11 arrivals=11 tracked_colony_losses=1 actual_nursery_api=true
+FORMS_DAY day=8 living=11 counts={ 5, 4, 1, 1, 0, 0 }
+PATCH day=8 index=0 depth=5.9578586 temp=288.582 nutrient=0.02
+PATCH day=8 index=10242 depth=16.386337 temp=291.46783 nutrient=0.02
+PATCH day=8 index=10244 depth=15.869284 temp=291.3959 nutrient=0.02
+PATCH day=8 index=11826 depth=15.941728 temp=291.52374 nutrient=0.02
+PATCH day=8 index=30746 depth=15.783863 temp=291.44226 nutrient=0.02
+PATCH day=8 index=30748 depth=15.883868 temp=291.51688 nutrient=0.02
+PATCH day=8 index=0 depth=5.9578586 temp=288.582 nutrient=0.02
+HOURLY hour=8 temp=288.58..289.07 depth_m=5.672..5.958 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=197290944.45987916
+PROPAGULE_DAY day=9 grow_seconds=36 occupied=6 biomass=0.08842764236032963 attempts=13 arrivals=13 tracked_colony_losses=2 actual_nursery_api=true
+FORMS_DAY day=9 living=12 counts={ 7, 3, 1, 1, 0, 0 }
+PATCH day=9 index=0 depth=6.159946 temp=288.12857 nutrient=0.02
+PATCH day=9 index=10242 depth=16.608923 temp=291.27777 nutrient=0.02
+PATCH day=9 index=10244 depth=16.08283 temp=291.1939 nutrient=0.02
+PATCH day=9 index=11826 depth=16.339554 temp=291.33783 nutrient=0.02
+PATCH day=9 index=30746 depth=16.019855 temp=291.2453 nutrient=0.02
+PATCH day=9 index=30748 depth=16.062305 temp=291.3292 nutrient=0.02
+PATCH day=9 index=0 depth=6.159946 temp=288.12857 nutrient=0.02
+HOURLY hour=9 temp=288.13..288.58 depth_m=5.958..6.160 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=209184895.36994505
+PROPAGULE_DAY day=10 grow_seconds=40 occupied=7 biomass=0.09307014010846615 attempts=14 arrivals=14 tracked_colony_losses=4 actual_nursery_api=true
+FORMS_DAY day=10 living=11 counts={ 7, 2, 2, 0, 0, 0 }
+PATCH day=10 index=0 depth=6.4467397 temp=287.69717 nutrient=0.02
+PATCH day=10 index=10242 depth=16.892693 temp=291.0918 nutrient=0.02
+PATCH day=10 index=10244 depth=16.35725 temp=290.99634 nutrient=0.02
+PATCH day=10 index=11826 depth=16.44932 temp=291.15604 nutrient=0.02
+PATCH day=10 index=30746 depth=16.229532 temp=291.05228 nutrient=0.02
+PATCH day=10 index=30748 depth=16.368576 temp=291.1455 nutrient=0.02
+PATCH day=10 index=0 depth=6.4467397 temp=287.69717 nutrient=0.02
+HOURLY hour=10 temp=287.70..288.13 depth_m=6.160..6.447 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=225952659.39795923
+ORIGIN_ENV time=864000 sun=1361 nutrient=0.02 detritus=0 fixed=1734422300.7113214 recycled=304836350.83655113 CO2=754.3575990830302 O2=26334.62704619256
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.09275285131298006 occupied=7 births=14 maxgen=1 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=6.4467397 temp=287.69717 camera=5348.3594 visiblemats=6
+PROPAGULE_DAY day=11 grow_seconds=44 occupied=7 biomass=0.10262486059218645 attempts=16 arrivals=16 tracked_colony_losses=4 actual_nursery_api=true
+FORMS_DAY day=11 living=13 counts={ 8, 3, 2, 0, 0, 0 }
+PATCH day=11 index=0 depth=6.644532 temp=287.29053 nutrient=0.02
+PATCH day=11 index=10242 depth=17.125828 temp=290.90964 nutrient=0.02
+PATCH day=11 index=10244 depth=16.558716 temp=290.8027 nutrient=0.02
+PATCH day=11 index=11826 depth=16.846386 temp=290.97818 nutrient=0.02
+PATCH day=11 index=30746 depth=16.497623 temp=290.8635 nutrient=0.02
+PATCH day=11 index=30748 depth=16.55068 temp=290.96573 nutrient=0.02
+PATCH day=11 index=0 depth=6.644532 temp=287.29053 nutrient=0.02
+HOURLY hour=11 temp=287.29..287.70 depth_m=6.447..6.645 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=236312122.81646824
+PROPAGULE_DAY day=12 grow_seconds=48 occupied=7 biomass=0.10740327485837042 attempts=18 arrivals=18 tracked_colony_losses=6 actual_nursery_api=true
+FORMS_DAY day=12 living=13 counts={ 8, 2, 3, 0, 0, 0 }
+PATCH day=12 index=0 depth=6.943109 temp=286.90262 nutrient=0.02
+PATCH day=12 index=10242 depth=17.332804 temp=290.7311 nutrient=0.02
+PATCH day=12 index=10244 depth=16.845245 temp=290.6133 nutrient=0.02
+PATCH day=12 index=11826 depth=16.904423 temp=290.80414 nutrient=0.02
+PATCH day=12 index=30746 depth=16.701138 temp=290.67853 nutrient=0.02
+PATCH day=12 index=30748 depth=16.858507 temp=290.78983 nutrient=0.02
+PATCH day=12 index=0 depth=6.943109 temp=286.90262 nutrient=0.02
+HOURLY hour=12 temp=286.90..287.29 depth_m=6.645..6.943 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=252309030.50400257
+PROPAGULE_DAY day=13 grow_seconds=52 occupied=7 biomass=0.11616147286258638 attempts=21 arrivals=21 tracked_colony_losses=7 actual_nursery_api=true
+FORMS_DAY day=13 living=15 counts={ 8, 2, 4, 0, 0, 1 }
+PATCH day=13 index=0 depth=7.126616 temp=286.53516 nutrient=0.02
+PATCH day=13 index=10242 depth=17.349846 temp=290.55502 nutrient=0.02
+PATCH day=13 index=10244 depth=17.0188 temp=290.42764 nutrient=0.02
+PATCH day=13 index=11826 depth=17.24889 temp=290.6328 nutrient=0.02
+PATCH day=13 index=30746 depth=16.949076 temp=290.49698 nutrient=0.02
+PATCH day=13 index=30748 depth=17.018154 temp=290.61725 nutrient=0.02
+PATCH day=13 index=0 depth=7.126616 temp=286.53516 nutrient=0.02
+HOURLY hour=13 temp=286.54..286.90 depth_m=6.943..7.127 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=262355477.6215291
+PROPAGULE_DAY day=14 grow_seconds=56 occupied=7 biomass=0.12731072050519288 attempts=24 arrivals=23 tracked_colony_losses=7 actual_nursery_api=true
+FORMS_DAY day=14 living=17 counts={ 9, 3, 4, 0, 0, 1 }
+PATCH day=14 index=0 depth=7.3098216 temp=286.18024 nutrient=0.02
+PATCH day=14 index=10242 depth=17.40488 temp=290.38022 nutrient=0.02
+PATCH day=14 index=10244 depth=17.27174 temp=290.24536 nutrient=0.02
+PATCH day=14 index=11826 depth=17.334381 temp=290.46515 nutrient=0.02
+PATCH day=14 index=30746 depth=17.11596 temp=290.31882 nutrient=0.02
+PATCH day=14 index=30748 depth=17.328144 temp=290.44803 nutrient=0.02
+PATCH day=14 index=0 depth=7.3098216 temp=286.18024 nutrient=0.02
+HOURLY hour=14 temp=286.18..286.54 depth_m=7.127..7.310 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=283799597.67523336
+PROPAGULE_DAY day=15 grow_seconds=60 occupied=7 biomass=0.128695385530591 attempts=26 arrivals=25 tracked_colony_losses=11 actual_nursery_api=true
+FORMS_DAY day=15 living=15 counts={ 10, 2, 2, 0, 0, 1 }
+PATCH day=15 index=0 depth=7.570006 temp=285.8403 nutrient=0.02
+PATCH day=15 index=10242 depth=17.660421 temp=290.20773 nutrient=0.02
+PATCH day=15 index=10244 depth=17.365963 temp=290.06595 nutrient=0.02
+PATCH day=15 index=11826 depth=17.391441 temp=290.29868 nutrient=0.02
+PATCH day=15 index=30746 depth=17.343283 temp=290.14392 nutrient=0.02
+PATCH day=15 index=30748 depth=17.34361 temp=290.28162 nutrient=0.02
+PATCH day=15 index=0 depth=7.570006 temp=285.8403 nutrient=0.02
+HOURLY hour=15 temp=285.84..286.18 depth_m=7.310..7.578 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=297040110.5250058
+info: start sound
+ORIGIN_ENV time=1296000 sun=1361 nutrient=0.02 detritus=0 fixed=3066238639.8535604 recycled=823233846.9513348 CO2=754.3575262707724 O2=26334.62709914695
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.12826598482206464 occupied=7 births=25 maxgen=1 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=7.570006 temp=285.8403 camera=5348.3594 visiblemats=6
+PROPAGULE_DAY day=16 grow_seconds=64 occupied=7 biomass=0.13950399402529 attempts=31 arrivals=28 tracked_colony_losses=12 actual_nursery_api=true
+FORMS_DAY day=16 living=17 counts={ 12, 2, 2, 0, 0, 1 }
+PATCH day=16 index=0 depth=7.6139894 temp=285.5121 nutrient=0.02
+PATCH day=16 index=10242 depth=17.823479 temp=290.0388 nutrient=0.02
+PATCH day=16 index=10244 depth=17.494383 temp=289.8889 nutrient=0.02
+PATCH day=16 index=11826 depth=17.62285 temp=290.13477 nutrient=0.02
+PATCH day=16 index=30746 depth=17.366432 temp=289.97144 nutrient=0.02
+PATCH day=16 index=30748 depth=17.382822 temp=290.1161 nutrient=0.02
+PATCH day=16 index=0 depth=7.6139894 temp=285.5121 nutrient=0.02
+HOURLY hour=16 temp=285.51..285.84 depth_m=7.567..7.614 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=312220835.95767117
+PROPAGULE_DAY day=17 grow_seconds=68 occupied=7 biomass=0.1440312098711729 attempts=33 arrivals=30 tracked_colony_losses=16 actual_nursery_api=true
+FORMS_DAY day=17 living=15 counts={ 10, 2, 1, 0, 0, 2 }
+PATCH day=17 index=0 depth=7.7370806 temp=285.1914 nutrient=0.02
+PATCH day=17 index=10242 depth=17.823761 temp=289.87088 nutrient=0.02
+PATCH day=17 index=10244 depth=17.630922 temp=289.71405 nutrient=0.02
+PATCH day=17 index=11826 depth=17.82024 temp=289.97382 nutrient=0.02
+PATCH day=17 index=30746 depth=17.397224 temp=289.80023 nutrient=0.02
+PATCH day=17 index=30748 depth=17.472187 temp=289.95276 nutrient=0.02
+PATCH day=17 index=0 depth=7.7370806 temp=285.1914 nutrient=0.02
+HOURLY hour=17 temp=285.19..285.51 depth_m=7.614..7.737 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=331042174.7316508
+PROPAGULE_DAY day=18 grow_seconds=72 occupied=7 biomass=0.15022471360862255 attempts=36 arrivals=32 tracked_colony_losses=17 actual_nursery_api=true
+FORMS_DAY day=18 living=16 counts={ 11, 2, 1, 0, 0, 2 }
+PATCH day=18 index=0 depth=7.9298635 temp=284.88126 nutrient=0.02
+PATCH day=18 index=10242 depth=17.82527 temp=289.70456 nutrient=0.02
+PATCH day=18 index=10244 depth=17.768555 temp=289.54187 nutrient=0.02
+PATCH day=18 index=11826 depth=17.821877 temp=289.81476 nutrient=0.02
+PATCH day=18 index=30746 depth=17.428667 temp=289.63058 nutrient=0.02
+PATCH day=18 index=30748 depth=17.630398 temp=289.79123 nutrient=0.02
+PATCH day=18 index=0 depth=7.9298635 temp=284.88126 nutrient=0.02
+HOURLY hour=18 temp=284.88..285.19 depth_m=7.737..7.930 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=295428821.00404215
+PROPAGULE_DAY day=19 grow_seconds=76 occupied=7 biomass=0.15005129855126143 attempts=38 arrivals=34 tracked_colony_losses=18 actual_nursery_api=true
+FORMS_DAY day=19 living=17 counts={ 12, 2, 1, 0, 0, 2 }
+PATCH day=19 index=0 depth=8.04687 temp=284.5809 nutrient=0.02
+PATCH day=19 index=10242 depth=17.837423 temp=289.53894 nutrient=0.02
+PATCH day=19 index=10244 depth=17.822912 temp=289.37158 nutrient=0.02
+PATCH day=19 index=11826 depth=17.826971 temp=289.6566 nutrient=0.02
+PATCH day=19 index=30746 depth=17.540413 temp=289.46234 nutrient=0.02
+PATCH day=19 index=30748 depth=17.808247 temp=289.6324 nutrient=0.02
+PATCH day=19 index=0 depth=8.04687 temp=284.5809 nutrient=0.02
+HOURLY hour=19 temp=284.58..284.88 depth_m=7.930..8.062 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=243172164.17242813
+PROPAGULE_DAY day=20 grow_seconds=80 occupied=7 biomass=0.14475979190319777 attempts=39 arrivals=35 tracked_colony_losses=21 actual_nursery_api=true
+FORMS_DAY day=20 living=15 counts={ 9, 2, 2, 0, 0, 2 }
+PATCH day=20 index=0 depth=8.050553 temp=284.28677 nutrient=0.02
+PATCH day=20 index=10242 depth=17.902403 temp=289.3749 nutrient=0.02
+PATCH day=20 index=10244 depth=17.82213 temp=289.20233 nutrient=0.02
+PATCH day=20 index=11826 depth=17.821497 temp=289.49942 nutrient=0.02
+PATCH day=20 index=30746 depth=17.73718 temp=289.29648 nutrient=0.02
+PATCH day=20 index=30748 depth=17.822931 temp=289.47565 nutrient=0.02
+PATCH day=20 index=0 depth=8.050553 temp=284.28677 nutrient=0.02
+HOURLY hour=20 temp=284.29..284.58 depth_m=8.046..8.063 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=229958654.8208418
+ORIGIN_ENV time=1728000 sun=1361 nutrient=0.02 detritus=0 fixed=4478061290.5401945 recycled=1615721912.784586 CO2=754.3574708317437 O2=26334.627139466294
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.14429924078285694 occupied=7 births=35 maxgen=1 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=8.050553 temp=284.28677 camera=5348.3594 visiblemats=6
+PROPAGULE_DAY day=21 grow_seconds=84 occupied=7 biomass=0.14218678791075945 attempts=40 arrivals=36 tracked_colony_losses=23 actual_nursery_api=true
+FORMS_DAY day=21 living=14 counts={ 9, 2, 1, 0, 0, 2 }
+PATCH day=21 index=0 depth=8.062787 temp=283.99625 nutrient=0.02
+PATCH day=21 index=10242 depth=17.98503 temp=289.21225 nutrient=0.02
+PATCH day=21 index=10244 depth=17.820158 temp=289.03418 nutrient=0.02
+PATCH day=21 index=11826 depth=17.821842 temp=289.34293 nutrient=0.02
+PATCH day=21 index=30746 depth=17.815077 temp=289.1333 nutrient=0.02
+PATCH day=21 index=30748 depth=17.819765 temp=289.31924 nutrient=0.02
+PATCH day=21 index=0 depth=8.062787 temp=283.99625 nutrient=0.02
+HOURLY hour=21 temp=284.00..284.29 depth_m=8.047..8.065 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=234187478.99613476
+PROPAGULE_DAY day=22 grow_seconds=88 occupied=7 biomass=0.14336893148720264 attempts=41 arrivals=37 tracked_colony_losses=24 actual_nursery_api=true
+FORMS_DAY day=22 living=14 counts={ 10, 2, 1, 0, 0, 1 }
+PATCH day=22 index=0 depth=8.057714 temp=283.70935 nutrient=0.02
+PATCH day=22 index=10242 depth=18.073559 temp=289.05154 nutrient=0.02
+PATCH day=22 index=10244 depth=17.814596 temp=288.86722 nutrient=0.02
+PATCH day=22 index=11826 depth=17.825697 temp=289.18774 nutrient=0.02
+PATCH day=22 index=30746 depth=17.823366 temp=288.97058 nutrient=0.02
+PATCH day=22 index=30748 depth=17.819881 temp=289.1643 nutrient=0.02
+PATCH day=22 index=0 depth=8.057714 temp=283.70935 nutrient=0.02
+HOURLY hour=22 temp=283.71..284.00 depth_m=8.048..8.067 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=232304099.6554184
+PROPAGULE_DAY day=23 grow_seconds=92 occupied=7 biomass=0.14721569512039423 attempts=41 arrivals=37 tracked_colony_losses=24 actual_nursery_api=true
+FORMS_DAY day=23 living=14 counts={ 10, 2, 1, 0, 0, 1 }
+PATCH day=23 index=0 depth=8.054033 temp=283.42593 nutrient=0.02
+PATCH day=23 index=10242 depth=18.165648 temp=288.89227 nutrient=0.02
+PATCH day=23 index=10244 depth=17.817114 temp=288.7009 nutrient=0.02
+PATCH day=23 index=11826 depth=17.830694 temp=289.03314 nutrient=0.02
+PATCH day=23 index=30746 depth=17.822912 temp=288.80972 nutrient=0.02
+PATCH day=23 index=30748 depth=17.816242 temp=289.0097 nutrient=0.02
+PATCH day=23 index=0 depth=8.054033 temp=283.42593 nutrient=0.02
+HOURLY hour=23 temp=283.43..283.71 depth_m=8.046..8.067 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=235516690.80926418
+PROPAGULE_DAY day=24 grow_seconds=96 occupied=7 biomass=0.1492726569995284 attempts=42 arrivals=38 tracked_colony_losses=25 actual_nursery_api=true
+FORMS_DAY day=24 living=14 counts={ 10, 2, 1, 0, 0, 1 }
+PATCH day=24 index=0 depth=8.054082 temp=283.146 nutrient=0.02
+PATCH day=24 index=10242 depth=18.254196 temp=288.73474 nutrient=0.02
+PATCH day=24 index=10244 depth=17.818363 temp=288.53604 nutrient=0.02
+PATCH day=24 index=11826 depth=17.822775 temp=288.87973 nutrient=0.02
+PATCH day=24 index=30746 depth=17.823101 temp=288.64886 nutrient=0.02
+PATCH day=24 index=30748 depth=17.822884 temp=288.85663 nutrient=0.02
+PATCH day=24 index=0 depth=8.054082 temp=283.146 nutrient=0.02
+HOURLY hour=24 temp=283.15..283.43 depth_m=8.048..8.067 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=246597648.05924797
+PROPAGULE_DAY day=25 grow_seconds=100 occupied=7 biomass=0.15393061842769384 attempts=43 arrivals=39 tracked_colony_losses=25 actual_nursery_api=true
+FORMS_DAY day=25 living=15 counts={ 11, 2, 1, 0, 0, 1 }
+PATCH day=25 index=0 depth=8.060183 temp=282.8695 nutrient=0.02
+PATCH day=25 index=10242 depth=18.311077 temp=288.57864 nutrient=0.02
+PATCH day=25 index=10244 depth=17.818348 temp=288.37155 nutrient=0.02
+PATCH day=25 index=11826 depth=17.825312 temp=288.7269 nutrient=0.02
+PATCH day=25 index=30746 depth=17.819273 temp=288.4898 nutrient=0.02
+PATCH day=25 index=30748 depth=17.81633 temp=288.70386 nutrient=0.02
+PATCH day=25 index=0 depth=8.060183 temp=282.8695 nutrient=0.02
+HOURLY hour=25 temp=282.87..283.15 depth_m=8.049..8.070 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=251239340.2636261
+ORIGIN_ENV time=2160000 sun=1361 nutrient=0.02 detritus=0 fixed=5677906548.323886 recycled=2570776640.775867 CO2=754.3574489195961 O2=26334.62715540235
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.1534656248986721 occupied=7 births=39 maxgen=1 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=8.060183 temp=282.8695 camera=5348.3594 visiblemats=6
+PROPAGULE_DAY day=26 grow_seconds=104 occupied=7 biomass=0.15641919989138842 attempts=44 arrivals=40 tracked_colony_losses=26 actual_nursery_api=true
+FORMS_DAY day=26 living=15 counts={ 11, 2, 1, 0, 0, 1 }
+PATCH day=26 index=0 depth=8.0581875 temp=282.59622 nutrient=0.02
+PATCH day=26 index=10242 depth=18.310509 temp=288.42383 nutrient=0.02
+PATCH day=26 index=10244 depth=17.82413 temp=288.20865 nutrient=0.02
+PATCH day=26 index=11826 depth=17.821907 temp=288.57523 nutrient=0.02
+PATCH day=26 index=30746 depth=17.820786 temp=288.3308 nutrient=0.02
+PATCH day=26 index=30748 depth=17.822372 temp=288.55246 nutrient=0.02
+PATCH day=26 index=0 depth=8.0581875 temp=282.59622 nutrient=0.02
+HOURLY hour=26 temp=282.60..282.87 depth_m=8.050..8.068 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=259603911.5177126
+PROPAGULE_DAY day=27 grow_seconds=108 occupied=9 biomass=0.16287581343203783 attempts=47 arrivals=42 tracked_colony_losses=26 actual_nursery_api=true
+FORMS_DAY day=27 living=17 counts={ 12, 2, 1, 1, 0, 1 }
+PATCH day=27 index=0 depth=8.057458 temp=282.32623 nutrient=0.02
+PATCH day=27 index=10242 depth=18.30873 temp=288.27005 nutrient=0.02
+PATCH day=27 index=10244 depth=17.823961 temp=288.046 nutrient=0.02
+PATCH day=27 index=11826 depth=17.826624 temp=288.42426 nutrient=0.02
+PATCH day=27 index=30746 depth=17.820635 temp=288.17358 nutrient=0.02
+PATCH day=27 index=30748 depth=17.819937 temp=288.4015 nutrient=0.02
+PATCH day=27 index=0 depth=8.057458 temp=282.32623 nutrient=0.02
+HOURLY hour=27 temp=282.33..282.60 depth_m=8.049..8.070 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=269940375.1565304
+PROPAGULE_DAY day=28 grow_seconds=112 occupied=9 biomass=0.16962988767772913 attempts=48 arrivals=43 tracked_colony_losses=28 actual_nursery_api=true
+FORMS_DAY day=28 living=16 counts={ 10, 3, 1, 1, 0, 1 }
+PATCH day=28 index=0 depth=8.065008 temp=282.05942 nutrient=0.02
+PATCH day=28 index=10242 depth=18.308071 temp=288.11703 nutrient=0.02
+PATCH day=28 index=10244 depth=17.81548 temp=287.88504 nutrient=0.02
+PATCH day=28 index=11826 depth=17.827742 temp=288.2742 nutrient=0.02
+PATCH day=28 index=30746 depth=17.823502 temp=288.01636 nutrient=0.02
+PATCH day=28 index=30748 depth=17.820726 temp=288.25174 nutrient=0.02
+PATCH day=28 index=0 depth=8.065008 temp=282.05942 nutrient=0.02
+HOURLY hour=28 temp=282.06..282.33 depth_m=8.050..8.067 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=316998025.0932703
+PROPAGULE_DAY day=29 grow_seconds=116 occupied=9 biomass=0.18117082491517067 attempts=50 arrivals=45 tracked_colony_losses=30 actual_nursery_api=true
+FORMS_DAY day=29 living=16 counts={ 11, 2, 1, 1, 0, 1 }
+PATCH day=29 index=0 depth=8.052676 temp=281.79602 nutrient=0.02
+PATCH day=29 index=10242 depth=18.310902 temp=287.96475 nutrient=0.02
+PATCH day=29 index=10244 depth=17.824423 temp=287.7242 nutrient=0.02
+PATCH day=29 index=11826 depth=17.822906 temp=288.1251 nutrient=0.02
+PATCH day=29 index=30746 depth=17.81999 temp=287.861 nutrient=0.02
+PATCH day=29 index=30748 depth=17.822384 temp=288.10266 nutrient=0.02
+PATCH day=29 index=0 depth=8.052676 temp=281.79602 nutrient=0.02
+HOURLY hour=29 temp=281.80..282.06 depth_m=8.048..8.068 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=355608564.7771578
+PROPAGULE_DAY day=30 grow_seconds=120 occupied=10 biomass=0.20110958209261298 attempts=54 arrivals=48 tracked_colony_losses=31 actual_nursery_api=true
+FORMS_DAY day=30 living=18 counts={ 12, 2, 1, 2, 0, 1 }
+PATCH day=30 index=0 depth=8.055548 temp=281.5356 nutrient=0.02
+PATCH day=30 index=10242 depth=18.312445 temp=287.81357 nutrient=0.02
+PATCH day=30 index=10244 depth=17.820322 temp=287.56516 nutrient=0.02
+PATCH day=30 index=11826 depth=17.819181 temp=287.97668 nutrient=0.02
+PATCH day=30 index=30746 depth=17.82179 temp=287.7056 nutrient=0.02
+PATCH day=30 index=30748 depth=17.824934 temp=287.95447 nutrient=0.02
+PATCH day=30 index=0 depth=8.055548 temp=281.5356 nutrient=0.02
+HOURLY hour=30 temp=281.54..281.80 depth_m=8.050..8.070 biomass=0.000000 nutrient=0.020000 detritus=0.000000 carbon_fixed_kg=420350029.82483196
+ORIGIN_ENV time=2592000 sun=1361 nutrient=0.02 detritus=0 fixed=7300407454.693389 recycled=3616988669.030734 CO2=754.3573973337534 O2=26334.627192919306
+ORIGIN stage=fresh_coupled mode=origin cells=40962 biomass=0.20058576809242368 occupied=10 births=48 maxgen=3 rabbits=0 vegetation=0 selected=0 selectedbio=0 depth_m=8.055548 temp=281.5356 camera=5348.3594 visiblemats=6
+TOTAL_WATER start=1644557760432.6326 end=1644512167007.6533 relative_error=2.772382100295086e-5
+STRUCTURE_WORLD max_structure=0.097911835 max_generation=3 failed_patches=31
+GRAZING_WORLD capable=10 observed=7 max_feeding=0.18748498 consumed_kgC=506660867.58321965 respired_kgC=126665216.89580491
+MOTILITY_WORLD capable=8 resident_movers=0 total_moves=0 movement_respired_kgC=0 unique_lineages=18 mean_update_ms=2.90231128875 max_update_ms=144.204111
+PRODUCER_EVER max_support=0.0010845766 max_organization=0.06291064
+PRODUCER_WORLD inherited_capable=6 actual_supported=6 support_density_sum=0.0021020515196141787 biomass_density_sum=0.20058576529845595
+FRAME_PLATFORM renderer=llvmpipe (LLVM 19.1.7, 256 bits) version=4.5 (Core Profile) Mesa 25.0.7-2+deb13u1
+FRAME_PROFILE stage=established30d requested_hps=0 frame=0 ticks=0 update_ms=0.0007 render_finish_ms=8.0031 swap_ms=0.0003 total_ms=8.0041
+FRAME_PROFILE stage=established30d requested_hps=0 frame=1 ticks=0 update_ms=0.0003 render_finish_ms=7.9930 swap_ms=0.0002 total_ms=7.9934
+FRAME_PROFILE stage=established30d requested_hps=0 frame=2 ticks=0 update_ms=0.0005 render_finish_ms=7.9874 swap_ms=0.0003 total_ms=7.9883
+FRAME_PROFILE stage=established30d requested_hps=0 frame=3 ticks=0 update_ms=0.0004 render_finish_ms=7.3751 swap_ms=0.0003 total_ms=7.3758
+FRAME_PROFILE stage=established30d requested_hps=0 frame=4 ticks=0 update_ms=0.0003 render_finish_ms=7.0654 swap_ms=0.0002 total_ms=7.0659
+FRAME_PROFILE stage=established30d requested_hps=0 frame=5 ticks=0 update_ms=0.0003 render_finish_ms=7.0064 swap_ms=0.0006 total_ms=7.0073
+FRAME_PROFILE stage=established30d requested_hps=0 frame=6 ticks=0 update_ms=0.0003 render_finish_ms=7.1196 swap_ms=0.0006 total_ms=7.1205
+FRAME_PROFILE stage=established30d requested_hps=0 frame=7 ticks=0 update_ms=0.0004 render_finish_ms=6.9738 swap_ms=0.0006 total_ms=6.9749
+FRAME_PROFILE stage=established30d requested_hps=0 frame=8 ticks=0 update_ms=0.0010 render_finish_ms=7.3623 swap_ms=0.0002 total_ms=7.3635
+FRAME_PROFILE stage=established30d requested_hps=0 frame=9 ticks=0 update_ms=0.0003 render_finish_ms=7.6817 swap_ms=0.0005 total_ms=7.6825
+FRAME_PROFILE stage=established30d requested_hps=0 frame=10 ticks=0 update_ms=0.0009 render_finish_ms=7.6395 swap_ms=0.0003 total_ms=7.6407
+FRAME_PROFILE stage=established30d requested_hps=0 frame=11 ticks=0 update_ms=0.0005 render_finish_ms=7.4486 swap_ms=0.0002 total_ms=7.4493
+FRAME_PROFILE stage=established30d requested_hps=0 frame=12 ticks=0 update_ms=0.0005 render_finish_ms=7.1714 swap_ms=0.0002 total_ms=7.1721
+FRAME_PROFILE stage=established30d requested_hps=0 frame=13 ticks=0 update_ms=0.0004 render_finish_ms=7.6569 swap_ms=0.0003 total_ms=7.6576
+FRAME_PROFILE stage=established30d requested_hps=0 frame=14 ticks=0 update_ms=0.0003 render_finish_ms=7.2216 swap_ms=0.0004 total_ms=7.2223
+FRAME_PROFILE stage=established30d requested_hps=0 frame=15 ticks=0 update_ms=0.0010 render_finish_ms=7.8358 swap_ms=0.0003 total_ms=7.8371
+FRAME_PROFILE stage=established30d requested_hps=0 frame=16 ticks=0 update_ms=0.0006 render_finish_ms=7.4555 swap_ms=0.0002 total_ms=7.4562
+FRAME_PROFILE stage=established30d requested_hps=0 frame=17 ticks=0 update_ms=0.0005 render_finish_ms=7.6632 swap_ms=0.0006 total_ms=7.6643
+FRAME_PROFILE stage=established30d requested_hps=0 frame=18 ticks=0 update_ms=0.0004 render_finish_ms=7.6284 swap_ms=0.0003 total_ms=7.6291
+FRAME_PROFILE stage=established30d requested_hps=0 frame=19 ticks=0 update_ms=0.0005 render_finish_ms=7.8511 swap_ms=0.0005 total_ms=7.8520
+FRAME_PROFILE stage=established30d requested_hps=0 frame=20 ticks=0 update_ms=0.0004 render_finish_ms=7.9402 swap_ms=0.0003 total_ms=7.9409
+FRAME_PROFILE stage=established30d requested_hps=0 frame=21 ticks=0 update_ms=0.0009 render_finish_ms=7.5866 swap_ms=0.0003 total_ms=7.5878
+FRAME_PROFILE stage=established30d requested_hps=0 frame=22 ticks=0 update_ms=0.0007 render_finish_ms=7.3841 swap_ms=0.0003 total_ms=7.3851
+FRAME_PROFILE stage=established30d requested_hps=0 frame=23 ticks=0 update_ms=0.0005 render_finish_ms=7.1286 swap_ms=0.0002 total_ms=7.1293
+FRAME_PROFILE stage=established30d requested_hps=0 frame=24 ticks=0 update_ms=0.0006 render_finish_ms=7.4366 swap_ms=0.0003 total_ms=7.4375
+FRAME_PROFILE stage=established30d requested_hps=0 frame=25 ticks=0 update_ms=0.0006 render_finish_ms=7.6818 swap_ms=0.0003 total_ms=7.6827
+FRAME_PROFILE stage=established30d requested_hps=0 frame=26 ticks=0 update_ms=0.0006 render_finish_ms=7.5521 swap_ms=0.0003 total_ms=7.5530
+FRAME_PROFILE stage=established30d requested_hps=0 frame=27 ticks=0 update_ms=0.0004 render_finish_ms=7.4137 swap_ms=0.0005 total_ms=7.4147
+FRAME_PROFILE stage=established30d requested_hps=0 frame=28 ticks=0 update_ms=0.0003 render_finish_ms=7.4375 swap_ms=0.0003 total_ms=7.4381
+FRAME_PROFILE stage=established30d requested_hps=0 frame=29 ticks=0 update_ms=0.0003 render_finish_ms=7.3247 swap_ms=0.0004 total_ms=7.3255
+FRAME_PROFILE stage=established30d requested_hps=0 frame=30 ticks=0 update_ms=0.0007 render_finish_ms=7.3136 swap_ms=0.0004 total_ms=7.3147
+FRAME_PROFILE stage=established30d requested_hps=0 frame=31 ticks=0 update_ms=0.0005 render_finish_ms=7.5061 swap_ms=0.0004 total_ms=7.5070
+FRAME_PROFILE stage=established30d requested_hps=0 frame=32 ticks=0 update_ms=0.0007 render_finish_ms=7.6330 swap_ms=0.0006 total_ms=7.6343
+FRAME_PROFILE stage=established30d requested_hps=0 frame=33 ticks=0 update_ms=0.0007 render_finish_ms=7.6301 swap_ms=0.0005 total_ms=7.6313
+FRAME_PROFILE stage=established30d requested_hps=0 frame=34 ticks=0 update_ms=0.0005 render_finish_ms=7.5721 swap_ms=0.0003 total_ms=7.5730
+FRAME_PROFILE stage=established30d requested_hps=0 frame=35 ticks=0 update_ms=0.0006 render_finish_ms=7.4794 swap_ms=0.0002 total_ms=7.4802
+FRAME_PROFILE stage=established30d requested_hps=0 frame=36 ticks=0 update_ms=0.0006 render_finish_ms=7.4043 swap_ms=0.0003 total_ms=7.4051
+FRAME_PROFILE stage=established30d requested_hps=0 frame=37 ticks=0 update_ms=0.0003 render_finish_ms=7.3562 swap_ms=0.0002 total_ms=7.3567
+FRAME_PROFILE stage=established30d requested_hps=0 frame=38 ticks=0 update_ms=0.0003 render_finish_ms=9.6846 swap_ms=0.0003 total_ms=9.6853
+FRAME_PROFILE stage=established30d requested_hps=0 frame=39 ticks=0 update_ms=0.0004 render_finish_ms=7.7919 swap_ms=0.0006 total_ms=7.7929
+FRAME_PROFILE stage=established30d requested_hps=0 frame=40 ticks=0 update_ms=0.0006 render_finish_ms=8.0303 swap_ms=0.0005 total_ms=8.0314
+FRAME_PROFILE stage=established30d requested_hps=0 frame=41 ticks=0 update_ms=0.0004 render_finish_ms=7.6999 swap_ms=0.0003 total_ms=7.7007
+FRAME_PROFILE stage=established30d requested_hps=0 frame=42 ticks=0 update_ms=0.0004 render_finish_ms=7.8326 swap_ms=0.0003 total_ms=7.8333
+FRAME_PROFILE stage=established30d requested_hps=0 frame=43 ticks=0 update_ms=0.0008 render_finish_ms=7.4574 swap_ms=0.0004 total_ms=7.4587
+FRAME_PROFILE stage=established30d requested_hps=0 frame=44 ticks=0 update_ms=0.0007 render_finish_ms=7.5172 swap_ms=0.0006 total_ms=7.5184
+FRAME_PROFILE stage=established30d requested_hps=0 frame=45 ticks=0 update_ms=0.0002 render_finish_ms=7.5302 swap_ms=0.0006 total_ms=7.5310
+FRAME_PROFILE stage=established30d requested_hps=0 frame=46 ticks=0 update_ms=0.0006 render_finish_ms=7.5404 swap_ms=0.0004 total_ms=7.5414
+FRAME_PROFILE stage=established30d requested_hps=0 frame=47 ticks=0 update_ms=0.0007 render_finish_ms=7.3790 swap_ms=0.0002 total_ms=7.3799
+FRAME_PROFILE stage=established30d requested_hps=0 frame=48 ticks=0 update_ms=0.0005 render_finish_ms=7.2797 swap_ms=0.0002 total_ms=7.2804
+FRAME_PROFILE stage=established30d requested_hps=0 frame=49 ticks=0 update_ms=0.0005 render_finish_ms=7.3890 swap_ms=0.0004 total_ms=7.3899
+FRAME_PROFILE stage=established30d requested_hps=0 frame=50 ticks=0 update_ms=0.0003 render_finish_ms=7.7371 swap_ms=0.0004 total_ms=7.7378
+FRAME_PROFILE stage=established30d requested_hps=0 frame=51 ticks=0 update_ms=0.0004 render_finish_ms=7.9151 swap_ms=0.0008 total_ms=7.9162
+FRAME_PROFILE stage=established30d requested_hps=0 frame=52 ticks=0 update_ms=0.0004 render_finish_ms=7.9573 swap_ms=0.0003 total_ms=7.9580
+FRAME_PROFILE stage=established30d requested_hps=0 frame=53 ticks=0 update_ms=0.0004 render_finish_ms=7.8046 swap_ms=0.0005 total_ms=7.8056
+FRAME_PROFILE stage=established30d requested_hps=0 frame=54 ticks=0 update_ms=0.0006 render_finish_ms=7.8260 swap_ms=0.0004 total_ms=7.8270
+FRAME_PROFILE stage=established30d requested_hps=0 frame=55 ticks=0 update_ms=0.0004 render_finish_ms=8.0256 swap_ms=0.0004 total_ms=8.0264
+FRAME_PROFILE stage=established30d requested_hps=0 frame=56 ticks=0 update_ms=0.0004 render_finish_ms=7.9769 swap_ms=0.0004 total_ms=7.9777
+FRAME_PROFILE stage=established30d requested_hps=0 frame=57 ticks=0 update_ms=0.0003 render_finish_ms=7.4469 swap_ms=0.0003 total_ms=7.4474
+FRAME_PROFILE stage=established30d requested_hps=0 frame=58 ticks=0 update_ms=0.0029 render_finish_ms=7.9791 swap_ms=0.0002 total_ms=7.9822
+FRAME_PROFILE stage=established30d requested_hps=0 frame=59 ticks=0 update_ms=0.0004 render_finish_ms=7.9391 swap_ms=0.0002 total_ms=7.9397
+FRAME_RENDER_CONTEXT stage=established30d requested_hps=0 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3271 scene_draw_mean_ms=2.1054 postprocess_mean_ms=2.1718 ui_mean_ms=1.3045
+FRAME_SUMMARY stage=established30d requested_hps=0 cells=40962 occupied_start=10 cohorts_start=18 frames=60 ticks=0 sim_hours=0.000 update_mean_ms=0.0005 physics_mean_per_frame_ms=0.0000 physics_max_ms=0.0000 render_finish_mean_ms=7.6110 total_mean_ms=7.6119 total_p95_ms=8.0041 total_max_ms=9.6853 compute_throughput_hps=0.000 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_PROFILE stage=established30d requested_hps=6 frame=0 ticks=0 update_ms=0.0012 render_finish_ms=7.6436 swap_ms=0.0003 total_ms=7.6450
+FRAME_PROFILE stage=established30d requested_hps=6 frame=1 ticks=0 update_ms=0.0004 render_finish_ms=7.4590 swap_ms=0.0004 total_ms=7.4599
+FRAME_PROFILE stage=established30d requested_hps=6 frame=2 ticks=0 update_ms=0.0003 render_finish_ms=7.4333 swap_ms=0.0004 total_ms=7.4339
+FRAME_PROFILE stage=established30d requested_hps=6 frame=3 ticks=1 update_ms=10.2176 render_finish_ms=7.7264 swap_ms=0.0006 total_ms=17.9447
+FRAME_PROFILE stage=established30d requested_hps=6 frame=4 ticks=0 update_ms=0.0011 render_finish_ms=7.8193 swap_ms=0.0005 total_ms=7.8209
+FRAME_PROFILE stage=established30d requested_hps=6 frame=5 ticks=0 update_ms=0.0008 render_finish_ms=7.2060 swap_ms=0.0021 total_ms=7.2089
+FRAME_PROFILE stage=established30d requested_hps=6 frame=6 ticks=0 update_ms=0.0005 render_finish_ms=7.6952 swap_ms=0.0005 total_ms=7.6961
+FRAME_PROFILE stage=established30d requested_hps=6 frame=7 ticks=1 update_ms=10.2464 render_finish_ms=8.1920 swap_ms=0.0007 total_ms=18.4391
+FRAME_PROFILE stage=established30d requested_hps=6 frame=8 ticks=0 update_ms=0.0010 render_finish_ms=7.8506 swap_ms=0.0002 total_ms=7.8517
+FRAME_PROFILE stage=established30d requested_hps=6 frame=9 ticks=0 update_ms=0.0005 render_finish_ms=7.6579 swap_ms=0.0004 total_ms=7.6587
+FRAME_PROFILE stage=established30d requested_hps=6 frame=10 ticks=0 update_ms=0.0004 render_finish_ms=7.4359 swap_ms=0.0003 total_ms=7.4365
+FRAME_PROFILE stage=established30d requested_hps=6 frame=11 ticks=1 update_ms=11.3863 render_finish_ms=8.2350 swap_ms=0.0006 total_ms=19.6218
+FRAME_PROFILE stage=established30d requested_hps=6 frame=12 ticks=0 update_ms=0.0009 render_finish_ms=7.7193 swap_ms=0.0007 total_ms=7.7209
+FRAME_PROFILE stage=established30d requested_hps=6 frame=13 ticks=0 update_ms=0.0007 render_finish_ms=7.6101 swap_ms=0.0004 total_ms=7.6112
+FRAME_PROFILE stage=established30d requested_hps=6 frame=14 ticks=0 update_ms=0.0005 render_finish_ms=7.6063 swap_ms=0.0004 total_ms=7.6071
+FRAME_PROFILE stage=established30d requested_hps=6 frame=15 ticks=1 update_ms=10.1614 render_finish_ms=7.8317 swap_ms=0.0004 total_ms=17.9935
+FRAME_PROFILE stage=established30d requested_hps=6 frame=16 ticks=0 update_ms=0.0009 render_finish_ms=7.3236 swap_ms=0.0004 total_ms=7.3249
+FRAME_PROFILE stage=established30d requested_hps=6 frame=17 ticks=0 update_ms=0.0007 render_finish_ms=7.0463 swap_ms=0.0003 total_ms=7.0473
+FRAME_PROFILE stage=established30d requested_hps=6 frame=18 ticks=0 update_ms=0.0004 render_finish_ms=7.4985 swap_ms=0.0003 total_ms=7.4991
+FRAME_PROFILE stage=established30d requested_hps=6 frame=19 ticks=1 update_ms=11.4051 render_finish_ms=8.0715 swap_ms=0.0004 total_ms=19.4769
+FRAME_PROFILE stage=established30d requested_hps=6 frame=20 ticks=0 update_ms=0.0010 render_finish_ms=8.1957 swap_ms=0.0004 total_ms=8.1970
+FRAME_PROFILE stage=established30d requested_hps=6 frame=21 ticks=0 update_ms=0.0008 render_finish_ms=7.6089 swap_ms=0.0004 total_ms=7.6101
+FRAME_PROFILE stage=established30d requested_hps=6 frame=22 ticks=0 update_ms=0.0004 render_finish_ms=7.3503 swap_ms=0.0004 total_ms=7.3510
+FRAME_PROFILE stage=established30d requested_hps=6 frame=23 ticks=1 update_ms=10.2369 render_finish_ms=8.1742 swap_ms=0.0004 total_ms=18.4114
+FRAME_PROFILE stage=established30d requested_hps=6 frame=24 ticks=0 update_ms=0.0009 render_finish_ms=7.4174 swap_ms=0.0002 total_ms=7.4185
+FRAME_PROFILE stage=established30d requested_hps=6 frame=25 ticks=0 update_ms=0.0010 render_finish_ms=7.2127 swap_ms=0.0004 total_ms=7.2140
+FRAME_PROFILE stage=established30d requested_hps=6 frame=26 ticks=0 update_ms=0.0005 render_finish_ms=7.1082 swap_ms=0.0005 total_ms=7.1091
+FRAME_PROFILE stage=established30d requested_hps=6 frame=27 ticks=1 update_ms=29.2433 render_finish_ms=34.4867 swap_ms=0.0004 total_ms=63.7305
+FRAME_PROFILE stage=established30d requested_hps=6 frame=28 ticks=0 update_ms=0.0010 render_finish_ms=12.2706 swap_ms=0.0003 total_ms=12.2720
+FRAME_PROFILE stage=established30d requested_hps=6 frame=29 ticks=0 update_ms=0.0008 render_finish_ms=8.3593 swap_ms=0.0003 total_ms=8.3604
+FRAME_PROFILE stage=established30d requested_hps=6 frame=30 ticks=0 update_ms=0.0007 render_finish_ms=8.1278 swap_ms=0.0003 total_ms=8.1288
+FRAME_PROFILE stage=established30d requested_hps=6 frame=31 ticks=1 update_ms=12.8034 render_finish_ms=8.8550 swap_ms=0.0005 total_ms=21.6588
+FRAME_PROFILE stage=established30d requested_hps=6 frame=32 ticks=0 update_ms=0.0011 render_finish_ms=8.5032 swap_ms=0.0003 total_ms=8.5046
+FRAME_PROFILE stage=established30d requested_hps=6 frame=33 ticks=0 update_ms=0.0009 render_finish_ms=8.1834 swap_ms=0.0002 total_ms=8.1844
+FRAME_PROFILE stage=established30d requested_hps=6 frame=34 ticks=0 update_ms=0.0007 render_finish_ms=8.3760 swap_ms=0.0002 total_ms=8.3769
+FRAME_PROFILE stage=established30d requested_hps=6 frame=35 ticks=1 update_ms=10.2267 render_finish_ms=8.2178 swap_ms=0.0004 total_ms=18.4448
+FRAME_PROFILE stage=established30d requested_hps=6 frame=36 ticks=0 update_ms=0.0009 render_finish_ms=7.6338 swap_ms=0.0001 total_ms=7.6349
+FRAME_PROFILE stage=established30d requested_hps=6 frame=37 ticks=0 update_ms=0.0010 render_finish_ms=7.4484 swap_ms=0.0004 total_ms=7.4497
+FRAME_PROFILE stage=established30d requested_hps=6 frame=38 ticks=0 update_ms=0.0004 render_finish_ms=7.8928 swap_ms=0.0002 total_ms=7.8934
+FRAME_PROFILE stage=established30d requested_hps=6 frame=39 ticks=1 update_ms=11.4196 render_finish_ms=8.3277 swap_ms=0.0003 total_ms=19.7477
+FRAME_PROFILE stage=established30d requested_hps=6 frame=40 ticks=0 update_ms=0.0010 render_finish_ms=9.9386 swap_ms=0.0005 total_ms=9.9401
+FRAME_PROFILE stage=established30d requested_hps=6 frame=41 ticks=0 update_ms=0.0010 render_finish_ms=8.1565 swap_ms=0.0002 total_ms=8.1576
+FRAME_PROFILE stage=established30d requested_hps=6 frame=42 ticks=0 update_ms=0.0010 render_finish_ms=8.1558 swap_ms=0.0002 total_ms=8.1570
+FRAME_PROFILE stage=established30d requested_hps=6 frame=43 ticks=1 update_ms=10.3108 render_finish_ms=8.4561 swap_ms=0.0004 total_ms=18.7673
+FRAME_PROFILE stage=established30d requested_hps=6 frame=44 ticks=0 update_ms=0.0012 render_finish_ms=8.0176 swap_ms=0.0001 total_ms=8.0189
+FRAME_PROFILE stage=established30d requested_hps=6 frame=45 ticks=0 update_ms=0.0006 render_finish_ms=8.1700 swap_ms=0.0002 total_ms=8.1708
+FRAME_PROFILE stage=established30d requested_hps=6 frame=46 ticks=0 update_ms=0.0004 render_finish_ms=8.2343 swap_ms=0.0005 total_ms=8.2352
+FRAME_PROFILE stage=established30d requested_hps=6 frame=47 ticks=1 update_ms=10.1565 render_finish_ms=9.7647 swap_ms=0.0005 total_ms=19.9217
+FRAME_PROFILE stage=established30d requested_hps=6 frame=48 ticks=0 update_ms=0.0006 render_finish_ms=8.2820 swap_ms=0.0002 total_ms=8.2828
+FRAME_PROFILE stage=established30d requested_hps=6 frame=49 ticks=0 update_ms=0.0006 render_finish_ms=8.1766 swap_ms=0.0003 total_ms=8.1774
+FRAME_PROFILE stage=established30d requested_hps=6 frame=50 ticks=0 update_ms=0.0005 render_finish_ms=7.8485 swap_ms=0.0002 total_ms=7.8492
+FRAME_PROFILE stage=established30d requested_hps=6 frame=51 ticks=1 update_ms=11.3792 render_finish_ms=9.1614 swap_ms=0.0007 total_ms=20.5413
+FRAME_PROFILE stage=established30d requested_hps=6 frame=52 ticks=0 update_ms=0.0011 render_finish_ms=8.1880 swap_ms=0.0004 total_ms=8.1895
+FRAME_PROFILE stage=established30d requested_hps=6 frame=53 ticks=0 update_ms=0.0005 render_finish_ms=8.1942 swap_ms=0.0002 total_ms=8.1949
+FRAME_PROFILE stage=established30d requested_hps=6 frame=54 ticks=0 update_ms=0.0007 render_finish_ms=8.1033 swap_ms=0.0005 total_ms=8.1045
+FRAME_PROFILE stage=established30d requested_hps=6 frame=55 ticks=1 update_ms=10.3471 render_finish_ms=10.2884 swap_ms=0.0004 total_ms=20.6359
+FRAME_PROFILE stage=established30d requested_hps=6 frame=56 ticks=0 update_ms=0.0014 render_finish_ms=8.3031 swap_ms=0.0003 total_ms=8.3047
+FRAME_PROFILE stage=established30d requested_hps=6 frame=57 ticks=0 update_ms=0.0009 render_finish_ms=8.1465 swap_ms=0.0002 total_ms=8.1476
+FRAME_PROFILE stage=established30d requested_hps=6 frame=58 ticks=0 update_ms=0.0004 render_finish_ms=8.2758 swap_ms=0.0002 total_ms=8.2765
+FRAME_PROFILE stage=established30d requested_hps=6 frame=59 ticks=1 update_ms=11.3443 render_finish_ms=8.8292 swap_ms=0.0004 total_ms=20.1738
+FRAME_RENDER_CONTEXT stage=established30d requested_hps=6 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.4039 scene_draw_mean_ms=2.5006 postprocess_mean_ms=2.5166 ui_mean_ms=1.3858
+FRAME_SUMMARY stage=established30d requested_hps=6 cells=40962 occupied_start=10 cohorts_start=18 frames=60 ticks=15 sim_hours=6.000 update_mean_ms=3.0153 physics_mean_per_frame_ms=3.0144 physics_max_ms=29.2422 render_finish_mean_ms=8.5584 total_mean_ms=11.5741 total_p95_ms=20.5413 total_max_ms=63.7305 compute_throughput_hps=8.640 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_PROFILE stage=established30d requested_hps=24 frame=0 ticks=1 update_ms=10.0986 render_finish_ms=8.5309 swap_ms=0.0004 total_ms=18.6299
+FRAME_PROFILE stage=established30d requested_hps=24 frame=1 ticks=1 update_ms=11.4127 render_finish_ms=8.1936 swap_ms=0.0004 total_ms=19.6067
+FRAME_PROFILE stage=established30d requested_hps=24 frame=2 ticks=1 update_ms=10.1661 render_finish_ms=9.7926 swap_ms=0.0004 total_ms=19.9591
+FRAME_PROFILE stage=established30d requested_hps=24 frame=3 ticks=1 update_ms=11.8009 render_finish_ms=8.5718 swap_ms=0.0004 total_ms=20.3730
+FRAME_PROFILE stage=established30d requested_hps=24 frame=4 ticks=1 update_ms=10.7118 render_finish_ms=8.2455 swap_ms=0.0007 total_ms=18.9579
+FRAME_PROFILE stage=established30d requested_hps=24 frame=5 ticks=1 update_ms=11.2989 render_finish_ms=8.2484 swap_ms=0.0003 total_ms=19.5477
+FRAME_PROFILE stage=established30d requested_hps=24 frame=6 ticks=1 update_ms=10.8060 render_finish_ms=8.1140 swap_ms=0.0008 total_ms=18.9208
+FRAME_PROFILE stage=established30d requested_hps=24 frame=7 ticks=1 update_ms=10.6522 render_finish_ms=7.6933 swap_ms=0.0004 total_ms=18.3458
+FRAME_PROFILE stage=established30d requested_hps=24 frame=8 ticks=1 update_ms=10.6877 render_finish_ms=8.0249 swap_ms=0.0003 total_ms=18.7129
+FRAME_PROFILE stage=established30d requested_hps=24 frame=9 ticks=1 update_ms=11.3863 render_finish_ms=7.9390 swap_ms=0.0004 total_ms=19.3257
+FRAME_PROFILE stage=established30d requested_hps=24 frame=10 ticks=1 update_ms=10.3600 render_finish_ms=8.2011 swap_ms=0.0003 total_ms=18.5615
+FRAME_PROFILE stage=established30d requested_hps=24 frame=11 ticks=1 update_ms=10.6778 render_finish_ms=8.1387 swap_ms=0.0004 total_ms=18.8168
+FRAME_PROFILE stage=established30d requested_hps=24 frame=12 ticks=1 update_ms=10.3492 render_finish_ms=7.9305 swap_ms=0.0003 total_ms=18.2800
+FRAME_PROFILE stage=established30d requested_hps=24 frame=13 ticks=1 update_ms=10.3959 render_finish_ms=8.8936 swap_ms=0.0004 total_ms=19.2899
+FRAME_PROFILE stage=established30d requested_hps=24 frame=14 ticks=1 update_ms=11.1567 render_finish_ms=8.4468 swap_ms=0.0003 total_ms=19.6038
+FRAME_PROFILE stage=established30d requested_hps=24 frame=15 ticks=1 update_ms=10.5666 render_finish_ms=8.2480 swap_ms=0.0004 total_ms=18.8150
+FRAME_PROFILE stage=established30d requested_hps=24 frame=16 ticks=1 update_ms=10.6474 render_finish_ms=8.1343 swap_ms=0.0004 total_ms=18.7820
+FRAME_PROFILE stage=established30d requested_hps=24 frame=17 ticks=1 update_ms=10.6649 render_finish_ms=7.8443 swap_ms=0.0004 total_ms=18.5096
+FRAME_PROFILE stage=established30d requested_hps=24 frame=18 ticks=1 update_ms=11.1450 render_finish_ms=8.2711 swap_ms=0.0003 total_ms=19.4164
+FRAME_PROFILE stage=established30d requested_hps=24 frame=19 ticks=1 update_ms=11.9277 render_finish_ms=8.1854 swap_ms=0.0004 total_ms=20.1135
+FRAME_PROFILE stage=established30d requested_hps=24 frame=20 ticks=1 update_ms=10.7489 render_finish_ms=8.2183 swap_ms=0.0004 total_ms=18.9675
+FRAME_PROFILE stage=established30d requested_hps=24 frame=21 ticks=1 update_ms=10.9591 render_finish_ms=8.2081 swap_ms=0.0003 total_ms=19.1675
+FRAME_PROFILE stage=established30d requested_hps=24 frame=22 ticks=1 update_ms=11.1747 render_finish_ms=8.1980 swap_ms=0.0004 total_ms=19.3731
+FRAME_PROFILE stage=established30d requested_hps=24 frame=23 ticks=1 update_ms=9.9352 render_finish_ms=8.7216 swap_ms=0.0004 total_ms=18.6572
+FRAME_PROFILE stage=established30d requested_hps=24 frame=24 ticks=1 update_ms=11.2570 render_finish_ms=8.4101 swap_ms=0.0003 total_ms=19.6673
+FRAME_PROFILE stage=established30d requested_hps=24 frame=25 ticks=1 update_ms=10.4861 render_finish_ms=8.1844 swap_ms=0.0003 total_ms=18.6708
+FRAME_PROFILE stage=established30d requested_hps=24 frame=26 ticks=1 update_ms=10.6653 render_finish_ms=8.0143 swap_ms=0.0005 total_ms=18.6802
+FRAME_PROFILE stage=established30d requested_hps=24 frame=27 ticks=1 update_ms=10.3319 render_finish_ms=8.2107 swap_ms=0.0005 total_ms=18.5432
+FRAME_PROFILE stage=established30d requested_hps=24 frame=28 ticks=1 update_ms=9.9885 render_finish_ms=7.8344 swap_ms=0.0004 total_ms=17.8233
+FRAME_PROFILE stage=established30d requested_hps=24 frame=29 ticks=1 update_ms=13.0389 render_finish_ms=8.0575 swap_ms=0.0004 total_ms=21.0968
+FRAME_PROFILE stage=established30d requested_hps=24 frame=30 ticks=1 update_ms=10.7908 render_finish_ms=8.2375 swap_ms=0.0002 total_ms=19.0286
+FRAME_PROFILE stage=established30d requested_hps=24 frame=31 ticks=1 update_ms=9.9704 render_finish_ms=8.2488 swap_ms=0.0004 total_ms=18.2196
+FRAME_PROFILE stage=established30d requested_hps=24 frame=32 ticks=1 update_ms=11.0575 render_finish_ms=8.2160 swap_ms=0.0003 total_ms=19.2737
+FRAME_PROFILE stage=established30d requested_hps=24 frame=33 ticks=1 update_ms=10.7291 render_finish_ms=8.3194 swap_ms=0.0002 total_ms=19.0488
+FRAME_PROFILE stage=established30d requested_hps=24 frame=34 ticks=1 update_ms=10.5677 render_finish_ms=8.5727 swap_ms=0.0003 total_ms=19.1407
+FRAME_PROFILE stage=established30d requested_hps=24 frame=35 ticks=1 update_ms=10.0819 render_finish_ms=8.4906 swap_ms=0.0004 total_ms=18.5728
+FRAME_PROFILE stage=established30d requested_hps=24 frame=36 ticks=1 update_ms=10.0899 render_finish_ms=8.5994 swap_ms=0.0003 total_ms=18.6896
+FRAME_PROFILE stage=established30d requested_hps=24 frame=37 ticks=1 update_ms=10.0136 render_finish_ms=8.9350 swap_ms=0.0007 total_ms=18.9492
+FRAME_PROFILE stage=established30d requested_hps=24 frame=38 ticks=1 update_ms=11.2269 render_finish_ms=8.4202 swap_ms=0.0002 total_ms=19.6473
+FRAME_PROFILE stage=established30d requested_hps=24 frame=39 ticks=1 update_ms=11.5160 render_finish_ms=8.5943 swap_ms=0.0003 total_ms=20.1106
+FRAME_PROFILE stage=established30d requested_hps=24 frame=40 ticks=1 update_ms=9.9564 render_finish_ms=8.3444 swap_ms=0.0004 total_ms=18.3012
+FRAME_PROFILE stage=established30d requested_hps=24 frame=41 ticks=1 update_ms=10.5342 render_finish_ms=9.3192 swap_ms=0.0004 total_ms=19.8538
+FRAME_PROFILE stage=established30d requested_hps=24 frame=42 ticks=1 update_ms=10.9566 render_finish_ms=8.6929 swap_ms=0.0004 total_ms=19.6498
+FRAME_PROFILE stage=established30d requested_hps=24 frame=43 ticks=1 update_ms=11.6042 render_finish_ms=8.6639 swap_ms=0.0003 total_ms=20.2684
+FRAME_PROFILE stage=established30d requested_hps=24 frame=44 ticks=1 update_ms=10.0319 render_finish_ms=8.5323 swap_ms=0.0003 total_ms=18.5644
+FRAME_PROFILE stage=established30d requested_hps=24 frame=45 ticks=1 update_ms=10.3562 render_finish_ms=8.3173 swap_ms=0.0003 total_ms=18.6738
+FRAME_PROFILE stage=established30d requested_hps=24 frame=46 ticks=1 update_ms=9.8866 render_finish_ms=8.1049 swap_ms=0.0004 total_ms=17.9919
+FRAME_PROFILE stage=established30d requested_hps=24 frame=47 ticks=1 update_ms=11.4264 render_finish_ms=8.4431 swap_ms=0.0003 total_ms=19.8699
+FRAME_PROFILE stage=established30d requested_hps=24 frame=48 ticks=1 update_ms=10.8090 render_finish_ms=8.6127 swap_ms=0.0004 total_ms=19.4221
+FRAME_PROFILE stage=established30d requested_hps=24 frame=49 ticks=1 update_ms=12.1222 render_finish_ms=8.9560 swap_ms=0.0004 total_ms=21.0786
+FRAME_PROFILE stage=established30d requested_hps=24 frame=50 ticks=1 update_ms=11.9995 render_finish_ms=8.7899 swap_ms=0.0005 total_ms=20.7900
+FRAME_PROFILE stage=established30d requested_hps=24 frame=51 ticks=1 update_ms=10.8262 render_finish_ms=8.5657 swap_ms=0.0006 total_ms=19.3925
+FRAME_PROFILE stage=established30d requested_hps=24 frame=52 ticks=1 update_ms=10.8623 render_finish_ms=8.7369 swap_ms=0.0005 total_ms=19.5997
+FRAME_PROFILE stage=established30d requested_hps=24 frame=53 ticks=1 update_ms=10.9660 render_finish_ms=8.5003 swap_ms=0.0003 total_ms=19.4666
+FRAME_PROFILE stage=established30d requested_hps=24 frame=54 ticks=1 update_ms=10.1637 render_finish_ms=10.7278 swap_ms=0.0004 total_ms=20.8919
+FRAME_PROFILE stage=established30d requested_hps=24 frame=55 ticks=1 update_ms=12.5679 render_finish_ms=8.6506 swap_ms=0.0006 total_ms=21.2191
+FRAME_PROFILE stage=established30d requested_hps=24 frame=56 ticks=1 update_ms=9.8804 render_finish_ms=8.4378 swap_ms=0.0004 total_ms=18.3185
+FRAME_PROFILE stage=established30d requested_hps=24 frame=57 ticks=1 update_ms=11.0180 render_finish_ms=8.3291 swap_ms=0.0003 total_ms=19.3473
+FRAME_PROFILE stage=established30d requested_hps=24 frame=58 ticks=1 update_ms=11.5359 render_finish_ms=8.1348 swap_ms=0.0004 total_ms=19.6711
+FRAME_PROFILE stage=established30d requested_hps=24 frame=59 ticks=1 update_ms=12.4680 render_finish_ms=9.3033 swap_ms=0.0003 total_ms=21.7715
+FRAME_RENDER_CONTEXT stage=established30d requested_hps=24 valid=true canvas=390x700 scene=390x700 bloom=false bloom_passes=0 terrain_upload_mean_ms=0.3939 scene_draw_mean_ms=2.2504 postprocess_mean_ms=2.4796 ui_mean_ms=1.3820
+FRAME_SUMMARY stage=established30d requested_hps=24 cells=40962 occupied_start=10 cohorts_start=18 frames=60 ticks=60 sim_hours=24.000 update_mean_ms=10.8586 physics_mean_per_frame_ms=10.8573 physics_max_ms=13.0378 render_finish_mean_ms=8.4417 total_mean_ms=19.3006 total_p95_ms=21.0786 total_max_ms=21.7715 compute_throughput_hps=20.725 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_RESTORE stage=established30d exact_save=true
+QA_SAVE_FIXTURE bytes=10452792 version=6
+SUPPORT_RESTORE mutated_cohorts=6
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=10452792 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=222956
+info: deinit audio
+error(gpa): memory address 0x7f5794669000 leaked:
