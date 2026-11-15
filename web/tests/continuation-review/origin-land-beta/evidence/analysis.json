@@ -1,0 +1,28 @@
+{
+  "natural": {
+    "raw_bytes_equal": false,
+    "old_values_equal_empty_cohorts_representation_only": true,
+    "sha256": "6dbfc3ebb97b1c2ae9920883db7ab753e00b77048007d3ad5e526bbc3e7da4d6",
+    "bytes": 11661713,
+    "baseline_bytes": 11129207,
+    "extra_bytes": 532506
+  },
+  "warm": {
+    "raw_bytes_equal": true,
+    "old_values_equal_empty_cohorts_representation_only": true,
+    "sha256": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd",
+    "bytes": 7699884,
+    "baseline_bytes": 7699884,
+    "extra_bytes": 0
+  },
+  "beta": {
+    "fresh_process_2plus2_equals4": true,
+    "sha256": "af94bbfb8a698c956ff93a7c2751f8b3377df5e62337eae52e245eb45ea7864a",
+    "bytes": 11361371,
+    "positive_soil_empty_patches": 460,
+    "soil_density_sum_kg_per_m2": 29.99427659650729,
+    "max_soil_kg_per_m2": 0.06659367837891905,
+    "non_f32_vapor_cells": 23992,
+    "no_cohorts_or_assigned_roots": true
+  }
+}

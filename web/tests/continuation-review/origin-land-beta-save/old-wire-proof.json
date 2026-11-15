@@ -1,0 +1,13 @@
+{
+  "old_parser_source_sha256": "e61b8a4687856c27d4d9c6155c34c1af2b5c8d3a41eaf1d5e6c1f881712a35b5",
+  "candidate_files": {
+    "save_schema.zig": "bc9038309e9fec0648eba79b7f119f7e50f8543b2ae6281e1a900359445073b9",
+    "save_game.zig": "08e2278ec8ad2776d173582e955be7a8c090f81fa136e24bd9af8e085141f4a4"
+  },
+  "first_failed_wire_sha256": "9ef9f9d2bb34a655f892ada35a8e22a687218ae4f65becf46e150e6806bd0b71",
+  "final_wire_sha256": "36c4f622fb8d0a5dc32d7de5aceacdbf3b34519313add046926235be45bdfeb4",
+  "old_reader_pass": true,
+  "all_old_fields_exact": true,
+  "new_fields_absent": true,
+  "comparison": "original natural60 version6 normalized only to version7; actual old parser typed values equal"
+}

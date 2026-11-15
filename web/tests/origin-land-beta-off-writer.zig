@@ -1,0 +1,2 @@
+const std=@import("std");const S=@import("save_schema.zig");
+test "actual candidate off serialization"{const a=std.testing.allocator;const b=try std.fs.cwd().readFileAlloc(a,"/workspace/scratch/f67c3ac60ca3/site-tmp/natural60-day60.json",128*1024*1024);defer a.free(b);var p=try S.parse(a,b);defer p.deinit();p.value.version=7;const out=try std.json.stringifyAlloc(a,p.value,.{});defer a.free(out);try std.fs.cwd().writeFile(.{.sub_path="/workspace/scratch/f67c3ac60ca3/site-tmp/beta-off-wire.json",.data=out});}
