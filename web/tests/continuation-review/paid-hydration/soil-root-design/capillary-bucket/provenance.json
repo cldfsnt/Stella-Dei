@@ -1,0 +1,14 @@
+{
+  "src/experimental/capillary_bucket.zig": "c370129358dc827092f9e84a5eb1a86c8bc0bc5ae7fcf2b5b252463828efc1bc",
+  "src/experimental/capillary_bucket_f64.zig": "d34d9a3920bca9e4237062a1ea9bccf1c3023d9b88d5339055684c2a3d57a289",
+  "src/qa_capillary_bucket.zig": "c19417715f8588dc9534530a5feab50c5d284c69d6f65e03bd65767be33cf7c8",
+  "src/qa_capillary_bucket_f64.zig": "e0d9b71bb3e7e9173b3500a8e50b66196628c0b00a8838e84815a8db22684571",
+  "web/tests/audit-capillary-pair.py": "2741a181144c5fbd4bd95d3196421efe310eb5ff1caed3aab27eda1457cd19a3",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/INDEPENDENT-AUDIT.md": "01673577c1703d5ea0224f8e988e1862deca8471d4a7669020937bb01cbead30",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/hybrid.log.gz": "02fa0e05dbe2fe99a2a1e1ec5f6a944b2a1a596e87ba984af21ad66557b7ae94",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/summary.json": "b6493a3906559e44dacf90f07ff82fbdd6f07283bab19fe6aa49da298b7937c7",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/one-day-harness.zig.txt": "5f58c521e079fcbdf864f745bc70db09c18c8ef34687c84980d3ad169d52ea70",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/f64.log.gz": "24583382f27233070f914c2d9e3d9741dd3432c524a0ce4b82215b174e46cade",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/one-day-diagnostic.log.gz": "34af9f20dd4439f5ff6624061578122198e7e18d0cc65c41c426d68e8241b576",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/capillary-bucket/README.md": "1bd0c1e01f4b407bdbae5500b6064b2b726fdb945d5b44cb3ffaacf1770a205c"
+}
