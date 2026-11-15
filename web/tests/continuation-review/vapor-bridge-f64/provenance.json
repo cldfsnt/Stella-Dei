@@ -1,0 +1,8 @@
+{
+  "src/experimental/vapor_bridge_f64.zig": "458ff7a2b0f4062682b0b5c430e11950ae11c6886961340a675ffe103b94b3be",
+  "src/experimental/vapor_bridge_f128_reference.zig": "79f083f5e0e725b3f716dd7cbf77eb3239af1632b3bcbf48604afa6dc684e3c2",
+  "src/experimental/physical_water_f64.zig": "20de50e7339ed1399c31d80f2e7a6c076fab817ba6a081d7e224a5792606decd",
+  "src/experimental/vapor_bridge_daylight_fixtures.json": "3947afd5634c17f427702d0f7efe7d8393c89d44e18341ef90c08ace76e8194a",
+  "src/qa_vapor_bridge_f64.zig": "955ceef73030679c65b3e95af586cb83ce4144c3089d690dad118e226db21b97",
+  "web/tests/audit-vapor-bridge-f64.py": "7afa93f87d2cce5238fcf1334969fb85fa221627675b0ad34d1a86bc8146f223"
+}

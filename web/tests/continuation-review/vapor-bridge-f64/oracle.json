@@ -1,0 +1,13 @@
+{
+  "counts": {
+    "rows": 6326,
+    "positive": 2918,
+    "refused_or_zero": 3398,
+    "null": 10,
+    "reference_positive": 2924,
+    "candidate_extra_refusals": 6,
+    "changed_positive_outputs": 0
+  },
+  "max_relative_error": 8.695067158772516e-07,
+  "gate": "Exact stored-binary funding and unchanged dual relative/ULP allowance; no universal all-finite proof or scheduler test"
+}
