@@ -1,0 +1,106 @@
+[
+  {
+    "arm": 0,
+    "populated": false,
+    "start_living": 64,
+    "end_living": 64,
+    "glyphs_before": 37,
+    "glyphs_after": 38,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 8.839509300000001,
+        "median_ms": 8.564757,
+        "max_ms": 17.199831
+      },
+      "render_ns": {
+        "mean_ms": 13.059406300000001,
+        "median_ms": 12.7887495,
+        "max_ms": 19.230077
+      },
+      "full_ns": {
+        "mean_ms": 21.898915600000002,
+        "median_ms": 21.7019915,
+        "max_ms": 31.573585
+      }
+    }
+  },
+  {
+    "arm": 1,
+    "populated": true,
+    "start_living": 2429,
+    "end_living": 3399,
+    "glyphs_before": 38,
+    "glyphs_after": 38,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 9.86179385,
+        "median_ms": 9.6218925,
+        "max_ms": 12.722583
+      },
+      "render_ns": {
+        "mean_ms": 13.1883237,
+        "median_ms": 12.873761,
+        "max_ms": 19.916118
+      },
+      "full_ns": {
+        "mean_ms": 23.05011755,
+        "median_ms": 22.753096,
+        "max_ms": 30.893443
+      }
+    }
+  },
+  {
+    "arm": 2,
+    "populated": true,
+    "start_living": 2429,
+    "end_living": 3399,
+    "glyphs_before": 38,
+    "glyphs_after": 38,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 10.704539616666667,
+        "median_ms": 10.352718,
+        "max_ms": 21.042394
+      },
+      "render_ns": {
+        "mean_ms": 16.413444183333333,
+        "median_ms": 14.573256,
+        "max_ms": 52.222383
+      },
+      "full_ns": {
+        "mean_ms": 27.1179838,
+        "median_ms": 25.1526705,
+        "max_ms": 66.49775
+      }
+    }
+  },
+  {
+    "arm": 3,
+    "populated": false,
+    "start_living": 64,
+    "end_living": 64,
+    "glyphs_before": 37,
+    "glyphs_after": 38,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 9.394244833333333,
+        "median_ms": 8.9275725,
+        "max_ms": 16.493302
+      },
+      "render_ns": {
+        "mean_ms": 14.045445383333332,
+        "median_ms": 13.077938,
+        "max_ms": 35.128862
+      },
+      "full_ns": {
+        "mean_ms": 23.439690216666666,
+        "median_ms": 22.392238,
+        "max_ms": 43.754063
+      }
+    }
+  }
+]

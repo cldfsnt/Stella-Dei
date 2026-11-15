@@ -58,6 +58,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     if (saved.mode == .origin) try p.ensureMicrobeStorage();
     @import("patch_watch.zig").current.stop("world loaded");
     @import("world_ecology.zig").reset();
+    @import("auto_seed.zig").invalidate("World loaded; nothing seeded");
     if (@hasField(@TypeOf(state.*), "ignitionCue")) state.ignitionCue = null;
     if (@hasField(@TypeOf(state.*), "ignitionCueSeconds")) state.ignitionCueSeconds = 0;
     @import("manual_transport.zig").reset();@import("habitat_preview.zig").cancel();@import("advance_day.zig").invalidate("world changed");

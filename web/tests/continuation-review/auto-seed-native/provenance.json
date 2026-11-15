@@ -1,0 +1,33 @@
+{
+  "native_source_checkpoint": "2c7e0e2",
+  "result": "PASS",
+  "input": "Sunlit day14, common paused baseline",
+  "snapshots_not_committed": true,
+  "files": [
+    {
+      "path": "../site-tmp/auto-seed/before.json",
+      "bytes": 10781102,
+      "sha256": "103a0076cf3de2701234ed8d16a4b861f4e3a6f5209744b2e3e8ea0c50b187c2"
+    },
+    {
+      "path": "../site-tmp/auto-seed/after.json",
+      "bytes": 13334603,
+      "sha256": "a553dd710c86772176dbd19f03ae0a0d81b2ef20796310e53ff518c32603e353"
+    },
+    {
+      "path": "../site-tmp/sunlit14/day-14.json",
+      "bytes": 10781103,
+      "sha256": "db14ebd4ade6c41fa321b4218827fe75c26e84749a92d76b384435cc29bfebc5"
+    },
+    {
+      "path": "../site-tmp/auto-seed/install/bin/stella-egl",
+      "bytes": 12343392,
+      "sha256": "efed35b977ac5fb6487898ebe9d77739a6d1569a9fc7aa9c46b5780ab57186c6"
+    },
+    {
+      "path": "web/tests/egl-auto-seed-prepare.py",
+      "bytes": 9329,
+      "sha256": "b0ed6dd374ef80ae4b3da95c478ea3a5f98b6f7e899e17c297828a022829ae99"
+    }
+  ]
+}

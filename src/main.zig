@@ -460,6 +460,13 @@ export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
     return state.setSelectedWaterTarget(expected_point,target_m);
 }
 
+const AutoSeed=@import("auto_seed.zig");
+export fn stella_auto_seed_start(world:u32)[*:0]const u8{return if(webEditableState())|s|AutoSeed.start(s,PerformanceDetails.world_serial,world).ptr else "{\"ok\":false,\"phase\":\"failed\",\"reason\":\"World unavailable\"}";}
+export fn stella_auto_seed_step(token:u32)[*:0]const u8{return if(webEditableState())|s|AutoSeed.step(s,PerformanceDetails.world_serial,token).ptr else "{\"ok\":false,\"phase\":\"failed\",\"reason\":\"World unavailable\"}";}
+export fn stella_auto_seed_status()[*:0]const u8{return if(webPlayState())|s|AutoSeed.status(s,PerformanceDetails.world_serial).ptr else "{\"ok\":false,\"phase\":\"failed\",\"reason\":\"World unavailable\"}";}
+export fn stella_auto_seed_apply(token:u32)[*:0]const u8{return if(webEditableState())|s|AutoSeed.apply(s,PerformanceDetails.world_serial,token).ptr else "{\"ok\":false,\"phase\":\"failed\",\"reason\":\"World unavailable\"}";}
+export fn stella_auto_seed_cancel(token:u32)[*:0]const u8{return AutoSeed.cancel(token).ptr;}
+
 var godTargetBuffer:[768]u8=undefined;
 export fn stella_god_target() [*:0]const u8 {
     const state=webPlayState() orelse return "{\"status\":\"no_world\"}";

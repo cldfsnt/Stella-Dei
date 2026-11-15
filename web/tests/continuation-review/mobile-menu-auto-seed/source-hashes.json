@@ -1,0 +1,8 @@
+{
+  "web/shell.html": "9ed5eea251dec6036334f57a9bacf9afe70e189215c9ea7530384716d4b29478",
+  "web/auto-seed.js": "96563c97b2c5619e52cda6a8558200a2da782a4bb0a100c2152a647d7f076677",
+  "web/world-ecology.js": "5c1f9e14427ded8044d4d4c869c1d487d324d932bb04624bfec7249c17a8f06f",
+  "web/tests/auto-seed.test.cjs": "f581a563e1764aa4e280683968938cd00fb5e21743473708daabd390eab0104b",
+  "web/tests/menu-groups.test.cjs": "d58760e11d5ec2f932ca752bfb8d970916b903509fa54cb1a5399b258c681439",
+  "web/tests/shell.test.cjs": "a79593bce96fcd362d64718a21be5dac4e4aa91892ea623ef80f65a8df20e3dd"
+}

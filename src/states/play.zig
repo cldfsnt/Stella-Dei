@@ -715,6 +715,7 @@ pub const PlayState = struct {
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
         if(@import("../advance_day.zig").blocksInput()){self.pointerOnPlanet=false;self.rawFrameDelta=null;self.simulationClock.reset();return;}
+        @import("../auto_seed.zig").guard(self,@import("../performance_details.zig").world_serial);
         @import("../manual_transport.zig").guard(self,@import("../performance_details.zig").world_serial);
         @import("../habitat_preview.zig").guard(self,@import("../performance_details.zig").world_serial);
         if(@import("../patch_watch.zig").current.active)@import("../patch_watch.zig").current.guard(self.selectedPoint,@import("../performance_details.zig").world_serial,self.gameTime,@import("../patch_watch.zig").nowMs(),self.paused or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails);
@@ -2148,7 +2149,7 @@ pub const PlayState = struct {
         vg.fontFace("sans-serif");
         vg.fillColor(nvg.rgb(190, 214, 232));
         var ecologyText: [160]u8 = undefined;
-        const ecologyLabel = if (origin and self.watchLifeView) self.communitySample.line(&ecologyText,@import("../performance_details.zig").world_serial,@intFromPtr(self.planet.microbeCells.ptr),self.gameTime) else if (origin) std.fmt.bufPrint(&ecologyText, "Births since start {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Bites {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        const ecologyLabel = @import("../world_ecology.zig").recentLine(&ecologyText,&self.planet,@import("../performance_details.zig").world_serial,self.gameTime);
         var ecologyBounds: [4]f32 = undefined;
         _ = vg.textBounds(0,0,ecologyLabel,&ecologyBounds);
         const ecologyWidth=ecologyBounds[2]-ecologyBounds[0];

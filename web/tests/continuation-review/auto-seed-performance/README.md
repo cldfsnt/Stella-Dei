@@ -1,0 +1,7 @@
+# Actual pre/post all-point seed native cost
+
+Fixed preregistered natural-day60 ABBA:64 living colonies before; actual checked seeding adds2,365 (2,429 living), growing to3,399 over the60timed steps. This is NOT the owner's separate Sunlitday14 input with7,933 newseeds. All fixed outcomes retained, no favorable repeats. Exact repeated same-variant endpoint/save/RNG passes; original input restored.
+
+Per-frame means: before physics8.84/9.39ms, render13.06/14.05ms, combined21.90/23.44ms; populated physics9.86/10.70ms, render13.19/16.41ms, combined23.05/27.12ms. This supports the explicit warning that more colonies can cost work, but OS/render noise is substantial, not a precise device slowdown forecast. Actual screenshot inspected:37before/38populated visible colony glyphs, unchanged camera and production cap. Renderwarmup30frames; timed60coupled frames one1440s step each, no simulation duringwarmup. No extra quality reduction; copied web-equivalent per-drawdebug=false. Native llvmpipeLLVM19.1.7/Mesa25.0.7 at390×700, not browser/mobile/laptop proof.
+
+Copied source21baaa7; final2c7e0e2 differs only observer labels colony losses→colony deaths and QA save output, no model or render algorithm change. FinalWASM builds latest wording separately. Input, binary/sourcepreparer and raw timing are retained. No production code changes or automatic seed limit. Parent notified that denser7,933 input remains a separate measurement, not inferred from this one.

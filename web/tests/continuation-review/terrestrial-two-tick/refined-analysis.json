@@ -1,0 +1,910 @@
+{
+  "columns": [
+    {
+      "dt": 1440.0,
+      "before": {
+        "liquid": 7595.90234375,
+        "vapor": 819.5028686523438,
+        "soil": 0.0,
+        "rain": 37.94023895263672
+      },
+      "request_native": 44.83607648515938,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": -44835937500.0,
+          "vapor_delta_kg": 44835937500.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 127441406.24999996,
+          "liquid_delta_kg": -127441406.25,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": -4.11386480436704e-08,
+          "exact_residual": "-2894875/70368744177664"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 1440.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 860.9857514467171,
+        "soil": 0.01661658705248363,
+        "rain": 37.313140869140625
+      },
+      "request_native": 38.996230566382735,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": -127441406.24999996,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 127441406.24988632,
+          "residual_kg": -0.00011364569907357236,
+          "exact_residual": "-7997105125/70368744177664",
+          "relative_source_error": 8.917486272133191e-13
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 1440.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 859.1699165715188,
+        "soil": 0.0,
+        "rain": 36.696407318115234
+      },
+      "request_native": 34.372967524531305,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 1440.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 860.9857514467171,
+        "soil": 0.01661658705248363,
+        "rain": 37.313140869140625
+      },
+      "request_native": 38.996230566382735,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": -127441406.24999996,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 127441406.24988632,
+          "residual_kg": -0.00011364569907357236,
+          "exact_residual": "-7997105125/70368744177664",
+          "relative_source_error": 8.917486272133191e-13
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 1440.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 859.1699165715188,
+        "soil": 0.0,
+        "rain": 36.696407318115234
+      },
+      "request_native": 34.372967524531305,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 860.9857514467171,
+        "soil": 0.01661658705248363,
+        "rain": 37.313140869140625
+      },
+      "request_native": 20.848293794124572,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": -127441406.24999996,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 127441406.24988632,
+          "residual_kg": -0.00011364569907357236,
+          "exact_residual": "-7997105125/70368744177664",
+          "relative_source_error": 8.917486272133191e-13
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 859.6606761539889,
+        "soil": 0.0,
+        "rain": 37.00349044799805
+      },
+      "request_native": 19.604285038396792,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 859.8494550758323,
+        "soil": 0.0,
+        "rain": 36.6964111328125
+      },
+      "request_native": 18.40790248442582,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 861.170137713779,
+        "soil": 0.0,
+        "rain": 36.39188003540039
+      },
+      "request_native": 17.267463905358177,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 860.9857514467171,
+        "soil": 0.01661658705248363,
+        "rain": 37.313140869140625
+      },
+      "request_native": 20.848293794124572,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": -127441406.24999996,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 127441406.24988632,
+          "residual_kg": -0.00011364569907357236,
+          "exact_residual": "-7997105125/70368744177664",
+          "relative_source_error": 8.917486272133191e-13
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 859.6606761539889,
+        "soil": 0.0,
+        "rain": 37.00349044799805
+      },
+      "request_native": 19.604285038396792,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 859.8494550758323,
+        "soil": 0.0,
+        "rain": 36.6964111328125
+      },
+      "request_native": 18.40790248442582,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    },
+    {
+      "dt": 720.0,
+      "before": {
+        "liquid": 0.0,
+        "vapor": 861.170137713779,
+        "soil": 0.0,
+        "rain": 36.39188003540039
+      },
+      "request_native": 17.267463905358177,
+      "legs": [
+        {
+          "phase": "standing_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "soil_evaporation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "condensation",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "infiltration",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        },
+        {
+          "phase": "drainage",
+          "soil_delta_kg": 0.0,
+          "liquid_delta_kg": 0.0,
+          "vapor_delta_kg": 0.0,
+          "residual_kg": 0.0,
+          "exact_residual": "0"
+        }
+      ]
+    }
+  ],
+  "endpoints": {
+    "0": {
+      "arm": 0,
+      "tick": 1,
+      "soil": 0.0,
+      "vapor": 858.1012545669761,
+      "cohort": {
+        "root_fraction": 0.0,
+        "biomass": 0.003935461398214102,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00020973305799998343,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      },
+      "depth_m": 0.0
+    },
+    "1": {
+      "arm": 1,
+      "tick": 1,
+      "soil": 0.0,
+      "vapor": 858.1012545669761,
+      "cohort": {
+        "root_fraction": 0.25,
+        "biomass": 0.003938490990549326,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00020989449694752693,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      },
+      "depth_m": 0.0
+    },
+    "2": {
+      "arm": 2,
+      "tick": 3,
+      "soil": 0.0,
+      "vapor": 863.2217705257455,
+      "cohort": {
+        "root_fraction": 0.0,
+        "biomass": 0.003935600630939007,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00020974045037291944,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      },
+      "depth_m": 0.0
+    },
+    "3": {
+      "arm": 3,
+      "tick": 3,
+      "soil": 0.0,
+      "vapor": 863.2217705257455,
+      "cohort": {
+        "root_fraction": 0.25,
+        "biomass": 0.003938595298677683,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00020990005577914417,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      },
+      "depth_m": 0.0
+    }
+  },
+  "initial": {
+    "0": {
+      "arm": 0,
+      "tick": 0,
+      "depth_m": 0.0,
+      "height_m": 0.00315093994140625,
+      "soil": 0.01661658705248363,
+      "vapor": 860.9857514467171,
+      "cohort": {
+        "root_fraction": 0.0,
+        "biomass": 0.00448343763127923,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00023893642355687916,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      }
+    },
+    "1": {
+      "arm": 1,
+      "tick": 0,
+      "depth_m": 0.0,
+      "height_m": 0.0023632049560546875,
+      "soil": 0.01661658705248363,
+      "vapor": 860.9857514467171,
+      "cohort": {
+        "root_fraction": 0.25,
+        "biomass": 0.00448343763127923,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00023893642355687916,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      }
+    },
+    "2": {
+      "arm": 2,
+      "tick": 0,
+      "depth_m": 0.0,
+      "height_m": 0.00315093994140625,
+      "soil": 0.01661658705248363,
+      "vapor": 860.9857514467171,
+      "cohort": {
+        "root_fraction": 0.0,
+        "biomass": 0.00448343763127923,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00023893642355687916,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      }
+    },
+    "3": {
+      "arm": 3,
+      "tick": 0,
+      "depth_m": 0.0,
+      "height_m": 0.0023632049560546875,
+      "soil": 0.01661658705248363,
+      "vapor": 860.9857514467171,
+      "cohort": {
+        "root_fraction": 0.25,
+        "biomass": 0.00448343763127923,
+        "organization": 0.06155688688158989,
+        "support_mass": 0.00023893642355687916,
+        "optimum": 299.8313293457031,
+        "efficiency": 1.0727721452713013,
+        "structure": 0.057000722736120224,
+        "feeding": 0.11678832769393921,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.0,
+        "generation": 2,
+        "lineage": 44,
+        "parent": 7,
+        "reproduction_credit": 0.005285076331347227
+      }
+    }
+  },
+  "root_pulse_lines": 0,
+  "scope": "Exact binary-value phase residuals, not whole-world closure; native mass unit 1e9kg."
+}

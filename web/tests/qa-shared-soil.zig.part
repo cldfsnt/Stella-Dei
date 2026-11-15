@@ -1,0 +1,35 @@
+const std=@import("std");
+const S=@import("simulation/shared_soil.zig");
+const M=@import("simulation/microbes.zig");
+const env=M.Environment{.temperature=300,.depth_km=0,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1};
+test "shared source pays bare and roots without double credit; slot permutation" {
+ var c=M.Cell{};c.cohorts[0]=.{.biomass=1,.support_mass=0.25,.root_fraction=0.25,.lineage=1};
+ c.cohorts[1]=.{.biomass=0.5,.support_mass=0.125,.root_fraction=0.25,.lineage=2};
+ const a=(tryOrNull(c,0.01,0.009)) orelse return error.UnexpectedRefusal;
+ var sum=a.bare_credit;for(a.credits,0..)|v,i|{sum+=v;try std.testing.expect(v<=a.demand[i]);try std.testing.expect(@as(f64,a.h[i])*a.demand[i]<=v);}
+ try std.testing.expect(sum<=a.paid);
+ try std.testing.expect(a.soil>=0 and a.soil<=0.01 and a.vapor>=1);
+ std.mem.swap(M.Cohort,&c.cohorts[0],&c.cohorts[1]);
+ const b=tryOrNull(c,0.01,0.009) orelse return error.UnexpectedRefusal;
+ try std.testing.expectEqual(a.soil,b.soil);try std.testing.expectEqual(a.vapor,b.vapor);
+ try std.testing.expectEqual(a.credits[0],b.credits[1]);try std.testing.expectEqual(a.credits[1],b.credits[0]);
+}
+fn tryOrNull(c:M.Cell,soil:f64,bare:f64)?S.Result{return S.step(c,soil,1,1000,env,1440,10,bare);}
+test "empty dry zero demand and invalid inputs remain explicit" {
+ const c=M.Cell{};
+ const z=tryOrNull(c,0.01,0) orelse return error.UnexpectedRefusal;
+ try std.testing.expectEqual(@as(f64,0.01),z.soil);try std.testing.expectEqual(@as(f64,1),z.vapor);
+ const e=tryOrNull(c,0.01,0.001) orelse return error.UnexpectedRefusal;
+ try std.testing.expect(e.bare_credit>0);for(e.credits)|v|try std.testing.expectEqual(@as(f64,0),v);
+ try std.testing.expect(tryOrNull(c,-1,0)==null);
+ try std.testing.expect(tryOrNull(c,0.01,std.math.nan(f64))==null);
+}
+test "cold and deep cohorts have no root credit" {
+ var c=M.Cell{};c.cohorts[0]=.{.biomass=1,.support_mass=0.25,.root_fraction=0.25,.lineage=1};
+ var cold=env;cold.temperature=273.15;
+ const a=S.step(c,0.01,1,1000,cold,1440,10,0) orelse return error.UnexpectedRefusal;
+ try std.testing.expectEqual(@as(f64,0),a.credits[0]);
+ var deep=env;deep.depth_km=0.001;
+ const b=S.step(c,0.01,1,1000,deep,1440,10,0) orelse return error.UnexpectedRefusal;
+ try std.testing.expectEqual(@as(f64,0),b.credits[0]);
+}

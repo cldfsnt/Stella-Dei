@@ -1,7 +1,7 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
 const html=fs.readFileSync(path.join(__dirname,'../shell.html'),'utf8');
 const play=fs.readFileSync(path.join(__dirname,'../../src/states/play.zig'),'utf8');
-assert.match(play,/Births since start \{d\}/);assert.match(play,/Colony ID #\{d\} · Generation \{d\}/);
+assert.doesNotMatch(play,/Births since start \{d\} · Inspect for traits/);assert.match(play,/world_ecology\.zig.*recentLine/);assert.doesNotMatch(play,/Born \{d\} · Lost \{d\}/);assert.match(play,/Colony ID #\{d\} · Generation \{d\}/);
 assert.doesNotMatch(play,/Dominant lineage/);
 assert.match(html,/Colony IDs are serial identifiers, not a count of living colonies or species/);
 assert.match(html,/Births since start includes colonies that later died/);
