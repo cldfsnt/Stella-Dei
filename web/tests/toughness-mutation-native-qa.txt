@@ -1,0 +1,37 @@
+          _=pm;_=pw;std.debug.assert(state.planet.worldMode==.sandbox);
+          const V2=@import("toughness_save_v2.zig");const V1=@import("sandbox-toughness-save.zig");
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+          const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          for([_]bool{false,true})|enabled|{
+            try V2.applyLegacy(state,initial.value);
+            state.planet.toughnessMutation=.{.enabled=enabled,.stream_seed=std.math.maxInt(u64)};
+            const bytes=try std.json.stringifyAlloc(a,try V2.capture(a,state),.{});
+            const owned=try std.json.parseFromSlice(V2.Envelope,a,bytes,.{.allocate=.alloc_always});
+            try V2.apply(state,owned.value);std.debug.assert(state.planet.toughnessMutation.stream_seed==std.math.maxInt(u64));
+            std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try V2.capture(a,state),.{})));
+            var bad=owned.value;bad.mutation_law=255;if(V2.apply(state,bad)) |_| return error.UnknownMutationAccepted else |_| {}
+            bad=owned.value;bad.law=255;if(V2.apply(state,bad)) |_| return error.UnknownPhysiologyAccepted else |_| {}
+            bad=owned.value;bad.format="wrong";if(V2.apply(state,bad)) |_| return error.UnknownFormatAccepted else |_| {}
+            bad=owned.value;bad.state.mode=.origin;if(V2.apply(state,bad)) |_| return error.OriginAccepted else |_| {}
+            @constCast(owned.value.state.plants)[0].toughness=1.1;if(V2.apply(state,owned.value)) |_| return error.InvalidTraitAccepted else |_| {}
+            @constCast(owned.value.state.plants)[0].toughness=0;
+            std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try V2.capture(a,state),.{})));
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            const uninterrupted=try std.json.stringifyAlloc(a,try V2.capture(a,state),.{});
+            try V2.applyLegacy(state,initial.value);state.axialTilt=45;state.planet.elevation[436]+=0.01;render(window);gl.finish();window.swapBuffers();
+            try V2.apply(state,owned.value);
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            std.debug.assert(std.mem.eql(u8,uninterrupted,try std.json.stringifyAlloc(a,try V2.capture(a,state),.{})));
+            try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/enabled-{}.json",.{enabled}),.data=uninterrupted});
+            try V2.applyLegacy(state,initial.value);state.planet.plantTraits[0].toughness=0.5;
+            const oldbytes=try std.json.stringifyAlloc(a,try V1.capture(a,state),.{});const oldowned=try std.json.parseFromSlice(V1.Envelope,a,oldbytes,.{.allocate=.alloc_always});
+            state.planet.toughnessMutation=.{.enabled=true,.stream_seed=42};try V2.applyV1(state,oldowned.value);
+            std.debug.assert(state.planet.plantTraits[0].toughness==0.5 and !state.planet.toughnessMutation.enabled and state.planet.toughnessMutation.stream_seed==0);
+            state.planet.toughnessMutation=.{.enabled=true,.stream_seed=42};
+            if(V2.applyLegacy(state,oldowned.value.state)) |_| return error.PositiveLegacyAccepted else |_| {}
+            std.debug.assert(state.planet.toughnessMutation.enabled and state.planet.toughnessMutation.stream_seed==42);
+            try V2.applyLegacy(state,initial.value);std.debug.assert(!state.planet.toughnessMutation.enabled and state.planet.toughnessMutation.stream_seed==0);
+            std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            std.debug.print("MUTATION_SAVE_PASS enabled={} max_seed_exact=true invalid_atomic=true true_continuation=true v1_preserves_traits_resets_config=true legacy_reset=true original_restored=true\n",.{enabled});
+          }
+        }
