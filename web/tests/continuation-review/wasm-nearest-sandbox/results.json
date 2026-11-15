@@ -1,0 +1,46 @@
+{
+  "start_utc": "2026-11-15T15:33:43.390015+00:00",
+  "end_utc": "2026-11-15T15:33:53.745360+00:00",
+  "records": [
+    {
+      "arm": 0,
+      "candidate": false,
+      "timed_ticks": 60,
+      "warmup_ticks": 12,
+      "total_ms": 1973.861668,
+      "per_tick_ms": 32.897694466666664,
+      "endpoint_sha256": "98340832edf0c03a10e601aaf9da6c612545e5ea4ade523190645543a14e4fdc"
+    },
+    {
+      "arm": 1,
+      "candidate": true,
+      "timed_ticks": 60,
+      "warmup_ticks": 12,
+      "total_ms": 1712.5385189999997,
+      "per_tick_ms": 28.542308649999995,
+      "endpoint_sha256": "98340832edf0c03a10e601aaf9da6c612545e5ea4ade523190645543a14e4fdc"
+    },
+    {
+      "arm": 2,
+      "candidate": true,
+      "timed_ticks": 60,
+      "warmup_ticks": 12,
+      "total_ms": 1525.1120100000003,
+      "per_tick_ms": 25.418533500000006,
+      "endpoint_sha256": "98340832edf0c03a10e601aaf9da6c612545e5ea4ade523190645543a14e4fdc"
+    },
+    {
+      "arm": 3,
+      "candidate": false,
+      "timed_ticks": 60,
+      "warmup_ticks": 12,
+      "total_ms": 1821.4260749999999,
+      "per_tick_ms": 30.357101249999996,
+      "endpoint_sha256": "98340832edf0c03a10e601aaf9da6c612545e5ea4ade523190645543a14e4fdc"
+    }
+  ],
+  "baseline_median_ms": 31.62739785833333,
+  "candidate_median_ms": 26.980421075000002,
+  "change_percent": -14.692883695801495,
+  "scope": "Actual wasm32 full Planet.simulate in Node; no rendering/browser/rAF/device FPS. One fixed world; fixed ABBA, no repeat-selection."
+}

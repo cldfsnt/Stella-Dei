@@ -1,0 +1,9 @@
+{
+  "node": "v24.22.1",
+  "zig": "0.13.0",
+  "wasm_sha256": "7051fe07dedc9c3f717b8339ce8369fce6e1d7d36e57dffadcd7578cfde88a23",
+  "js_sha256": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+  "build": "wasm-planet-build.zig ReleaseSafe wasm32-emscripten single_threaded; emcc -O2 ENVIRONMENT=node ASSERTIONS=1 USE_OFFSET_CONVERTER=1 NODERAWFS=1 ALLOW_MEMORY_GROWTH=1 INITIAL_MEMORY=134217728 STACK_SIZE=8388608",
+  "copied_production_head": "726c534 (v67 release; source hashes authoritative)",
+  "timing_clearance": "Parent, grazing_traits and review_changes explicitly released CPU before fixedABBA; no new jobs reported during15:33:43\u201315:33:54UTC"
+}

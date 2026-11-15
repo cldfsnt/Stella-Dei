@@ -1,0 +1,13 @@
+# Prescribed local toughness assay, frozen before outcomes
+
+Parent-approved candidate described in sandbox-strategy/TOUGHNESS_PROPOSAL.md. No production/schema/mutation enablement. Copy actual Planet.simulateVegetation and Lifeform.aiStep, preserving their local biology order (animals then plants); no thermal/hydrology solver in this controlled laboratory.
+
+Seven patches use radius100km and x-facing points at y=0,3,…18km normalized tosurface; every patch neighbors the other six, a small connected test habitat. Same geometry in all arms; not realistic island geography. Fixed seed1337. Center initialcover.35, othercovers0. Fixed temperature297.9569091796875K and initial inherited optimum295.1499938964844K from actual warm day14center436; light direction(1,0,0), no standingwater, finite CO2/O2 fields100nativeunits. No refills. Stock0or2 rabbits, onefemale/onemale atcenter, fixed localPRNG1337000/1337001. These are explicit QA setup resources, not natural evolution.
+
+Candidate d0/.5 ×stock0/2 ×dt1440/720/360:12runs, exactly14days. Baseline copied unchanged functions runs six d0 controls; compare all old dynamic fields/RNG every endpoint and daily record, excluding newly added prescribedtrait only. No parameter tuning or extension. Record every day cover, occupied/low patches, local extinction/recolonization transitions, offspring traits/generations, births/deaths/peak, actual bite debit/satiety credit, finite resources and complete local endpoint. Preserve all negative outcomes.
+
+Law: positive gross plant production*(1-d), donor propagule addition*(1-parent.d); respiration/climate loss unchanged. Rabbit time-based maximumintake/(1+2d), including last-fragment budget. Entirecover remains edible. d0 explicit originalpath. Toughness inherited unchanged; original thermal mutation draw unchanged. No new species, protectedfloor or free satiety. Invalid trait helpers refuse inertly. Demonstrative rates, not calibrated plant physiology.
+
+Additional small gates: d0 exactfunctions/offspring randomparity; finite alltraitbounds, finalfragment/time/hunger limits, zero biomass no spontaneous regrowth; repeated forced-hungry feeding can exhaust d.5 patch without growth; highdefense does not shelter adverse-temperature loss. These are properties, not fitness winner requirements.
+
+Acceptance requires source/receipt correctness and honest results, not defended advantage. Recommendation only if observed slower ungrazed expansion and meaningful conditional grazing benefit; coexistence/evolution cannot be established by prescribed uniform arms. No saved-world claims before separate schema/fullcoupled gates.

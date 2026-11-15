@@ -1,0 +1,95 @@
+--- baseline/simulation/ecology.zig
++++ candidate/simulation/ecology.zig
+@@ -2,6 +2,7 @@
+ //! Traits belong to locally reproducing populations, not an arbitrary global color.
+ const std = @import("std");
+ pub const Plant = struct {
++    toughness:f32=0,
+     optimum: f32 = 295.15,
+     generation: u32 = 0,
+ };
+@@ -18,9 +19,21 @@
+     const e = @exp(-rate * dt);
+     return std.math.clamp(biomass / @max(0.000001, biomass + (1 - biomass) * e), 0, 1);
+ }
++pub fn growTough(biomass: f32, temperature: f32, optimum: f32, water_depth_km: f32, light: f32, co2: bool, dt: f32, d:f32) f32 {
++    if(d==0)return grow(biomass,temperature,optimum,water_depth_km,light,co2,dt);
++    if(!std.math.isFinite(d) or d<0 or d>1)return biomass;
++    if (!std.math.isFinite(biomass) or !std.math.isFinite(temperature)) return 0;
++    if (water_depth_km > 0.0005) return biomass * @exp(-dt / 12000);
++    const suitability = fitness(temperature, optimum);
++    // Respiration continues at night, but night is not wholesale plant death.
++    const rate = (suitability * (0.3 + 0.7 * light) * @as(f32, if (co2) 1 else 0) * 6 * (1-d) - (1 - suitability) * 3 - 0.15) / 86400;
++    if (rate <= 0) return std.math.clamp(biomass * @exp(rate * dt), 0, 1);
++    const e = @exp(-rate * dt);
++    return std.math.clamp(biomass / @max(0.000001, biomass + (1 - biomass) * e), 0, 1);
++}
+ pub fn offspring(parent: Plant, seed: u64) Plant {
+     var rng = std.rand.DefaultPrng.init(seed);
+-    return .{ .optimum = std.math.clamp(parent.optimum + (rng.random().float(f32) - 0.5) * 6, 260, 330), .generation = parent.generation +| 1 };
++    return .{ .toughness=parent.toughness, .optimum = std.math.clamp(parent.optimum + (rng.random().float(f32) - 0.5) * 6, 260, 330), .generation = parent.generation +| 1 };
+ }
+ test "plants thrive, grazed cover regrows, and water/heat kill" {
+     try std.testing.expect(grow(0.2, 295.15, 295.15, 0, 1, true, 86400) > 0.9);
+--- baseline/simulation/foraging.zig
++++ candidate/simulation/foraging.zig
+@@ -11,6 +11,24 @@
+     if(!std.math.isFinite(cover) or cover<=0 or cover>1 or !std.math.isFinite(satiety) or satiety<0 or satiety>=100 or !std.math.isFinite(seconds) or seconds<=0)return no;
+     const c:@TypeOf(@as(f64,0))=cover;
+     const maximum=maximum_per_day*(@as(f64,seconds)/86400);
++    const budget=@min(c,@min((100-@as(f64,satiety))/150,maximum));
++    const desired=@min(budget,maximum*(c/(c+half_saturation)));
++    const fragment=c-desired<fragment_resolution and c<=budget;
++    var after:f32=if(fragment)0 else @floatCast(@max(0,c-desired));
++    // A rounded receiver must never increase the actual debit beyond the hard budget.
++    if(c-@as(f64,after)>budget)after=std.math.nextAfter(f32,after,std.math.inf(f32));
++    const paid=c-@as(f64,after);
++    if(paid<=0 or paid>budget or after<0 or after>cover)return no;
++    return .{.after=after,.eaten=paid,.budget=budget,.fragment=fragment};
++}
++pub fn takeTough(cover:f32,satiety:f32,seconds:f32,d:f32) Bite {
++    if(d==0)return take(cover,satiety,seconds);
++    if(!std.math.isFinite(d) or d<0 or d>1)return .{.after=cover};
++    @setFloatMode(.strict);
++    const no=Bite{.after=cover};
++    if(!std.math.isFinite(cover) or cover<=0 or cover>1 or !std.math.isFinite(satiety) or satiety<0 or satiety>=100 or !std.math.isFinite(seconds) or seconds<=0)return no;
++    const c:@TypeOf(@as(f64,0))=cover;
++    const maximum=maximum_per_day*(@as(f64,seconds)/86400)/(1+2*@as(f64,d));
+     const budget=@min(c,@min((100-@as(f64,satiety))/150,maximum));
+     const desired=@min(budget,maximum*(c/(c+half_saturation)));
+     const fragment=c-desired<fragment_resolution and c<=budget;
+--- baseline/simulation/planet.zig
++++ candidate/simulation/planet.zig
+@@ -1609,10 +1609,10 @@
+         self.plantColorWavelength = 530;
+         for (start..end) |i| {
+             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector));
+-            var cover = Ecology.grow(self.vegetationSnapshot[i], self.temperature[i], self.plantTraits[i].optimum, self.waterMass[i] * self.getKmPerWaterMass(), light, self.averageCarbonDioxideMass > 0, dt);
++            var cover = Ecology.growTough(self.vegetationSnapshot[i], self.temperature[i], self.plantTraits[i].optimum, self.waterMass[i] * self.getKmPerWaterMass(), light, self.averageCarbonDioxideMass > 0, dt,self.plantTraits[i].toughness);
+             if (self.waterMass[i] * self.getKmPerWaterMass() <= 0.0005 and self.temperature[i] > 250 and self.temperature[i] < 350) {
+                 for (self.getNeighbours(i)) |n| {
+-                    if (self.vegetationSnapshot[n] < 0.25) continue;
++                    if (self.vegetationSnapshot[n] < 0.25 or self.plantTraits[n].toughness>=1) continue;
+                     if (cover < 0.0001 or (cover < 0.35 and Ecology.fitness(self.temperature[i], self.plantTraits[n].optimum) > Ecology.fitness(self.temperature[i], self.plantTraits[i].optimum) + 0.1)) {
+                         const epoch: u64 = @intFromFloat(@max(0, options.gameTime / 3600));
+                         const child = Ecology.offspring(self.plantTraits[n], self.seed ^ (@as(u64, @intCast(i)) *% 0x9e3779b97f4a7c15) ^ epoch);
+@@ -1620,7 +1620,7 @@
+                         self.plantTraits[i] = child;
+                         self.plantGenerations = @max(self.plantGenerations, child.generation);
+                         self.plantBirths += 1;
+-                        cover += @min(0.08, dt / 86400 * self.vegetationSnapshot[n]);
++                        cover += if(self.plantTraits[n].toughness==0) @min(0.08, dt / 86400 * self.vegetationSnapshot[n]) else @min(0.08, dt / 86400 * self.vegetationSnapshot[n])*(1-self.plantTraits[n].toughness);
+                         break;
+                     }
+                 }
+--- baseline/simulation/life.zig
++++ candidate/simulation/life.zig
+@@ -114,7 +114,7 @@
+             // Search/handling takes time, especially in sparse vegetation. Every
+             // satiety gain is funded by actual cover removed; no refuge floor.
+             const Foraging = @import("foraging.zig");
+-            const bite = Foraging.take(planet.vegetation[idx], self.satiety, dt);
++            const bite = Foraging.takeTough(planet.vegetation[idx], self.satiety, dt,planet.plantTraits[idx].toughness);
+             if (bite.eaten > 0) {
+                 const qa_before=self.satiety;planet.vegetation[idx] = bite.after;
+                 self.satiety = Foraging.fedSatiety(self.satiety, bite.eaten);

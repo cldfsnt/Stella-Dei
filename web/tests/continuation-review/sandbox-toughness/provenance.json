@@ -1,0 +1,8 @@
+{
+  "protocol_checkpoint": "2afdecb",
+  "baseline_exit": 0,
+  "candidate_exit": 0,
+  "input_phenotype": "warm day14center436; T297.9569091796875K; optimum295.1499938964844K",
+  "source_head": "d74763708b3ebaabda2442d4ec27c93cceb389a7",
+  "scope": "isolated controlled actual biology substeps, not full climate/saved world"
+}
