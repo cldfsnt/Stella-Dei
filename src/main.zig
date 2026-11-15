@@ -391,7 +391,7 @@ export fn stella_world_mode() i32 {
 export fn stella_goal_stage() i32 {
     if (webPlayState()) |state| {
         if (state.planet.worldMode == .origin) {
-            return @import("habitat_feedback.zig").originStage(state.planet.microbeCells);
+            return state.sampleOriginCommunity();
         }
         return @intFromEnum(@import("habitat_feedback.zig").goalStage(state.planet));
     }

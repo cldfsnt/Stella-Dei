@@ -1,0 +1,9 @@
+# Recovering the view from an empty mature patch
+
+Actual saved natural60day world from sibling natural60 assay,64 living cohorts across37 patches. Existing patch13594 is genuinely empty. Fixture only sets selection/camera to that patch and pauses with24h/s target; no biology/resource edits.
+
+Matched restored branches call the exact PlayState helper used by existing Fit or Find export. Both return1 and render37 living patch glyphs. Selected13594 remains unchanged/empty, pause and target pace remain unchanged, time remains5184000s. Before save is deeply frozen by stringify+parse; complete after save matches after normalizing ONLY four camera fields. Actual native pointer click at a rendered colony root then selects3420 with biomass.032283608, again identical non-camera saved state. Entire original save restored at end. No progression simulated or newly seeded life.
+
+Viewed native390px screenshot shows extensive varied living community, not a stranded player. Both actions work from this empty former patch because nearby life exists. Find intentionally frames, not auto-selects. A small optional wording improvement is to say 'Tap a colony to inspect' after fitting, because an open details panel can still describe the old empty selection. This evidence does not justify forced auto-selection or claim a global-finder bug. No production edits.
+
+Reproduce with egl-mature-find-prepare.py isolated copy, egl-propagule-visual-build.zig Zig0.13 native compile. Run QA_PULSE_SAVE=absolute natural60-day60.json, STELLA_ORIGIN_COUPLED=1 STELLA_ORIGIN_FAST=1 STELLA_ORIGIN_WIDTH=390 and absolute STELLA_EGL_CAPTURE_PREFIX. Uses exact shared helper behind web export, not real HTML button/browser testing; no Android performance claim. Known inherited GPA teardown warning remains. Logs gzipmtime0, decompression verified.

@@ -102,7 +102,10 @@ test "animal feedback reports state not invented movement and rejects removed in
 
 /// Journey observations are recomputed from living cohorts. Old births or lost
 /// morphologies never keep a dead world at a completed stage.
-pub fn originStage(cells: anytype) i32 {
+pub const OriginSummary=struct{stage:i32=100,colonies:usize=0,patches:usize=0,valid:bool=true};
+pub fn originStage(cells:anytype)i32{return originSummary(cells).stage;}
+pub fn originSummary(cells: anytype) OriginSummary {
+    var summary=OriginSummary{};
     const microbes = @import("simulation/microbes.zig");
     var live: usize = 0;
     var descendant = false;
@@ -110,7 +113,10 @@ pub fn originStage(cells: anytype) i32 {
     var forms: [6]bool = .{false} ** 6;
     for (cells) |cell| {
         var occupied = false;
+        var any_living=false;
         for (cell.cohorts) |c| {
+            if(!std.math.isFinite(c.biomass) or c.biomass<0 or (c.biomass>0 and c.lineage==0))summary.valid=false;
+            if(std.math.isFinite(c.biomass) and c.biomass>0 and c.lineage>0){summary.colonies+=1;any_living=true;}
             if (c.biomass <= 0.001) continue;
             occupied = true;
             descendant = descendant or c.generation > 0;
@@ -121,15 +127,12 @@ pub fn originStage(cells: anytype) i32 {
             }
         }
         if (occupied) live += 1;
+        if(any_living)summary.patches+=1;
     }
-    if (live == 0) return 100;
-    if (!descendant) return 101;
-    if (!supported) return 102;
     var diversity: usize = 0;
     for (forms) |present| { if (present) diversity += 1; }
-    if (diversity < 2) return 103;
-    if (live < 3) return 104;
-    return 105;
+    summary.stage=if(live==0)100 else if(!descendant)101 else if(!supported)102 else if(diversity<2)103 else if(live<3)104 else 105;
+    return summary;
 }
 test "Origin journey follows living descendants and actual producer forms" {
     const microbes = @import("simulation/microbes.zig");
@@ -152,4 +155,11 @@ test "Origin journey follows living descendants and actual producer forms" {
     cells[0].cohorts[0].biomass = 0;
     cells[0].cohorts[0].support_mass = 0;
     try std.testing.expectEqual(@as(i32,100),originStage(&cells));
+}
+
+test "global sampled counts include tiny living cohorts without changing journey threshold" {
+ const M=@import("simulation/microbes.zig");var cells=[_]M.Cell{.{},.{},.{}};
+ cells[0].cohorts[0]=.{.biomass=1e-6,.lineage=1};cells[0].cohorts[1]=.{.biomass=0.1,.lineage=2};cells[2].cohorts[0]=.{.biomass=0.1,.lineage=3};
+ const before=cells;const s=originSummary(&cells);try std.testing.expect(s.valid and s.colonies==3 and s.patches==2 and s.stage==101);try std.testing.expectEqualDeep(before,cells);
+ cells[0].cohorts[0].lineage=0;try std.testing.expect(!originSummary(&cells).valid);
 }

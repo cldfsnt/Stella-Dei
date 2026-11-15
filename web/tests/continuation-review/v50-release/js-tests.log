@@ -1,0 +1,48 @@
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ web/tests/colony-labels.test.cjs (171.546176ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ web/tests/colony-watch-details.test.cjs (177.968142ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ web/tests/colony-watch-ui.test.cjs (196.936619ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ web/tests/compact-life.test.cjs (166.366163ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (2.221417ms)
+✔ restricted or missing clipboard stays manually copyable (0.444119ms)
+✔ missing or oversized report never writes or displays stale data (0.262836ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ web/tests/gameplay-measure.test.cjs (172.712174ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ web/tests/harness-mode.test.cjs (165.671456ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ web/tests/life-trend.test.cjs (634.08944ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (2.227106ms)
+✔ empty interval and no ticks are explicit (0.376648ms)
+✔ pause menu hidden guard cancels without unpause (0.308935ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.446973ms)
+✔ hard deadline and invalid result terminate (0.310037ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.344589ms)
+✔ invalid or missing pulse fields stop safely (0.642988ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.260362ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ web/tests/renderer-info.test.cjs (84.20433ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ web/tests/scene-resolution.test.cjs (96.997043ms)
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ web/tests/shell.test.cjs (160.74956ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ web/tests/storage-upgrade.test.cjs (110.357071ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ web/tests/storage.test.cjs (111.742718ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ web/tests/touch-controls.test.cjs (112.286647ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 660.681193

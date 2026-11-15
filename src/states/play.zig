@@ -190,6 +190,7 @@ pub const PlayState = struct {
     mobileFeedbackSeconds: f32 = 0,
     // Session-only compact observation UI; never a change to simulation or camera.
     watchLifeView: bool = false,
+    communitySample: @import("../community_sample.zig").Sample = .{},
     blenderAtlas: ?nvg.Image = null,
     blenderAtlasAttempted: bool = false,
     colonyPeek: @import("../colony_peek.zig").Pin = .{},
@@ -1558,6 +1559,13 @@ pub const PlayState = struct {
         return 1;
     }
 
+    /// Called by existing periodic journey inspection, never by rendering.
+    pub fn sampleOriginCommunity(self:*PlayState)i32 {
+        const summary=@import("../habitat_feedback.zig").originSummary(self.planet.microbeCells);
+        self.communitySample.capture(summary,@import("../performance_details.zig").world_serial,@intFromPtr(self.planet.microbeCells.ptr),self.gameTime);
+        return summary.stage;
+    }
+
     pub fn watchLife(self: *PlayState) void {
         self.watchLifeView = true;
         self.selectedTool = .None;
@@ -2028,7 +2036,7 @@ pub const PlayState = struct {
         vg.fontFace("sans-serif");
         vg.fillColor(nvg.rgb(190, 214, 232));
         var ecologyText: [160]u8 = undefined;
-        const ecologyLabel = if (origin and self.watchLifeView) @import("../watch_feedback.zig").line(&ecologyText,self.planet.propaguleArrivals,self.planet.propaguleTrackedLosses) else if (origin) std.fmt.bufPrint(&ecologyText, "Births since start {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
+        const ecologyLabel = if (origin and self.watchLifeView) self.communitySample.line(&ecologyText,@import("../performance_details.zig").world_serial,@intFromPtr(self.planet.microbeCells.ptr),self.gameTime) else if (origin) std.fmt.bufPrint(&ecologyText, "Births since start {d} · Inspect for traits", .{self.planet.microbeStats.births}) catch "Microbial habitat" else std.fmt.bufPrint(&ecologyText, "Born {d} · Lost {d} · Meals {d} · Gen {d}", .{ self.planet.rabbitBirths, self.planet.rabbitDeaths, self.planet.rabbitMeals, self.planet.plantGenerations }) catch "Ecosystem statistics";
         var ecologyBounds: [4]f32 = undefined;
         _ = vg.textBounds(0,0,ecologyLabel,&ecologyBounds);
         const ecologyWidth=ecologyBounds[2]-ecologyBounds[0];

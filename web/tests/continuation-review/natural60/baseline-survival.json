@@ -1,0 +1,22 @@
+[
+  {
+    "day": 30,
+    "day30_baseline_IDs_still_living": 18,
+    "living_with_recorded_grazing_history": 7
+  },
+  {
+    "day": 40,
+    "day30_baseline_IDs_still_living": 16,
+    "living_with_recorded_grazing_history": 42
+  },
+  {
+    "day": 50,
+    "day30_baseline_IDs_still_living": 12,
+    "living_with_recorded_grazing_history": 56
+  },
+  {
+    "day": 60,
+    "day30_baseline_IDs_still_living": 10,
+    "living_with_recorded_grazing_history": 57
+  }
+]
