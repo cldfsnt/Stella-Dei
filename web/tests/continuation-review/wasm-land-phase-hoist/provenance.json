@@ -1,0 +1,70 @@
+{
+  "frozen_reference": "c6819a0 through ebc2393 WASM adapter",
+  "native_root_drain_reference": "270b154",
+  "outputs": {
+    "time-2.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "gate-baseline.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "timing.json": {
+      "sha256": "512e88224fea67e81636ebb7d961a1bfc714d1798397ef4907d9af115518018f",
+      "bytes": 588
+    },
+    "gate-candidate.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "gates.json": {
+      "sha256": "8ffda48b61ac96c83d29c4f9ec928aca98ac999ab8c21c34ca69c9bfe12fdd4f",
+      "bytes": 167
+    },
+    "time-0.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "time-1.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "time-3.json": {
+      "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+      "bytes": 12034989
+    },
+    "graph.json": {
+      "sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+      "bytes": 3987201
+    },
+    "native/arm-0-30.json": {
+      "sha256": "89a11761eebc3bb06e3bb146f30c422e56ad6c9df2345d632b93862703deb5f4",
+      "bytes": 12672456
+    },
+    "native/arm-1-30.json": {
+      "sha256": "a85349841d050a0eca0918b2877cdec8526e42542f342bc9931377347485bf1b",
+      "bytes": 12672904
+    },
+    "native/arm-0-60.json": {
+      "sha256": "5387fff6108233291d880d0548e1b583e23a767d190ad0a7cf73bf465de77374",
+      "bytes": 12668702
+    },
+    "native/parity.json": {
+      "sha256": "e625fe3399d7800736f4769faa6ac33afb9ec68aac92bd57e3fa4e9cd5957e5d",
+      "bytes": 320
+    },
+    "native/arm-0-0.json": {
+      "sha256": "6fe6fb16f1e55136c33fe9fbf7b4f4ba7f9cd5e411dce34efdae7911545aefb3",
+      "bytes": 12656507
+    },
+    "native/arm-1-0.json": {
+      "sha256": "e4de38a3b4fada053bc3beff1777c0173eb1fac4d8a51b2237b78fce1c1d5fd4",
+      "bytes": 12656502
+    },
+    "native/arm-1-60.json": {
+      "sha256": "91cbb3bb4ae87eb4d9deafebd42c487d82e03c5a273b7d26f63998c188b2efaa",
+      "bytes": 12668743
+    }
+  }
+}

@@ -1,0 +1,188 @@
+1/82 qa.test.fixed bucket structural corpus standalone and prepared exact...HOIST_CORPUS cases=648 exact_all_result_fields=true
+OK
+2/82 qa.test.invalid area and prepared mismatched timestep refuse...OK
+3/82 baseline.src.simulation.microbes.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+4/82 baseline.src.simulation.microbes.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+5/82 baseline.src.simulation.microbes.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+6/82 baseline.src.simulation.microbes.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+OK
+7/82 baseline.src.simulation.microbes.test.grazing is bounded, order independent, and conservative...OK
+8/82 baseline.src.simulation.microbes.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+9/82 baseline.src.simulation.microbes.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=368
+OK
+10/82 baseline.src.simulation.microbes.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+11/82 baseline.src.simulation.microbes.test.darkness carbon starvation and drying do not create growth...OK
+12/82 baseline.src.simulation.microbes.test.live competing trait distribution responds to environment, order independent...OK
+13/82 baseline.src.simulation.microbes.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+14/82 baseline.src.simulation.microbes.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+OK
+15/82 baseline.src.simulation.microbes.test.one coarse relocation per simulation instant with no ghost cohort...OK
+16/82 baseline.src.simulation.microbes.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+17/82 baseline.src.simulation.microbes.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+18/82 baseline.src.simulation.microbes.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=21
+OK
+19/82 baseline.src.simulation.microbes.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+20/82 baseline.src.simulation.microbes.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+OK
+21/82 baseline.src.simulation.microbes.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+22/82 baseline.src.simulation.microbes.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+23/82 baseline.src.simulation.microbes.test.producer architecture is functional continuous and resource conserving...OK
+24/82 baseline.src.simulation.microbes.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+OK
+25/82 baseline.src.simulation.microbes.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+26/82 baseline.src.simulation.microbes.test.film adaptation requires real tissue and inherited structure, never dry or frozen fixation...OK
+27/82 baseline.src.simulation.microbes.test.film growth is resource funded with conservative paid offspring and unchanged water input...OK
+28/82 baseline.src.simulation.microbes.test.film tradeoff matrix synthetic controls do not prove natural evolution...FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+OK
+29/82 baseline.src.simulation.microbes.test.smooth aquatic boundary and fluctuating shoreline remain conservative...OK
+30/82 baseline.src.simulation.microbes.test.tall supported exposed mortality meets aquatic limit continuously...OK
+31/82 baseline.src.simulation.microbes.test.zero water and zero paid tissue limits have no survival windfall...OK
+32/82 baseline.src.simulation.microbes.test.rare mutation distribution preserves ordinary offspring and six draws with funded inheritance...RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+OK
+33/82 baseline.src.simulation.microbes.test.rare mutation bounded at extremes deterministic and never funds tissue...OK
+34/82 baseline.src.simulation.microbes.test.actual rare thermal offspring can help or harm under matched environments...RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+OK
+35/82 baseline.src.simulation.microbes.test.represented receivers never exceed their supplied growth budget...OK
+36/82 baseline.src.simulation.microbes.test.actual removals remain bounded across small and near-total debits...OK
+37/82 candidate.src.simulation.microbes.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+38/82 candidate.src.simulation.microbes.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+39/82 candidate.src.simulation.microbes.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+40/82 candidate.src.simulation.microbes.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+OK
+41/82 candidate.src.simulation.microbes.test.grazing is bounded, order independent, and conservative...OK
+42/82 candidate.src.simulation.microbes.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+43/82 candidate.src.simulation.microbes.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=368
+OK
+44/82 candidate.src.simulation.microbes.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+45/82 candidate.src.simulation.microbes.test.darkness carbon starvation and drying do not create growth...OK
+46/82 candidate.src.simulation.microbes.test.live competing trait distribution responds to environment, order independent...OK
+47/82 candidate.src.simulation.microbes.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+48/82 candidate.src.simulation.microbes.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+OK
+49/82 candidate.src.simulation.microbes.test.one coarse relocation per simulation instant with no ghost cohort...OK
+50/82 candidate.src.simulation.microbes.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+51/82 candidate.src.simulation.microbes.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+52/82 candidate.src.simulation.microbes.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=21
+OK
+53/82 candidate.src.simulation.microbes.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+54/82 candidate.src.simulation.microbes.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+OK
+55/82 candidate.src.simulation.microbes.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+56/82 candidate.src.simulation.microbes.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+57/82 candidate.src.simulation.microbes.test.producer architecture is functional continuous and resource conserving...OK
+58/82 candidate.src.simulation.microbes.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+OK
+59/82 candidate.src.simulation.microbes.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+60/82 candidate.src.simulation.microbes.test.film adaptation requires real tissue and inherited structure, never dry or frozen fixation...OK
+61/82 candidate.src.simulation.microbes.test.film growth is resource funded with conservative paid offspring and unchanged water input...OK
+62/82 candidate.src.simulation.microbes.test.film tradeoff matrix synthetic controls do not prove natural evolution...FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+OK
+63/82 candidate.src.simulation.microbes.test.smooth aquatic boundary and fluctuating shoreline remain conservative...OK
+64/82 candidate.src.simulation.microbes.test.tall supported exposed mortality meets aquatic limit continuously...OK
+65/82 candidate.src.simulation.microbes.test.zero water and zero paid tissue limits have no survival windfall...OK
+66/82 candidate.src.simulation.microbes.test.rare mutation distribution preserves ordinary offspring and six draws with funded inheritance...RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+OK
+67/82 candidate.src.simulation.microbes.test.rare mutation bounded at extremes deterministic and never funds tissue...OK
+68/82 candidate.src.simulation.microbes.test.actual rare thermal offspring can help or harm under matched environments...RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+OK
+69/82 candidate.src.simulation.microbes.test.represented receivers never exceed their supplied growth budget...OK
+70/82 candidate.src.simulation.microbes.test.actual removals remain bounded across small and near-total debits...OK
+71/82 candidate.src.simulation.atmosphere_water.test.phase conserves mass never rains below saturation and has bounded finite rates...OK
+72/82 candidate.src.simulation.atmosphere_water.test.rain diagnostic is a correctly weighted daily-rate mean not timestep multiplied...OK
+73/82 candidate.src.simulation.atmosphere_water.test.transport follows velocity and distance with donor-bounded outgoing budget...OK
+74/82 candidate.src.simulation.atmosphere_water.test.phase one-day and fifteen-day outcomes converge at 1 60 360 1440 second steps...PHASE_DT days=1 dt=1 vapor=126.42411176571144 mass_error=-0.0000000000017053025658242404
+PHASE_DT days=1 dt=60 vapor=126.42411176571149 mass_error=-0.00000000000022737367544323206
+PHASE_DT days=1 dt=360 vapor=126.4241117657115 mass_error=0
+PHASE_DT days=1 dt=1440 vapor=126.42411176571156 mass_error=0.0000000000007958078640513122
+PHASE_DT days=15 dt=1 vapor=199.99993881953566 mass_error=-0.000000000003637978807091713
+PHASE_DT days=15 dt=60 vapor=199.99993881953608 mass_error=0.0000000000018189894035458565
+PHASE_DT days=15 dt=360 vapor=199.9999388195359 mass_error=-0.000000000004320099833421409
+PHASE_DT days=15 dt=1440 vapor=199.99993881953586 mass_error=0.0000000000022737367544323206
+OK
+75/82 candidate.src.simulation.atmosphere_water.test.two-cell coupled exchange and gather transport stay conservative across timesteps...COUPLED_DT days=1 dt=1 liquid={ 8.185948612328385e2, 1.0531915971471687e3 } vapor={ 2.074450064182055e1, 1.0746904097816854e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=1 dt=60 liquid={ 8.18594931404473e2, 1.053191301715352e3 } vapor={ 2.068335634457746e1, 1.0753041053559816e2 } liquid_error_vs1s={ 7.017163443379104e-5, -2.954318167667225e-4 }
+COUPLED_DT days=1 dt=360 liquid={ 8.185973880024231e2, 1.0531809599670742e3 } vapor={ 2.0374104019504237e1, 1.0784754801099926e2 } liquid_error_vs1s={ 2.5267695846196148e-3, -1.0637180094590803e-2 }
+COUPLED_DT days=1 dt=1440 liquid={ 8.186352672056381e2, 1.0530217066217297e3 } vapor={ 1.928383950881584e1, 1.0905918666381655e2 } liquid_error_vs1s={ 4.040597279959002e-2, -1.6989052543908656e-1 }
+COUPLED_DT days=15 dt=1 liquid={ 0e0, 1.9000000000002094e3 } vapor={ 8.323560252138874e-35, 1.0000000000002558e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=15 dt=60 liquid={ 0e0, 1.9000000000001578e3 } vapor={ 8.299175051180785e-35, 1.0000000000000043e2 } liquid_error_vs1s={ 0e0, -5.161382432561368e-11 }
+COUPLED_DT days=15 dt=360 liquid={ 0e0, 1.8999999999999616e3 } vapor={ 8.180098575041795e-35, 1.0000000000000007e2 } liquid_error_vs1s={ 0e0, -2.4783730623312294e-10 }
+COUPLED_DT days=15 dt=1440 liquid={ 0e0, 1.8999999999999857e3 } vapor={ 7.819479944760153e-35, 1.0000000000000001e2 } liquid_error_vs1s={ 0e0, -2.2373569663614035e-10 }
+OK
+76/82 candidate.src.simulation.atmosphere_water.test.f32 scratch gather is bounded and conservative within float roundoff...FLOAT_GATHER dt=1 relative_mass_error=0.00007720947265625
+FLOAT_GATHER dt=60 relative_mass_error=0.000001286097935267857
+FLOAT_GATHER dt=360 relative_mass_error=0.00000023978097098214287
+FLOAT_GATHER dt=1440 relative_mass_error=0
+OK
+77/82 baseline.src.simulation.atmosphere_water.test.phase conserves mass never rains below saturation and has bounded finite rates...OK
+78/82 baseline.src.simulation.atmosphere_water.test.rain diagnostic is a correctly weighted daily-rate mean not timestep multiplied...OK
+79/82 baseline.src.simulation.atmosphere_water.test.transport follows velocity and distance with donor-bounded outgoing budget...OK
+80/82 baseline.src.simulation.atmosphere_water.test.phase one-day and fifteen-day outcomes converge at 1 60 360 1440 second steps...PHASE_DT days=1 dt=1 vapor=126.42411176571144 mass_error=-0.0000000000017053025658242404
+PHASE_DT days=1 dt=60 vapor=126.42411176571149 mass_error=-0.00000000000022737367544323206
+PHASE_DT days=1 dt=360 vapor=126.4241117657115 mass_error=0
+PHASE_DT days=1 dt=1440 vapor=126.42411176571156 mass_error=0.0000000000007958078640513122
+PHASE_DT days=15 dt=1 vapor=199.99993881953566 mass_error=-0.000000000003637978807091713
+PHASE_DT days=15 dt=60 vapor=199.99993881953608 mass_error=0.0000000000018189894035458565
+PHASE_DT days=15 dt=360 vapor=199.9999388195359 mass_error=-0.000000000004320099833421409
+PHASE_DT days=15 dt=1440 vapor=199.99993881953586 mass_error=0.0000000000022737367544323206
+OK
+81/82 baseline.src.simulation.atmosphere_water.test.two-cell coupled exchange and gather transport stay conservative across timesteps...COUPLED_DT days=1 dt=1 liquid={ 8.185948612328385e2, 1.0531915971471687e3 } vapor={ 2.074450064182055e1, 1.0746904097816854e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=1 dt=60 liquid={ 8.18594931404473e2, 1.053191301715352e3 } vapor={ 2.068335634457746e1, 1.0753041053559816e2 } liquid_error_vs1s={ 7.017163443379104e-5, -2.954318167667225e-4 }
+COUPLED_DT days=1 dt=360 liquid={ 8.185973880024231e2, 1.0531809599670742e3 } vapor={ 2.0374104019504237e1, 1.0784754801099926e2 } liquid_error_vs1s={ 2.5267695846196148e-3, -1.0637180094590803e-2 }
+COUPLED_DT days=1 dt=1440 liquid={ 8.186352672056381e2, 1.0530217066217297e3 } vapor={ 1.928383950881584e1, 1.0905918666381655e2 } liquid_error_vs1s={ 4.040597279959002e-2, -1.6989052543908656e-1 }
+COUPLED_DT days=15 dt=1 liquid={ 0e0, 1.9000000000002094e3 } vapor={ 8.323560252138874e-35, 1.0000000000002558e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=15 dt=60 liquid={ 0e0, 1.9000000000001578e3 } vapor={ 8.299175051180785e-35, 1.0000000000000043e2 } liquid_error_vs1s={ 0e0, -5.161382432561368e-11 }
+COUPLED_DT days=15 dt=360 liquid={ 0e0, 1.8999999999999616e3 } vapor={ 8.180098575041795e-35, 1.0000000000000007e2 } liquid_error_vs1s={ 0e0, -2.4783730623312294e-10 }
+COUPLED_DT days=15 dt=1440 liquid={ 0e0, 1.8999999999999857e3 } vapor={ 7.819479944760153e-35, 1.0000000000000001e2 } liquid_error_vs1s={ 0e0, -2.2373569663614035e-10 }
+OK
+82/82 baseline.src.simulation.atmosphere_water.test.f32 scratch gather is bounded and conservative within float roundoff...FLOAT_GATHER dt=1 relative_mass_error=0.00007720947265625
+FLOAT_GATHER dt=60 relative_mass_error=0.000001286097935267857
+FLOAT_GATHER dt=360 relative_mass_error=0.00000023978097098214287
+FLOAT_GATHER dt=1440 relative_mass_error=0
+OK
+All 82 tests passed.

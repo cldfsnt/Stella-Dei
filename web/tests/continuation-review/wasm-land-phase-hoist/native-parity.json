@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "arms": {
+    "0": {
+      "audit_rows_exact": 1227,
+      "endpoint_sha256": "5387fff6108233291d880d0548e1b583e23a767d190ad0a7cf73bf465de77374"
+    },
+    "1": {
+      "audit_rows_exact": 1220,
+      "endpoint_sha256": "91cbb3bb4ae87eb4d9deafebd42c487d82e03c5a273b7d26f63998c188b2efaa"
+    }
+  }
+}
