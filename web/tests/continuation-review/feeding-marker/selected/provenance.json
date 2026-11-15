@@ -1,0 +1,18 @@
+{
+  "candidate_true_render_exact_after_removing_only_qa_branch": true,
+  "helper_byte_identical": true,
+  "inputs": {
+    "natural60-day60.json": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "natural60-day30.json": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35"
+  },
+  "production": {
+    "src/states/play.zig": "6cbbf3e99fa2b5e58f59b75e4fa70eecd0dca88fdd337563b1ff95657ab5b7a9",
+    "src/feeding_marker.zig": "1eb325434a339451cff1e855b5938799c691a0b4318b9a86537fdce745a76a9b",
+    "web/shell.html": "af429ce4588af6e1d48e4146dc713a8b8c05e8136c1eaf116ff01c8fb275cf09"
+  },
+  "qa": {
+    "main.zig": "7ce54381f24d47ddc1a7660e323e72775b92dbfa7d1deefa5093690dcd409128",
+    "states/play.zig": "6f942f1d3dcd58395879865e539f4821e9a61ae7af898c5b3a7cd006a65ce71f",
+    "feeding_marker.zig": "1eb325434a339451cff1e855b5938799c691a0b4318b9a86537fdce745a76a9b"
+  }
+}

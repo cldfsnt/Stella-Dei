@@ -1,0 +1,8 @@
+1/6 qa_soil_root_kernel.test.root-only paid throughput and storage-only delivery share one demand...OK
+2/6 qa_soil_root_kernel.test.finite abiotic transfers no organism RNG and zero full controls...OK
+3/6 qa_soil_root_kernel.test.all24 unequal slot permutations...OK
+4/6 qa_soil_root_kernel.test.zero demand exposure temperature and depth spend no physiological water...OK
+5/6 qa_soil_root_kernel.test.invalid and unrepresentable transfer refuses unchanged...OK
+6/6 qa_soil_root_kernel.test.fixed natural supported carbon root-only prescribed allocation...ROOT_REFERENCE paid_root_C=0.004343622364103794 flow=0.004343622364103794 h_paid=0.03474897891283035 assigned_allocation_not_evolved=true
+OK
+All 6 tests passed.

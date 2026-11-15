@@ -1,0 +1,9 @@
+{
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "source_hashes": {
+    "main.zig": "1409d2124da537da87589c80c308a3cdaa00523e21d7732bcdf50d71cf359c8d",
+    "states/play.zig": "84b73114e0e985d4a9244d195d6d452121f5ab606da00cfe955ae89c92ea3d76",
+    "feeding_marker.zig": "d4f04376787d6d41a2ac71c92bd905ba491226372d73cb4b7d0fbbe51210952b"
+  },
+  "production_unchanged": true
+}

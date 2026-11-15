@@ -1,0 +1,17 @@
+1/9 qa_soil_root_v2.test.root-only paid throughput and storage-only delivery share one demand...expected 1.25e-1, found 0e0
+FAIL (TestExpectedEqual)
+2/9 qa_soil_root_v2.test.finite abiotic transfers no organism RNG and zero full controls...expected 1e0, found 0e0
+FAIL (TestExpectedEqual)
+3/9 qa_soil_root_v2.test.all24 unequal slot permutations...OK
+4/9 qa_soil_root_v2.test.zero demand exposure temperature and depth spend no physiological water...OK
+5/9 qa_soil_root_v2.test.invalid and unrepresentable transfer refuses unchanged...OK
+6/9 qa_soil_root_v2.test.fixed natural supported carbon root-only prescribed allocation...FAIL (TestUnexpectedResult)
+7/9 qa_soil_root_v2.test.closed finite wetting evaporation uptake drainage cycles exhaust without refill...expected 0e0, found 1e0
+FAIL (TestExpectedEqual)
+8/9 qa_soil_root_v2.test.storage drought exhausts and no root or zero demand subsidy...expected 1e0, found 0e0
+FAIL (TestExpectedEqual)
+9/9 qa_soil_root_v2.test.fixed declining substrate reports representability refusal rather than topup...DECLINING1000 accepted=1000 refusal=false remaining_soil=1 vapor=0
+OK
+4 passed; 0 skipped; 5 failed.
+error: the following test command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/stella-independent-review/.zig-cache/o/4856ac979abfb525883a795139f28be9/test

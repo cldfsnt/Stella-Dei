@@ -1,0 +1,10 @@
+{
+  "src/experimental/bounded_water.zig": "711a8a110ccdf7387514e9d28781568d611509b6eb72e0b21467058dc5f74b23",
+  "src/experimental/soil_root_kernel_v2.zig": "dfc8787d51fbf0ce6667a0a60fb45323a1a15b56b82297453067959a31458713",
+  "src/experimental/soil_actual_fixtures.json": "7d8e554997b94e36807265a05dbe4573a31ea36d52a376b32b93b72c6bfe4fa9",
+  "src/qa_soil_root_v2.zig": "60bffabf1c9ed363b6dd8beb6563995f68972f4315fb1eb73dc44d2915c2f69f",
+  "src/qa_soil_actual_v2.zig": "d74a14d5e80da8094c5a2c5eddbd79c8b8f3796087ca153588172710c697c01f",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/results/actual-v2-final.log": "b7a3883c17d7a8706f0412f1044e8bf7564b044cfe7ea836c74e1b9b520da554",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/results/v2-final.log": "717f9bf1ebbc449fef473693f84eb5324b3a395355bbeb8b6cf3dbd94fd686e6",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/results/v2-releasefast.log": "717f9bf1ebbc449fef473693f84eb5324b3a395355bbeb8b6cf3dbd94fd686e6"
+}

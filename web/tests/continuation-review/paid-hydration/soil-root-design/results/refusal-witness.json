@@ -1,0 +1,14 @@
+{
+  "accepted_steps_before_refusal": 26,
+  "old_soil": 0.0005644075936237503,
+  "old_vapor": 0.9994355924063762,
+  "requested": 0.00014110189840593756,
+  "exact_target_fraction": "18006772911996997/18014398509481984",
+  "nearest_target_error": "-1/18014398509481984",
+  "source_requested_debit_representable": true,
+  "receiver_requested_increment_representable": false,
+  "bounded_receiver_credit": 0.00014110189840588205,
+  "unspent_in_soil": "1/18014398509481984",
+  "actual_new_soil": 0.0004233056952178682,
+  "exact_alternative_balance": true
+}

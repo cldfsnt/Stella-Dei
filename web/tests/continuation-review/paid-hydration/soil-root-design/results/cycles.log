@@ -1,0 +1,13 @@
+1/9 qa_soil_root_kernel.test.root-only paid throughput and storage-only delivery share one demand...OK
+2/9 qa_soil_root_kernel.test.finite abiotic transfers no organism RNG and zero full controls...OK
+3/9 qa_soil_root_kernel.test.all24 unequal slot permutations...OK
+4/9 qa_soil_root_kernel.test.zero demand exposure temperature and depth spend no physiological water...OK
+5/9 qa_soil_root_kernel.test.invalid and unrepresentable transfer refuses unchanged...OK
+6/9 qa_soil_root_kernel.test.fixed natural supported carbon root-only prescribed allocation...ROOT_REFERENCE paid_root_C=0.004343622364103794 flow=0.004343622364103794 h_paid=0.03474897891283035 assigned_allocation_not_evolved=true
+OK
+7/9 qa_soil_root_kernel.test.closed finite wetting evaporation uptake drainage cycles exhaust without refill...CLOSED1000 root_delivered=0.5 remaining_surface=0 soil=0 vapor=1
+OK
+8/9 qa_soil_root_kernel.test.storage drought exhausts and no root or zero demand subsidy...OK
+9/9 qa_soil_root_kernel.test.fixed declining substrate reports representability refusal rather than topup...DECLINING1000 accepted=26 refusal=true remaining_soil=0.0005644075936237503 vapor=0.9994355924063762
+OK
+All 9 tests passed.

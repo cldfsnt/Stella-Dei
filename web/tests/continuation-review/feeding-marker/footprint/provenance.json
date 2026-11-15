@@ -1,0 +1,14 @@
+{
+  "candidate_true_render_exact_after_removing_only_qa_branch": true,
+  "helper_byte_identical": true,
+  "production": {
+    "src/states/play.zig": "704ab9b9baeac23d62849a7eb888dafe6dc8d82f26484c7c7a932215a2baff66",
+    "src/feeding_marker.zig": "882d3ae32bfa311270237bdcf0363d8d005d68335f5e740072e4a1e20065090d",
+    "web/shell.html": "af429ce4588af6e1d48e4146dc713a8b8c05e8136c1eaf116ff01c8fb275cf09"
+  },
+  "qa": {
+    "main.zig": "0c5a6af0e658a863b5dbf139b256e9f15b9bf8e29adf46fb79156a083baf4e34",
+    "states/play.zig": "ca9828f0fcde8244a615d7a1aad5fa2c3161623d587a4fc7c67fc6b90f8b22c7",
+    "feeding_marker.zig": "882d3ae32bfa311270237bdcf0363d8d005d68335f5e740072e4a1e20065090d"
+  }
+}

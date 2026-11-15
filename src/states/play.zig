@@ -1727,7 +1727,7 @@ pub const PlayState = struct {
     }
 
     /// A sprout represents a real vegetated terrain population, not one plant.
-    /// Close view scans <=512 neighbours; globe view scans real living cells.
+    /// Close view scans <=512 neighbours plus selected patch; globe scans real living cells.
     /// Allocation-free, de-cluttered, <=64 glyphs in either view.
     fn renderSprouts(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
         self.colonyTargets.count=0;
@@ -1738,20 +1738,28 @@ pub const PlayState = struct {
         if (!biology_visuals.showSprouts(self.cameraDistance, self.planet.radius, self.displayMode == .Normal)) return;
         var candidates: [512]usize = undefined;
         var screenPositions: [64]Vec2 = undefined;
+        var screenScales: [64]f32 = undefined;
+        var screenSelected: [64]bool = undefined;
         candidates[0] = self.cameraGroundPoint;
         const wide = self.cameraDistance >= self.planet.radius * 1.28;
         const lod = biology_visuals.markerScale(self.cameraDistance,self.planet.radius);
+        const selected_first:?usize=if(self.planet.worldMode==.origin and self.selectedPoint<self.planet.microbeCells.len and Microbes.biomass(self.planet.microbeCells[self.selectedPoint])>=0.001)self.selectedPoint else null;
         var count: usize = if(wide) self.planet.transformedPoints.len else 1;
         var cursor: usize = 0;
-        while (cursor < count and self.visibleSprouts < screenPositions.len) : (cursor += 1) {
-            const index = if(wide) cursor else candidates[cursor];
+        var selected_pending = !wide and selected_first != null;
+        while ((selected_pending or cursor < count) and self.visibleSprouts < screenPositions.len) {
+            const prioritized = selected_pending;
+            selected_pending = false;
+            const index = if(prioritized) selected_first.? else if(wide) @import("../feeding_marker.zig").orderedIndex(cursor,count,selected_first) else candidates[cursor];
+            if(!prioritized)cursor+=1;
             self.sproutCandidates += 1;
-            if (!wide) for (self.planet.getNeighbours(index)) |neighbour| {
+            if (!wide and !prioritized) for (self.planet.getNeighbours(index)) |neighbour| {
                 if (count == candidates.len) break;
                 var known = false;
                 for (candidates[0..count]) |candidate| { if (candidate == neighbour) { known = true; break; } }
                 if (!known) { candidates[count] = neighbour; count += 1; }
             };
+            if(!prioritized and !wide and selected_first!=null and index==selected_first.?)continue;
             const origin = self.planet.worldMode == .origin;
             const biomass = if (origin) Microbes.biomass(self.planet.microbeCells[index]) else self.planet.vegetation[index];
             if (origin) { if (biomass < 0.001) continue; } else if (biomass < 0.08 or self.planet.waterMass[index] * self.planet.getKmPerWaterMass() > 0.0005) continue;
@@ -1761,7 +1769,9 @@ pub const PlayState = struct {
             if (clip.w() <= 0) continue;
             const x = (clip.x() / clip.w() + 1) * width / 2;
             const y = (1 - clip.y() / clip.w()) * height / 2;
+            const glyph_lod=if(origin and index==self.selectedPoint)@max(lod,0.75) else lod;
             const size = (if (origin) 13 + 10 * @sqrt(std.math.clamp(biomass, 0, 1)) else 12 + biology_visuals.sproutSize(biomass)) * lod;
+            if (origin and index==self.selectedPoint and !@import("../feeding_marker.zig").fits(x,y,glyph_lod,width,height,toolBottom))continue;
             if (x < size + 4 or x > width - size - 4 or y < toolBottom + size * 2 or y > height - 90) continue;
             const screen = Vec2.new(x,y);
             // A living cell is an area, not a floating icon. Render its footprint
@@ -1775,12 +1785,17 @@ pub const PlayState = struct {
             vg.ellipse(x-4*lod,y,patch*0.65,patch*0.32);
             vg.ellipse(x+6*lod,y+3*lod,patch*0.55,patch*0.28); vg.fill();
             var crowded = false;
-            for (screenPositions[0..self.visibleSprouts]) |prior| { if (screen.distance(prior) < @max(14,38*lod)) { crowded = true; break; } }
+            for (screenPositions[0..self.visibleSprouts],0..) |prior,pi| {
+                const selected_pair=((origin and index==self.selectedPoint) or screenSelected[pi]);
+                if (screen.distance(prior) < @max(14,38*lod) or (selected_pair and @import("../feeding_marker.zig").overlaps(x,y,glyph_lod,prior.x(),prior.y(),screenScales[pi]))) { crowded = true; break; }
+            }
             if (crowded) continue;
             screenPositions[self.visibleSprouts] = screen;
+            screenScales[self.visibleSprouts] = glyph_lod;
+            screenSelected[self.visibleSprouts] = origin and index==self.selectedPoint;
             self.visibleSprouts += 1;
-            if(origin)self.colonyTargets.add(.{.cell=index,.x=x,.y=y,.scale=lod});
-            vg.save(); vg.translate(x,y); vg.scale(lod,lod);
+            if(origin)self.colonyTargets.add(.{.cell=index,.x=x,.y=y,.scale=glyph_lod});
+            vg.save(); vg.translate(x,y); vg.scale(glyph_lod,glyph_lod);
             // Soft contact shadow grounds the crisp silhouette in its living patch.
             vg.beginPath(); vg.fillColor(nvg.rgba(8,35,29,125)); vg.ellipse(0,2,13,4); vg.fill();
             if (origin) {
@@ -1797,8 +1812,17 @@ pub const PlayState = struct {
                     vg.save(); vg.translate(12,4); vg.scale(0.58,0.58); if(self.blenderAtlas) |atlas| renderBlenderForm(vg,form,color,atlas) else renderProducerGlyph(vg,form,color); vg.restore();
                 }
                 if(self.blenderAtlas) |atlas| renderBlenderForm(vg,form,color,atlas) else renderProducerGlyph(vg,form,color);
-                if (biology_visuals.hasFed(self.planet.microbeCells[index].cohorts)) {
-                    vg.beginPath(); vg.fillColor(nvg.rgb(255,191,89)); vg.circle(12,0,3); vg.fill();
+                {
+                    const history=@import("../feeding_marker.zig").classify(self.planet.microbeCells[index].cohorts);
+                    // Patch-level historical evidence, not animal anatomy or current eating.
+                    if(history==.dominant){
+                        vg.beginPath();vg.fillColor(nvg.rgba(247,177,65,235));vg.strokeColor(nvg.rgb(66,38,12));vg.strokeWidth(1.7);
+                        vg.ellipse(-7,2,6,4.5);vg.ellipse(0,3,6,4);vg.ellipse(7,2,6,4.5);vg.fill();vg.stroke();
+                        vg.beginPath();vg.strokeColor(nvg.rgb(255,230,166));vg.strokeWidth(1.2);vg.moveTo(-8,2);vg.lineTo(-5,2);vg.moveTo(-1,4);vg.lineTo(2,4);vg.moveTo(6,2);vg.lineTo(9,2);vg.stroke();
+                    }else if(history==.mixed){
+                        vg.beginPath();vg.strokeColor(nvg.rgb(57,34,13));vg.strokeWidth(4);vg.circle(12,0,4.5);vg.stroke();
+                        vg.strokeColor(nvg.rgb(255,191,89));vg.strokeWidth(2);vg.stroke();
+                    }
                 }
             } else {
                 const color=biology_visuals.lineageColor(self.planet.plantTraits[index].optimum);
