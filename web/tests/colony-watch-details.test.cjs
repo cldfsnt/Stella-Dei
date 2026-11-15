@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict'),{describe}=require('../colony-watch-details');
+const a={start_members:[{id:'9007199254740993',biomass:.5},{id:'7',biomass:.1}],end_members:[{id:'9007199254740993',biomass:.25},{id:'18446744073709551615',biomass:1e-12}]};const unchanged=JSON.stringify(a),text=describe(a);
+assert.match(text,/9007199254740993/);assert.match(text,/18446744073709551615/);assert.match(text,/net loss/);assert.match(text,/present only at end/);assert.match(text,/no longer present at end/);assert.match(text,/do not establish a cause or prove death/);assert.equal(JSON.stringify(a),unchanged);
+for(const bad of [[{id:9007199254740993,biomass:1}],[{id:'18446744073709551616',biomass:1}],[{id:'01',biomass:1}],[{id:'0',biomass:1}],[{id:'1',biomass:NaN}],[{id:'1',biomass:0}],[{id:'1',biomass:1},{id:'1',biomass:2}],Array(5).fill({id:'1',biomass:1})])assert.match(describe({start_members:bad,end_members:[]}),/unavailable/);
+assert.match(describe({start_members:[],end_members:[]}),/does not rule out activity/);
+assert.match(describe({start_members:[{id:'1',biomass:1}],end_members:[{id:'1',biomass:1}]}),/unchanged/);
+console.log('PASS bounded exact string IDs, endpoint semantics, invalid data and immutability');
+const {create}=require('../patch-watch');
+let shown=null,s={active:true,status:'watching',cell:1,elapsed:0,consumed:0,ticks:0,fixed:0,recycled:0,start_biomass:0,end_biomass:0,start_colonies:0,end_colonies:0,start_members:[],end_members:[]};
+const ctl=create({now:()=>0,blocked:()=>false,start:()=>1,stop:()=>{s={...s,active:false,status:'cancelled'};},read:()=>s,setInterval:()=>1,clearInterval(){},setTimeout:()=>2,clearTimeout(){},render:(text,active,snapshot)=>{shown={text,active,snapshot};}});
+assert(ctl.start(1));assert.equal(shown.snapshot,s);ctl.cancel();assert.equal(shown.active,false);assert.equal(shown.snapshot,s);assert.deepEqual(shown.snapshot.start_members,[]);
+console.log('PASS optional third render argument exposes retained endpoint snapshot without extra timers');

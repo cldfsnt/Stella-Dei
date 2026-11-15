@@ -1,0 +1,93 @@
+--- a/src/patch_watch.zig
++++ b/src/patch_watch.zig
+@@ -1,13 +1,15 @@
+ //! Transient, O(1) observation of actual selected-patch ecological flux. Not save data.
+ const std=@import("std");
++const Colonies=@import("colony_snapshot.zig");
+ pub const Watch=struct {
+  owner:usize=0, active:bool=false, status:[]const u8="idle", cell:usize=0, world:u32=0,
+  start_game:f64=0, elapsed:f64=0, consumed:f64=0, ticks:u32=0,
+  start_ms:f64=0,last_ms:f64=0,
+  fixed:f64=0,recycled:f64=0,start_biomass:f64=0,end_biomass:f64=0,start_colonies:u8=0,end_colonies:u8=0,
+- pub const Population=struct{biomass:f64=0,colonies:u8=0};
++ start_members:Colonies.Snapshot=.{.valid=false},end_members:Colonies.Snapshot=.{.valid=false},
++ pub const Population=struct{biomass:f64=0,colonies:u8=0,members:Colonies.Snapshot=.{.valid=false}};
+  pub fn population(cohorts:anytype)?Population{
+-  var p=Population{};
++  var p=Population{.members=Colonies.capture(cohorts)};
+   for(cohorts)|c|{
+    if(!std.math.isFinite(c.biomass) or c.biomass<0)return null;
+    if(c.biomass>0){if(p.colonies==4)return null;p.colonies+=1;p.biomass+=@as(f64,c.biomass);}
+@@ -17,13 +19,13 @@
+  pub fn startPopulation(self:*Watch,p:?Population)bool{
+   const v=p orelse {self.stop("invalid population");return false;};
+   if(!self.active)return false;
+-  self.start_biomass=v.biomass;self.end_biomass=v.biomass;self.start_colonies=v.colonies;self.end_colonies=v.colonies;return true;
++  self.start_biomass=v.biomass;self.end_biomass=v.biomass;self.start_colonies=v.colonies;self.end_colonies=v.colonies;self.start_members=v.members;self.end_members=v.members;return true;
+  }
+  pub fn finishPopulationTick(self:*Watch,game:f64,dt:f64,p:?Population)void{
+   if(!self.active)return;
+   const v=p orelse {self.stop("invalid population");return;};
+   const old=self.ticks;self.finishTick(game,dt);
+-  if(self.ticks!=old){self.end_biomass=v.biomass;self.end_colonies=v.colonies;}
++  if(self.ticks!=old){self.end_biomass=v.biomass;self.end_colonies=v.colonies;self.end_members=v.members;}
+  }
+  pub fn start(self:*Watch,cell:usize,world:u32,game:f64,ms:f64)bool{
+   if(!std.math.isFinite(game) or !std.math.isFinite(ms))return false;
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -461,7 +461,7 @@
+ 
+ const PerformanceDetails=@import("performance_details.zig");
+ const PatchWatch=@import("patch_watch.zig");
+-var patch_watch_json:[1024]u8=undefined;
++var patch_watch_json:[4096]u8=undefined;
+ export fn stella_patch_watch_start(expected:i32)i32 {
+  const state=webPlayState() orelse return -1;
+  return patchWatchStartForState(state,expected);
+@@ -479,7 +479,7 @@
+ export fn stella_patch_watch_snapshot()[*:0]const u8 {
+  if(webPlayState())|s|PatchWatch.current.guard(s.selectedPoint,PerformanceDetails.world_serial,s.gameTime,PatchWatch.nowMs(),s.paused or s.showEscapeMenu or s.showPlanetControl or s.showPointDetails) else PatchWatch.current.stop("world unavailable");
+  var stream=std.io.fixedBufferStream(&patch_watch_json);
+- std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks,.fixed=PatchWatch.current.fixed,.recycled=PatchWatch.current.recycled,.start_biomass=PatchWatch.current.start_biomass,.end_biomass=PatchWatch.current.end_biomass,.start_colonies=PatchWatch.current.start_colonies,.end_colonies=PatchWatch.current.end_colonies},.{},stream.writer()) catch return "{}";
++ std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks,.fixed=PatchWatch.current.fixed,.recycled=PatchWatch.current.recycled,.start_biomass=PatchWatch.current.start_biomass,.end_biomass=PatchWatch.current.end_biomass,.start_colonies=PatchWatch.current.start_colonies,.end_colonies=PatchWatch.current.end_colonies,.start_members=if(PatchWatch.current.start_members.valid) @as(?[]const @import("colony_snapshot.zig").Entry,PatchWatch.current.start_members.entries[0..PatchWatch.current.start_members.len]) else null,.end_members=if(PatchWatch.current.end_members.valid) @as(?[]const @import("colony_snapshot.zig").Entry,PatchWatch.current.end_members.entries[0..PatchWatch.current.end_members.len]) else null},.{},stream.writer()) catch return "{}";
+  if(stream.pos>=patch_watch_json.len)return "{}";patch_watch_json[stream.pos]=0;return @ptrCast(&patch_watch_json);
+ }
+ 
+--- /dev/null
++++ b/src/colony_snapshot.zig
+@@ -0,0 +1,34 @@
++//! Fixed-capacity endpoint observation, never an ecological rule or event history.
++const std=@import("std");
++pub const Entry=struct{
++ id:u64=0,biomass:f64=0,
++ pub fn jsonStringify(self:Entry,writer:anytype)!void{
++  var buf:[20]u8=undefined;const id=std.fmt.bufPrint(&buf,"{d}",.{self.id}) catch unreachable;
++  try writer.beginObject();try writer.objectField("id");try writer.write(id);try writer.objectField("biomass");try writer.write(self.biomass);try writer.endObject();
++ }
++};
++pub const Snapshot=struct{entries:[4]Entry=.{.{},.{},.{},.{}},len:u8=0,valid:bool=true};
++pub fn capture(cohorts:anytype)Snapshot{
++ var out=Snapshot{};
++ for(cohorts)|c|{
++  if(!std.math.isFinite(c.biomass) or c.biomass<0)return .{.valid=false};
++  if(c.biomass<=0)continue;
++  if(!@hasField(@TypeOf(c),"lineage"))return .{.valid=false};
++  if(out.len==4 or c.lineage==0)return .{.valid=false};
++  for(out.entries[0..out.len])|prior|if(prior.id==c.lineage)return .{.valid=false};
++  out.entries[out.len]=.{.id=c.lineage,.biomass=c.biomass};out.len+=1;
++ }
++ return out;
++}
++test "exact string IDs beyond JS integer range and max u64"{
++ const entry=Entry{.id=std.math.maxInt(u64),.biomass=0.125};const j=try std.json.stringifyAlloc(std.testing.allocator,entry,.{});defer std.testing.allocator.free(j);
++ try std.testing.expectEqualStrings("{\"id\":\"18446744073709551615\",\"biomass\":1.25e-1}",j);
++}
++test "bounded finite unique living identities with tiny survivors"{
++ const C=struct{lineage:u64,biomass:f32};const data=[_]C{.{.lineage=9007199254740993,.biomass=0.1},.{.lineage=17,.biomass=1e-9},.{.lineage=0,.biomass=0}};
++ const a=capture(data);try std.testing.expect(a.valid and a.len==2 and a.entries[0].id==9007199254740993);
++ try std.testing.expect(!capture([_]C{data[0],data[0]}).valid);
++ try std.testing.expect(!capture([_]C{.{.lineage=1,.biomass=std.math.nan(f32)}}).valid);
++ try std.testing.expect(!capture([_]C{.{.lineage=0,.biomass=1}}).valid);
++ const noid=struct{biomass:f32};try std.testing.expect(!capture([_]noid{.{.biomass=1}}).valid);
++}

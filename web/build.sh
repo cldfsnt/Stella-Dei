@@ -26,3 +26,5 @@ cp web/renderer-info.js web/dist/renderer-info.js
 cp web/gameplay-measure.js web/dist/gameplay-measure.js
 
 cp web/patch-watch.js web/dist/patch-watch.js
+
+cp web/colony-watch-details.js web/dist/colony-watch-details.js

@@ -1,13 +1,15 @@
 //! Transient, O(1) observation of actual selected-patch ecological flux. Not save data.
 const std=@import("std");
+const Colonies=@import("colony_snapshot.zig");
 pub const Watch=struct {
  owner:usize=0, active:bool=false, status:[]const u8="idle", cell:usize=0, world:u32=0,
  start_game:f64=0, elapsed:f64=0, consumed:f64=0, ticks:u32=0,
  start_ms:f64=0,last_ms:f64=0,
  fixed:f64=0,recycled:f64=0,start_biomass:f64=0,end_biomass:f64=0,start_colonies:u8=0,end_colonies:u8=0,
- pub const Population=struct{biomass:f64=0,colonies:u8=0};
+ start_members:Colonies.Snapshot=.{.valid=false},end_members:Colonies.Snapshot=.{.valid=false},
+ pub const Population=struct{biomass:f64=0,colonies:u8=0,members:Colonies.Snapshot=.{.valid=false}};
  pub fn population(cohorts:anytype)?Population{
-  var p=Population{};
+  var p=Population{.members=Colonies.capture(cohorts)};
   for(cohorts)|c|{
    if(!std.math.isFinite(c.biomass) or c.biomass<0)return null;
    if(c.biomass>0){if(p.colonies==4)return null;p.colonies+=1;p.biomass+=@as(f64,c.biomass);}
@@ -17,13 +19,13 @@ pub const Watch=struct {
  pub fn startPopulation(self:*Watch,p:?Population)bool{
   const v=p orelse {self.stop("invalid population");return false;};
   if(!self.active)return false;
-  self.start_biomass=v.biomass;self.end_biomass=v.biomass;self.start_colonies=v.colonies;self.end_colonies=v.colonies;return true;
+  self.start_biomass=v.biomass;self.end_biomass=v.biomass;self.start_colonies=v.colonies;self.end_colonies=v.colonies;self.start_members=v.members;self.end_members=v.members;return true;
  }
  pub fn finishPopulationTick(self:*Watch,game:f64,dt:f64,p:?Population)void{
   if(!self.active)return;
   const v=p orelse {self.stop("invalid population");return;};
   const old=self.ticks;self.finishTick(game,dt);
-  if(self.ticks!=old){self.end_biomass=v.biomass;self.end_colonies=v.colonies;}
+  if(self.ticks!=old){self.end_biomass=v.biomass;self.end_colonies=v.colonies;self.end_members=v.members;}
  }
  pub fn start(self:*Watch,cell:usize,world:u32,game:f64,ms:f64)bool{
   if(!std.math.isFinite(game) or !std.math.isFinite(ms))return false;

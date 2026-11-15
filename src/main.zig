@@ -461,7 +461,7 @@ export fn stella_speed_snapshot()[*:0]const u8 {
 
 const PerformanceDetails=@import("performance_details.zig");
 const PatchWatch=@import("patch_watch.zig");
-var patch_watch_json:[1024]u8=undefined;
+var patch_watch_json:[4096]u8=undefined;
 export fn stella_patch_watch_start(expected:i32)i32 {
  const state=webPlayState() orelse return -1;
  return patchWatchStartForState(state,expected);
@@ -479,7 +479,7 @@ export fn stella_patch_watch_stop(complete:i32)void {
 export fn stella_patch_watch_snapshot()[*:0]const u8 {
  if(webPlayState())|s|PatchWatch.current.guard(s.selectedPoint,PerformanceDetails.world_serial,s.gameTime,PatchWatch.nowMs(),s.paused or s.showEscapeMenu or s.showPlanetControl or s.showPointDetails) else PatchWatch.current.stop("world unavailable");
  var stream=std.io.fixedBufferStream(&patch_watch_json);
- std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks,.fixed=PatchWatch.current.fixed,.recycled=PatchWatch.current.recycled,.start_biomass=PatchWatch.current.start_biomass,.end_biomass=PatchWatch.current.end_biomass,.start_colonies=PatchWatch.current.start_colonies,.end_colonies=PatchWatch.current.end_colonies},.{},stream.writer()) catch return "{}";
+ std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks,.fixed=PatchWatch.current.fixed,.recycled=PatchWatch.current.recycled,.start_biomass=PatchWatch.current.start_biomass,.end_biomass=PatchWatch.current.end_biomass,.start_colonies=PatchWatch.current.start_colonies,.end_colonies=PatchWatch.current.end_colonies,.start_members=if(PatchWatch.current.start_members.valid) @as(?[]const @import("colony_snapshot.zig").Entry,PatchWatch.current.start_members.entries[0..PatchWatch.current.start_members.len]) else null,.end_members=if(PatchWatch.current.end_members.valid) @as(?[]const @import("colony_snapshot.zig").Entry,PatchWatch.current.end_members.entries[0..PatchWatch.current.end_members.len]) else null},.{},stream.writer()) catch return "{}";
  if(stream.pos>=patch_watch_json.len)return "{}";patch_watch_json[stream.pos]=0;return @ptrCast(&patch_watch_json);
 }
 
