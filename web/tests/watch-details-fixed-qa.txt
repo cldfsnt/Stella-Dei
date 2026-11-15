@@ -1,0 +1,30 @@
+          _=pm;_=pw;const target:usize=12395;const Watch=@import("patch_watch.zig");
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          std.debug.assert(state.planet.worldMode==.origin);
+          for([_]bool{false,true})|paused|{
+            try saves.apply(state,initial.value);state.selectedPoint=target;state.selectedTool=.None;state.watchLifeView=false;state.paused=paused;state.showEscapeMenu=false;state.showPlanetControl=false;state.showPointDetails=false;
+            const pos=state.planet.transformedPoints[target];state.cameraPos=pos.norm().scale(pos.length()+200);state.targetCameraPos=state.cameraPos;state.cameraDistance=state.cameraPos.length();state.targetCameraDistance=state.cameraDistance;state.cameraGroundPoint=target;
+            render(window);var hit:?@import("colony_targets.zig").Target=null;for(state.colonyTargets.items[0..state.colonyTargets.count])|t|{if(t.cell==target){hit=t;break;}}const t=hit orelse return error.NoRenderedTarget;
+            const before=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});qa_pointer(t.x,t.y,0);state.mousePressed(&game,.left);std.debug.assert(state.showPointDetails and state.selectedPoint==target and state.clickedPoint==target);
+            _=stella_life_snapshot();std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            const world=PerformanceDetails.world_serial;const old=Watch.current;
+            const normal=stella_patch_watch_start(target);
+            if(paused){std.debug.assert(normal == -2 and state.showPointDetails and state.paused and std.meta.eql(old,Watch.current));std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.assert(stella_patch_watch_start_checked(target,world,1)==1);}else std.debug.assert(normal==1);
+            std.debug.assert(!state.showPointDetails and !state.paused and Watch.current.active);
+            var equivalent=try saves.capture(a,state);equivalent.paused=paused;std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,equivalent,.{})));
+            for(0..5)|failure|{state.showPointDetails=true;const prior=Watch.current;const old_mass=state.planet.microbeCells[target].cohorts[0].biomass;
+              if(failure==2)state.showEscapeMenu=true;if(failure==3)state.showPlanetControl=true;if(failure==4)state.planet.microbeCells[target].cohorts[0].biomass=std.math.nan(f32);
+              const result=stella_patch_watch_start_checked(if(failure==1)target+1 else target,if(failure==0)world+%1 else world,1);
+              std.debug.assert(result==(if(failure==4)@as(i32,-3) else -2) and state.showPointDetails and !state.paused and std.meta.eql(prior,Watch.current));
+              state.showEscapeMenu=false;state.showPlanetControl=false;state.planet.microbeCells[target].cohorts[0].biomass=old_mass;
+            }
+            std.debug.assert(stella_patch_watch_start(target)==1 and !state.showPointDetails);
+            state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;
+            _=stella_patch_watch_snapshot();std.debug.assert(Watch.current.active and Watch.current.ticks==1);
+            std.debug.assert(stella_patch_watch_start(target)==1 and Watch.current.ticks==0 and Watch.current.start_game==state.gameTime);
+            stella_patch_watch_stop(0);std.debug.assert(!Watch.current.active);
+            std.debug.print("WATCH_DETAILS_FIXED paused={} rendered_pick=true normal={} successful_details_close=true refusal_atomic_5=true actual_tick_active=true repeated_baseline=true cancel=true save_rng_exact_except_explicit_pause=true\n",.{paused,normal});
+
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("WATCH_DETAILS_FIXED_COMPLETE original_restored=true\n",.{});
+        }

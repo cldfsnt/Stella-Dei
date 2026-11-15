@@ -543,18 +543,20 @@ export fn stella_patch_watch_start_checked(expected:i32,world:u32,resume_explici
  return patchWatchStartCheckedForState(state,expected,world,resume_explicit==1);
 }
 pub fn patchWatchStartCheckedForState(state:*PlayState,expected:i32,world:u32,resume_explicit:bool)i32 {
- if(world!=PerformanceDetails.world_serial or state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails or (state.paused and !resume_explicit))return -2;
- // No simulation can run between this synchronous resume and baseline capture.
- const was_paused=state.paused;const previous_watch=PatchWatch.current;state.paused=false;
- const result=patchWatchStartForState(state,expected);
- if(result!=1){state.paused=was_paused;PatchWatch.current=previous_watch;}
- return result;
+ if(world!=PerformanceDetails.world_serial or state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.showEscapeMenu or state.showPlanetControl or (state.paused and !resume_explicit))return -2;
+ // Prepare privately: refusal preserves the prior watch, pause and native Inspect.
+ // This explicit Watch transition dismisses Inspect only after valid baseline capture.
+ var next=PatchWatch.Watch{};
+ if(!next.start(state.selectedPoint,world,state.gameTime,PatchWatch.nowMs()))return -3;
+ if(!next.startPopulation(PatchWatch.Watch.population(state.planet.microbeCells[state.selectedPoint].cohorts)))return -3;
+ next.owner=@intFromPtr(&state.planet);
+ PatchWatch.current=next;
+ state.showPointDetails=false;
+ if(resume_explicit)state.paused=false;
+ return 1;
 }
 pub fn patchWatchStartForState(state:*PlayState,expected:i32)i32 {
- if(state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.paused or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails)return -2;
- if(!PatchWatch.current.start(state.selectedPoint,PerformanceDetails.world_serial,state.gameTime,PatchWatch.nowMs()))return -3;
- if(!PatchWatch.current.startPopulation(PatchWatch.Watch.population(state.planet.microbeCells[state.selectedPoint].cohorts)))return -3;
- PatchWatch.current.owner=@intFromPtr(&state.planet);return 1;
+ return patchWatchStartCheckedForState(state,expected,PerformanceDetails.world_serial,false);
 }
 export fn stella_patch_watch_stop(complete:i32)void {
  if(complete==1){if(webPlayState())|s|PatchWatch.current.guard(s.selectedPoint,PerformanceDetails.world_serial,s.gameTime,PatchWatch.nowMs(),s.paused or s.showEscapeMenu or s.showPlanetControl or s.showPointDetails);}

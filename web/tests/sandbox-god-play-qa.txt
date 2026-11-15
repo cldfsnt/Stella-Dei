@@ -1,0 +1,34 @@
+          _=pm;_=pw;const target:usize=26788;
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          std.debug.assert(state.planet.worldMode==.sandbox and state.planet.sandboxDefense.enabled and state.planet.vegetation[target]>0 and state.planet.plantTraits[target].toughness==0.5);
+          state.selectedPoint=target;
+          std.debug.print("GOD_PREVIEW {s}\n",.{std.mem.span(stella_god_target())});std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          std.debug.print("GOD_BLOCKED_SCORCH {s}\n",.{std.mem.span(stella_god_action(2,target))});std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          std.debug.print("GOD_BLOCKED_IGNITION {s}\n",.{std.mem.span(stella_god_action(3,target))});std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          for(0..5)|arm|{
+            try saves.apply(state,initial.value);state.selectedPoint=target;state.pointerOnPlanet=true;state.selectedTool=.None;state.showEscapeMenu=false;state.showPlanetControl=false;state.showPointDetails=false;
+            if(arm>=3){const water_before=state.planet.waterMass[target];std.debug.assert(state.testAction(2));std.debug.print("GOD_DRAIN arm={} before={d} after={d} removed_native={d}\n",.{arm,water_before,state.planet.waterMass[target],@as(f64,water_before)-state.planet.waterMass[target]});std.debug.assert(state.planet.waterMass[target]==0);}
+            if(arm==1 or arm==2 or arm==4){
+              const action:u32=if(arm==1)0 else if(arm==2)1 else 2;
+              const before_action=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const expected=try std.json.parseFromSlice(saves.schema.Save,a,before_action,.{.allocate=.alloc_always});
+              const result=try a.dupe(u8,std.mem.span(stella_god_action(action,target)));std.debug.print("GOD_RECEIPT arm={} json={s} feedback={s}\n",.{arm,result,state.mobileFeedback});
+              const rr=state.godReceipt orelse return error.ExpectedGodSuccess;
+              for(rr.affected[0..rr.count])|delta|{const i=delta.cell;@constCast(expected.value.water)[i]=state.planet.waterMass[i];@constCast(expected.value.temperature)[i]=state.planet.temperature[i];@constCast(expected.value.vegetation)[i]=state.planet.vegetation[i];}
+              std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(a,expected.value,.{}),try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            }
+            const after_action=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/arm-{}-action.json",.{arm}),.data=after_action});
+            const pos=state.planet.transformedPoints[target];state.cameraPos=pos.norm().scale(pos.length()+200);state.targetCameraPos=state.cameraPos;state.cameraDistance=state.cameraPos.length();state.targetCameraDistance=state.cameraDistance;state.cameraGroundPoint=target;
+            render(window);gl.finish();window.swapBuffers();qa_capture(try a.dupeZ(u8,try std.fmt.allocPrint(a,"OUTPUT/action-{}.ppm",.{arm})));
+            for(0..8)|day|{
+              if(day>0)for(0..60)|_|{loop.pump(16);state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;loop.pump(16);};
+              try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/arm-{}-day-{}.json",.{arm,day}),.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});
+              std.debug.print("GOD_DAY arm={} day={} tough={d} tender={d} temp={d} depth_m={d} rabbits={} births={} deaths={}\n",.{arm,day,state.planet.vegetation[target],state.planet.vegetation[26790],state.planet.temperature[target],state.planet.waterMass[target]*state.planet.getKmPerWaterMass()*1000,state.planet.lifeforms.items.len,state.planet.rabbitBirths,state.planet.rabbitDeaths});
+            }
+            const endpoint_bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const endpoint=try std.json.parseFromSlice(saves.schema.Save,a,endpoint_bytes,.{.allocate=.alloc_always});
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            const continuation=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try saves.apply(state,initial.value);try saves.apply(state,endpoint.value);
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            std.debug.assert(std.mem.eql(u8,continuation,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("GOD_CONTINUATION arm={} exact=true\n",.{arm});
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("GOD_COMPLETE original_restored=true\n",.{});
+        }

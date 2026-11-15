@@ -1,0 +1,10 @@
+{
+  "fix_commit": "0389740",
+  "source_head": "8185d6019068e3bc2413959db6c9f97a886140d3",
+  "input": "site-tmp/natural60-day60.json",
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "binary_sha256": "947ea153baa1aecce7a8fb76ec9ac6a4a246f2cfc8de50571d6b95d3609572de",
+  "exit_code": 0,
+  "actual_rendered_pick": true,
+  "browser_test": false
+}

@@ -1,0 +1,18 @@
+          _=pm;_=pw;const target:usize=12395;const Watch=@import("patch_watch.zig");
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          std.debug.assert(state.planet.worldMode==.origin);
+          for([_]bool{false,true})|paused|{
+            try saves.apply(state,initial.value);state.selectedPoint=target;state.selectedTool=.None;state.watchLifeView=false;state.paused=paused;state.showEscapeMenu=false;state.showPlanetControl=false;state.showPointDetails=false;
+            const pos=state.planet.transformedPoints[target];state.cameraPos=pos.norm().scale(pos.length()+200);state.targetCameraPos=state.cameraPos;state.cameraDistance=state.cameraPos.length();state.targetCameraDistance=state.cameraDistance;state.cameraGroundPoint=target;
+            render(window);var hit:?@import("colony_targets.zig").Target=null;for(state.colonyTargets.items[0..state.colonyTargets.count])|t|{if(t.cell==target){hit=t;break;}}const t=hit orelse return error.NoRenderedTarget;
+            const before=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});qa_pointer(t.x,t.y,0);state.mousePressed(&game,.left);std.debug.assert(state.showPointDetails and state.selectedPoint==target and state.clickedPoint==target);
+            _=stella_life_snapshot();std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            const old=Watch.current;const normal=stella_patch_watch_start(target);const explicit=stella_patch_watch_start_checked(target,PerformanceDetails.world_serial,1);
+            std.debug.assert(normal == -2 and explicit == -2 and state.showPointDetails and state.paused==paused and std.meta.eql(old,Watch.current));std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            render(window);gl.finish();window.swapBuffers();qa_capture(try a.dupeZ(u8,try std.fmt.allocPrint(a,"OUTPUT/blocked-{}.ppm",.{paused})));
+            qa_pointer(341,239,1);render(window);qa_pointer(341,239,0);render(window);std.debug.assert(!state.showPointDetails);
+            const closed=stella_patch_watch_start(target);std.debug.assert(closed==(if(paused)@as(i32,-2) else 1));if(paused)std.debug.assert(stella_patch_watch_start_checked(target,PerformanceDetails.world_serial,1)==1);
+            std.debug.print("WATCH_DETAILS paused={} actual_rendered_pick=true normal={} explicit_resume={} same_identity_save_rng=true closed_control={}\n",.{paused,normal,explicit,closed});
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("WATCH_DETAILS_COMPLETE original_restored=true\n",.{});
+        }
