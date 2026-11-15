@@ -1,0 +1,35 @@
+{
+  "simulation/planet.zig": {
+    "unchanged": true,
+    "sha256": "0e21388e7d3871294af26d460f37b9cd3c1a4254ec82baea15e843af69bae376"
+  },
+  "simulation/microbes.zig": {
+    "unchanged": true,
+    "sha256": "0ae008bed40c88b7f32b73d1f6b51405459933e2b61853e06c9df2ccee30e9d9"
+  },
+  "simulation/shared_soil.zig": {
+    "unchanged": true,
+    "sha256": "cdbdb6ee99b33cafddff95b70f51a45213c39141a53e26281f8987b198c4a616"
+  },
+  "simulation/capillary_bucket.zig": {
+    "unchanged": true,
+    "sha256": "771ce002d6be5835a9e34cbfb7c590f7c46e6d0aa705a30c5654b15aa5393eff"
+  },
+  "simulation/final_demand.zig": {
+    "unchanged": true,
+    "sha256": "2d3870858e81aafb25521efb9091de40a495e737d2532cd683ac8ee56387f814"
+  },
+  "save_schema.zig": {
+    "unchanged": true,
+    "sha256": "e8dc1353964c2df5b330aea1d8bbb2eca94340598c3aceb5b368f787c27515c4"
+  },
+  "main.zig": {
+    "sha256": "945880db74345f2ed6573a7afcad8f5bdc7359f611e2c30bdaca27e44299e7f8"
+  },
+  "rooted_founder.zig": {
+    "sha256": "5e6667c77e406d105a7e3df7413a523412b1206581cde2995e5780dd7528a903"
+  },
+  "save_game.zig": {
+    "sha256": "5959d2bd6ae7752e93161262bc6cc0e7b448537b838c3e5c46d9ea0fee8e23ae"
+  }
+}

@@ -1,0 +1,51 @@
+--- old/simulation/planet.zig
++++ candidate/simulation/planet.zig
+@@ -573,6 +573,19 @@
+         return mulByVec3(rotationMatrix, scaledPoint);
+     }
+ 
++    /// Tool-local geometry update before any same-frame physics or navigation.
++    /// No world scan, allocation, job, or work for a clamped/no-change edit.
++    pub fn setTerrainElevation(self:*Planet,index:usize,value:f32,axialTilt:f32) void {
++        if(self.elevation[index]==value)return;
++        self.elevation[index]=value;
++        self.refreshTerrainPoint(index,axialTilt);
++    }
++    fn refreshTerrainPoint(self:*Planet,index:usize,axialTilt:f32) void {
++        @setFloatMode(.optimized);
++        const rotationMatrix=za.Mat4.fromRotation(axialTilt,Vec3.right());
++        self.transformedPoints[index]=self.terrainPoint(self.vertices[index],index,rotationMatrix);
++    }
++
+     pub fn refreshTransformedPoints(self: *Planet, axialTilt: f32) void {
+         @setFloatMode(.optimized);
+         const rotationMatrix = za.Mat4.fromRotation(axialTilt, Vec3.right());
+--- old/states/play.zig
++++ candidate/states/play.zig
+@@ -981,22 +981,22 @@
+ 
+         if (tool == .RaiseTerrain) {
+             if (planet.elevation[self.selectedPoint] < planet.radius + 20) {
+-                planet.elevation[self.selectedPoint] = @min(planet.radius + 20, planet.elevation[self.selectedPoint] + edit_rates.terrain(tap, elapsed));
++                planet.setTerrainElevation(self.selectedPoint, @min(planet.radius + 20, planet.elevation[self.selectedPoint] + edit_rates.terrain(tap, elapsed)), self.axialTilt);
+             }
+             for (planet.getNeighbours(self.selectedPoint)) |idx| {
+                 if (planet.elevation[idx] < planet.radius + 20) {
+-                    planet.elevation[idx] = @min(planet.radius + 20, planet.elevation[idx] + edit_rates.terrain(tap, elapsed) * 0.5);
++                    planet.setTerrainElevation(idx, @min(planet.radius + 20, planet.elevation[idx] + edit_rates.terrain(tap, elapsed) * 0.5), self.axialTilt);
+                 }
+             }
+         }
+ 
+         if (tool == .LowerTerrain) {
+             if (planet.elevation[self.selectedPoint] > planet.radius - 20) {
+-                planet.elevation[self.selectedPoint] = @max(planet.radius - 20, planet.elevation[self.selectedPoint] - edit_rates.terrain(tap, elapsed));
++                planet.setTerrainElevation(self.selectedPoint, @max(planet.radius - 20, planet.elevation[self.selectedPoint] - edit_rates.terrain(tap, elapsed)), self.axialTilt);
+             }
+             for (planet.getNeighbours(self.selectedPoint)) |idx| {
+                 if (planet.elevation[idx] > planet.radius - 20) {
+-                    planet.elevation[idx] = @max(planet.radius - 20, planet.elevation[idx] - edit_rates.terrain(tap, elapsed) * 0.5);
++                    planet.setTerrainElevation(idx, @max(planet.radius - 20, planet.elevation[idx] - edit_rates.terrain(tap, elapsed) * 0.5), self.axialTilt);
+                 }
+             }
+         }

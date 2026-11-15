@@ -1,0 +1,53 @@
+
+const RootedFounder=@import("rooted_founder.zig");
+var rooted_plan:?struct{world:u32,point:u32,token:u32,snapshot:RootedFounder.Snapshot}=null;
+var rooted_nonce:u32=0;
+var rooted_receipt_buffer:[2048]u8=undefined;
+fn rootedReceiptJson(receipt:@import("rooted_founder.zig").Receipt,world:u32,point:u32,token:u32)[*:0]const u8{
+ var stream=std.io.fixedBufferStream(rooted_receipt_buffer[0..rooted_receipt_buffer.len-1]);var id:[20]u8=undefined;
+ const founder_id=if(receipt.lineage!=0) std.fmt.bufPrint(&id,"{d}",.{receipt.lineage}) catch "" else "";
+ std.json.stringify(.{.world_serial=world,.cell=point,.token=token,.status=receipt.status,.founder_id=founder_id,.carbon_kg_m2=receipt.carbon_kg_m2,.nitrogen_kg_m2=receipt.nitrogen_kg_m2,.carbon_source_kg=receipt.carbon_source_kg,.carbon_rounding_kg=receipt.carbon_rounding_kg,.support_kg_c_m2=receipt.support_kg_c_m2,.root_kg_c_m2=receipt.root_kg_c_m2,.root_fraction=receipt.root_fraction,.organization=receipt.organization,.soil_kg_m2=receipt.soil_kg_m2,.depth_m=receipt.depth_m},.{},stream.writer()) catch return "{}";
+ rooted_receipt_buffer[stream.pos]=0;return @ptrCast(&rooted_receipt_buffer);
+}
+pub fn rootedFounderForState(state:*PlayState,world:u32,point:u32,apply:bool)@import("rooted_founder.zig").Receipt{
+ const R=@import("rooted_founder.zig");
+ if(world!=PerformanceDetails.world_serial or point!=state.selectedPoint)return .{.status=.stale};
+ if(AdvanceDay.blocksInput() or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails)return .{.status=.busy};
+ if(state.planet.normalComputeJob)|job|if(!job.isCompleted())return .{.status=.busy};
+ if(!apply)return R.preview(&state.planet,point);
+ const receipt=R.apply(&state.planet,point);
+ if(receipt.status==.planted){
+  @import("plant_receipt.zig").invalidate();@import("patch_watch.zig").current.stop("Rooted founder planted");
+  state.colonyPeek.set(point,state.planet.microbeCells[point],state.gameTime);state.colonyPeek.focused=receipt.lineage;
+  for(state.planet.microbeCells[point].cohorts)|c|{if(c.lineage==receipt.lineage){state.colonyPeek.focused_form=@import("simulation/microbes.zig").producerForm(c);break;}}
+  state.mobileFeedback="Paid rooted founder planted; chosen traits, not proof of water uptake";state.mobileFeedbackSeconds=6;
+ }
+ return receipt;
+}
+
+pub fn rootedPreviewForState(state:*PlayState,world:u32,point:u32)[*:0]const u8{
+ rooted_plan=null;const receipt=rootedFounderForState(state,world,point,false);
+ if(receipt.status!=.eligible)return rootedReceiptJson(receipt,PerformanceDetails.world_serial,point,0);
+ if(rooted_nonce==std.math.maxInt(u32))return rootedReceiptJson(.{.status=.unrepresentable},PerformanceDetails.world_serial,point,0);
+ const snap=RootedFounder.snapshot(&state.planet,point) orelse return rootedReceiptJson(.{.status=.invalid},PerformanceDetails.world_serial,point,0);
+ rooted_nonce+=1;rooted_plan=.{.world=world,.point=point,.token=rooted_nonce,.snapshot=snap};return rootedReceiptJson(receipt,world,point,rooted_nonce);
+}
+pub fn rootedApplyForState(state:*PlayState,world:u32,point:u32,token:u32)[*:0]const u8{
+ const plan=rooted_plan orelse return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
+ if(token!=plan.token or world!=plan.world or point!=plan.point)return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
+ rooted_plan=null;
+ const snap=RootedFounder.snapshot(&state.planet,point) orelse return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
+ if(!std.meta.eql(snap,plan.snapshot))return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
+ return rootedReceiptJson(rootedFounderForState(state,world,point,true),PerformanceDetails.world_serial,point,token);
+}
+export fn stella_rooted_founder_preview(world:u32,point:u32)[*:0]const u8{
+ const state=webPlayState() orelse return rootedReceiptJson(.{.status=.disabled},PerformanceDetails.world_serial,point,0);
+ return rootedPreviewForState(state,world,point);
+}
+export fn stella_seed_rooted(world:u32,point:u32,token:u32)[*:0]const u8{
+ const state=webPlayState() orelse return rootedReceiptJson(.{.status=.disabled},PerformanceDetails.world_serial,point,token);
+ return rootedApplyForState(state,world,point,token);
+}
+export fn stella_rooted_founder_cancel(token:u32)i32{
+ if(rooted_plan)|plan|{if(plan.token==token){rooted_plan=null;return 1;}}return 0;
+}

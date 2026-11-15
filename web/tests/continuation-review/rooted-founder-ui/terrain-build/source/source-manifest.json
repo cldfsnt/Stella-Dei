@@ -1,0 +1,197 @@
+{
+  "archive_sha256": "771c27241d283b105906aa13e8823066e76cba31168156981cf8fc9015beeb78",
+  "archive_bytes": 16485771,
+  "parts": [
+    {
+      "file": "wetlands-rooted-source.tar.gz.part00",
+      "bytes": 7340032,
+      "sha256": "24a36026072cd7d77d9a493ecb558e581f957de8c93262b644bf03a0d5ccbe18"
+    },
+    {
+      "file": "wetlands-rooted-source.tar.gz.part01",
+      "bytes": 7340032,
+      "sha256": "23cd1d9881d863a49487fa9fda933a8768ae33b77fedbb8f519a2c48c1be1a51"
+    },
+    {
+      "file": "wetlands-rooted-source.tar.gz.part02",
+      "bytes": 1805707,
+      "sha256": "652fb61641134c97c0eec448e0bb8c98f76bfec33f4eb1ec82c792c0a7d9fa8e"
+    }
+  ],
+  "asset_recovery": {
+    "preloads": [
+      {
+        "file": "assets-0.bin",
+        "sha256": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+        "bytes": 16777216
+      },
+      {
+        "file": "assets-1.bin",
+        "sha256": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+        "bytes": 16777216
+      },
+      {
+        "file": "assets-2.bin",
+        "sha256": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+        "bytes": 16777216
+      },
+      {
+        "file": "assets-3.bin",
+        "sha256": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f",
+        "bytes": 14745726
+      }
+    ],
+    "assets": [
+      {
+        "path": "assets/CREDITS.txt",
+        "start": 0,
+        "end": 546,
+        "sha256": "dbf7aa54e4de80be83582e3be18b3c0c93fbfde2f34549b72b97cbeaa466c69d"
+      },
+      {
+        "path": "assets/aquatic-forms-atlas.png",
+        "start": 546,
+        "end": 170043,
+        "sha256": "3aaec4b988f0d12d5401d081eaa7899f04f76a18d07827723c0b764ee47b42d6"
+      },
+      {
+        "path": "assets/big-earth.png",
+        "start": 170043,
+        "end": 8539471,
+        "sha256": "6ed71659d6c4b40b21d3cb5c83643210c982fbf9aec6ce670bf2ca63316022d8"
+      },
+      {
+        "path": "assets/font/Inter.ttf",
+        "start": 8539471,
+        "end": 9344831,
+        "sha256": "9ee35efa458e90e993897c32c5101bd9e0b14d6d40716798aa8ce426216e72a9"
+      },
+      {
+        "path": "assets/intro.mp3",
+        "start": 9344831,
+        "end": 9576379,
+        "sha256": "bf4ca70f01d0ad3bb86e7e67b871cdc9745a99c5e4ce272e76126da7790ef714"
+      },
+      {
+        "path": "assets/logo.png",
+        "start": 9576379,
+        "end": 9610457,
+        "sha256": "29dcaa46938d3dcbd993128fb11f9e2e381abb7110bc40390bc47242c799e05b"
+      },
+      {
+        "path": "assets/music/music-end-credits.mp3",
+        "start": 9610457,
+        "end": 16209550,
+        "sha256": "3c1ecd278d5886dd30c651e7b8f646e5fb95e74d3808e8efd37fbec9746580a3"
+      },
+      {
+        "path": "assets/music/music-main-menu.mp3",
+        "start": 16209550,
+        "end": 18689394,
+        "sha256": "6afd3b76c2cabbd88a9bf7e0138417b50e3b9927676bd0eecb9d131385e29a92"
+      },
+      {
+        "path": "assets/music/music1.mp3",
+        "start": 18689394,
+        "end": 33230194,
+        "sha256": "97338dc7a2478eb5e4d1e06412bc61e27a5927cf67f6c2570b7177fe33cc613f"
+      },
+      {
+        "path": "assets/music/music2.mp3",
+        "start": 33230194,
+        "end": 37423720,
+        "sha256": "4ea1bc094f464afb41a9b71772835ce3bc91a709a001aa3db15b26671b86318f"
+      },
+      {
+        "path": "assets/music/music3.mp3",
+        "start": 37423720,
+        "end": 62745640,
+        "sha256": "c9e1f5168f8d23e1588ce3c2fcf7eb1de6964943aaf8598a5ed9e6914bcf7f0c"
+      },
+      {
+        "path": "assets/normal-map.png",
+        "start": 62745640,
+        "end": 63586737,
+        "sha256": "b1f623981c836ed566ebb5eb4abb566a6b49fa9585ab9934d85665a226b20c13"
+      },
+      {
+        "path": "assets/pixelguys.png",
+        "start": 63586737,
+        "end": 63598803,
+        "sha256": "b431bdb8397ffe8b0f1e5f20b4e0bc28340bd11a46206c3e551d6c0d2f67724f"
+      },
+      {
+        "path": "assets/rabbit/Tex_Rabbit.png",
+        "start": 63598803,
+        "end": 63598918,
+        "sha256": "43ab3622a46b45f15cdf442ce3ae1f2e1b48e4f50420285bfe071bbf9f5630a1"
+      },
+      {
+        "path": "assets/rabbit/rabbit.mtl",
+        "start": 63598918,
+        "end": 63599169,
+        "sha256": "94aef71a3af7430d4926092d8c962a4e7cecadbb11a48f792f99c5de257cd4f1"
+      },
+      {
+        "path": "assets/rabbit/rabbit.obj",
+        "start": 63599169,
+        "end": 63663561,
+        "sha256": "e140558470b42ed5e225af94a3429e81ce913d0e30ef6c3516749a2ae6de23dc"
+      },
+      {
+        "path": "assets/starsky-1024.png",
+        "start": 63663561,
+        "end": 64201418,
+        "sha256": "8c21ca15e01b47d18bf5afc33dacdbc830f4a8dccb62b672407c28fc75c89c1a"
+      },
+      {
+        "path": "assets/ui/drain-water.png",
+        "start": 64201418,
+        "end": 64206018,
+        "sha256": "18ebbe607e6d37996f508ec93a360d81d0e731f7b2586e68fb759dd44a0bfcaa"
+      },
+      {
+        "path": "assets/ui/emit-water.png",
+        "start": 64206018,
+        "end": 64210111,
+        "sha256": "e338de1180811f8b7cf3590a27c40e96af20bb5c34332c44d1c3f952db1383c3"
+      },
+      {
+        "path": "assets/ui/lower-terrain.png",
+        "start": 64210111,
+        "end": 64214629,
+        "sha256": "98f132acfeb4cedebadf954638920fb3065096da82dac9a6d31ea32b54d6f4ba"
+      },
+      {
+        "path": "assets/ui/no-tool.png",
+        "start": 64214629,
+        "end": 64220815,
+        "sha256": "2f959a59cf69769285ad8a389bc30602a3c22519b76428984ef0ecad9be12bf2"
+      },
+      {
+        "path": "assets/ui/place-vegetation.png",
+        "start": 64220815,
+        "end": 64226054,
+        "sha256": "bb2c04d285ed129b067390c1ac09269b323a20b01c416534c6dd495dba27ed84"
+      },
+      {
+        "path": "assets/ui/raise-terrain.png",
+        "start": 64226054,
+        "end": 64230795,
+        "sha256": "89f21bc4b0ec85df51202536e17752607ec588872da5a93eee61ff1c84661b31"
+      },
+      {
+        "path": "assets/water-normal-map-old.png",
+        "start": 64230795,
+        "end": 64236277,
+        "sha256": "5aaef113f0f34325d18aa998029deac33a039ef54b72f71a52d5f2359f84b11b"
+      },
+      {
+        "path": "assets/water-normal-map.png",
+        "start": 64236277,
+        "end": 65077374,
+        "sha256": "b1f623981c836ed566ebb5eb4abb566a6b49fa9585ab9934d85665a226b20c13"
+      }
+    ]
+  }
+}

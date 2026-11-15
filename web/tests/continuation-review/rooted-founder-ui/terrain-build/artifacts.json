@@ -1,0 +1,162 @@
+{
+  "files": [
+    {
+      "file": "LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "file": "advance-day.js",
+      "bytes": 4398,
+      "sha256": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8"
+    },
+    {
+      "file": "assets-0.bin",
+      "bytes": 16777216,
+      "sha256": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb"
+    },
+    {
+      "file": "assets-1.bin",
+      "bytes": 16777216,
+      "sha256": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6"
+    },
+    {
+      "file": "assets-2.bin",
+      "bytes": 16777216,
+      "sha256": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997"
+    },
+    {
+      "file": "assets-3.bin",
+      "bytes": 14745726,
+      "sha256": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f"
+    },
+    {
+      "file": "auto-seed.js",
+      "bytes": 4276,
+      "sha256": "153067a0b36fe5bca5902a42ff86fff53e65761a50fc68d44fba7c179dcb8448"
+    },
+    {
+      "file": "colony-transport.js",
+      "bytes": 8057,
+      "sha256": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f"
+    },
+    {
+      "file": "colony-watch-details.js",
+      "bytes": 1792,
+      "sha256": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0"
+    },
+    {
+      "file": "copy-report.js",
+      "bytes": 619,
+      "sha256": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c"
+    },
+    {
+      "file": "gameplay-harness.js",
+      "bytes": 8751,
+      "sha256": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce"
+    },
+    {
+      "file": "gameplay-measure.js",
+      "bytes": 2836,
+      "sha256": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9"
+    },
+    {
+      "file": "habitat-plan.js",
+      "bytes": 5808,
+      "sha256": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495"
+    },
+    {
+      "file": "index.html",
+      "bytes": 129499,
+      "sha256": "4385a1905d00e6f62c2a74e79aaa0b0a968cba2bdd2130f172f42296ac2643ae"
+    },
+    {
+      "file": "index.js",
+      "bytes": 195151,
+      "sha256": "4610d7c9276a741794e602a48af479ce328c77cdf1a960b45d89fbfd426c511c"
+    },
+    {
+      "file": "index.wasm",
+      "bytes": 1546708,
+      "sha256": "8ddab248bc58d286c3207e3246fa2d562768f5b8788418fbcea453d312e67ab9"
+    },
+    {
+      "file": "life-trend.js",
+      "bytes": 2447,
+      "sha256": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08"
+    },
+    {
+      "file": "offspring-search.js",
+      "bytes": 2202,
+      "sha256": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e"
+    },
+    {
+      "file": "patch-watch.js",
+      "bytes": 2372,
+      "sha256": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76"
+    },
+    {
+      "file": "renderer-info.js",
+      "bytes": 1977,
+      "sha256": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81"
+    },
+    {
+      "file": "rooted-founder.js",
+      "bytes": 4779,
+      "sha256": "64cf28caf36dddb86202339e5f17c203ea92c63920446df1aec3e04c0beb30a4"
+    },
+    {
+      "file": "sandbox-defense.js",
+      "bytes": 2097,
+      "sha256": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3"
+    },
+    {
+      "file": "source-manifest.json",
+      "bytes": 6303,
+      "sha256": "c7cf1bda4d4976a78b614dffe8a219c9cc70120de05aac9f53a7451d12e5cd62"
+    },
+    {
+      "file": "source.html",
+      "bytes": 1147,
+      "sha256": "cb6dd635a4575b4cda58d1693449ff697cabd3ed15f1861618cdfe141db9bcfc"
+    },
+    {
+      "file": "stella-storage.js",
+      "bytes": 5225,
+      "sha256": "33f675d132fcf457976e25f33de206a3573503f8fb40a6aae11f90ac05e2bfa8"
+    },
+    {
+      "file": "touch-controls.js",
+      "bytes": 4427,
+      "sha256": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f"
+    },
+    {
+      "file": "wetlands-preview.js",
+      "bytes": 4357,
+      "sha256": "cd5d9e07b3d52b195beb96e54563c1ca3258390a0f773fe68d7f918367771971"
+    },
+    {
+      "file": "wetlands-rooted-source.tar.gz.part00",
+      "bytes": 7340032,
+      "sha256": "24a36026072cd7d77d9a493ecb558e581f957de8c93262b644bf03a0d5ccbe18"
+    },
+    {
+      "file": "wetlands-rooted-source.tar.gz.part01",
+      "bytes": 7340032,
+      "sha256": "23cd1d9881d863a49487fa9fda933a8768ae33b77fedbb8f519a2c48c1be1a51"
+    },
+    {
+      "file": "wetlands-rooted-source.tar.gz.part02",
+      "bytes": 1805707,
+      "sha256": "652fb61641134c97c0eec448e0bb8c98f76bfec33f4eb1ec82c792c0a7d9fa8e"
+    },
+    {
+      "file": "world-ecology.js",
+      "bytes": 5502,
+      "sha256": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df"
+    }
+  ],
+  "count": 31,
+  "bytes": 83549024,
+  "raw_html_before_release_label": "4385a1905d00e6f62c2a74e79aaa0b0a968cba2bdd2130f172f42296ac2643ae"
+}

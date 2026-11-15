@@ -1,0 +1,28 @@
+EGL surface=0x2bbcc1f0 context=0x2bbcc800
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x426a75c579533649
+info: Sea Level: 4.699707 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+GEOMETRY_ACTION_PASS cell=6 tilt=0e0 lower=false
+TERRAIN_GATE tilt=0e0 cell=6 lower=false writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=6 tilt=0e0 lower=true
+TERRAIN_GATE tilt=0e0 cell=6 lower=true writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=0 tilt=0e0 lower=false
+TERRAIN_GATE tilt=0e0 cell=0 lower=false writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=0 tilt=0e0 lower=true
+TERRAIN_GATE tilt=0e0 cell=0 lower=true writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=6 tilt=2.34e1 lower=false
+TERRAIN_GATE tilt=2.34e1 cell=6 lower=false writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=6 tilt=2.34e1 lower=true
+TERRAIN_GATE tilt=2.34e1 cell=6 lower=true writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=0 tilt=2.34e1 lower=false
+TERRAIN_GATE tilt=2.34e1 cell=0 lower=false writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+GEOMETRY_ACTION_PASS cell=0 tilt=2.34e1 lower=true
+TERRAIN_GATE tilt=2.34e1 cell=0 lower=true writes=7 same_frame_ticks=1 save_rng_exact_except_camera=true
+TERRAIN_ALL_PASS no_render_needed=true no_noop_refresh=true

@@ -1,0 +1,5 @@
+{
+  "sha256": "b22fe1027b0964640ffe79540e690065b84ec9d4f30d1e18a9617edd4a9ab773",
+  "toolchain": "Zig0.13.0 ReleaseSafe native EGL software rendering",
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+}

@@ -1,0 +1,170 @@
+✔ actual shell: start, cancel, redraw wait, dismiss and repeat (5.020703ms)
+✔ missing native API never calls start or hides game (1.047167ms)
+✔ active input guards block globe and tools but permit accessible actions (1.130493ms)
+✔ context loss calls native environment and shows stopped, not advancing (1.21509ms)
+✔ genuine context loss stays frozen after restored event; explicit durable save then reload path (1.283283ms)
+✔ recovery save failure never claims durable save (1.30088ms)
+✔ context loss outside advancement still exposes reload recovery, never leaves a silently frozen game (0.914026ms)
+✔ browser timer APIs use global-call wrappers, never hook-object receivers (0.294273ms)
+✔ release/cancel events reach guarded native input handlers to clear held state (2.917665ms)
+✔ recovery hides generic final-redraw subtitle (1.070683ms)
+✔ only explicit start; duplicate click never restarts; native redraw required (1.948044ms)
+✔ cancel keeps completed count, blocks dismissal until redraw (0.307844ms)
+✔ malformed, unknown, regressed and wrong-token statuses fail closed (0.400273ms)
+✔ status exception never unlocks or silently retries (0.336617ms)
+✔ hidden/context cancellation waits native acknowledgement; repeated session works (0.422656ms)
+✔ validation rejects incomplete-success and unsafe progress (5.593246ms)
+✔ uncertain start cannot reuse prior completed job as new success (1.058285ms)
+✔ explicit dismissal waits for native neutral-input acknowledgement (0.418771ms)
+✔ rejected dismissal does not unlock; wrong world cannot establish a job (0.452462ms)
+✔ arrival effects control uses authoritative result and is independent of seed hints (7.899329ms)
+✔ native hide discards only visual receipts and export remains guarded (2.043133ms)
+✔ all snapshot points explicitly reviewed, one apply only, no twelve cap (8.287685ms)
+✔ cancel and unavailable invalidate queued planning without applying (0.728047ms)
+✔ changed world or counts refuse before apply (0.508335ms)
+✔ unknown execution receipt never claims unchanged or success (0.648207ms)
+✔ invalid native counts and world refuse planning (0.410258ms)
+✔ malformed newly created plan is cancelled using its verified world/token (2.519956ms)
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ ../site-tmp/rooted-founder/web/tests/colony-labels.test.cjs (189.864491ms)
+✔ explicit review and one-use whole colony execution, exact string identity (5.757983ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.794277ms)
+✔ ineligible source or full target cannot prepare (0.402065ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.825023ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (1.064123ms)
+✔ unknown execution result is not reported as safe failure or retried (0.450038ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (2.025842ms)
+✔ post-execution malformed receipt never claims successful move (0.622548ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (1.23469ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (0.901508ms)
+✔ changing source or destination consumes pending ticket without refreshing options (0.406121ms)
+✔ actual pentagon five destinations accepted while raw self padding remains rejected (0.296717ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ ../site-tmp/rooted-founder/web/tests/colony-watch-details.test.cjs (221.115126ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ ../site-tmp/rooted-founder/web/tests/colony-watch-ui.test.cjs (229.614829ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ ../site-tmp/rooted-founder/web/tests/compact-life.test.cjs (140.000778ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.606119ms)
+✔ restricted or missing clipboard stays manually copyable (0.282135ms)
+✔ missing or oversized report never writes or displays stale data (0.177837ms)
+✔ Sandbox finite grazing guidance and bite counter do not promise recovery (5.53698ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ ../site-tmp/rooted-founder/web/tests/gameplay-measure.test.cjs (116.32086ms)
+✔ preview only, explicit one-use application and exact manual receipt (1.398967ms)
+✔ cancel and repeated preparation never apply (0.329056ms)
+✔ stale world selection token pause availability and pending refuse (0.302225ms)
+✔ malformed preview fails closed with real bounded footprint (0.324159ms)
+✔ failed response, thrown response and malformed success never imply application status falsely (3.041111ms)
+✔ actual refusal is one-use, no silent retry (0.986526ms)
+✔ shell routes both player entry points through preview and cancels destructive lifecycle (0.941308ms)
+✔ receipt changed risk counts, depth, token or exact footprint is unknown (1.933813ms)
+✔ receipt does not survive world or selection change (0.244849ms)
+✔ sunlit is explicit kind 2 with exact 5m shelf; deep remains kind 1 (1.242391ms)
+✔ sunlit receipt cannot silently become deep, and stale world refuses (0.208795ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ ../site-tmp/rooted-founder/web/tests/harness-mode.test.cjs (232.472953ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ ../site-tmp/rooted-founder/web/tests/life-trend.test.cjs (771.113028ms)
+✔ five coherent groups preserve all action IDs exactly once (2.914891ms)
+✔ group switching is UI-only, community direct access starts bounded sampling (3.180181ms)
+✔ moved direct planet actions dismiss Tools only after success (0.732914ms)
+✔ actual Find and Seed handlers close/focus on success but retain refusal (3.765181ms)
+✔ entire scan continues beyond one512 chunk with exact chosen ID and explicit result (1.955015ms)
+✔ cancel, closed UI, new snapshot and changed source prevent queued navigation (0.404249ms)
+✔ unrelated or dead result never claims offspring; no result is scoped to scan (0.638662ms)
+✔ only explicit valid living parent choices, bounded4 and no unsafe integer coercion (0.269026ms)
+✔ post-navigation snapshot from another world never claims success (0.282786ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (1.937839ms)
+✔ empty interval and no ticks are explicit (0.283407ms)
+✔ pause menu hidden guard cancels without unpause (0.24548ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.280642ms)
+✔ hard deadline and invalid result terminate (0.198559ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.320062ms)
+✔ invalid or missing pulse fields stop safely (0.313983ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.150436ms)
+✔ last step is bounded native inspector with explicit units and combined other change (1.334871ms)
+✔ existing snapshot receipt is read-only and changes no export contract (0.338149ms)
+✔ direct water and god tool attempts invalidate prior interval (0.27887ms)
+✔ receipt display uses signed bounded fixed formatting and active tabs (0.793204ms)
+✔ grazing is presented as signed removal, not added cover (0.166601ms)
+✔ observation requires explicit request and sync never rearms (0.494475ms)
+✔ rabbit badge scaling keeps every visible animal and existing two fills, no picking change (1.575784ms)
+✔ web build defaults to explicit false with diagnostic opt in (3.457238ms)
+✔ renderer uses policy and retains independent shader validation (1.253958ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ ../site-tmp/rooted-founder/web/tests/renderer-info.test.cjs (92.944075ms)
+✔ exact large ID success and actual subset resource receipt (8.221204ms)
+✔ cancel, busy, stale selection never apply (0.622708ms)
+✔ duplicate click during confirmation cannot apply twice (0.501947ms)
+✔ all known refusal statuses never inspect (9.530546ms)
+✔ malformed and mismatched receipts fail closed (1.048489ms)
+✔ success ID must exist in actual current snapshot (0.326863ms)
+✔ partial budget is valid; non-law3 and invalid cells refused (0.405761ms)
+✔ viewing is inert; explicit enable then choice and cancel never plant (10.359985ms)
+✔ stale selection/world and Origin refuse before command (0.55084ms)
+✔ malformed or mismatched postcommand is unknown not false failed promise (0.516989ms)
+✔ refusal remains visible and no silent focus or retry (0.3785ms)
+✔ isolated shell hides whole Origin auto-seed block across mode flips (11.654295ms)
+✔ tool selection preserves valid phenotype and defaults only Plant; shared native routes (0.406212ms)
+✔ retained seed choice does not promise a planting tap after another tool (0.272821ms)
+✔ Sandbox find controls call distinct kinds without planting or time advancement (6.564618ms)
+✔ Sparse and submerged are not falsely reported as no life (3.442175ms)
+✔ Empty/refused/missing export remain truthful and do not mutate (7.99894ms)
+PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately
+✔ ../site-tmp/rooted-founder/web/tests/save-size-safety.test.cjs (86.997959ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ ../site-tmp/rooted-founder/web/tests/scene-resolution.test.cjs (73.530242ms)
+evalmachine.<anonymous>:12
+const rootedFounder=StellaRootedFounder.create({
+                    ^
+
+ReferenceError: StellaRootedFounder is not defined
+    at evalmachine.<anonymous>:12:21
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at Object.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/rooted-founder/web/tests/shell.test.cjs:33:182)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+
+Node.js v24.22.1
+✖ ../site-tmp/rooted-founder/web/tests/shell.test.cjs (106.293524ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ ../site-tmp/rooted-founder/web/tests/storage-upgrade.test.cjs (119.948554ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ ../site-tmp/rooted-founder/web/tests/storage.test.cjs (119.044222ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ ../site-tmp/rooted-founder/web/tests/touch-controls.test.cjs (123.057246ms)
+✔ actual shell form buttons bind current sample and cancel safely (4.783716ms)
+✔ Watch prepares a private baseline before dismissing only native Inspect (1.176392ms)
+✔ ordinary Watch never resumes; checked Watch requires explicit authorization (0.185469ms)
+✔ generic HTML close and cancel do not trigger native watch transitions (0.313202ms)
+✔ community copy distinguishes sampled forms and unavailable events (2.282087ms)
+✔ bounded census cancels queued work and refuses switched world (0.467605ms)
+✔ Sandbox occupied defense traits use actual range and patch units, not taxonomy (0.560034ms)
+✔ positive tiny toughness does not display as zero (0.300152ms)
+✔ all six stable form identities survive biomass sorting, zero remains honest (1.418116ms)
+✔ visit uses sampled world and enum, never zero or stale/cancelled rows; no retries (3.007871ms)
+✔ current-state refusal never fabricates a match or retries (1.380069ms)
+✔ actual shell uses two-number public contract and accessible six-row controls (1.969297ms)
+ℹ tests 123
+ℹ suites 0
+ℹ pass 122
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1038.448738
+
+✖ failing tests:
+
+test at ../site-tmp/rooted-founder/web/tests/shell.test.cjs:1:1
+✖ ../site-tmp/rooted-founder/web/tests/shell.test.cjs (106.293524ms)
+  'test failed'

@@ -1,0 +1,1 @@
+Pure helper freeze build passed (pure-freeze.log). First whitespace syntax failure and transport-disconnected attempt retained. Public main exports and generic actual-Planet helper instantiation await independent native build/flow gate; no claim of full engine acceptance yet. No simulation/benchmark run here.
