@@ -1,0 +1,26 @@
+{
+  "deployment": {
+    "id": "appgdep_6afa3240b6408191b95b24114e8f99c5",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_3a196505a3f0819192b6ed98d1d9734f",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T22:29:45.928972+00:00"
+  },
+  "site_source": "ddc9ce8a84ba3a4cac6e0314a9a9cf46f5325c99",
+  "archive_sha256": "5b8cf3bfcac37320b7a6aa4f525be3139c3aeed62b0f221d705f73f14b8ea892",
+  "source_commit": "298aeb03290990346c208fbc99095d238622dee8",
+  "local_source": "099bd74f87d70a0b84efd11de9d00bdb8b6c0f2a",
+  "source_tree": "12481af670f6d6aa58c2ce16b564b23121708641",
+  "classic_unchanged": true,
+  "wetlands_unchanged": true,
+  "verification": "127 JS tests; actual native first-start, all 205 paid batch direct reference, transaction guards, isolated save/reload; actual Node Module exports/initial guards/assets; 94 manifest hashes and complete source recovery. Native portrait render proxy only; no browser/device gameplay proof.",
+  "limitations": "Opt-in runtime avoids changing classic executable; extra active tabs still consume memory. Wind inherited routing redirects existing paid reproduction, not extra growth or guaranteed establishment. No root+wind composition, flight animation, seedbank or full succession claim."
+}
