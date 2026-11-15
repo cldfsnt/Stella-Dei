@@ -1,0 +1,33 @@
+{
+  "head": "1347345f637ff25ed34fb3546e58ed19b2409fd4",
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "source": {
+    "states/play.zig": {
+      "production": "0baf5f97f08ba9c685375ee1eef8f00ee6799eab5fa87cf94478231d02379bef",
+      "qa": "e73b5fef9468a20b30c8b64e7b86ff45c6b345caf00ab3df7fde6ddd28187493"
+    },
+    "simulation/planet.zig": {
+      "production": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+      "qa": "2b0d3212f25f993f8d4ff3038f5e25e0222e8e69ed1af8526db3a36dd291abcf"
+    },
+    "simulation/microbes.zig": {
+      "production": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "qa": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986"
+    },
+    "main.zig": {
+      "production": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+      "qa": "7fda42aa48e019cb38bf7bd7689007c8cba842b31ef516becfa11ec0799979a0"
+    },
+    "save_game.zig": {
+      "production": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+      "qa": "3fb0e45b9b76ff9bce3a5783227ca2c5f71a78239d281c2d191511bf4dd18da9"
+    }
+  },
+  "capture": {
+    "raw_ppm_sha256": "0d4a3f69bdb4939c4fa44c7dac9400ca81c526c5da747051a4e063325daa04d0",
+    "png_sha256": "fc51a867dcc8d695ba12971cb6fdba9a2e371ac1d5d8071a7c8ac9b3424a985d",
+    "pixel_equality": true
+  },
+  "binary_sha256": "70bf87dc06bd267095062321ab0e6f4f079ba1d65314807f98288396112cb158",
+  "save_adapter_only_test_path_changed": true
+}
