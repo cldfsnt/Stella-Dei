@@ -1,0 +1,32 @@
+[
+  {
+    "file": "globe-mixed-mode3.png",
+    "raw_ppm_sha256": "0a3881f978cc7fdbb9ca899f3a6c96964bba13e8ca9fba0f22d1dd0649e5dad1",
+    "png_sha256": "ec494467d1ba1fe88c617edd3c7c6f2fbee2918232dd351c96b40892838ccdcc",
+    "pixel_encoding_only": true
+  },
+  {
+    "file": "close-320-mixed-mode3.png",
+    "raw_ppm_sha256": "a282811c32a1be6a8941e463655eac3d9f7f5bd13fe37a03ee4879d220513521",
+    "png_sha256": "5502460d3216c8b8e8dc03cae1625e10f914580036f710b6645b95f49a5d34c4",
+    "pixel_encoding_only": true
+  },
+  {
+    "file": "globe-mixed-mode1.png",
+    "raw_ppm_sha256": "0a3881f978cc7fdbb9ca899f3a6c96964bba13e8ca9fba0f22d1dd0649e5dad1",
+    "png_sha256": "ec494467d1ba1fe88c617edd3c7c6f2fbee2918232dd351c96b40892838ccdcc",
+    "pixel_encoding_only": true
+  },
+  {
+    "file": "close-dominant-mode3.png",
+    "raw_ppm_sha256": "4346e6c592e785d3b5f620591ee6db6ede2889bc33430d24e8c188c329e76bfe",
+    "png_sha256": "4f1f3166b896a11441cf5a55965dfc0fd494f0bcbf9308fc310c0a55aa455d12",
+    "pixel_encoding_only": true
+  },
+  {
+    "file": "globe-320-dominant-mode3.png",
+    "raw_ppm_sha256": "f92bdd466ef9df3ef813225c6fc32ac14f6b2ca5a7fc661d4649b4a7e723cace",
+    "png_sha256": "61f7fed9fbc487421398ff4a28fa1641e65caa6f6817257654ad35df8e39d38f",
+    "pixel_encoding_only": true
+  }
+]

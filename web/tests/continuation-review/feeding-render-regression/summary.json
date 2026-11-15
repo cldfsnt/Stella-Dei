@@ -1,0 +1,202 @@
+[
+  {
+    "view": "close",
+    "kind": "mixed",
+    "baseline_median_ms": 11.103002658333333,
+    "candidate_median_ms": 13.833071491666667,
+    "median_change_percent": 24.588563268372155,
+    "paired_change_percent": [
+      16.92059841358875,
+      36.11177599731461,
+      8.11208200290432
+    ],
+    "rows": [
+      {
+        "arm": 0,
+        "candidate": false,
+        "ms_per_frame": 11.103002658333333,
+        "glyphs": 32
+      },
+      {
+        "arm": 1,
+        "candidate": true,
+        "ms_per_frame": 12.98169715,
+        "glyphs": 29
+      },
+      {
+        "arm": 2,
+        "candidate": true,
+        "ms_per_frame": 14.897000083333333,
+        "glyphs": 29
+      },
+      {
+        "arm": 3,
+        "candidate": false,
+        "ms_per_frame": 10.944681291666667,
+        "glyphs": 32
+      },
+      {
+        "arm": 4,
+        "candidate": false,
+        "ms_per_frame": 12.7951208,
+        "glyphs": 32
+      },
+      {
+        "arm": 5,
+        "candidate": true,
+        "ms_per_frame": 13.833071491666667,
+        "glyphs": 29
+      }
+    ]
+  },
+  {
+    "view": "close",
+    "kind": "dominant",
+    "baseline_median_ms": 10.646347258333334,
+    "candidate_median_ms": 11.586467541666666,
+    "median_change_percent": 8.830449172108889,
+    "paired_change_percent": [
+      9.407034345668407,
+      -0.01316520744254479,
+      15.75439014560105
+    ],
+    "rows": [
+      {
+        "arm": 0,
+        "candidate": false,
+        "ms_per_frame": 10.552301308333334,
+        "glyphs": 31
+      },
+      {
+        "arm": 1,
+        "candidate": true,
+        "ms_per_frame": 11.544959916666667,
+        "glyphs": 27
+      },
+      {
+        "arm": 2,
+        "candidate": true,
+        "ms_per_frame": 11.586467541666666,
+        "glyphs": 27
+      },
+      {
+        "arm": 3,
+        "candidate": false,
+        "ms_per_frame": 11.587993125,
+        "glyphs": 31
+      },
+      {
+        "arm": 4,
+        "candidate": false,
+        "ms_per_frame": 10.646347258333334,
+        "glyphs": 31
+      },
+      {
+        "arm": 5,
+        "candidate": true,
+        "ms_per_frame": 12.323614341666667,
+        "glyphs": 27
+      }
+    ]
+  },
+  {
+    "view": "globe",
+    "kind": "mixed",
+    "baseline_median_ms": 13.443384816666667,
+    "candidate_median_ms": 13.830539241666667,
+    "median_change_percent": 2.8798879916017706,
+    "paired_change_percent": [
+      8.53635328082758,
+      -0.496155806672105,
+      2.8798879916017706
+    ],
+    "rows": [
+      {
+        "arm": 0,
+        "candidate": false,
+        "ms_per_frame": 14.603387816666666,
+        "glyphs": 5
+      },
+      {
+        "arm": 1,
+        "candidate": true,
+        "ms_per_frame": 15.849984591666667,
+        "glyphs": 1
+      },
+      {
+        "arm": 2,
+        "candidate": true,
+        "ms_per_frame": 12.936635216666666,
+        "glyphs": 1
+      },
+      {
+        "arm": 3,
+        "candidate": false,
+        "ms_per_frame": 13.001141133333334,
+        "glyphs": 5
+      },
+      {
+        "arm": 4,
+        "candidate": false,
+        "ms_per_frame": 13.443384816666667,
+        "glyphs": 5
+      },
+      {
+        "arm": 5,
+        "candidate": true,
+        "ms_per_frame": 13.830539241666667,
+        "glyphs": 1
+      }
+    ]
+  },
+  {
+    "view": "globe",
+    "kind": "dominant",
+    "baseline_median_ms": 14.085222991666667,
+    "candidate_median_ms": 12.663116625,
+    "median_change_percent": -10.09644197687205,
+    "paired_change_percent": [
+      -13.088216175772105,
+      -7.4699519586863605,
+      -5.661298254242109
+    ],
+    "rows": [
+      {
+        "arm": 0,
+        "candidate": false,
+        "ms_per_frame": 14.396332991666666,
+        "glyphs": 5
+      },
+      {
+        "arm": 1,
+        "candidate": true,
+        "ms_per_frame": 12.512109808333333,
+        "glyphs": 3
+      },
+      {
+        "arm": 2,
+        "candidate": true,
+        "ms_per_frame": 12.663116625,
+        "glyphs": 3
+      },
+      {
+        "arm": 3,
+        "candidate": false,
+        "ms_per_frame": 13.685410191666668,
+        "glyphs": 5
+      },
+      {
+        "arm": 4,
+        "candidate": false,
+        "ms_per_frame": 14.085222991666667,
+        "glyphs": 5
+      },
+      {
+        "arm": 5,
+        "candidate": true,
+        "ms_per_frame": 13.287816508333334,
+        "glyphs": 3
+      }
+    ]
+  }
+]

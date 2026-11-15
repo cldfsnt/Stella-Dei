@@ -1,0 +1,7 @@
+# Convex history-band follow-up
+
+The prior four-mode test attributed close-view cost to marker work, not selected-priority correctness. The concave polygon only modestly helped. Test a single outlined convex six-vertex amber band; keeps mixed ring and selected traversal/scale/picker exactly. Compare modes1(releasedv58) and3(convex) in three alternating pairs per actual mixed/dominant patch/view, same20warmup120timed paused frames.
+
+Unlike earlier native-default diagnostic runs, explicitly match shipped web NanoVG per-draw debug=false in BOTH arms. All shader/setup checks remain. This avoids diagnosing web impact solely from native per-draw GL polling. Still native software EGL, not actual browser/mobile. Need all saved-state/body picking gates plus actual close/globe visual inspection. No production change until useful repeatable reduction, no visual/target regression. Six vertices are a static history symbol, not animal anatomy/current feeding.
+
+After initial three pairs, close scenes improve consistently, globe medians are noisier/worse. The globe mixed scene has only the unchanged mixed ring and byte-identical images between arms, demonstrating background timing variability. Coordinator authorized exactly TWO additional globe pairs, order3,1,1,3, for FIVE total per scene. Preserve every outcome and do not rerun until favorable. QA-only optional fixed arm list; all renderer/engine files identical to first binary. No additional close timing authorized/needed;320px runs were explicitly correctness only, not part of clean performance results.

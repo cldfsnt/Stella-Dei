@@ -1,0 +1,5267 @@
+{
+  "source_note": "Fixed observed world pools; prescribed root fractions/dry demand are geometry/precision probes, not new organisms or simulated selection. Soil .25 in root-flow probe is hypothetical diagnostic only. area is native meanarea from frozen harness.",
+  "area_m2": 7669529600.0,
+  "worlds": [
+    {
+      "path": "natural60-day30.json",
+      "sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021716.5861124005,
+            "max": 21673577.477294046
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.776549976365468e-10,
+            "max": 3.3243370466155488e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0007740058530850013,
+            "median": 148.65381814269776,
+            "max": 355.3740132474194
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 3.2029799786376114e-20,
+            "median": 9.940449969064082e-15,
+            "max": 4.9656950199292934e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 18,
+        "supported": 6,
+        "empty_slots": 163830
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 1.3142815441824497e-06,
+            "median": 3.861049969297407e-06,
+            "max": 1.2344008622070154e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 1.684788367128931e-06,
+            "median": 4.5509144062331575e-06,
+            "max": 7.723922074850027e-06
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 2.302469991764923e-09,
+            "median": 1.0103088357310899e-08,
+            "max": 3.37392042643763e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 2.6285630883648993e-06,
+            "median": 7.722099938594814e-06,
+            "max": 2.4688017244140308e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 3.369576734257862e-06,
+            "median": 9.101828812466315e-06,
+            "max": 1.5447844149700055e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 1.1512349958824615e-09,
+            "median": 5.0515441786554495e-09,
+            "max": 1.686960213218815e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 5.257126176729799e-06,
+            "median": 1.544419987718963e-05,
+            "max": 4.9376034488280615e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 6.739153468515724e-06,
+            "median": 1.820365762493263e-05,
+            "max": 3.089568829940011e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 5.756174979412307e-10,
+            "median": 2.5257720893277247e-09,
+            "max": 8.434801066094075e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 1.3142815441824497e-06,
+            "median": 3.861049969297407e-06,
+            "max": 1.2344008622070154e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 1.684788367128931e-06,
+            "median": 4.5509144062331575e-06,
+            "max": 7.723922074850027e-06
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 2.302469991764923e-09,
+            "median": 1.0103088357310899e-08,
+            "max": 3.37392042643763e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 2.6285630883648993e-06,
+            "median": 7.722099938594814e-06,
+            "max": 2.4688017244140308e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 3.369576734257862e-06,
+            "median": 9.101828812466315e-06,
+            "max": 1.5447844149700055e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 1.1512349958824615e-09,
+            "median": 5.0515441786554495e-09,
+            "max": 1.686960213218815e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 5.257126176729799e-06,
+            "median": 1.544419987718963e-05,
+            "max": 4.9376034488280615e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 6.739153468515724e-06,
+            "median": 1.820365762493263e-05,
+            "max": 3.089568829940011e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 5.756174979412307e-10,
+            "median": 2.5257720893277247e-09,
+            "max": 8.434801066094075e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 1.3142815441824497e-06,
+            "median": 3.861049969297407e-06,
+            "max": 1.2344008622070154e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 1.684788367128931e-06,
+            "median": 4.5509144062331575e-06,
+            "max": 7.723922074850027e-06
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 2.302469991764923e-09,
+            "median": 1.0103088357310899e-08,
+            "max": 3.37392042643763e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 2.6285630883648993e-06,
+            "median": 7.722099938594814e-06,
+            "max": 2.4688017244140308e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 3.369576734257862e-06,
+            "median": 9.101828812466315e-06,
+            "max": 1.5447844149700055e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 1.1512349958824615e-09,
+            "median": 5.0515441786554495e-09,
+            "max": 1.686960213218815e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 18,
+            "min": 5.257126176729799e-06,
+            "median": 1.544419987718963e-05,
+            "max": 4.9376034488280615e-05
+          },
+          "supported_dry_demand": {
+            "count": 6,
+            "min": 6.739153468515724e-06,
+            "median": 1.820365762493263e-05,
+            "max": 3.089568829940011e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 18,
+            "min": 5.756174979412307e-10,
+            "median": 2.5257720893277247e-09,
+            "max": 8.434801066094075e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "natural60-day60.json",
+      "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021720.236923005,
+            "max": 21672119.239229485
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.7622191150612987e-10,
+            "max": 3.21701412781617e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0006084935488146903,
+            "median": 144.2371006548596,
+            "max": 366.24565407057366
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.739945671935134e-15,
+            "max": 5.2332997142000945e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 64,
+        "supported": 52,
+        "empty_slots": 163784
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 9.45006201315361e-07,
+            "median": 5.840476612017179e-06,
+            "max": 0.00011125722618695969
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 9.45006201315361e-07,
+            "median": 5.883919366169721e-06,
+            "max": 0.00011125722618695969
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 2.5545944658590885e-10,
+            "median": 5.062818654616172e-09,
+            "max": 4.3676754234198015e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 1.890012402630722e-06,
+            "median": 1.1680953224034358e-05,
+            "max": 0.00022251445237391938
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 1.890012402630722e-06,
+            "median": 1.1767838732339441e-05,
+            "max": 0.00022251445237391938
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 1.2772972329295442e-10,
+            "median": 2.531409327308086e-09,
+            "max": 2.1838377117099007e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 3.780024805261444e-06,
+            "median": 2.3361906448068717e-05,
+            "max": 0.00044502890474783875
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 3.780024805261444e-06,
+            "median": 2.3535677464678883e-05,
+            "max": 0.00044502890474783875
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 6.386486164647721e-11,
+            "median": 1.265704663654043e-09,
+            "max": 1.0919188558549504e-08
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 9.45006201315361e-07,
+            "median": 5.840476612017179e-06,
+            "max": 0.00011125722618695969
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 9.45006201315361e-07,
+            "median": 5.883919366169721e-06,
+            "max": 0.00011125722618695969
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 2.5545944658590885e-10,
+            "median": 5.062818654616172e-09,
+            "max": 4.3676754234198015e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 1.890012402630722e-06,
+            "median": 1.1680953224034358e-05,
+            "max": 0.00022251445237391938
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 1.890012402630722e-06,
+            "median": 1.1767838732339441e-05,
+            "max": 0.00022251445237391938
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 1.2772972329295442e-10,
+            "median": 2.531409327308086e-09,
+            "max": 2.1838377117099007e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 3.780024805261444e-06,
+            "median": 2.3361906448068717e-05,
+            "max": 0.00044502890474783875
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 3.780024805261444e-06,
+            "median": 2.3535677464678883e-05,
+            "max": 0.00044502890474783875
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 6.386486164647721e-11,
+            "median": 1.265704663654043e-09,
+            "max": 1.0919188558549504e-08
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 9.45006201315361e-07,
+            "median": 5.840476612017179e-06,
+            "max": 0.00011125722618695969
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 9.45006201315361e-07,
+            "median": 5.883919366169721e-06,
+            "max": 0.00011125722618695969
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 2.5545944658590885e-10,
+            "median": 5.062818654616172e-09,
+            "max": 4.3676754234198015e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 1.890012402630722e-06,
+            "median": 1.1680953224034358e-05,
+            "max": 0.00022251445237391938
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 1.890012402630722e-06,
+            "median": 1.1767838732339441e-05,
+            "max": 0.00022251445237391938
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 1.2772972329295442e-10,
+            "median": 2.531409327308086e-09,
+            "max": 2.1838377117099007e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 64,
+            "min": 3.780024805261444e-06,
+            "median": 2.3361906448068717e-05,
+            "max": 0.00044502890474783875
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 3.780024805261444e-06,
+            "median": 2.3535677464678883e-05,
+            "max": 0.00044502890474783875
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 64,
+            "min": 6.386486164647721e-11,
+            "median": 1.265704663654043e-09,
+            "max": 1.0919188558549504e-08
+          }
+        }
+      }
+    },
+    {
+      "path": "grazing-coupled/arm-0-day90.json",
+      "sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021232.071390663,
+            "max": 21671136.649632335
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.758955036022388e-10,
+            "max": 3.2591922462923015e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.00048195827050680467,
+            "median": 140.81971808202553,
+            "max": 375.3296111537271
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 3.0357877966058e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 5.654595413442329e-20,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5.421010862427522e-20,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 6.824599059628507e-21,
+            "median": 9.482330616882538e-15,
+            "max": 5.397592755017655e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 41,
+        "supported": 37,
+        "empty_slots": 163807
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 1.0966053954083084e-06,
+            "median": 1.7079312431936463e-05,
+            "max": 9.630786858484574e-05
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 1.0966053954083084e-06,
+            "median": 1.1780860771371712e-05,
+            "max": 9.630786858484574e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 2.9511305616077386e-10,
+            "median": 3.1209289437710644e-09,
+            "max": 2.5917900412865933e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 2.193210790816617e-06,
+            "median": 3.4158624863872925e-05,
+            "max": 0.00019261573716969148
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 2.193210790816617e-06,
+            "median": 2.3561721542743424e-05,
+            "max": 0.00019261573716969148
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 1.4755652808038693e-10,
+            "median": 1.5604644718855322e-09,
+            "max": 1.2958950206432967e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 4.386421581633234e-06,
+            "median": 6.831724972774585e-05,
+            "max": 0.00038523147433938297
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 4.386421581633234e-06,
+            "median": 4.712344308548685e-05,
+            "max": 0.00038523147433938297
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 7.377826404019346e-11,
+            "median": 7.802322359427661e-10,
+            "max": 6.479475103216483e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 1.0966053954083084e-06,
+            "median": 1.7079312431936463e-05,
+            "max": 9.630786858484574e-05
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 1.0966053954083084e-06,
+            "median": 1.1780860771371712e-05,
+            "max": 9.630786858484574e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 2.9511305616077386e-10,
+            "median": 3.1209289437710644e-09,
+            "max": 2.5917900412865933e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 2.193210790816617e-06,
+            "median": 3.4158624863872925e-05,
+            "max": 0.00019261573716969148
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 2.193210790816617e-06,
+            "median": 2.3561721542743424e-05,
+            "max": 0.00019261573716969148
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 1.4755652808038693e-10,
+            "median": 1.5604644718855322e-09,
+            "max": 1.2958950206432967e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 4.386421581633234e-06,
+            "median": 6.831724972774585e-05,
+            "max": 0.00038523147433938297
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 4.386421581633234e-06,
+            "median": 4.712344308548685e-05,
+            "max": 0.00038523147433938297
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 7.377826404019346e-11,
+            "median": 7.802322359427661e-10,
+            "max": 6.479475103216483e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 1.0966053954083084e-06,
+            "median": 1.7079312431936463e-05,
+            "max": 9.630786858484574e-05
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 1.0966053954083084e-06,
+            "median": 1.1780860771371712e-05,
+            "max": 9.630786858484574e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 2.9511305616077386e-10,
+            "median": 3.1209289437710644e-09,
+            "max": 2.5917900412865933e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 2.193210790816617e-06,
+            "median": 3.4158624863872925e-05,
+            "max": 0.00019261573716969148
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 2.193210790816617e-06,
+            "median": 2.3561721542743424e-05,
+            "max": 0.00019261573716969148
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 1.4755652808038693e-10,
+            "median": 1.5604644718855322e-09,
+            "max": 1.2958950206432967e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 41,
+            "min": 4.386421581633234e-06,
+            "median": 6.831724972774585e-05,
+            "max": 0.00038523147433938297
+          },
+          "supported_dry_demand": {
+            "count": 37,
+            "min": 4.386421581633234e-06,
+            "median": 4.712344308548685e-05,
+            "max": 0.00038523147433938297
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 41,
+            "min": 7.377826404019346e-11,
+            "median": 7.802322359427661e-10,
+            "max": 6.479475103216483e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "retention-coupled/arm-0.json",
+      "sha256": "41a41638d82cdc0e203372632c566689822347a4800cf5f8464b14172d0f024f",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021231.549846291,
+            "max": 21671939.82796546
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.774218491337675e-10,
+            "max": 3.346358699864732e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0005624884919558548,
+            "median": 143.06984907950712,
+            "max": 370.75387420109837
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 2.0613488303979202e-20,
+            "median": 9.60086864350313e-15,
+            "max": 5.3110728028143896e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 56,
+        "supported": 49,
+        "empty_slots": 163792
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "retention-coupled/arm-1.json",
+      "sha256": "4382e60ca824e5727aadae48aa4d84b4be101a2733e370a55011eaed8bdfaa33",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021231.549846291,
+            "max": 21671939.82796546
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.774218491337675e-10,
+            "max": 3.346358699864732e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0005624884919558548,
+            "median": 143.06984907950712,
+            "max": 370.75387420109837
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 2.0613488303979202e-20,
+            "median": 9.60086864350313e-15,
+            "max": 5.3110728028143896e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 58,
+        "supported": 52,
+        "empty_slots": 163790
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 9.412664803676309e-07,
+            "median": 6.475448462879285e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 9.412664803676309e-07,
+            "median": 6.320595469636221e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 3.0957273969397254e-10,
+            "median": 4.472004137884609e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 1.8825329607352618e-06,
+            "median": 1.295089692575857e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2641190939272443e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 1.5478636984698627e-10,
+            "median": 2.2360020689423045e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 3.7650659214705235e-06,
+            "median": 2.590179385151714e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5282381878544885e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 7.739318492349314e-11,
+            "median": 1.1180010344711522e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 9.412664803676309e-07,
+            "median": 6.475448462879285e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 9.412664803676309e-07,
+            "median": 6.320595469636221e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 3.0957273969397254e-10,
+            "median": 4.472004137884609e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 1.8825329607352618e-06,
+            "median": 1.295089692575857e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2641190939272443e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 1.5478636984698627e-10,
+            "median": 2.2360020689423045e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 3.7650659214705235e-06,
+            "median": 2.590179385151714e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5282381878544885e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 7.739318492349314e-11,
+            "median": 1.1180010344711522e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 9.412664803676309e-07,
+            "median": 6.475448462879285e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 9.412664803676309e-07,
+            "median": 6.320595469636221e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 3.0957273969397254e-10,
+            "median": 4.472004137884609e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 1.8825329607352618e-06,
+            "median": 1.295089692575857e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2641190939272443e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 1.5478636984698627e-10,
+            "median": 2.2360020689423045e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 58,
+            "min": 3.7650659214705235e-06,
+            "median": 2.590179385151714e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 52,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5282381878544885e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 58,
+            "min": 7.739318492349314e-11,
+            "median": 1.1180010344711522e-09,
+            "max": 7.548794635527478e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "retention-coupled/arm-2.json",
+      "sha256": "af0d8bf810efbb339ee54a73766b4b6cfeadccc78fd91f8364a813086371e30c",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021231.549846291,
+            "max": 21671939.82796546
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.774218491337675e-10,
+            "max": 3.346358699864732e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0005624884919558548,
+            "median": 143.06984907950712,
+            "max": 370.75387420109837
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 2.0613488303979202e-20,
+            "median": 9.60086864350313e-15,
+            "max": 5.3110728028143896e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 56,
+        "supported": 49,
+        "empty_slots": 163792
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "retention-coupled/arm-3.json",
+      "sha256": "e09e29f126bd4fc3ac75da56cb8fa1672ed39b5f3cb724a6909f4b6007659efe",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021231.549846291,
+            "max": 21671939.82796546
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.774218491337675e-10,
+            "max": 3.346358699864732e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0005624884919558548,
+            "median": 143.06984907950712,
+            "max": 370.75387420109837
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 2.0613488303979202e-20,
+            "median": 9.60086864350313e-15,
+            "max": 5.3110728028143896e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 56,
+        "supported": 49,
+        "empty_slots": 163792
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.413420169342619e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.413420169342619e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.0192755575669607e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8826840338685239e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8826840338685239e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5096377787834803e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7653680677370477e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7653680677370477e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548188893917402e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.413420169342619e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.413420169342619e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.0192755575669607e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8826840338685239e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8826840338685239e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5096377787834803e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7653680677370477e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7653680677370477e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548188893917402e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.413420169342619e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.413420169342619e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.0192755575669607e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8826840338685239e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8826840338685239e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5096377787834803e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7653680677370477e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7653680677370477e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548188893917402e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "retention-coupled/arm-4.json",
+      "sha256": "83f54c8a60ccda1ce58dd547b79b33f78b9212ad23e59eb50af6c8e272406caf",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021231.549846291,
+            "max": 21671939.82796546
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.774218491337675e-10,
+            "max": 3.346358699864732e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0005624884919558548,
+            "median": 143.06984907950712,
+            "max": 370.75387420109837
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 2.0613488303979202e-20,
+            "median": 9.60086864350313e-15,
+            "max": 5.3110728028143896e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 56,
+        "supported": 49,
+        "empty_slots": 163792
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        }
+      }
+    },
+    {
+      "path": "retention-coupled/arm-5.json",
+      "sha256": "cd8fc049ed5ce08286468ca2d4949808649a4834fdc397caf84024d2233b02a6",
+      "pools": {
+        "surface": {
+          "density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 5021231.549846291,
+            "max": 21671939.82796546
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.827098319465143e-46,
+            "median": 0.5215443721607125,
+            "max": 2.08617748864285
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 9.71452094913856e-10,
+            "max": 3.885808379655424e-09
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 5e-324,
+            "median": 9.313225746154785e-10,
+            "max": 3.725290298461914e-09
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 0.0,
+            "median": 2.774218491337675e-10,
+            "max": 3.346358699864732e-09
+          }
+        },
+        "vapor": {
+          "density": {
+            "count": 40962,
+            "min": 0.0005624884919558548,
+            "median": 143.06984907950712,
+            "max": 370.75387420109837
+          },
+          "f32_native_ulp_as_density": {
+            "count": 40962,
+            "min": 6.0715755932116e-11,
+            "median": 1.5916271123068618e-05,
+            "max": 3.1832542246137236e-05
+          },
+          "f64_native_ulp_as_density": {
+            "count": 40962,
+            "min": 1.1309190826884658e-19,
+            "median": 2.964636520122852e-14,
+            "max": 5.929273040245704e-14
+          },
+          "f64_density_ulp": {
+            "count": 40962,
+            "min": 1.0842021724855044e-19,
+            "median": 2.842170943040401e-14,
+            "max": 5.684341886080802e-14
+          },
+          "conversion_error_abs": {
+            "count": 40962,
+            "min": 2.0613488303979202e-20,
+            "median": 9.60086864350313e-15,
+            "max": 5.3110728028143896e-14
+          }
+        }
+      },
+      "counts": {
+        "live": 56,
+        "supported": 49,
+        "empty_slots": 163792
+      },
+      "demand": {
+        "u=0:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.03125:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.03125:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.03125:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        },
+        "u=0.25:dt=360": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 9.412664803676309e-07,
+            "median": 6.8117658762882166e-06,
+            "max": 9.180947088073785e-05
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 9.412664803676309e-07,
+            "median": 6.381514831446111e-06,
+            "max": 9.180947088073785e-05
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 3.0957273969397254e-10,
+            "median": 4.389149198442759e-09,
+            "max": 3.019517854210991e-08
+          }
+        },
+        "u=0.25:dt=720": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 1.8825329607352618e-06,
+            "median": 1.3623531752576433e-05,
+            "max": 0.0001836189417614757
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 1.8825329607352618e-06,
+            "median": 1.2763029662892222e-05,
+            "max": 0.0001836189417614757
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 1.5478636984698627e-10,
+            "median": 2.1945745992213795e-09,
+            "max": 1.5097589271054956e-08
+          }
+        },
+        "u=0.25:dt=1440": {
+          "actual_demand": {
+            "count": 0,
+            "min": null,
+            "median": null,
+            "max": null
+          },
+          "hypothetical_dry_demand": {
+            "count": 56,
+            "min": 3.7650659214705235e-06,
+            "median": 2.7247063505152866e-05,
+            "max": 0.0003672378835229514
+          },
+          "supported_dry_demand": {
+            "count": 49,
+            "min": 3.7650659214705235e-06,
+            "median": 2.5526059325784444e-05,
+            "max": 0.0003672378835229514
+          },
+          "vapor_ulp_over_dry_demand": {
+            "count": 56,
+            "min": 7.739318492349314e-11,
+            "median": 1.0972872996106897e-09,
+            "max": 7.548794635527478e-09
+          }
+        }
+      }
+    }
+  ],
+  "root_probe_count": 4704,
+  "root_probe_errors": {
+    "signed_error": {
+      "count": 4704,
+      "min": 0.0,
+      "median": 9.46465128492946e-15,
+      "max": 2.842170943040401e-14
+    },
+    "relative_error": {
+      "count": 4704,
+      "min": 0.0,
+      "median": 1.3544979049684507e-08,
+      "max": 1.0030145274136273
+    }
+  },
+  "root_source_zero": 0,
+  "root_receiver_zero": 25,
+  "root_source_overrequest": 2012,
+  "actual_local_probes": [
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 3.800307121127934e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.54891658541933,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 4.440892098500626e-16,
+      "relative_error": 1.168561370688e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 3.800283861346633e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.5689165854183,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.9396931817445875e-15,
+      "relative_error": 1.562960399394969e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.58891658541725,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.6089165854162,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.62891658541517,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 6,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.64891658541413,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 7,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.6689165854131,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 1,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 2,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 3,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 4,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 5,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 6,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 7,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 1,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 2,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 3,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 4,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 5,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 6,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 7,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 4.636010546179299e-07,
+      "source": 0.2295432322438613,
+      "receiver": 221.54920668650985,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.942890293094024e-16,
+      "relative_error": 4.1908668536037495e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 1,
+      "request": 2.3228617755314814e-07,
+      "source": 0.22963075126499455,
+      "receiver": 221.54920250082205,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.576472865229334e-15,
+      "relative_error": 3.692201126890987e-08
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 1,
+      "request": 1.1626462332756042e-07,
+      "source": 0.22967449516938526,
+      "receiver": 221.54920042358432,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -6.6058269965196814e-15,
+      "relative_error": 5.681717110034946e-08
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 4.636010546179299e-07,
+      "source": 0.2295432322438613,
+      "receiver": 221.54920668650985,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.942890293094024e-16,
+      "relative_error": 4.1908668536037495e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 1,
+      "request": 2.3228617755314814e-07,
+      "source": 0.22963075126499455,
+      "receiver": 221.54920250082205,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.576472865229334e-15,
+      "relative_error": 3.692201126890987e-08
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 1,
+      "request": 1.1626462332756042e-07,
+      "source": 0.22967449516938526,
+      "receiver": 221.54920042358432,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -6.6058269965196814e-15,
+      "relative_error": 5.681717110034946e-08
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 0.00019623239835103352,
+      "source": 0.4995000000000118,
+      "receiver": 221.54891658541933,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.326716514427062e-14,
+      "relative_error": 6.760945315736006e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 0.00019623258461554845,
+      "source": 0.4995000000000118,
+      "receiver": 221.5689165854183,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.887379141862766e-15,
+      "relative_error": 9.618072072792849e-12
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.58891658541725,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.6089165854162,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.62891658541517,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 6,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.64891658541413,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 7,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.6689165854131,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 1,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 2,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 3,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 4,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 5,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 6,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 7,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 1,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 2,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 3,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 4,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 5,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 6,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 7,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 0.0001667314248978493,
+      "source": 0.21914611275267348,
+      "receiver": 221.55960380600104,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.4016565685892601e-14,
+      "relative_error": 8.406673003892382e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 0.00014356290041457173,
+      "source": 0.18981523548828805,
+      "receiver": 221.58893468326542,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.603429163007604e-15,
+      "relative_error": 6.689352984145234e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 8.494984840990032e-05,
+      "source": 0.16277539722552192,
+      "receiver": 221.6159745215282,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.769962616701378e-15,
+      "relative_error": 1.1500859388894161e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 3.0761230343771386e-05,
+      "source": 0.13943219665796946,
+      "receiver": 221.63931772209574,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.242606680004428e-15,
+      "relative_error": 3.0046284159358713e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 7.420571628774205e-06,
+      "source": 0.1184069305322508,
+      "receiver": 221.66034298822146,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.493206138382448e-15,
+      "relative_error": 1.1445487710743155e-09
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 1,
+      "request": 8.339588658925707e-05,
+      "source": 0.21922516412651583,
+      "receiver": 221.55960808796053,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2351231148954867e-14,
+      "relative_error": 1.481036014376509e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 2,
+      "request": 7.178525283364983e-05,
+      "source": 0.18989288691871586,
+      "receiver": 221.58894036516833,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.412337245047638e-15,
+      "relative_error": 7.539622737820279e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 3,
+      "request": 4.2423391095590114e-05,
+      "source": 0.16286935456897134,
+      "receiver": 221.61596389751807,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.201816424156732e-14,
+      "relative_error": 2.832909847892051e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 4,
+      "request": 1.537533735924339e-05,
+      "source": 0.13954123814149277,
+      "receiver": 221.63929201394555,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.0269562977782698e-14,
+      "relative_error": 6.679243998252053e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 5,
+      "request": 3.71732310982664e-06,
+      "source": 0.11852072501740729,
+      "receiver": 221.66031252706964,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.3378187446733136e-14,
+      "relative_error": 3.5988766785884903e-09
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 1,
+      "request": 4.170527235837812e-05,
+      "source": 0.21926488180768328,
+      "receiver": 221.55961003694603,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -7.854827899222983e-15,
+      "relative_error": 1.8834136441372587e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 2,
+      "request": 3.589317550560468e-05,
+      "source": 0.1899319777375666,
+      "receiver": 221.58894294101614,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2462253451417382e-14,
+      "relative_error": 3.472039817004047e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 3,
+      "request": 2.1198307820237554e-05,
+      "source": 0.16291676126020033,
+      "receiver": 221.6159581574935,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 2.7755575615628914e-17,
+      "relative_error": 1.3093297753291081e-12
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 4,
+      "request": 7.686189624773797e-06,
+      "source": 0.13959624816741606,
+      "receiver": 221.6392786705863,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -8.43769498715119e-15,
+      "relative_error": 1.0977734611120148e-09
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 5,
+      "request": 1.8603581231546608e-06,
+      "source": 0.11857812984940491,
+      "receiver": 221.6602967889043,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2032042029375134e-14,
+      "relative_error": 6.467594534417957e-09
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 0.0001667314248978493,
+      "source": 0.21914611275267348,
+      "receiver": 221.55960380600104,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.4016565685892601e-14,
+      "relative_error": 8.406673003892382e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 0.00014356290041457173,
+      "source": 0.18981523548828805,
+      "receiver": 221.58893468326542,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.603429163007604e-15,
+      "relative_error": 6.689352984145234e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 8.511644370341304e-05,
+      "source": 0.16284485503164192,
+      "receiver": 221.61598253768037,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.941291737419306e-15,
+      "relative_error": 4.630470407284258e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 3.0860355756616893e-05,
+      "source": 0.13949331046737812,
+      "receiver": 221.63933408224463,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -7.549516567451064e-15,
+      "relative_error": 2.446347873300956e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 7.4695982392528636e-06,
+      "source": 0.1185405100190222,
+      "receiver": 221.66036435665129,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -5.564992910933597e-15,
+      "relative_error": 7.450190402061341e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 1,
+      "request": 8.339588658925707e-05,
+      "source": 0.21922516412651583,
+      "receiver": 221.55960808796053,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2351231148954867e-14,
+      "relative_error": 1.481036014376509e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 2,
+      "request": 7.178525283364983e-05,
+      "source": 0.18989288691871586,
+      "receiver": 221.58894036516833,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.412337245047638e-15,
+      "relative_error": 7.539622737820279e-11
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 3,
+      "request": 4.2465036970807906e-05,
+      "source": 0.16290407071663815,
+      "receiver": 221.61596791834955,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 3.0327507060702786e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 4,
+      "request": 1.5400169839841082e-05,
+      "source": 0.13957178475776566,
+      "receiver": 221.63930020430843,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -3.524958103184872e-15,
+      "relative_error": 2.288908589868673e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 5,
+      "request": 3.729524132077822e-06,
+      "source": 0.11858751717675198,
+      "receiver": 221.6603232088686,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -6.328271240363392e-15,
+      "relative_error": 1.6968039396591157e-09
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 1,
+      "request": 4.170527235837812e-05,
+      "source": 0.21926488180768328,
+      "receiver": 221.55961003694603,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -7.854827899222983e-15,
+      "relative_error": 1.8834136441372587e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 2,
+      "request": 3.589317550560468e-05,
+      "source": 0.1899319777375666,
+      "receiver": 221.58894294101614,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2462253451417382e-14,
+      "relative_error": 3.472039817004047e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 3,
+      "request": 2.1208696233219983e-05,
+      "source": 0.16293412274999636,
+      "receiver": 221.6159601644933,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -5.995204332975845e-15,
+      "relative_error": 2.826767033225423e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 4,
+      "request": 7.692348186785746e-06,
+      "source": 0.1396115373550884,
+      "receiver": 221.6392827498882,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -4.524158825347513e-15,
+      "relative_error": 5.881375511731661e-10
+    },
+    {
+      "assay": "physiology",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 5,
+      "request": 1.8633971229174931e-06,
+      "source": 0.11861155000628681,
+      "receiver": 221.66030210572657,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -7.896461262646426e-15,
+      "relative_error": 4.237669558211539e-09
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 3.800307121127934e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.54891658541933,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 4.440892098500626e-16,
+      "relative_error": 1.168561370688e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 3.800283861346633e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.5689165854183,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.9396931817445875e-15,
+      "relative_error": 1.562960399394969e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.58891658541725,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.6089165854162,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.62891658541517,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 6,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.64891658541413,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 7,
+      "request": 3.8002710684669174e-05,
+      "source": 0.4995000000000118,
+      "receiver": 221.6689165854131,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 3.219646771412954e-15,
+      "relative_error": 8.472150310877178e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 1,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 2,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 3,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 4,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 5,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 6,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 7,
+      "request": 1.901115254441049e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.1102230246251565e-15,
+      "relative_error": 5.839851224336083e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 1,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 2,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 3,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 4,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 5,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 6,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 7,
+      "request": 9.50795385506521e-06,
+      "source": 0.4998750000000882,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 6.827871601444713e-15,
+      "relative_error": 7.181220802630708e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 4.636010546179299e-07,
+      "source": 0.2295432322438613,
+      "receiver": 221.54920668650985,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.942890293094024e-16,
+      "relative_error": 4.1908668536037495e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 1,
+      "request": 2.3228617755314814e-07,
+      "source": 0.22963075126499455,
+      "receiver": 221.54920250082205,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.576472865229334e-15,
+      "relative_error": 3.692201126890987e-08
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 1,
+      "request": 1.1626462332756042e-07,
+      "source": 0.22967449516938526,
+      "receiver": 221.54920042358432,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -6.6058269965196814e-15,
+      "relative_error": 5.681717110034946e-08
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 4.636010546179299e-07,
+      "source": 0.2295432322438613,
+      "receiver": 221.54920668650985,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.942890293094024e-16,
+      "relative_error": 4.1908668536037495e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 1,
+      "request": 2.3228617755314814e-07,
+      "source": 0.22963075126499455,
+      "receiver": 221.54920250082205,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.576472865229334e-15,
+      "relative_error": 3.692201126890987e-08
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 1.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 1,
+      "request": 1.1626462332756042e-07,
+      "source": 0.22967449516938526,
+      "receiver": 221.54920042358432,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -6.6058269965196814e-15,
+      "relative_error": 5.681717110034946e-08
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 0.00019623239835103352,
+      "source": 0.4995000000000118,
+      "receiver": 221.54891658541933,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.326716514427062e-14,
+      "relative_error": 6.760945315736006e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 0.00019623258461554845,
+      "source": 0.4995000000000118,
+      "receiver": 221.5689165854183,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.887379141862766e-15,
+      "relative_error": 9.618072072792849e-12
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.58891658541725,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.6089165854162,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.62891658541517,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 6,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.64891658541413,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 1440.0,
+      "day": 7,
+      "request": 0.0001962326870610317,
+      "source": 0.4995000000000118,
+      "receiver": 221.6689165854131,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2878587085651816e-14,
+      "relative_error": 6.56291634107133e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 1,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 2,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 3,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 4,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 5,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 6,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 720.0,
+      "day": 7,
+      "request": 9.811611380428076e-05,
+      "source": 0.49975000000006276,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 1,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.54891658541763,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 2,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.56891658541488,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 3,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.58891658541214,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 4,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.6089165854094,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 5,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.62891658540664,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 6,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.6489165854039,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 0,
+      "dt": 360.0,
+      "day": 7,
+      "request": 4.905805690214038e-05,
+      "source": 0.4998750000000882,
+      "receiver": 221.66891658540115,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 0.0,
+      "relative_error": 0.0
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 0.0001667314248978493,
+      "source": 0.21914611275267348,
+      "receiver": 221.55960380600104,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.4016565685892601e-14,
+      "relative_error": 8.406673003892382e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 0.00014356290041457173,
+      "source": 0.18981523548828805,
+      "receiver": 221.58893468326542,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.603429163007604e-15,
+      "relative_error": 6.689352984145234e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 8.494984840990032e-05,
+      "source": 0.16277539722552192,
+      "receiver": 221.6159745215282,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.769962616701378e-15,
+      "relative_error": 1.1500859388894161e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 3.0761230343771386e-05,
+      "source": 0.13943219665796946,
+      "receiver": 221.63931772209574,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.242606680004428e-15,
+      "relative_error": 3.0046284159358713e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 7.420571628774205e-06,
+      "source": 0.1184069305322508,
+      "receiver": 221.66034298822146,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.493206138382448e-15,
+      "relative_error": 1.1445487710743155e-09
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 1,
+      "request": 8.339588658925707e-05,
+      "source": 0.21922516412651583,
+      "receiver": 221.55960808796053,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2351231148954867e-14,
+      "relative_error": 1.481036014376509e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 2,
+      "request": 7.178525283364983e-05,
+      "source": 0.18989288691871586,
+      "receiver": 221.58894036516833,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.412337245047638e-15,
+      "relative_error": 7.539622737820279e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 3,
+      "request": 4.2423391095590114e-05,
+      "source": 0.16286935456897134,
+      "receiver": 221.61596389751807,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.201816424156732e-14,
+      "relative_error": 2.832909847892051e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 4,
+      "request": 1.537533735924339e-05,
+      "source": 0.13954123814149277,
+      "receiver": 221.63929201394555,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.0269562977782698e-14,
+      "relative_error": 6.679243998252053e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 720.0,
+      "day": 5,
+      "request": 3.71732310982664e-06,
+      "source": 0.11852072501740729,
+      "receiver": 221.66031252706964,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.3378187446733136e-14,
+      "relative_error": 3.5988766785884903e-09
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 1,
+      "request": 4.170527235837812e-05,
+      "source": 0.21926488180768328,
+      "receiver": 221.55961003694603,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -7.854827899222983e-15,
+      "relative_error": 1.8834136441372587e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 2,
+      "request": 3.589317550560468e-05,
+      "source": 0.1899319777375666,
+      "receiver": 221.58894294101614,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2462253451417382e-14,
+      "relative_error": 3.472039817004047e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 3,
+      "request": 2.1198307820237554e-05,
+      "source": 0.16291676126020033,
+      "receiver": 221.6159581574935,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 2.7755575615628914e-17,
+      "relative_error": 1.3093297753291081e-12
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 4,
+      "request": 7.686189624773797e-06,
+      "source": 0.13959624816741606,
+      "receiver": 221.6392786705863,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -8.43769498715119e-15,
+      "relative_error": 1.0977734611120148e-09
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 1,
+      "dt": 360.0,
+      "day": 5,
+      "request": 1.8603581231546608e-06,
+      "source": 0.11857812984940491,
+      "receiver": 221.6602967889043,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2032042029375134e-14,
+      "relative_error": 6.467594534417957e-09
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 1,
+      "request": 0.0001667314248978493,
+      "source": 0.21914611275267348,
+      "receiver": 221.55960380600104,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.4016565685892601e-14,
+      "relative_error": 8.406673003892382e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 2,
+      "request": 0.00014356290041457173,
+      "source": 0.18981523548828805,
+      "receiver": 221.58893468326542,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 9.603429163007604e-15,
+      "relative_error": 6.689352984145234e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 3,
+      "request": 0.0001896798381174524,
+      "source": 0.2493100488402773,
+      "receiver": 221.62026798465203,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 2.1094237467877974e-15,
+      "relative_error": 1.1120969775826216e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 4,
+      "request": 0.00018967931609230792,
+      "source": 0.2493100493634357,
+      "receiver": 221.65166503842434,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.4988010832439613e-15,
+      "relative_error": 7.901763429569547e-12
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 5,
+      "request": 0.0001896789294070183,
+      "source": 0.2493100497509657,
+      "receiver": 221.68306206508865,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -9.43689570931383e-15,
+      "relative_error": 4.975194524144471e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 6,
+      "request": 0.00018967854272174912,
+      "source": 0.24931005013852414,
+      "receiver": 221.71445906852028,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.1074474670635936e-14,
+      "relative_error": 5.838549005978895e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 1440.0,
+      "day": 7,
+      "request": 0.00018967823337351562,
+      "source": 0.24931005044854815,
+      "receiver": 221.74585605050186,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 4.718447854656915e-15,
+      "relative_error": 2.487606390431377e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 1,
+      "request": 8.339588658925707e-05,
+      "source": 0.21922516412651583,
+      "receiver": 221.55960808796053,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2351231148954867e-14,
+      "relative_error": 1.481036014376509e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 2,
+      "request": 7.178525283364983e-05,
+      "source": 0.18989288691871586,
+      "receiver": 221.58894036516833,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.412337245047638e-15,
+      "relative_error": 7.539622737820279e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 3,
+      "request": 9.497146588611436e-05,
+      "source": 0.24965496067925408,
+      "receiver": 221.62027010266715,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2545520178264269e-14,
+      "relative_error": 1.3209778391025688e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 4,
+      "request": 9.497143683351238e-05,
+      "source": 0.2496549607083295,
+      "receiver": 221.65167482025532,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.0269562977782698e-14,
+      "relative_error": 1.0813317477533306e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 5,
+      "request": 9.497132062311514e-05,
+      "source": 0.24965496082465954,
+      "receiver": 221.68307952756734,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2184697695261093e-14,
+      "relative_error": 1.2829870760263442e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 6,
+      "request": 9.497125283003434e-05,
+      "source": 0.24965496088283878,
+      "receiver": 221.7144842255813,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 8.93729534823251e-15,
+      "relative_error": 9.410526956222399e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 720.0,
+      "day": 7,
+      "request": 9.497118504064037e-05,
+      "source": 0.24965496095070983,
+      "receiver": 221.74588891674145,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 5.329070518200751e-15,
+      "relative_error": 5.611249892186055e-11
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 1,
+      "request": 4.170527235837812e-05,
+      "source": 0.21926488180768328,
+      "receiver": 221.55961003694603,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -7.854827899222983e-15,
+      "relative_error": 1.8834136441372587e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 2,
+      "request": 3.589317550560468e-05,
+      "source": 0.1899319777375666,
+      "receiver": 221.58894294101614,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": 1.2462253451417382e-14,
+      "relative_error": 3.472039817004047e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 3,
+      "request": 4.7518035238330254e-05,
+      "source": 0.24982746499831304,
+      "receiver": 221.6202707147781,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -6.938893903907228e-15,
+      "relative_error": 1.4602653222307464e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 4,
+      "request": 4.751782684448924e-05,
+      "source": 0.24982746520684312,
+      "receiver": 221.65167908776817,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -1.2823075934420558e-14,
+      "relative_error": 2.6985821503130635e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 5,
+      "request": 4.751761360427609e-05,
+      "source": 0.2498274654202049,
+      "receiver": 221.6830874107111,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -4.9404924595819466e-15,
+      "relative_error": 1.0397181349901278e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 6,
+      "request": 4.75174245959e-05,
+      "source": 0.24982746560929453,
+      "receiver": 221.71449568581448,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -8.93729534823251e-15,
+      "relative_error": 1.8808459053152593e-10
+    },
+    {
+      "assay": "physiology-corrected",
+      "root": 0.25,
+      "k": 10.0,
+      "regime": 2,
+      "dt": 360.0,
+      "day": 7,
+      "request": 4.7517313129424014e-05,
+      "source": 0.24982746572082132,
+      "receiver": 221.74590392561208,
+      "source_debit_zero": false,
+      "receiver_credit_zero": false,
+      "signed_error": -5.467848396278896e-15,
+      "relative_error": 1.1507065606563212e-10
+    }
+  ],
+  "actual_local_error": {
+    "count": 162,
+    "min": 0.0,
+    "median": 6.6058269965196814e-15,
+    "max": 1.4016565685892601e-14
+  },
+  "actual_local_relative_error": {
+    "count": 162,
+    "min": 0.0,
+    "median": 8.472150310877178e-11,
+    "max": 5.681717110034946e-08
+  }
+}

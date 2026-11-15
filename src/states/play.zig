@@ -1816,9 +1816,9 @@ pub const PlayState = struct {
                     const history=@import("../feeding_marker.zig").classify(self.planet.microbeCells[index].cohorts);
                     // Patch-level historical evidence, not animal anatomy or current eating.
                     if(history==.dominant){
-                        vg.beginPath();vg.fillColor(nvg.rgba(247,177,65,235));vg.strokeColor(nvg.rgb(66,38,12));vg.strokeWidth(1.7);
-                        vg.ellipse(-7,2,6,4.5);vg.ellipse(0,3,6,4);vg.ellipse(7,2,6,4.5);vg.fill();vg.stroke();
-                        vg.beginPath();vg.strokeColor(nvg.rgb(255,230,166));vg.strokeWidth(1.2);vg.moveTo(-8,2);vg.lineTo(-5,2);vg.moveTo(-1,4);vg.lineTo(2,4);vg.moveTo(6,2);vg.lineTo(9,2);vg.stroke();
+                        // One convex history band avoids overlapping-fill stencil work.
+                        vg.beginPath();vg.fillColor(nvg.rgb(247,177,65));vg.strokeColor(nvg.rgb(66,38,12));vg.strokeWidth(1.7);
+                        vg.moveTo(-13,2);vg.lineTo(-8,-2);vg.lineTo(8,-2);vg.lineTo(13,2);vg.lineTo(8,6);vg.lineTo(-8,6);vg.closePath();vg.fill();vg.stroke();
                     }else if(history==.mixed){
                         vg.beginPath();vg.strokeColor(nvg.rgb(57,34,13));vg.strokeWidth(4);vg.circle(12,0,4.5);vg.stroke();
                         vg.strokeColor(nvg.rgb(255,191,89));vg.strokeWidth(2);vg.stroke();

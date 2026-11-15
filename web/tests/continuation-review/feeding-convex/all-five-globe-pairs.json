@@ -1,0 +1,172 @@
+[
+  {
+    "kind": "mixed",
+    "v58_median_ms": 14.172498883333333,
+    "convex_median_ms": 13.907477283333334,
+    "change_percent": -1.8699708652767044,
+    "all_five_paired_changes": [
+      -2.0382531613247323,
+      1.2002028452821056,
+      18.572235955006544,
+      -3.5573947740878076,
+      -12.432740943711895
+    ],
+    "rows": [
+      {
+        "run": "feeding-convex",
+        "arm": 0,
+        "mode": 1,
+        "ms": 13.398121416666667,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 1,
+        "mode": 3,
+        "ms": 13.125033783333333,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 2,
+        "mode": 3,
+        "ms": 15.477729925,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 3,
+        "mode": 1,
+        "ms": 15.294168875,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 4,
+        "mode": 1,
+        "ms": 14.172498883333333,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 5,
+        "mode": 3,
+        "ms": 16.804648816666667,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 0,
+        "mode": 3,
+        "ms": 13.907477283333334,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 1,
+        "mode": 1,
+        "ms": 14.420470341666666,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 2,
+        "mode": 1,
+        "ms": 14.131187158333333,
+        "glyphs": 1
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 3,
+        "mode": 3,
+        "ms": 12.374293266666667,
+        "glyphs": 1
+      }
+    ]
+  },
+  {
+    "kind": "dominant",
+    "v58_median_ms": 14.87355655,
+    "convex_median_ms": 14.859876566666667,
+    "change_percent": -0.09197519965951084,
+    "all_five_paired_changes": [
+      8.788975882817883,
+      12.688174081025183,
+      -2.4256263162421576,
+      -3.944051181193664,
+      -11.796899713269992
+    ],
+    "rows": [
+      {
+        "run": "feeding-convex",
+        "arm": 0,
+        "mode": 1,
+        "ms": 15.491417333333333,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 1,
+        "mode": 3,
+        "ms": 16.852954266666668,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 2,
+        "mode": 3,
+        "ms": 15.246235216666667,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 3,
+        "mode": 1,
+        "ms": 13.529578716666666,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 4,
+        "mode": 1,
+        "ms": 12.409708975,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex",
+        "arm": 5,
+        "mode": 3,
+        "ms": 12.108695808333334,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 0,
+        "mode": 3,
+        "ms": 14.859876566666667,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 1,
+        "mode": 1,
+        "ms": 15.470022158333334,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 2,
+        "mode": 1,
+        "ms": 14.87355655,
+        "glyphs": 3
+      },
+      {
+        "run": "feeding-convex-confirm",
+        "arm": 3,
+        "mode": 3,
+        "ms": 13.118938,
+        "glyphs": 3
+      }
+    ]
+  }
+]

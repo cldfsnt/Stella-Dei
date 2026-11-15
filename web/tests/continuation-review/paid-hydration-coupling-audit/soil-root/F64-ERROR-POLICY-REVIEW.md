@@ -1,0 +1,17 @@
+# Review of authoritative f64 measured-error proposal
+
+Reviewed d1a94eb. Prefer its inventory-first bounded-f64 approach over exact lattice caps that materially underdeliver ordinary flow. This approves design/range measurement, not a numerical tolerance, new biological outcome or production migration.
+
+## Minimal gate to freeze after inventory, before biology
+
+Separate arithmetic correctness from practical adequacy. First derive a conservative operation-level envelope from the actual source/receiver neighboring f64 spacings, source subtraction, receiver addition and any native-unit/area conversions. An endpoint-ULP envelope is not permission for unbounded repeated drift. Independently compare exact rational endpoint differences against that envelope. Then approve an absolute cumulative and demand-relative error ceiling using the observed smallest meaningful positive requests and transported inventories, BEFORE the corrected36-run experiment. Do not choose a ceiling from a desired survival result or silently exclude failing small requests.
+
+Stage nonnegative source/receiver updates. Report represented debit and represented credit independently. Root/storage physiological receipts must not exceed requested shares or a conservative lower bound on actual represented source debit. Receiver round-up never authorizes more hydration. Strict f64 TwoDiff plus directed correction can bound a computed subtraction without runtime f128; an offline Fraction oracle verifies true binary endpoints. Shared demands require canonical summation and simultaneous conservative shares; receiver-roundoff or allocation leftovers are not redistributed to the first slot.
+
+Record signed error AND accumulated absolute error, maximum individual discrepancy, total transported water, subresolution source withdrawals, unmet requested demand and actual delivered recharge. Cancellation in a signed global sum must not conceal large opposing errors. Diagnostic compensation is only for measuring sums, never water that organisms or hydrology can access. If a receiver increment rounds tozero but source is debited, that is a recorded numerical loss; whether its magnitude is acceptable is the practical budget gate, not a reason to fabricate a receiver credit. No source debit means no physiological credit.
+
+Physical phases should continue for finite valid states despite tiny bounded mismatches, without hidden binade caps. Invalid/nonfinite/negative states still reject atomically. Full/empty pools, source exhaustion, maximum/subnormal values and all24 cohort permutations remain required. Preserve exact old oracle and first outcomes. Original step27 and day6 recharge operands must pass meaningful delivered-flow checks before another biological interpretation.
+
+## Scope boundary
+
+One consistent local f64 transaction policy across infiltration, evaporation, drainage, root/store flow, recharge and returns is a reasonable next experiment. Local kg/m² pools do not prove actual Planet conservation. Later enabling requires one authoritative physical representation across empty cells, tools, all transport, saves and reload; repeated f64→f32 casting would erase the benefit. Keep existing mean-area model and physical coefficients unchanged. Benchmark native and WASM paths before promising performance. Compensated physical high/low pools are a fallback only if measured f64 fails, and then both words must participate in every physical operation; protected biological escrow remains excluded.

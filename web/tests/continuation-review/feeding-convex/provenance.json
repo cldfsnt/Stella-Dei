@@ -1,0 +1,29 @@
+{
+  "first_native": {
+    "main.zig": "75e495f33d29e87939a44cf4fd7eab85d5e68d6f8ebbf3c36c2fa34f6ba7e5ad",
+    "states/play.zig": "94fb830b0fb4a06e1f3d81d321a8bc21b27a4a121dcec5f32135a361bbbff7d4",
+    "renderer.zig": "cc64fb5329e8027acdf000ce9e357184a6bfa46b370909e1bf0e002d4aa3bba8",
+    "feeding_marker.zig": "882d3ae32bfa311270237bdcf0363d8d005d68335f5e740072e4a1e20065090d",
+    "simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+    "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986"
+  },
+  "confirmation_native": {
+    "main.zig": "f4b045d305534a3be87c5943d001477a547f987c0602e6919000b90e5dfc2692",
+    "states/play.zig": "94fb830b0fb4a06e1f3d81d321a8bc21b27a4a121dcec5f32135a361bbbff7d4",
+    "renderer.zig": "cc64fb5329e8027acdf000ce9e357184a6bfa46b370909e1bf0e002d4aa3bba8",
+    "feeding_marker.zig": "882d3ae32bfa311270237bdcf0363d8d005d68335f5e740072e4a1e20065090d",
+    "simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+    "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986"
+  },
+  "only_confirmation_main_arm_list_changed": true,
+  "production_only_tested_dominant_draw_block_changed": true,
+  "production_draw_commands_exact_in_tested_candidate": true,
+  "production": {
+    "src/states/play.zig": "0baf5f97f08ba9c685375ee1eef8f00ee6799eab5fa87cf94478231d02379bef",
+    "src/feeding_marker.zig": "882d3ae32bfa311270237bdcf0363d8d005d68335f5e740072e4a1e20065090d",
+    "web/shell.html": "9947eac97a7ecc392798cdbc5b3be63651ee1486519f4bcfa0be66002314c3c9"
+  },
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "binary_sha256": "a6083f651b766d0110810e791ae95e5f7420739d450d74249c643fe783fa03b6",
+  "confirmation_binary_sha256": "3e07f263807cbbea0cb224f72f7dd3d022275a5b4b258bd7f7af8c0af967805b"
+}

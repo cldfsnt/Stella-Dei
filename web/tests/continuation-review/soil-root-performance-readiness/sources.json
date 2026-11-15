@@ -1,0 +1,9 @@
+{
+  "src/experimental/soil_root_kernel_v2.zig": "dfc8787d51fbf0ce6667a0a60fb45323a1a15b56b82297453067959a31458713",
+  "src/experimental/bounded_water.zig": "711a8a110ccdf7387514e9d28781568d611509b6eb72e0b21467058dc5f74b23",
+  "src/experimental/scalar_water.zig": "d7a3bea115f245a11e7e2e8f19426bec672b35789a8996a344560b0782478d7e",
+  "src/experimental/soil_physiology_core.zig": "c4b137ae9f81935e7ccc42d6deabf93c4e42d8bc189f6cd0de6a08a52db0153e",
+  "src/simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+  "src/save_game.zig": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/WATER-REPRESENTATION-PROPOSAL.md": "df005f1cbd39c1cb2c40f76af729d44783724064500c996685725fd683d19b21"
+}

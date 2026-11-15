@@ -1,0 +1,13 @@
+# Fixed-world precision inventory, not new ecology
+
+Nine preserved snapshots: naturalday30/60, production-grazing day90 arm0, and six prior mutation endpoints (same founder/world, not independent worlds). Full40962patch surface/vapor ranges per snapshot; all live cohorts, supported counts and empty slots recorded. Meanarea7669529600m² matches existing native fixture. Read-only script inventory-water-precision.py, no physics or populations advanced.
+
+Actual paid-height aerial exposure is ZERO for every living cohort in these snapshots. Prescribed root fractions0/1⁄32/.25 and dt360/720/1440 therefore describe potential dry physiology, NOT observed rooting or selection. Minimum hypothetical dry demand among supported cohorts ~9.41e-7kg/m² per360s. Root-flow probes explicitly assume diagnostic soil.25 and conductance1/10; no soil is inserted into saves.
+
+4704 positive root-flow representability probes. Naive ordinary f64 endpoint subtraction/addition gives max absolute debit-minus-vapor-credit2.842170943040401e-14kg/m². No source debit vanished, but25 receiver increments vanished. The smallest request2.57351061395845e-15 had actualsoil debit2.581268532253489e-15 and zero vapor increment: >100% relative error of that tiny throughput, despite negligible error relative to whole aerial demand. 2012 source debits rounded ABOVE request, max overshoot1.3877787807814457e-17. These are diagnostic naive operations, NOT approved candidate receipts. Candidate must bound physiological credit and source spending, not call these exact transfers.
+
+Allpatch maximum f32 surface quantum2.08617748864285kg/m² (deep ocean); maximum vapor f64 density ULP5.684341886080802e-14. Detailed f64 native-unit and density ULP/conversion errors retained by snapshot. Moving tof64 substantially improves precision but cannot make every arbitrarily small vapor increment representable.
+
+162 positive probes from ACTUAL local-assay daily soil/vapor states: max absolute flow imbalance1.4016565685892601e-14, max throughput-relative error5.681717110034946e-8. No new organism outcomes calculated. Source-funded biological h and vapor-side rounding must be assessed separately: a vanished tiny vapor increment must not cancel an already paid source flow or manufacture a receiver-funded bonus.
+
+Offline Fraction derives exact represented endpoint differences. Stored statistics report floats for readability; raw input/output operands are sufficient to recompute exact ratios. Conversion comparison uses exact native f32 value times exact1e9/area, not rounded conversion factor as the oracle. Empty/dead slots contribute no biological demand; all their physical pools remain in the inventory.
