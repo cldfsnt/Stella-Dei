@@ -1,0 +1,274 @@
+{
+  "previous_files": {
+    "build-info.json": "e311aa15bde14302de9dacc8cd50fa26d9d9ebf5d57b502653992f1bebc4bcd6",
+    "renderer-info.js": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "index.js": "8aaeb63c707c66a2d6e5f9897b2c5fb4dd73f20ca3dd9ac08e5f8f362913d488",
+    "colony-watch-details.js": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "qa.html": "02f845a8e0a11b41662a8b0fcf74ce6a43b4516a01c80ff2114c7d31fff3d7c9",
+    "gameplay-harness.js": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "v23-playtest.png": "ba8ebe6f325e55f18c05571c97130d31d21f3e1f20e2225c7d241fa2cf26bd07",
+    "offspring-search.js": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e",
+    "v24-menu.png": "adb8890e839b43742a03dd805d7217757d44ac821a6a8d0c7c3e215fac1097be",
+    "colony-transport.js": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "touch-controls.js": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "assets-0.bin": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+    "build-manifest.json": "b40a3751ceff02b20fcd5b90ba5f2a76827337e6e2191c3a75ce6fc8511e4bf4",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "ignition-native.png": "71bf532ed73343461ea9a3f6a479e94b6fdf72f39f00cf08980baf7c4f2d58e7",
+    "assets-1.bin": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+    "world-ecology.js": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "patch-watch.js": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "index.html": "f713972ea31d58653782fa6476753a9b69019df0ed362673b05a07ccdf1afde3",
+    "sandbox-defense.js": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3",
+    "source.html": "854fdf3ca8f26851cb7a7d7fdd044df819033107cb10bfece4af3de7d23d29c9",
+    "v20-playtest.png": "640a2a80213180cb7888e0093d474d4379f3119e14d30ce8ea42f39591e15ac6",
+    "v54-native-redraw.png": "887976fb9f8dc1bbea9a01bfecc06f09b364e8586fc89e7fe4b995f5db4a8e69",
+    "auto-seed.js": "153067a0b36fe5bca5902a42ff86fff53e65761a50fc68d44fba7c179dcb8448",
+    "copy-report.js": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "habitat-plan.js": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "assets-3.bin": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f",
+    "assets-2.bin": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+    "life-trend.js": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "advance-day.js": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "index.wasm": "83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957",
+    "gameplay-measure.js": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "v21-playtest.png": "9ab2e81e052d271c7ade58950085c9e961c75329549b9393e1f6ab4bca08c993",
+    "qa-natural-v35.png": "10157873d26de1d38b462324f3b77315df3d29a8971df6b16fe67a606f24f65a",
+    "v33-native-playtest.png": "c65947d03dd94fc57e60a50b13a3fd35cd9a03443b369d3aae350833673a1b58",
+    "v32-native-playtest.png": "b524af874826b10eb8d2a4119b26594333c2151b268bab87365b9fcf366298a3",
+    "v22-playtest.png": "af20ccbdcb4011a4130d2b627d9dfffbc823121aed9738984727d1ca53cff13b",
+    "stella-storage.js": "4c62e690a6b674a092d694c7d94201fdcf4dd9bf109ffc46321872d612f2713a",
+    "wind/renderer-info.js": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "wind/index.js": "b4011fc664e6376bc41dd7b29ceaf5bc815f659ef24f1f3977ed06ef3a90f767",
+    "wind/colony-watch-details.js": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "wind/gameplay-harness.js": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "wind/offspring-search.js": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e",
+    "wind/wind-source.tar.gz.part01": "1c5d6eeebea1ece6eb1b2cf5a023a4d5f2010af0d0414ef0742ec521b37f4cc9",
+    "wind/colony-transport.js": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "wind/touch-controls.js": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "wind/assets-0.bin": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+    "wind/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "wind/assets-1.bin": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+    "wind/world-ecology.js": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "wind/patch-watch.js": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "wind/index.html": "d17e11e342126e21a768574fab59a6936472301754943685d2cd4bfb163cd0ab",
+    "wind/sandbox-defense.js": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3",
+    "wind/source.html": "7244b248c5946979da4703f368fc3315359c79b215c540d78461df2ded4cec4d",
+    "wind/wind-origin.js": "4d4b41578091f73c2b17970264ee0f34821a9d6029c08690b754de46130c1011",
+    "wind/auto-seed.js": "7ef9d974d641f408039e509dd6c2f66204b6756aa69414e40d13921fa36ab263",
+    "wind/copy-report.js": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "wind/habitat-plan.js": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "wind/assets-3.bin": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f",
+    "wind/assets-2.bin": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+    "wind/life-trend.js": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "wind/advance-day.js": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "wind/source-manifest.json": "85eb16cdef60012ee1fbee06aada78974ecb6f5bfc65e37c98171d0a32b7aae1",
+    "wind/wind-source.tar.gz.part00": "2223eb4535544665dc571e92272ffe5bb94faae31acd9d14612274764608fdf4",
+    "wind/index.wasm": "6ef6f586b31eb427d8b26e6bd435101272172bd01edc672c210cc5eef76c6cb3",
+    "wind/gameplay-measure.js": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "wind/stella-storage.js": "0a90fe2af718dc1526804773da95ad997fedaafaf1ff64ee36126ce4bce0e402",
+    "wetlands/build-info.json": "805be08df919371846f8bb56bc64c843503e4156d73bb712bb5cb24cb9c63f6a",
+    "wetlands/renderer-info.js": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "wetlands/index.js": "445c50ca61c04bd2ecdf7615d648a012c8f3802ffce1bdf37f1135834ae01b7c",
+    "wetlands/colony-watch-details.js": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "wetlands/gameplay-harness.js": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "wetlands/offspring-search.js": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e",
+    "wetlands/colony-transport.js": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "wetlands/touch-controls.js": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "wetlands/assets-0.bin": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+    "wetlands/build-manifest.json": "3e075dc553ea200f41771ba3a2cb42695935fd04244593727610a336349d62d8",
+    "wetlands/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "wetlands/assets-1.bin": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+    "wetlands/world-ecology.js": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "wetlands/patch-watch.js": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "wetlands/index.html": "566edb662f4bf2c785a46ca38d46903720cc98287a0321e81982cb9e354d2cba",
+    "wetlands/sandbox-defense.js": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3",
+    "wetlands/source.html": "b22ec7957d98d3c18c967d9dd4c9d9c478011cdb6f289563f33603c20600ca71",
+    "wetlands/auto-seed.js": "153067a0b36fe5bca5902a42ff86fff53e65761a50fc68d44fba7c179dcb8448",
+    "wetlands/copy-report.js": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "wetlands/habitat-plan.js": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "wetlands/assets-3.bin": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f",
+    "wetlands/assets-2.bin": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+    "wetlands/life-trend.js": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "wetlands/wetlands-preview.js": "5a357ccaa22ea2aa71f806f8aa8ed3bb6ebf3f1966397babd6c93cb3d93d24e8",
+    "wetlands/advance-day.js": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "wetlands/index.wasm": "1e0edfc43b856498cca948ad192a90362353cea80632e013478887087c1add65",
+    "wetlands/gameplay-measure.js": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "wetlands/stella-storage.js": "33f675d132fcf457976e25f33de206a3573503f8fb40a6aae11f90ac05e2bfa8"
+  },
+  "changed_existing_files": [
+    "wind/index.js",
+    "wind/wind-source.tar.gz.part01",
+    "wind/index.html",
+    "wind/source.html",
+    "wind/source-manifest.json",
+    "wind/wind-source.tar.gz.part00",
+    "wind/index.wasm"
+  ],
+  "raw_manifest": {
+    "scope": "Raw isolated descendant artifact, before release label changes; no deployment",
+    "native_source": "091cc9b",
+    "frontend_source": "756d19b",
+    "toolchains": {
+      "zig": "0.13.0",
+      "emscripten": "3.1.64"
+    },
+    "files": [
+      {
+        "path": "LICENSE",
+        "bytes": 35149,
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "path": "advance-day.js",
+        "bytes": 4398,
+        "sha256": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8"
+      },
+      {
+        "path": "assets-0.bin",
+        "bytes": 16777216,
+        "sha256": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb"
+      },
+      {
+        "path": "assets-1.bin",
+        "bytes": 16777216,
+        "sha256": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6"
+      },
+      {
+        "path": "assets-2.bin",
+        "bytes": 16777216,
+        "sha256": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997"
+      },
+      {
+        "path": "assets-3.bin",
+        "bytes": 14745726,
+        "sha256": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f"
+      },
+      {
+        "path": "auto-seed.js",
+        "bytes": 4645,
+        "sha256": "7ef9d974d641f408039e509dd6c2f66204b6756aa69414e40d13921fa36ab263"
+      },
+      {
+        "path": "colony-transport.js",
+        "bytes": 8057,
+        "sha256": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f"
+      },
+      {
+        "path": "colony-watch-details.js",
+        "bytes": 1792,
+        "sha256": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0"
+      },
+      {
+        "path": "copy-report.js",
+        "bytes": 619,
+        "sha256": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c"
+      },
+      {
+        "path": "gameplay-harness.js",
+        "bytes": 8751,
+        "sha256": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce"
+      },
+      {
+        "path": "gameplay-measure.js",
+        "bytes": 2836,
+        "sha256": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9"
+      },
+      {
+        "path": "habitat-plan.js",
+        "bytes": 5808,
+        "sha256": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495"
+      },
+      {
+        "path": "index.html",
+        "bytes": 129705,
+        "sha256": "dfb28e9067c2dde3d5e9c52ab48a9c102fc5d723b835c163f8835a4ba30f2d8a"
+      },
+      {
+        "path": "index.js",
+        "bytes": 195240,
+        "sha256": "ae757f34b727450215a2b288744f314b4b2fe9e9fb690a813a9f96f378f5682f"
+      },
+      {
+        "path": "index.wasm",
+        "bytes": 1524988,
+        "sha256": "6bd6e8f9cc8317eee2a99cfebc1df146b9b781da7691fba6b1adc39ed9b0d09f"
+      },
+      {
+        "path": "life-trend.js",
+        "bytes": 2447,
+        "sha256": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08"
+      },
+      {
+        "path": "offspring-search.js",
+        "bytes": 2202,
+        "sha256": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e"
+      },
+      {
+        "path": "patch-watch.js",
+        "bytes": 2372,
+        "sha256": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76"
+      },
+      {
+        "path": "renderer-info.js",
+        "bytes": 1977,
+        "sha256": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81"
+      },
+      {
+        "path": "sandbox-defense.js",
+        "bytes": 2097,
+        "sha256": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3"
+      },
+      {
+        "path": "source-manifest.json",
+        "bytes": 6106,
+        "sha256": "dbe2090bbf1e3a8cc9eee82535e77cfe538070a305844b9ec210cca64a6d3a88"
+      },
+      {
+        "path": "source.html",
+        "bytes": 1467,
+        "sha256": "6f3923db977f6c1d9c2e5c6443a52336ffdee8977ffdbf9727f6545d9d875f5e"
+      },
+      {
+        "path": "stella-storage.js",
+        "bytes": 9258,
+        "sha256": "0a90fe2af718dc1526804773da95ad997fedaafaf1ff64ee36126ce4bce0e402"
+      },
+      {
+        "path": "touch-controls.js",
+        "bytes": 4427,
+        "sha256": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f"
+      },
+      {
+        "path": "wind-descendant.js",
+        "bytes": 2492,
+        "sha256": "454e67ffde5e6e48886c98d27498f7693181b7df9eadd35cf7b24bd2b8a72fcf"
+      },
+      {
+        "path": "wind-origin.js",
+        "bytes": 5427,
+        "sha256": "4d4b41578091f73c2b17970264ee0f34821a9d6029c08690b754de46130c1011"
+      },
+      {
+        "path": "wind-source.tar.gz.part00",
+        "bytes": 7340032,
+        "sha256": "681c550d29dae498516290fb63ba2b8086d03cdebc508c706481a8a16d7fa2a1"
+      },
+      {
+        "path": "wind-source.tar.gz.part01",
+        "bytes": 2024359,
+        "sha256": "b69187674ed3aa9f868ed88e5d455b9c1adaa7f71dde11056ebad39c0de59d61"
+      },
+      {
+        "path": "world-ecology.js",
+        "bytes": 5502,
+        "sha256": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df"
+      }
+    ],
+    "file_count": 30,
+    "total_bytes": 76409527
+  },
+  "published_html_sha256": "05be9316ebe0823faec50c8ae8f9020fde08a2420969252a65710e2d5f344db4",
+  "classic_wasm_sha256": "83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957",
+  "wetlands_wasm_sha256": "1e0edfc43b856498cca948ad192a90362353cea80632e013478887087c1add65"
+}

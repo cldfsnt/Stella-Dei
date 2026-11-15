@@ -1,0 +1,25 @@
+{
+  "deployment": {
+    "id": "appgdep_6afa36ffd16081919cf94dc501af8c2e",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_36f7e0cd83948191b007e74c61ef7d5e",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T22:49:50.637645+00:00"
+  },
+  "site_source": "ca8e5380ba7678306194b73c8e8aa9ad5740fefd",
+  "archive_sha256": "ff2971233a49afa2c3b3de376efa74ff3a659f563933a74b5603e04956532045",
+  "source_commit": "a0115f0041177331e621474b0edf48942f6222e0",
+  "local_source": "751c88a7bd7f44df466ba2cbcc88d2ec890d316f",
+  "source_tree": "fccc46d37a0a48ca0cba58c6ecd8213a84365db8",
+  "verification": "132 JS tests; actual native exact minority descendant navigation, Details, repeated/refusal and biology/RNG purity; actual Module guards and artifacts; 95 archive manifest entries and exact source/asset recovery. No browser/device gameplay claim.",
+  "classic_and_wetlands_runtime_unchanged": true,
+  "ecology": "Fixed no-care day7-to10 descendants launched17 paid wind packets yielding13 arrivals; both compared populations declined. No model or schema changes for finder; birth route not persisted and UI explicitly says unknown."
+}
