@@ -1,0 +1,10 @@
+1/3 qa_liquid_transport_order.test.frozen actual world one liquid pass ordering and gather...LEGACY width=4 cells=40962 tail=2 changed_by_order=24767 forward_delta=-5.1924931640625e4 reverse_delta=-4.736426806640625e4
+LEGACY width=16 cells=40962 tail=2 changed_by_order=22719 forward_delta=-3.7895140380859375e4 reverse_delta=-3.5468239013671875e4
+GATHER promoted_head=false cells=40962 order_exact=true delta=-2.900408935546875e3 endpoint_rounding_signed=-2.9004090046003694e3 endpoint_rounding_sumabs=3.1253459653953672e4
+GATHER promoted_head=true cells=40962 order_exact=true delta=-3.4788818359375e1 endpoint_rounding_signed=-3.4789322691930465e1 endpoint_rounding_sumabs=3.541207379330887e4
+OK
+2/3 qa_liquid_transport_order.test.same lane edges suppressed and final partial block never donates...TOY same_lane_donor_unchanged=true tail_donor_unchanged=true
+OK
+3/3 qa_liquid_transport_order.test.gather includes tail and same lane and deduplicates repeated neighbor slots...GATHER_TOY same_lane_and_tail_donate=true duplicate_not_double=true delta=-4.377216100692749e-8
+OK
+All 3 tests passed.

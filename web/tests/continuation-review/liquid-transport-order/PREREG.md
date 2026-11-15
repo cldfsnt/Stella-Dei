@@ -1,0 +1,7 @@
+# Liquid transport order witness
+
+Isolated executable copy of current Origin liquid block logic, not production modification. Inputs frozen natural60 plus previously exported exact six-neighbor topology (getNeighbours order remapped to sendWater direction order). Native16 and web-like4 lanes, forward/reverse whole blocks, plus same-lane and remainder toy witnesses. Actual wind/thermal/atmosphere excluded; this is one liquid pass, not full scheduler.
+
+Compare optional immutable-source outgoing budgets + fixed-order receiver gather. Preserve existing Origin downhill/head-limited rate and finite per-source budget; include same-lane neighbors and scalar remainder. No target-total correction. F64 edge math/accumulator then one f32 output means endpoint quantization still exists and must be measured, not called exact conservation. Source order must not change gathered endpoints. All outcomes recorded; no acceptable drift tolerance chosen after results.
+
+Before further outcomes: extend unchanged one-pass tests to frozen naturalday30 and unablatedday90, retaining day60. No tuning. Use exact existing getKmPerWaterMass arithmetic expression (f64 1/1000/area/1000*1e9 thenf32) rather than algebraically simplified equivalent; rerun day60 as a disclosed expression check. Separate unchanged f32 head/flow and promoted f64 absolute-head variants. Deduplicate nonself edge slots and incoming senders; actual graph verified reciprocal, zero duplicate nonself,12 selfslots. Asymmetric nonreciprocal topology is unsupported rather than implicitly conservative.

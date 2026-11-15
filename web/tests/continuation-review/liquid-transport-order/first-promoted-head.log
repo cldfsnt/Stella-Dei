@@ -1,0 +1,7 @@
+1/2 qa_liquid_transport_order.test.frozen actual world one liquid pass ordering and gather...LEGACY width=4 cells=40962 tail=2 changed_by_order=24767 forward_delta=-5.1924931640625e4 reverse_delta=-4.736426806640625e4
+LEGACY width=16 cells=40962 tail=2 changed_by_order=22719 forward_delta=-3.7895140380859375e4 reverse_delta=-3.5468239013671875e4
+GATHER cells=40962 order_exact=true delta=-3.4788818359375e1
+OK
+2/2 qa_liquid_transport_order.test.same lane edges suppressed and final partial block never donates...TOY same_lane_donor_unchanged=true tail_donor_unchanged=true
+OK
+All 2 tests passed.

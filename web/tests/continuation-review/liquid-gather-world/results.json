@@ -1,0 +1,68 @@
+[
+  {
+    "label": "day30",
+    "exit": 0,
+    "process_seconds_including_startup_save": 2.9849357749990304,
+    "continuation_exact": true,
+    "endpoint_sha256": "97ef2ce6e1ed9fea90523d544a440ad63353f4943d69c96e0b533d07384385f2",
+    "stages": {
+      "transport": -253091.17797851562,
+      "phase_inventory": 18304.51953125,
+      "advection": 0.08349609375,
+      "same_input_legacy": 18304.629630045034,
+      "same_input_legacy_abs": 2182527.807554825,
+      "executed_atmos": 18304.629630045034,
+      "soil_boundary": 0.0
+    },
+    "gather": {
+      "signed": -253091.23219843925,
+      "sumabs": 1807675.1973968209,
+      "ns": 209811586
+    },
+    "scratch_bytes": 3932352
+  },
+  {
+    "label": "day60",
+    "exit": 0,
+    "process_seconds_including_startup_save": 2.557429149004747,
+    "continuation_exact": true,
+    "endpoint_sha256": "7c0cbde8619e0e1cde8522f73fbd31ca9d5e2f3aa4c893facf2654c13153da7d",
+    "stages": {
+      "transport": -259693.490234375,
+      "phase_inventory": 26981.747802734375,
+      "advection": 0.087646484375,
+      "same_input_legacy": 26981.787293961388,
+      "same_input_legacy_abs": 2177620.5717766,
+      "executed_atmos": 26981.787293961388,
+      "soil_boundary": 0.0
+    },
+    "gather": {
+      "signed": -259693.4992370638,
+      "sumabs": 1861791.4718773055,
+      "ns": 182040362
+    },
+    "scratch_bytes": 3932352
+  },
+  {
+    "label": "day90",
+    "exit": 0,
+    "process_seconds_including_startup_save": 2.304085760995804,
+    "continuation_exact": true,
+    "endpoint_sha256": "20675c2880362387ec8f51dafbcf4a121ec2fb91945a52586419bf1afa056d4b",
+    "stages": {
+      "transport": -268446.03369140625,
+      "phase_inventory": 31323.951416015625,
+      "advection": -0.205322265625,
+      "same_input_legacy": 31323.731741040945,
+      "same_input_legacy_abs": 2182362.3637935957,
+      "executed_atmos": 31323.731741040945,
+      "soil_boundary": 0.0
+    },
+    "gather": {
+      "signed": -268446.04466848535,
+      "sumabs": 1866010.7880363248,
+      "ns": 157587051
+    },
+    "scratch_bytes": 3932352
+  }
+]

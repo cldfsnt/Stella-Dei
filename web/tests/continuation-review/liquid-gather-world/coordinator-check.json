@@ -1,0 +1,35 @@
+{
+  "scope": "Independent existing-output recheck, not new execution or browser proof",
+  "rows": [
+    {
+      "day": "day30",
+      "schema": 6,
+      "model": 5,
+      "water_cells": 40962,
+      "endpoint_sha256": "97ef2ce6e1ed9fea90523d544a440ad63353f4943d69c96e0b533d07384385f2",
+      "continuation_sha256": "04c38cb396a86eb5d9413b6f70751d8bc396c68a09b7e6690677accb71a68b49",
+      "byte_equal_in_process_continuation": true,
+      "water_and_vapor_finite_nonnegative": true
+    },
+    {
+      "day": "day60",
+      "schema": 6,
+      "model": 5,
+      "water_cells": 40962,
+      "endpoint_sha256": "7c0cbde8619e0e1cde8522f73fbd31ca9d5e2f3aa4c893facf2654c13153da7d",
+      "continuation_sha256": "949940f0a0f9399149c0e472badd06fd10916c94aff16c0e7ff90aa30f2691dd",
+      "byte_equal_in_process_continuation": true,
+      "water_and_vapor_finite_nonnegative": true
+    },
+    {
+      "day": "day90",
+      "schema": 6,
+      "model": 5,
+      "water_cells": 40962,
+      "endpoint_sha256": "20675c2880362387ec8f51dafbcf4a121ec2fb91945a52586419bf1afa056d4b",
+      "continuation_sha256": "067bb38d7e32c9857346cdef26678a2a1159cc0a62e27d0dd7118143aeac61ee",
+      "byte_equal_in_process_continuation": true,
+      "water_and_vapor_finite_nonnegative": true
+    }
+  ]
+}

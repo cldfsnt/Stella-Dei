@@ -1,0 +1,3 @@
+from pathlib import Path
+import json,sys
+world=Path(sys.argv[1]);graph=Path(sys.argv[2]);out=Path(sys.argv[3]);d=json.loads(world.read_bytes());rows=[json.loads(l) for l in graph.open()];meta=rows[0];cells=rows[1:];assert d['radius']==meta['radius_km'] and len(d['water'])==meta['cells']==len(cells);assert all(c['cell']==i for i,c in enumerate(cells));g=[c['neighbors'] for c in cells];assert all(i in g[j] for i,ns in enumerate(g) for j in ns);assert all(len([j for j in ns if j!=i])==len(set(j for j in ns if j!=i)) for i,ns in enumerate(g));order=[0,3,1,4,2,5];out.write_text(json.dumps({'mass':d['water'],'elevation':d['elevation'],'neighbors':[[ns[j] for j in order]for ns in g],'area':meta['area_m2']},separators=(',',':')))

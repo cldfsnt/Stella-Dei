@@ -1,0 +1,13 @@
+# Actual fullscheduler, isolated immutable same-head liquid prototype
+
+This checkpoint is research, not promotion. It runs production-derived Origin worlds, NOT the blocked root model. Fixed natural30/60/90 snapshots,60×1440second actual coupled ticks, unchanged thermal/wind/atmosphere/biology. Sandbox keeps legacy liquid branch. Only Origin liquid transport uses immutable sourcef32 head/flow budgets, sixf64 scratch receipts and destination gather, with all nodes/tails and duplicate/self handling. No target-total repair.
+
+Each actual endpoint remains schema6/model5, finite/nonnegative; exact capture/reapply and full uninterrupted/restored10tick serialized continuation pass. This is in-process load, not new-process restart. No trajectories are required equal to old solver: the transport law intentionally changes which flows occur and when. Source hashes bind the executed copy. Later helper overlap guards are not in these first frozen runs; actual scheduler buffers are independently allocated/disjoint.
+
+Signed transport sums over60ticks: day30−253091.178, day60−259693.490, day90−268446.034 native billion-kg units. Finalf32 pool-rounding SUMABS1807675.197/1861791.472/1866010.788, signed−253091.232/−259693.499/−268446.045. Large residual remains; no exact-closure claim. The small difference from total inventory sum includes f64 gather and inventory-sum rounding, not a physical source. Atmospheric phase errors remain separately visible; do not credit changed trajectories with a same-input phase improvement.
+
+Ecological outcomes differ: living colonies baseline→candidate23→23,64→64,45→44; occupied13→13,38→38,37→37. Biomass density sums.222718087→.222775293,2.613566785→2.610378803,2.012193493→2.006209146. Live lineage sets differ by1/1,3/3,3/2 baseline-only/candidate-only. All stats/IDs retained in ecology-comparison.json. No improved survival or evolutionary claim.
+
+Prototype scratch3,932,352bytes/40962nodes (sixf64 edges plus sixusize neighbors on native64), arena allocated once per nodecount, not each tick. Actual Planet arena resets only at deinit in current source; a future samecount changed topology/newworld path must invalidate or rebuild explicitly. Current validator traverses reciprocal adjacency each tick; no performance conclusion until matched clean baseline. Gather-only timings include first allocation/validation,2.6–3.5ms/tick in these unpaired runs; complete process times include startup/save and are not frame/device performance. Finalf32 ledger counts only output casts, not all intermediate f64 arithmetic.
+
+Independent adversarial helper review and matched whole-step regression timings pending. No live changes or shipping recommendation.

@@ -1,0 +1,35 @@
+[
+  {
+    "label": "day30",
+    "edge_archive_sha256": "e9e3765f891602567a43c71921518be4416bbb2c6c7b2d6ede2a3d6db5bfe92e",
+    "source_snapshot_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "all_edges": 245760,
+    "shallow_source_edges": 7703,
+    "near_equilibrium_edges": 61830,
+    "both_deep_edges": 211860,
+    "deep_to_shallower_edges": 8353,
+    "note": "Selection counts only; no proposed variant executed."
+  },
+  {
+    "label": "day60",
+    "edge_archive_sha256": "4c3b6a21847eebf72fb13f95a1e8e5e8cc26cd71747d38f315a14eede9113fc8",
+    "source_snapshot_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "all_edges": 245760,
+    "shallow_source_edges": 7679,
+    "near_equilibrium_edges": 53886,
+    "both_deep_edges": 211874,
+    "deep_to_shallower_edges": 8381,
+    "note": "Selection counts only; no proposed variant executed."
+  },
+  {
+    "label": "day90",
+    "edge_archive_sha256": "e9b95e57f362138c23193d8fe0c21a5994cb31878265faafd93b41125c2610c4",
+    "source_snapshot_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "all_edges": 245760,
+    "shallow_source_edges": 7823,
+    "near_equilibrium_edges": 50474,
+    "both_deep_edges": 211888,
+    "deep_to_shallower_edges": 8409,
+    "note": "Selection counts only; no proposed variant executed."
+  }
+]

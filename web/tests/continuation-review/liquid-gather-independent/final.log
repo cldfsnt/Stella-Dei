@@ -1,0 +1,5 @@
+1/4 qa_liquid_gather_independent.test.independent reciprocal duplicate self tail and order...OK
+2/4 qa_liquid_gather_independent.test.independent invalid reciprocal and finite inputs refuse before outputs...OK
+3/4 qa_liquid_gather_independent.test.independent offset overlap must not mutate authoritative input...OK
+4/4 qa_liquid_gather_independent.test.independent wide scales immutable budgets and reverse order...OK
+All 4 tests passed.

@@ -1,0 +1,7 @@
+1/3 qa_liquid_gather_independent.test.independent reciprocal duplicate self tail and order...OK
+2/3 qa_liquid_gather_independent.test.independent invalid reciprocal and finite inputs refuse before outputs...OK
+3/3 qa_liquid_gather_independent.test.independent offset overlap must not mutate authoritative input...expected error.InvalidShape, found experimental.liquid_gather.Ledger{ .rounding_signed = 0e0, .rounding_absolute = 4.377216100692749e-8 }
+FAIL (TestUnexpectedError)
+2 passed; 0 skipped; 1 failed.
+error: the following test command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/stella-independent-review/.zig-cache/o/4d38eac76d84d949760a14e0f73ecf76/test
