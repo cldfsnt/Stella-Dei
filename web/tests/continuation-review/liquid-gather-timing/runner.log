@@ -1,0 +1,21 @@
+{'label': 'day30', 'repeat': 0, 'mode': 'baseline', 'ns': 495298866, 'ms_per_tick': 8.2549811, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day30', 'repeat': 0, 'mode': 'candidate', 'ns': 727453477, 'ms_per_tick': 12.124224616666666, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day30', 'repeat': 1, 'mode': 'candidate', 'ns': 563895246, 'ms_per_tick': 9.3982541, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day30', 'repeat': 1, 'mode': 'baseline', 'ns': 478612264, 'ms_per_tick': 7.976871066666667, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day30', 'repeat': 2, 'mode': 'baseline', 'ns': 502502721, 'ms_per_tick': 8.37504535, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day30', 'repeat': 2, 'mode': 'candidate', 'ns': 545230256, 'ms_per_tick': 9.087170933333333, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day60', 'repeat': 0, 'mode': 'baseline', 'ns': 459969658, 'ms_per_tick': 7.666160966666666, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day60', 'repeat': 0, 'mode': 'candidate', 'ns': 613660767, 'ms_per_tick': 10.22767945, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day60', 'repeat': 1, 'mode': 'candidate', 'ns': 566449569, 'ms_per_tick': 9.44082615, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day60', 'repeat': 1, 'mode': 'baseline', 'ns': 473479123, 'ms_per_tick': 7.8913187166666665, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day60', 'repeat': 2, 'mode': 'baseline', 'ns': 443292139, 'ms_per_tick': 7.388202316666667, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day60', 'repeat': 2, 'mode': 'candidate', 'ns': 575517306, 'ms_per_tick': 9.5919551, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day90', 'repeat': 0, 'mode': 'baseline', 'ns': 516028232, 'ms_per_tick': 8.600470533333333, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day90', 'repeat': 0, 'mode': 'candidate', 'ns': 620044195, 'ms_per_tick': 10.334069916666667, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day90', 'repeat': 1, 'mode': 'candidate', 'ns': 614210891, 'ms_per_tick': 10.236848183333333, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day90', 'repeat': 1, 'mode': 'baseline', 'ns': 502428690, 'ms_per_tick': 8.3738115, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day90', 'repeat': 2, 'mode': 'baseline', 'ns': 498663345, 'ms_per_tick': 8.31105575, 'endpoint_same_prior': True, 'continuation_exact': True}
+{'label': 'day90', 'repeat': 2, 'mode': 'candidate', 'ns': 617305175, 'ms_per_tick': 10.288419583333333, 'endpoint_same_prior': True, 'continuation_exact': True}
+day30 median 8.2549811 9.3982541 paired_percent [46.87162174928137, 17.818804158348954, 8.502945996982959]
+day60 median 7.666160966666666 9.5919551 paired_percent [33.41331462346153, 19.63559563322077, 29.827997243145333]
+day90 median 8.3738115 10.288419583333333 paired_percent [20.15702950919167, 22.24837140570135, 23.791969309474716]

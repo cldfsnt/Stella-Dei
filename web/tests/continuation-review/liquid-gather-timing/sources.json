@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "main.zig": "e188070de2549f3b51f71305dbfa6db08bbce65a2225fd8500a0764c716c0dfb",
+    "simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+    "save_game.zig": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+    "save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3"
+  },
+  "candidate": {
+    "main.zig": "33425e8a8e3c6a7dbab58acdad3ef506e5c64d17a155e9e14b9d211244e3e804",
+    "simulation/planet.zig": "bd73197fa8e562cc7b0c53f031a34a370c75af391d59d0e44aafe2e6d6a2d50c",
+    "save_game.zig": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+    "save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+    "simulation/liquid_gather.zig": "3bb548fb1dec6a32c0e0897ce12eb31ce02f3d6c44d8bb524a33c1ee6ad70db6"
+  }
+}

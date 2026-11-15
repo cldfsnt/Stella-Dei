@@ -1,0 +1,35 @@
+[
+  {
+    "label": "day30",
+    "baseline_median_ms": 8.2549811,
+    "candidate_median_ms": 9.3982541,
+    "median_change_percent": 13.849492641479234,
+    "paired_change_percent": [
+      46.87162174928137,
+      17.818804158348954,
+      8.502945996982959
+    ]
+  },
+  {
+    "label": "day60",
+    "baseline_median_ms": 7.666160966666666,
+    "candidate_median_ms": 9.5919551,
+    "median_change_percent": 25.120710896978338,
+    "paired_change_percent": [
+      33.41331462346153,
+      19.63559563322077,
+      29.827997243145333
+    ]
+  },
+  {
+    "label": "day90",
+    "baseline_median_ms": 8.3738115,
+    "candidate_median_ms": 10.288419583333333,
+    "median_change_percent": 22.864236713870767,
+    "paired_change_percent": [
+      20.15702950919167,
+      22.24837140570135,
+      23.791969309474716
+    ]
+  }
+]
