@@ -33,3 +33,7 @@ The f64 funded-receipt rounding gate and f32 signal conversion are SEPARATE. The
 ## Pre-matrix shared-flow rounding clarification
 
 Independent review permits the tiny downward proportional-allocation deficit to remain explicitly UNcredited physical throughflow into vapor, rather than refunding it through a second rounded transfer. This supersedes the earlier wording that every allocation-rounding remainder must remain in source. Actual total source debit stays≤sum desired root flow; per-cohort credit stays≤actual funded share/demand; no biological bonus or protected pool is introduced. The fixed1e-10×aerialdemand f64-credit-loss gate applies to this deficit, reported separately from f32 signal quantization. Large unused requests still remain source; this exception concerns only rounding loss in distributing a paid shared flow. Freeze before any new matrix outcomes.
+
+## Frozen matrix gate implementation note, before outcomes
+
+The prepared matrix compares global conservative f64 credit/signal loss against EACH nonzero cumulative cohort demand, a deliberately stricter sufficient bound than attributing losses per cohort. The actual frozen fixture has one living cohort. Preserve that implementation rather than relax it after results. Independent2000full-kernel×24permutation audit found no blocking funding/accounting issue; all five physical-phase exact Fraction SUMABS values were bounded by reported diagnostics. Matrix compilation passed without executing outcomes.
