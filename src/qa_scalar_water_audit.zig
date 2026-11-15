@@ -1,0 +1,9 @@
+const std=@import("std");const S=@import("experimental/scalar_water.zig");
+pub fn main()!void{
+ var rng=std.Random.DefaultPrng.init(383729);const r=rng.random();const out=std.io.getStdOut().writer();var accepted:usize=0;var partial:usize=0;var refused:usize=0;
+ for(0..10000)|k|{const scale=std.math.pow(f64,2,@as(f64,@floatFromInt(k%2095))-1074);const source=scale*(1+r.float(f64)*3);const target=if(k%7==0)@as(f64,0) else if(k%7==1)@as(f64,1) else scale*r.float(f64)*3;const want=scale*r.float(f64)*5;const result=S.transfer(source,target,want);if(result.accepted){accepted+=1;if(result.paid<@min(source,want))partial+=1;}else{refused+=1;try std.testing.expectEqual(source,result.source);try std.testing.expectEqual(target,result.target);try std.testing.expectEqual(@as(f64,0),result.paid);}try std.json.stringify(.{.source=source,.target=target,.requested=want,.result=result},.{},out);try out.writeByte('\n');}
+ const held:f64=705.3308409072768;for([_]f64{0.0001666666666666483,0.00008333333333332415,0.00004166666666666208})|target|{const result=S.transfer(held,target,0.25);try std.testing.expect(result.accepted);try std.testing.expectEqual(@as(f64,0.25),result.paid);try std.json.stringify(.{.source=held,.target=target,.requested=@as(f64,0.25),.result=result},.{},out);try out.writeByte('\n');}
+ for([_]f64{-1,std.math.inf(f64),std.math.nan(f64)})|bad|{try std.testing.expect(!S.transfer(bad,0,1).accepted);try std.testing.expect(!S.transfer(1,bad,1).accepted);try std.testing.expect(!S.transfer(1,0,bad).accepted);}
+ try std.testing.expect(S.transfer(1,2,0).accepted);try std.testing.expect(S.transfer(0,2,1).accepted);try std.testing.expect(!S.transfer(1,std.math.floatMax(f64),1).accepted);
+ std.debug.print("10000 broad finite probes accepted={d} partial={d} refused={d}; 3 actual recharge witnesses full .25; invalid/zero/overflow pass\n",.{accepted,partial,refused});
+}

@@ -1,0 +1,10 @@
+{
+  "src/qa_soil_physiology_recharge.zig": "e8b429dc1298f35317551f706d015cac04c38fd53b904df85c77f9ee21a3cf5f",
+  "src/experimental/soil_physiology_core.zig": "c4b137ae9f81935e7ccc42d6deabf93c4e42d8bc189f6cd0de6a08a52db0153e",
+  "src/experimental/scalar_water.zig": "d7a3bea115f245a11e7e2e8f19426bec672b35789a8996a344560b0782478d7e",
+  "src/experimental/soil_root_kernel_v2.zig": "dfc8787d51fbf0ce6667a0a60fb45323a1a15b56b82297453067959a31458713",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/physiology-corrected/summary.json": "a467285889e25431eec553a4bffcf2b557305b5617b4dbeaab44759ad17b038c",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/physiology-corrected/first-run.log.gz": "523d8fc552e20948ca9792117bb17afecd88b0d30871bcf71de35a494225dc3c",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/physiology-corrected/run.log.gz": "a97a92f078b219dd0d0fe002fcd94536416aa25fd9e0cd88c15f4ee59ef970cf",
+  "web/tests/continuation-review/paid-hydration/soil-root-design/physiology-corrected/README.md": "7609ad78969b8e9d70fd99e981ca9d2c8876d34ce93cfa4650fecb16708980e6"
+}
