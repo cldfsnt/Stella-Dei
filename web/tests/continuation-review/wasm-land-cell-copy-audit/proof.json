@@ -1,0 +1,18 @@
+{
+  "named_wasm_sha256": "7c9994134349c3415c204d20a418b33b72fa599595c339f9ab534896157685a6",
+  "same_executable_as": "wasm-land-cpu-profile/identity.json",
+  "copies": [
+    {
+      "stack_target": 264,
+      "wat_character_offset": 1201455,
+      "call": "(call $__memcpy\n(i32.add\n(local.get $11)\n(i32.const 264)\n)\n(i32.add\n(i32.load offset=2708\n(local.get $4)\n)\n(local.get $7)\n)\n(i32.const 368)\n)"
+    },
+    {
+      "stack_target": 1176,
+      "wat_character_offset": 1280381,
+      "call": "(call $__memcpy\n(i32.add\n(local.get $11)\n(i32.const 1176)\n)\n(i32.add\n(local.get $11)\n(i32.const 264)\n)\n(i32.const 368)\n)"
+    }
+  ],
+  "conditional_bytes_per_tick_40962_cells": 30148032,
+  "scope": "static code evidence, not instruction execution counts or attribution of all memcpy samples"
+}

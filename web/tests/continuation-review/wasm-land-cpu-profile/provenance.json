@@ -1,0 +1,38 @@
+{
+  "profile.js": {
+    "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+    "bytes": 94248
+  },
+  "analysis.json": {
+    "sha256": "984c5edaa5f76fd1bf39359cd19dde2e8e5501b5240faebab0e3c5faab303f17",
+    "bytes": 168972
+  },
+  "endpoint.json": {
+    "sha256": "177388476e42306cadfbe9694bf5cbca003ef8738a2e1765ce667fefa1d1b699",
+    "bytes": 12034989
+  },
+  "profile.js.symbols": {
+    "sha256": "f5c95140e382f5f27a525481d75c68ada3a4dd054a40eef35a73d0d7561d3f06",
+    "bytes": 11601
+  },
+  "link.log": {
+    "sha256": "d99da7b10a3f2b07b0aeb1bc4c25fbd27e5cd0497be6d9cda074871b6d8fd935",
+    "bytes": 364
+  },
+  "identity.json": {
+    "sha256": "26d470700a715c8f0eb2afc6213641d781c888ecde5c57543814019bdefe21a3",
+    "bytes": 264
+  },
+  "beta.cpuprofile": {
+    "sha256": "0978e8f730d713dd3559d9acc0968922195e3a2194b6f7d759e78c416dbc09fe",
+    "bytes": 147994
+  },
+  "run.log": {
+    "sha256": "e47c276911ce4a7b0920e4daea7726c70e5a51ae860885693af8a770f18657f9",
+    "bytes": 430
+  },
+  "profile.wasm": {
+    "sha256": "7c9994134349c3415c204d20a418b33b72fa599595c339f9ab534896157685a6",
+    "bytes": 335135
+  }
+}
