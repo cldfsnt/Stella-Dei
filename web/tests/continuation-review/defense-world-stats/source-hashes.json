@@ -1,0 +1,5 @@
+{
+  "src/world_ecology.zig": "ebec812e0561e6ef72a11464712c236213e09c9519b319bc657dbcf0804310d9",
+  "web/world-ecology.js": "f2a97b7de67ef9074bd7cd7616beab0e7afebd8de9dbe15926dc56466169dded",
+  "web/tests/world-ecology.test.cjs": "3c929c7e71bd4591394ff98a3c206951fe6995db0c722eab6ac062ed928b73c9"
+}

@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "files": [
+    {
+      "path": "../site-tmp/defense-census/install/bin/stella-egl",
+      "sha256": "ab446f9f3d84251d9ef248c396da03d2185320f4d62495f2bbc0a223b87dc905"
+    },
+    {
+      "path": "../site-tmp/defense-census/src/world_ecology.zig",
+      "sha256": "ebec812e0561e6ef72a11464712c236213e09c9519b319bc657dbcf0804310d9"
+    },
+    {
+      "path": "../site-tmp/foraging-production/warm-actual-end.json",
+      "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-1.json",
+      "sha256": "20e1a8deb3eb34542651a13cf977ee4647dc13240f7b9a5ba82c14bfabbad237"
+    }
+  ]
+}

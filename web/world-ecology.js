@@ -11,6 +11,17 @@ function describe(d){
   lines.push(...forms.map(f=>{if(!/^[a-z -]{1,40}$/i.test(f.form))throw Error('Invalid form');return f.form+': '+count(f.colony_count)+' colonies · '+number(f.biomass_sum).toPrecision(3)+' summed kg C/m²';}));
   if(!forms.length)lines.push('No living forms found in this sample.');
  }else lines.push('Worldwide: '+count(d.rabbits)+' rabbits · '+count(d.vegetated_patches)+' patches with plants · '+number(d.cover_sum).toFixed(2)+' summed patch cover (not trees).');
+ if(d.mode==='sandbox'&&d.plant_defenses){
+  const p=d.plant_defenses;if(typeof p.enabled!=='boolean')throw Error('Invalid defense state');
+  if(p.tender_patches+p.defended_patches!==d.vegetated_patches)throw Error('Invalid plant partition');
+  const tender=count(p.tender_patches),defended=count(p.defended_patches);
+  if(!p.enabled){if(p.defended_patches!==0)throw Error('Invalid classic traits');lines.push('Classic plants: inherited defenses are off.');}
+  else {
+   lines.push('Plant traits, not species: Tender (0): '+tender+' patches · '+number(p.tender_cover).toFixed(2)+' full-patch equivalents; defended (>0): '+defended+' patches · '+number(p.defended_cover).toFixed(2)+' full-patch equivalents.');
+   if(d.vegetated_patches>0){const lo=number(p.minimum),hi=number(p.maximum);if(lo>hi||hi>1)throw Error('Invalid toughness range');lines.push('Living plant toughness range: '+(lo===0?'0':lo.toPrecision(3))+'–'+(hi===0?'0':hi.toPrecision(3))+'. Defended includes inherited variants, not only manually planted Tough.');}
+   else {if(p.minimum!==null||p.maximum!==null)throw Error('Invalid empty range');lines.push('No living plant traits in this sample.');}
+  }
+ }
  const start=number(d.census_start_time),end=number(d.census_end_time);if(end<start)throw Error('Invalid time');
  lines.push('Sampled day '+(start/86400).toFixed(2)+'–'+(end/86400).toFixed(2)+'. Running worlds can change during the scan.');
  if(d.recent){const r=d.recent;const seconds=number(r.observed_seconds);lines.push((r.saturated?'At least ':'')+count(r.counts.births)+' births · '+count(r.counts.deaths)+(d.mode==='origin'?' colony deaths over ':' rabbit deaths over ')+(seconds/3600).toFixed(1)+' observed simulation hours.');lines.push(d.mode==='origin'?'Paid colony births and physiology deaths only; excludes seeding, moves and god-tool losses.':'Rabbit births and deaths only; not plant births or losses.');lines.push('Up to 24 simulation hours, grouped in hourly buckets; session only, reset on load.');}

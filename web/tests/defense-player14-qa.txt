@@ -1,0 +1,29 @@
+          _=pm;_=pw;
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+          const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          for(0..2)|arm|{
+            try saves.apply(state,initial.value);
+            const world=PerformanceDetails.world_serial;state.selectedPoint=26790;
+            std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world,26790,0)),"enabled")!=null);
+            for([_]usize{26790,26788},0..)|patch,k|{
+              state.selectedPoint=patch;const kind=(k+arm)%2;
+              std.debug.assert(std.mem.indexOf(u8,std.mem.span(stella_defense_action(world,@intCast(patch),@intCast(kind+1))),"selected")!=null);
+              state.pointerOnPlanet=true;std.debug.assert(state.testAction(3));
+              std.debug.assert(state.planet.vegetation[patch]==0.35 and state.planet.plantTraits[patch].toughness==(if(kind==1)@as(f32,0.5) else 0));
+            }
+            for(0..15)|day|{
+              if(day>0)for(0..60)|_|{loop.pump(16);state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;loop.pump(16);};
+              const bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+              try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/arm-{}-day-{}.json",.{arm,day}),.data=bytes});
+              std.debug.print("PLAYER14 arm={} day={} rabbits={} births={} deaths={} cover0={d} cover1={d} d0={d} d1={d}\n",.{arm,day,state.planet.lifeforms.items.len,state.planet.rabbitBirths,state.planet.rabbitDeaths,state.planet.vegetation[26790],state.planet.vegetation[26788],state.planet.plantTraits[26790].toughness,state.planet.plantTraits[26788].toughness});
+            }
+            const endpoint_bytes=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const endpoint=try std.json.parseFromSlice(saves.schema.Save,a,endpoint_bytes,.{.allocate=.alloc_always});
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            const uninterrupted=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try saves.apply(state,initial.value);try saves.apply(state,endpoint.value);
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+            std.debug.assert(std.mem.eql(u8,uninterrupted,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            std.debug.print("PLAYER14_CONTINUATION arm={} exact=true\n",.{arm});
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          std.debug.print("PLAYER14_COMPLETE original_restored=true\n",.{});
+        }

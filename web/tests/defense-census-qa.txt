@@ -1,0 +1,26 @@
+          _=pm;_=pw;
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+          const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          const origin_owned=try std.json.parseFromSlice(saves.schema.Save,a,stats_origin,.{.allocate=.alloc_always});
+          for(0..3)|mode|{
+            if(mode==1){const bytes=try std.fs.cwd().readFileAlloc(a,"/workspace/scratch/f67c3ac60ca3/site-tmp/defense-player14/arm-0-day-1.json",128*1024*1024);const save=try std.json.parseFromSlice(saves.schema.Save,a,bytes,.{.allocate=.alloc_always});try saves.apply(state,save.value);}
+            if(mode==2)try saves.apply(state,origin_owned.value);
+            const before=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+            var tender:usize=0;var defended:usize=0;var tc:f64=0;var dc:f64=0;var lo:f32=1;var hi:f32=0;
+            if(mode!=2)for(state.planet.vegetation,state.planet.plantTraits)|v,t|{if(v>0){if(t.toughness==0){tender+=1;tc+=v;}else{defended+=1;dc+=v;}lo=@min(lo,t.toughness);hi=@max(hi,t.toughness);}};
+            var response=stella_world_ecology(1);var calls:usize=1;
+            while(std.mem.indexOf(u8,std.mem.span(response),"\"status\":\"ready\"")==null and calls<100):(calls+=1)response=stella_world_ecology(0);
+            std.debug.assert(calls<100);const parsed=try std.json.parseFromSlice(std.json.Value,a,std.mem.span(response),.{.allocate=.alloc_always});const data=parsed.value.object.get("plant_defenses").?;
+            if(mode==2){std.debug.assert(data==.null);}else{
+              const d=data.object;std.debug.assert(d.get("enabled").?.bool==state.planet.sandboxDefense.enabled);
+              std.debug.assert(d.get("tender_patches").?.integer==tender and d.get("defended_patches").?.integer==defended);
+              const got_tc=try std.fmt.parseFloat(f64,try std.json.stringifyAlloc(a,d.get("tender_cover").?,.{}));const got_dc=try std.fmt.parseFloat(f64,try std.json.stringifyAlloc(a,d.get("defended_cover").?,.{}));
+              std.debug.assert(got_tc==tc and got_dc==dc);
+              const got_lo=try std.fmt.parseFloat(f32,try std.json.stringifyAlloc(a,d.get("minimum").?,.{}));const got_hi=try std.fmt.parseFloat(f32,try std.json.stringifyAlloc(a,d.get("maximum").?,.{}));std.debug.assert(got_lo==lo and got_hi==hi);
+            }
+            std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/stats-{}.json",.{mode}),.data=std.mem.span(response)});
+            std.debug.print("DEFENSE_CENSUS_PASS mode={} calls={} tender={} defended={} cover_t={d} cover_d={d} fullsave_rng_exact=true\n",.{mode,calls,tender,defended,tc,dc});
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+        }

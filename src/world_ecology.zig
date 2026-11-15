@@ -1,9 +1,9 @@
 //! Observational session statistics, never saved or used by biology.
-const std=@import("std");const M=@import("simulation/microbes.zig");const Recent=@import("recent_ecology.zig");
+const std=@import("std");const M=@import("simulation/microbes.zig");const Recent=@import("recent_ecology.zig");const Ecology=@import("simulation/ecology.zig");
 pub var enabled=true;
 var owner:usize=0;var serial:u32=0;var observed_mode:M.Mode=.origin;var recent:Recent.Observer=.{};
 const Form=struct{form:[]const u8,biomass_sum:f64=0,colony_count:usize=0};
-const Census=struct{active:bool=false,ready:bool=false,mode:M.Mode=.origin,owner:usize=0,world:u32=0,storage:usize=0,total:usize=0,cursor:usize=0,start:f64=0,end:f64=0,forms:[6]Form=undefined,cover_sum:f64=0,vegetated_patches:usize=0,colonies:usize=0};
+const Census=struct{active:bool=false,ready:bool=false,mode:M.Mode=.origin,owner:usize=0,world:u32=0,storage:usize=0,total:usize=0,cursor:usize=0,start:f64=0,end:f64=0,forms:[6]Form=undefined,cover_sum:f64=0,vegetated_patches:usize=0,colonies:usize=0,defense_enabled:bool=false,trait_storage:usize=0,tender_patches:usize=0,defended_patches:usize=0,tender_cover:f64=0,defended_cover:f64=0,toughness_min:f32=1,toughness_max:f32=0};
 var census:Census=.{};var buffer:[4096]u8=undefined;
 pub fn reset()void{owner=0;serial=0;observed_mode=.origin;recent.reset();census=.{};}
 fn bind(p:anytype,world:u32)void{if(owner!=@intFromPtr(p) or serial!=world){reset();owner=@intFromPtr(p);serial=world;observed_mode=p.worldMode;}}
@@ -26,20 +26,22 @@ pub fn recentLine(text:[]u8,p:anytype,world:u32,time:f64)[]const u8{
 pub fn snapshot(p:anytype,world:u32,time:f64,restart:bool)[:0]const u8{
  if(!std.math.isFinite(time) or time<0)return json(.{.status="unavailable"});
  bind(p,world);const origin=p.worldMode==.origin;const n=if(origin)p.microbeCells.len else p.vegetation.len;
+ const defense_enabled=!origin and p.sandboxDefense.enabled;const trait_storage=if(origin)0 else @intFromPtr(p.plantTraits.ptr);
  const storage=if(origin)@intFromPtr(p.microbeCells.ptr) else @intFromPtr(p.vegetation.ptr);
- if(restart){census=.{.active=true,.mode=p.worldMode,.owner=@intFromPtr(p),.world=world,.storage=storage,.total=n,.start=time,.end=time};for(&census.forms,0..)|*f,i|f.*=.{.form=M.producerFormName(@enumFromInt(i))};}
- if((census.active or census.ready) and (census.mode!=p.worldMode or census.world!=world or census.owner!=@intFromPtr(p) or census.storage!=storage or census.total!=n or time<census.end)){census=.{};return json(.{.status="stale"});}
+ if(restart){census=.{.active=true,.mode=p.worldMode,.owner=@intFromPtr(p),.world=world,.storage=storage,.total=n,.start=time,.end=time,.defense_enabled=defense_enabled,.trait_storage=trait_storage};for(&census.forms,0..)|*f,i|f.*=.{.form=M.producerFormName(@enumFromInt(i))};}
+ if((census.active or census.ready) and (census.mode!=p.worldMode or census.world!=world or census.owner!=@intFromPtr(p) or census.storage!=storage or census.total!=n or census.defense_enabled!=defense_enabled or census.trait_storage!=trait_storage or time<census.end)){census=.{};return json(.{.status="stale"});}
+ if(!origin and p.plantTraits.len!=n){census=.{};return json(.{.status="unavailable"});}
  if(census.active){const end=@min(n,census.cursor+@min(@as(usize,512),n-census.cursor));for(census.cursor..end)|i|{
   if(origin){for(p.microbeCells[i].cohorts)|co|{if(!std.math.isFinite(co.biomass) or co.biomass<0){census=.{};return json(.{.status="unavailable"});}if(co.biomass>0){if(co.lineage==0){census=.{};return json(.{.status="unavailable"});}var f=&census.forms[@intFromEnum(M.producerForm(co))];f.biomass_sum+=co.biomass;f.colony_count+=1;census.colonies+=1;}}}
-  else {const v=p.vegetation[i];if(!std.math.isFinite(v) or v<0 or v>1){census=.{};return json(.{.status="unavailable"});}census.cover_sum+=v;if(v>0)census.vegetated_patches+=1;}
+  else {const v=p.vegetation[i];if(!std.math.isFinite(v) or v<0 or v>1){census=.{};return json(.{.status="unavailable"});}census.cover_sum+=v;if(v>0){const d=p.plantTraits[i].toughness;if(!std.math.isFinite(d) or d<0 or d>1 or (!defense_enabled and d!=0)){census=.{};return json(.{.status="unavailable"});}census.vegetated_patches+=1;if(d==0){census.tender_patches+=1;census.tender_cover+=v;}else{census.defended_patches+=1;census.defended_cover+=v;}census.toughness_min=@min(census.toughness_min,d);census.toughness_max=@max(census.toughness_max,d);}}
  }census.cursor=end;census.end=time;if(end==n){census.active=false;census.ready=true;std.mem.sort(Form,&census.forms,{},struct{fn less(_:void,a:Form,b:Form)bool{return a.biomass_sum>b.biomass_sum;}}.less);}}
  const view=if(observed_mode==p.worldMode)recent.view(world,time) else null;
- return json(.{.status=if(census.active) "pending" else if(census.ready) "ready" else "unavailable",.world=world,.mode=if(origin) "origin" else "sandbox",.scanned=census.cursor,.total=n,.census_start_time=census.start,.census_end_time=census.end,.forms=if(origin and census.ready)census.forms[0..] else census.forms[0..0],.colonies=census.colonies,.cover_sum=census.cover_sum,.vegetated_patches=census.vegetated_patches,.rabbits=p.lifeforms.items.len,.recent=view,.recent_scope=if(origin) "paid colony births / physiology colony deaths" else "rabbit births / rabbit deaths",.window_seconds=@as(u32,86400),.bucket_seconds=@as(u32,3600),.biomass_units="sum of patch kg C/m2; not species",.sampled=true});
+ return json(.{.status=if(census.active) "pending" else if(census.ready) "ready" else "unavailable",.world=world,.mode=if(origin) "origin" else "sandbox",.scanned=census.cursor,.total=n,.census_start_time=census.start,.census_end_time=census.end,.forms=if(origin and census.ready)census.forms[0..] else census.forms[0..0],.colonies=census.colonies,.cover_sum=census.cover_sum,.vegetated_patches=census.vegetated_patches,.rabbits=p.lifeforms.items.len,.plant_defenses=if(!origin and census.ready) .{.enabled=census.defense_enabled,.tender_patches=census.tender_patches,.defended_patches=census.defended_patches,.tender_cover=census.tender_cover,.defended_cover=census.defended_cover,.minimum=if(census.vegetated_patches>0)@as(?f32,census.toughness_min) else null,.maximum=if(census.vegetated_patches>0)@as(?f32,census.toughness_max) else null} else null,.recent=view,.recent_scope=if(origin) "paid colony births / physiology colony deaths" else "rabbit births / rabbit deaths",.window_seconds=@as(u32,86400),.bucket_seconds=@as(u32,3600),.biomass_units="sum of patch kg C/m2; not species",.sampled=true});
 }
 test "physiology deaths count cutoff and grazing zero but not positive cohort or empty"{
  var b=[_]M.Cohort{.{.lineage=1,.biomass=0.1},.{.lineage=2,.biomass=0.01},.{},.{}};var a=b;a[0]=.{};try std.testing.expectEqual(@as(u64,1),physiologyDeaths(b,a));a[1].biomass=0;try std.testing.expectEqual(@as(u64,2),physiologyDeaths(b,a));b[0].lineage=0;try std.testing.expectEqual(@as(u64,1),physiologyDeaths(b,a));
 }
-const Mock=struct{worldMode:M.Mode=.origin,microbeCells:[]M.Cell,vegetation:[]f32,lifeforms:struct{items:[]u8}=.{.items=&.{}}};
+const Mock=struct{plantTraits:[]const Ecology.Plant=&.{.{},.{},.{}},sandboxDefense:Ecology.DefenseConfig=.{},worldMode:M.Mode=.origin,microbeCells:[]M.Cell,vegetation:[]f32,lifeforms:struct{items:[]u8}=.{.items=&.{}}};
 test "incremental actual forms census and session counters are pure and mode honest"{
  const a=std.testing.allocator;const cells=try a.alloc(M.Cell,513);defer a.free(cells);@memset(cells,.{});var vegetation=[_]f32{0,0.35,1};
  cells[0].cohorts[0]=.{.biomass=0.1,.lineage=1};cells[512].cohorts[0]=.{.biomass=0.2,.support_mass=0.1,.organization=0.1,.efficiency=1.1,.lineage=2};
@@ -69,4 +71,17 @@ test "recent footer is scoped bounded read with honest interval reset and pause"
  try std.testing.expectEqualStrings("Recent stats warming up · World stats",recentLine(&text,&other,8,3600));try std.testing.expectEqualStrings("Recent stats warming up · World stats",recentLine(&text,&p,9,3600));try std.testing.expectEqualStrings("Recent stats warming up · World stats",recentLine(&text,&p,8,3601));
  p.worldMode=.sandbox;try std.testing.expectEqualStrings("Recent stats warming up · World stats",recentLine(&text,&p,8,3600));record(&p,8,0,0,0);record(&p,8,3600,4,1);try std.testing.expectEqualStrings("1.0h: 4 births · 1 rabbit deaths",recentLine(&text,&p,8,3600));
  reset();try std.testing.expectEqualStrings("Recent stats warming up · World stats",recentLine(&text,&p,8,3600));
+}
+test "bounded occupied trait partition range purity and config freshness"{
+ const a=std.testing.allocator;const v=try a.alloc(f32,513);defer a.free(v);@memset(v,0);const traits=try a.alloc(Ecology.Plant,513);defer a.free(traits);@memset(traits,.{});v[0]=0.25;v[1]=0.5;v[512]=1;traits[1].toughness=0.03125;traits[512].toughness=0.5;traits[3].toughness=0.9;
+ var cells=[_]M.Cell{.{}};var p=Mock{.worldMode=.sandbox,.microbeCells=&cells,.vegetation=v,.plantTraits=traits,.sandboxDefense=.{.enabled=true,.law=1,.mutation_law=2}};reset();defer reset();
+ const before=try std.json.stringifyAlloc(a,.{v,traits,p.sandboxDefense},.{});defer a.free(before);
+ const first=try std.json.parseFromSlice(std.json.Value,a,snapshot(&p,88,0,true),.{});defer first.deinit();try std.testing.expectEqual(@as(i64,512),first.value.object.get("scanned").?.integer);try std.testing.expect(first.value.object.get("plant_defenses").?==.null);
+ const end=try std.json.parseFromSlice(std.json.Value,a,snapshot(&p,88,0,false),.{});defer end.deinit();const d=end.value.object.get("plant_defenses").?.object;
+ try std.testing.expectEqual(@as(i64,1),d.get("tender_patches").?.integer);try std.testing.expectEqual(@as(i64,2),d.get("defended_patches").?.integer);try std.testing.expectEqual(@as(f64,0.25),d.get("tender_cover").?.float);try std.testing.expectEqual(@as(f64,1.5),d.get("defended_cover").?.float);try std.testing.expectEqual(@as(f64,0.5),d.get("maximum").?.float);
+ const after=try std.json.stringifyAlloc(a,.{v,traits,p.sandboxDefense},.{});defer a.free(after);try std.testing.expectEqualStrings(before,after);
+ p.sandboxDefense=.{};try std.testing.expect(std.mem.indexOf(u8,snapshot(&p,88,0,false),"stale")!=null);
+ traits[1].toughness=0;traits[512].toughness=0;_=snapshot(&p,88,0,true);p.sandboxDefense=.{.enabled=true,.law=1,.mutation_law=2};try std.testing.expect(std.mem.indexOf(u8,snapshot(&p,88,0,false),"stale")!=null);
+ p.plantTraits=traits[0..512];try std.testing.expect(std.mem.indexOf(u8,snapshot(&p,88,0,true),"unavailable")!=null);p.plantTraits=traits;try std.testing.expect(std.mem.indexOf(u8,snapshot(&p,88,0,false),"unavailable")!=null);
+ p.sandboxDefense=.{.enabled=true,.law=1,.mutation_law=2};traits[0].toughness=std.math.nan(f32);try std.testing.expect(std.mem.indexOf(u8,snapshot(&p,88,0,true),"unavailable")!=null);
 }

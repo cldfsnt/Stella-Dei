@@ -1,0 +1,161 @@
+{
+  "exit_code": 0,
+  "input": "../site-tmp/foraging-production/warm-actual-end.json",
+  "files": [
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-0.json",
+      "bytes": 7700228,
+      "sha256": "51efba0d9a9904c7476376bf95f50dbc2f9db7bc55e51b93a1f595cb1941c4b9"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-1.json",
+      "bytes": 7705837,
+      "sha256": "20e1a8deb3eb34542651a13cf977ee4647dc13240f7b9a5ba82c14bfabbad237"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-10.json",
+      "bytes": 7741574,
+      "sha256": "cd283ee0350de1aefa5a9a7d445b958cbd7b8f44b3b1b7e390042a49c405c8bf"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-11.json",
+      "bytes": 7742353,
+      "sha256": "b750859771e23e6cdd5e09e6d897e0d86d77d4f347252e8c2dfe3a071cfab807"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-12.json",
+      "bytes": 7742947,
+      "sha256": "02b14d539829f18915c305ed1aff92946572d4a614c8faf8028652ce4ca6985c"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-13.json",
+      "bytes": 7743484,
+      "sha256": "33f5ef39ee87266ecbc2da96d877efcdcb0ef4600e6d6f106b2f6798297ffca2"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-14.json",
+      "bytes": 7744005,
+      "sha256": "0e8604b58e71a218f38db8493bcee726007f8f676a491176c9c45b23f2d3da4b"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-2.json",
+      "bytes": 7712626,
+      "sha256": "0369f42061ce89ce96544541203ae0072a90e4c2d74f702ee492a9f08ef5e783"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-3.json",
+      "bytes": 7718027,
+      "sha256": "d36ccd4093500b05e1e01923e3b967d97cd88b7a94bffbe3413cb9507f478d08"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-4.json",
+      "bytes": 7724421,
+      "sha256": "048cf8f56686dd1208f51c5c05332dd8ddb5ea170d1279eb68cb6294ba059745"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-5.json",
+      "bytes": 7730095,
+      "sha256": "fa94a04aad65bc18f3f021fe94cce3fd0dc1749056ccc71749602e54e56c6398"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-6.json",
+      "bytes": 7734352,
+      "sha256": "2bcfb3479b058c2d3d515ff1dc770681591574a77263f1103fc1e7a73952d00c"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-7.json",
+      "bytes": 7737514,
+      "sha256": "5e335400430c2b7f43ee4c077e34a39f4208393e376ba42f4d94873352ee9e62"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-8.json",
+      "bytes": 7739701,
+      "sha256": "2106bf1cd6c54080b628c4f5eac255b3f0c26db3218e2bb08c96a50c7ddfcd38"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-0-day-9.json",
+      "bytes": 7741022,
+      "sha256": "8e5db1146e6ad48f75f44921c58188c5fe0d9d2c0cbba085e6fb444227eb0c7f"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-0.json",
+      "bytes": 7700228,
+      "sha256": "7e8a96d3536a2359e7801be0e41629e14597aac7f953e7dc0a7a8f40e42aaf2b"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-1.json",
+      "bytes": 7705839,
+      "sha256": "0f195680ee948a4907a99452c61a911df897ce50eee3f5e6629ea40ab824337c"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-10.json",
+      "bytes": 7741210,
+      "sha256": "2cc875c0529db82afbf4908c73b58b7962fd7c1086fc029bfb21098b07335162"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-11.json",
+      "bytes": 7741993,
+      "sha256": "e3a20c24fb202165846d222060f9eb0adcf2f4b6e58c65b5256cf1fe5b730c59"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-12.json",
+      "bytes": 7742691,
+      "sha256": "35c7a6c45c6c616d70f9d515ae93722d538684a27e3d9b5f055cab03f9a95188"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-13.json",
+      "bytes": 7743195,
+      "sha256": "bc7039e69e4e6f75031f4ede89691f7eafe139bdd6a70ed941e4feab699712ce"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-14.json",
+      "bytes": 7743740,
+      "sha256": "f4a304182666c1daaa945d5a8eed39dbdc78e83bf8c978de46a36df43b3f92f0"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-2.json",
+      "bytes": 7712626,
+      "sha256": "a3e74a7b9227a95090c5461aa5f01cd25ffc917037f4a6057b89147e0a4969fa"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-3.json",
+      "bytes": 7718023,
+      "sha256": "e6df6b66913c7b41beb7e0166e1cd1481199e6039546f4ea7ae61bafc57af7a3"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-4.json",
+      "bytes": 7724423,
+      "sha256": "b64862be6bd2c0983f60f44e46634f5885372003f5c5c08daf696a347e9819a9"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-5.json",
+      "bytes": 7730111,
+      "sha256": "e01dee5e307171830e656f0bf7f243c83fdd95a8804b69abdfd9f50310bf533a"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-6.json",
+      "bytes": 7734369,
+      "sha256": "845d503d1f4abf7fb110862accc4142a9821d766646d7374e4b209d3fcb77e86"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-7.json",
+      "bytes": 7737527,
+      "sha256": "597a6c12359b2b145c95f1f6dc57ccef05238f0608afa2749f0d3732eb783024"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-8.json",
+      "bytes": 7739703,
+      "sha256": "0c1287bbb86b3d7196d4f308d52f59ba12fb4350da97364becf46c5f793228b5"
+    },
+    {
+      "path": "../site-tmp/defense-player14/arm-1-day-9.json",
+      "bytes": 7741004,
+      "sha256": "cb07564c6c7519f5f6de3add9bd70ba598a960b5d9916532a9355ba915cf3216"
+    },
+    {
+      "path": "../site-tmp/defense-player14/install/bin/stella-egl",
+      "bytes": 12178664,
+      "sha256": "99bfd720f4255f56f7388820d74fdc0f9bf45bdfaf352439fc723758ffc0bec6"
+    }
+  ]
+}
