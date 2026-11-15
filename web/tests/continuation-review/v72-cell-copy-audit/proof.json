@@ -1,0 +1,9 @@
+{
+  "baseline_wasm_sha256": "149c92922029f4d94b9beba25a47788dc6197002e14556977307871c09b0cdd0",
+  "named_wasm_sha256": "ee8ab4c5c67a2bc8188f7777f5cf0976f18dac6e12c3d1ccf8b471f47c250128",
+  "noncustom_sections_exact": true,
+  "copy_bytes": 320,
+  "simulation_source_line": 144,
+  "save_validation_source_line": 246,
+  "archive_sha256": "99ec1e31de5a6bfc3b31fda8d5fc7f4c0e7a6d768f2f4e64f16f84e8d966a6e9"
+}

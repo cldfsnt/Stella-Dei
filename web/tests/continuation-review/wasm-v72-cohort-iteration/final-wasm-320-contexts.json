@@ -1,0 +1,17 @@
+{
+  "baseline": [
+    "                             )\n                             (local.get $112)\n                            )\n                           )\n                           (drop\n                            (call $133\n                             (i32.add\n                              (local.get $11)\n                              (i32.const 320)\n                             )",
+    "                         )\n                         (drop\n                          (call $133\n                           (i32.add\n                            (local.get $20)\n                            (i32.const 136)\n                           )\n                           (local.get $5)\n                           (i32.const 320)\n                          )",
+    "            )\n            (drop\n             (call $133\n              (i32.add\n               (local.get $16)\n               (i32.const 8)\n              )\n              (local.get $14)\n              (i32.const 320)\n             )",
+    "  )\n  (drop\n   (call $133\n    (i32.add\n     (local.get $2)\n     (i32.const 8)\n    )\n    (i32.const 12352)\n    (i32.const 320)\n   )",
+    "                   (i64.le_u\n                    (local.get $26)\n                    (i64.const 281474976710655)\n                   )\n                   (then\n                    (call $164\n                     (i32.add\n                      (local.get $1)\n                      (i32.const 320)\n                     )",
+    "                  (local.get $4)\n                  (i32.const 1)\n                 )\n                 (br $label$47)\n                )\n                (call $67\n                 (i32.add\n                  (local.get $4)\n                  (i32.const 320)\n                 )"
+  ],
+  "candidate": [
+    "                             )\n                             (local.get $112)\n                            )\n                           )\n                           (drop\n                            (call $133\n                             (i32.add\n                              (local.get $12)\n                              (i32.const 320)\n                             )",
+    "            )\n            (drop\n             (call $133\n              (i32.add\n               (local.get $16)\n               (i32.const 8)\n              )\n              (local.get $14)\n              (i32.const 320)\n             )",
+    "  )\n  (drop\n   (call $133\n    (i32.add\n     (local.get $2)\n     (i32.const 8)\n    )\n    (i32.const 12352)\n    (i32.const 320)\n   )",
+    "                   (i64.le_u\n                    (local.get $26)\n                    (i64.const 281474976710655)\n                   )\n                   (then\n                    (call $164\n                     (i32.add\n                      (local.get $1)\n                      (i32.const 320)\n                     )",
+    "                  (local.get $4)\n                  (i32.const 1)\n                 )\n                 (br $label$47)\n                )\n                (call $67\n                 (i32.add\n                  (local.get $4)\n                  (i32.const 320)\n                 )"
+  ]
+}

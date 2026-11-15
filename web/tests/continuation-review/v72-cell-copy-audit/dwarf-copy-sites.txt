@@ -1,0 +1,49 @@
+    1d17: 20 00        	local.get	0
+    1d19: 2a 02 88 02  	f32.load	264
+    1d1d: 92           	f32.add 
+    1d1e: 43 47 03 80 3f       	f32.const	0x1.00068ep0
+; /workspace/scratch/f67c3ac60ca3/site-tmp/wasm-land-screen/baseline/src/simulation/microbes.zig:245
+    1d23: 5e           	f32.gt  
+    1d24: 0d 00        	br_if   	0                       # 0: down to label144
+; /workspace/scratch/f67c3ac60ca3/site-tmp/wasm-land-screen/baseline/src/simulation/microbes.zig:246
+    1d26: 20 02        	local.get	2
+    1d28: 41 08        	i32.const	8
+    1d2a: 6a           	i32.add 
+    1d2b: 20 00        	local.get	0
+    1d2d: 41 c0 02     	i32.const	320
+    1d30: 10 80 80 80 80 00    	call	0
+    1d36: 1a           	drop
+    1d37: 41 00        	i32.const	0
+    1d39: 21 00        	local.set	0
+    1d3b: 03 40        	loop    	                        # label145:
+    1d3d: 02 40        	block   	
+    1d3f: 20 02        	local.get	2
+    1d41: 41 08        	i32.const	8
+    1d43: 6a           	i32.add 
+    1d44: 20 00        	local.get	0
+    1d46: 6a           	i32.add 
+
+   10685: 21 4d        	local.set	77
+   10687: 20 1b        	local.get	27
+   10689: 2a 02 90 02  	f32.load	272
+   1068d: 21 43        	local.set	67
+   1068f: 20 1b        	local.get	27
+   10691: 2a 02 c0 01  	f32.load	192
+   10695: 21 41        	local.set	65
+; /workspace/scratch/f67c3ac60ca3/site-tmp/wasm-land-screen/baseline/src/simulation/microbes.zig:144
+   10697: 20 02        	local.get	2
+   10699: 41 88 01     	i32.const	136
+   1069c: 6a           	i32.add 
+   1069d: 20 1b        	local.get	27
+   1069f: 41 c0 02     	i32.const	320
+   106a2: 10 80 80 80 80 00    	call	0
+   106a8: 1a           	drop
+   106a9: 20 43        	local.get	67
+   106ab: 43 00 00 00 00       	f32.const	0x0p0
+; /workspace/scratch/f67c3ac60ca3/site-tmp/wasm-land-screen/baseline/src/simulation/microbes.zig:142
+   106b0: 5e           	f32.gt  
+   106b1: 20 41        	local.get	65
+   106b3: 43 00 00 00 00       	f32.const	0x0p0
+   106b8: 5e           	f32.gt  
+   106b9: 72           	i32.or  
+   106ba: 20 4d        	local.get	77

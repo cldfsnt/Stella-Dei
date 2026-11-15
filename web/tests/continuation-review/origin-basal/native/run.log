@@ -1,0 +1,17 @@
+{
+  "law2_fresh_process_2plus2_equals4": true,
+  "law1_exact_original_beta": true,
+  "legacy_natural_exact": true,
+  "legacy_warm_exact": true,
+  "explicit_migration_identity_only": true,
+  "hashes": {
+    "law1-reference-4.json": "de94af039ded9ce6720ab8d93c138f6a7a1fa886a4188d503b0dd3a117224065",
+    "legacy-warm.json": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd",
+    "law2-2.json": "3dfd185665113a1583925a1f32270ae96072d0568c201e5b0eba30a1a38d6864",
+    "law1-4.json": "de94af039ded9ce6720ab8d93c138f6a7a1fa886a4188d503b0dd3a117224065",
+    "law2-initial.json": "10507a65f964ca88afc306185f7f60f76f4c5a3e309d1a4c7d72e03c1bb6de5a",
+    "legacy-natural.json": "6dbfc3ebb97b1c2ae9920883db7ab753e00b77048007d3ad5e526bbc3e7da4d6",
+    "law2-4.json": "8f24cb690ef824e0e9d9b66f9fc38a418dc36c96d8b7024c62a1afbd1758780b",
+    "law2-2plus2.json": "8f24cb690ef824e0e9d9b66f9fc38a418dc36c96d8b7024c62a1afbd1758780b"
+  }
+}

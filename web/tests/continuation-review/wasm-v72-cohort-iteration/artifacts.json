@@ -1,0 +1,26 @@
+{
+  "baseline/src/simulation/microbes.zig": {
+    "sha256": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+    "bytes": 70809
+  },
+  "baseline/profile.wasm": {
+    "sha256": "149c92922029f4d94b9beba25a47788dc6197002e14556977307871c09b0cdd0",
+    "bytes": 283498
+  },
+  "baseline/install/lib/libstella.a": {
+    "sha256": "1a5e19dcf5708b6c53ad0f171180609b57d237fdb013e5dfe2e0e8c9f8e0c95d",
+    "bytes": 1462494
+  },
+  "candidate/src/simulation/microbes.zig": {
+    "sha256": "12f2e02f3fef0229ea5134ff2e7a3f8dff7753c2d824314db3c2ff467d2f7969",
+    "bytes": 70810
+  },
+  "candidate/profile.wasm": {
+    "sha256": "cd4ab59008eaeeeb0f6613a6f6464160212a65f566efd8edb970a818466b3e6e",
+    "bytes": 283460
+  },
+  "candidate/install/lib/libstella.a": {
+    "sha256": "15ddd12c9ef07bde4d5d552e4925023d56830acb7a881d33616f6861569e5a09",
+    "bytes": 1462518
+  }
+}

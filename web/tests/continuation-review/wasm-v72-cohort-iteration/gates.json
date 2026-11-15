@@ -1,0 +1,62 @@
+{
+  "dense_paid_autoseed": {
+    "input_sha256": "a553dd710c86772176dbd19f03ae0a0d81b2ef20796310e53ff518c32603e353",
+    "input_counts": {
+      "living": 7987,
+      "occupied": 7949,
+      "active": 7952
+    },
+    "arms": {
+      "baseline": {
+        "sha256": "cc0eabd0ade9b2501dd1f016123f4f87c54c5cf52cf874bfafaf453800985f1b",
+        "bytes": 16577942,
+        "endpoint_counts": {
+          "living": 13430,
+          "occupied": 8548,
+          "active": 9357
+        },
+        "fresh_process_restart_exact": true
+      },
+      "candidate": {
+        "sha256": "cc0eabd0ade9b2501dd1f016123f4f87c54c5cf52cf874bfafaf453800985f1b",
+        "bytes": 16577942,
+        "endpoint_counts": {
+          "living": 13430,
+          "occupied": 8548,
+          "active": 9357
+        },
+        "fresh_process_restart_exact": true
+      }
+    }
+  },
+  "early_natural30": {
+    "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "input_counts": {
+      "living": 18,
+      "occupied": 10,
+      "active": 11
+    },
+    "arms": {
+      "baseline": {
+        "sha256": "1b69f9bc6095b8085050c46c97a5ecca1ee94b90d81ca3741370bc517d4ebc30",
+        "bytes": 11110301,
+        "endpoint_counts": {
+          "living": 22,
+          "occupied": 13,
+          "active": 15
+        },
+        "fresh_process_restart_exact": true
+      },
+      "candidate": {
+        "sha256": "1b69f9bc6095b8085050c46c97a5ecca1ee94b90d81ca3741370bc517d4ebc30",
+        "bytes": 11110301,
+        "endpoint_counts": {
+          "living": 22,
+          "occupied": 13,
+          "active": 15
+        },
+        "fresh_process_restart_exact": true
+      }
+    }
+  }
+}

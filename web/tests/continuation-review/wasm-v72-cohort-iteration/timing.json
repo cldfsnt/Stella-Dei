@@ -1,0 +1,66 @@
+{
+  "start": "2026-11-15T19:44:01.004038+00:00",
+  "end": "2026-11-15T19:44:18.771589+00:00",
+  "rows": [
+    {
+      "scenario": "dense_paid_autoseed",
+      "arm": "baseline",
+      "index": 0,
+      "ms_per_tick": 22.564551633333334
+    },
+    {
+      "scenario": "dense_paid_autoseed",
+      "arm": "candidate",
+      "index": 1,
+      "ms_per_tick": 24.393049083333334
+    },
+    {
+      "scenario": "dense_paid_autoseed",
+      "arm": "candidate",
+      "index": 2,
+      "ms_per_tick": 24.219253616666666
+    },
+    {
+      "scenario": "dense_paid_autoseed",
+      "arm": "baseline",
+      "index": 3,
+      "ms_per_tick": 24.562733616666666
+    },
+    {
+      "scenario": "early_natural30",
+      "arm": "baseline",
+      "index": 0,
+      "ms_per_tick": 20.165516183333335
+    },
+    {
+      "scenario": "early_natural30",
+      "arm": "candidate",
+      "index": 1,
+      "ms_per_tick": 21.281063266666663
+    },
+    {
+      "scenario": "early_natural30",
+      "arm": "candidate",
+      "index": 2,
+      "ms_per_tick": 17.813536983333332
+    },
+    {
+      "scenario": "early_natural30",
+      "arm": "baseline",
+      "index": 3,
+      "ms_per_tick": 16.07996105
+    }
+  ],
+  "summary": {
+    "dense_paid_autoseed": {
+      "baseline": 23.563642625,
+      "candidate": 24.30615135,
+      "percent": 3.1510778567496622
+    },
+    "early_natural30": {
+      "baseline": 18.122738616666666,
+      "candidate": 19.547300125,
+      "percent": 7.8606304403862515
+    }
+  }
+}
