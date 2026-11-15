@@ -1,0 +1,21 @@
+          _=pm;_=pw;const PR=@import("plant_receipt.zig");
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          for(0..2)|fixture|{
+            if(fixture==1){const b=try std.fs.cwd().readFileAlloc(a,"/workspace/scratch/f67c3ac60ca3/site-tmp/defense-player14/arm-0-day-1.json",128*1024*1024);const v=try std.json.parseFromSlice(saves.schema.Save,a,b,.{.allocate=.alloc_always});try saves.apply(state,v.value);}
+            const start=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const owned=try std.json.parseFromSlice(saves.schema.Save,a,start,.{.allocate=.alloc_always});var expected:[]const u8="";
+            const cell:usize=if(fixture==0)436 else 26788;
+            for(0..2)|observe|{
+              try saves.apply(state,owned.value);PR.enabled=observe==1;PR.select(&state.planet,PerformanceDetails.world_serial,cell);
+              for(0..60)|tick|{
+                const before=state.planet.vegetation[cell];const time=state.gameTime;
+                state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;
+                if(observe==1){const before_read=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const receipt=PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime).?;std.debug.assert(receipt.before==before and receipt.after==state.planet.vegetation[cell] and receipt.start_time==time and receipt.seconds==1440);std.debug.assert(std.mem.eql(u8,before_read,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("PATCH_RECEIPT fixture={} tick={} cell={} json={s}\n",.{fixture,tick,cell,try std.json.stringifyAlloc(a,receipt,.{})});}
+              }
+              const end=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+              if(observe==0)expected=end else std.debug.assert(std.mem.eql(u8,expected,end));
+            }
+            PR.enabled=true;std.debug.assert(PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime)!=null);try saves.apply(state,owned.value);std.debug.assert(PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime)==null);
+            std.debug.print("PATCH_PARITY fixture={} complete_state_rng_exact=true load_reset=true\n",.{fixture});
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));PR.reset();PR.enabled=true;
+        }

@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "display_commit": "ef05634",
+  "core": "cb5ed87",
+  "binary_sha256": "5f880028d4c87b83c433a0f8ab654aa54ef088a21ab3b018294cf24eb606ad3e",
+  "note": "Settled immediate-mode frame after real click; release-frame retained. Perf subsequently identified overhead; not release-approved core."
+}

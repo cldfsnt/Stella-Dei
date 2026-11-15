@@ -1,0 +1,8 @@
+# Final bounded redesign: explicit net cover + actual grazing
+Both earlier instrumented versions failed practical WASM cost screening (+12.48%, then +14.29% selected). Preserve those failures. No further phase specialization or endless timing search.
+
+Restore `simulateVegetation` byte-for-byte to v70. Observe only whole-interval selected cover endpoints and represented successful rabbit bite debits. `net = after-before`, `grazed` is actual removed cover, and `other = net+grazed` is a DERIVED remaining net change (growth/spread/loss combined), NOT an independently measured physiological flux. No separate growth, colonization, clamp or closure claims. UI signed values are cover percentage points; fields remain cover fractions.
+
+Observation requires explicit Last-step click via `arm`. Normal update and Advance call guard only, never arm. Closing details preserves the request so simulation can run. Surface/Rabbit switches, selection/world/load and tools disarm. Query before a newly completed interval is unavailable. No requested patch means only constant begin/finish checks and cheap bite matching, no per-vegetation-cell observation whatsoever.
+
+Fixed final gate: same three actual native fixtures,180 intervals and real UI arm→close→run→reopen, compare all endpoint/bite/net fields to prior receipts and full saved-state/RNG on/off parity. Offline Fraction validates source debits and explicitly derived other. One final fixed actual-WASM baseline/no-request/requested screen and exact restart gates. If still costly, defer feature rather than repeat unchanged timing. No ecology, save schema, prices, rates or mutation changes.

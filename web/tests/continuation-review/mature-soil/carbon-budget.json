@@ -1,0 +1,47 @@
+{
+  "units": "carbon kgC/m\u00b2; temperature K; credit-derived flux is an inference subject to bounded f32 counter rounding, not logged Flux.fixed",
+  "arms": [
+    {
+      "arm": 0,
+      "credit_increase": 0.001007121056318283,
+      "biomass_decline": 0.004835634957998991,
+      "inferred_gross_loss": 0.005842756014317274,
+      "potential_upkeep_upper": 5.512531403740718e-05,
+      "upkeep_fraction_of_inferred_loss": 0.009434813622599741,
+      "grazed_history_increase": 0.0,
+      "credit_decrease_ticks": 0,
+      "positive_credit_ticks": 25,
+      "first_two_credit_increments": [
+        0.0,
+        0.0
+      ],
+      "min_temperature": 281.7838439941406,
+      "max_temperature": 309.7829284667969,
+      "thermal_fitness_range": [
+        0.43521194458007817,
+        0.9864486694335938
+      ]
+    },
+    {
+      "arm": 1,
+      "credit_increase": 0.0010131970047950745,
+      "biomass_decline": 0.004826356191188097,
+      "inferred_gross_loss": 0.0058395531959831715,
+      "potential_upkeep_upper": 5.656273835730341e-05,
+      "upkeep_fraction_of_inferred_loss": 0.00968614146647572,
+      "grazed_history_increase": 0.0,
+      "credit_decrease_ticks": 0,
+      "positive_credit_ticks": 25,
+      "first_two_credit_increments": [
+        0.0,
+        0.0
+      ],
+      "min_temperature": 281.7838439941406,
+      "max_temperature": 309.7829284667969,
+      "thermal_fitness_range": [
+        0.43521194458007817,
+        0.9864486694335938
+      ]
+    }
+  ]
+}

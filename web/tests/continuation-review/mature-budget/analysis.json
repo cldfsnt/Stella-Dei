@@ -1,0 +1,315 @@
+{
+  "full_endpoint_hashes": {
+    "0": "ce535b310bb68b393eac213e7361661b05a29b1023744feddb6d57c6e7b6b377",
+    "1": "c49dc49f426d7ea0821a6b51b80bf319dbf88cd3e6f5b4e1a848ca4420de7b64",
+    "2": "ce535b310bb68b393eac213e7361661b05a29b1023744feddb6d57c6e7b6b377",
+    "3": "c49dc49f426d7ea0821a6b51b80bf319dbf88cd3e6f5b4e1a848ca4420de7b64"
+  },
+  "original_target_records_exact": true,
+  "summary": [
+    {
+      "arm": 2,
+      "root_fraction": 0.0,
+      "fixed_carbon": 0.0010071531869471073,
+      "upkeep": 5.511404015123844e-05,
+      "inferred_actual_mortality_carbon": 0.00578767410479486,
+      "grazed": 0.0,
+      "light_zero_ticks": 30,
+      "positive_fixed_ticks": 25,
+      "zero_potential_ticks": 35,
+      "carbon_cap_ticks": 0,
+      "nutrient_cap_ticks": 0,
+      "space_cap_ticks": 0,
+      "min_carbon_available": 26.824661254882812,
+      "min_nutrient_carbon": 0.20026715099811554,
+      "max_surface_light": 0.9674015641212463,
+      "hydrated_ticks": 0,
+      "first_two": [
+        {
+          "loss": {
+            "id": 931,
+            "env": {
+              "temperature": 288.86474609375,
+              "depth_km": 5.636428340949351e-06,
+              "light": 0.0,
+              "carbon_available": 26.824665069580078,
+              "oxygen_carbon_capacity": 1287.6260986328125,
+              "root_hydration": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "upkeep": 1.428648829460144e-06,
+            "post_upkeep": {
+              "root_fraction": 0.0,
+              "biomass": 0.008162456564605236,
+              "organization": 0.08684858679771423,
+              "support_mass": 0.000707104045432061,
+              "optimum": 304.3753662109375,
+              "efficiency": 1.0258489847183228,
+              "structure": 0.06411293894052505,
+              "feeding": 0.1320168673992157,
+              "mobility": 0.05217080935835838,
+              "relocations": 0,
+              "last_from": 0,
+              "last_to": 0,
+              "last_move_time": 0.0,
+              "lifetime_grazed": 0.005153628531843424,
+              "generation": 5,
+              "lineage": 931,
+              "parent": 130,
+              "reproduction_credit": 0.04365849867463112
+            },
+            "fitness": 0.6122344732284546,
+            "film": true,
+            "protection": 0.7206313610076904,
+            "contact": 0.584071934223175,
+            "dry_mortality": 3.7884273529052734,
+            "film_mortality": 0.6370465755462646,
+            "effective_mortality": 1.9477943181991577,
+            "hydrated": 0.0,
+            "exposed": 0.012647218070924282,
+            "wanted_dead": 0.00026571989292278886
+          },
+          "potential": {
+            "id": 931,
+            "habitat": 0.12097626179456711,
+            "fitness": 0.6122344732284546,
+            "available_light": 0.0,
+            "rate": 0.0,
+            "fronds": 0.007212651893496513,
+            "space": 0.9921032786369324,
+            "potential": 0.0
+          },
+          "flux": {
+            "fixed": 0.0,
+            "recycled": 1.871149720500398e-06,
+            "failed_patches": 0,
+            "grazed": 0.0,
+            "grazing_respired": 0.0
+          }
+        },
+        {
+          "loss": {
+            "id": 931,
+            "env": {
+              "temperature": 287.5797424316406,
+              "depth_km": 1.4721676052431576e-05,
+              "light": 0.0,
+              "carbon_available": 26.824665069580078,
+              "oxygen_carbon_capacity": 1287.6260986328125,
+              "root_hydration": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "upkeep": 1.3820827007293701e-06,
+            "post_upkeep": {
+              "root_fraction": 0.0,
+              "biomass": 0.007895355112850666,
+              "organization": 0.08684858679771423,
+              "support_mass": 0.0006839653360657394,
+              "optimum": 304.3753662109375,
+              "efficiency": 1.0258489847183228,
+              "structure": 0.06411293894052505,
+              "feeding": 0.1320168673992157,
+              "mobility": 0.05217080935835838,
+              "relocations": 0,
+              "last_from": 0,
+              "last_to": 0,
+              "last_move_time": 0.0,
+              "lifetime_grazed": 0.005153628531843424,
+              "generation": 5,
+              "lineage": 931,
+              "parent": 130,
+              "reproduction_credit": 0.04365849867463112
+            },
+            "fitness": 0.5801094174385071,
+            "film": true,
+            "protection": 0.7206313610076904,
+            "contact": 0.7249495387077332,
+            "dry_mortality": 3.7884273529052734,
+            "film_mortality": 0.6453526616096497,
+            "effective_mortality": 1.5098567008972168,
+            "hydrated": 0.0,
+            "exposed": 0.0,
+            "wanted_dead": 0.00019620201783254743
+          },
+          "potential": {
+            "id": 931,
+            "habitat": 0.1955135315656662,
+            "fitness": 0.5801094174385071,
+            "available_light": 0.0,
+            "rate": 0.0,
+            "fronds": 0.007032184861600399,
+            "space": 0.9923008680343628,
+            "potential": 0.0
+          },
+          "flux": {
+            "fixed": 0.0,
+            "recycled": 2.150580257875845e-06,
+            "failed_patches": 0,
+            "grazed": 0.0,
+            "grazing_respired": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "arm": 3,
+      "root_fraction": 0.25,
+      "fixed_carbon": 0.0010132389143109322,
+      "upkeep": 5.6549208238720894e-05,
+      "inferred_actual_mortality_carbon": 0.005783045897260308,
+      "grazed": 0.0,
+      "light_zero_ticks": 30,
+      "positive_fixed_ticks": 25,
+      "zero_potential_ticks": 35,
+      "carbon_cap_ticks": 0,
+      "nutrient_cap_ticks": 0,
+      "space_cap_ticks": 0,
+      "min_carbon_available": 26.824661254882812,
+      "min_nutrient_carbon": 0.20004668831825256,
+      "max_surface_light": 0.9674015641212463,
+      "hydrated_ticks": 2,
+      "first_two": [
+        {
+          "loss": {
+            "id": 931,
+            "env": {
+              "temperature": 288.86474609375,
+              "depth_km": 5.636424248223193e-06,
+              "light": 0.0,
+              "carbon_available": 26.824665069580078,
+              "oxygen_carbon_capacity": 1287.6260986328125,
+              "root_hydration": [
+                0.9999999403953552,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "upkeep": 1.428648829460144e-06,
+            "post_upkeep": {
+              "root_fraction": 0.25,
+              "biomass": 0.008162456564605236,
+              "organization": 0.08684858679771423,
+              "support_mass": 0.000707104045432061,
+              "optimum": 304.3753662109375,
+              "efficiency": 1.0258489847183228,
+              "structure": 0.06411293894052505,
+              "feeding": 0.1320168673992157,
+              "mobility": 0.05217080935835838,
+              "relocations": 0,
+              "last_from": 0,
+              "last_to": 0,
+              "last_move_time": 0.0,
+              "lifetime_grazed": 0.005153628531843424,
+              "generation": 5,
+              "lineage": 931,
+              "parent": 130,
+              "reproduction_credit": 0.04365849867463112
+            },
+            "fitness": 0.6122344732284546,
+            "film": true,
+            "protection": 0.7077577114105225,
+            "contact": 0.7052924633026123,
+            "dry_mortality": 3.7884273529052734,
+            "film_mortality": 0.6656519174575806,
+            "effective_mortality": 0.3336574137210846,
+            "hydrated": 0.9999999403953552,
+            "exposed": 0.001146168913692236,
+            "wanted_dead": 4.5264878281159326e-05
+          },
+          "potential": {
+            "id": 931,
+            "habitat": 0.9999999403953552,
+            "fitness": 0.6122344732284546,
+            "available_light": 0.0,
+            "rate": 0.0,
+            "fronds": 0.0074140094220638275,
+            "space": 0.9918828010559082,
+            "potential": 0.0
+          },
+          "flux": {
+            "fixed": 0.0,
+            "recycled": 1.5040269545352203e-06,
+            "failed_patches": 0,
+            "grazed": 0.0,
+            "grazing_respired": 0.0
+          }
+        },
+        {
+          "loss": {
+            "id": 931,
+            "env": {
+              "temperature": 287.5797424316406,
+              "depth_km": 1.472167332394747e-05,
+              "light": 0.0,
+              "carbon_available": 26.824665069580078,
+              "oxygen_carbon_capacity": 1287.6260986328125,
+              "root_hydration": [
+                0.9999998807907104,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "upkeep": 1.4202669262886047e-06,
+            "post_upkeep": {
+              "root_fraction": 0.25,
+              "biomass": 0.008115772157907486,
+              "organization": 0.08684858679771423,
+              "support_mass": 0.0007030598353594542,
+              "optimum": 304.3753662109375,
+              "efficiency": 1.0258489847183228,
+              "structure": 0.06411293894052505,
+              "feeding": 0.1320168673992157,
+              "mobility": 0.05217080935835838,
+              "relocations": 0,
+              "last_from": 0,
+              "last_to": 0,
+              "last_move_time": 0.0,
+              "lifetime_grazed": 0.005153628531843424,
+              "generation": 5,
+              "lineage": 931,
+              "parent": 130,
+              "reproduction_credit": 0.04365849867463112
+            },
+            "fitness": 0.5801094174385071,
+            "film": true,
+            "protection": 0.7077577114105225,
+            "contact": 0.7122749090194702,
+            "dry_mortality": 3.7884273529052734,
+            "film_mortality": 0.6726208925247192,
+            "effective_mortality": 0.35614505410194397,
+            "hydrated": 0.9999998807907104,
+            "exposed": 0.0,
+            "wanted_dead": 4.803031697520055e-05
+          },
+          "potential": {
+            "id": 931,
+            "habitat": 0.9999998807907104,
+            "fitness": 0.5801094174385071,
+            "available_light": 0.0,
+            "rate": 0.0,
+            "fronds": 0.007368843071162701,
+            "space": 0.9919322729110718,
+            "potential": 0.0
+          },
+          "flux": {
+            "fixed": 0.0,
+            "recycled": 1.5755038020870415e-06,
+            "failed_patches": 0,
+            "grazed": 0.0,
+            "grazing_respired": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

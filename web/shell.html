@@ -81,6 +81,14 @@ function armWaterWatch(receipt){
  waterWatch={...receipt,paused:lifePaused};const button=document.getElementById('watch-water-change');button.textContent=lifePaused?'Resume & watch this patch':'Watch this patch';button.hidden=false;document.getElementById('watch-water-note').hidden=false;
 }
 
+function biologicalLightSummary(value){
+ const prefix='Biological light: ';
+ if(!Number.isFinite(value)||value<0||value>2)return prefix+'unavailable';
+ if(value===0)return prefix+'none now (not screen brightness)';
+ const amount=value<0.01?value.toExponential(1):value.toFixed(2);
+ return prefix+amount+'× reference (not screen brightness)';
+}
+
 function livingTraitLabel(t){
  const a=t&&t.living_traits;
  if(!a||typeof a.film_potential!=='boolean'||typeof a.film_compatible_now!=='boolean'||!Number.isFinite(a.habitat_factor)||a.habitat_factor<0||a.habitat_factor>1)return 'Capability unavailable';
@@ -226,7 +234,7 @@ function refreshStarter(){
  if(!box.hidden&&typeof Module._stella_life_snapshot==='function')try{
   const d=JSON.parse(Module.ccall('stella_life_snapshot','string',[],[]));
   if(d.status==='origin'&&Number.isSafeInteger(d.cell)&&d.cell>=0&&Number.isFinite(d.water_m)&&Number.isFinite(d.temperature_c)){
-   const trend=lifeTrend.sample(d);starterPoint=d.cell;starterEligible=d.seed_reason==='eligible';document.getElementById('starter-summary').textContent=(trend?trend.label+' ('+trend.days.toFixed(1)+' days) · ':'')+(seedReasons[d.seed_reason]||'Eligibility unavailable')+' · '+'Patch '+d.cell+' · '+d.water_m.toFixed(1)+' m water · '+d.temperature_c.toFixed(0)+'°C';
+   const trend=lifeTrend.sample(d);starterPoint=d.cell;starterEligible=d.seed_reason==='eligible';document.getElementById('starter-summary').textContent=(trend?trend.label+' ('+trend.days.toFixed(1)+' days) · ':'')+(seedReasons[d.seed_reason]||'Eligibility unavailable')+' · '+'Patch '+d.cell+' · '+d.water_m.toFixed(1)+' m water · '+d.temperature_c.toFixed(0)+'°C · '+biologicalLightSummary(d.simulation_light);
   }
  }catch{}
  document.getElementById('starter-basin').disabled=starterPoint===null;
@@ -325,7 +333,7 @@ function refreshLife(){
   if(data.status!=='origin'){summary.textContent=data.status==='sandbox'?'This colony view is for Origin microbes. Use Inspect for Sandbox plants and rabbits.':'No current cell snapshot is available.';return;}
   if(!Array.isArray(data.cohorts))throw Error('Invalid snapshot');
   document.getElementById('life-colony-shares').textContent=compactColonyRows(data);
-  document.getElementById('life-habitat').textContent=(seedReasons[data.seed_reason]||'Seed eligibility unavailable')+' · '+(Number.isFinite(data.water_m)?data.water_m.toFixed(2)+' m water':'Water unknown')+' · '+(Number.isFinite(data.temperature_c)?data.temperature_c.toFixed(1)+'°C':'Temperature unknown');
+  document.getElementById('life-habitat').textContent=(seedReasons[data.seed_reason]||'Seed eligibility unavailable')+' · '+(Number.isFinite(data.water_m)?data.water_m.toFixed(2)+' m water':'Water unknown')+' · '+(Number.isFinite(data.temperature_c)?data.temperature_c.toFixed(1)+'°C':'Temperature unknown')+' · '+biologicalLightSummary(data.simulation_light);
   const competition=competitionFeedback(data);document.getElementById('life-competition').textContent=competition;document.getElementById('competition-panel').hidden=!competition;
   if(Number.isInteger(data.world_serial)&&data.world_serial>=0&&data.world_serial<=4294967295&&typeof data.paused==='boolean'){lifeWorld=data.world_serial;lifePaused=data.paused;}
   if(Number.isSafeInteger(data.cell)&&data.cell>=0&&typeof Module._stella_adjust_water==='function'){lifePoint=data.cell;document.getElementById('fine-water').hidden=false;document.getElementById('target-water').hidden=typeof Module._stella_set_water_target!=='function';}

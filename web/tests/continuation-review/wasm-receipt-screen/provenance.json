@@ -1,0 +1,22 @@
+{
+  "baseline_release": "a41c3b4",
+  "baseline_production": "e23f149",
+  "candidate_core": "cb5ed87",
+  "baseline_all_src_equals_production": true,
+  "selected_cell": 436,
+  "selection_criterion": "first positive vegetation cell by index in unchanged warm save",
+  "mode": "Sandbox classic, no added plants or defense activation",
+  "input_sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+  "graph_sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+  "wasm": {
+    "baseline": {
+      "sha256": "c837747e8f4458e98e1461638874eb3b8cf36221329c9a60a51d9ee4e7b8c41d",
+      "bytes": 278864
+    },
+    "candidate": {
+      "sha256": "7fb9d32b1fe6e868c5d013a75235db5cf15f4cb41422ef3975745524df3ebb7a",
+      "bytes": 282445
+    }
+  },
+  "scope": "Actual wasm32 Emscripten ReleaseSafe full Planet.simulate in Node, no rendering/browser/rAF/deviceFPS. Separate actual preobserver binary, not disabled-flag control. Warmup12, measured60ticks, two fixed ABBA sequences."
+}

@@ -1,0 +1,3 @@
+Cached-index optimization f8ad7ee passed the unchanged actual native3-fixture test. All627 source phase/receipt/UI/parity rows are byte-identical to prior settled run.180 exact Fraction intervals,80 real bites and1 actual placement; all residuals zero in this scope. Complete save/RNG on/off parity, public snapshot purity, real third-tab press/release, occupied no-effect tool invalidation, selection/load guards and original restore pass. Final ef05634 signed formatting and active tab retained.
+
+No physiology or saved-schema changes. This native correctness result is NOT the WASM performance result; the earlier +12.48% screen remains a real failed cost gate, and the independent fixed revised screen decides promotion.

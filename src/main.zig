@@ -344,7 +344,7 @@ export fn stella_defense_action(world:u32,cell:u32,action:i32)[*:0]const u8 {
  const v=webEditableState() orelse return defenseSnapshot(null,"unavailable");
  if(world!=PerformanceDetails.world_serial or cell!=v.selectedPoint)return defenseSnapshot(v,"stale");
  if(v.planet.worldMode!=.sandbox)return defenseSnapshot(v,"wrong_mode");
- if(action==0){const receipt=@import("sandbox_defense.zig").enableDefenses(&v.planet);return defenseSnapshot(v,@tagName(receipt.status));}
+ if(action==0){@import("plant_receipt.zig").invalidate();const receipt=@import("sandbox_defense.zig").enableDefenses(&v.planet);return defenseSnapshot(v,@tagName(receipt.status));}
  if(action==3){v.defensePlantKind=-1;v.selectedTool=.None;return defenseSnapshot(v,"cancelled");}
  if(action!=1 and action!=2)return defenseSnapshot(v,"invalid");
  if(!v.planet.sandboxDefense.enabled)return defenseSnapshot(v,"disabled");
@@ -406,12 +406,17 @@ export fn stella_transport_inspect(world:u32,target:i32,id:[*:0]const u8)[*:0]co
 
 var lifeSnapshotBuffer: [8192]u8 = undefined;
 /// On-demand current-cell snapshot, not a fabricated historical lineage tree.
+var plant_receipt_json:[1536]u8=undefined;
 export fn stella_life_snapshot() [*:0]const u8 {
     const state = webPlayState() orelse return "{\"status\":\"no_world\"}";
     return lifeSnapshotForState(state);
 }
 pub fn lifeSnapshotForState(state:*PlayState) [*:0]const u8 {
-    if (state.planet.worldMode != .origin) return "{\"status\":\"sandbox\"}";
+    if (state.planet.worldMode != .origin) {
+        var stream=std.io.fixedBufferStream(plant_receipt_json[0..plant_receipt_json.len-1]);
+        std.json.stringify(.{.status="sandbox",.world_serial=PerformanceDetails.world_serial,.cell=state.selectedPoint,.time=state.gameTime,.plant_receipt=@import("plant_receipt.zig").view(&state.planet,PerformanceDetails.world_serial,state.selectedPoint,state.gameTime)},.{},stream.writer()) catch return "{}";
+        plant_receipt_json[stream.pos]=0;return @ptrCast(&plant_receipt_json);
+    }
     const point = state.selectedPoint;
     if (point >= state.planet.microbeCells.len) return "{\"status\":\"no_cell\"}";
     const cell = state.planet.microbeCells[point];
@@ -738,7 +743,7 @@ pub fn advanceFrame(raw_dt:f64)bool {
       if(game.window.getMouseButton(.left)!=.press and game.window.getMouseButton(.right)!=.press and game.window.getMouseButton(.middle)!=.press and game.window.getKey(.w)!=.press and game.window.getKey(.s)!=.press){AdvanceDay.current.releaseInput(true);game.imgui_state.clearRetainingCapacity();const cursor=game.window.getCursorPos();game.oldMouseX=@floatCast(cursor.xpos);game.oldMouseY=@floatCast(cursor.ypos);advance_cursor_reset=true;if(webPlayState())|state|{state.dragStart=za.Vec2.new(game.oldMouseX,game.oldMouseY);state.pointerOnPlanet=false;state.rawFrameDelta=null;state.simulationClock.reset();}}
     }
     if(AdvanceDay.busy()){
-      if(webPlayState())|state|{_=AdvanceDay.current.tick(state,game.loop,PerformanceDetails.world_serial,raw_dt);}else AdvanceDay.invalidate("world unavailable");
+      if(webPlayState())|state|{state.syncPlantReceipt();_=AdvanceDay.current.tick(state,game.loop,PerformanceDetails.world_serial,raw_dt);}else AdvanceDay.invalidate("world unavailable");
       game.loop.pump(16);
       if(AdvanceDay.current.phase==.redraw and AdvanceDay.current.visible and AdvanceDay.current.context_ok){render(game.window);game.window.swapBuffers();AdvanceDay.current.didRedraw();game.imgui_state.clearRetainingCapacity();}
       return true;

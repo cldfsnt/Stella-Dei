@@ -1,0 +1,33 @@
+          _=pm;_=pw;const PR=@import("plant_receipt.zig");
+          const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const initial=try std.json.parseFromSlice(saves.schema.Save,a,original,.{.allocate=.alloc_always});
+          for(0..3)|fixture|{
+            if(fixture==1){const b=try std.fs.cwd().readFileAlloc(a,"/workspace/scratch/f67c3ac60ca3/site-tmp/defense-player14/arm-0-day-1.json",128*1024*1024);const v=try std.json.parseFromSlice(saves.schema.Save,a,b,.{.allocate=.alloc_always});try saves.apply(state,v.value);}
+            if(fixture==2){const b=try std.fs.cwd().readFileAlloc(a,"/workspace/scratch/f67c3ac60ca3/site-tmp/defense-player14/arm-0-day-0.json",128*1024*1024);const v=try std.json.parseFromSlice(saves.schema.Save,a,b,.{.allocate=.alloc_always});try saves.apply(state,v.value);}
+            const start=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const owned=try std.json.parseFromSlice(saves.schema.Save,a,start,.{.allocate=.alloc_always});var expected:[]const u8="";
+            const cell:usize=if(fixture==0)436 else if(fixture==1)26788 else 26713;
+            for(0..2)|observe|{
+              try saves.apply(state,owned.value);PR.enabled=observe==1;state.selectedPoint=cell;state.syncPlantReceipt();
+              if(observe==1){state.clickedPoint=cell;state.showPointDetails=true;state.showEscapeMenu=false;state.showPlanetControl=false;state.inspectPlantStep=false;render(window);qa_pointer(307,288,1);render(window);qa_pointer(307,288,0);render(window);render(window);std.debug.assert(state.inspectPlantStep);qa_pointer(341,239,1);render(window);qa_pointer(341,239,0);render(window);std.debug.assert(!state.showPointDetails);}
+              for(0..60)|tick|{
+                const before=state.planet.vegetation[cell];const time=state.gameTime;
+                state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;
+                if(observe==1){const before_read=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const receipt=PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime).?;std.debug.assert(receipt.before==before and receipt.after==state.planet.vegetation[cell] and receipt.start_time==time and receipt.seconds==1440);std.debug.assert(std.mem.eql(u8,before_read,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.print("PATCH_RECEIPT fixture={} tick={} cell={} json={s}\n",.{fixture,tick,cell,try std.json.stringifyAlloc(a,receipt,.{})});}
+              }
+              const end=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+              if(observe==0)expected=end else std.debug.assert(std.mem.eql(u8,expected,end));
+            }
+            state.selectedPoint=cell;state.clickedPoint=cell;state.showEscapeMenu=false;state.showPlanetControl=false;state.showPointDetails=true;
+            const pos=state.planet.transformedPoints[cell];state.cameraPos=pos.norm().scale(pos.length()+200);state.targetCameraPos=state.cameraPos;state.cameraDistance=state.cameraPos.length();state.targetCameraDistance=state.cameraDistance;state.cameraGroundPoint=cell;
+            const ui_before=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});
+            render(window);render(window);gl.finish();window.swapBuffers();std.debug.assert(state.inspectPlantStep and !state.inspectAnimal);
+            qa_capture(try a.dupeZ(u8,try std.fmt.allocPrint(a,"OUTPUT/receipt-{}.ppm",.{fixture})));
+            const public_reply=std.mem.span(stella_life_snapshot());std.debug.assert(std.mem.indexOf(u8,public_reply,"\"plant_receipt\":{")!=null);
+            std.debug.assert(std.mem.eql(u8,ui_before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            if(fixture==1){state.pointerOnPlanet=true;std.debug.assert(!state.testAction(3));std.debug.assert(PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime)==null);std.debug.assert(std.mem.eql(u8,ui_before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));}
+            state.selectedPoint=cell+1;state.syncPlantReceipt();std.debug.assert(PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime)==null);state.selectedPoint=cell;state.syncPlantReceipt();std.debug.assert(PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime)==null);
+            std.debug.print("PATCH_UI fixture={} real_third_tab_click=true snapshot_pure=true selection_stale=true\n",.{fixture});
+            PR.enabled=true;try saves.apply(state,owned.value);std.debug.assert(PR.view(&state.planet,PerformanceDetails.world_serial,cell,state.gameTime)==null);
+            std.debug.print("PATCH_PARITY fixture={} complete_state_rng_exact=true load_reset=true\n",.{fixture});
+          }
+          try saves.apply(state,initial.value);std.debug.assert(std.mem.eql(u8,original,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));PR.reset();PR.enabled=true;
+        }

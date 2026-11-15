@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "core_commit": "cb5ed87",
+  "binary_sha256": "d6af7d240ef81834e1fdcf049a11321f0353b5a4bde4f4b7caf819e0b6fd535b",
+  "actual_source_sha256": {
+    "plant_receipt.zig": "be482043c2ad6f95ddd77290b35adc4220fd4908601818a010496cd61d3f233d",
+    "simulation/planet.zig": "d13dd1f604d04b0c6777acb5c07bb2039ec34a723825ce9cd98dae8b52ad47dd",
+    "simulation/life.zig": "c581df8dbf18b4823df7493b6482898b7845a7e8994f95f71296ce93d0778be2",
+    "save_game.zig": "343a87c6d678f526b89957448a929cd8240a0e44731c9a08498458b5f1581e5d"
+  },
+  "instrumentation": "copied observer prints selected actual before/after phase operands only; no biology writes"
+}

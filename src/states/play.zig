@@ -174,6 +174,7 @@ pub const PlayState = struct {
     showPlanetControl: bool = false,
     showPointDetails: bool = false,
     inspectAnimal: bool = false,
+    inspectPlantStep: bool = false,
     leavePlanetArmed: bool = false,
 
     debug_showMoreInfo: bool = false,
@@ -714,7 +715,12 @@ pub const PlayState = struct {
         return Vec3.new(@cos(phi) * @sin(theta), @sin(phi) * @sin(theta), @cos(theta));
     }
 
+    pub fn syncPlantReceipt(self:*PlayState) void {
+        @import("../plant_receipt.zig").guard(&self.planet,@import("../performance_details.zig").world_serial,self.selectedPoint);
+    }
+
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
+        self.syncPlantReceipt();
         if(@import("../advance_day.zig").blocksInput()){self.pointerOnPlanet=false;self.rawFrameDelta=null;self.simulationClock.reset();return;}
         @import("../auto_seed.zig").guard(self,@import("../performance_details.zig").world_serial);
         @import("../manual_transport.zig").guard(self,@import("../performance_details.zig").world_serial);
@@ -737,12 +743,14 @@ pub const PlayState = struct {
         }
 
         if (self.debug_clearWater) {
+            @import("../plant_receipt.zig").invalidate();
             @memset(self.planet.waterMass, 0);
             @memset(self.planet.waterVaporMass, 0);
             self.debug_clearWater = false;
         }
 
         if (self.debug_deluge) {
+            @import("../plant_receipt.zig").invalidate();
             @memset(self.planet.waterVaporMass, 5_000_000);
             self.debug_deluge = false;
         }
@@ -910,6 +918,7 @@ pub const PlayState = struct {
 
     /// Shared implementation used by actual pointer editing and the test seam.
     fn applySelectedTool(self: *PlayState, tool: GameTool, tap: bool, elapsed: f32) bool {
+        if(tool!=.None)@import("../plant_receipt.zig").invalidate();
         if (self.selectedPoint >= self.planet.vertices.len) return false;
         if (self.planet.worldMode == .origin and (tool == .PlaceVegetation or tool == .PlaceLife)) {
             // Seeding and nutrient input are deliberate taps, never automatic
@@ -1003,6 +1012,7 @@ pub const PlayState = struct {
     }
 
     pub fn adjustSelectedWater(self:*PlayState, expected_point:u32, delta_m:f32) f32 {
+        @import("../plant_receipt.zig").invalidate();
         if(self.planet.worldMode!=.origin or expected_point!=self.selectedPoint or self.selectedPoint>=self.planet.waterMass.len or !std.math.isFinite(delta_m) or @abs(delta_m)>0.100001) return std.math.nan(f32);
         const changed=self.planet.adjustWaterDepth(self.selectedPoint,delta_m/1000);
         if(std.math.isFinite(changed)) {
@@ -1013,6 +1023,7 @@ pub const PlayState = struct {
     }
 
     pub fn setSelectedWaterTarget(self:*PlayState, expected_point:u32, target_m:f32) f32 {
+        @import("../plant_receipt.zig").invalidate();
         if(self.planet.worldMode!=.origin or expected_point!=self.selectedPoint or self.selectedPoint>=self.planet.waterMass.len or !std.math.isFinite(target_m) or target_m<0 or target_m>5) return std.math.nan(f32);
         const changed=self.planet.setWaterDepthMeters(self.selectedPoint,target_m);
         if(std.math.isFinite(changed)) {
@@ -1023,6 +1034,7 @@ pub const PlayState = struct {
     }
 
     pub fn applyGodAction(self:*PlayState,kind:@import("../god_actions.zig").Kind,expected:usize) @import("../god_actions.zig").Receipt {
+        @import("../plant_receipt.zig").invalidate();
         const Actions=@import("../god_actions.zig");
         const result=if(kind==.wave) Actions.wave(&self.planet,expected,self.selectedPoint) else if(kind==.scorch) Actions.scorch(&self.planet,expected,self.selectedPoint,if(self.selectedPoint<self.planet.temperature.len) self.planet.currentHeatCapacity(self.selectedPoint) else 0) else Actions.lightning(&self.planet,expected,self.selectedPoint,self.planet.currentHeatCapacity(self.selectedPoint));
         self.godReceipt=if(result.success())result else null;
@@ -1037,6 +1049,7 @@ pub const PlayState = struct {
     }
 
     pub fn applyIgnition(self:*PlayState,expected:usize) @import("../experimental/planet_ignition.zig").Receipt {
+        @import("../plant_receipt.zig").invalidate();
         const result=@import("../experimental/planet_ignition.zig").ignite(&self.planet,expected,self.selectedPoint);
         // A prior wave/scorch animation is not evidence of this distinct reaction.
         self.godReceipt=null;self.godEffectSeconds=0;
@@ -2308,11 +2321,25 @@ pub const PlayState = struct {
                     if (c.biomass > 0) mobileDetailLabel(vg, game, "Structure: {d:.0}% · drying protection", .{c.structure*100},px+16,py+232,pw-32) else mobileDetailLabel(vg, game, "Existing life seeded; not abiogenesis", .{},px+16,py+232,pw-32);
                     if(self.colonyPeek.cell!=null and self.colonyPeek.cell.?==point)mobileDetailLabel(vg,game,"Bar: biomass shares · color: thermal trait",.{},px+16,py+258,pw-32);
                 } else {
-                const half = (pw - 40) / 2;
-                if (ui.button(vg, game, "inspect-surface", px + 16, py + 56, half, 44, if (!self.inspectAnimal) "Surface •" else "Surface")) self.inspectAnimal = false;
-                if (ui.button(vg, game, "inspect-rabbit", px + 24 + half, py + 56, half, 44, if (self.inspectAnimal) "Rabbit •" else "Rabbit")) self.inspectAnimal = true;
+                const third = (pw - 48) / 3;
+                if (ui.button(vg, game, "inspect-surface", px + 16, py + 56, third, 44, if(!self.inspectAnimal and !self.inspectPlantStep) "Surface •" else "Surface")) {self.inspectAnimal=false;self.inspectPlantStep=false;@import("../plant_receipt.zig").reset();}
+                if (ui.button(vg, game, "inspect-rabbit", px + 24 + third, py + 56, third, 44, if(self.inspectAnimal and !self.inspectPlantStep) "Rabbit •" else "Rabbit")) {self.inspectAnimal=true;self.inspectPlantStep=false;@import("../plant_receipt.zig").reset();}
+                if (ui.button(vg, game, "inspect-plant-step", px + 32 + third*2, py + 56, third, 44, if(self.inspectPlantStep) "Last step •" else "Last step")) {self.inspectAnimal=false;self.inspectPlantStep=true;@import("../plant_receipt.zig").arm(&self.planet,@import("../performance_details.zig").world_serial,point);}
                 vg.textAlign(.{ .horizontal = .left, .vertical = .top });
-                if (self.inspectAnimal) {
+                if(self.inspectPlantStep){
+                    if(@import("../plant_receipt.zig").view(&self.planet,@import("../performance_details.zig").world_serial,point,self.gameTime)) |r| {
+                        const Format=@import("../plant_receipt_format.zig");var a:[64]u8=undefined;
+                        mobileDetailLabel(vg,game,"Last {d:.0}s · cover percentage points",.{r.seconds},px+16,py+112,pw-32);
+                        mobileDetailLabel(vg,game,"Net cover: {s}",.{Format.points(&a,r.net*100)},px+16,py+148,pw-32);
+                        mobileDetailLabel(vg,game,"Grazed: {s}",.{Format.points(&a,-r.grazed*100)},px+16,py+184,pw-32);
+                        mobileDetailLabel(vg,game,"Other net change: {s}",.{Format.points(&a,r.other*100)},px+16,py+220,pw-32);
+                        mobileDetailLabel(vg,game,"Growth/spread/loss combined",.{},px+16,py+250,pw-32);
+                    }else{
+                        mobileDetailLabel(vg,game,"No completed interval for this patch",.{},px+16,py+112,pw-32);
+                        mobileDetailLabel(vg,game,"Click Last step, close Inspect, run a step",.{},px+16,py+150,pw-32);
+                        mobileDetailLabel(vg,game,"Tools/load/selection clear old results",.{},px+16,py+190,pw-32);
+                    }
+                }else if (self.inspectAnimal) {
                     const nearby = habitat_feedback.nearestRabbit(self.planet, point);
                     const status = if (nearby) |i| habitat_feedback.inspectRabbit(self.planet, i, self.gameTime) else null;
                     if (status) |rabbit| {

@@ -1,0 +1,19 @@
+{
+  "records": 120,
+  "exact_operand_phase_and_endpoint_checks": true,
+  "bites": 80,
+  "placements": 0,
+  "nonzero_residuals": 0,
+  "fixtures": [
+    {
+      "fixture": 0,
+      "physiology": 0.18980206549167633,
+      "grazed": 0.28835098445415497
+    },
+    {
+      "fixture": 1,
+      "physiology": -0.0469987690448761,
+      "grazed": 0.0
+    }
+  ]
+}

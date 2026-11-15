@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "endpoint_sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+    "bytes": 7704842,
+    "layout": "LAYOUT plant=12 planet=2936 cells=40962",
+    "positive_toughness_patches": 0,
+    "max_toughness": 0.0,
+    "continuation_exact": true
+  },
+  "no_selection": {
+    "endpoint_sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+    "bytes": 7704842,
+    "layout": "LAYOUT plant=12 planet=2936 cells=40962",
+    "positive_toughness_patches": 0,
+    "max_toughness": 0.0,
+    "continuation_exact": true
+  },
+  "selected": {
+    "endpoint_sha256": "5388d06254bacf367b232c25a8eb5fb2975b5e5698634b1a90bc28f45600584d",
+    "bytes": 7704842,
+    "layout": "LAYOUT plant=12 planet=2936 cells=40962",
+    "positive_toughness_patches": 0,
+    "max_toughness": 0.0,
+    "continuation_exact": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "start": "2026-11-15T17:20:08.506768+00:00",
+  "end": "2026-11-15T17:20:32.417550+00:00",
+  "rows": [
+    {
+      "group": "no_selection",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 37.92098888333333
+    },
+    {
+      "group": "no_selection",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 41.99949778333333
+    },
+    {
+      "group": "no_selection",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 35.718341499999994
+    },
+    {
+      "group": "no_selection",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 32.89617188333333
+    },
+    {
+      "group": "selected",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 27.515586966666667
+    },
+    {
+      "group": "selected",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 33.81474156666667
+    },
+    {
+      "group": "selected",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 32.20761895
+    },
+    {
+      "group": "selected",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 30.250215
+    }
+  ],
+  "summary": {
+    "no_selection": {
+      "baseline": 35.40858038333333,
+      "candidate": 38.85891964166666,
+      "percent": 9.744359194805185
+    },
+    "selected": {
+      "baseline": 28.882900983333336,
+      "candidate": 33.01118025833333,
+      "percent": 14.293160085900624
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "core": "f8ad7ee",
+  "prior_rows_exact": 627,
+  "binary_sha256": "4d38119f63db9f06be7fc854ca6b169550260db92719b61c11de5ed24e562920",
+  "gate": "Three actual native fixtures; UI/source receipt/fullstate parity; WASM cost remains independent"
+}

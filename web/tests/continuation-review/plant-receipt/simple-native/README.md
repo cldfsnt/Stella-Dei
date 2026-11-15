@@ -1,0 +1,6 @@
+# Final minimal net/grazing observer: native acceptance
+Actual three-fixture60-tick observer off/on comparisons pass complete save/RNG equality.180 interval endpoints, net and bite fields match the earlier implementation exactly;80 actual successful bite receipts match original binary f32 source debits by independent Fraction audit. `other=net+grazed` is explicitly a derived combined remainder, NOT measured pure growth. No vegetation-pass instrumentation remains; method byte-identical to v70.
+
+Actual native pointer clicks arm Last step, close details, run coupled ticks, reopen and display the resulting interval. Public snapshot/read purity, selected-cell changes, load reset and no-effect occupied tool invalidation pass. Pure helper tests enforce no implicit rearm after reset/selection/intervention. Original complete world restored. Three actual390x700 portraits inspected; readable signed percentage-point values and active tab, with clear combined label. This is a last1440-second receipt, not cumulative history or whole-day explanation.
+
+Previous costly versions/failed timing screens remain retained. This gate proves correctness and presentation, not performance. Final fixed actual-WASM screen is independently owned; no release until coordinator acceptance. No production physiology, mutation, water, saved schema or resource rules changed.

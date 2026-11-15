@@ -115,6 +115,7 @@ pub const Lifeform = struct {
             const Foraging = @import("foraging.zig");
             const bite = Foraging.takeTough(planet.vegetation[idx], self.satiety, dt,planet.plantTraits[idx].toughness);
             if (bite.eaten > 0) {
+                if(idx==@import("../plant_receipt.zig").observedCell(@intFromPtr(planet)))@import("../plant_receipt.zig").recordBite(@intFromPtr(planet),idx,planet.vegetation[idx],bite.after);
                 planet.vegetation[idx] = bite.after;
                 self.satiety = Foraging.fedSatiety(self.satiety, bite.eaten);
                 planet.rabbitMeals += 1; // positive feeding events, not full meals

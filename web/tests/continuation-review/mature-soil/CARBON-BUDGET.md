@@ -1,0 +1,13 @@
+# Why funded hydration did not yield growth
+
+Read-only analysis of existing60-tick cohort/column/receipt records. No rerun or new favorable trial.
+
+Rooted cohort gains only0.001013197kgC/m² reproduction credit while losing0.004826356biomass. Grazing history is unchanged; no per-tick credit decrease is observed. Thus growth-credit-based gross loss is approximately0.005839553,5.76times credited growth. Rootless comparison: credit gain0.001007121, biomass loss0.004835635, inferred gross loss0.005842756. These use a rounded f32 accumulated credit counter, not direct historical Flux.fixed logs, so are not exact carbon-closure measurements.
+
+Potential tissue upkeep, summing the actual pre-step support and source formula, is at most0.000056563 in rooted arm (oxygen scaling can only lower it). That is less than1% of inferred losses. **Maintenance alone does not explain decline.** Actual mortality/failed-habitat physiology dominates the negative balance; no cutoff death occurred in these arms. No separate mortality Flux was logged, so do not invent an exact mortality total.
+
+Both first fully funded hydration pulses have zero growth-credit increase. They do substantially reduce immediate loss: first rooted mass0.00811719 versus rootless0.00789674, from0.00816389. Water suppresses loss but cannot create photosynthetic energy/carbon. Root benefit stops once the short organism is submerged; only two actual root receipts exist. The inherited film response, temperature and daylight then govern most of the24h budget. Root allocation also reduces aboveground support/film protection, retaining a real cost rather than a free benefit.
+
+Only25/60 ticks have positive growth credit in either arm. Recorded temperature281.784–309.783K versus optimum304.375 gives source thermal fitness0.435–0.986. This is a measured environmental limitation, not proof that thermal mismatch alone causes the result. Actual per-step biological light, available atmospheric carbon and oxygen budgets were not logged, so darkness versus a carbon cap cannot be uniquely separated. Endpoint target nutrient0.02048kg/m² is not depleted; nutrient exhaustion has no supporting evidence, although the absent per-step nutrient trace prevents a universal instantaneous claim.
+
+Practical conclusion: this mature phenotype's actual fixation is too small relative to losses, and most of the trial is wet again. Funded water is necessary but not sufficient. No evidence supports raising soil capacity, lowering upkeep, changing traits or declaring dormancy necessary. A future experiment must establish an actual exposed daylight habitat and observe its growth budget; this result is not permission for another parameter sweep or production soil promotion.

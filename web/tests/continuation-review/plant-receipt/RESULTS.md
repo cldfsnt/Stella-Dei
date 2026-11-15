@@ -1,0 +1,6 @@
+# Initial native actual-stage gate
+120 completed intervals (two60-tick fixtures) pass exact Fraction phase-operand/source/endpoint checks. Complete saved world and RNG exactly match observer-disabled replay for each fixture; queries pure; successful load resets; original restored.80 actual positive bite events; no colonization event in these two watched patches, so spread integration still needs the known actual child fixture in final UI acceptance. Pure tests cover balanced spread, invalid/partial/zero interval, cell/world/time/cover changes, Origin and reset.
+
+Actual classic warm day14 patch436 over one day: net intrinsic +.18980206549 cover, grazing .28835098445. Enabled Tough patch26788 day15→16: intrinsic −.04699876904 cover, grazing0. This confirms the observed Tough decline in that interval was NOT rabbit grazing. No inferred mechanism beyond net intrinsic model result; daily light/water/growth components are not separately decomposed. All residuals zero in tested intervals, not a universal exactness guarantee.
+
+No gameplay rates or random sequence changes. UI presentation, actual spread event, and WASM overhead remain subsequent gates. No browser performance claim. Source hooks on every vegetation cell return immediately unless selected; performance worker owns actual cost assessment.

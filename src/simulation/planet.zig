@@ -1639,6 +1639,7 @@ pub const Planet = struct {
     }
 
     pub fn simulate(self: *Planet, loop: *EventLoop, options: SimulationOptions) void {
+        @import("../plant_receipt.zig").begin(self,@import("../performance_details.zig").world_serial,options.gameTime,@max(0,options.dt*options.timeScale));
         const ecology_births=self.rabbitBirths;const ecology_deaths=self.rabbitDeaths;
         if(self.worldMode==.sandbox)@import("../world_ecology.zig").record(self,@import("../performance_details.zig").world_serial,options.gameTime,0,0);
 
@@ -1779,6 +1780,7 @@ pub const Planet = struct {
         }
 
         if (self.worldMode == .origin) self.simulateMicrobes(options) else self.simulateVegetation(options, 0, self.vegetation.len);
+        @import("../plant_receipt.zig").finish(self,@import("../performance_details.zig").world_serial);
         if(self.worldMode==.sandbox)@import("../world_ecology.zig").record(self,@import("../performance_details.zig").world_serial,options.gameTime+@max(0,options.dt*options.timeScale),self.rabbitBirths-|ecology_births,self.rabbitDeaths-|ecology_deaths);
         if(self.worldMode==.sandbox and (self.rabbitBirths==std.math.maxInt(u64) or self.rabbitDeaths==std.math.maxInt(u64)))@import("../world_ecology.zig").markSaturated(self,@import("../performance_details.zig").world_serial);
 
