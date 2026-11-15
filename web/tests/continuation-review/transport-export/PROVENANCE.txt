@@ -1,0 +1,9 @@
+6d180346173d8dd46e2d201adc804bb1fa7cf6777281a0971c31e1e27216aa30  web/tests/egl-transport-export-prepare.py
+a07a6738f8492285c62ea938ed14ac5b64082d602555f59e063776f58a30dce4  src/main.zig
+4902e9593c6d5d233d1d4daeffc95ead6f5b639a8f056fa1ec66ac4a1406417a  src/manual_transport.zig
+eb3cb5dfa9ede171bb84390258970d4c32991d664ef8009b2cc7bfbd3e674ea3  src/manual_transfer_core.zig
+9c79f9d19faf51927c920850520e048d3f0989fc95a274184c8871692206b713  src/save_game.zig
+4902e9593c6d5d233d1d4daeffc95ead6f5b639a8f056fa1ec66ac4a1406417a  ../site-tmp/transport-export/src/manual_transport.zig
+eb3cb5dfa9ede171bb84390258970d4c32991d664ef8009b2cc7bfbd3e674ea3  ../site-tmp/transport-export/src/manual_transfer_core.zig
+e84382feaabef42148bc9230960af2c35b21c04fcae4680491e1823ff359d710  ../site-tmp/transport-export/build/bin/stella-egl
+76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7  ../site-tmp/natural60-day60.json

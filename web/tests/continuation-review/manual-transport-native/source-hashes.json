@@ -1,0 +1,9 @@
+{
+  "src/manual_transfer_core.zig": "eb3cb5dfa9ede171bb84390258970d4c32991d664ef8009b2cc7bfbd3e674ea3",
+  "src/manual_transport.zig": "4902e9593c6d5d233d1d4daeffc95ead6f5b639a8f056fa1ec66ac4a1406417a",
+  "src/main.zig": "a07a6738f8492285c62ea938ed14ac5b64082d602555f59e063776f58a30dce4",
+  "src/states/play.zig": "42132ddb9d87fa5c8193f460dee2225c176584da0ca000cd2648e18f331f32cf",
+  "src/save_game.zig": "9c79f9d19faf51927c920850520e048d3f0989fc95a274184c8871692206b713",
+  "src/performance_details.zig": "d984da0645cc73b50ca7f24df68274fd588cfb6acd3f3c84a1792b7c5d263b03",
+  "src/qa_manual_transport_session.zig": "86fdb5f45a114894bcfc0943924f9ffdb733c284250c9478422afb4b62e20983"
+}

@@ -64,6 +64,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     // No fallible operations follow this reservation boundary.
     if (saved.mode == .origin) try p.ensureMicrobeStorage();
     @import("patch_watch.zig").current.stop("world loaded");
+    @import("manual_transport.zig").reset();
     p.worldMode = saved.mode;
     if (saved.origin) |origin| {
         for (p.microbeCells, origin.cells) |*cell, saved_cell| cell.* = saved_cell.runtime();

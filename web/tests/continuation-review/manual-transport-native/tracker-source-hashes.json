@@ -1,0 +1,6 @@
+{
+  "src/manual_transport.zig": "a44a8fd1b068b1aeb3cf229b448196e34c73427511f54b54eb7174c0094ffae5",
+  "src/qa_manual_transport_session.zig": "1e1052713a10781bfa400ecc67f0a2ced6cfaae01b12cfa5f2b1e7155fea0785",
+  "src/propagule_feedback.zig": "a22d383f1f5ed8a40654446d771c13afda4a85354a8c545110b3e7334ce628ab",
+  "web/tests/continuation-review/manual-transport-native/tracker-unit.log": "f7a3eb36bab7d11b9eb32d08a9a8b209d8c5a8b87e767cd3783966c7c3622288"
+}

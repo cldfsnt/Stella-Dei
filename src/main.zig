@@ -347,6 +347,14 @@ export fn stella_target_distance() f32 {
     return if (webPlayState()) |state| state.targetCameraDistance else -1;
 }
 
+const ManualTransport=@import("manual_transport.zig");
+export fn stella_transport_options()[*:0]const u8{return if(webPlayState())|s|ManualTransport.options(s,PerformanceDetails.world_serial).ptr else "{\"available\":false,\"reason\":\"Start an Origin world first\"}";}
+export fn stella_transport_status()[*:0]const u8{return if(webPlayState())|s|ManualTransport.status(s,PerformanceDetails.world_serial).ptr else "{\"pending\":false,\"token\":0}";}
+export fn stella_transport_prepare(world:u32,cell:i32,slot:i32,target:i32,id:[*:0]const u8)[*:0]const u8{return if(webPlayState())|s|ManualTransport.prepare(s,PerformanceDetails.world_serial,world,cell,slot,target,std.mem.span(id)).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_transport_execute(token:u32)[*:0]const u8{return if(webPlayState())|s|ManualTransport.execute(s,PerformanceDetails.world_serial,token).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_transport_cancel()void{ManualTransport.cancel();}
+export fn stella_transport_inspect(world:u32,target:i32,id:[*:0]const u8)[*:0]const u8{return if(webPlayState())|s|ManualTransport.inspect(s,PerformanceDetails.world_serial,world,target,std.mem.span(id)).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+
 var lifeSnapshotBuffer: [8192]u8 = undefined;
 /// On-demand current-cell snapshot, not a fabricated historical lineage tree.
 export fn stella_life_snapshot() [*:0]const u8 {
