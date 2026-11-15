@@ -1,0 +1,13 @@
+# v74 living growth-form visitor release
+
+Verified private deployment succeeded2026-11-15T21:20:54.004430Z. Existing owner-only host/audience retained, external visitors0. Main and optional Wetlands both updated; no save formats or physics changed. Main /saves and preview /wetlands-saves remain isolated.
+
+- Saved source checkpoint: localef027ad3ce7984882e799f2dafd7e72492699456, exact tree003f0b18a5f04be10caeab449e3a2d0976bd8d52, verified fork master16f82b92beda31de66ed733ede62a9e35a0629d3.
+- Site source157320cf84ad9305ccdaccec6fa43e66a4999e80; previousv73 source17f8b0403cd6991636ba17a337af2ed2431ff615 retained. Intermediate81e97c0269fca6468ef56e38a1ec8739b764cbdf was not deployed; a stale copied QA-only page was excluded before final packaging.
+- Final archive SHA256792b1f3ee910a6dfa0bb1ef2ee6cc684c6ebbe8c536cf0d5a86243539dcc78ae;70entries/65hashedfiles checked against archive.
+- Main WASM83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957; rawHTMLb884b90d9dcf46a1aca08a42b2ad4b672eff2590fb2d252745939611af05a4d4; publishedHTML9112f69dfced8a157b3c5df8922688650fcf082fdfb78a0fac6f322ecc1b897b.
+- Preview WASM1e0edfc43b856498cca948ad192a90362353cea80632e013478887087c1add65; rawHTML1f55754812fc1f4a407ca858182e38fc7c4664bc69109829a1168e6f754f1548; publishedHTML566edb662f4bf2c785a46ca38d46903720cc98287a0321e81982cb9e354d2cba.
+- Packaging edits: accurate v74/preview2 release label, main retains separate-tab Wetlands discovery, current source links/metadata and manifests. Runtime bytes are built artifacts.
+- Deploymentappgdep_6afa2228123c8191bad29793e58c7212 succeeded. URL https://stella-dei-browser-lab.workspace-823194.chatgpt.site ; optional preview /wetlands/index.html.
+
+Use World stats (or Tools→Observe→World stats), refresh/sample community, then Visit beside a living growth form. All six actual forms are listed; absent sampled forms disabled. Current native state is revalidated on click. A matched minority cohort is explicitly labeled and displayed, not falsely called the dominant plant or a species. Exact lineage357/rosette21%-of-patch test passes through glyph→Peek→Details. Death/reclassification/other selection clears special focus. No simulation advance is required; pause preserved. Native material/RNG purity and atomic refusal gates pass on main and Wetlands.116JS tests and actual built Module exports pass; outerHTML interactions used DOM mocks, not real browser-rendered gameplay. Cloud browser WebGL remains unavailable. Native screenshots are software-render proxy evidence only, not device speed proof. No ecological/root-land success claim is made by this UI release.
