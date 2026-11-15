@@ -134,6 +134,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     if (@hasField(@TypeOf(state.*), "colonyTargets")) state.colonyTargets.count = 0;
     if (@hasField(@TypeOf(state.*), "seedTargets")) state.seedTargets.count = 0;
     if (@hasField(@TypeOf(state.*), "detritusFinder")) state.detritusFinder = .{};
+    if (@hasField(@TypeOf(state.*), "feedingFinder")) state.feedingFinder = .{};
     if (@hasField(@TypeOf(state.*), "godReceipt")) state.godReceipt = null;
     if (@hasField(@TypeOf(state.*), "godEffectSeconds")) state.godEffectSeconds = 0;
     state.selectedTool = .None;

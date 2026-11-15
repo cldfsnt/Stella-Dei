@@ -204,6 +204,7 @@ pub const PlayState = struct {
     godReceipt: ?@import("../god_actions.zig").Receipt = null,
     godEffectSeconds: f32 = 0,
     detritusFinder: @import("../detritus_finder.zig").Scanner = .{},
+    feedingFinder: @import("../detritus_finder.zig").Scanner = .{},
 
     pub const simulation_step_seconds: f32 = 1440;
     pub fn setRawFrameDelta(self:*PlayState, seconds:f32) void {self.rawFrameDelta=seconds;}
@@ -1498,6 +1499,34 @@ pub const PlayState = struct {
         self.mobileFeedback=if(eligibility.success()) "Found existing dry dead carbon; ignition is optional" else if(eligibility.failure==.wet) "Found existing wet dead carbon; nothing drained or ignited" else "Found existing dead carbon; inspect why ignition is blocked";
         self.mobileFeedbackSeconds=5;
         return if(eligibility.success())1 else if(eligibility.failure==.wet)3 else 4;
+    }
+
+    /// Bounded explicit observation: 2 pending,1 found,0 no match this scan,-2 mode,-4 cancelled.
+    pub fn findRecordedFeeding(self:*PlayState,restart:bool) i32 {
+        if(self.planet.worldMode!=.origin){self.feedingFinder=.{};return -2;}
+        const n=self.planet.microbeCells.len;
+        if(n==0 or self.planet.transformedPoints.len!=n or self.planet.waterMass.len!=n or self.planet.temperature.len!=n){self.feedingFinder=.{};return -4;}
+        const storage=@intFromPtr(self.planet.microbeCells.ptr);
+        if(restart){self.feedingFinder.begin(n,storage);self.feedingFinder.geometry=@intFromPtr(self.planet.transformedPoints.ptr);self.feedingFinder.seed=self.planet.seed;self.feedingFinder.radius=self.planet.radius;self.feedingFinder.selection=self.selectedPoint;}
+        const scan=&self.feedingFinder;
+        if(!scan.active or scan.total!=n or scan.storage!=storage or scan.geometry!=@intFromPtr(self.planet.transformedPoints.ptr) or scan.seed!=self.planet.seed or scan.radius!=self.planet.radius or scan.selection!=self.selectedPoint){scan.*=.{};return -4;}
+        const end=scan.end();
+        var found:?usize=null;
+        for(scan.cursor..end)|i|{
+            const point=self.planet.transformedPoints[i];const length=point.length();
+            if(!std.math.isFinite(length) or length<=0 or @abs(point.norm().z())>0.95)continue;
+            if(@import("../feeding_discovery.zig").recorded(self.planet.microbeCells[i])!=null){found=i;break;}
+        }
+        scan.cursor=end;
+        if(found==null and end<n)return 2;
+        scan.active=false;const candidate=found orelse return 0;
+        if(@import("../feeding_discovery.zig").recorded(self.planet.microbeCells[candidate])==null)return 0;
+        const point=self.planet.transformedPoints[candidate];const length=point.length();
+        self.displayMode=.Normal;self.watchLife();self.colonyPeek.clear();
+        self.selectedPoint=candidate;self.clickedPoint=candidate;self.pointerOnPlanet=true;
+        self.targetCameraPos=point.norm();self.setOrbitDistance(length+900,true);self.cameraGroundPoint=candidate;
+        self.mobileFeedback="Recorded feeding found; inspect history";
+        self.mobileFeedbackSeconds=5;return 1;
     }
 
     pub fn findLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {

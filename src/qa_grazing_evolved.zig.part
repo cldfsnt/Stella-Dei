@@ -1,0 +1,21 @@
+const C=@import("candidate.zig");
+fn transplant(p:*const P,seed:u64)!void {
+ var donors:[2]M.Cohort=.{.{},.{}};
+ for(p.microbeCells,0..)|cell,i|for(cell.cohorts)|co|{const z:usize=if(i%3==2)1 else 0;if(co.biomass>donors[z].biomass)donors[z]=co;};
+ for(donors,0..)|co,z|{try std.testing.expect(co.biomass>0);std.debug.print("GRAZING_DONOR seed={d} origin={d} lineage={d} parent={d} generation={d} support_fraction={d} structure={d} feeding={d} organization={d}\n",.{seed,z,co.lineage,co.parent,co.generation,co.support_mass/co.biomass,co.structure,co.feeding,co.organization});}
+ for([_]f32{0,1,2,4})|strength|for([_]f32{1,0.2})|light|for([_]bool{false,true})|enabled|{
+  var ends:[2][2]f32=undefined;
+  for(0..2)|swap|{
+   var cell=C.initialized(seed);cell.nutrient=0.12;for(donors,0..)|donor,origin|{var co:C.Cohort=undefined;inline for(std.meta.fields(M.Cohort))|field|@field(co,field.name)=@field(donor,field.name);co.biomass=0.1;co.support_mass=0.1*donor.support_mass/donor.biomass;co.reproduction_credit=0;co.lifetime_grazed=0;cell.cohorts[origin^swap]=co;}
+   var air:f64=10;var oxygen:f64=10;const carbon=air+C.carbon(cell);const nutrient=C.nutrientTotal(cell);var grazed:f64=0;
+   C.accessibility_strength=strength;C.grazing_enabled=enabled;
+   for(0..60*60)|tick|{
+    const f=C.step(&cell,.{.temperature=303,.depth_km=0.001,.light=light,.carbon_available=@floatCast(air),.oxygen_carbon_capacity=@floatCast(oxygen)},1440);air+=@as(f64,f.recycled)-f.fixed;oxygen+=@as(f64,f.fixed)-f.recycled;grazed+=f.grazed;
+    try std.testing.expect(C.validCell(cell,std.math.maxInt(u64)));try std.testing.expect(air>=0 and oxygen>=0);try std.testing.expectApproxEqAbs(carbon,air+C.carbon(cell),0.0003);try std.testing.expectApproxEqAbs(nutrient,C.nutrientTotal(cell),0.00003);
+    if(tick+1==600 or tick+1==3600)std.debug.print("GRAZING_EVOLVED seed={d} coefficient={d} light={d} grazing={} swap={d} day={d} wet_donor={d:.8} shallow_donor={d:.8} consumed={d:.8} carbon_error={e} nutrient_error={e}\n",.{seed,strength,light,enabled,swap,(tick+1)/60,cell.cohorts[swap].biomass,cell.cohorts[1^swap].biomass,grazed,air+C.carbon(cell)-carbon,C.nutrientTotal(cell)-nutrient});
+   }
+   ends[swap]=.{cell.cohorts[swap].biomass,cell.cohorts[1^swap].biomass};
+  }
+  for(ends[0],ends[1])|a,b|try std.testing.expectApproxEqAbs(a,b,0.00001);
+ };
+}

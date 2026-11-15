@@ -342,6 +342,9 @@ var lifeSnapshotBuffer: [8192]u8 = undefined;
 /// On-demand current-cell snapshot, not a fabricated historical lineage tree.
 export fn stella_life_snapshot() [*:0]const u8 {
     const state = webPlayState() orelse return "{\"status\":\"no_world\"}";
+    return lifeSnapshotForState(state);
+}
+pub fn lifeSnapshotForState(state:*PlayState) [*:0]const u8 {
     if (state.planet.worldMode != .origin) return "{\"status\":\"sandbox\"}";
     const point = state.selectedPoint;
     if (point >= state.planet.microbeCells.len) return "{\"status\":\"no_cell\"}";
@@ -474,6 +477,11 @@ export fn stella_find_detritus(restart:u32) i32 {
     const state=webPlayState() orelse return -1;
     if(restart==2){state.detritusFinder=.{};return -4;}
     return state.findDetritus(restart==1);
+}
+export fn stella_find_feeding(restart:u32) i32 {
+    const state=webPlayState() orelse return -1;
+    if(restart==2){state.feedingFinder=.{};return -4;}
+    return state.findRecordedFeeding(restart==1);
 }
 
 export fn stella_find_life() i32 {
