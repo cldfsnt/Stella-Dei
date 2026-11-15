@@ -1,0 +1,66 @@
+{
+  "sha256": {
+    "scale-1366-1-cached30d-0.ppm": "96fc26f420b284dc1b5dd6278ed2788e9856265b08c42a6716ceb8403e210bd6",
+    "scale-1366-1-early-21600.ppm": "cc8f9743e400a7595ac2db54922055c3238043fe955ffad8e0f9569e5009e1e4",
+    "scale-1366-0.75-cached30d-86400.ppm": "22f1df2998861c6abf2ed7a28868ee792899f4f20026b49ef1acd288a5e09eb8",
+    "scale-390-1-early-86400.ppm": "5966d52da9f9cb9f2020d4ee807bcc627db275b4fd53bddbe5a0e5c3d7687975",
+    "scale-390-0.75-cached30d-21600.ppm": "3fc226d9dbb430800075de34245e4b6d3b3e49b8ae2050e6d83f468a864d498b",
+    "scale-1366-1-early-0.ppm": "3a740150abc0ff91866645c1f0ae96a60ddccdb5f91cc201ee422c0e06581274",
+    "scale-390-0.5-cached30d-21600.ppm": "8097fef4eb749cb0849221cf5777a39035aaace0ce6363eeb8f7f1633bd53d18",
+    "scale-390-1-cached30d-86400.ppm": "5f3bdceab58855e4abdb024a0ad1fe8f121c6f18378656698b6440761d4619a5",
+    "scale-390-1-early-21600.ppm": "bad08c4b908139845bd2f9edf58fc274fd136a34da8219854953e815a627fee4",
+    "scale-1366-0.5-cached30d-21600.ppm": "e81770b4e45b12bde863bb76393741ae02d2723ee6daf2cb7f68f05ed8b94af7",
+    "scale-390-0.5-early-0.ppm": "864aa1d8d5776ae788c9b23f05690fef77225c3cc3e028775aa2c92e71eb09cc",
+    "scale-1366-0.75-early-21600.ppm": "c0a6d01ca704380d2e0b36e95155ba2594a57315b2a57e8da8d0a064dffbf822",
+    "scale-390-1-cached30d-0.ppm": "9f3b7135191780477861ec3da66ccf9716e8ae676d4275188d45fba5bdf0c045",
+    "scale-1366-0.75-early-86400.ppm": "8d8b8c5ef9c46776fd8ffa9cd900fed073c80eec1cb57277a41461890bf373dc",
+    "scale-1366-0.5-early-21600.ppm": "79c87deb9dcc4be348bda15427e9c709309f8ad5a7c9bc13f818a6db751c209c",
+    "scale-390-0.75-early-86400.ppm": "2ede4411cd5f67d0ce259313cb7556baa6880137f50b94b7181e6270d0415460",
+    "scale-390-0.75-cached30d-86400.ppm": "0c781b756dea6400a8a35c73c3efbbb323db6fa87720ecc69622c5f99c448f9f",
+    "scale-1366-0.5-cached30d-86400.ppm": "d1fa25f1c4a7429c805eb15faa3a17ab48c80fd14d18ab42125ee0adc9339537",
+    "scale-1366-0.75-cached30d-21600.ppm": "44ca616160c9c6b1a857596f9a88c3be3817fa48b1c41a2d246d53b295e5f196",
+    "scale-1366-0.5-early-0.ppm": "356653a496de5cfce5a7fe23cf29e23ae991b7fa0a8a7d221525771bbd01136e",
+    "scale-1366-0.75-early-0.ppm": "8f4e7ccbd6bb19aa6cab1f36205a30062607f693986fd999540c0d25ba830913",
+    "scale-390-1-early-0.ppm": "7542849bcf5ffd6049098d8be1aabffeab4273bdf7fd7d29379b850ad7c5a11f",
+    "scale-390-0.5-early-21600.ppm": "fda80e29f6022a345402ff0455d6bbe28c421b8daf93ef59e317320d9c796aff",
+    "scale-390-0.5-early-86400.ppm": "faeef9bbfca49ccee736d6c7d03d89cedeee37129cf988770cbdd239a8c9d4af",
+    "scale-1366-0.5-early-86400.ppm": "645a78cbeacee2a68b2b76b839603458a99d047c69dcdccb3fb8c4b52ae1e8cc",
+    "scale-390-0.75-cached30d-0.ppm": "3c699070bc40545f1114a6465fb112b63027273c9db8bac4fb4e52a35995ae6a",
+    "scale-1366-1-cached30d-86400.ppm": "39e766a4b70cd801eadaea1c167c5f3b0809fa2f8d167aae8764096163d9b7af",
+    "scale-390-0.75-early-21600.ppm": "09de935dc41ac63a575aad4f461e5d441b7c5a0b9cc34fbb2727ff5c2214531f",
+    "scale-1366-1-early-86400.ppm": "0941ff7aaa96b5150cf5d3e636a730e68b4e8989cddb0dd1f2b25619fde33a3d",
+    "scale-390-0.5-cached30d-86400.ppm": "4d616f979a26e23cbef1aef7c2ecf4da6e845ee12d7813e15ce73a36ab50d2f1",
+    "scale-1366-0.5-cached30d-0.ppm": "f5f3f0e00993a4c2177e223bd1d6b95edb87c84886b3a8a49a014bd44c8f57a3",
+    "scale-390-0.75-early-0.ppm": "f82bfc51b36582632ac93f0c6bf0a802d01bfa253f6b03fb3d99949130cd7fbd",
+    "scale-1366-1-cached30d-21600.ppm": "4ca8e59bff510cd01007dd6030b9fbd76a86d3e95cccad8e1843f86a1ed77fc0",
+    "scale-1366-0.75-cached30d-0.ppm": "dd9a2cd9121cdef4fe8aa2f308aea3deaa3941c0a6606fecdeef684b68a68826",
+    "scale-390-1-cached30d-21600.ppm": "e9c51c0715468eeb99a9695a45b4e8e6ff8cc6d5c519e0906664adc8f9c33ec5",
+    "scale-390-0.5-cached30d-0.ppm": "e22141b4be6329feb4c2c4d3bffcc7f7e91d91c3b344ee5bdf855e521a6e01e0"
+  },
+  "prior_sharp_baseline": [
+    {
+      "image": "scale-1366-1-cached30d-0.ppm",
+      "unchanged_default_pixels": false
+    },
+    {
+      "image": "scale-1366-1-early-21600.ppm",
+      "unchanged_default_pixels": true
+    },
+    {
+      "image": "scale-1366-1-early-0.ppm",
+      "unchanged_default_pixels": true
+    },
+    {
+      "image": "scale-1366-1-cached30d-86400.ppm",
+      "unchanged_default_pixels": true
+    },
+    {
+      "image": "scale-1366-1-early-86400.ppm",
+      "unchanged_default_pixels": true
+    },
+    {
+      "image": "scale-1366-1-cached30d-21600.ppm",
+      "unchanged_default_pixels": false
+    }
+  ]
+}

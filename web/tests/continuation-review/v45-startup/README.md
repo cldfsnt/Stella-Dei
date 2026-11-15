@@ -1,0 +1,3 @@
+# Actual v45 cloud-browser startup recheck
+
+Supported managed preview served the exact built v45 WASM assets on2026-11-15. CUA loaded the real shell (no engine mocks): Ready, Play enabled. Clicking Play produced `error: WindowCreationFailed` twice and the honest Reload UI. WASM loading succeeded; actual graphics initialization did not. No browser security/graphics flags changed, no alternate browser launch or workaround. This reconfirms that actual browser game play/performance cannot be verified in this cloud browser. Native EGL and mocked shell-control evidence remain separate. Preview stopped afterward.

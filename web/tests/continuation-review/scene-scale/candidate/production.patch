@@ -1,0 +1,63 @@
+--- a/src/states/play.zig
++++ b/src/states/play.zig
+@@ -389,9 +389,9 @@
+             }
+         }
+ 
+-        const scale = 1;
+-        const fbWidth = @as(c_int, @intFromFloat(size.x() * scale));
+-        const fbHeight = @as(c_int, @intFromFloat(size.y() * scale));
++        const sceneSize=@import("../render_scale.zig").dimensions(@intFromFloat(size.x()),@intFromFloat(size.y()));
++        const fbWidth=sceneSize[0];
++        const fbHeight=sceneSize[1];
+         if (fbWidth != self.framebuffer.width or fbHeight != self.framebuffer.height) {
+             self.framebuffer.deinit();
+             self.framebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -322,6 +322,15 @@
+         else => null,
+     };
+ }
++export fn stella_scene_resolution_set(value:i32)i32 {
++    if(webPlayState()==null or value<0)return 0;
++    const choice=@import("render_scale.zig");const before=choice.percent();
++    if(!choice.set(@intCast(value)))return 0;
++    if(before!=choice.percent())PerformanceDetails.interrupted();
++    return 1;
++}
++export fn stella_scene_resolution_get()u32{return @import("render_scale.zig").percent();}
++
+ export fn stella_zoom(steps: f32) void {
+     if (webPlayState()) |state| state.zoom(steps);
+ }
+--- /dev/null
++++ b/src/render_scale.zig
+@@ -0,0 +1,27 @@
++//! Explicit session-only 3D render resolution. No simulation/save state.
++const std=@import("std");
++pub const Choice=enum(u32){sharp=100,reduced=75,fast=50};
++var current:Choice=.sharp;
++pub fn percent()u32{return @intFromEnum(current);}
++pub fn set(value:u32)bool{
++ const next:Choice=switch(value){100=>.sharp,75=>.reduced,50=>.fast,else=>return false};
++ current=next;return true;
++}
++pub fn dimension(canvas:i32,choice:Choice)i32{
++ const base:@TypeOf(@as(i64,0))=@max(1,canvas);
++ return @intCast(@max(1,@divTrunc(base*@as(i64,@intFromEnum(choice)),100)));
++}
++pub fn dimensions(width:i32,height:i32)[2]i32{return .{dimension(width,current),dimension(height,current)};}
++test "sharp default, explicit valid choices, invalid choices unchanged"{
++ defer current=.sharp;current=.sharp;try std.testing.expectEqual(@as(u32,100),percent());
++ for([_]u32{75,50,100})|v|{try std.testing.expect(set(v));try std.testing.expectEqual(v,percent());}
++ for([_]u32{0,1,49,51,74,76,101,std.math.maxInt(u32)})|v|{try std.testing.expect(!set(v));try std.testing.expectEqual(@as(u32,100),percent());}
++}
++test "dimensions nonzero bounded no overflow and exact full scale"{
++ for([_]i32{-1,0,1,239,390,700,768,1366,std.math.maxInt(i32)})|n|for([_]Choice{.sharp,.reduced,.fast})|c|{
++ const d=dimension(n,c);try std.testing.expect(d>=1 and d<=@max(1,n));
++ if(c==.sharp)try std.testing.expectEqual(@max(1,n),d);
++ };
++ try std.testing.expectEqual(@as(i32,1024),dimension(1366,.reduced));
++ try std.testing.expectEqual(@as(i32,292),dimension(390,.reduced));
++}

@@ -1,0 +1,42 @@
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ web/tests/colony-labels.test.cjs (250.060294ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ web/tests/compact-life.test.cjs (259.68424ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.65329ms)
+✔ restricted or missing clipboard stays manually copyable (0.616048ms)
+✔ missing or oversized report never writes or displays stale data (0.274764ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ web/tests/gameplay-measure.test.cjs (273.065203ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ web/tests/harness-mode.test.cjs (259.984281ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+✔ web/tests/life-trend.test.cjs (236.213817ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (1.404356ms)
+✔ empty interval and no ticks are explicit (0.232059ms)
+✔ pause menu hidden guard cancels without unpause (0.156326ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.346432ms)
+✔ hard deadline and invalid result terminate (0.209755ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.27205ms)
+✔ invalid or missing pulse fields stop safely (0.57082ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.147913ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ web/tests/renderer-info.test.cjs (262.996127ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ web/tests/scene-resolution.test.cjs (80.461472ms)
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ web/tests/shell.test.cjs (105.469629ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ web/tests/storage-upgrade.test.cjs (79.43123ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ web/tests/storage.test.cjs (67.860002ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ web/tests/touch-controls.test.cjs (67.248651ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 369.501727

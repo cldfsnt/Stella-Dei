@@ -1,0 +1,9 @@
+# v46 · optional 3D resolution and compact Life
+
+Explicit session-only Sharp100% (default), Reduced75%, Low50% scene/bloom target resolution. Main canvas, full-resolution controls/colony glyphs, picking, physics detail/timesteps, ecology and save schema are untouched. Lower choices visibly soften 3D terrain edges; no automatic quality switch. Reload resets to Sharp. API accepts only100/75/50 and requires active world for changes; actual changes interrupt diagnostics.
+
+Measured native software-renderer proxy at40,962 cells, established30day world,1366×768: target24 total-frame medians27.98/24.33/22.97ms at100/75/50%; Grow19.39/17.68/16.12ms.390×700 gains smaller. Not an Android/laptop hardware promise, nor GPU-only timings. See ../scene-scale for exact source/raw evidence.72 world-state and216 picking comparisons match;32 actual FBO toggle/logical-resize cases pass, and eight restored100% screenshots are byte-identical within run. Native logical resize is not browser context-loss acceptance. Inherited framebuffer allocation failure behavior remains; no graceful OOM claim.
+
+Compact Life moves Watch and water controls above collapsed details, with current exact colony IDs/forms/mass shares. No-live-biomass wording avoids inferring death from relocation.22 final JavaScript tests pass; Zig0.13.0/Emscripten3.1.64 build passes and both new WASM exports verified. CUA narrow374px actual-shell fixture with mocked engine validates explicit75/50 choices, close/reopen retention, reload100default, disclosure controls and exact20digit IDs. It is UI evidence, not live biological simulation.
+
+Actual v45 game startup was rechecked separately in the supported cloud browser: WASM loaded, Play reached WindowCreationFailed. No graphics/security flags changed. Actual browser game performance and Android remain unverified. No complete-game claim; no experimental caches or donor-sampling model shipped.

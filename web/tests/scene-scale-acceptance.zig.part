@@ -1,0 +1,17 @@
+fn scaleAcceptance(state:anytype,window:anytype,allocator:std.mem.Allocator,label:[]const u8)!void{
+ const saves=@import("save_game.zig");const choice=@import("render_scale.zig");var ar=std.heap.ArenaAllocator.init(allocator);defer ar.deinit();const a=ar.allocator();const original=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const saved=try saves.schema.parse(a,original);
+ for([_][2]i32{.{1366,768},.{390,700},.{700,390},.{1366,768}},0..)|size,resize_index|{
+  window.setSize(.{.width=@intCast(size[0]),.height=@intCast(size[1])});
+  for([_]u32{100,75,50,100},0..)|percent,sequence|{
+   try saves.apply(state,saved.value);state.paused=true;state.pointerOnPlanet=false;
+   std.debug.assert(choice.set(percent));std.debug.assert(!choice.set(74));std.debug.assert(choice.percent()==percent);
+   for(0..17)|_|{game.loop.pump(16);state.update(&game,0);game.loop.pump(16);render(window);gl.finish();}
+   const dims=choice.dimensions(size[0],size[1]);std.debug.assert(state.framebuffer.width==dims[0] and state.framebuffer.height==dims[1]);std.debug.assert(renderer.framebufferSize.x()==@as(f32,@floatFromInt(size[0])) and renderer.framebufferSize.y()==@as(f32,@floatFromInt(size[1])));
+   const result=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});var digest:[32]u8=undefined;std.crypto.hash.sha2.Sha256.hash(result,&digest,.{});
+   std.debug.print("SCALE_CASE stage={s} resize={d} seq={d} percent={d} canvas={d}x{d} scene={d}x{d} hash={s}\n",.{label,resize_index,sequence,percent,size[0],size[1],dims[0],dims[1],std.fmt.fmtSliceHexLower(&digest)});
+   for([_]f32{0.25,0.5,0.75})|x|{state.mouseMoved(&game,@as(f32,@floatFromInt(size[0]))*x,@as(f32,@floatFromInt(size[1]))*0.5,0,0);std.debug.print("CASE_PICK x={d} hit={} cell={d}\n",.{x,state.pointerOnPlanet,state.selectedPoint});}state.pointerOnPlanet=false;
+   const prefix=std.posix.getenv("STELLA_ACCEPT_PROOF") orelse "/tmp/scale-accept";const path=try std.fmt.allocPrintZ(a,"{s}-{s}-{d}-{d}.ppm",.{prefix,label,resize_index,sequence});qa_capture(path);
+  }
+ }
+ _=choice.set(100);window.setSize(.{.width=1366,.height=768});try saves.apply(state,saved.value);
+}

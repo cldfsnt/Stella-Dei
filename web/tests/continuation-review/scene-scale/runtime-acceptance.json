@@ -1,0 +1,54 @@
+{
+  "case_count": 32,
+  "groups": [
+    {
+      "stage": "early",
+      "resize": 0,
+      "state_hash": "1a7c09ed65307d519c4cb4035f511e39faefb35685fee2619588e401cb7d634f",
+      "restored100_image_sha256": "7c6aced2d4affe20d23ff11f870a4c7c7b8056eab611f219101b473743deef48"
+    },
+    {
+      "stage": "early",
+      "resize": 1,
+      "state_hash": "1a7c09ed65307d519c4cb4035f511e39faefb35685fee2619588e401cb7d634f",
+      "restored100_image_sha256": "804dafb5e85e82351354e5e86d96be412c004a66a95400b773d3eabc64857080"
+    },
+    {
+      "stage": "early",
+      "resize": 2,
+      "state_hash": "1a7c09ed65307d519c4cb4035f511e39faefb35685fee2619588e401cb7d634f",
+      "restored100_image_sha256": "3d1bca09811490351bc8261c17c5a6a46680630421e9b46bcdb1b9dc0162747a"
+    },
+    {
+      "stage": "early",
+      "resize": 3,
+      "state_hash": "1a7c09ed65307d519c4cb4035f511e39faefb35685fee2619588e401cb7d634f",
+      "restored100_image_sha256": "7c6aced2d4affe20d23ff11f870a4c7c7b8056eab611f219101b473743deef48"
+    },
+    {
+      "stage": "cached30d",
+      "resize": 0,
+      "state_hash": "54f056727448b359bb6634e266fc292e646bfef62fefddee1ae16dad733a294a",
+      "restored100_image_sha256": "7f74d8f54d74fba83f446855323be9b4c8b85050849d12a95cb6eb97352ebc59"
+    },
+    {
+      "stage": "cached30d",
+      "resize": 1,
+      "state_hash": "54f056727448b359bb6634e266fc292e646bfef62fefddee1ae16dad733a294a",
+      "restored100_image_sha256": "fc5ff5ea2c1495034535800dfda5b1f712690c9d702c2e324c7250f5a90c754a"
+    },
+    {
+      "stage": "cached30d",
+      "resize": 2,
+      "state_hash": "54f056727448b359bb6634e266fc292e646bfef62fefddee1ae16dad733a294a",
+      "restored100_image_sha256": "fd2957dd1f8f630a68ae912402fe9d59b3d4a37b1b37371ad25f2378069a86e6"
+    },
+    {
+      "stage": "cached30d",
+      "resize": 3,
+      "state_hash": "54f056727448b359bb6634e266fc292e646bfef62fefddee1ae16dad733a294a",
+      "restored100_image_sha256": "7f74d8f54d74fba83f446855323be9b4c8b85050849d12a95cb6eb97352ebc59"
+    }
+  ],
+  "same_size_scale_state_and_picking_match": true
+}

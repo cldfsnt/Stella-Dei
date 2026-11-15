@@ -1,0 +1,13 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
+const html=fs.readFileSync(path.join(__dirname,'../shell.html'),'utf8'),code=html.slice(html.indexOf('function refreshSceneResolution('),html.indexOf('function openSpeed(){'));
+const elements=new Map();const el=id=>{if(!elements.has(id))elements.set(id,{setAttribute(k,v){this[k]=v}});return elements.get(id)};let current=100,calls=0,cancels=0;
+const ctx={Module:{started:true,failed:false,_stella_scene_resolution_get:()=>current,_stella_scene_resolution_set:v=>{calls++;current=v;return 1}},gameplayMeasure:{cancel(){cancels++}},document:{getElementById:el}};vm.createContext(ctx);vm.runInContext(code,ctx);
+assert.equal(ctx.refreshSceneResolution(),100);assert.equal(el('scene-sharp')['aria-pressed'],'true');assert.equal(el('scene-low').disabled,false);
+for(const v of [75,50,100,100])assert.equal(ctx.chooseSceneResolution(v),true);assert.equal(current,100);assert.equal(calls,4);assert.equal(cancels,4);
+for(const v of [0,1,49,101,NaN,'50',Infinity])assert.equal(ctx.chooseSceneResolution(v),false);assert.equal(calls,4);
+ctx.Module._stella_scene_resolution_set=()=>0;assert.equal(ctx.chooseSceneResolution(50),false);assert.match(el('scene-resolution-status').textContent,/not changed/);assert.equal(el('scene-sharp')['aria-pressed'],'true');
+ctx.Module._stella_scene_resolution_set=()=>1;assert.equal(ctx.chooseSceneResolution(50),false);assert.match(el('scene-resolution-status').textContent,/verify/);
+ctx.Module._stella_scene_resolution_get=()=>{throw Error('unavailable')};assert.equal(ctx.refreshSceneResolution(),null);assert.equal(el('scene-low').disabled,true);
+ctx.Module._stella_scene_resolution_get=()=>100;ctx.Module.started=false;assert.equal(ctx.chooseSceneResolution(50),false);assert.equal(el('scene-sharp').disabled,true);
+assert.match(html,/Controls stay full resolution; simulation detail, time and saves are unchanged/);assert.match(html,/resets on page reload/);
+console.log('PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice');

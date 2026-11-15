@@ -389,9 +389,9 @@ pub const PlayState = struct {
             }
         }
 
-        const scale = 1;
-        const fbWidth = @as(c_int, @intFromFloat(size.x() * scale));
-        const fbHeight = @as(c_int, @intFromFloat(size.y() * scale));
+        const sceneSize=@import("../render_scale.zig").dimensions(@intFromFloat(size.x()),@intFromFloat(size.y()));
+        const fbWidth=sceneSize[0];
+        const fbHeight=sceneSize[1];
         if (fbWidth != self.framebuffer.width or fbHeight != self.framebuffer.height) {
             self.framebuffer.deinit();
             self.framebuffer = Framebuffer.create(fbWidth, fbHeight) catch unreachable;

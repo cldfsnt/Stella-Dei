@@ -322,6 +322,15 @@ fn webPlayState() ?*PlayState {
         else => null,
     };
 }
+export fn stella_scene_resolution_set(value:i32)i32 {
+    if(webPlayState()==null or value<0)return 0;
+    const choice=@import("render_scale.zig");const before=choice.percent();
+    if(!choice.set(@intCast(value)))return 0;
+    if(before!=choice.percent())PerformanceDetails.interrupted();
+    return 1;
+}
+export fn stella_scene_resolution_get()u32{return @import("render_scale.zig").percent();}
+
 export fn stella_zoom(steps: f32) void {
     if (webPlayState()) |state| state.zoom(steps);
 }
