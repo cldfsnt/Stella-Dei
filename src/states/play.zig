@@ -707,6 +707,7 @@ pub const PlayState = struct {
     }
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
+        if(@import("../patch_watch.zig").current.active)@import("../patch_watch.zig").current.guard(self.selectedPoint,@import("../performance_details.zig").world_serial,self.gameTime,@import("../patch_watch.zig").nowMs(),self.paused or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails);
         if(self.paused or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails)@import("../performance_details.zig").interrupted();
         self.mobileFeedbackSeconds = @max(0, self.mobileFeedbackSeconds - dt);
         self.propaguleVisuals.advance(dt);

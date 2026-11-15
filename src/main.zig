@@ -451,6 +451,28 @@ export fn stella_speed_snapshot()[*:0]const u8 {
 }
 
 const PerformanceDetails=@import("performance_details.zig");
+const PatchWatch=@import("patch_watch.zig");
+var patch_watch_json:[1024]u8=undefined;
+export fn stella_patch_watch_start(expected:i32)i32 {
+ const state=webPlayState() orelse return -1;
+ return patchWatchStartForState(state,expected);
+}
+pub fn patchWatchStartForState(state:*PlayState,expected:i32)i32 {
+ if(state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.paused or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails)return -2;
+ if(!PatchWatch.current.start(state.selectedPoint,PerformanceDetails.world_serial,state.gameTime,PatchWatch.nowMs()))return -3;
+ PatchWatch.current.owner=@intFromPtr(&state.planet);return 1;
+}
+export fn stella_patch_watch_stop(complete:i32)void {
+ if(complete==1){if(webPlayState())|s|PatchWatch.current.guard(s.selectedPoint,PerformanceDetails.world_serial,s.gameTime,PatchWatch.nowMs(),s.paused or s.showEscapeMenu or s.showPlanetControl or s.showPointDetails);}
+ PatchWatch.current.stop("cancelled");
+}
+export fn stella_patch_watch_snapshot()[*:0]const u8 {
+ if(webPlayState())|s|PatchWatch.current.guard(s.selectedPoint,PerformanceDetails.world_serial,s.gameTime,PatchWatch.nowMs(),s.paused or s.showEscapeMenu or s.showPlanetControl or s.showPointDetails) else PatchWatch.current.stop("world unavailable");
+ var stream=std.io.fixedBufferStream(&patch_watch_json);
+ std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks},.{},stream.writer()) catch return "{}";
+ if(stream.pos>=patch_watch_json.len)return "{}";patch_watch_json[stream.pos]=0;return @ptrCast(&patch_watch_json);
+}
+
 var performance_json:[2048]u8=undefined;
 export fn stella_performance_enable(enabled:i32)i32 {
     if(webPlayState()==null){PerformanceDetails.metrics.setEnabled(false);return -1;}

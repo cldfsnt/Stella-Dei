@@ -1,0 +1,6 @@
+1/5 patch_watch.test.exact patch flux, empty ticks, no identity/lifetime dependence...OK
+2/5 patch_watch.test.pause selection load clock and invalid flux stop immediately...OK
+3/5 patch_watch.test.no grazing records zero and zero simulated duration is not inferred...OK
+4/5 patch_watch.test.owner isolation and tick-boundary deadline...OK
+5/5 patch_watch.test.bad time and counter overflow stop without wrapping...OK
+All 5 tests passed.

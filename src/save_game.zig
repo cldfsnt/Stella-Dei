@@ -59,6 +59,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     // Capacity changes may allocate but do not alter the active world mode/data.
     // No fallible operations follow this reservation boundary.
     if (saved.mode == .origin) try p.ensureMicrobeStorage();
+    @import("patch_watch.zig").current.stop("world loaded");
     p.worldMode = saved.mode;
     if (saved.origin) |origin| {
         for (p.microbeCells, origin.cells) |*cell, saved_cell| cell.* = saved_cell.runtime();

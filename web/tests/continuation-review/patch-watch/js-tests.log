@@ -1,0 +1,28 @@
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ web/tests/gameplay-measure.test.cjs (124.533783ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ web/tests/harness-mode.test.cjs (161.735629ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+✔ web/tests/life-trend.test.cjs (217.928452ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (2.208876ms)
+✔ empty interval and no ticks are explicit (0.415175ms)
+✔ pause menu hidden guard cancels without unpause (0.363277ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.352511ms)
+✔ hard deadline and invalid result terminate (1.399687ms)
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ web/tests/shell.test.cjs (200.135587ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ web/tests/storage-upgrade.test.cjs (159.234662ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ web/tests/storage.test.cjs (205.118712ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ web/tests/touch-controls.test.cjs (197.832909ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 234.200908

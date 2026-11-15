@@ -1,0 +1,16 @@
+{
+  "src/patch_watch.zig": "69cb21dfa44169ef5d07b01778503f279bccebb9161022dfe0076f0dcff838d0",
+  "src/main.zig": "7b740e234417af396cf6777ccc897410826ad395c0e6d38802886f4999c8a7bd",
+  "src/states/play.zig": "e6425df7ace8bbc9ca82df4e927de3ae58e1edadce8625c10313811597df926f",
+  "src/simulation/planet.zig": "dc9bfd90884ec7b7139ee0b530fda37809f1f26768d82a803f4d1b06aebd4ba6",
+  "src/simulation/microbes.zig": "844f077e8a6112fc37261e23ebbc4497af6ccd9bc48d04255ec4a6c045b6d485",
+  "src/save_game.zig": "436e92701cce0b196e8de7aa1f7e68e44ea431c231a68b6b5f03cb73a0532582",
+  "src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+  "src/performance_details.zig": "1633487591838b0a9d0cf807aca090629eb8b1ec22a3dfb9c7410d500dc2b560",
+  "web/patch-watch.js": "8f1ce75abc8b98d21ca9cd1d1445386f38511b14f8d88be4067917b5d4ea9d34",
+  "web/shell.html": "329159707e7455d2ae0a06dc6f6a81ca07aab0c65543d37d90d9b5653f60614f",
+  "web/build.sh": "7223f22d07b45b710e7c931df78cb297931ca9d8f06840cf00d9334082159aac",
+  "web/tests/egl-patch-watch-prepare.py": "c4139e8fabdaca3018765e189be0f3f8f25bbead5d7286949354d371eb39a32c",
+  "web/tests/patch-watch.test.cjs": "0a165b0e9ea346478fc9d240390dd81dc8b222917db76a1e2ab952d47d6e9826",
+  "web/tests/shell.test.cjs": "9bd75bf3aaf957899f203b1bcc8e1605dfd883bd413e31755d6bf082ab74ea99"
+}
