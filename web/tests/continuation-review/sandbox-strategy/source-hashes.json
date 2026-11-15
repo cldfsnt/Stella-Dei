@@ -1,0 +1,9 @@
+{
+  "src/simulation/ecology.zig": "140b8c23da5eea837011aeeaf0782149c0707e5e9b3c8526f46f753e85fd0dcc",
+  "src/simulation/foraging.zig": "342e2299e81eae8d57931d807463bac3f2b822d88265b6d23ebcd6ae16d18a92",
+  "src/simulation/life.zig": "27bebe0a8cd8db17ad632d098b4484eabc9cb4fc918163ffbc45098958f27d9e",
+  "src/states/play.zig": "25d562670ff4cec28860d66623963c5bd26154f274ad1f9179b6003ad9515508",
+  "src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+  "src/save_game.zig": "62eea5189d6debfac838442ac3c8ef08097809f6d752b762edd2d4441d6d1a00",
+  "src/qa_sandbox_strategy_audit.zig": "19c42c85e6789c91f284ac216056e51eb356829e5e2587a3b7c0c9ed1680b881"
+}

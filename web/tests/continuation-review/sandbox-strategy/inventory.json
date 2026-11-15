@@ -1,0 +1,1507 @@
+{
+  "scope": "Palette is thermal optimum, not defensive strategy. Cross-time survival is confounded by location/feeding/weather/colonization.",
+  "worlds": [
+    {
+      "path": "../site-tmp/foraging-production/warm-actual-end.json",
+      "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+      "day": 14.0,
+      "living_patches": 117,
+      "cover": 61.700946138444166,
+      "sprout_eligible_patches": 102,
+      "optimum_min": 290.6784362792969,
+      "optimum_max": 298.9693908691406,
+      "max_generation": 4,
+      "palette_groups": [
+        {
+          "label": "cool_blue",
+          "patches": 115,
+          "cover": 60.325370357575636
+        },
+        {
+          "label": "middle_green",
+          "patches": 2,
+          "cover": 1.3755757808685303
+        },
+        {
+          "label": "warm_yellow",
+          "patches": 0,
+          "cover": 0
+        }
+      ],
+      "live_plant_records": [
+        {
+          "patch": 436,
+          "cover": 0.3486658036708832,
+          "temperature": 297.9569091796875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 1698,
+          "cover": 0.6161289215087891,
+          "temperature": 295.6273193359375,
+          "optimum": 294.8045959472656,
+          "generation": 1
+        },
+        {
+          "patch": 1699,
+          "cover": 0.7490372061729431,
+          "temperature": 300.0946960449219,
+          "optimum": 294.9145202636719,
+          "generation": 1
+        },
+        {
+          "patch": 1702,
+          "cover": 0.7053965330123901,
+          "temperature": 295.29736328125,
+          "optimum": 295.1786804199219,
+          "generation": 1
+        },
+        {
+          "patch": 1703,
+          "cover": 0.5343360304832458,
+          "temperature": 292.8246154785156,
+          "optimum": 297.6054382324219,
+          "generation": 1
+        },
+        {
+          "patch": 1713,
+          "cover": 0.7787204384803772,
+          "temperature": 303.2366027832031,
+          "optimum": 293.83935546875,
+          "generation": 1
+        },
+        {
+          "patch": 1715,
+          "cover": 0.7501657605171204,
+          "temperature": 301.17816162109375,
+          "optimum": 295.0096435546875,
+          "generation": 1
+        },
+        {
+          "patch": 6714,
+          "cover": 0.7839522957801819,
+          "temperature": 299.08099365234375,
+          "optimum": 293.83270263671875,
+          "generation": 3
+        },
+        {
+          "patch": 6716,
+          "cover": 2.0049745216965675e-05,
+          "temperature": 294.449951171875,
+          "optimum": 293.6255187988281,
+          "generation": 3
+        },
+        {
+          "patch": 6717,
+          "cover": 0.00031202027457766235,
+          "temperature": 296.79010009765625,
+          "optimum": 294.9708557128906,
+          "generation": 4
+        },
+        {
+          "patch": 6718,
+          "cover": 0.49518439173698425,
+          "temperature": 299.0911560058594,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6719,
+          "cover": 0.164005845785141,
+          "temperature": 297.96405029296875,
+          "optimum": 294.37152099609375,
+          "generation": 1
+        },
+        {
+          "patch": 6720,
+          "cover": 7.197617151177838e-07,
+          "temperature": 296.6141052246094,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6731,
+          "cover": 0.36513128876686096,
+          "temperature": 295.46484375,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6732,
+          "cover": 0.7187091112136841,
+          "temperature": 294.00494384765625,
+          "optimum": 294.3699035644531,
+          "generation": 1
+        },
+        {
+          "patch": 6733,
+          "cover": 0.6125038266181946,
+          "temperature": 296.6136169433594,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6739,
+          "cover": 0.5438601970672607,
+          "temperature": 294.238037109375,
+          "optimum": 296.80694580078125,
+          "generation": 1
+        },
+        {
+          "patch": 6780,
+          "cover": 0.8455400466918945,
+          "temperature": 302.64581298828125,
+          "optimum": 293.8651123046875,
+          "generation": 3
+        },
+        {
+          "patch": 6781,
+          "cover": 0.7016223073005676,
+          "temperature": 300.64703369140625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6782,
+          "cover": 0.7534611821174622,
+          "temperature": 301.7315673828125,
+          "optimum": 292.6260681152344,
+          "generation": 1
+        },
+        {
+          "patch": 6783,
+          "cover": 0.8077991008758545,
+          "temperature": 304.13494873046875,
+          "optimum": 295.3078308105469,
+          "generation": 3
+        },
+        {
+          "patch": 6784,
+          "cover": 0.6574916243553162,
+          "temperature": 305.54083251953125,
+          "optimum": 298.9693908691406,
+          "generation": 3
+        },
+        {
+          "patch": 6790,
+          "cover": 0.7120446562767029,
+          "temperature": 298.342041015625,
+          "optimum": 292.8771667480469,
+          "generation": 1
+        },
+        {
+          "patch": 6791,
+          "cover": 0.6587546467781067,
+          "temperature": 299.4974060058594,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6799,
+          "cover": 0.6887413859367371,
+          "temperature": 302.1954650878906,
+          "optimum": 297.189208984375,
+          "generation": 1
+        },
+        {
+          "patch": 6800,
+          "cover": 0.823788583278656,
+          "temperature": 303.82525634765625,
+          "optimum": 291.9341125488281,
+          "generation": 3
+        },
+        {
+          "patch": 6801,
+          "cover": 0.8010998368263245,
+          "temperature": 304.8068542480469,
+          "optimum": 293.9603576660156,
+          "generation": 3
+        },
+        {
+          "patch": 26706,
+          "cover": 0.04125745967030525,
+          "temperature": 300.6794128417969,
+          "optimum": 294.4548645019531,
+          "generation": 4
+        },
+        {
+          "patch": 26708,
+          "cover": 0.08245253562927246,
+          "temperature": 298.5474853515625,
+          "optimum": 291.997802734375,
+          "generation": 4
+        },
+        {
+          "patch": 26709,
+          "cover": 0.053591251373291016,
+          "temperature": 299.55963134765625,
+          "optimum": 296.4352722167969,
+          "generation": 4
+        },
+        {
+          "patch": 26710,
+          "cover": 0.7270832061767578,
+          "temperature": 300.5856018066406,
+          "optimum": 296.91680908203125,
+          "generation": 2
+        },
+        {
+          "patch": 26711,
+          "cover": 0.6806395649909973,
+          "temperature": 300.158935546875,
+          "optimum": 296.4953918457031,
+          "generation": 3
+        },
+        {
+          "patch": 26712,
+          "cover": 0.7907936573028564,
+          "temperature": 299.5886535644531,
+          "optimum": 294.184326171875,
+          "generation": 2
+        },
+        {
+          "patch": 26714,
+          "cover": 0.025241496041417122,
+          "temperature": 295.1578674316406,
+          "optimum": 296.87677001953125,
+          "generation": 4
+        },
+        {
+          "patch": 26715,
+          "cover": 0.8430835008621216,
+          "temperature": 296.28472900390625,
+          "optimum": 292.8087463378906,
+          "generation": 2
+        },
+        {
+          "patch": 26716,
+          "cover": 0.6529180407524109,
+          "temperature": 295.7369079589844,
+          "optimum": 294.5174865722656,
+          "generation": 3
+        },
+        {
+          "patch": 26717,
+          "cover": 0.7948685884475708,
+          "temperature": 295.1052551269531,
+          "optimum": 294.7339782714844,
+          "generation": 2
+        },
+        {
+          "patch": 26718,
+          "cover": 0.03226190805435181,
+          "temperature": 296.3128356933594,
+          "optimum": 295.0634765625,
+          "generation": 4
+        },
+        {
+          "patch": 26719,
+          "cover": 0.08192618191242218,
+          "temperature": 297.3935546875,
+          "optimum": 291.5645446777344,
+          "generation": 4
+        },
+        {
+          "patch": 26720,
+          "cover": 0.3616103529930115,
+          "temperature": 298.5625305175781,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26721,
+          "cover": 0.6160234212875366,
+          "temperature": 297.9648132324219,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26722,
+          "cover": 0.49430376291275024,
+          "temperature": 297.3623046875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26723,
+          "cover": 0.3560192584991455,
+          "temperature": 299.033447265625,
+          "optimum": 295.0341491699219,
+          "generation": 1
+        },
+        {
+          "patch": 26724,
+          "cover": 0.4773292541503906,
+          "temperature": 298.49908447265625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26725,
+          "cover": 0.7527171969413757,
+          "temperature": 299.641845703125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26726,
+          "cover": 0.620002269744873,
+          "temperature": 296.155517578125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26727,
+          "cover": 0.3464595675468445,
+          "temperature": 297.3300476074219,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26728,
+          "cover": 0.7348379492759705,
+          "temperature": 296.8014221191406,
+          "optimum": 292.683837890625,
+          "generation": 1
+        },
+        {
+          "patch": 26729,
+          "cover": 0.8004557490348816,
+          "temperature": 298.0272521972656,
+          "optimum": 292.66510009765625,
+          "generation": 3
+        },
+        {
+          "patch": 26730,
+          "cover": 0.7324228286743164,
+          "temperature": 297.38323974609375,
+          "optimum": 294.9398193359375,
+          "generation": 2
+        },
+        {
+          "patch": 26731,
+          "cover": 0.27727851271629333,
+          "temperature": 298.5323181152344,
+          "optimum": 291.7091369628906,
+          "generation": 2
+        },
+        {
+          "patch": 26761,
+          "cover": 0.6672770380973816,
+          "temperature": 293.92333984375,
+          "optimum": 293.83697509765625,
+          "generation": 2
+        },
+        {
+          "patch": 26763,
+          "cover": 0.460604190826416,
+          "temperature": 294.6085205078125,
+          "optimum": 296.39141845703125,
+          "generation": 2
+        },
+        {
+          "patch": 26767,
+          "cover": 0.5925515294075012,
+          "temperature": 296.72796630859375,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26768,
+          "cover": 0.6099627614021301,
+          "temperature": 296.03936767578125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26769,
+          "cover": 0.6042419075965881,
+          "temperature": 297.201171875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26770,
+          "cover": 0.7070602178573608,
+          "temperature": 293.444091796875,
+          "optimum": 294.4793395996094,
+          "generation": 1
+        },
+        {
+          "patch": 26771,
+          "cover": 0.5356699824333191,
+          "temperature": 294.75128173828125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26772,
+          "cover": 0.5487407445907593,
+          "temperature": 294.12164306640625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26773,
+          "cover": 0.6589625477790833,
+          "temperature": 295.9459533691406,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26774,
+          "cover": 0.5756203532218933,
+          "temperature": 295.3189392089844,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26775,
+          "cover": 0.6407028436660767,
+          "temperature": 294.6376953125,
+          "optimum": 296.2090148925781,
+          "generation": 1
+        },
+        {
+          "patch": 26784,
+          "cover": 0.29361492395401,
+          "temperature": 292.089599609375,
+          "optimum": 297.39788818359375,
+          "generation": 2
+        },
+        {
+          "patch": 26786,
+          "cover": 3.379531790415058e-06,
+          "temperature": 292.6021728515625,
+          "optimum": 294.1598205566406,
+          "generation": 2
+        },
+        {
+          "patch": 26791,
+          "cover": 1.556800105495526e-10,
+          "temperature": 293.7764892578125,
+          "optimum": 294.90386962890625,
+          "generation": 3
+        },
+        {
+          "patch": 26792,
+          "cover": 0.6688491106033325,
+          "temperature": 294.3988037109375,
+          "optimum": 296.7827453613281,
+          "generation": 2
+        },
+        {
+          "patch": 26794,
+          "cover": 0.47927889227867126,
+          "temperature": 292.2015075683594,
+          "optimum": 296.20458984375,
+          "generation": 2
+        },
+        {
+          "patch": 26798,
+          "cover": 0.620040237903595,
+          "temperature": 296.1575012207031,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26799,
+          "cover": 0.4779769778251648,
+          "temperature": 294.8702087402344,
+          "optimum": 296.6526184082031,
+          "generation": 1
+        },
+        {
+          "patch": 26800,
+          "cover": 0.576087236404419,
+          "temperature": 295.51544189453125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26801,
+          "cover": 0.570014238357544,
+          "temperature": 294.87554931640625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26802,
+          "cover": 0.60780268907547,
+          "temperature": 293.5630187988281,
+          "optimum": 296.05682373046875,
+          "generation": 1
+        },
+        {
+          "patch": 26983,
+          "cover": 0.7135337591171265,
+          "temperature": 301.4325256347656,
+          "optimum": 293.9444580078125,
+          "generation": 2
+        },
+        {
+          "patch": 26984,
+          "cover": 0.8440237045288086,
+          "temperature": 301.8614501953125,
+          "optimum": 292.1533203125,
+          "generation": 3
+        },
+        {
+          "patch": 26986,
+          "cover": 0.28146275877952576,
+          "temperature": 303.8046875,
+          "optimum": 291.09857177734375,
+          "generation": 4
+        },
+        {
+          "patch": 26987,
+          "cover": 0.6681123971939087,
+          "temperature": 299.3241882324219,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26988,
+          "cover": 0.39939671754837036,
+          "temperature": 299.91015625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26989,
+          "cover": 0.09073948860168457,
+          "temperature": 302.492431640625,
+          "optimum": 294.2588806152344,
+          "generation": 1
+        },
+        {
+          "patch": 26990,
+          "cover": 0.7861512899398804,
+          "temperature": 301.226806640625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26991,
+          "cover": 0.5869408845901489,
+          "temperature": 301.9686279296875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26992,
+          "cover": 5.767014821655839e-16,
+          "temperature": 300.17718505859375,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26995,
+          "cover": 0.03730970248579979,
+          "temperature": 306.6526184082031,
+          "optimum": 297.5914001464844,
+          "generation": 4
+        },
+        {
+          "patch": 26996,
+          "cover": 0.09302514791488647,
+          "temperature": 304.5887145996094,
+          "optimum": 297.7673034667969,
+          "generation": 4
+        },
+        {
+          "patch": 26997,
+          "cover": 0.09913161396980286,
+          "temperature": 305.2735290527344,
+          "optimum": 297.3655090332031,
+          "generation": 4
+        },
+        {
+          "patch": 26998,
+          "cover": 0.7461886405944824,
+          "temperature": 304.3363952636719,
+          "optimum": 296.1782531738281,
+          "generation": 2
+        },
+        {
+          "patch": 26999,
+          "cover": 1.3610555530400625e-17,
+          "temperature": 304.6034851074219,
+          "optimum": 296.99005126953125,
+          "generation": 3
+        },
+        {
+          "patch": 27000,
+          "cover": 0.8016579151153564,
+          "temperature": 303.6904602050781,
+          "optimum": 294.22332763671875,
+          "generation": 2
+        },
+        {
+          "patch": 27001,
+          "cover": 0.8289357423782349,
+          "temperature": 302.2134704589844,
+          "optimum": 290.6784362792969,
+          "generation": 2
+        },
+        {
+          "patch": 27002,
+          "cover": 0.8039064407348633,
+          "temperature": 302.92791748046875,
+          "optimum": 293.35986328125,
+          "generation": 2
+        },
+        {
+          "patch": 27003,
+          "cover": 4.14699923831814e-20,
+          "temperature": 303.0435791015625,
+          "optimum": 291.1647644042969,
+          "generation": 3
+        },
+        {
+          "patch": 27010,
+          "cover": 0.6821633577346802,
+          "temperature": 296.1729431152344,
+          "optimum": 292.63409423828125,
+          "generation": 2
+        },
+        {
+          "patch": 27014,
+          "cover": 0.7076438069343567,
+          "temperature": 300.6007385253906,
+          "optimum": 292.84576416015625,
+          "generation": 2
+        },
+        {
+          "patch": 27016,
+          "cover": 0.7024288177490234,
+          "temperature": 301.9601135253906,
+          "optimum": 297.3462829589844,
+          "generation": 2
+        },
+        {
+          "patch": 27020,
+          "cover": 0.6663553714752197,
+          "temperature": 298.0605773925781,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27021,
+          "cover": 0.7192789912223816,
+          "temperature": 298.7081298828125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27022,
+          "cover": 0.7062119245529175,
+          "temperature": 296.8457946777344,
+          "optimum": 293.59197998046875,
+          "generation": 1
+        },
+        {
+          "patch": 27023,
+          "cover": 0.7176674008369446,
+          "temperature": 297.46112060546875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27024,
+          "cover": 0.42558813095092773,
+          "temperature": 300.34356689453125,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27025,
+          "cover": 0.114767886698246,
+          "temperature": 298.9246826171875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27026,
+          "cover": 0.7255905866622925,
+          "temperature": 299.7963562011719,
+          "optimum": 293.931396484375,
+          "generation": 1
+        },
+        {
+          "patch": 27028,
+          "cover": 0.7213187217712402,
+          "temperature": 299.1821594238281,
+          "optimum": 293.9480285644531,
+          "generation": 2
+        },
+        {
+          "patch": 27029,
+          "cover": 0.6954815983772278,
+          "temperature": 297.7054748535156,
+          "optimum": 293.9615173339844,
+          "generation": 2
+        },
+        {
+          "patch": 27056,
+          "cover": 0.7037061452865601,
+          "temperature": 300.0413513183594,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27057,
+          "cover": 0.734013557434082,
+          "temperature": 301.7123107910156,
+          "optimum": 294.4309387207031,
+          "generation": 1
+        },
+        {
+          "patch": 27058,
+          "cover": 0.7454716563224792,
+          "temperature": 300.880615234375,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27059,
+          "cover": 0.7095860242843628,
+          "temperature": 301.3930969238281,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27060,
+          "cover": 0.3363143503665924,
+          "temperature": 302.6968688964844,
+          "optimum": 295.52435302734375,
+          "generation": 1
+        },
+        {
+          "patch": 27062,
+          "cover": 0.29368531703948975,
+          "temperature": 305.0699157714844,
+          "optimum": 292.8604431152344,
+          "generation": 4
+        },
+        {
+          "patch": 27065,
+          "cover": 0.7344291806221008,
+          "temperature": 302.5300598144531,
+          "optimum": 295.7944641113281,
+          "generation": 2
+        },
+        {
+          "patch": 27066,
+          "cover": 0.046584878116846085,
+          "temperature": 306.4066162109375,
+          "optimum": 296.6143798828125,
+          "generation": 4
+        },
+        {
+          "patch": 27067,
+          "cover": 0.8088639378547668,
+          "temperature": 303.98565673828125,
+          "optimum": 296.00091552734375,
+          "generation": 2
+        },
+        {
+          "patch": 27068,
+          "cover": 0.7345094084739685,
+          "temperature": 305.2013854980469,
+          "optimum": 296.6681213378906,
+          "generation": 3
+        },
+        {
+          "patch": 27069,
+          "cover": 0.05820581689476967,
+          "temperature": 306.0021667480469,
+          "optimum": 295.56622314453125,
+          "generation": 4
+        },
+        {
+          "patch": 27070,
+          "cover": 0.21423161029815674,
+          "temperature": 305.55682373046875,
+          "optimum": 296.6879577636719,
+          "generation": 4
+        },
+        {
+          "patch": 27071,
+          "cover": 0.7943019866943359,
+          "temperature": 303.0459899902344,
+          "optimum": 293.4896545410156,
+          "generation": 2
+        },
+        {
+          "patch": 27072,
+          "cover": 0.8168321847915649,
+          "temperature": 304.3343200683594,
+          "optimum": 295.44512939453125,
+          "generation": 3
+        },
+        {
+          "patch": 27073,
+          "cover": 0.7180841565132141,
+          "temperature": 303.5263671875,
+          "optimum": 298.0428771972656,
+          "generation": 2
+        }
+      ]
+    },
+    {
+      "path": "../site-tmp/sandbox-warm30/day30.json",
+      "sha256": "5757123847115a4f75012d4bad7a28d10c76659c61a1eed10548920cc688c4fe",
+      "day": 30.0,
+      "living_patches": 89,
+      "cover": 4.395976343643301,
+      "sprout_eligible_patches": 12,
+      "optimum_min": 289.3714294433594,
+      "optimum_max": 301.70587158203125,
+      "max_generation": 8,
+      "palette_groups": [
+        {
+          "label": "cool_blue",
+          "patches": 78,
+          "cover": 2.2811449009314257
+        },
+        {
+          "label": "middle_green",
+          "patches": 11,
+          "cover": 2.114831442711875
+        },
+        {
+          "label": "warm_yellow",
+          "patches": 0,
+          "cover": 0
+        }
+      ],
+      "live_plant_records": [
+        {
+          "patch": 25,
+          "cover": 0.01931159384548664,
+          "temperature": 302.1231689453125,
+          "optimum": 299.3712463378906,
+          "generation": 8
+        },
+        {
+          "patch": 330,
+          "cover": 0.0033377951476722956,
+          "temperature": 293.4195861816406,
+          "optimum": 301.70587158203125,
+          "generation": 6
+        },
+        {
+          "patch": 1702,
+          "cover": 0.010254057124257088,
+          "temperature": 295.29766845703125,
+          "optimum": 295.1786804199219,
+          "generation": 1
+        },
+        {
+          "patch": 1713,
+          "cover": 0.03430086001753807,
+          "temperature": 303.2366027832031,
+          "optimum": 293.83935546875,
+          "generation": 1
+        },
+        {
+          "patch": 1715,
+          "cover": 0.03172485530376434,
+          "temperature": 301.1778869628906,
+          "optimum": 295.0096435546875,
+          "generation": 1
+        },
+        {
+          "patch": 5052,
+          "cover": 0.07955018430948257,
+          "temperature": 294.2926940917969,
+          "optimum": 290.7865295410156,
+          "generation": 7
+        },
+        {
+          "patch": 5176,
+          "cover": 0.012261714786291122,
+          "temperature": 302.89154052734375,
+          "optimum": 300.46685791015625,
+          "generation": 8
+        },
+        {
+          "patch": 6714,
+          "cover": 0.053063321858644485,
+          "temperature": 299.080810546875,
+          "optimum": 293.83270263671875,
+          "generation": 3
+        },
+        {
+          "patch": 6716,
+          "cover": 0.000379985838662833,
+          "temperature": 294.4555969238281,
+          "optimum": 297.403564453125,
+          "generation": 6
+        },
+        {
+          "patch": 6717,
+          "cover": 5.605193857299268e-45,
+          "temperature": 296.782958984375,
+          "optimum": 291.7923583984375,
+          "generation": 4
+        },
+        {
+          "patch": 6718,
+          "cover": 0.0016018098685890436,
+          "temperature": 299.0909118652344,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6719,
+          "cover": 0.02049877680838108,
+          "temperature": 297.9640808105469,
+          "optimum": 294.37152099609375,
+          "generation": 1
+        },
+        {
+          "patch": 6720,
+          "cover": 5.605193857299268e-45,
+          "temperature": 296.41229248046875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6731,
+          "cover": 0.021379932761192322,
+          "temperature": 295.4648132324219,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6732,
+          "cover": 0.00505860336124897,
+          "temperature": 294.0043029785156,
+          "optimum": 294.3699035644531,
+          "generation": 1
+        },
+        {
+          "patch": 6733,
+          "cover": 0.003627929836511612,
+          "temperature": 296.6136169433594,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6783,
+          "cover": 0.030815856531262398,
+          "temperature": 304.13006591796875,
+          "optimum": 296.32550048828125,
+          "generation": 5
+        },
+        {
+          "patch": 6790,
+          "cover": 0.008319512009620667,
+          "temperature": 298.34185791015625,
+          "optimum": 292.8771667480469,
+          "generation": 1
+        },
+        {
+          "patch": 6791,
+          "cover": 0.03938618302345276,
+          "temperature": 299.4974060058594,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 6794,
+          "cover": 0.009337014518678188,
+          "temperature": 307.1546936035156,
+          "optimum": 294.3103332519531,
+          "generation": 5
+        },
+        {
+          "patch": 6799,
+          "cover": 0.04845154285430908,
+          "temperature": 302.14776611328125,
+          "optimum": 297.189208984375,
+          "generation": 1
+        },
+        {
+          "patch": 6800,
+          "cover": 0.006771342363208532,
+          "temperature": 303.8251953125,
+          "optimum": 291.9341125488281,
+          "generation": 3
+        },
+        {
+          "patch": 6801,
+          "cover": 0.052512358874082565,
+          "temperature": 304.80657958984375,
+          "optimum": 293.9603576660156,
+          "generation": 3
+        },
+        {
+          "patch": 20060,
+          "cover": 0.023456348106265068,
+          "temperature": 299.07342529296875,
+          "optimum": 290.9630432128906,
+          "generation": 5
+        },
+        {
+          "patch": 20072,
+          "cover": 0.010941898450255394,
+          "temperature": 294.5844421386719,
+          "optimum": 294.1423645019531,
+          "generation": 6
+        },
+        {
+          "patch": 20073,
+          "cover": 0.00888222735375166,
+          "temperature": 294.9898376464844,
+          "optimum": 293.62188720703125,
+          "generation": 6
+        },
+        {
+          "patch": 20074,
+          "cover": 1.8539682287155301e-06,
+          "temperature": 293.8099365234375,
+          "optimum": 291.8790588378906,
+          "generation": 8
+        },
+        {
+          "patch": 20076,
+          "cover": 0.019175399094820023,
+          "temperature": 296.07183837890625,
+          "optimum": 296.48944091796875,
+          "generation": 7
+        },
+        {
+          "patch": 20079,
+          "cover": 2.616907295305282e-07,
+          "temperature": 295.3253479003906,
+          "optimum": 289.3714294433594,
+          "generation": 8
+        },
+        {
+          "patch": 20082,
+          "cover": 0.2607172131538391,
+          "temperature": 296.837158203125,
+          "optimum": 292.10809326171875,
+          "generation": 8
+        },
+        {
+          "patch": 20083,
+          "cover": 0.09053288400173187,
+          "temperature": 297.5599060058594,
+          "optimum": 293.1545715332031,
+          "generation": 7
+        },
+        {
+          "patch": 20554,
+          "cover": 0.5774105191230774,
+          "temperature": 303.11279296875,
+          "optimum": 299.08660888671875,
+          "generation": 7
+        },
+        {
+          "patch": 20556,
+          "cover": 0.4712286591529846,
+          "temperature": 302.5196838378906,
+          "optimum": 300.87091064453125,
+          "generation": 7
+        },
+        {
+          "patch": 20838,
+          "cover": 0.013003095053136349,
+          "temperature": 301.7254638671875,
+          "optimum": 298.2196044921875,
+          "generation": 8
+        },
+        {
+          "patch": 26222,
+          "cover": 0.5694432258605957,
+          "temperature": 302.85308837890625,
+          "optimum": 298.8484191894531,
+          "generation": 7
+        },
+        {
+          "patch": 26709,
+          "cover": 6.389920997321166e-43,
+          "temperature": 299.4151306152344,
+          "optimum": 296.4352722167969,
+          "generation": 4
+        },
+        {
+          "patch": 26710,
+          "cover": 0.0030381218530237675,
+          "temperature": 300.57440185546875,
+          "optimum": 296.91680908203125,
+          "generation": 2
+        },
+        {
+          "patch": 26713,
+          "cover": 0.23287469148635864,
+          "temperature": 293.943359375,
+          "optimum": 299.0052185058594,
+          "generation": 5
+        },
+        {
+          "patch": 26714,
+          "cover": 0.004293244797736406,
+          "temperature": 295.15826416015625,
+          "optimum": 299.4615478515625,
+          "generation": 6
+        },
+        {
+          "patch": 26716,
+          "cover": 0.14529220759868622,
+          "temperature": 295.7372741699219,
+          "optimum": 294.5174865722656,
+          "generation": 3
+        },
+        {
+          "patch": 26720,
+          "cover": 0.014552886597812176,
+          "temperature": 298.5625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26721,
+          "cover": 0.008983870036900043,
+          "temperature": 297.96478271484375,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26724,
+          "cover": 0.01088731363415718,
+          "temperature": 298.4989318847656,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26731,
+          "cover": 0.028473684564232826,
+          "temperature": 298.5323486328125,
+          "optimum": 291.7091369628906,
+          "generation": 2
+        },
+        {
+          "patch": 26761,
+          "cover": 0.0454828217625618,
+          "temperature": 293.9253234863281,
+          "optimum": 293.83697509765625,
+          "generation": 2
+        },
+        {
+          "patch": 26763,
+          "cover": 0.10182515531778336,
+          "temperature": 294.6088562011719,
+          "optimum": 296.39141845703125,
+          "generation": 2
+        },
+        {
+          "patch": 26769,
+          "cover": 2.0023938483877333e-39,
+          "temperature": 297.0650634765625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26770,
+          "cover": 0.011558888480067253,
+          "temperature": 293.4469299316406,
+          "optimum": 294.4793395996094,
+          "generation": 1
+        },
+        {
+          "patch": 26771,
+          "cover": 0.003268357366323471,
+          "temperature": 294.7499694824219,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26773,
+          "cover": 0.05085785686969757,
+          "temperature": 295.9461364746094,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26774,
+          "cover": 0.008296935819089413,
+          "temperature": 295.31829833984375,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26775,
+          "cover": 0.006092439871281385,
+          "temperature": 294.6376953125,
+          "optimum": 296.2090148925781,
+          "generation": 1
+        },
+        {
+          "patch": 26784,
+          "cover": 0.0005300469347275794,
+          "temperature": 292.0929260253906,
+          "optimum": 297.39788818359375,
+          "generation": 2
+        },
+        {
+          "patch": 26786,
+          "cover": 2.41629118396294e-16,
+          "temperature": 292.60186767578125,
+          "optimum": 292.7568359375,
+          "generation": 2
+        },
+        {
+          "patch": 26788,
+          "cover": 0.20049655437469482,
+          "temperature": 293.3028869628906,
+          "optimum": 300.0846252441406,
+          "generation": 6
+        },
+        {
+          "patch": 26791,
+          "cover": 5.605193857299268e-45,
+          "temperature": 293.77862548828125,
+          "optimum": 294.90386962890625,
+          "generation": 3
+        },
+        {
+          "patch": 26801,
+          "cover": 0.023908786475658417,
+          "temperature": 294.8759765625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26987,
+          "cover": 0.017065173014998436,
+          "temperature": 299.3240661621094,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26988,
+          "cover": 0.0016138950595632195,
+          "temperature": 299.9098205566406,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26989,
+          "cover": 0.04238687455654144,
+          "temperature": 302.4924621582031,
+          "optimum": 294.2588806152344,
+          "generation": 1
+        },
+        {
+          "patch": 26990,
+          "cover": 0.007761630229651928,
+          "temperature": 301.22607421875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26991,
+          "cover": 0.042380478233098984,
+          "temperature": 301.9685974121094,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26992,
+          "cover": 5.605193857299268e-45,
+          "temperature": 299.7647399902344,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 26999,
+          "cover": 5.605193857299268e-45,
+          "temperature": 304.0002136230469,
+          "optimum": 296.99005126953125,
+          "generation": 3
+        },
+        {
+          "patch": 27000,
+          "cover": 0.11716809868812561,
+          "temperature": 303.6884765625,
+          "optimum": 294.22332763671875,
+          "generation": 2
+        },
+        {
+          "patch": 27001,
+          "cover": 0.05532867833971977,
+          "temperature": 302.21319580078125,
+          "optimum": 290.6784362792969,
+          "generation": 2
+        },
+        {
+          "patch": 27002,
+          "cover": 0.018036119639873505,
+          "temperature": 302.9222412109375,
+          "optimum": 293.35986328125,
+          "generation": 2
+        },
+        {
+          "patch": 27003,
+          "cover": 5.605193857299268e-45,
+          "temperature": 302.38690185546875,
+          "optimum": 291.1647644042969,
+          "generation": 3
+        },
+        {
+          "patch": 27010,
+          "cover": 0.05106697976589203,
+          "temperature": 296.1736145019531,
+          "optimum": 292.63409423828125,
+          "generation": 2
+        },
+        {
+          "patch": 27014,
+          "cover": 0.04961748793721199,
+          "temperature": 300.6007080078125,
+          "optimum": 292.84576416015625,
+          "generation": 2
+        },
+        {
+          "patch": 27016,
+          "cover": 0.0007585966377519071,
+          "temperature": 301.9600524902344,
+          "optimum": 297.3462829589844,
+          "generation": 2
+        },
+        {
+          "patch": 27022,
+          "cover": 0.021922176703810692,
+          "temperature": 296.8460998535156,
+          "optimum": 293.59197998046875,
+          "generation": 1
+        },
+        {
+          "patch": 27023,
+          "cover": 0.025749603286385536,
+          "temperature": 297.4610900878906,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27024,
+          "cover": 0.024430377408862114,
+          "temperature": 300.3434143066406,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27025,
+          "cover": 0.012200421653687954,
+          "temperature": 298.9245910644531,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27028,
+          "cover": 0.004416134674102068,
+          "temperature": 299.18212890625,
+          "optimum": 293.9480285644531,
+          "generation": 2
+        },
+        {
+          "patch": 27029,
+          "cover": 0.027885308489203453,
+          "temperature": 297.70556640625,
+          "optimum": 293.9615173339844,
+          "generation": 2
+        },
+        {
+          "patch": 27037,
+          "cover": 0.002420002594590187,
+          "temperature": 307.4259033203125,
+          "optimum": 297.87322998046875,
+          "generation": 5
+        },
+        {
+          "patch": 27042,
+          "cover": 3.7195192672395683e-13,
+          "temperature": 308.83837890625,
+          "optimum": 294.439453125,
+          "generation": 7
+        },
+        {
+          "patch": 27056,
+          "cover": 0.007021759636700153,
+          "temperature": 299.97332763671875,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27057,
+          "cover": 0.13219211995601654,
+          "temperature": 301.712158203125,
+          "optimum": 294.4309387207031,
+          "generation": 1
+        },
+        {
+          "patch": 27058,
+          "cover": 0.1097526028752327,
+          "temperature": 300.88043212890625,
+          "optimum": 295.1499938964844,
+          "generation": 0
+        },
+        {
+          "patch": 27062,
+          "cover": 0.01006315741688013,
+          "temperature": 305.06982421875,
+          "optimum": 292.8604431152344,
+          "generation": 4
+        },
+        {
+          "patch": 27065,
+          "cover": 0.055227626115083694,
+          "temperature": 302.5299987792969,
+          "optimum": 295.7944641113281,
+          "generation": 2
+        },
+        {
+          "patch": 27067,
+          "cover": 0.03945471718907356,
+          "temperature": 303.985595703125,
+          "optimum": 296.00091552734375,
+          "generation": 2
+        },
+        {
+          "patch": 27068,
+          "cover": 0.0073831574991345406,
+          "temperature": 305.201416015625,
+          "optimum": 296.6681213378906,
+          "generation": 3
+        },
+        {
+          "patch": 27069,
+          "cover": 0.010588067583739758,
+          "temperature": 306.001953125,
+          "optimum": 295.56622314453125,
+          "generation": 4
+        },
+        {
+          "patch": 27072,
+          "cover": 0.05346206948161125,
+          "temperature": 304.3343200683594,
+          "optimum": 295.44512939453125,
+          "generation": 3
+        },
+        {
+          "patch": 27073,
+          "cover": 0.011170349083840847,
+          "temperature": 303.52630615234375,
+          "optimum": 298.0428771972656,
+          "generation": 2
+        }
+      ]
+    }
+  ]
+}

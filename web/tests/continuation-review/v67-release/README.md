@@ -1,0 +1,9 @@
+# v67 live: faster rabbit simulation and survivor navigation
+
+Existing owner-private Site deployed successfully2026-11-15T15:27:17.540668+00:00, audience unchanged. URL https://stella-dei-browser-lab.workspace-823194.chatgpt.site . Exact label: Build v67 · Faster rabbit simulation and survivor navigation.
+
+Runtime forkcae876ae6a59af52cb2f19f71e113bbe866f82ad/treecdd65744cb42e8dd3792df2cedfac9680800875a verified by coordinator, corresponding locald7a779a. Build frozen83a875c;92JS and fullWASM pass; source hashes unchanged. Combined native finder acceptance d7a779a passes. Exact native scheduler/save/RNG and1,008 native/WASM nearest-helper parity support the narrow optimization. Measured16.3–16.5% reduction applies only to the fixed actual82-rabbit native simulation test, not browser/mobile/laptop FPS.
+
+Site sourcebe6ac118be20c526a9929a283dec82a55e14e254; successful deployment and version IDs in proof.json. Archive40members,36manifest hashes verified against actual tar bytes. Copied23 established production runtime files; preserved existing license/source/support assets. Excluded raw qa-sunlit-fixture and webgl-startup-diagnostic.html, with no new fixture or diagnostic paths. Release label/build-info/source links use exact verified runtime fork. No sharing changes.
+
+Managed-preview actual-shell/mock-native CUA covers successful plants/rabbits/sparse states and Origin Observe exclusion. Do not claim No-life CUA because its last output was truncated; unit/native tests cover refusal. Actual native portrait and landscape screenshots were independently inspected. No actual browser GPU/device claim. The supported Site helper performed source push and packaging; its first successful output had a path prefix that the orchestration JSON parser mishandled, so packaging receipt was re-read by a second no-source-change helper run. No duplicate deployment/save call occurred. The private publish call succeeded once, so no status poll was necessary.
