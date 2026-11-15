@@ -1,0 +1,9 @@
+1/5 sandbox_foraging.test.actual cover debit funds food under finite time and hunger caps...OK
+2/5 sandbox_foraging.test.sparse meals no longer consume an entire 0.02 patch in one normal tick...OK
+3/5 sandbox_foraging.test.invalid inputs refuse unchanged...OK
+4/5 sandbox_foraging.test.last fragment respects hunger and actual satiety funding...OK
+5/5 sandbox_foraging.test.fixed one-day sparse foraging refinement reports no-growth depletion...FORAGING_REFINEMENT dt=1440 final_cover=0.0012719709 removed=0.018728028633631766 no_growth=true
+FORAGING_REFINEMENT dt=720 final_cover=0.0013123992 removed=0.018687600386328995 no_growth=true
+FORAGING_REFINEMENT dt=360 final_cover=0.001332618 removed=0.018667381606064737 no_growth=true
+OK
+All 5 tests passed.

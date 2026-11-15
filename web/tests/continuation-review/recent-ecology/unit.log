@@ -1,0 +1,5 @@
+1/4 recent_ecology.test.bucket edges expose exact observed interval not exact rolling day...OK
+2/4 recent_ecology.test.same-time events accumulate paused pure reads large jumps expire...OK
+3/4 recent_ecology.test.load world rollback and counter reset never backfill...OK
+4/4 recent_ecology.test.invalid time atomic and overflow explicit...OK
+All 4 tests passed.

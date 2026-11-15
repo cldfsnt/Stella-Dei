@@ -1,0 +1,5 @@
+install
++- run test stderr
+FORAGING_REFINEMENT dt=1440 final_cover=0.0012719709 removed=0.018728028633631766 no_growth=true
+FORAGING_REFINEMENT dt=720 final_cover=0.0013123992 removed=0.018687600386328995 no_growth=true
+FORAGING_REFINEMENT dt=360 final_cover=0.001332618 removed=0.018667381606064737 no_growth=true

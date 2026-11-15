@@ -109,11 +109,16 @@ pub const Lifeform = struct {
             }
             return;
         }
-        if (self.satiety < 85 and planet.vegetation[idx] > 0.01) {
-            const eaten = @min(planet.vegetation[idx], (100 - self.satiety) / 150);
-            planet.vegetation[idx] -= eaten;
-            self.satiety = @min(100, self.satiety + eaten * 150);
-            planet.rabbitMeals += 1;
+        if (self.satiety < 85 and planet.vegetation[idx] > 0) {
+            // Search/handling takes time, especially in sparse vegetation. Every
+            // satiety gain is funded by actual cover removed; no refuge floor.
+            const Foraging = @import("foraging.zig");
+            const bite = Foraging.take(planet.vegetation[idx], self.satiety, dt);
+            if (bite.eaten > 0) {
+                planet.vegetation[idx] = bite.after;
+                self.satiety = Foraging.fedSatiety(self.satiety, bite.eaten);
+                planet.rabbitMeals += 1; // positive feeding events, not full meals
+            }
         }
         if (self.state == .gestation) {
             if (options.gameTime - self.state.gestation.since >= GESTATION_DURATION and self.satiety > 35 and planet.lifeforms.items.len < 512) {

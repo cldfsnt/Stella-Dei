@@ -1,0 +1,17 @@
+{
+  "head": "3acf3b69a03a4a7abdeab4ac5a950fb6d7235666",
+  "sequence": [
+    true,
+    false,
+    false,
+    true
+  ],
+  "warmup_per_block": 12,
+  "timed_per_block": 30,
+  "input_sha256": "db14ebd4ade6c41fa321b4218827fe75c26e84749a92d76b384435cc29bfebc5",
+  "copied": {
+    "main.zig": "0cc878f9109d0d25808a1e2c81be493c8bc06840451fccceb21c9d0dbc9f7cee",
+    "states/play.zig": "910eb045798ae07070d6e10ee807ef7556ef850cf1d4afa12e4ba007b9540df8",
+    "renderer.zig": "593712f8c1223413df84e7b3e4ab7df540362a4c358a5b870d0f01ea951a30da"
+  }
+}

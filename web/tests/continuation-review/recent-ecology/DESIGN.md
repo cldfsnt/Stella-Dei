@@ -1,0 +1,11 @@
+# Session-hour observer, isolated foundation
+
+`src/recent_ecology.zig` is not wired into Planet, saves, main or UI. Four ReleaseSafe tests pass.
+
+24 fixed hourly buckets include the current simulated hour and previous23. This is NOT an exact trailing24-hour window: after warmup its interval varies from23h to just under24h. View exposes explicit `from`, `to`, `observed_seconds`. Suggested label: “Recent ~24 simulated hours (hourly buckets)”; show shorter actual observed duration after load. Counts are assigned supplied event/tick-end timestamps, not reconstructed sub-tick birth times. Large dt events are not smeared across invented hours.
+
+Caller must record every completed tick, including zero-event ticks, and reset on successful load/new world even if world token or clock happens to match. Invalid timestamps refuse unchanged. Wrong-world/unrecorded-time queries return unavailable. World changes, clock rollback and counter decreases restart observation; first cumulative counter sample establishes baseline without backfill. Pause uses unchanged simulated time. Repeated same-time event calls intentionally accumulate; repeated unchanged counter samples do not. Do not mix event and counter adapters for the same stream. Counter inputs must be nonsaturated: when a legacy cumulative counter reaches u64 max, integration must report counts unavailable/lower-bound, not infer missing events.
+
+Arithmetic uses saturating counts and explicit overflow flag. The flag is conservatively session-sticky; consumers must not display saturated values as exact. No allocations, RNG, physics or saved fields. Observer is not cause inference. Origin paid births, all observed physiology cohort deaths, Sandbox rabbit births/deaths should use separate instances or explicitly labeled streams; seed/manual transport are not births/deaths. Never substitute bounded propagule-observation losses for all deaths. Sandbox plant cover transitions are not individual plant deaths.
+
+Tests cover exact hour/drop edges, observed span, same-time inputs, read purity, large jumps, world/load reset, rollback, cumulative counter reset/baseline, invalid time atomicity, per-bucket and aggregate overflow. Integration remains pending full observer-on/off saved-world/RNG parity and actual event-source coverage.

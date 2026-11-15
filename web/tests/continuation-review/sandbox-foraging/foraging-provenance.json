@@ -1,0 +1,30 @@
+{
+  "head": "1427dbffc3b244841d5bb0f020b3ca25a3ff55e1",
+  "source": {
+    "simulation/life.zig": {
+      "production": "11f7561a32f7b9bbae94ad3ea4f3b498abc8916968518a96037ba163f9b563eb",
+      "copy": "c0c9948222736b0f80ae0763ff1c90795d5cb4a8ade4ba1a5bd029b5020b4bc2"
+    },
+    "simulation/planet.zig": {
+      "production": "0be6803d6aa8178ecb4e16c98613724b6eafc339566c66d9a316cf12d97fbb8d",
+      "copy": "0be6803d6aa8178ecb4e16c98613724b6eafc339566c66d9a316cf12d97fbb8d"
+    },
+    "simulation/ecology.zig": {
+      "production": "140b8c23da5eea837011aeeaf0782149c0707e5e9b3c8526f46f753e85fd0dcc",
+      "copy": "140b8c23da5eea837011aeeaf0782149c0707e5e9b3c8526f46f753e85fd0dcc"
+    },
+    "states/play.zig": {
+      "production": "247f6bc5359d1a219649f2237349365ee37bcc8e495a7c4ec51821c490f7f1d3",
+      "copy": "7127e64dcb6c37870c4d82185cbdc4ed1d2698258aa5d2e28e01b6a5fc817500"
+    },
+    "main.zig": {
+      "production": "c4b40406526092f0c3a462d4adfc13c13d79ce6989b2564abb54d0fc04206e65",
+      "copy": "ba8dd7eca3507798742afe0ce382b766e91ed5e4b2039d947315ddb7686977b0"
+    },
+    "experimental/sandbox_foraging.zig": {
+      "production": "4cbed993db47717421a463bb9b49628733b52868c5df67695a7a88ae6975e6c6",
+      "copy": "4cbed993db47717421a463bb9b49628733b52868c5df67695a7a88ae6975e6c6"
+    }
+  },
+  "harness_correction": "private applySelectedTool replaced with public testAction3 before outcomes"
+}

@@ -1,0 +1,30 @@
+{
+  "../site-tmp/foraging-production/install/bin/stella-egl": {
+    "sha256": "b3939667242444e22b5c6c515e29b4aa842c0951c6ed1210103080388a4ba1ab",
+    "bytes": 11948792
+  },
+  "../site-tmp/foraging-production/warm-actual-end.json": {
+    "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+    "bytes": 7044707
+  },
+  "../site-tmp/foraging-production/cold-actual-end.json": {
+    "sha256": "80006c2102f842d2aa4369b4a3dc8322e0ca0329c1fabb3c8cc1d9a0af00f057",
+    "bytes": 7170109
+  },
+  "../site-tmp/sandbox-foraging/input-1337-16-1440.json": {
+    "sha256": "6346553beef404c79de23f796c3f363b9e3662bb9e304e300bd5598d40d04d05",
+    "bytes": 5250253
+  },
+  "../site-tmp/sandbox-foraging/input-42-4-1440.json": {
+    "sha256": "feb08812533e1947476837dfdce8255358e87b71ae3f7468100d3df4453dfe8f",
+    "bytes": 5115031
+  },
+  "../site-tmp/sandbox-foraging/end-1337-16-1440-1.json": {
+    "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+    "bytes": 7044707
+  },
+  "../site-tmp/sandbox-foraging/end-42-4-1440-1.json": {
+    "sha256": "80006c2102f842d2aa4369b4a3dc8322e0ca0329c1fabb3c8cc1d9a0af00f057",
+    "bytes": 7170109
+  }
+}
