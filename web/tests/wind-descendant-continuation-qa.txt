@@ -1,0 +1,19 @@
+    const saves=@import("save_game.zig");const M=@import("simulation/microbes.zig");const A=@import("simulation/wind_audit.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();const state=&game.state.Playing;web_initialized=true;loop.pump(4096);
+    const pioneer=std.posix.getenv("QA_PIONEER")!=null;const resumed=std.posix.getenv("QA_RESUME")!=null;const arm=if(pioneer)"pioneer"else "ordinary";
+    const path=try std.fmt.allocPrint(a,"OUTPUT/{s}-{s}.json",.{arm,if(resumed)"midpoint"else "input"});const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);
+    std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.assert(state.planet.windDispersal.enabled);
+    qaWindEmit("INITIAL",.{.arm=arm,.resumed=resumed,.time=state.gameTime,.stats=state.planet.microbeStats,.config=state.planet.windDispersal});
+    for(state.planet.microbeCells,0..)|cell,i|for(cell.cohorts)|c|{if(c.biomass>0)qaWindEmit("INITIAL_COHORT",.{.cell=i,.cohort=c});};
+    if(!resumed){A.enabled=false;qaWindTick(state);qaWindTick(state);const off=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try saves.apply(state,parsed.value);A.enabled=true;qaWindTick(state);qaWindTick(state);std.debug.assert(std.mem.eql(u8,off,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));try saves.apply(state,parsed.value);std.debug.print("OBSERVER_PARITY passed=true\n",.{});}
+    A.enabled=true;for(if(resumed)@as(usize,90)else 0..180)|tick|{
+      qaWindEmit("TICK_START",.{.arm=arm,.tick=tick+1,.time=state.gameTime});qaWindTick(state);
+      var living:usize=0;var occupied:usize=0;var mass:f64=0;var aerial:usize=0;
+      for(state.planet.microbeCells,0..)|cell,i|{std.debug.assert(M.validCell(cell,state.planet.microbeStats.next_lineage));if(M.biomass(cell)>0)occupied+=1;for(cell.cohorts)|c|{if(c.biomass<=0)continue;living+=1;mass+=c.biomass;if(c.aerial_allocation>0)aerial+=1;qaWindEmit("COHORT",.{.tick=tick+1,.cell=i,.cohort=c});}}
+      qaWindEmit("TICK",.{.arm=arm,.tick=tick+1,.living=living,.occupied=occupied,.mass=mass,.aerial=aerial,.births=state.planet.microbeStats.births,.serial=state.planet.windDispersal.serial});
+      if(tick+1==90 or tick+1==180){const out=try std.fmt.allocPrint(a,"OUTPUT/{s}-{s}{s}.json",.{arm,if(resumed)"resume-"else "",if(tick+1==90)"midpoint"else "day10"});try std.fs.cwd().writeFile(.{.sub_path=out,.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});}
+    }
+    std.debug.print("CONTINUATION_COMPLETE arm={s} resumed={} ticks=180 limit_fixed=true\n",.{arm,resumed});std.process.exit(0);
+}
+fn qaWindTick(state:*PlayState)void{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+fn qaWindEmit(comptime tag:[]const u8,v:anytype)void{var b:[8192]u8=undefined;var out=std.io.fixedBufferStream(&b);std.json.stringify(v,.{},out.writer()) catch unreachable;std.debug.print("{s} {s}\n",.{tag,out.getWritten()});}

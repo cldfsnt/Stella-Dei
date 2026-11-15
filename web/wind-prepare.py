@@ -84,3 +84,28 @@ p=out/'shell.html';s=p.read_text()
 a='<b>Choose your living world.</b> Origin begins with simple microbes; Sandbox offers plants and rabbits. Choose Random or Continents for a new world. Pinch to zoom; drag to explore.'
 b='<b>Explore wind dispersal.</b> This preview starts a fresh Origin world. Seed or plan paid Pioneer founders from Tools → Plant, or Load this preview’s save from Tools → World. The main game opens separately from the preview notice. Pinch to zoom; drag to explore.'
 assert s.count(a)==1;s=s.replace(a,b,1);p.write_text(s)
+
+# Current-state descendant navigation, not reconstructed flight history.
+p=out/'shell.html';s=p.read_text()
+def patch_desc(a,b):
+ global s
+ assert s.count(a)==1,a
+ s=s.replace(a,b,1)
+patch_desc('<script src="wind-origin.js"></script>','<script src="wind-descendant.js"></script><script src="wind-origin.js"></script>')
+patch_desc('<h3>Observe</h3>','<h3>Observe</h3><button id="find-aerial-descendant">Find aerial descendant</button><p>Find a living descendant with inherited aerial allocation. Its birth route is not recorded.</p>')
+patch_desc('<p id="life-colony-shares"','<p id="wind-descendant-detail" role="status"></p><p id="life-colony-shares"')
+patch_desc(" document.getElementById('life-habitat').textContent='';", " document.getElementById('wind-descendant-detail').textContent='';document.getElementById('life-habitat').textContent='';")
+patch_desc("  if(!Array.isArray(data.cohorts))throw Error('Invalid snapshot');", "  if(!Array.isArray(data.cohorts))throw Error('Invalid snapshot');\n  let descendantWind=null;try{if(typeof Module._stella_wind_snapshot==='function')descendantWind=JSON.parse(Module.ccall('stella_wind_snapshot','string',[],[]));}catch{}\n  document.getElementById('wind-descendant-detail').textContent=typeof StellaWindDescendant==='undefined'?'':StellaWindDescendant.label(descendantWind,data);")
+patch_desc("function selectToolGroup(group){", """const aerialDescendant=StellaWindDescendant.create({
+ available:()=>Module.started&&!Module.failed&&!document.hidden&&!storage.state().busy&&!advanceDay.isLocked()&&typeof Module._stella_find_aerial_descendant==='function',
+ wind:()=>JSON.parse(Module.ccall('stella_wind_snapshot','string',[],[])),life:()=>JSON.parse(Module.ccall('stella_life_snapshot','string',[],[])),
+ call:world=>Module.ccall('stella_find_aerial_descendant','number',['number'],[world]),message:feedback,
+ found:()=>{touchControls.reset();moreMenu.close();refreshLife();document.getElementById('cohort-details').open=true;const sheet=document.getElementById('life-sheet');if(!sheet.open)sheet.showModal();}
+});
+document.getElementById('find-aerial-descendant').onclick=()=>aerialDescendant.visit();
+function selectToolGroup(group){""")
+p.write_text(s)
+build=out/'build.sh';t=build.read_text();line='cp web/wind-descendant.js web/dist/wind-descendant.js'
+if line not in t:
+ needle='cp web/wind-origin.js web/dist/wind-origin.js';assert t.count(needle)==1;t=t.replace(needle,needle+'\n'+line);build.write_text(t)
+p=tests/'shell.test.cjs';t=p.read_text();needle="sandbox.StellaWind=require('../wind-origin.js');";assert t.count(needle)==1;p.write_text(t.replace(needle,needle+"sandbox.StellaWindDescendant=require('../wind-descendant.js');"))

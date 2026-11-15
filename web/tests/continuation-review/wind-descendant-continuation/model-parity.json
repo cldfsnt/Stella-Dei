@@ -1,0 +1,37 @@
+{
+  "simulation/planet.zig": {
+    "live_sha256": "5c91721af9a0a48cb5191b7524e88979c242999f4cc12c547e705fdd194aef38",
+    "adapter_sha256": "c588618adf1f95efb04e8d5122f7f37d33ac85e40bd58771783426f199e5b45d",
+    "equal_except_two_observation_lines": true
+  },
+  "simulation/microbes.zig": {
+    "live_sha256": "2e467bf27f6bdbb8a7a0c1a8ac9a08afd1b66c9c202ba82bd777447bf0f50fbd",
+    "adapter_sha256": "2e467bf27f6bdbb8a7a0c1a8ac9a08afd1b66c9c202ba82bd777447bf0f50fbd",
+    "equal_except_two_observation_lines": true
+  },
+  "simulation/life.zig": {
+    "live_sha256": "14d4df8130ac453e1193808b18a9879fa8c3e70a9d84ffb0ee1f63aa04a784af",
+    "adapter_sha256": "14d4df8130ac453e1193808b18a9879fa8c3e70a9d84ffb0ee1f63aa04a784af",
+    "equal_except_two_observation_lines": true
+  },
+  "simulation/wind_packet.zig": {
+    "live_sha256": "a17671a41f6b414da70c6350c0e8e6b197ad7f50fdb90d63a61232c516aeedd4",
+    "adapter_sha256": "a17671a41f6b414da70c6350c0e8e6b197ad7f50fdb90d63a61232c516aeedd4",
+    "equal_except_two_observation_lines": true
+  },
+  "simulation/wind_genetics.zig": {
+    "live_sha256": "0c4badea2b312d01485ccdcde079063895e71d3548f2bb93be3211e4f3efc3fe",
+    "adapter_sha256": "0c4badea2b312d01485ccdcde079063895e71d3548f2bb93be3211e4f3efc3fe",
+    "equal_except_two_observation_lines": true
+  },
+  "simulation/wind_dispersal.zig": {
+    "live_sha256": "eaf478b1c12ca899cd4d960cebfdd9269c566006f2c502aa849a2e232ece8567",
+    "adapter_sha256": "eaf478b1c12ca899cd4d960cebfdd9269c566006f2c502aa849a2e232ece8567",
+    "equal_except_two_observation_lines": true
+  },
+  "save_schema.zig": {
+    "live_sha256": "f58b36f1d28b5415829cd518d16faa15ac4eb533a4610d8dcb520252a425d5a5",
+    "adapter_sha256": "f58b36f1d28b5415829cd518d16faa15ac4eb533a4610d8dcb520252a425d5a5",
+    "equal_except_two_observation_lines": true
+  }
+}

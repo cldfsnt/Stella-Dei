@@ -1,0 +1,8 @@
+{
+  "isolated": "/wind-saves",
+  "welcome": "stella-wind-guide-dismissed-v1",
+  "foreignStorageFallback": false,
+  "returnLink": "new tab",
+  "notice": "closed summary visible; bottom:auto",
+  "scope": "source/assembled HTML assertions, not browser layout"
+}

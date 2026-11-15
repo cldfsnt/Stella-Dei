@@ -1,0 +1,47 @@
+{
+  "path": "/workspace/scratch/f67c3ac60ca3/site-tmp/wind-bulk/pioneer-day7.json",
+  "sha256": "a9a0fcf4179b30cb058d72c2967ccf4a55e9ba72cbf60433f0d6e14f345e24eb",
+  "selected_cell": 3926,
+  "cohorts": [
+    {
+      "aerial_allocation": 0.4517863690853119,
+      "biomass": 0.008253011852502823,
+      "organization": 0.025632355362176895,
+      "support_mass": 0.00019440932373981923,
+      "optimum": 303.02093505859375,
+      "efficiency": 1.0195913314819336,
+      "structure": 0.0,
+      "feeding": 0.0,
+      "mobility": 0.0,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0,
+      "generation": 1,
+      "lineage": 256,
+      "parent": 79,
+      "reproduction_credit": 0.016751233488321304
+    },
+    {
+      "aerial_allocation": 0.47954779863357544,
+      "biomass": 0.0118485102429986,
+      "organization": 0.0,
+      "support_mass": 0.0,
+      "optimum": 300.3325500488281,
+      "efficiency": 0.9794912338256836,
+      "structure": 0.0,
+      "feeding": 0.04223457723855972,
+      "mobility": 0.0,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0032989413011819124,
+      "generation": 1,
+      "lineage": 300,
+      "parent": 79,
+      "reproduction_credit": 0.013455357402563095
+    }
+  ]
+}

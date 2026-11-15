@@ -1,0 +1,2 @@
+# Fixed native aerial descendant acceptance
+Owner091cc9b; unchanged Pioneer day7. Explicit real minority256@3926 selected by camera direction, lower biomass than300. Public action, exact snapshot ID, repeated paused/running, actual Details click/render, camera-only save normalization, stale/busy/unsafe/off guards and QA-only death/zero-eligibility refusals. No simulation or genotype trial. Existing-world original restored; software native390x700 only.

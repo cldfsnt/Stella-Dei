@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/analyze-wind-descendant-continuation.py", line 37, in <module>
+    assert trace==resume_trace,(arm,'restart trace');assert(b/(arm+'-day10.json')).read_bytes()==(b/(arm+'-resume-day10.json')).read_bytes();assert len(ticks)==180 and len(checks)==len(packets);assert len({x['event']for x in opps})==len(opps)
+                                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

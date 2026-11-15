@@ -1,0 +1,14 @@
+EGL surface=0x2faf8a10 context=0x2faf9020
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /tmp/stella-egl-001.ppm
+Captured /tmp/stella-egl-002.ppm
+AERIAL_NATIVE_COMPLETE minority256_at3926=true repeated_paused_running=true snapshot_exact_string=true actual_details_click=true render_pure=true stale_busy_unsafe_off_atomic=true dead_snapshot_pure=true zero_trait_dead_none=true original_exact=true

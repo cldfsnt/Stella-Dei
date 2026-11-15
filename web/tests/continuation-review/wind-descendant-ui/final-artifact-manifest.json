@@ -1,0 +1,163 @@
+{
+  "scope": "Raw isolated descendant artifact, before release label changes; no deployment",
+  "native_source": "091cc9b",
+  "frontend_source": "756d19b",
+  "toolchains": {
+    "zig": "0.13.0",
+    "emscripten": "3.1.64"
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "advance-day.js",
+      "bytes": 4398,
+      "sha256": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8"
+    },
+    {
+      "path": "assets-0.bin",
+      "bytes": 16777216,
+      "sha256": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb"
+    },
+    {
+      "path": "assets-1.bin",
+      "bytes": 16777216,
+      "sha256": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6"
+    },
+    {
+      "path": "assets-2.bin",
+      "bytes": 16777216,
+      "sha256": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997"
+    },
+    {
+      "path": "assets-3.bin",
+      "bytes": 14745726,
+      "sha256": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f"
+    },
+    {
+      "path": "auto-seed.js",
+      "bytes": 4645,
+      "sha256": "7ef9d974d641f408039e509dd6c2f66204b6756aa69414e40d13921fa36ab263"
+    },
+    {
+      "path": "colony-transport.js",
+      "bytes": 8057,
+      "sha256": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f"
+    },
+    {
+      "path": "colony-watch-details.js",
+      "bytes": 1792,
+      "sha256": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0"
+    },
+    {
+      "path": "copy-report.js",
+      "bytes": 619,
+      "sha256": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c"
+    },
+    {
+      "path": "gameplay-harness.js",
+      "bytes": 8751,
+      "sha256": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce"
+    },
+    {
+      "path": "gameplay-measure.js",
+      "bytes": 2836,
+      "sha256": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9"
+    },
+    {
+      "path": "habitat-plan.js",
+      "bytes": 5808,
+      "sha256": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495"
+    },
+    {
+      "path": "index.html",
+      "bytes": 129705,
+      "sha256": "dfb28e9067c2dde3d5e9c52ab48a9c102fc5d723b835c163f8835a4ba30f2d8a"
+    },
+    {
+      "path": "index.js",
+      "bytes": 195240,
+      "sha256": "ae757f34b727450215a2b288744f314b4b2fe9e9fb690a813a9f96f378f5682f"
+    },
+    {
+      "path": "index.wasm",
+      "bytes": 1524988,
+      "sha256": "6bd6e8f9cc8317eee2a99cfebc1df146b9b781da7691fba6b1adc39ed9b0d09f"
+    },
+    {
+      "path": "life-trend.js",
+      "bytes": 2447,
+      "sha256": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08"
+    },
+    {
+      "path": "offspring-search.js",
+      "bytes": 2202,
+      "sha256": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e"
+    },
+    {
+      "path": "patch-watch.js",
+      "bytes": 2372,
+      "sha256": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76"
+    },
+    {
+      "path": "renderer-info.js",
+      "bytes": 1977,
+      "sha256": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81"
+    },
+    {
+      "path": "sandbox-defense.js",
+      "bytes": 2097,
+      "sha256": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 6106,
+      "sha256": "dbe2090bbf1e3a8cc9eee82535e77cfe538070a305844b9ec210cca64a6d3a88"
+    },
+    {
+      "path": "source.html",
+      "bytes": 1467,
+      "sha256": "6f3923db977f6c1d9c2e5c6443a52336ffdee8977ffdbf9727f6545d9d875f5e"
+    },
+    {
+      "path": "stella-storage.js",
+      "bytes": 9258,
+      "sha256": "0a90fe2af718dc1526804773da95ad997fedaafaf1ff64ee36126ce4bce0e402"
+    },
+    {
+      "path": "touch-controls.js",
+      "bytes": 4427,
+      "sha256": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f"
+    },
+    {
+      "path": "wind-descendant.js",
+      "bytes": 2492,
+      "sha256": "454e67ffde5e6e48886c98d27498f7693181b7df9eadd35cf7b24bd2b8a72fcf"
+    },
+    {
+      "path": "wind-origin.js",
+      "bytes": 5427,
+      "sha256": "4d4b41578091f73c2b17970264ee0f34821a9d6029c08690b754de46130c1011"
+    },
+    {
+      "path": "wind-source.tar.gz.part00",
+      "bytes": 7340032,
+      "sha256": "681c550d29dae498516290fb63ba2b8086d03cdebc508c706481a8a16d7fa2a1"
+    },
+    {
+      "path": "wind-source.tar.gz.part01",
+      "bytes": 2024359,
+      "sha256": "b69187674ed3aa9f868ed88e5d455b9c1adaa7f71dde11056ebad39c0de59d61"
+    },
+    {
+      "path": "world-ecology.js",
+      "bytes": 5502,
+      "sha256": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df"
+    }
+  ],
+  "file_count": 30,
+  "total_bytes": 76409527
+}
