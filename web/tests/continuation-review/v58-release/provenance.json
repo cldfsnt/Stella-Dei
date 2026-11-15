@@ -1,0 +1,22 @@
+{
+  "source_local": "1472f9939f7efa11ac200149aa4f8f7d05701de3",
+  "source_fork": "7713a88743bac59bce015ac7bd9282ba08e59b2e",
+  "production_change": "be1abc8",
+  "build_exit": 0,
+  "js_tests": 66,
+  "unit_picking_tests": 9,
+  "native_runs": 5,
+  "schema": 6,
+  "toolchain": "Zig0.13 ReleaseSafe singlethreaded; Emscripten3.1.64 O2",
+  "files": {
+    "src/states/play.zig": "704ab9b9baeac23d62849a7eb888dafe6dc8d82f26484c7c7a932215a2baff66",
+    "src/feeding_marker.zig": "882d3ae32bfa311270237bdcf0363d8d005d68335f5e740072e4a1e20065090d",
+    "web/shell.html": "af429ce4588af6e1d48e4146dc713a8b8c05e8136c1eaf116ff01c8fb275cf09",
+    "web/dist/index.wasm": "fad3a46baf8f93d5d04575db9e6bc05a331ef6954015253ae1c027cbf4cad4c1",
+    "web/dist/index.js": "18a7c465d080f3956c8b7a70f6577828912afc54ac5760edb02b3fc664173915",
+    "web/dist/index.html": "af7576e210908903be77e9ba231433c7f7425f00a5dab8cdbc4964b4e216c460"
+  },
+  "site_manifest_files": 33,
+  "limitations": "Native EGL software proxy, not browser/device proof. Experimental water/root physiology not imported.",
+  "packaging_retry": "Initial quoted-id substitution matched no minified HTML element; stopped before push, corrected to support unquoted id, exact count1."
+}

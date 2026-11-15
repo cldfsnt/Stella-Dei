@@ -1,0 +1,16 @@
+{
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "build": "Zig0.13.0 ReleaseSafe native test; no graphics/WASM",
+  "files": {
+    "src/experimental/soil_physiology_core.zig": "c4b137ae9f81935e7ccc42d6deabf93c4e42d8bc189f6cd0de6a08a52db0153e",
+    "src/experimental/soil_physiology_fixture.json": "5f12b772eb0b05929b4a42f5aca22de7c170cb72f22584d5cc9e7733a3c9bf68",
+    "src/qa_soil_physiology.zig": "59cd31064a4e73ce89fa3940755904cde5a50b9c2ccc1572ed280e7bb34f5db7",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/setup-failure.log": "cf35d257e25bbc695f045cb7e9f3136c971a49aedca6303d268f469d8ae1b3a6",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/summary.json": "5dd45d9130a968e7f9ce38e2cc7212d003bdada3e455393e29f6ebc9b166f46d",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/gates.log": "3186321840b712923f6e7b62fed23dedf0d7e6ff2d442c4c720ff26aff646dcd",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/setup-failure2.log": "4736212ed5a4a1c868da5c0ca88ce8b194b96abb2f7f1fef87081ffe0a178c49",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/first-run.log.gz": "cf128e31137de0dabd912253359df5f24246899387b109d9783a3cab0d9b91c9",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/run.log.gz": "69c4afd999c66b852354586359be45097b74584deedcb84c60573d7e23e1ff0e",
+    "web/tests/continuation-review/paid-hydration/soil-root-design/physiology/README.md": "394cd404a5885f729680a9f4cb569e4d981de8aa6967dfdb9451a246788fb45b"
+  }
+}

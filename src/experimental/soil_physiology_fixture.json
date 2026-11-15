@@ -1,0 +1,33 @@
+{
+  "cell": {
+    "cohorts": [
+      {},
+      {
+        "biomass": 0.12940502166748047,
+        "organization": 0.13426367938518524,
+        "support_mass": 0.017374489456415176,
+        "optimum": 296.1463928222656,
+        "efficiency": 1.0451198816299438,
+        "structure": 0.13595879077911377,
+        "feeding": 0.20643378794193268,
+        "mobility": 0.0,
+        "relocations": 0,
+        "last_from": 0,
+        "last_to": 0,
+        "last_move_time": 0.0,
+        "lifetime_grazed": 0.047025907784700394,
+        "generation": 6,
+        "lineage": 478,
+        "parent": 232,
+        "reproduction_credit": 0.005128047429025173
+      },
+      {},
+      {}
+    ],
+    "nutrient": 0.0006594161386601627,
+    "detritus": 0.0851508304476738,
+    "rng": 3814997228120684273
+  },
+  "surface": 705.5808409072768,
+  "vapor": 221.52891658542038
+}
