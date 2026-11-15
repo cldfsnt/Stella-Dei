@@ -1,0 +1,16 @@
+1/1 qa_phase_cache.test.40962 cells actual phase versus cached batch runtime dt...PHASE_CACHE repeat=0 kind=0 cells=40962 ticks=8 ns=9463432 hash=4468943258579619117
+PHASE_CACHE repeat=0 kind=1 cells=40962 ticks=8 ns=2607327 hash=4468943258579619117
+PHASE_CACHE repeat=1 kind=1 cells=40962 ticks=8 ns=2255948 hash=13049189834200985681
+PHASE_CACHE repeat=1 kind=0 cells=40962 ticks=8 ns=9536843 hash=13049189834200985681
+PHASE_CACHE repeat=2 kind=0 cells=40962 ticks=8 ns=9483553 hash=16728556205233543177
+PHASE_CACHE repeat=2 kind=1 cells=40962 ticks=8 ns=2419584 hash=16728556205233543177
+PHASE_CACHE repeat=3 kind=1 cells=40962 ticks=8 ns=2128616 hash=4468943258579619117
+PHASE_CACHE repeat=3 kind=0 cells=40962 ticks=8 ns=8979163 hash=4468943258579619117
+PHASE_CACHE repeat=4 kind=0 cells=40962 ticks=8 ns=9306926 hash=13049189834200985681
+PHASE_CACHE repeat=4 kind=1 cells=40962 ticks=8 ns=2303740 hash=13049189834200985681
+PHASE_CACHE repeat=5 kind=1 cells=40962 ticks=8 ns=2251872 hash=16728556205233543177
+PHASE_CACHE repeat=5 kind=0 cells=40962 ticks=8 ns=9393126 hash=16728556205233543177
+PHASE_CACHE repeat=6 kind=0 cells=40962 ticks=8 ns=9257552 hash=4468943258579619117
+PHASE_CACHE repeat=6 kind=1 cells=40962 ticks=8 ns=2569150 hash=4468943258579619117
+OK
+All 1 tests passed.

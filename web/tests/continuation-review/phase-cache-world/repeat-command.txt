@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+for r in 2 3; do for mode in baseline candidate; do
+if [ "$mode" = candidate ]; then export STELLA_PHASE_CACHE=1; else unset STELLA_PHASE_CACHE; fi
+MESA_SHADER_CACHE_DIR=<workspace>/site-tmp/v36-natural-play/mesa-cache STELLA_ORIGIN_COUPLED=1 STELLA_ORIGIN_FAST=1 STELLA_PRODUCER_LONG=1 STELLA_DIAGNOSTIC_DAYS=30 STELLA_FORMS_SINGLE=1 STELLA_ORIGIN_WIDTH=390 STELLA_PHASE_MEASURED_PATH=<workspace>/site-tmp/phase-cache-compare/$mode-$r-measured.json STELLA_EGL_CAPTURE_PREFIX=<workspace>/site-tmp/phase-cache-compare/frame STELLA_EGL_SAVE_PATH=<workspace>/site-tmp/phase-cache-compare/$mode-$r.json ../site-tmp/phase-cache-compare/build/bin/stella-egl > ../site-tmp/phase-cache-compare/$mode-$r.log 2>&1
+done;done

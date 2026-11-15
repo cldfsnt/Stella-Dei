@@ -9,16 +9,24 @@ pub const Phase=struct{liquid:f64,vapor:f64,evaporated:f64,condensed:f64,rain_ra
 fn finiteNonnegative(x:f64) bool{return std.math.isFinite(x) and x>=0;}
 pub fn relaxation(dt:f64,tau:f64) f64{return -std.math.expm1(-dt/tau);}
 pub fn phase(liquid:f64,vapor:f64,saturation:f64,temperature:f64,dt:f64,old_rain_rate:f64) ?Phase {
- if(!finiteNonnegative(liquid) or !finiteNonnegative(vapor) or !finiteNonnegative(saturation) or !std.math.isFinite(temperature) or !std.math.isFinite(dt) or dt<0 or !finiteNonnegative(old_rain_rate))return null;
- if(dt==0)return .{.liquid=liquid,.vapor=vapor,.evaporated=0,.condensed=0,.rain_rate=old_rain_rate};
- const evap=if(temperature>273.15) @min(liquid,@max(0,saturation-vapor)*relaxation(dt,evaporation_seconds)) else 0;
- const moist=vapor+evap;
- // Condensation uses only supersaturation, including frozen condensate which
- // the existing surface model interprets as ice through its temperature.
- const rain=@min(moist,@max(0,moist-saturation)*relaxation(dt,condensation_seconds));
- const a=relaxation(dt,rain_memory_seconds);
- return .{.liquid=liquid-evap+rain,.vapor=moist-rain,.evaporated=evap,.condensed=rain,.rain_rate=old_rain_rate*(1-a)+(rain/dt*86400)*a};
+ return PhaseStep.init(dt).phase(liquid,vapor,saturation,temperature,old_rain_rate);
 }
+/// Per-tick coefficients: construct once with init, then reuse across cells.
+/// Pure arithmetic only; no cached world, geometry or persistent state.
+pub const PhaseStep=struct{
+ dt:f64,evaporation:f64=0,condensation:f64=0,rain_memory:f64=0,
+ pub fn init(dt:f64)PhaseStep{
+  var c=PhaseStep{.dt=dt};if(!std.math.isFinite(dt) or dt<=0)return c;
+  c.evaporation=relaxation(dt,evaporation_seconds);c.condensation=relaxation(dt,condensation_seconds);c.rain_memory=relaxation(dt,rain_memory_seconds);return c;
+ }
+ pub fn phase(c:PhaseStep,liquid:f64,vapor:f64,saturation:f64,temperature:f64,old_rain_rate:f64)?Phase{
+  if(!finiteNonnegative(liquid) or !finiteNonnegative(vapor) or !finiteNonnegative(saturation) or !std.math.isFinite(temperature) or !std.math.isFinite(c.dt) or c.dt<0 or !finiteNonnegative(old_rain_rate))return null;
+  if(c.dt==0)return .{.liquid=liquid,.vapor=vapor,.evaporated=0,.condensed=0,.rain_rate=old_rain_rate};
+  const evap=if(temperature>273.15)@min(liquid,@max(0,saturation-vapor)*c.evaporation) else 0;
+  const moist=vapor+evap;const rain=@min(moist,@max(0,moist-saturation)*c.condensation);const a=c.rain_memory;
+  return .{.liquid=liquid-evap+rain,.vapor=moist-rain,.evaporated=evap,.condensed=rain,.rain_rate=old_rain_rate*(1-a)+(rain/c.dt*86400)*a};
+ }
+};
 pub fn edgeRate(from:[3]f64,to:[3]f64,wind:[3]f64) f64 {
  var d:[3]f64=undefined;var length2:f64=0;var dot:f64=0;
  for(0..3)|i|{if(!std.math.isFinite(from[i]) or !std.math.isFinite(to[i]) or !std.math.isFinite(wind[i]))return 0;d[i]=to[i]-from[i];length2+=d[i]*d[i];dot+=wind[i]*d[i];}

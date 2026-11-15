@@ -1132,10 +1132,11 @@ pub const Planet = struct {
             for(self.getNeighbours(i),0..)|n,j|rates[j]=self.atmosphericEdgeRate(i,n);
         };
         const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
+        const phase_step=AtmosphereWater.PhaseStep.init(dt);
         for(self.waterMass,self.waterVaporMass,0..)|liquid,vapor,i|{
             const temperature=self.temperature[i];
             const saturation=@as(f64,getEquilibriumVaporPressure(temperature))*divider/(@as(f64,temperature)*k);
-            const result=AtmosphereWater.phase(liquid,vapor,saturation,temperature,dt,self.rainfall[i]) orelse continue;
+            const result=phase_step.phase(liquid,vapor,saturation,temperature,self.rainfall[i]) orelse continue;
             self.waterMass[i]=@floatCast(result.liquid);self.waterVaporMass[i]=@floatCast(result.vapor);self.rainfall[i]=@floatCast(result.rain_rate);
         }
         // After the preceding swap, newWaterMass holds stale OLD liquid data.

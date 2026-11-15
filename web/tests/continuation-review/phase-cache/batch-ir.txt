@@ -1,0 +1,231 @@
+define internal fastcc i64 @qa_phase_cache.batch__anon_3249(ptr nocapture nonnull align 8 %0, i64 %1, double %2) unnamed_addr #5 !dbg !7817 {
+Entry:
+  %3 = alloca [48 x i8], align 16
+  %.not19 = icmp eq i64 %1, 0, !dbg !7825
+  br i1 %.not19, label %Else, label %Then.lr.ph, !dbg !7825
+
+Then.lr.ph:                                       ; preds = %Entry
+  %scevgep = getelementptr i8, ptr %0, i64 32, !dbg !7825
+  br label %Then, !dbg !7825
+
+Then:                                             ; preds = %Then.lr.ph, %Then1
+  %lsr.iv21 = phi ptr [ %scevgep, %Then.lr.ph ], [ %scevgep22, %Then1 ]
+  %lsr.iv = phi i64 [ %1, %Then.lr.ph ], [ %lsr.iv.next, %Then1 ]
+  %.sroa.0.018 = phi i64 [ 0, %Then.lr.ph ], [ %23, %Then1 ]
+  %scevgep23 = getelementptr i8, ptr %lsr.iv21, i64 -32, !dbg !7833
+  %4 = load double, ptr %scevgep23, align 8, !dbg !7833
+  %scevgep24 = getelementptr i8, ptr %lsr.iv21, i64 -24, !dbg !7834
+  %5 = load double, ptr %scevgep24, align 8, !dbg !7834
+  %scevgep25 = getelementptr i8, ptr %lsr.iv21, i64 -16, !dbg !7835
+  %6 = load double, ptr %scevgep25, align 8, !dbg !7835
+  %scevgep26 = getelementptr i8, ptr %lsr.iv21, i64 -8, !dbg !7836
+  %7 = load double, ptr %scevgep26, align 8, !dbg !7836
+  %8 = load double, ptr %lsr.iv21, align 8, !dbg !7837
+  call fastcc void @experimental.phase_reference.phase(ptr noalias %3, double %4, double %5, double %6, double %7, double %2, double %8), !dbg !7838
+  %sunkaddr = getelementptr inbounds i8, ptr %3, i64 40, !dbg !7839
+  %9 = load i8, ptr %sunkaddr, align 8, !dbg !7839
+  %.not = icmp eq i8 %9, 0, !dbg !7839
+  br i1 %.not, label %Else1, label %Then1, !dbg !7840
+
+Else:                                             ; preds = %Then1, %Entry
+  %.sroa.0.0.lcssa = phi i64 [ 0, %Entry ], [ %23, %Then1 ], !dbg !7824
+  ret i64 %.sroa.0.0.lcssa, !dbg !7842
+
+Then1:                                            ; preds = %Then
+  %sunkaddr27 = getelementptr inbounds i8, ptr %3, i64 16, !dbg !7845
+  %.sroa.5.0.copyload14 = load i64, ptr %sunkaddr27, align 16, !dbg !7845
+  %sunkaddr28 = getelementptr inbounds i8, ptr %3, i64 24, !dbg !7845
+  %.sroa.6.0.copyload15 = load i64, ptr %sunkaddr28, align 8, !dbg !7845
+  %sunkaddr29 = getelementptr inbounds i8, ptr %3, i64 32, !dbg !7845
+  %.sroa.7.0.copyload = load double, ptr %sunkaddr29, align 16, !dbg !7845
+  %10 = load <2 x double>, ptr %3, align 16, !dbg !7845
+  %sunkaddr30 = getelementptr i8, ptr %lsr.iv21, i64 -32, !dbg !7847
+  store <2 x double> %10, ptr %sunkaddr30, align 8, !dbg !7847
+  store double %.sroa.7.0.copyload, ptr %lsr.iv21, align 8, !dbg !7848
+  %11 = mul i64 %.sroa.0.018, 16777619, !dbg !7852
+  %bc = bitcast <2 x double> %10 to <2 x i64>, !dbg !7852
+  %12 = extractelement <2 x i64> %bc, i64 0, !dbg !7852
+  %13 = xor i64 %11, %12, !dbg !7852
+  %14 = mul i64 %13, 16777619, !dbg !7857
+  %bc20 = bitcast <2 x double> %10 to <2 x i64>, !dbg !7857
+  %15 = extractelement <2 x i64> %bc20, i64 1, !dbg !7857
+  %16 = xor i64 %14, %15, !dbg !7857
+  %17 = mul i64 %16, 16777619, !dbg !7860
+  %18 = xor i64 %17, %.sroa.5.0.copyload14, !dbg !7860
+  %19 = mul i64 %18, 16777619, !dbg !7863
+  %20 = xor i64 %19, %.sroa.6.0.copyload15, !dbg !7863
+  %21 = mul i64 %20, 16777619, !dbg !7865
+  %22 = bitcast double %.sroa.7.0.copyload to i64, !dbg !7865
+  %23 = xor i64 %21, %22, !dbg !7865
+  %lsr.iv.next = add i64 %lsr.iv, -1, !dbg !7825
+  %scevgep22 = getelementptr i8, ptr %lsr.iv21, i64 40, !dbg !7825
+  %exitcond.not = icmp eq i64 %lsr.iv.next, 0, !dbg !7825
+  br i1 %exitcond.not, label %Else, label %Then, !dbg !7825
+
+Else1:                                            ; preds = %Then
+  tail call fastcc void @builtin.default_panic(ptr nonnull readonly align 1 @__anon_1926, i64 25, ptr nonnull readonly align 8 @117), !dbg !7867
+  unreachable, !dbg !7867
+}
+
+define internal fastcc i64 @qa_phase_cache.batch__anon_3250(ptr nocapture nonnull align 8 %0, i64 %1, double %2) unnamed_addr #5 !dbg !7870 {
+Entry:
+  %const = bitcast i64 9218868437227405312 to i64
+  %3 = tail call double @llvm.fabs.f64(double %2), !dbg !7880
+  %4 = bitcast double %3 to i64, !dbg !7880
+  %5 = icmp ult i64 %4, %const, !dbg !7881
+  %6 = fcmp ugt double %2, 0.000000e+00
+  %or.cond.not.i = select i1 %5, i1 %6, i1 false, !dbg !7882
+  br i1 %or.cond.not.i, label %Else1.i, label %experimental.phase_cache.Cache.init.exit, !dbg !7882
+
+Else1.i:                                          ; preds = %Entry
+  %7 = fdiv double %2, -8.640000e+04, !dbg !7885
+  %8 = tail call fastcc double @math.expm1.expm1__anon_4136(double %7), !dbg !7886, !noalias !7887
+  %9 = fneg double %8, !dbg !7886
+  %10 = fdiv double %2, -3.600000e+03, !dbg !7892
+  %11 = tail call fastcc double @math.expm1.expm1__anon_4136(double %10), !dbg !7893, !noalias !7887
+  %12 = fneg double %11, !dbg !7893
+  %13 = tail call fastcc double @math.expm1.expm1__anon_4136(double %7), !dbg !7896, !noalias !7887
+  %14 = fneg double %13, !dbg !7896
+  br label %experimental.phase_cache.Cache.init.exit
+
+experimental.phase_cache.Cache.init.exit:         ; preds = %Entry, %Else1.i
+  %.sink18.i = phi double [ %9, %Else1.i ], [ 0.000000e+00, %Entry ], !dbg !7876
+  %.sink17.i = phi double [ %12, %Else1.i ], [ 0.000000e+00, %Entry ], !dbg !7876
+  %.sink.i = phi double [ %14, %Else1.i ], [ 0.000000e+00, %Entry ], !dbg !7876
+  %.not = icmp eq i64 %1, 0, !dbg !7906
+  br i1 %.not, label %Else, label %Then.lr.ph, !dbg !7906
+
+Then.lr.ph:                                       ; preds = %experimental.phase_cache.Cache.init.exit
+  %const_mat = add i64 %const, -1
+  %15 = icmp ugt i64 %4, %const_mat
+  %16 = fcmp olt double %2, 0.000000e+00
+  %or.cond.i = select i1 %15, i1 true, i1 %16
+  %17 = fsub double 1.000000e+00, %.sink.i
+  %or.cond.i.fr = freeze i1 %or.cond.i
+  br i1 %or.cond.i.fr, label %Else1, label %Then.preheader, !dbg !7908
+
+Then.preheader:                                   ; preds = %Then.lr.ph
+  %scevgep = getelementptr i8, ptr %0, i64 32, !dbg !7909
+  br label %Then, !dbg !7909
+
+Then:                                             ; preds = %Then.preheader, %Then1
+  %lsr.iv41 = phi ptr [ %scevgep, %Then.preheader ], [ %scevgep42, %Then1 ]
+  %lsr.iv = phi i64 [ %1, %Then.preheader ], [ %lsr.iv.next, %Then1 ]
+  %.sroa.0.040 = phi i64 [ %80, %Then1 ], [ 0, %Then.preheader ]
+  %scevgep43 = getelementptr i8, ptr %lsr.iv41, i64 -32, !dbg !7912
+  %18 = load double, ptr %scevgep43, align 8, !dbg !7912
+  %scevgep44 = getelementptr i8, ptr %lsr.iv41, i64 -24, !dbg !7913
+  %19 = load double, ptr %scevgep44, align 8, !dbg !7913
+  %scevgep45 = getelementptr i8, ptr %lsr.iv41, i64 -16, !dbg !7914
+  %20 = load double, ptr %scevgep45, align 8, !dbg !7914
+  %scevgep46 = getelementptr i8, ptr %lsr.iv41, i64 -8, !dbg !7915
+  %21 = load double, ptr %scevgep46, align 8, !dbg !7915
+  %22 = load double, ptr %lsr.iv41, align 8, !dbg !7916
+  %23 = tail call double @llvm.fabs.f64(double %18), !dbg !7923
+  %24 = bitcast double %23 to i64, !dbg !7923
+  %25 = icmp ult i64 %24, %const, !dbg !7924
+  %26 = fcmp oge double %18, 0.000000e+00, !dbg !7925
+  %27 = select i1 %25, i1 %26, i1 false, !dbg !7925
+  br i1 %27, label %Else.i, label %Else1, !dbg !7909
+
+Else.i:                                           ; preds = %Then
+  %28 = tail call double @llvm.fabs.f64(double %19), !dbg !7931
+  %29 = bitcast double %28 to i64, !dbg !7931
+  %30 = icmp ult i64 %29, %const, !dbg !7932
+  %31 = fcmp oge double %19, 0.000000e+00, !dbg !7933
+  %32 = select i1 %30, i1 %31, i1 false, !dbg !7933
+  br i1 %32, label %Else1.i16, label %Else1, !dbg !7934
+
+Else1.i16:                                        ; preds = %Else.i
+  %33 = tail call double @llvm.fabs.f64(double %20), !dbg !7940
+  %34 = bitcast double %33 to i64, !dbg !7940
+  %35 = icmp ult i64 %34, %const, !dbg !7941
+  %36 = fcmp oge double %20, 0.000000e+00, !dbg !7942
+  %37 = select i1 %35, i1 %36, i1 false, !dbg !7942
+  br i1 %37, label %Else2.i, label %Else1, !dbg !7943
+
+Else2.i:                                          ; preds = %Else1.i16
+  %38 = tail call double @llvm.fabs.f64(double %21), !dbg !7947
+  %39 = bitcast double %38 to i64, !dbg !7947
+  %40 = icmp ult i64 %39, %const, !dbg !7948
+  br i1 %40, label %Else3.i, label %Else1, !dbg !7949
+
+Else3.i:                                          ; preds = %Else2.i
+  %41 = tail call double @llvm.fabs.f64(double %22), !dbg !7958
+  %42 = bitcast double %41 to i64, !dbg !7958
+  %43 = icmp ult i64 %42, %const, !dbg !7959
+  %44 = fcmp oge double %22, 0.000000e+00, !dbg !7960
+  %45 = select i1 %43, i1 %44, i1 false, !dbg !7960
+  br i1 %45, label %Else6.i, label %Else1, !dbg !7961
+
+Else6.i:                                          ; preds = %Else3.i
+  %46 = fcmp oeq double %2, 0.000000e+00
+  br i1 %46, label %Then1, label %Else7.i, !dbg !7962
+
+Else7.i:                                          ; preds = %Else6.i
+  %47 = fcmp ogt double %21, 2.731500e+02, !dbg !7963
+  br i1 %47, label %Then8.i, label %Block8.i, !dbg !7963
+
+Block8.i:                                         ; preds = %Then8.i, %Else7.i
+  %48 = phi double [ %67, %Then8.i ], [ 0.000000e+00, %Else7.i ], !dbg !7964
+  %49 = fadd double %19, %48, !dbg !7966
+  %50 = fsub double %49, %20, !dbg !7967
+  %51 = tail call double @llvm.maxnum.f64(double %50, double 0.000000e+00), !dbg !7967
+  %52 = fmul double %.sink17.i, %51, !dbg !7968
+  %53 = tail call double @llvm.minnum.f64(double %49, double %52), !dbg !7968
+  %54 = fsub double %18, %48, !dbg !7970
+  %55 = fadd double %54, %53, !dbg !7971
+  %56 = fsub double %49, %53, !dbg !7972
+  %57 = bitcast double %48 to i64, !dbg !7972
+  %58 = bitcast double %53 to i64, !dbg !7972
+  %59 = fmul double %17, %22, !dbg !7973
+  %60 = fdiv double %53, %2, !dbg !7974
+  %61 = fmul double %60, 8.640000e+04, !dbg !7975
+  %62 = fmul double %.sink.i, %61, !dbg !7976
+  %63 = fadd double %59, %62, !dbg !7977
+  br label %Then1
+
+Then8.i:                                          ; preds = %Else7.i
+  %64 = fsub double %20, %19, !dbg !7978
+  %65 = tail call double @llvm.maxnum.f64(double %64, double 0.000000e+00), !dbg !7979
+  %66 = fmul double %.sink18.i, %65, !dbg !7980
+  %67 = tail call double @llvm.minnum.f64(double %18, double %66), !dbg !7981
+  br label %Block8.i, !dbg !7980
+
+Else:                                             ; preds = %Then1, %experimental.phase_cache.Cache.init.exit
+  %.sroa.0.0.lcssa = phi i64 [ 0, %experimental.phase_cache.Cache.init.exit ], [ %80, %Then1 ], !dbg !7898
+  ret i64 %.sroa.0.0.lcssa, !dbg !7982
+
+Then1:                                            ; preds = %Block8.i, %Else6.i
+  %.sroa.12.1.ph = phi double [ %22, %Else6.i ], [ %63, %Block8.i ]
+  %.sroa.10.1.ph = phi i64 [ 0, %Else6.i ], [ %58, %Block8.i ]
+  %.sroa.7.1.ph = phi i64 [ 0, %Else6.i ], [ %57, %Block8.i ]
+  %.sroa.423.1.ph = phi double [ %19, %Else6.i ], [ %56, %Block8.i ]
+  %.sroa.022.1.ph = phi double [ %18, %Else6.i ], [ %55, %Block8.i ]
+  %sunkaddr = getelementptr i8, ptr %lsr.iv41, i64 -32, !dbg !7985
+  store double %.sroa.022.1.ph, ptr %sunkaddr, align 8, !dbg !7985
+  %sunkaddr47 = getelementptr i8, ptr %lsr.iv41, i64 -24, !dbg !7986
+  store double %.sroa.423.1.ph, ptr %sunkaddr47, align 8, !dbg !7986
+  store double %.sroa.12.1.ph, ptr %lsr.iv41, align 8, !dbg !7987
+  %68 = mul i64 %.sroa.0.040, 16777619, !dbg !7991
+  %69 = bitcast double %.sroa.022.1.ph to i64, !dbg !7991
+  %70 = xor i64 %68, %69, !dbg !7991
+  %71 = mul i64 %70, 16777619, !dbg !7996
+  %72 = bitcast double %.sroa.423.1.ph to i64, !dbg !7996
+  %73 = xor i64 %71, %72, !dbg !7996
+  %74 = mul i64 %73, 16777619, !dbg !7999
+  %75 = xor i64 %74, %.sroa.7.1.ph, !dbg !7999
+  %76 = mul i64 %75, 16777619, !dbg !8002
+  %77 = xor i64 %76, %.sroa.10.1.ph, !dbg !8002
+  %78 = mul i64 %77, 16777619, !dbg !8004
+  %79 = bitcast double %.sroa.12.1.ph to i64, !dbg !8004
+  %80 = xor i64 %78, %79, !dbg !8004
+  %lsr.iv.next = add i64 %lsr.iv, -1, !dbg !7906
+  %scevgep42 = getelementptr i8, ptr %lsr.iv41, i64 40, !dbg !7906
+  %exitcond.not = icmp eq i64 %lsr.iv.next, 0, !dbg !7906
+  br i1 %exitcond.not, label %Else, label %Then, !dbg !7906
+
+Else1:                                            ; preds = %Then, %Else.i, %Else1.i16, %Else2.i, %Else3.i, %Then.lr.ph
+  tail call fastcc void @builtin.default_panic(ptr nonnull readonly align 1 @__anon_1926, i64 25, ptr nonnull readonly align 8 @117), !dbg !8006
+  unreachable, !dbg !8006
+}

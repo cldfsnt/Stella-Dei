@@ -1,0 +1,23 @@
+{
+  "zig": "0.13.0",
+  "emscripten": "3.1.64",
+  "build_command": "STELLA_TOOLCHAINS=<pinned-tools> STELLA_WEB_CACHE=<web-cache> bash web/build.sh",
+  "build_exit": 0,
+  "javascript_syntax_exit": 0,
+  "save_schema": 6,
+  "artifacts": {
+    "web/dist/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "web/dist/assets-0.bin": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+    "web/dist/assets-1.bin": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+    "web/dist/assets-2.bin": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+    "web/dist/assets-3.bin": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f",
+    "web/dist/gameplay-harness.js": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "web/dist/gameplay-measure.js": "8e50975788f21b6b767b140b387c396ff1a961be9bcf4fb978920fe95973370b",
+    "web/dist/index.html": "3c174336e9f0c3ef0de307981358c02bd1ef47841c6fc308aecb5a6a5f7f298e",
+    "web/dist/index.js": "e13341fd05027ae68788c89c5d3f37619dc0abc3c459d7ea3445c3babea35d86",
+    "web/dist/index.wasm": "0cfa1b185d3ced35d897b7d680c6f5454036f77f3502cfeadf1bf3626bb0331c",
+    "web/dist/life-trend.js": "b9438aebd8d7ab503f6c9d2d7274a221c0f0e740c58b471e25b3268c9edee30a",
+    "web/dist/stella-storage.js": "fdd79c5f9f4d685125c1c5ff5e0b92016adba020f175b78f09bd2d18c8864f8b",
+    "web/dist/touch-controls.js": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f"
+  }
+}
