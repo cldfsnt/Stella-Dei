@@ -1,0 +1,5 @@
+1/3 qa_allocation_sampler.test.fixed proposal distribution and boundary expression...SAMPLER events=4157 root+/- storage+/-={ 1052, 996, 1019, 1090 } accepted origin/interior/saturated={ 2071, 4157, 2086 }
+OK
+2/3 qa_allocation_sampler.test.invalid input refuses and allocation sum never projected...OK
+3/3 qa_allocation_sampler.test.disabled new sampler preserves legacy retention law outputs...OK
+All 3 tests passed.

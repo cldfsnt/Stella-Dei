@@ -1,0 +1,7 @@
+{
+  "src/qa_root_inheritance.zig": "b32db6f96484b5156a2381fe1a6b9a2b33203158730315755b88f7ae7ca9cb69",
+  "src/experimental/soil_physiology_core.zig": "c4b137ae9f81935e7ccc42d6deabf93c4e42d8bc189f6cd0de6a08a52db0153e",
+  "src/experimental/allocation_sampler.zig": "01bc5b22cb912c3b5dbd584310d571fb38a13971280d170b170b7471d386526e",
+  "src/qa_allocation_sampler.zig": "d76492de24fcb61767a42cf3ec417f767b36dabf965c50a9ba622e94526cc050",
+  "src/experimental/retention_mutation.zig": "671f8f783aaa1125db85233257c2f30b970a4a97909f316d0ca44b39ac6eae8c"
+}

@@ -1,0 +1,11 @@
+# Independent sampler and funded inheritance review
+
+Reviewed stable3722e0b source and tests without modifying their implementation. Independently reproduced all262,144 SHA256 proposals in Python using the exact48-byte message: 15-byte domain, zero byte, little-endian seed/parent/child u64 and generation u32, then four zero bytes. Counts match exactly: root+1052, root−996, storage+1019, storage−1090; total4157. Origin expresses2071, interior4157, saturated2086.
+
+The pure sampler validates finite nonnegative root/storage with their represented f64 sum<=1. Invalid proposals return the original pair, not a projection or resource topup. Signed proposals are symmetric by construction; accepted expression is boundary-biased (origin rejects negatives, saturated edge rejects positives). Sampled SHA256 counts do not prove mathematical independence or universal statistical balance.
+
+Fixed-width encoding is unambiguous and uses a separate domain from prior retention mutation. No RNG pointer/state or existing trait draws are consumed. Disabled valid input returns unchanged; the retained4096-case legacy-retention-output comparison covers this optional API, not a newborn integration path. Invalid legacy input refuses even when disabled, as documented by tests.
+
+Funded inheritance tests call the existing experimental core with mutation=false for same-cell and adjacent-cell births. They verify prescribed root/storage inheritance, ancestry, paid donor tissue/support/credit arithmetic, allocated child water, unchanged RNG, and atomic failures. Existing f32 donor subtraction has disclosed tiny real-number residuals (carbon+1.862645149e-9, support+4.656612873e-10); this is not exact physical closure. Prescribed capacity shrink sends water into the pre-existing nonhydrating liquid_return field only. A real physical sink/exchange integration remains unresolved and must not be implied by waterTotal equality.
+
+No blocking defect found for the stated pure proposal and experimental inheritance tests. There is no sampler-to-newborn integration, joint-trait mutation lifecycle, persisted configuration, naturally evolved root strategy or production feature established here. Future integration must settle changed storage capacity through an approved physical water path and preserve the joint allocation constraint after actual legacy/new mutation ordering.
