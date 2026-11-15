@@ -1,0 +1,10 @@
+{
+  "index.wasm": {
+    "sha256": "e84b96fd61eec71bdb5a54dfa27878a8a35b2fb18f7ca3e063d162f2b7b41e84",
+    "v59_archive_byte_equal": true
+  },
+  "index.js": {
+    "sha256": "18a7c465d080f3956c8b7a70f6577828912afc54ac5760edb02b3fc664173915",
+    "v59_archive_byte_equal": true
+  }
+}

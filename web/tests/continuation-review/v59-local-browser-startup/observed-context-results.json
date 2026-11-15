@@ -1,0 +1,57 @@
+{
+  "scope": "Transcribed actual CUA displayed result, each test clicked once on fresh separate canvas; cloud Chromium, not user hardware",
+  "url": "http://127.0.0.1:4189/webgl-startup-diagnostic.html",
+  "results": [
+    {
+      "test": "WebGL2: game context options",
+      "type": "webgl2",
+      "requested": {
+        "antialias": false,
+        "alpha": true,
+        "depth": true,
+        "stencil": true,
+        "majorVersion": 2
+      },
+      "created": false,
+      "creationErrors": [
+        "Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = yes, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: ."
+      ],
+      "exception": null
+    },
+    {
+      "test": "WebGL2: browser defaults",
+      "type": "webgl2",
+      "requested": "browser defaults",
+      "created": false,
+      "creationErrors": [
+        "Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = yes, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: ."
+      ],
+      "exception": null
+    },
+    {
+      "test": "WebGL1: browser defaults",
+      "type": "webgl",
+      "requested": "browser defaults",
+      "created": false,
+      "creationErrors": [
+        "Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = yes, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: ."
+      ],
+      "exception": null
+    },
+    {
+      "test": "WebGL2: minimum buffer options",
+      "type": "webgl2",
+      "requested": {
+        "antialias": false,
+        "alpha": false,
+        "depth": false,
+        "stencil": false
+      },
+      "created": false,
+      "creationErrors": [
+        "Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = yes, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: ."
+      ],
+      "exception": null
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Standalone solver target parity gate
+
+Frozen actual direction-remapped40,962cell naturalday30/60/90 inputs and existing scalar/cached immutable same-f32-head helpers. No promoted head, compactflow, model or production change. Four fixed dt0/360/1440/15000; cache forward/reverse must match scalar output, allsix edge receipts percell and signed/absolute ledger exact bits. Native strict ReleaseSafe is the reference; wasm32-emscripten ReleaseSafe object plus project's emcc-O2 linkage runs under existing Node. Compare exported binary data byte-for-byte, not just a self-reported pass. Record actual target vector suggestion/usize width, source/input/binary hashes and build output.
+
+The candidate helper is scalar, so matching it across targets does not prove the old width-dependent SIMD solver equivalent or predict browserFPS. No microbenchmark before parity; this task runs correctness only. Existing native full-step slowdown remains evidence, not invalidated by a Node correctness pass. Any target discrepancy is preserved and investigated before timing or promotion.

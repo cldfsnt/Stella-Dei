@@ -1,0 +1,7 @@
+{
+  "llvm_sha256": "d4e106f4ad3237165c643640cabdfaa9f61a316d75ca64d5509cfa64e665e6cd",
+  "wrapper_sha256": "136dd79d248a68f11b38c1f33d609b2c68dc64b1ca1db3fa2875a4ab9e8ef891",
+  "helper_sha256": "4afa824ca6f91bdeed4197a2ae8b9dfd2039fff33bb546ab94730bc0a9193157",
+  "target": "native x86_64 ReleaseSafe Zig0.13.0",
+  "note": "runtime pointer/length export; not constant test-fixture specialization"
+}

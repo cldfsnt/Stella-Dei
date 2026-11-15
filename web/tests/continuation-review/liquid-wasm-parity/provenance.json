@@ -1,0 +1,90 @@
+{
+  "result": "PASS exact exported bytes all3worlds4dt; no timings",
+  "effective_native_width": 16,
+  "effective_wasm_width": 4,
+  "native_usize_bits": 64,
+  "wasm_usize_bits": 32,
+  "record_layout": "LIQUID01 header; perdt LE f32 dt,40962 f32 outputs,40962x6 f64 edge receipts,two f64 ledger fields;4dt",
+  "artifacts": {
+    "src/qa_liquid_wasm_parity.zig": {
+      "sha256": "f15fa8d2a9b51c73feb61de9c1e29e597986c2e413fccab9d90b0707090751b2",
+      "bytes": 2788
+    },
+    "src/experimental/liquid_gather.zig": {
+      "sha256": "3bb548fb1dec6a32c0e0897ce12eb31ce02f3d6c44d8bb524a33c1ee6ad70db6",
+      "bytes": 2538
+    },
+    "src/experimental/liquid_gather_cached.zig": {
+      "sha256": "4afa824ca6f91bdeed4197a2ae8b9dfd2039fff33bb546ab94730bc0a9193157",
+      "bytes": 2974
+    },
+    "web/tests/liquid-wasm-main.c": {
+      "sha256": "e4afb7b0c4bc632d703884d95e29b34527e95302ab11a0bf54fce9245a193d70",
+      "bytes": 839
+    },
+    "web/tests/liquid-wasm-parity.sh": {
+      "sha256": "c7ba132714996ed80c1bf4f5076fd70abb7f05749b36fd484e201eb43efff93e",
+      "bytes": 1139
+    },
+    "../site-tmp/liquid-wasm-parity/native": {
+      "sha256": "266b8a4f0891f48dc94662068b1df607e6c10d02c8b8507a5dfdae20373e1a6d",
+      "bytes": 2341776
+    },
+    "../site-tmp/liquid-wasm-parity/parity.o": {
+      "sha256": "fe783b43ec46709bb4bf1d2d3ed414d371b2a99981734f458b51bfbf56a5e435",
+      "bytes": 533101
+    },
+    "../site-tmp/liquid-wasm-parity/parity.wasm": {
+      "sha256": "3cdab4fe23c831d929112f1decaff36b084cb9a741a0b4eddc45483c1b67dee0",
+      "bytes": 125641
+    },
+    "../site-tmp/liquid-wasm-parity/parity.js": {
+      "sha256": "f8de99a92d65a9b48ee9058eecacf23d143e625ead26f3b29f81657579bc2e5f",
+      "bytes": 95124
+    },
+    "../site-tmp/liquid-transport-order/day30.json": {
+      "sha256": "d2232e96c979c6635a64fee5344d11cd68354fa308686e1741e3755ad4da970a",
+      "bytes": 2619777
+    },
+    "../site-tmp/liquid-wasm-parity/native-day30.bin": {
+      "sha256": "267fdbe79dbeb3a32ad12625dd818839f1688ca29d1e0a5d65e3b6084bda6887",
+      "bytes": 8520184
+    },
+    "../site-tmp/liquid-wasm-parity/wasm-day30.bin": {
+      "sha256": "267fdbe79dbeb3a32ad12625dd818839f1688ca29d1e0a5d65e3b6084bda6887",
+      "bytes": 8520184
+    },
+    "../site-tmp/liquid-transport-order/day60.json": {
+      "sha256": "c8a344e663c05eec1f748245a2ac16c9e2eeaefd58fb2303c83215b70df64463",
+      "bytes": 2619911
+    },
+    "../site-tmp/liquid-wasm-parity/native-day60.bin": {
+      "sha256": "7d6243e65d6cb508f1dcdedd521a6c423c9b7d5418fc03aa977b5e44889cc0db",
+      "bytes": 8520184
+    },
+    "../site-tmp/liquid-wasm-parity/wasm-day60.bin": {
+      "sha256": "7d6243e65d6cb508f1dcdedd521a6c423c9b7d5418fc03aa977b5e44889cc0db",
+      "bytes": 8520184
+    },
+    "../site-tmp/liquid-transport-order/day90.json": {
+      "sha256": "cccab7c112305e46da74400909b9131f12333be662a2e16e028e9c8f76d9a2ae",
+      "bytes": 2619848
+    },
+    "../site-tmp/liquid-wasm-parity/native-day90.bin": {
+      "sha256": "0183da9b83f3bb50ef6cecfe92078ae32d7b739ce8b320f5c5f318d3980b46d2",
+      "bytes": 8520184
+    },
+    "../site-tmp/liquid-wasm-parity/wasm-day90.bin": {
+      "sha256": "0183da9b83f3bb50ef6cecfe92078ae32d7b739ce8b320f5c5f318d3980b46d2",
+      "bytes": 8520184
+    },
+    "../site-tmp/liquid-wasm-parity/run-first.log": {
+      "sha256": "908405842a2a77903a1803c02567f4238a848480357c46fdd04e5a6afa9fcca7",
+      "bytes": 94804
+    },
+    "../site-tmp/liquid-wasm-parity/run-second.log": {
+      "sha256": "76fe3c449e24118e77d92e5a7057091ed7c158a5f58b03ccce2978fb43ada92e",
+      "bytes": 1686
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'">
+<title>Local WebGL creation diagnostic</title>
+<style>body{font:16px system-ui;background:#14202d;color:#eef4fb;max-width:760px;margin:24px auto;padding:16px}button{font:inherit;min-height:48px;margin:8px;padding:10px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#08111b;padding:16px}canvas{width:128px;height:72px;border:1px solid #678}</style>
+<h1>Local WebGL creation diagnostic</h1>
+<p>Separate test page, not Stella Dei. No game, saved state, permissions, browser settings, network requests or renderer-identification queries. Each test uses its own fresh 1280 × 720 canvas. Run each once; reload this page for another pass.</p>
+<p>The game requires WebGL2. WebGL1 success alone cannot run this build. Failure here does not identify a hardware or driver cause. Success here does not prove the complete game initializes.</p>
+<div id="buttons"></div><div id="canvases"></div><pre id="results" role="status">Choose a test.</pre>
+<script>
+'use strict';
+const cases = [
+ {name:'WebGL2: game context options',type:'webgl2',options:{antialias:false,alpha:true,depth:true,stencil:true,majorVersion:2}},
+ {name:'WebGL2: browser defaults',type:'webgl2'},
+ {name:'WebGL1: browser defaults',type:'webgl'},
+ {name:'WebGL2: minimum buffer options',type:'webgl2',options:{antialias:false,alpha:false,depth:false,stencil:false}}
+];
+const records=[];
+for(const test of cases){
+ const button=document.createElement('button');button.textContent=test.name;
+ button.addEventListener('click',()=>{
+  button.disabled=true;
+  const canvas=document.createElement('canvas');canvas.width=1280;canvas.height=720;
+  canvas.setAttribute('aria-label',test.name);document.getElementById('canvases').append(canvas);
+  const record={test:test.name,type:test.type,requested:test.options||'browser defaults',created:false,creationErrors:[],exception:null};
+  records.push(record);
+  const show=()=>{document.getElementById('results').textContent=JSON.stringify(records,null,2);};
+  canvas.addEventListener('webglcontextcreationerror',event=>{record.creationErrors.push(event.statusMessage||'(no status message)');show();});
+  canvas.addEventListener('webglcontextlost',()=>{record.contextLost=true;show();});
+  try{
+   const gl=test.options?canvas.getContext(test.type,test.options):canvas.getContext(test.type);
+   record.created=!!gl;
+   if(gl){record.actual=gl.getContextAttributes();record.contextLost=gl.isContextLost();}
+  }catch(error){record.exception=String(error);}
+  show();
+ });
+ document.getElementById('buttons').append(button);
+}
+</script>

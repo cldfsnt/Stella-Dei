@@ -1,0 +1,125 @@
+949:   br i1 %or.cond8.not.i, label %Else21.i, label %experimental.liquid_gather_cached.step.exit, !dbg !2567
+950: 
+951: Else21.i:                                         ; preds = %Then19.i
+952:   call void @llvm.dbg.value(metadata float %200, metadata !2518, metadata !DIExpression()), !dbg !2570
+953:   call void @llvm.dbg.value(metadata i32 2147483647, metadata !2526, metadata !DIExpression()), !dbg !2574
+954:   %205 = tail call float @llvm.fabs.f32(float %200), !dbg !2575
+955:   %206 = bitcast float %205 to i32, !dbg !2575
+956:   %207 = icmp ult i32 %206, 2139095040, !dbg !2576
+957:   br i1 %207, label %Else22.i, label %experimental.liquid_gather_cached.step.exit, !dbg !2577
+958: 
+959: Else22.i:                                         ; preds = %Else21.i
+960:   %208 = fmul float %198, %7, !dbg !2580
+961:   %209 = fadd float %200, %208, !dbg !2583
+962:   call void @llvm.dbg.value(metadata float %209, metadata !2518, metadata !DIExpression()), !dbg !2584
+963:   call void @llvm.dbg.value(metadata i32 2147483647, metadata !2526, metadata !DIExpression()), !dbg !2586
+964:   %210 = tail call float @llvm.fabs.f32(float %209), !dbg !2587
+965:   %211 = bitcast float %210 to i32, !dbg !2587
+966:   %212 = icmp ult i32 %211, 2139095040, !dbg !2588
+967:   br i1 %212, label %Loop.i, label %experimental.liquid_gather_cached.step.exit, !dbg !2589
+968: 
+969: Loop1.i:                                          ; preds = %Else38.5.i
+970:   %213 = add nuw i64 %.sroa.015.0195.i, 1, !dbg !2591
+971:   %exitcond210.not.i = icmp eq i64 %213, %6, !dbg !2594
+972:   br i1 %exitcond210.not.i, label %Then44.i, label %Block27.i, !dbg !2594
+973: 
+974: Block27.i:                                        ; preds = %Loop.i, %Loop1.i
+975:   %.sroa.015.0195.i = phi i64 [ %213, %Loop1.i ], [ 0, %Loop.i ]
+976:   call void @llvm.dbg.value(metadata i64 %.sroa.015.0195.i, metadata !2597, metadata !DIExpression()), !dbg !2599
+977:   call void @llvm.dbg.value(metadata i64 %.sroa.015.0195.i, metadata !2600, metadata !DIExpression()), !dbg !2601
+978:   %214 = getelementptr inbounds float, ptr %1, i64 %.sroa.015.0195.i, !dbg !2602
+979:   %215 = load float, ptr %214, align 4, !dbg !2602, !noalias !2199
+980:   %216 = getelementptr inbounds float, ptr %0, i64 %.sroa.015.0195.i, !dbg !2604
+981:   %217 = load float, ptr %216, align 4, !dbg !2604, !noalias !2199
+982:   %218 = fmul float %217, %7, !dbg !2606
+983:   %219 = fadd float %215, %218, !dbg !2607
+984:   call void @llvm.dbg.value(metadata float %219, metadata !2608, metadata !DIExpression()), !dbg !2609
+985:   call void @llvm.dbg.value(metadata double 0.000000e+00, metadata !2610, metadata !DIExpression()), !dbg !2611
+
+1008:   %224 = icmp ne i8 %223, -1, !dbg !2628
+1009:   call void @llvm.dbg.value(metadata i1 %224, metadata !2621, metadata !DIExpression()), !dbg !2622
+1010:   %225 = getelementptr inbounds float, ptr %1, i64 %.sroa.0.0.copyload.i, !dbg !2629
+1011:   %226 = load float, ptr %225, align 4, !dbg !2629, !noalias !2199
+1012:   %227 = getelementptr inbounds float, ptr %0, i64 %.sroa.0.0.copyload.i, !dbg !2631
+1013:   %228 = load float, ptr %227, align 4, !dbg !2631, !noalias !2199
+1014:   %229 = fmul float %228, %7, !dbg !2633
+1015:   %230 = fadd float %226, %229, !dbg !2634
+1016:   call void @llvm.dbg.value(metadata float %230, metadata !2635, metadata !DIExpression()), !dbg !2636
+1017:   %231 = fcmp ogt float %219, %230
+1018:   %or.cond12.i = select i1 %224, i1 %231, i1 false, !dbg !2637
+1019:   br i1 %or.cond12.i, label %Then36.i, label %Block37.i, !dbg !2637
+1020: 
+1021: Else32.i:                                         ; preds = %Else38.4.i, %Else38.3.i, %Else38.2.i, %Else38.1.i, %Else38.i, %Block27.i
+1022:   tail call fastcc void @builtin.default_panic(ptr nonnull readonly align 1 @__anon_1556, i64 19, i64 undef, i8 0), !dbg !2641, !noalias !2199
+1023:   unreachable, !dbg !2641
+1024: 
+1025: Block37.i:                                        ; preds = %Then36.i, %Then32.i
+1026:   %232 = phi float [ %241, %Then36.i ], [ 0.000000e+00, %Then32.i ], !dbg !2644
+1027:   call void @llvm.dbg.value(metadata float %232, metadata !2646, metadata !DIExpression()), !dbg !2647
+1028:   call void @llvm.dbg.value(metadata float %232, metadata !2518, metadata !DIExpression()), !dbg !2648
+1029:   call void @llvm.dbg.value(metadata i32 2147483647, metadata !2526, metadata !DIExpression()), !dbg !2652
+1030:   %233 = tail call float @llvm.fabs.f32(float %232), !dbg !2653
+1031:   %234 = bitcast float %233 to i32, !dbg !2653
+1032:   %235 = icmp ult i32 %234, 2139095040, !dbg !2654
+1033:   %236 = fcmp uge float %232, 0.000000e+00
+1034:   %or.cond9.not.i = select i1 %235, i1 %236, i1 false, !dbg !2655
+1035:   br i1 %or.cond9.not.i, label %Else38.i, label %experimental.liquid_gather_cached.step.exit, !dbg !2655
+1036: 
+1037: Then36.i:                                         ; preds = %Then32.i
+1038:   %237 = fmul float %195, %217, !dbg !2658
+1039:   %238 = fsub float %219, %230, !dbg !2660
+1040:   %239 = fdiv float %238, %7, !dbg !2661
+1041:   %240 = fmul float %195, %239, !dbg !2662
+1042:   %241 = tail call float @llvm.minnum.f32(float %237, float %240), !dbg !2663
+1043:   br label %Block37.i, !dbg !2662
+1044: 
+1045: Else38.i:                                         ; preds = %Block37.i
+1046:   %242 = getelementptr inbounds [6 x double], ptr %4, i64 %.sroa.015.0195.i, i64 0, !dbg !2664
+1047:   %243 = fpext float %232 to double, !dbg !2664
+1048:   store double %243, ptr %242, align 8, !dbg !2664, !noalias !2199
+1049:   %244 = fadd double %243, 0.000000e+00, !dbg !2666
+1050:   call void @llvm.dbg.value(metadata double %244, metadata !2610, metadata !DIExpression()), !dbg !2611
+1051:   call void @llvm.dbg.value(metadata i64 %.sroa.2.0.copyload.i, metadata !2614, metadata !DIExpression()), !dbg !2619
+1052:   call void @llvm.dbg.value(metadata i64 1, metadata !2620, metadata !DIExpression()), !dbg !2619
+1053:   call void @llvm.dbg.value(metadata i8 poison, metadata !2621, metadata !DIExpression(DW_OP_constu, 18446744073709551615, DW_OP_ne, DW_OP_stack_value)), !dbg !2622
+
+1063:   %249 = getelementptr inbounds float, ptr %1, i64 %.sroa.2.0.copyload.i, !dbg !2629
+1064:   %250 = load float, ptr %249, align 4, !dbg !2629, !noalias !2199
+1065:   %251 = getelementptr inbounds float, ptr %0, i64 %.sroa.2.0.copyload.i, !dbg !2631
+1066:   %252 = load float, ptr %251, align 4, !dbg !2631, !noalias !2199
+1067:   %253 = fmul float %252, %7, !dbg !2633
+1068:   %254 = fadd float %250, %253, !dbg !2634
+1069:   call void @llvm.dbg.value(metadata float %254, metadata !2635, metadata !DIExpression()), !dbg !2636
+1070:   %255 = fcmp ogt float %219, %254
+1071:   %or.cond12.1.i = select i1 %248, i1 %255, i1 false, !dbg !2637
+1072:   br i1 %or.cond12.1.i, label %Then36.1.i, label %Block37.1.i, !dbg !2637
+1073: 
+1074: Then36.1.i:                                       ; preds = %Then32.1.i
+1075:   %256 = load float, ptr %216, align 4, !dbg !2667, !noalias !2199
+1076:   %257 = fmul float %195, %256, !dbg !2658
+1077:   %258 = fsub float %219, %254, !dbg !2660
+1078:   %259 = fdiv float %258, %7, !dbg !2661
+1079:   %260 = fmul float %195, %259, !dbg !2662
+1080:   %261 = tail call float @llvm.minnum.f32(float %257, float %260), !dbg !2663
+1081:   br label %Block37.1.i, !dbg !2662
+1082: 
+
+1429:   br i1 %407, label %Block54.3.i, label %Else51.3.i, !dbg !2706
+1430: 
+1431: Else51.3.i:                                       ; preds = %Block54.2.i
+1432:   %408 = icmp ult i64 %.sroa.4224.0.copyload.i, %6, !dbg !2709
+1433:   br i1 %408, label %Then52.3.i, label %Else52.i, !dbg !2711
+1434: 
+1435: Then52.3.i:                                       ; preds = %Else51.3.i
+1436:   %409 = icmp ult i8 %406, 6, !dbg !2714
+1437:   br i1 %409, label %Then53.3.i, label %Else53.i, !dbg !2716
+1438: 
+1439: Then53.3.i:                                       ; preds = %Then52.3.i
+1440:   %410 = zext nneg i8 %406 to i64, !dbg !2714
+1441:   %411 = getelementptr inbounds [6 x double], ptr %4, i64 %.sroa.4224.0.copyload.i, i64 %410, !dbg !2719
+1442:   %412 = load double, ptr %411, align 8, !dbg !2719, !noalias !2199
+1443:   %413 = fadd double %.sroa.026.2.2.i, %412, !dbg !2721
+1444:   call void @llvm.dbg.value(metadata double %413, metadata !2679, metadata !DIExpression()), !dbg !2680
+1445:   br label %Block54.3.i, !dbg !2721
+1446: 
+1447: Block54.3.i:                                      ; preds = %Then53.3.i, %Block54.2.i
