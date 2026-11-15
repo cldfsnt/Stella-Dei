@@ -1130,7 +1130,15 @@ pub const Planet = struct {
         };
         // No static geometry/velocity cache: rebuild every tick after wind refresh.
         if(self.ensureAtmosphericEdgeScratch())for(self.atmosphericEdgeScratch,0..)|*rates,i|{
-            for(self.getNeighbours(i),0..)|n,j|rates[j]=self.atmosphericEdgeRate(i,n);
+            const point=self.transformedPoints[i];
+            const wind:[3]f64=if(self.atmosphericWindScratch.len==self.transformedPoints.len) blk:{
+                const w=self.atmosphericWindScratch[i];break :blk .{w[0],w[1],w[2]};
+            } else self.atmosphericWind(i);
+            const source=AtmosphereWater.EdgeSource.init(.{point.x(),point.y(),point.z()},wind);
+            for(self.getNeighbours(i),0..)|n,j|{
+                const target=self.transformedPoints[n];
+                rates[j]=source.rate(.{target.x(),target.y(),target.z()});
+            }
         };
         const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
         const phase_step=AtmosphereWater.PhaseStep.init(dt);

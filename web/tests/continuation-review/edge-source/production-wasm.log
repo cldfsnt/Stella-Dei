@@ -1,0 +1,1 @@
+EDGE_SOURCE_WASM failures=0 random=100000 special=81 zero_length=1 exact_bits=true

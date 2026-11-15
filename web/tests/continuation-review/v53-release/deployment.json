@@ -1,0 +1,27 @@
+{
+  "source_commit": "a2728fb489011f59b9755d2a8ede037e8c64eac9",
+  "local_release": "c5c0821105b290ba917da49789d612fa761cd1fc",
+  "tree": "0ec83da27db3f50963f17122bd3e01e8c4c39f57",
+  "site": {
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "checkout_path": "/workspace/scratch/f67c3ac60ca3/stella-site-current/.sites-checkout",
+    "commit_sha": "81c63e12190ceda954cb61afb916760c25473c0f",
+    "archive": "/workspace/scratch/f67c3ac60ca3/stella-v53-deploy.tar.gz"
+  },
+  "deployment": {
+    "id": "appgdep_6af94289d97c8191a7b543ace7ea69e4",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_e133ad360de88191b5930cebad6de4c3",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T05:26:42.022658+00:00"
+  },
+  "scope": "Average rounding-drift reduction, not exact conservation or speed improvement; no save format or physiological parameter change."
+}

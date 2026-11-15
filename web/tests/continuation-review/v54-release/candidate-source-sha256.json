@@ -1,0 +1,10 @@
+{
+  "src/advance_day.zig": "9ef5617e5dc3d8310e0ebb6b34071ebbe20199adcc4571bf24cdaaab553d77d2",
+  "src/main.zig": "2f72c425391bd142d3b6972635370128cb26db87bda1ddc9b22a73ba893f6cdd",
+  "src/states/play.zig": "7c568daf0d6fc46bf34d5a260c205c9d1d9798eceb8678506b57021150e75816",
+  "src/simulation/atmosphere_water.zig": "a1addeba8200c858b8b0774e310f3929e38f79c8adbf61ca14cee779015e82b9",
+  "src/simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+  "web/shell.html": "47e569942525043b43187b598b9659d359fbf3c0e5ddf7ee89443fab17ef8ed4",
+  "web/advance-day.js": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+  "web/build.sh": "4c680e6db57603c514bc1e8c9ba78edf5a261c600b347a14d6b6dbf14f2560ce"
+}

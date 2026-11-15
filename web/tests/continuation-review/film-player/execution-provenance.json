@@ -1,0 +1,15 @@
+{
+  "inputs_binary": {
+    "web/tests/egl-film-player-prepare.py": "2a4199ad6a639ec05a2cb9543c1983d33aad69ce7a0ffda84636faf458617eaf",
+    "../site-tmp/natural60-day60.json": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "../site-tmp/film-player/build/bin/stella-egl": "1312479cbdff3c2726a5f292ff4daa3054d7694a8499d9aadf22b7a7d51504e2",
+    "../site-tmp/film-player/src/main.zig": "a4c6531bb0707f97aaf49949068d152fd4ad8dacfffed188ba68371ce856c47c"
+  },
+  "decompressed_logs": {
+    "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prepare.log": "340a44a9d0d3ba936ab9cef6f3bf550263ce2453a9e0db28d835b083947e2eeb",
+    "first-build-failure.log": "249e2c4feb09372531355c91f450c3d93b81215531c2ea3f1ef55d08645cd506",
+    "run.log": "e1dbb8683bfb1f0f76056c35441b3d6331b5bc11f83b763daf1e093926928fae"
+  },
+  "command": "STELLA_ORIGIN_COUPLED=1 STELLA_ORIGIN_FAST=1 QA_PULSE_SAVE=<natural60-day60.json> LIBGL_ALWAYS_SOFTWARE=1 EGL_PLATFORM=surfaceless <film-player/build/bin/stella-egl>"
+}

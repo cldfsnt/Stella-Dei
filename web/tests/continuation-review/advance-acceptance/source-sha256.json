@@ -1,0 +1,22 @@
+{
+  "head": "e957a3f948d980418ab4927fa7786127ddc258a5",
+  "production": {
+    "main.zig": "2f72c425391bd142d3b6972635370128cb26db87bda1ddc9b22a73ba893f6cdd",
+    "advance_day.zig": "9ef5617e5dc3d8310e0ebb6b34071ebbe20199adcc4571bf24cdaaab553d77d2",
+    "states/play.zig": "7c568daf0d6fc46bf34d5a260c205c9d1d9798eceb8678506b57021150e75816",
+    "save_game.zig": "55e70c872bc4a2cd523739a1e9f7ed9afb8d46ad6b1756886100e90b0f69575d",
+    "performance_details.zig": "943bf9c0ed1c3c60e91fa782d602fa38db115431f9f67943f81bf96ff82a1a64",
+    "simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+    "simulation/atmosphere_water.zig": "a1addeba8200c858b8b0774e310f3929e38f79c8adbf61ca14cee779015e82b9"
+  },
+  "copied": {
+    "main.zig": "e810242e270a6de56a668fb71cf1fa573d97199e714c26152210b6949ccc5775",
+    "advance_day.zig": "9ef5617e5dc3d8310e0ebb6b34071ebbe20199adcc4571bf24cdaaab553d77d2",
+    "states/play.zig": "9628ac87925157fd1d79924513b02e0fe9c80cae6afacef07e94655d6e583c81",
+    "save_game.zig": "b9e83e189b3f4e08fc0734a86b95be682c57add43d38b286ca4cb0ab475f2de6",
+    "performance_details.zig": "943bf9c0ed1c3c60e91fa782d602fa38db115431f9f67943f81bf96ff82a1a64",
+    "simulation/planet.zig": "93fcb1a63f549a990b6e83e51906106a7e24f097698998cab6d5dc5f568f3f46",
+    "simulation/atmosphere_water.zig": "a1addeba8200c858b8b0774e310f3929e38f79c8adbf61ca14cee779015e82b9"
+  },
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+}

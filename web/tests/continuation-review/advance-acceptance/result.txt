@@ -1,0 +1,13 @@
+ADVANCE_PASSIVE_REFRESH glyphs=34 targets=34 actual_living_cells=true cache_cleared_before_final=true
+ADVANCE_CURSOR first_delta_zero=true next_delta_live=true
+ADVANCE_ACCEPT complete60_exact_save=true exported_start_status_cancel=true writes_blocked=true one_final_real_draw=true held_input_latch=true
+ADVANCE_PARTIAL matched_real_final_draw_fullsave_exact=true
+ADVANCE_CANCEL mode=0 partial_ticks=7 no_extra_tick=true final_redraw=true pause=true
+ADVANCE_RECOVERY permanent_after_context_restore=true no_render_or_tick=true exact_partial_save=true unsafe_save_denied=true explicit_reload_required=true
+ADVANCE_PARTIAL matched_real_final_draw_fullsave_exact=true
+ADVANCE_CANCEL mode=2 partial_ticks=7 no_extra_tick=true final_redraw=true pause=true
+ADVANCE_PARTIAL matched_real_final_draw_fullsave_exact=true
+ADVANCE_CANCEL mode=3 partial_ticks=7 no_extra_tick=true final_redraw=true pause=true
+ADVANCE_CANCEL mode=4 partial_ticks=7 no_extra_tick=true final_redraw=true pause=true
+ADVANCE_ACCEPT_PASS original_restored=true
+ORIGIN_SAVE bytes=10474651 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=475572

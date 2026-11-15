@@ -1,0 +1,14 @@
+# Advance one day UI candidate
+
+Explicit paused-Origin start from Speed. The native scheduler owns sixty 1440-second ticks, cancellation and final redraw. The opaque modal displays completed tick count and simulated hours, not a speed estimate. Cancel preserves completed progress. Unknown/stale/regressed status cannot become success or trigger a restart. A pre-start token prevents treating an old completed job as a new completion.
+
+Native dismissal acknowledgement is required after final redraw; the modal remains until `dismissed` and neutral-input `input_blocked=false`. Hidden tab or unavailable graphics context calls the native environment guard; the UI describes stopped simulation waiting for restoration, not continuing advancement. Keyboard Tab/Enter/Space retain accessible modal controls; game input/tool/save/load controls are blocked by modal/inert/capture guards in addition to native guards.
+
+Tests: controller and actual shell VM mocks cover start, duplicate clicks, partial cancel, redraw wait, explicit dismissal/neutral-input wait, refusal/unknown/stale status, old WASM missing exports, context/visibility handling, input blocking and repeat sessions. These are mocks, not actual engine tick or browser graphics acceptance. Native acceptance is owned separately. No deployment from this checkpoint.
+
+## Genuine context-loss correction
+A genuine graphics-context loss permanently enters recovery until reload. `webglcontextrestored` is never renderer readiness. UI remains opaque and stopped, with an explicit reload warning. Recovery save is offered only when native `recovery_save_allowed` is true; it uses existing storage.save and reports success only after its FS.syncfs durability completion. Save failure is retained visibly; no automatic reload. Context loss outside an advance also reveals recovery rather than leaving a silently frozen game. Mock tests cover these distinctions; actual renderer restoration is not implemented or claimed.
+
+Parent's first browser mock exposed timer receiver binding: direct `setInterval`/`clearInterval` hook properties were called as methods of the hooks object, throwing before native start in browser. Replaced them with global-call arrow wrappers in shell and local fixture. The failed initial browser flow is not acceptance; browser rerun is required. Added regression assertion.
+
+Release audit correction: blocked keyup/mouseup/pointerup could strand GLFW's held-input state. Window capture now permits release/cancel events through to native guarded callbacks while still blocking presses/movement/clicks. The mock downstream release path verifies held-state clearance and unchanged press rejection; this is not a claim of real-device held-key testing. Context recovery hides the generic wait-for-redraw subtitle, avoiding a contradictory instruction.

@@ -1,0 +1,27 @@
+{
+  "head": "5f65009571b7f69d8a2a6b3aa8ec7cf7018f7f69",
+  "production": {
+    "main.zig": "a07a6738f8492285c62ea938ed14ac5b64082d602555f59e063776f58a30dce4",
+    "simulation/planet.zig": "3b667056f1bce22d1ea2a38ea24b8744453e5374d45dff3ed1052d23a69b2b87",
+    "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+    "states/play.zig": "42132ddb9d87fa5c8193f460dee2225c176584da0ca000cd2648e18f331f32cf",
+    "loop.zig": "42dac83bc4714a512f2284cea4163f062cf3e9d0d61f65526ebc239e9e66a1f0"
+  },
+  "copied": {
+    "main.zig": "f51759ff028507553cd016575f9c06c26ae826ba92fa6910847d8bd91d3d4ec3",
+    "simulation/planet.zig": "9caef3d683c873ae14b7239d794043f3c6e4f7a1deac50d6989a7987f854f0c8",
+    "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+    "states/play.zig": "2cc5bba9b1fd8bd47638b55d746fdd4f7c742d632e740df94cdf5666eed30172",
+    "loop.zig": "7ce70544e19ebcffbdb47dc7a919a4a4a0e6224cd8834ffd2400bf650aed173c"
+  },
+  "artifacts": {
+    "../natural60-day60.json": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "build/bin/stella-egl": "9f60f9c3a93baf21110dd119d5e41c25f37c1ba015b4e0d9f412d70e2201d27d",
+    "trial-0.json": "5603c2e6bbd260f5f42e9a202d9d5b86e3b010a8ea1c707259ed5d2abfe439ae",
+    "trial-1.json": "5603c2e6bbd260f5f42e9a202d9d5b86e3b010a8ea1c707259ed5d2abfe439ae",
+    "trial-2.json": "5603c2e6bbd260f5f42e9a202d9d5b86e3b010a8ea1c707259ed5d2abfe439ae",
+    "trial-3.json": "5603c2e6bbd260f5f42e9a202d9d5b86e3b010a8ea1c707259ed5d2abfe439ae",
+    "trial-4.json": "5603c2e6bbd260f5f42e9a202d9d5b86e3b010a8ea1c707259ed5d2abfe439ae",
+    "trial-5.json": "5603c2e6bbd260f5f42e9a202d9d5b86e3b010a8ea1c707259ed5d2abfe439ae"
+  }
+}

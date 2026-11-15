@@ -1,0 +1,28 @@
+1/7 qa_edge_source.test.prepared edge source exact native parity...OK
+2/7 simulation.atmosphere_water.test.phase conserves mass never rains below saturation and has bounded finite rates...OK
+3/7 simulation.atmosphere_water.test.rain diagnostic is a correctly weighted daily-rate mean not timestep multiplied...OK
+4/7 simulation.atmosphere_water.test.transport follows velocity and distance with donor-bounded outgoing budget...OK
+5/7 simulation.atmosphere_water.test.phase one-day and fifteen-day outcomes converge at 1 60 360 1440 second steps...PHASE_DT days=1 dt=1 vapor=126.42411176571144 mass_error=-0.0000000000017053025658242404
+PHASE_DT days=1 dt=60 vapor=126.42411176571149 mass_error=-0.00000000000022737367544323206
+PHASE_DT days=1 dt=360 vapor=126.4241117657115 mass_error=0
+PHASE_DT days=1 dt=1440 vapor=126.42411176571156 mass_error=0.0000000000007958078640513122
+PHASE_DT days=15 dt=1 vapor=199.99993881953566 mass_error=-0.000000000003637978807091713
+PHASE_DT days=15 dt=60 vapor=199.99993881953608 mass_error=0.0000000000018189894035458565
+PHASE_DT days=15 dt=360 vapor=199.9999388195359 mass_error=-0.000000000004320099833421409
+PHASE_DT days=15 dt=1440 vapor=199.99993881953586 mass_error=0.0000000000022737367544323206
+OK
+6/7 simulation.atmosphere_water.test.two-cell coupled exchange and gather transport stay conservative across timesteps...COUPLED_DT days=1 dt=1 liquid={ 8.185948612328385e2, 1.0531915971471687e3 } vapor={ 2.074450064182055e1, 1.0746904097816854e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=1 dt=60 liquid={ 8.18594931404473e2, 1.053191301715352e3 } vapor={ 2.068335634457746e1, 1.0753041053559816e2 } liquid_error_vs1s={ 7.017163443379104e-5, -2.954318167667225e-4 }
+COUPLED_DT days=1 dt=360 liquid={ 8.185973880024231e2, 1.0531809599670742e3 } vapor={ 2.0374104019504237e1, 1.0784754801099926e2 } liquid_error_vs1s={ 2.5267695846196148e-3, -1.0637180094590803e-2 }
+COUPLED_DT days=1 dt=1440 liquid={ 8.186352672056381e2, 1.0530217066217297e3 } vapor={ 1.928383950881584e1, 1.0905918666381655e2 } liquid_error_vs1s={ 4.040597279959002e-2, -1.6989052543908656e-1 }
+COUPLED_DT days=15 dt=1 liquid={ 0e0, 1.9000000000002094e3 } vapor={ 8.323560252138874e-35, 1.0000000000002558e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=15 dt=60 liquid={ 0e0, 1.9000000000001578e3 } vapor={ 8.299175051180785e-35, 1.0000000000000043e2 } liquid_error_vs1s={ 0e0, -5.161382432561368e-11 }
+COUPLED_DT days=15 dt=360 liquid={ 0e0, 1.8999999999999616e3 } vapor={ 8.180098575041795e-35, 1.0000000000000007e2 } liquid_error_vs1s={ 0e0, -2.4783730623312294e-10 }
+COUPLED_DT days=15 dt=1440 liquid={ 0e0, 1.8999999999999857e3 } vapor={ 7.819479944760153e-35, 1.0000000000000001e2 } liquid_error_vs1s={ 0e0, -2.2373569663614035e-10 }
+OK
+7/7 simulation.atmosphere_water.test.f32 scratch gather is bounded and conservative within float roundoff...FLOAT_GATHER dt=1 relative_mass_error=0.00007720947265625
+FLOAT_GATHER dt=60 relative_mass_error=0.000001286097935267857
+FLOAT_GATHER dt=360 relative_mass_error=0.00000023978097098214287
+FLOAT_GATHER dt=1440 relative_mass_error=0
+OK
+All 7 tests passed.

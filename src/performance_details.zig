@@ -53,7 +53,7 @@ fn percentile95(values:[]const f64)f64{
 pub var metrics=Metrics{};
 // Volatile diagnostic generation only: never saved, sent or used by simulation.
 pub var world_serial:u32=0;
-pub fn worldChanged()void{@import("manual_transport.zig").reset();world_serial+%=1;metrics.setEnabled(false);@import("patch_watch.zig").current.stop("world changed");}
+pub fn worldChanged()void{@import("advance_day.zig").invalidate("world changed");@import("manual_transport.zig").reset();world_serial+%=1;metrics.setEnabled(false);@import("patch_watch.zig").current.stop("world changed");}
 pub fn interrupted()void{if(metrics.enabled)metrics.interrupted=true;}
 
 test "opt in, bounded windows, finite diagnostics and reset" {

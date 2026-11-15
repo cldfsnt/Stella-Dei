@@ -336,10 +336,10 @@ pub const PlayState = struct {
                 std.math.sin(pitch),
             );
             const speed = (self.cameraPos.length() - self.planet.radius) / 100.0;
-            if (window.getKey(.w) == .press) {
+            if (!self.cameraInputBlocked() and window.getKey(.w) == .press) {
                 self.cameraPos = self.cameraPos.add(forward.scale(speed));
             }
-            if (window.getKey(.s) == .press) {
+            if (!self.cameraInputBlocked() and window.getKey(.s) == .press) {
                 self.cameraPos = self.cameraPos.sub(forward.scale(speed));
             }
 
@@ -709,6 +709,7 @@ pub const PlayState = struct {
     }
 
     pub fn update(self: *PlayState, game: *Game, dt: f32) void {
+        if(@import("../advance_day.zig").blocksInput()){self.pointerOnPlanet=false;self.rawFrameDelta=null;self.simulationClock.reset();return;}
         @import("../manual_transport.zig").guard(self,@import("../performance_details.zig").world_serial);
         if(@import("../patch_watch.zig").current.active)@import("../patch_watch.zig").current.guard(self.selectedPoint,@import("../performance_details.zig").world_serial,self.gameTime,@import("../patch_watch.zig").nowMs(),self.paused or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails);
         if(self.paused or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails)@import("../performance_details.zig").interrupted();
@@ -1126,7 +1127,7 @@ pub const PlayState = struct {
     }
 
     fn cameraInputBlocked(self: *const PlayState) bool {
-        return self.showEscapeMenu or self.showPlanetControl or self.showPointDetails;
+        return @import("../advance_day.zig").blocksInput() or self.showEscapeMenu or self.showPlanetControl or self.showPointDetails;
     }
 
     pub fn mouseScroll(self: *PlayState, _: *Game, yOffset: f64) void {
@@ -1219,6 +1220,11 @@ pub const PlayState = struct {
     }
 
     pub fn renderUI(self: *PlayState, game: *Game, renderer: *Renderer) void {
+        if(@import("../advance_day.zig").blocksInput()){
+            const advance=&@import("../advance_day.zig").current;
+            if(advance.phase!=.running and advance.visible and advance.context_ok and !advance.recovery_required)self.renderMobileUI(game,renderer);
+            return;
+        }
         const size = renderer.framebufferSize;
         const vg = renderer.vg;
         if (@import("builtin").target.cpu.arch == .wasm32) {
@@ -1935,6 +1941,8 @@ pub const PlayState = struct {
         self.renderSprouts(vg, vp, width, height, toolBottom);
         self.renderPropaguleFeedback(vg,vp,width,height,toolBottom);
         self.renderGodEffects(vg, vp, width, height, toolBottom);
+        // Terminal advance redraw refreshes living glyphs and pick targets, never controls.
+        if(@import("../advance_day.zig").blocksInput())return;
         // Screen-space selection only; not a representation of brush radius.
         if (self.pointerOnPlanet and !self.cameraInputBlocked() and !(self.planet.worldMode == .origin and self.selectedTool == .PlaceVegetation)) {
             const p = self.planet.transformedPoints[self.selectedPoint];

@@ -25,6 +25,7 @@ var renderer: Renderer = undefined;
 const SplashScreenState = @import("states/splash_screen.zig").SplashScreenState;
 const MainMenuState = @import("states/main_menu.zig").MainMenuState;
 const GameIntroState = @import("states/game_intro.zig").GameIntroState;
+const AdvanceDay = @import("advance_day.zig");
 const PlayState = @import("states/play.zig").PlayState;
 
 pub const log_level = .debug;
@@ -74,6 +75,7 @@ pub const Game = struct {
     }
 
     pub fn setState(self: *Game, comptime NewState: type) void {
+        AdvanceDay.invalidate("world changed");
         std.log.info("Loading {s}...", .{@typeName(NewState)});
         defer std.log.info("Loaded", .{});
 
@@ -119,8 +121,10 @@ pub const Game = struct {
 };
 
 var game: Game = undefined;
+var advance_cursor_reset:bool=false;
 
 fn mousePressed(window: glfw.Window, button: glfw.mouse_button.MouseButton) void {
+    if(AdvanceDay.blocksInput())return;
     _ = window;
     inline for (std.meta.fields(GameState)) |field| {
         // if it is the current game state
@@ -136,6 +140,7 @@ fn mousePressed(window: glfw.Window, button: glfw.mouse_button.MouseButton) void
 }
 
 fn mouseScroll(window: glfw.Window, xOffset: f64, yOffset: f64) void {
+    if(AdvanceDay.blocksInput())return;
     _ = window;
     _ = xOffset;
     inline for (std.meta.fields(GameState)) |field| {
@@ -152,6 +157,8 @@ fn mouseScroll(window: glfw.Window, xOffset: f64, yOffset: f64) void {
 }
 
 fn cursorPosCallback(window: glfw.Window, xpos: f64, ypos: f64) void {
+    if(AdvanceDay.blocksInput())return;
+    if(advance_cursor_reset){game.oldMouseX=@floatCast(xpos);game.oldMouseY=@floatCast(ypos);advance_cursor_reset=false;}
     _ = window;
     inline for (std.meta.fields(GameState)) |field| {
         // if it is the current game state
@@ -175,6 +182,7 @@ fn cursorPosCallback(window: glfw.Window, xpos: f64, ypos: f64) void {
 }
 
 fn keyCallback(window: glfw.Window, key: glfw.Key, scancode: i32, action: glfw.Action, mods: glfw.Mods) void {
+    if(AdvanceDay.blocksInput())return;
     if (key == .F11 and action == .press) {
         if (window.getMonitor() == null) {
             const monitor = glfw.Monitor.getPrimary().?;
@@ -322,8 +330,24 @@ fn webPlayState() ?*PlayState {
         else => null,
     };
 }
+fn webEditableState() ?*PlayState {if(AdvanceDay.blocksInput())return null;return webPlayState();}
+var advance_json:[768]u8=undefined;
+pub fn advanceStatusForState(state:?*PlayState,ok:bool)[*:0]const u8 {
+ const c=&AdvanceDay.current;var stream=std.io.fixedBufferStream(advance_json[0..advance_json.len-1]);
+ std.json.stringify(.{.ok=ok,.available=if(state)|v|v.planet.worldMode==.origin else false,.token=c.token,.world=c.world,.phase=@tagName(c.phase),.busy=c.busy(),.running=c.phase==.running,.redraw_pending=c.phase==.redraw,.waiting_for_view=c.phase==.redraw and (!c.visible or !c.context_ok),.completed=c.completed,.total=@as(u32,60),.seconds=c.completed*1440,.reason=c.reason,.paused=if(state)|v|v.paused else false,.redraw_complete=!c.busy() and !c.recovery_required,.recovery_required=c.recovery_required,.recovery_save_allowed=if(state)|v|c.canRecoverySave(v,PerformanceDetails.world_serial) else false,.dismissed=c.dismissed,.input_blocked=c.blocks(),.visible=c.visible,.context_ok=c.context_ok},.{},stream.writer()) catch return "{}";
+ const n=stream.pos;advance_json[n]=0;return @ptrCast(&advance_json);
+}
+pub fn advanceStartForState(state:*PlayState,world:u32,expected:u32)bool {
+ if(!AdvanceDay.current.start(state,world,expected))return false;
+ ManualTransport.reset();PatchWatch.current.stop("explicit day advance");PerformanceDetails.interrupted();PerformanceDetails.metrics.setEnabled(false);return true;
+}
+export fn stella_advance_start(expected:u32)[*:0]const u8 {const state=webPlayState();const ok=if(state)|v|advanceStartForState(v,PerformanceDetails.world_serial,expected) else false;return advanceStatusForState(state,ok);}
+export fn stella_advance_status()[*:0]const u8 {return advanceStatusForState(webPlayState(),true);}
+export fn stella_advance_cancel(token:u32)[*:0]const u8 {const ok=token!=0 and token==AdvanceDay.current.token;if(ok)AdvanceDay.current.cancel("cancelled by player");return advanceStatusForState(webPlayState(),ok);}
+export fn stella_advance_dismiss(token:u32)[*:0]const u8 {const ok=AdvanceDay.current.dismiss(token);return advanceStatusForState(webPlayState(),ok);}
+export fn stella_advance_environment(visible:i32,context_ok:i32)[*:0]const u8 {AdvanceDay.current.environment(visible==1,context_ok==1);return advanceStatusForState(webPlayState(),true);}
 export fn stella_scene_resolution_set(value:i32)i32 {
-    if(webPlayState()==null or value<0)return 0;
+    if(webEditableState()==null or value<0)return 0;
     const choice=@import("render_scale.zig");const before=choice.percent();
     if(!choice.set(@intCast(value)))return 0;
     if(before!=choice.percent())PerformanceDetails.interrupted();
@@ -332,13 +356,13 @@ export fn stella_scene_resolution_set(value:i32)i32 {
 export fn stella_scene_resolution_get()u32{return @import("render_scale.zig").percent();}
 
 export fn stella_zoom(steps: f32) void {
-    if (webPlayState()) |state| state.zoom(steps);
+    if (webEditableState()) |state| state.zoom(steps);
 }
 export fn stella_focus_land() i32 {
-    return if (webPlayState()) |state| (if (state.focusLand()) @as(i32, 1) else 0) else -1;
+    return if (webEditableState()) |state| (if (state.focusLand()) @as(i32, 1) else 0) else -1;
 }
 export fn stella_reset_view() void {
-    if (webPlayState()) |state| state.resetView();
+    if (webEditableState()) |state| state.resetView();
 }
 export fn stella_camera_distance() f32 {
     return if (webPlayState()) |state| state.cameraDistance else -1;
@@ -350,10 +374,10 @@ export fn stella_target_distance() f32 {
 const ManualTransport=@import("manual_transport.zig");
 export fn stella_transport_options()[*:0]const u8{return if(webPlayState())|s|ManualTransport.options(s,PerformanceDetails.world_serial).ptr else "{\"available\":false,\"reason\":\"Start an Origin world first\"}";}
 export fn stella_transport_status()[*:0]const u8{return if(webPlayState())|s|ManualTransport.status(s,PerformanceDetails.world_serial).ptr else "{\"pending\":false,\"token\":0}";}
-export fn stella_transport_prepare(world:u32,cell:i32,slot:i32,target:i32,id:[*:0]const u8)[*:0]const u8{return if(webPlayState())|s|ManualTransport.prepare(s,PerformanceDetails.world_serial,world,cell,slot,target,std.mem.span(id)).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
-export fn stella_transport_execute(token:u32)[*:0]const u8{return if(webPlayState())|s|ManualTransport.execute(s,PerformanceDetails.world_serial,token).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_transport_prepare(world:u32,cell:i32,slot:i32,target:i32,id:[*:0]const u8)[*:0]const u8{return if(webEditableState())|s|ManualTransport.prepare(s,PerformanceDetails.world_serial,world,cell,slot,target,std.mem.span(id)).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_transport_execute(token:u32)[*:0]const u8{return if(webEditableState())|s|ManualTransport.execute(s,PerformanceDetails.world_serial,token).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
 export fn stella_transport_cancel()void{ManualTransport.cancel();}
-export fn stella_transport_inspect(world:u32,target:i32,id:[*:0]const u8)[*:0]const u8{return if(webPlayState())|s|ManualTransport.inspect(s,PerformanceDetails.world_serial,world,target,std.mem.span(id)).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_transport_inspect(world:u32,target:i32,id:[*:0]const u8)[*:0]const u8{return if(webEditableState())|s|ManualTransport.inspect(s,PerformanceDetails.world_serial,world,target,std.mem.span(id)).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
 
 var lifeSnapshotBuffer: [8192]u8 = undefined;
 /// On-demand current-cell snapshot, not a fabricated historical lineage tree.
@@ -419,12 +443,12 @@ export fn stella_selected_elevation() f32 {
     return if (webPlayState()) |state| state.planet.elevation[state.selectedPoint] else -1;
 }
 export fn stella_adjust_water(expected_point: u32, delta_m: f32) f32 {
-    const state=webPlayState() orelse return std.math.nan(f32);
+    const state=webEditableState() orelse return std.math.nan(f32);
     return state.adjustSelectedWater(expected_point, delta_m);
 }
 
 export fn stella_set_water_target(expected_point:u32,target_m:f32) f32 {
-    const state=webPlayState() orelse return std.math.nan(f32);
+    const state=webEditableState() orelse return std.math.nan(f32);
     return state.setSelectedWaterTarget(expected_point,target_m);
 }
 
@@ -440,7 +464,7 @@ export fn stella_god_target() [*:0]const u8 {
 }
 var godActionBuffer:[4096]u8=undefined;
 export fn stella_god_action(kind:u32,expected:u32) [*:0]const u8 {
-    const state=webPlayState() orelse return "{\"failure\":\"no_world\"}";
+    const state=webEditableState() orelse return "{\"failure\":\"no_world\"}";
     if(kind==3){
         const ignition=state.applyIgnition(expected);
         var stream=std.io.fixedBufferStream(godActionBuffer[0..godActionBuffer.len-1]);
@@ -457,7 +481,7 @@ export fn stella_god_action(kind:u32,expected:u32) [*:0]const u8 {
 /// Leave placement overlays without moving the view or changing time/pause.
 var speed_json:[512]u8=undefined;
 export fn stella_set_speed(seconds:f32)i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     if(!std.math.isFinite(seconds) or (seconds!=3600 and seconds!=21600 and seconds!=86400))return -1;
     state.timeScale=seconds;state.simulationClock.reset();return 1;
 }
@@ -471,11 +495,11 @@ const PerformanceDetails=@import("performance_details.zig");
 const PatchWatch=@import("patch_watch.zig");
 var patch_watch_json:[4096]u8=undefined;
 export fn stella_patch_watch_start(expected:i32)i32 {
- const state=webPlayState() orelse return -1;
+ const state=webEditableState() orelse return -1;
  return patchWatchStartForState(state,expected);
 }
 export fn stella_patch_watch_start_checked(expected:i32,world:u32,resume_explicit:i32)i32 {
- const state=webPlayState() orelse return -1;
+ const state=webEditableState() orelse return -1;
  return patchWatchStartCheckedForState(state,expected,world,resume_explicit==1);
 }
 pub fn patchWatchStartCheckedForState(state:*PlayState,expected:i32,world:u32,resume_explicit:bool)i32 {
@@ -505,7 +529,7 @@ export fn stella_patch_watch_snapshot()[*:0]const u8 {
 
 var performance_json:[2048]u8=undefined;
 export fn stella_performance_enable(enabled:i32)i32 {
-    if(webPlayState()==null){PerformanceDetails.metrics.setEnabled(false);return -1;}
+    if(webEditableState()==null){PerformanceDetails.metrics.setEnabled(false);return -1;}
     PerformanceDetails.metrics.setEnabled(enabled==1);return 1;
 }
 export fn stella_performance_snapshot()[*:0]const u8 {
@@ -520,55 +544,55 @@ export fn stella_performance_snapshot()[*:0]const u8 {
 }
 
 export fn stella_fit_life() i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     const size=game.window.getFramebufferSize();
     return state.fitLivingClusterResult(@floatFromInt(size.width),@floatFromInt(size.height));
 }
 
 export fn stella_find_detritus(restart:u32) i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     if(restart==2){state.detritusFinder=.{};return -4;}
     return state.findDetritus(restart==1);
 }
 export fn stella_find_feeding(restart:u32) i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     if(restart==2){state.feedingFinder=.{};return -4;}
     return state.findRecordedFeeding(restart==1);
 }
 
 export fn stella_find_life() i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     const size=game.window.getFramebufferSize();
     return state.findLivingClusterResult(@floatFromInt(size.width),@floatFromInt(size.height));
 }
 
 export fn stella_watch_life() i32 {
-    const state=webPlayState() orelse return 0;
+    const state=webEditableState() orelse return 0;
     state.watchLife();
     return 1;
 }
 
 export fn stella_seed_colony(expected_point:u32) i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     return state.seedSelectedColony(expected_point);
 }
 
 export fn stella_make_nursery(expected_point:u32) i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     return state.makeSelectedNursery(expected_point);
 }
 
 export fn stella_make_pond(expected_point:u32) i32 {
-    const state=webPlayState() orelse return -1;
+    const state=webEditableState() orelse return -1;
     return state.makeSelectedPond(expected_point);
 }
 
 export fn stella_test_action(tool: i32) i32 {
-    return if (webPlayState()) |state| @intFromBool(state.testAction(tool)) else 0;
+    return if (webEditableState()) |state| @intFromBool(state.testAction(tool)) else 0;
 }
 
 export fn stella_test_pick(x: f32, y: f32) i32 {
-    if (webPlayState()) |state| {
+    if (webEditableState()) |state| {
         state.mouseMoved(&game, x, y, 0, 0);
         return if (state.pointerOnPlanet) @intCast(state.selectedPoint) else -1;
     }
@@ -577,6 +601,13 @@ export fn stella_test_pick(x: f32, y: f32) i32 {
 
 // Save data is durable only after the shell's FS.syncfs(false) callback.
 export fn stella_save() i32 {
+    if(AdvanceDay.current.recovery_required){
+      const state=webPlayState() orelse return -4;
+      if(!AdvanceDay.current.canRecoverySave(state,PerformanceDetails.world_serial))return -4;
+      @import("save_game.zig").write(state,game.allocator) catch return -2;
+      return 0; // Shell must still complete FS.syncfs(false) before claiming durability.
+    }
+    if(AdvanceDay.blocksInput())return -4;
     if (!is_web or !web_initialized) return -1;
     web_loop.pump(1024);
     const state = webPlayState() orelse return -1;
@@ -588,6 +619,7 @@ export fn stella_save() i32 {
 }
 
 export fn stella_load() i32 {
+    if(AdvanceDay.blocksInput())return -4;
     if (!is_web or !web_initialized) return -3;
     const saves = @import("save_game.zig");
     var parsed = saves.read(game.allocator) catch |err| {
@@ -627,6 +659,21 @@ export fn stella_load() i32 {
     return 0;
 }
 
+/// Shared native/browser callback boundary for the explicit advance job.
+pub fn advanceFrame(raw_dt:f64)bool {
+    if(AdvanceDay.current.recovery_required)return true;
+    if(AdvanceDay.current.input_latched and AdvanceDay.current.dismissed and !AdvanceDay.busy()){
+      if(game.window.getMouseButton(.left)!=.press and game.window.getMouseButton(.right)!=.press and game.window.getMouseButton(.middle)!=.press and game.window.getKey(.w)!=.press and game.window.getKey(.s)!=.press){AdvanceDay.current.releaseInput(true);game.imgui_state.clearRetainingCapacity();const cursor=game.window.getCursorPos();game.oldMouseX=@floatCast(cursor.xpos);game.oldMouseY=@floatCast(cursor.ypos);advance_cursor_reset=true;if(webPlayState())|state|{state.dragStart=za.Vec2.new(game.oldMouseX,game.oldMouseY);state.pointerOnPlanet=false;state.rawFrameDelta=null;state.simulationClock.reset();}}
+    }
+    if(AdvanceDay.busy()){
+      if(webPlayState())|state|{_=AdvanceDay.current.tick(state,game.loop,PerformanceDetails.world_serial,raw_dt);}else AdvanceDay.invalidate("world unavailable");
+      game.loop.pump(16);
+      if(AdvanceDay.current.phase==.redraw and AdvanceDay.current.visible and AdvanceDay.current.context_ok){render(game.window);game.window.swapBuffers();AdvanceDay.current.didRedraw();game.imgui_state.clearRetainingCapacity();}
+      return true;
+    }
+    return false;
+}
+
 fn web_frame() callconv(.C) void {
     const now = emscripten_get_now();
     // Clamp background-tab pauses rather than simulating minutes at once.
@@ -635,6 +682,7 @@ fn web_frame() callconv(.C) void {
     web_previous_time = now;
     glfw.pollEvents();
     web_loop.pump(16);
+    if(advanceFrame(raw_dt))return;
     inline for (std.meta.fields(GameState)) |field| {
         if (std.mem.eql(u8, @tagName(std.meta.activeTag(game.state)), field.name)) {
             if (comptime @hasDecl(field.type, "update")) {

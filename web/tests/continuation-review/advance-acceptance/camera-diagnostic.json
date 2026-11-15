@@ -1,0 +1,19 @@
+{
+  "before_sha256": "20ce62cff693c8deb025f58aa2e597cb8db005ec587e01ab510b01e42618f399",
+  "after_sha256": "7112c95878a737fd3030be9053ddc36fba15d7e3893dc06b21c140deac817bbe",
+  "differing_fields": {
+    "camera_target": {
+      "before": [
+        -3441.7158203125,
+        4535.79833984375,
+        1384.090576171875
+      ],
+      "after": [
+        -3441.71630859375,
+        4535.798828125,
+        1384.0906982421875
+      ]
+    }
+  },
+  "full_snapshots_retained_locally": true
+}

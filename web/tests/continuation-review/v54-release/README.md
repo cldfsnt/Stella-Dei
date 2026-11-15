@@ -1,0 +1,15 @@
+# v54 candidate release gates (not published yet)
+
+Production scope: exact per-source atmospheric edge validation hoist (ff036dd) and explicit paused-Origin one-day advance. No timestep, physics formula, ecological trait or saved schema changes. The advance controller is volatile. Sixty1440second ticks, one per callback, globe deliberately hidden. Same paused state/requested pace; cancel retains completed ticks, final redraw then explicit dismissal and neutral held inputs. Permanent graphics-context loss stops and offers safe snapshot save only for matching paused world/time, followed by explicit reload; context-restored alone does not rebuild renderer.
+
+Native release-safe10 lifecycle/clock and34 microbial tests pass.54 JS tests pass. Actual ReleaseSafe wasm32-emscripten/singlethreaded Zig build + emcc3.1.64-O2 pass. Mock browser actual shell tests and initial caught timer-binding regression are separately documented. No Android/laptop actual WebGL gameplay or FPS claim.
+
+Edge optimization evidence: production helper100082 exact-bit comparisons native andWASM. Prior fullworld inline predecessor18arms exact saves inclRNG; clean proxy median2.2/4.7/8.2% improvement at early/day30/day60 with one regression retained. No extra cache/allocation or approximation. Bounded advance benchmark same60ticks exactsave includingcamera, native llvmpipe median~61% less tight-loop work by removing repeated draw; browser still needs60callbacks and DOM/driver overhead. No completion-time promise.
+
+Final independent native exported callback acceptance is still required. Complete60tick exactsave parity already passed; partialcancel oracle corrected for finaldraw camera normalization (1ULP) rather than discarding camera or changing production physics. Failed evidence retained by reviewer. Additional passive glyph redraw b7df233 requires final acceptance. Do not publish this candidate on this preliminary document alone.
+
+## Final release acceptance
+
+Final independent run completed on frozen e957a3f production sources with `ADVANCE_ACCEPT_PASS original_restored=true`. All saved fields retained in matched reference, including camera. Complete60ticks exactfullsave, partial7ticks cancellation, background gap/world/load cancellation, heldbutton+explicitdismiss, firstcursorzero/nextlive, safe recovery exactfile bytes and unsafe-save refusal, permanent context-restored stop passed. Deliberately cleared glyph/pick caches regenerated34 living targets before final redraw acknowledgement. Final390×700 native image visually inspected: distinct living-colony glyphs visible over terrain. No actual device/browserGPU or IndexedDB durability claim. Existing native GPA teardown diagnostic remains; not a clean leak-check claim.
+
+Mock browser timer receiver bug fixed, controller release propagation tested, contradictory recovery subtitle removed and visually rechecked. All54JavaScript,10lifecycle/clock and34microbial tests pass. Final integratedWASM artifact includes exact source hoist, passiveglyph redraw and cursorbaseline reset. No known acceptance gate left pending for this bounded feature; wider game remains ongoing development, not complete.

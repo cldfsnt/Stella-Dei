@@ -1,0 +1,11 @@
+1/10 advance_day.test.sixty exact ticks paused pace and redraw barrier...OK
+2/10 advance_day.test.cancel preserves partial progress and visibility gates redraw...OK
+3/10 advance_day.test.stale world paused and state refusals are atomic...OK
+4/10 advance_day.test.background gap context loss token exhaustion cannot advance...OK
+5/10 advance_day.test.dismissal requires correct terminal ticket and neutral input...OK
+6/10 advance_day.test.recovery save belongs only to unchanged paused job world...OK
+7/10 simulation_clock.test.fractional demand accumulated, achieved based on actual work, backlog bounded...OK
+8/10 simulation_clock.test.pause background resume and requested change never catch up...OK
+9/10 simulation_clock.test.slow speed does not lose time fractional quantum and invalid never poison...OK
+10/10 simulation_clock.test.slow active .3second frames retain actual rate observation...OK
+All 10 tests passed.
