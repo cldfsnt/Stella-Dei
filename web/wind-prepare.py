@@ -24,7 +24,14 @@ const windUI=StellaWind.mount(document,{
  message:feedback,changed:()=>{syncWorldMode();refreshStarter();}
 });
 """)
-once('function selectToolGroup(group){','function selectToolGroup(group){windUI.refresh();')
+once('function selectToolGroup(group){',"function selectToolGroup(group){if(typeof windUI!=='undefined')windUI.refresh();")
 (out/'shell.html').write_text(s)
 shutil.copy2(root/'wind-storage.js',out/'stella-storage.js')
 print('Staged isolated main-game wind frontend only. Native exports/build/actual-flow gates remain required.')
+
+# Test adapter supplies the newly loaded controller in the existing shell VM.
+tests=out/'tests';tests.mkdir(exist_ok=True)
+for p in (root/'tests').glob('*.test.cjs'):shutil.copy2(p,tests/p.name)
+p=tests/'shell.test.cjs';t=p.read_text();needle="sandbox.WorldEcology=require('../world-ecology.js');";assert t.count(needle)==1;t=t.replace(needle,needle+"sandbox.StellaWind=require('../wind-origin.js');");p.write_text(t)
+
+for p in (root/'tests').glob('*.py'):shutil.copy2(p,tests/p.name)

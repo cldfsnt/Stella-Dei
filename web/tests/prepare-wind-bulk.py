@@ -1,0 +1,21 @@
+from pathlib import Path
+import shutil,json,hashlib
+r=Path(__file__).resolve().parents[2];src=r.parent/'site-tmp/wind-player/src';b=r.parent/'site-tmp/wind-bulk';o=b/'src';assert not o.exists();shutil.copytree(src,o)
+(b/'source-before.json').write_text(json.dumps({str(p.relative_to(src)):hashlib.sha256(p.read_bytes()).hexdigest()for p in src.rglob('*.zig')},indent=2))
+s=(r/'web/tests/wind-player-qa.txt').read_text();a=s.index('      std.debug.assert(state.planet.windDispersal.enabled);');e=s.index('      const initial=',a)
+s=s[:a]+'''      std.debug.assert(state.planet.windDispersal.enabled);var eligible=std.ArrayList(usize).init(a);for(0..state.planet.microbeCells.len)|i|{if(state.planet.seedEligibility(i)==.eligible)try eligible.append(i);}if(eligible.items.len==0)return error.NoEligibleFounders;
+      try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/{s}-preseed.json",.{arm}),.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});
+      try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/{s}-geometry.json",.{arm}),.data=try std.json.stringifyAlloc(a,state.planet.transformedPoints,.{})});
+      qaWindEmit("ELIGIBILITY",.{.arm=arm,.indices=eligible.items});var planted:usize=0;var refused:usize=0;
+      for(eligible.items)|point|{const before=state.planet.microbeCells[point];const co2=state.planet.averageCarbonDioxideMass;const oxygen=state.planet.averageOxygenMass;const success=if(pioneer)state.planet.seedPioneer(point)else state.planet.seedMicrobes(point);if(success)planted+=1 else refused+=1;
+      qaWindEmit("FOUNDER",.{.arm=arm,.cell=point,.success=success,.before=before,.after=state.planet.microbeCells[point],.co2_before=co2,.co2_after=state.planet.averageCarbonDioxideMass,.oxygen_before=oxygen,.oxygen_after=state.planet.averageOxygenMass,.area=state.planet.getMeanPointArea(),.config=state.planet.windDispersal});}
+      qaWindEmit("BULK_RECEIPT",.{.eligible=eligible.items.len,.planted=planted,.refused=refused});
+'''+s[e:]
+a=s.index('      const visited=');e=s.index('state.cameraPos=',a)
+s=s[:a]+'''      var point:usize=0;var chosen:u64=std.math.maxInt(u64);var form:u32=0;for(state.planet.microbeCells,0..)|cell,i|for(cell.cohorts)|c|{if(c.biomass>0 and c.parent>0 and c.aerial_allocation>0 and c.lineage<chosen){chosen=c.lineage;point=i;form=@intFromEnum(M.producerForm(c));}};if(chosen==std.math.maxInt(u64)){for(state.planet.microbeCells,0..)|cell,i|for(cell.cohorts)|c|{if(c.biomass>0 and c.lineage<chosen){chosen=c.lineage;point=i;form=@intFromEnum(M.producerForm(c));}};}if(chosen==std.math.maxInt(u64)){std.debug.print("CAPTURE_NO_LIFE\\n",.{});std.process.exit(0);}state.targetCameraPos=state.planet.transformedPoints[point].norm();const visited=stella_visit_growth_form(PerformanceDetails.world_serial,form);std.debug.assert(visited==1);qaWindEmit("CAPTURE_VISIT",.{.candidate=chosen,.actual=state.colonyPeek.focused,.cell=state.selectedPoint,.form=form});'''+s[e:]
+s=s[:s.index('fn qaWindControls(')]
+(r/'web/tests/wind-bulk-qa.txt').write_text(s)
+p=o/'main.zig';m=p.read_text();a=m.index('    const saves=@import("save_game.zig");const M=');e=m.index('\nconst expect =',a);p.write_text(m[:a]+s.replace('OUTPUT',str(b))+m[e:])
+p=o/'simulation/planet.zig';s=p.read_text();needle='        const receipt=@import("wind_packet.zig").launch';assert s.count(needle)==1;s=s.replace(needle,'        const qa_source_before=self.microbeCells[index];const qa_target_before=self.microbeCells[route.index];\n'+needle);needle='        if(receipt.arrived){self.propaguleArrivals';assert s.count(needle)==1;s=s.replace(needle,'        @import("wind_audit.zig").endpoints(.{.time=time,.event=event,.from=index,.to=route.index,.area=self.getMeanPointArea(),.before_donor=qa_source_before,.after_donor=self.microbeCells[index],.before_target=qa_target_before,.after_target=self.microbeCells[route.index],.receipt=receipt});\n'+needle);p.write_text(s)
+p=o/'simulation/wind_audit.zig';s=p.read_text().replace('[4096]u8','[32768]u8');s+='\npub fn endpoints(value:anytype)void{write("WIND_ENDPOINT",value);}\n';p.write_text(s)
+(b/'source-hashes.json').write_text(json.dumps({str(p.relative_to(o)):hashlib.sha256(p.read_bytes()).hexdigest()for p in o.rglob('*.zig')},indent=2))
