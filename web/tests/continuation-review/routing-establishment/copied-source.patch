@@ -1,0 +1,82 @@
+--- baseline/planet.zig
++++ research/planet.zig
+@@ -1,3 +1,4 @@
++pub var research_policy:u8=0;
+ const AtmosphereWater = @import("atmosphere_water.zig");
+ const Microbes = @import("microbes.zig");
+ const SurfacePhysics = @import("surface_physics.zig");
+@@ -1481,14 +1482,12 @@
+         if (self.microbeCells.len != self.vertices.len) return;
+         const dt = @max(0, options.dt * options.timeScale);
+         if (dt <= 0) return;
+-        const watch=&@import("../patch_watch.zig").current;
+-        const observing=if(watch.active and watch.owner==@intFromPtr(self))watch.beginTick(@intFromPtr(self),options.gameTime,@import("../patch_watch.zig").nowMs()) else false;
+         for (self.microbeCells, 0..) |*cell, i| {
+             if (Microbes.biomass(cell.*) <= 0 and cell.detritus <= 0) continue;
+             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
+             const before_cohorts=cell.cohorts;
+             const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
+-            if(observing)watch.record(i,flux.grazed);
++            @import("../patch_watch.zig").current.record(i,flux.grazed);
+             for(before_cohorts,0..)|old,slot|{
+                 if(old.biomass>0 and cell.cohorts[slot].biomass==0 and self.propaguleFeedback.failed(i,old.lineage,options.gameTime))self.propaguleTrackedLosses+|=1;
+             }
+@@ -1497,7 +1496,7 @@
+             self.microbeStats.grazed_carbon += @as(f64,flux.grazed)*self.getMeanPointArea();
+             self.microbeStats.grazing_respired_carbon += @as(f64,flux.grazing_respired)*self.getMeanPointArea();
+         }
+-        if(observing)watch.finishTick(options.gameTime,dt);
++        @import("../patch_watch.zig").current.finishTick(options.gameTime,dt);
+         // A resident cohort may make at most one adjacent relocation per step.
+         // Six neighbor records stay on the stack; no world-sized scratch storage.
+         for (0..self.microbeCells.len) |i| {
+@@ -1524,7 +1523,20 @@
+             const donor_start:usize = @intCast(Microbes.random(&cell.rng) % cell.cohorts.len);
+             for (0..cell.cohorts.len) |donor_offset| {
+                 const cohort = (donor_start + donor_offset) % cell.cohorts.len;
+-                if(cell.cohorts[cohort].reproduction_credit>=0.01 and cell.cohorts[cohort].biomass>=0.02){
++                if(research_policy>0 and cell.cohorts[cohort].reproduction_credit>=0.04){
++                    if(Microbes.reproduce(cell,cohort,cell,&self.microbeStats,true))continue;
++                    const large_neighbors=self.getNeighbours(i);
++                    const large_start:usize=@intCast(Microbes.random(&cell.rng)%large_neighbors.len);
++                    var large_done=false;
++                    for(0..large_neighbors.len)|large_offset|{
++                        const large_n=large_neighbors[(large_start+large_offset)%large_neighbors.len];
++                        const large_env=self.microbeEnvironment(large_n,1);
++                        if(!Microbes.habitable(large_env.depth_km,large_env.temperature))continue;
++                        if(Microbes.reproduce(cell,cohort,&self.microbeCells[large_n],&self.microbeStats,true)){large_done=true;break;}
++                    }
++                    if(large_done)continue;
++                }
++                if((research_policy!=2 or cell.cohorts[cohort].reproduction_credit>=0.04) and cell.cohorts[cohort].reproduction_credit>=0.01 and cell.cohorts[cohort].biomass>=0.02){
+                     const adjacent=self.getNeighbours(i);
+                     const n=adjacent[@intCast(Microbes.random(&cell.rng)%adjacent.len)];
+                     // Pentagon adjacency pads with self: not a dispersal attempt.
+@@ -1540,6 +1552,7 @@
+                         }
+                     }
+                 }
++                if(research_policy>0)continue;
+                 if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
+                 if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
+                 const neighbors = self.getNeighbours(i);
+--- baseline/microbes.zig
++++ research/microbes.zig
+@@ -1,5 +1,9 @@
+ //! Simplified phototrophic colonies. Carbon is kg C/m²; nutrient is kg/m².
+ //! Inherited coarse-patch motility; not individual animal taxonomy.
++pub var research_mass:f64=0;
++pub var research_credit:f64=0;
++pub var research_small:u64=0;
++pub var research_large:u64=0;
+ const std = @import("std");
+ pub const nutrient_per_carbon:f32=0.1;
+ pub const Mode=enum{sandbox,origin};
+@@ -203,6 +207,7 @@
+         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
+         applyRareMutation(&child,parent.*,organization_draw);
+     }
++    research_mass+=amount;research_credit+=credit;if(amount<0.006){research_small+=1;}else{research_large+=1;}
+     parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=credit;destination.cohorts[i]=child;
+     stats.next_lineage+=1;stats.births+=1;
+     return true;

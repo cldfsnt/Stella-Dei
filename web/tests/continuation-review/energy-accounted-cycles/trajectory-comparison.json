@@ -1,0 +1,155 @@
+{
+  "matched_daily_rows": 3456,
+  "deltas": {
+    "fast": {
+      "max_abs_delta": 1.1600000000000499e-05,
+      "case": [
+        "0.2",
+        "0.5",
+        "2",
+        "false",
+        "1",
+        "46"
+      ],
+      "old": "0.575144100",
+      "candidate": "0.575155700"
+    },
+    "slow_mass": {
+      "max_abs_delta": 6.5499999999940606e-06,
+      "case": [
+        "0.2",
+        "1",
+        "2",
+        "false",
+        "0",
+        "44"
+      ],
+      "old": "0.311856100",
+      "candidate": "0.311862650"
+    },
+    "paid_fast": {
+      "max_abs_delta": 0.00013353699999996138,
+      "case": [
+        "0.6",
+        "0.25",
+        "2",
+        "false",
+        "1",
+        "48"
+      ],
+      "old": "12.681230593",
+      "candidate": "12.681364130"
+    },
+    "paid_slow": {
+      "max_abs_delta": 7.029299999938843e-05,
+      "case": [
+        "0.6",
+        "1",
+        "2",
+        "false",
+        "1",
+        "48"
+      ],
+      "old": "6.740277294",
+      "candidate": "6.740347587"
+    },
+    "stress_fast": {
+      "max_abs_delta": 1.2836999999876753e-05,
+      "case": [
+        "0.6",
+        "0.5",
+        "2",
+        "true",
+        "0",
+        "41"
+      ],
+      "old": "1.176165372",
+      "candidate": "1.176178209"
+    },
+    "stress_slow": {
+      "max_abs_delta": 7.678000000010954e-06,
+      "case": [
+        "0.6",
+        "1",
+        "2",
+        "true",
+        "0",
+        "41"
+      ],
+      "old": "0.799524646",
+      "candidate": "0.799532324"
+    },
+    "detritus": {
+      "max_abs_delta": 3.510000000001012e-05,
+      "case": [
+        "0.2",
+        "1",
+        "0",
+        "true",
+        "0",
+        "46"
+      ],
+      "old": "0.361354600",
+      "candidate": "0.361319500"
+    },
+    "carbon": {
+      "max_abs_delta": 0.00011857900000045163,
+      "case": [
+        "0.2",
+        "1",
+        "0",
+        "true",
+        "0",
+        "48"
+      ],
+      "old": "9.521190038",
+      "candidate": "9.521308617"
+    },
+    "oxygen": {
+      "max_abs_delta": 0.00011857900000045163,
+      "case": [
+        "0.2",
+        "1",
+        "0",
+        "true",
+        "0",
+        "48"
+      ],
+      "old": "10.478809950",
+      "candidate": "10.478691371"
+    }
+  },
+  "slow_advantages": {
+    "20": {
+      "old": {
+        "wins": 2,
+        "settings": 24
+      },
+      "candidate": {
+        "wins": 2,
+        "settings": 24
+      }
+    },
+    "40": {
+      "old": {
+        "wins": 0,
+        "settings": 24
+      },
+      "candidate": {
+        "wins": 0,
+        "settings": 24
+      }
+    },
+    "48": {
+      "old": {
+        "wins": 0,
+        "settings": 24
+      },
+      "candidate": {
+        "wins": 0,
+        "settings": 24
+      }
+    }
+  },
+  "daily_extinction_disagreements": 0
+}

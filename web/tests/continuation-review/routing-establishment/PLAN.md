@@ -1,0 +1,5 @@
+# Paid offspring routing: prospective research plan
+
+No production change. Copy current full src; retain real physiology, mutation, finite gases, paid support and all original birth APIs. Three seeds42/1337/2027, stable wet and depth-only six-patch8cm mosaic at303K,180days,1440s. Policies:0 current tiny-first;1 large-first when already eligible then tiny fallback;2 large-first and defer tiny fallback until credit>=.04. No forced winner or extra protection. Original large-neighbor habitable gate excludes film; tiny exploration does not. Preserve this and report demographic confounding, not attribute outcomes to biological fitness.
+
+Actual costs differ: small .004 mass/.01 credit vs large .01/.04. Record funded mass/credit and counts, late daughters surviving1day, reproducing, peak mass, generation, relocation, resources eachtick. Mutation paths diverge with scheduling; same seeds are not identical later genomes. Endstep fates right-censored and sampled peak is lowerbound. Existing 0.001 ledger checks unchanged; failure is failure. No new conservation fix. If promising do720s controls before recommendation.

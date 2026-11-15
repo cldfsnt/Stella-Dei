@@ -1,0 +1,1 @@
+PASS: all 30 policy0 summary rows match untouched production scheduler text exactly (3seeds ×2habitats ×5checkpoints), including resources, fates, births, mass and random-path-dependent counts. This is logged-observable parity, not a full serialized state bitwise check. Both builds EXIT=0.
