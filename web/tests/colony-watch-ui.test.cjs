@@ -12,3 +12,5 @@ hooks.render('Complete',false,s);el('patch-watch-colonies').open=true;el('watch-
 hooks.render('Complete',false,s);el('cancel-patch-watch').onclick();assert(el('patch-watch-hud').hidden);
 assert.match(html,/max-height:65vh;overflow:auto/);
 console.log('PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling');
+
+assert.match(html,/body #patch-watch-colonies:not\(\[open\]\)\{display:block\}/);assert.match(html,/body #patch-watch-colonies\[hidden\]\{display:none\}/);
