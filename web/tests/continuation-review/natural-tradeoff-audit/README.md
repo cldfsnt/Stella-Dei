@@ -1,0 +1,17 @@
+# Natural inherited-strategy and plateau audit
+
+Read-only retrospective analysis of the preserved actual coupled scheduler run, days30/40/50/60, not a new simulation or causal intervention. Reproduce with `python3 web/tests/natural-tradeoff-audit.py <local-save-folder> <results.json>`. Input hashes pin the actual natural60 evidence. No production source changed.
+
+## Findings
+
+Days50→60 show ecological turnover, not stopped reproduction: births +644, recorded failed cohorts +650, autonomous relocations +11. Occupied patches remain37, living colonies70→64, biomass density sum2.48456→2.59162 (+4.31%). Nutrient-poor occupied patches (<.001 nutrient density) grow12/37→19/37; summed nutrient in occupied cells falls .40533→.30415 (not a global nutrient balance). This suggests establishment/survival and local resource limitation, not a simple inability to spawn.
+
+Only9/37 then8/37 patches have all4cohort slots occupied; none reaches .99biomass capacity. Local slot blocking remains possible and is not disproven by these global snapshots. All four end-of-tick snapshots have zero colonies satisfying BOTH propagation thresholds, despite hundreds of births between them: the scheduler spends credit/mass immediately. Zero snapshot eligibility must NOT be interpreted as a reproductive deadlock.
+
+All9 day30 co-resident pairs with differing inherited structure were included, not winner-selected. None demonstrates a broad stronger-structure takeover. At3421 both IDs vanish by40; at13594 all original IDs vanish by60, with some differential intermediate survival; at13597 all four originals persist, and the higher-structure ID19 loses biomass .0067→.0040 while lower-structure40 grows .0068→.0156. These are non-independent pairs within3patches, differing in other traits, initial masses and histories. No causal structure conclusion. Only1 of18 day30 colonies possessed BOTH actual support and positive structure, versus31of64 atday60; most initial pairs cannot demonstrate paid moist-film protection. All occupied baseline patches are aquatic1.22–18.80m deep; later minimum depth is~.16m. Lack of baseline dry-habitat success is therefore not evidence of a broken drought tradeoff.
+
+## Next bounded actual-scheduler experiment (proposed, not run)
+
+Restore immutable naturalday50 into current engine and run10simdays without intervention, recording exact event-time accounting of successful offspring versus failed establishment. Classify actual donor/child structure, support fraction and other inherited traits; destination depth/light/temp/nutrient and slot count at attempt; track child IDs through subsequent mortality/relocation. Counters must be passive, no additional RNG or altered traversal; compare full frozen final save with instrumentation disabled from identical restore. Report all predeclared depth strata (<.2m,.2–2m,2–50m,other) and paid-support strata, including zero samples. Prefer this over a nutrient addition or trait replacement that would confound the natural trajectory.
+
+The key diagnostic is whether loss occurs immediately in hostile destinations, later through food/resource depletion, or blocked attempts at full slots. Current endpoint evidence cannot distinguish those causes. Only after this measurement consider a minimal mechanism change (e.g. dispersal reach or habitat sensing with real cost); no justified production change yet. This is one natural world, not general ecological validation or browser performance evidence.

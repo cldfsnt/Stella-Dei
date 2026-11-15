@@ -1,0 +1,4 @@
+src/qa_shared_pace.zig:15:415: error: expected type '[4]simulation.microbes.Cohort', found '[4]experimental.shared_pace_core.Cohort'
+src/qa_shared_pace.zig:15:415: note: array element type 'experimental.shared_pace_core.Cohort' cannot cast into array element type 'simulation.microbes.Cohort'
+src/experimental/shared_pace_core.zig:7:18: note: struct declared here
+src/simulation/microbes.zig:6:18: note: struct declared here

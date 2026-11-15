@@ -1,0 +1,1024 @@
+{
+  "scope": "One natural world, observational checkpoints; no causal trait isolation or unobserved descendant reconstruction",
+  "inputs": {
+    "30": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "40": "a13061d2f77c719b095d808794efe324d669cc1226ed10973804522d67324859",
+    "50": "470d572d6d4ff131bf1ebd62e41a488ceb8e9656e5e5bcd5df8045bbad1f0e54",
+    "60": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+  },
+  "checkpoints": [
+    {
+      "day": 30,
+      "colonies": 18,
+      "patches": 10,
+      "full4slot_patches": 2,
+      "biomass_sum": 0.20058576529845595,
+      "nutrient_sum_occupied": 0.17954150146397296,
+      "nutrient_under_0_001_patches": 1,
+      "mass_atleast_0_02": 1,
+      "credit_atleast_0_01": 13,
+      "both_propagation_gates": 0,
+      "biomass_capacity_over_0_99_patches": 0,
+      "protected_support_and_structure": 1,
+      "occupied_depth_minmax_m": [
+        1.2192533674330186,
+        18.798847233986887
+      ],
+      "stats": {
+        "next_lineage": 50,
+        "births": 48,
+        "fixed_carbon": 7300407454.693389,
+        "recycled_carbon": 3616988669.030734,
+        "nutrient_added": 0.0,
+        "failed_patches": 31,
+        "grazed_carbon": 506660867.58321965,
+        "grazing_respired_carbon": 126665216.89580491,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "day": 40,
+      "colonies": 62,
+      "patches": 28,
+      "full4slot_patches": 9,
+      "biomass_sum": 1.176768949488178,
+      "nutrient_sum_occupied": 0.421123257256113,
+      "nutrient_under_0_001_patches": 3,
+      "mass_atleast_0_02": 12,
+      "credit_atleast_0_01": 23,
+      "both_propagation_gates": 0,
+      "biomass_capacity_over_0_99_patches": 0,
+      "protected_support_and_structure": 24,
+      "occupied_depth_minmax_m": [
+        0.1654451531568163,
+        18.79553461224609
+      ],
+      "stats": {
+        "next_lineage": 247,
+        "births": 245,
+        "fixed_carbon": 25707644236.404915,
+        "recycled_carbon": 8746365176.967947,
+        "nutrient_added": 0.0,
+        "failed_patches": 184,
+        "grazed_carbon": 4836872301.518139,
+        "grazing_respired_carbon": 1209218075.3795347,
+        "relocations": 1,
+        "movement_respired_carbon": 11439.84999024251
+      }
+    },
+    {
+      "day": 50,
+      "colonies": 70,
+      "patches": 37,
+      "full4slot_patches": 9,
+      "biomass_sum": 2.484557557152584,
+      "nutrient_sum_occupied": 0.4053254512982676,
+      "nutrient_under_0_001_patches": 12,
+      "mass_atleast_0_02": 21,
+      "credit_atleast_0_01": 34,
+      "both_propagation_gates": 0,
+      "biomass_capacity_over_0_99_patches": 0,
+      "protected_support_and_structure": 34,
+      "occupied_depth_minmax_m": [
+        0.16215360455939956,
+        18.799884210903283
+      ],
+      "stats": {
+        "next_lineage": 918,
+        "births": 916,
+        "fixed_carbon": 79396482136.53609,
+        "recycled_carbon": 32209142599.75632,
+        "nutrient_added": 0.0,
+        "failed_patches": 847,
+        "grazed_carbon": 24146015809.28807,
+        "grazing_respired_carbon": 6036503952.322018,
+        "relocations": 12,
+        "movement_respired_carbon": 3852831.5181321437
+      }
+    },
+    {
+      "day": 60,
+      "colonies": 64,
+      "patches": 37,
+      "full4slot_patches": 8,
+      "biomass_sum": 2.5916175625752658,
+      "nutrient_sum_occupied": 0.3041496188961901,
+      "nutrient_under_0_001_patches": 19,
+      "mass_atleast_0_02": 21,
+      "credit_atleast_0_01": 34,
+      "both_propagation_gates": 0,
+      "biomass_capacity_over_0_99_patches": 0,
+      "protected_support_and_structure": 31,
+      "occupied_depth_minmax_m": [
+        0.16530072890983383,
+        18.800629856387374
+      ],
+      "stats": {
+        "next_lineage": 1562,
+        "births": 1560,
+        "fixed_carbon": 129324501171.58084,
+        "recycled_carbon": 72237314049.5149,
+        "nutrient_added": 0.0,
+        "failed_patches": 1497,
+        "grazed_carbon": 44511705038.744514,
+        "grazing_respired_carbon": 11127926259.686129,
+        "relocations": 23,
+        "movement_respired_carbon": 8946553.35063792
+      }
+    }
+  ],
+  "all_day30_structure_pairs": [
+    {
+      "start_cell": 3421,
+      "lower_structure_id": 47,
+      "higher_structure_id": 38,
+      "baseline_traits": [
+        {
+          "lineage": 47,
+          "structure": 0.0,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9090954661369324,
+          "feeding": 0.027219343930482864,
+          "mobility": 0.0,
+          "optimum": 298.0823974609375,
+          "biomass": 0.003256225725635886
+        },
+        {
+          "lineage": 38,
+          "structure": 0.038543831557035446,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9897204041481018,
+          "feeding": 0.08190380781888962,
+          "mobility": 0.004081559367477894,
+          "optimum": 301.7770080566406,
+          "biomass": 0.0061048297211527824
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 47,
+              "present": true,
+              "cell": 3421,
+              "biomass": 0.003256225725635886
+            },
+            {
+              "id": 38,
+              "present": true,
+              "cell": 3421,
+              "biomass": 0.0061048297211527824
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 47,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 38,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 47,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 38,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 47,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 38,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13594,
+      "lower_structure_id": 34,
+      "higher_structure_id": 21,
+      "baseline_traits": [
+        {
+          "lineage": 34,
+          "structure": 0.0,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 1.0353703498840332,
+          "feeding": 0.024853182956576347,
+          "mobility": 0.06622753292322159,
+          "optimum": 304.1768493652344,
+          "biomass": 0.00549094844609499
+        },
+        {
+          "lineage": 21,
+          "structure": 0.005379521753638983,
+          "organization": 0.028399299830198288,
+          "support_mass": 0.00012353908095974475,
+          "efficiency": 1.0491749048233032,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "optimum": 303.40911865234375,
+          "biomass": 0.004434867762029171
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 34,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.00549094844609499
+            },
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004434867762029171
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 34,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.007347960956394672
+            },
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004639297258108854
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 34,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004093011375516653
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 34,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 21,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13594,
+      "lower_structure_id": 34,
+      "higher_structure_id": 24,
+      "baseline_traits": [
+        {
+          "lineage": 34,
+          "structure": 0.0,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 1.0353703498840332,
+          "feeding": 0.024853182956576347,
+          "mobility": 0.06622753292322159,
+          "optimum": 304.1768493652344,
+          "biomass": 0.00549094844609499
+        },
+        {
+          "lineage": 24,
+          "structure": 0.07910994440317154,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9674217700958252,
+          "feeding": 0.0,
+          "mobility": 0.025697577744722366,
+          "optimum": 302.933837890625,
+          "biomass": 0.003154275706037879
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 34,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.00549094844609499
+            },
+            {
+              "id": 24,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.003154275706037879
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 34,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.007347960956394672
+            },
+            {
+              "id": 24,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.002830727957189083
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 34,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 24,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 34,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 24,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13594,
+      "lower_structure_id": 20,
+      "higher_structure_id": 21,
+      "baseline_traits": [
+        {
+          "lineage": 20,
+          "structure": 0.0,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 1.0361926555633545,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "optimum": 300.38739013671875,
+          "biomass": 0.0178737323731184
+        },
+        {
+          "lineage": 21,
+          "structure": 0.005379521753638983,
+          "organization": 0.028399299830198288,
+          "support_mass": 0.00012353908095974475,
+          "efficiency": 1.0491749048233032,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "optimum": 303.40911865234375,
+          "biomass": 0.004434867762029171
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 20,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.0178737323731184
+            },
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004434867762029171
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 20,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.018414830788969994
+            },
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004639297258108854
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 20,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.01597220078110695
+            },
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004093011375516653
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 20,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 21,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13594,
+      "lower_structure_id": 20,
+      "higher_structure_id": 24,
+      "baseline_traits": [
+        {
+          "lineage": 20,
+          "structure": 0.0,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 1.0361926555633545,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "optimum": 300.38739013671875,
+          "biomass": 0.0178737323731184
+        },
+        {
+          "lineage": 24,
+          "structure": 0.07910994440317154,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9674217700958252,
+          "feeding": 0.0,
+          "mobility": 0.025697577744722366,
+          "optimum": 302.933837890625,
+          "biomass": 0.003154275706037879
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 20,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.0178737323731184
+            },
+            {
+              "id": 24,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.003154275706037879
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 20,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.018414830788969994
+            },
+            {
+              "id": 24,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.002830727957189083
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 20,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.01597220078110695
+            },
+            {
+              "id": 24,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 20,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 24,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13594,
+      "lower_structure_id": 21,
+      "higher_structure_id": 24,
+      "baseline_traits": [
+        {
+          "lineage": 21,
+          "structure": 0.005379521753638983,
+          "organization": 0.028399299830198288,
+          "support_mass": 0.00012353908095974475,
+          "efficiency": 1.0491749048233032,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "optimum": 303.40911865234375,
+          "biomass": 0.004434867762029171
+        },
+        {
+          "lineage": 24,
+          "structure": 0.07910994440317154,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9674217700958252,
+          "feeding": 0.0,
+          "mobility": 0.025697577744722366,
+          "optimum": 302.933837890625,
+          "biomass": 0.003154275706037879
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004434867762029171
+            },
+            {
+              "id": 24,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.003154275706037879
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004639297258108854
+            },
+            {
+              "id": 24,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.002830727957189083
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 21,
+              "present": true,
+              "cell": 13594,
+              "biomass": 0.004093011375516653
+            },
+            {
+              "id": 24,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 21,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            },
+            {
+              "id": 24,
+              "present": false,
+              "cell": null,
+              "biomass": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13597,
+      "lower_structure_id": 5,
+      "higher_structure_id": 19,
+      "baseline_traits": [
+        {
+          "lineage": 5,
+          "structure": 0.0,
+          "organization": 0.004469797480851412,
+          "support_mass": 4.1494138713460416e-05,
+          "efficiency": 0.9720531702041626,
+          "feeding": 0.0,
+          "mobility": 0.04561197757720947,
+          "optimum": 302.07281494140625,
+          "biomass": 0.009308014065027237
+        },
+        {
+          "lineage": 19,
+          "structure": 0.05799217149615288,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9484702348709106,
+          "feeding": 0.0,
+          "mobility": 0.05984478071331978,
+          "optimum": 301.2127990722656,
+          "biomass": 0.006740835029631853
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 5,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.009308014065027237
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006740835029631853
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 5,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.00929068773984909
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006945296656340361
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 5,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.007051544263958931
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.005437762010842562
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 5,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.00505620613694191
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.004019915591925383
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13597,
+      "lower_structure_id": 6,
+      "higher_structure_id": 19,
+      "baseline_traits": [
+        {
+          "lineage": 6,
+          "structure": 0.0,
+          "organization": 0.04796018451452255,
+          "support_mass": 0.0005489037139341235,
+          "efficiency": 1.0361392498016357,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "optimum": 302.19451904296875,
+          "biomass": 0.0114710982888937
+        },
+        {
+          "lineage": 19,
+          "structure": 0.05799217149615288,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9484702348709106,
+          "feeding": 0.0,
+          "mobility": 0.05984478071331978,
+          "optimum": 301.2127990722656,
+          "biomass": 0.006740835029631853
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 6,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.0114710982888937
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006740835029631853
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 6,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.012573804706335068
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006945296656340361
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 6,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.010473376139998436
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.005437762010842562
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 6,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.008184990845620632
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.004019915591925383
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "start_cell": 13597,
+      "lower_structure_id": 40,
+      "higher_structure_id": 19,
+      "baseline_traits": [
+        {
+          "lineage": 40,
+          "structure": 0.0,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 1.0109539031982422,
+          "feeding": 0.03815753385424614,
+          "mobility": 0.0,
+          "optimum": 302.46417236328125,
+          "biomass": 0.006751609034836292
+        },
+        {
+          "lineage": 19,
+          "structure": 0.05799217149615288,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "efficiency": 0.9484702348709106,
+          "feeding": 0.0,
+          "mobility": 0.05984478071331978,
+          "optimum": 301.2127990722656,
+          "biomass": 0.006740835029631853
+        }
+      ],
+      "outcomes": [
+        {
+          "day": 30,
+          "originals": [
+            {
+              "id": 40,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006751609034836292
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006740835029631853
+            }
+          ]
+        },
+        {
+          "day": 40,
+          "originals": [
+            {
+              "id": 40,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.016852637752890587
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.006945296656340361
+            }
+          ]
+        },
+        {
+          "day": 50,
+          "originals": [
+            {
+              "id": 40,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.015876542776823044
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.005437762010842562
+            }
+          ]
+        },
+        {
+          "day": 60,
+          "originals": [
+            {
+              "id": 40,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.015639759600162506
+            },
+            {
+              "id": 19,
+              "present": true,
+              "cell": 13597,
+              "biomass": 0.004019915591925383
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "github_commit": "73056e06a6b7307d628a9fceb694ec3022854456",
+  "local_release": "371d1c4921449af2bec4f5225489bbf6a4d7644c",
+  "tree": "fc2828047306f09a4788393d00e8315ce8051d51",
+  "site": {
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "checkout_path": "/workspace/scratch/f67c3ac60ca3/stella-site-current/.sites-checkout",
+    "commit_sha": "e5d3089f4da92fa196d07f98e7b2b3f7bb88c63e",
+    "archive": "/workspace/scratch/f67c3ac60ca3/stella-v52-deploy.tar.gz"
+  },
+  "deployment": {
+    "id": "appgdep_6af9372239a48191aa7b043564bcb127",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_aa316a5bcb908191bd7c36d02200311e",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T04:38:03.384451+00:00"
+  },
+  "limitations": [
+    "Native engine and mocked browser UI verified; not actual Android/laptop/live-browser game runtime.",
+    "Global water drift remains unresolved; no whole-climate conservation claim."
+  ]
+}

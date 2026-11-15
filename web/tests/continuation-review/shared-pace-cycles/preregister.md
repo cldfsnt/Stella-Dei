@@ -1,0 +1,5 @@
+# Fixed plan before execution
+
+Rate .2/day, slowpace .5 versusfast1; identicalpace1 control. Initial total biomass .2, slow fractions .05/.5/.95, each slots reversed. Rare .01 biomass is above model .0025 extinction cutoff: original proposed1% would be .002 and was rejected BEFORE execution, not tuned after outcomes. Reciprocal5% rarity is model-resolution constrained, not an infinitesimal invasion-fitness test.
+
+Shared rich and limited resources exactly as preceding assay. 48days: stablelight or50%duty periods2/8/24days startinglight; all cyclic cases have exactly24light/24darkdays. Then8all-light recoverydays, no resource replenishment. Stable control has48+8lightdays, explicitly NOT equal light budget to cyclic arms. 48conditions × reversedslots=96runs. All complete-cycle endpoints andday48/56, extinctions, maintenance, numerical drift retained; no outcome-based parameter changes. Daily step1440s. Conservation thresholds retain1e-4C/1e-5N for56days, unchanged from prior24day assay; failures must be diagnosed rather than widening, slotbiomass1e-5. No production changes or heritable trait yet.
