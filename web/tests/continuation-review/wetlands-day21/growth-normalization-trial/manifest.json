@@ -1,0 +1,162 @@
+{
+  "analysis.log": {
+    "sha256": "02b9fa4db396b0e5970179cf83b2b5949e6ca36b10353c04f30995c1d5bcc62e",
+    "bytes": 3905,
+    "compressed_bytes": 978
+  },
+  "build.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "compressed_bytes": 20
+  },
+  "main-0.log": {
+    "sha256": "eb55405d349a6603a59187a6e6630be0396dcb3cfd4845dd067e825b162d969b",
+    "bytes": 2623487,
+    "compressed_bytes": 403150
+  },
+  "main-1.log": {
+    "sha256": "ca59be047b0adafb560c4c7983d112fb7ac03459c3cde16cd0b8759e15275ba8",
+    "bytes": 2623429,
+    "compressed_bytes": 403140
+  },
+  "main-2.log": {
+    "sha256": "48d526c63edd613f15a347b88bfc888415abaae4e34f2d54b5a3ec204f0f3960",
+    "bytes": 2640632,
+    "compressed_bytes": 405983
+  },
+  "off-0.log": {
+    "sha256": "a1e17f4fb8e5a9bd358e12b6a641a8c67018e3d4d563cee69bf2521732ebc89f",
+    "bytes": 387,
+    "compressed_bytes": 283
+  },
+  "off-1.log": {
+    "sha256": "826ddc418a8eda11844ea4519d0b255a9ed3c6dafc2d3cab74da67d2bccc283f",
+    "bytes": 387,
+    "compressed_bytes": 284
+  },
+  "off-2.log": {
+    "sha256": "f724f4f0e7316b5fbf7e15b355863c3762f6d3e4ec2a6e7e8b0e9ec362843f1d",
+    "bytes": 387,
+    "compressed_bytes": 283
+  },
+  "resume-0.log": {
+    "sha256": "b67dc4b1ae1b8a5a5aaf62bb70279e7794f764277aca89c1dba114229ed988df",
+    "bytes": 1463889,
+    "compressed_bytes": 228928
+  },
+  "resume-1.log": {
+    "sha256": "80eb029445679d99f7991e0a34c8fa38c215c9d6adb5d5d1ac034de97c7a7ad4",
+    "bytes": 1463859,
+    "compressed_bytes": 228921
+  },
+  "resume-2.log": {
+    "sha256": "5ec394e516a7b1f6ac56562bae825118739ebad22acd132b0444503d949570eb",
+    "bytes": 1480033,
+    "compressed_bytes": 231148
+  },
+  "trace-0.log": {
+    "sha256": "d167f31a0877e72d6e7b9588fd94ab4b4d39e83d4a7a6f55953bf4673beeb753",
+    "bytes": 71959,
+    "compressed_bytes": 12270
+  },
+  "trace-1.log": {
+    "sha256": "09ce06436fa1f64181052e95b4e82dad71d6195199ecf7a871b191cb944172ba",
+    "bytes": 71959,
+    "compressed_bytes": 12268
+  },
+  "trace-2.log": {
+    "sha256": "e725110775a0fffaaef86e45acec8ed0795887e83e7bb87c52bb1c6aa023cff3",
+    "bytes": 71645,
+    "compressed_bytes": 12100
+  },
+  "arm-0-0.json": {
+    "sha256": "513756811e76362bd42f7a67b1ddb88fb0ae66b02d7d243d1f599274b857c1e7",
+    "bytes": 13284660,
+    "compressed_bytes": 2488078
+  },
+  "arm-1-0.json": {
+    "sha256": "f0255700bf02a0d7f38a21d512e639c594a3534089b39f41ed02b3261d9bd6cd",
+    "bytes": 13284660,
+    "compressed_bytes": 2488078
+  },
+  "arm-2-0.json": {
+    "sha256": "c8f759b990fc64b445d23ab0dec107f778b42f9fc371b9476cd4f8b3a12c8efa",
+    "bytes": 13284659,
+    "compressed_bytes": 2488073
+  },
+  "arm-0-30.json": {
+    "sha256": "35d346f3adb6082ccfa3b176f28a5f7b7ceb36c08a365775366d4d041d1dba4d",
+    "bytes": 13306975,
+    "compressed_bytes": 2498297
+  },
+  "arm-1-30.json": {
+    "sha256": "7cfe72412938b3fb45c0680a0b05cb0ccb61fb76b38676b4c398a8f4017b4dc3",
+    "bytes": 13306975,
+    "compressed_bytes": 2498296
+  },
+  "arm-2-30.json": {
+    "sha256": "27de6ca9e6fc72329e09b3e1957c682a7bf89a976c07204a40846a1f486f1402",
+    "bytes": 13306910,
+    "compressed_bytes": 2498228
+  },
+  "arm-0-60.json": {
+    "sha256": "509c833e528d35710e8c551f86ceb76a06bd008badf8fc1cf6133601366ed429",
+    "bytes": 13348446,
+    "compressed_bytes": 2507726
+  },
+  "arm-1-60.json": {
+    "sha256": "73429f3b798cb6018ecde7c433b60ed86c1615307070cd402150cd0ec9eae6c6",
+    "bytes": 13348446,
+    "compressed_bytes": 2507726
+  },
+  "arm-2-60.json": {
+    "sha256": "ff647013b9570dfdad807423390a2b441de9c120cb31abc727589b25237ed548",
+    "bytes": 13348749,
+    "compressed_bytes": 2507941
+  },
+  "results.json": {
+    "sha256": "7a8d8ae257dbb3857a701121edfa326598ef5834bf556314b89e7d8478f04af4",
+    "bytes": 846282,
+    "compressed_bytes": 59991
+  },
+  "resume-arm-0-60.json": {
+    "sha256": "509c833e528d35710e8c551f86ceb76a06bd008badf8fc1cf6133601366ed429",
+    "retention": "identical counterpart hash only"
+  },
+  "resume-arm-1-60.json": {
+    "sha256": "73429f3b798cb6018ecde7c433b60ed86c1615307070cd402150cd0ec9eae6c6",
+    "retention": "identical counterpart hash only"
+  },
+  "resume-arm-2-60.json": {
+    "sha256": "ff647013b9570dfdad807423390a2b441de9c120cb31abc727589b25237ed548",
+    "retention": "identical counterpart hash only"
+  },
+  "arm-0-2-off.json": {
+    "sha256": "e6a29c5cdaba471125c7d84a0f0970b5c5d6d337d6ff3a9f5706d056d622cfcf",
+    "retention": "identical counterpart hash only"
+  },
+  "arm-0-2-trace.json": {
+    "sha256": "e6a29c5cdaba471125c7d84a0f0970b5c5d6d337d6ff3a9f5706d056d622cfcf",
+    "retention": "identical counterpart hash only"
+  },
+  "arm-1-2-off.json": {
+    "sha256": "42ef2a396652b4be8329420acd5dbcb15875138e44d00e8f33c4434232266aaf",
+    "retention": "identical counterpart hash only"
+  },
+  "arm-1-2-trace.json": {
+    "sha256": "42ef2a396652b4be8329420acd5dbcb15875138e44d00e8f33c4434232266aaf",
+    "retention": "identical counterpart hash only"
+  },
+  "arm-2-2-off.json": {
+    "sha256": "ee9affc1c526dff4e3b3651a8a9c6d6d1179fe8545c9907188728dead0eb9033",
+    "retention": "identical counterpart hash only"
+  },
+  "arm-2-2-trace.json": {
+    "sha256": "ee9affc1c526dff4e3b3651a8a9c6d6d1179fe8545c9907188728dead0eb9033",
+    "retention": "identical counterpart hash only"
+  },
+  "immutable_input": {
+    "path": "/workspace/scratch/f67c3ac60ca3/site-tmp/wetlands-day21/day-21.json",
+    "sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e"
+  }
+}

@@ -1,0 +1,23 @@
+    const saves=@import("save_game.zig");const M=@import("simulation/microbes.zig");const Audit=@import("simulation/land_journey_audit.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();const state=&game.state.Playing;web_initialized=true;
+    const arm=try std.fmt.parseInt(usize,std.posix.getenv("QA_ARM") orelse "0",10);if(arm>2)return error.InvalidArm;
+    const resumed=std.posix.getenv("QA_RESUME")!=null;const end=try std.fmt.parseInt(usize,std.posix.getenv("QA_END") orelse "60",10);const suffix=std.posix.getenv("QA_SUFFIX") orelse "";
+    Audit.enabled=std.posix.getenv("QA_TRACE_OFF")==null;var timer=try std.time.Timer.start();
+    const input=if(resumed)try std.fmt.allocPrint(a,"OUTPUT/arm-{}-30.json",.{arm})else "INPUT";
+    const bytes=try std.fs.cwd().readFileAlloc(a,input,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+    if(!resumed){
+      std.debug.assert(state.planet.landBeta.physiology_law==3);if(arm>0)state.planet.landBeta.physiology_law=4;
+      var found=false;for(state.planet.microbeCells[36453].cohorts)|co|{if(co.lineage==704){if(co.biomass<=0 or co.support_mass<=0 or co.root_fraction!=0.03125)return error.SubjectInvalid;found=true;Audit.emit("SETUP",.{.arm=arm,.cohort=co,.soil=state.planet.landSoil[36453],.depth_m=state.planet.waterMass[36453]*state.planet.getKmPerWaterMass()*1000,.temperature=state.planet.temperature[36453],.time=state.gameTime,.height=M.producerHeightMeters(co)});}}if(!found)return error.SubjectMissing;
+      if(arm<2){state.selectedPoint=36453;const before=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const old=state.planet.waterMass[36453];const changed=state.setSelectedWaterTarget(36453,0.001751799);if(!std.math.isFinite(changed))return error.ToolRefused;const now=state.planet.waterMass[36453];state.planet.waterMass[36453]=old;std.debug.assert(std.mem.eql(u8,before,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));state.planet.waterMass[36453]=now;Audit.emit("WATER_ACTION",.{.before=old,.after=now,.removed_kg=(@as(f64,old)-now)*1e9,.returned_metres=changed,.actual_metres=now*state.planet.getKmPerWaterMass()*1000,.area=state.planet.getMeanPointArea()});}
+      try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(a,"OUTPUT/arm-{}-0{s}.json",.{arm,suffix}),.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});
+    }
+    const start:usize=if(resumed)30 else 0;for(start..end)|tick|{
+      Audit.tick=tick+1;state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;
+      for(state.planet.landRootH)|row|for(row)|v|std.debug.assert(v==0);for(state.planet.landRootOwner)|row|for(row)|v|std.debug.assert(v==0);
+      var living:usize=0;var occupied:usize=0;for(state.planet.microbeCells)|cell|{std.debug.assert(M.validCell(cell,state.planet.microbeStats.next_lineage));var has=false;for(cell.cohorts)|co|{if(co.biomass>0){living+=1;has=true;}}if(has)occupied+=1;}
+      Audit.emit("PATCH",.{.tick=tick+1,.cohorts=state.planet.microbeCells[36453].cohorts,.nutrient=state.planet.microbeCells[36453].nutrient,.detritus=state.planet.microbeCells[36453].detritus,.soil=state.planet.landSoil[36453],.depth_m=state.planet.waterMass[36453]*state.planet.getKmPerWaterMass()*1000,.temperature=state.planet.temperature[36453],.living=living,.occupied=occupied,.stats=state.planet.microbeStats});
+      if(tick+1==30 or tick+1==end){var sa=std.heap.ArenaAllocator.init(allocator);defer sa.deinit();const aa=sa.allocator();try std.fs.cwd().writeFile(.{.sub_path=try std.fmt.allocPrint(aa,"OUTPUT/{s}arm-{}-{}{s}.json",.{if(resumed)"resume-"else "",arm,tick+1,suffix}),.data=try std.json.stringifyAlloc(aa,try saves.capture(aa,state),.{})});}
+      if(timer.read()>900*std.time.ns_per_s)return error.RuntimeBudget;
+    }
+    std.debug.print("COMPLETE arm={} resumed={} ticks={} elapsed_ms={}\n",.{arm,resumed,end-start,timer.read()/1000000});std.process.exit(0);
+}
