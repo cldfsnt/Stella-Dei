@@ -1,0 +1,27 @@
+{
+  "files": {
+    "src/qa_liquid_compact_wasm_parity.zig": "c4d96507301018a5d4efa83aae2bb6ededb6e9d1086b8f09b3a2465579567cf5",
+    "src/experimental/liquid_gather_cached.zig": "4afa824ca6f91bdeed4197a2ae8b9dfd2039fff33bb546ab94730bc0a9193157",
+    "src/experimental/liquid_gather_compact.zig": "727dc1a98ac6c6bcfab3f25a17121c7f64d8108b8d764d89081164b4465cc2b6",
+    "web/tests/liquid-compact-wasm-parity.sh": "18b39c34841e2778feb4911dcc9198cb18b37397aaaa3aae761a1e2c850de373",
+    "web/tests/liquid-wasm-main.c": "e4afb7b0c4bc632d703884d95e29b34527e95302ab11a0bf54fce9245a193d70",
+    "../site-tmp/liquid-compact-wasm-parity/native": "f694c9fcbc1a173823af2d5579db8d94ce6c4d918ab6782b25c2abe2f72e0894",
+    "../site-tmp/liquid-compact-wasm-parity/parity.js": "f8de99a92d65a9b48ee9058eecacf23d143e625ead26f3b29f81657579bc2e5f",
+    "../site-tmp/liquid-compact-wasm-parity/parity.wasm": "5e1e8e7e129e73ad11368d2be40f13da500208d117ae150ed0c36b946a13833c",
+    "../site-tmp/liquid-transport-order/day30.json": "d2232e96c979c6635a64fee5344d11cd68354fa308686e1741e3755ad4da970a",
+    "../site-tmp/liquid-transport-order/day60.json": "c8a344e663c05eec1f748245a2ac16c9e2eeaefd58fb2303c83215b70df64463",
+    "../site-tmp/liquid-transport-order/day90.json": "cccab7c112305e46da74400909b9131f12333be662a2e16e028e9c8f76d9a2ae",
+    "../site-tmp/liquid-compact-wasm-parity/native-day30.bin": "267fdbe79dbeb3a32ad12625dd818839f1688ca29d1e0a5d65e3b6084bda6887",
+    "../site-tmp/liquid-compact-wasm-parity/wasm-day30.bin": "267fdbe79dbeb3a32ad12625dd818839f1688ca29d1e0a5d65e3b6084bda6887",
+    "../site-tmp/liquid-compact-wasm-parity/native-day60.bin": "7d6243e65d6cb508f1dcdedd521a6c423c9b7d5418fc03aa977b5e44889cc0db",
+    "../site-tmp/liquid-compact-wasm-parity/wasm-day60.bin": "7d6243e65d6cb508f1dcdedd521a6c423c9b7d5418fc03aa977b5e44889cc0db",
+    "../site-tmp/liquid-compact-wasm-parity/native-day90.bin": "0183da9b83f3bb50ef6cecfe92078ae32d7b739ce8b320f5c5f318d3980b46d2",
+    "../site-tmp/liquid-compact-wasm-parity/wasm-day90.bin": "0183da9b83f3bb50ef6cecfe92078ae32d7b739ce8b320f5c5f318d3980b46d2"
+  },
+  "exit": 0,
+  "zig": "0.13.0",
+  "node": "v24.22.1",
+  "output_bytes_per_world": 8520184,
+  "inputs": "actual remapped40962cell day30/60/90",
+  "modes": "native ReleaseSafe; wasm32-emscripten ReleaseSafe linked emccO2; strict helper arithmetic"
+}

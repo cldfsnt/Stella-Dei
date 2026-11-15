@@ -1,0 +1,3 @@
+# Standalone compact helper platform gate
+
+Before outcomes: frozen actual40962-cell day30/60/90 inputs from liquid-transport-order; dt0,360,1440,15000. Compare compact f32edges+headreuse helper in both source traversal orders against cached f64-edge helper reference. Every f32 cell output, every widened f32 edge receipt and both f64 ledger fields must match bit-exactly. Serialize the exact reference layout used by prior platform gate; native and Node/WASM output bytes must match completely. No timings, Planet fixture, physics changes or browser-performance inference. Strict helper math; actual Zig ReleaseSafe and emccO2 standalone linkage. Existing prior helper proof remains separate.

@@ -1,0 +1,27 @@
+{
+  "source_commit_before": "7e5b4b3e05a3b24ae4ff1573c2d7e901617f72f0",
+  "compact_helper_sha256": "727dc1a98ac6c6bcfab3f25a17121c7f64d8108b8d764d89081164b4465cc2b6",
+  "helper_graph_sha256": "77b9f3fcd00d44244c5c40f84b460623ebec0791a5cca7caf94cd3b984a39dff",
+  "artifacts": {
+    "candidate/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "candidate/profile.wasm": "e7876bfbba707e91f04f89ad53aeccaf8114cea81db4f95b30ed16265ef380df",
+    "candidate/src/simulation/planet.zig": "a875aa77b9e2de2f3df53be32fdadde5d908987dd6d2a42f889ed65cc29ade5e",
+    "candidate/src/qa_wasm_planet.zig": "5c924eb03d2938d53cf21ee9f9b59320b255c06dc311773a057e484ce3b018ce",
+    "candidate/src/loop.zig": "42dac83bc4714a512f2284cea4163f062cf3e9d0d61f65526ebc239e9e66a1f0",
+    "candidate/src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+    "candidate/src/simulation/liquid_gather_compact.zig": "727dc1a98ac6c6bcfab3f25a17121c7f64d8108b8d764d89081164b4465cc2b6",
+    "candidate-trace/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "candidate-trace/profile.wasm": "b46157faa6be4edbd9d45673fc45e2ff87e2b2f85e782ee0371730393cde95aa",
+    "candidate-trace/src/simulation/planet.zig": "53f890466ba7288b4a54a7f54b4bd91d6a22e4ad3feadc7087352073e41e1b49",
+    "candidate-trace/src/qa_wasm_planet.zig": "5c924eb03d2938d53cf21ee9f9b59320b255c06dc311773a057e484ce3b018ce",
+    "candidate-trace/src/loop.zig": "42dac83bc4714a512f2284cea4163f062cf3e9d0d61f65526ebc239e9e66a1f0",
+    "candidate-trace/src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+    "candidate-trace/src/simulation/liquid_gather_compact.zig": "4469d5b23c9cd92b45af43cc598be5d14681f94d570c536174c668c31dcac85b",
+    "baseline-trace/profile.js": "af90d9e736ed67522ce0a6c59ba8ed425f554ed62033d21fdfa105662ea1fe05",
+    "baseline-trace/profile.wasm": "f45099f94ca8ee24cf5eafb561246e53037bebfaf668575a0dbe2d717246e707",
+    "baseline-trace/src/simulation/planet.zig": "42507f43b320948621e9b090b1944decb5c6a297ae3170d357903951f816d3b8",
+    "baseline-trace/src/qa_wasm_planet.zig": "5c924eb03d2938d53cf21ee9f9b59320b255c06dc311773a057e484ce3b018ce",
+    "baseline-trace/src/loop.zig": "42dac83bc4714a512f2284cea4163f062cf3e9d0d61f65526ebc239e9e66a1f0",
+    "baseline-trace/src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3"
+  }
+}

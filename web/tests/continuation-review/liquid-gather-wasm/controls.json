@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-11-15T12:38:02.929651+00:00",
+  "worlds": {
+    "30": {
+      "zero_input_equal": true,
+      "diagnostic_exact": true,
+      "legacy_diagnostic_exact": true,
+      "new_process_restart_exact": true,
+      "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "candidate60_sha256": "0a6126b0f89ab32391fcfd9ef27907c8857abfc3a2c66163599223f544bcb3de",
+      "baseline60_sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a",
+      "candidate70_restart_sha256": "83c07aad0950b45595482ecee41bd6277ba12298a3e7eebed3f34749b74af45d",
+      "candidate_trace_sha256": "2a2859c1163d4fe2fe3f7e60004b34ba9df32f9f3a7c97edc2d5d472012d9ab0",
+      "baseline_trace_sha256": "609c6f8b28ad8b79e371328a4258bf6bf6eec506b8b2bfc9d263d26bb88e0be0"
+    },
+    "60": {
+      "zero_input_equal": true,
+      "diagnostic_exact": true,
+      "legacy_diagnostic_exact": true,
+      "new_process_restart_exact": true,
+      "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "candidate60_sha256": "b0a3dfef3834a91da9856962b0e72690f8a5199647b5b57bcb5df06678673e69",
+      "baseline60_sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8",
+      "candidate70_restart_sha256": "29df3216cb997633dda1f8311bb47c180f28e3459de0cc249284edf3146bff1e",
+      "candidate_trace_sha256": "bfb562dce19a0fb19e39438af445505608faa5715c6ee6ea0e0fd0a4152483d6",
+      "baseline_trace_sha256": "07f43051356793b35c130e4ffa41a321697d007cb0db00dc657e1fe89fb1a6c0"
+    },
+    "90": {
+      "zero_input_equal": true,
+      "diagnostic_exact": true,
+      "legacy_diagnostic_exact": true,
+      "new_process_restart_exact": true,
+      "input_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+      "candidate60_sha256": "2837965b3e587de2329bbc191243e11bd2ac89437b0d518f5e50e9fc9c55a3f7",
+      "baseline60_sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b",
+      "candidate70_restart_sha256": "4af7bac77eff3b0521a48c74bc71c965eb54c79e6e38ff37a9b3046fdbfc1fd6",
+      "candidate_trace_sha256": "dd70c000e6af1fd1fba522c6e0c0c09f9773fa5e033955c96a7b5bd6a58b2813",
+      "baseline_trace_sha256": "b0c23346d21cc52654746c52c46839a8e338db030622f30304daf940e5e92e2f"
+    }
+  },
+  "ended_utc": "2026-11-15T12:38:29.024528+00:00"
+}

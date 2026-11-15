@@ -1,0 +1,66 @@
+--- production-qa/Planet
++++ candidate-trace/Planet
+@@ -1,3 +1,5 @@
++extern fn qa_trace(n:u32,tick:u32,area:f64,pre:[*]const f32,post:[*]const f32,edges:?[*]const [6]f32,accum:?[*]const f64) void;
++var qa_tick:u32=0;
+ pub var qa_substages:[5]f64=.{0,0,0,0,0};
+ pub var qa_stages:[4]f64=.{0,0,0,0};
+ extern fn emscripten_get_now() f64;
+@@ -134,6 +136,12 @@
+     /// The mass of water vapor in the troposphere
+     /// Unit: 10⁹ kg
+     waterVaporMass: []f32,
++    qaLiquidEdges:[][6]f32=&.{},
++    qaLiquidNeighbors:[][6]usize=&.{},
++    qaLiquidReverse:[][6]u8=&.{},
++    qaLiquidHeads:[]f32=&.{},
++    qaLiquidTopologyIdentity:usize=0,
++
+     /// The average N2 mass per point of the planet
+     /// Unit: 10⁹ kg
+     averageNitrogenMass: f64 = 0,
+@@ -229,7 +237,9 @@
+         unreachable;
+     }
+ 
++    pub fn invalidateLiquidTopology(self:*Planet)void{self.qaLiquidTopologyIdentity=0;}
+     fn computeNeighbours(planet: *Planet) void {
++        planet.invalidateLiquidTopology();
+         const zone = tracy.ZoneN(@src(), "Compute points neighbours");
+         defer zone.End();
+ 
+@@ -1030,7 +1040,7 @@
+         // Do some liquid simulation
+         const counting_vector = std.simd.iota(usize, VECTOR_SIZE);
+         var i: usize = start;
+-        if (dt < 86400 / 4) {
++        if (dt < 86400 / 4 and self.worldMode != .origin) {
+             while (i < end - VECTOR_SIZE + 1) : (i += VECTOR_SIZE) {
+                 // only fluid if it's not ice
+                 const indices = @as(IndexVector, @splat(i)) + counting_vector; // i + 0, i + 1, i + 2, ...
+@@ -1686,6 +1696,25 @@
+                     }
+                 }
+ 
++                if(self.worldMode==.origin){
++                    const n=self.waterMass.len;
++                    if(self.qaLiquidEdges.len!=n){
++                        self.qaLiquidEdges=self.simulationArena.allocator().alloc([6]f32,n) catch unreachable;
++                        self.qaLiquidNeighbors=self.simulationArena.allocator().alloc([6]usize,n) catch unreachable;
++                        self.qaLiquidReverse=self.simulationArena.allocator().alloc([6]u8,n) catch unreachable;
++                        self.qaLiquidHeads=self.simulationArena.allocator().alloc(f32,n) catch unreachable;
++                        self.invalidateLiquidTopology();
++                    }
++                    const topology_identity=@intFromPtr(self.verticesNeighbours.ptr);
++                    if(self.qaLiquidTopologyIdentity!=topology_identity){
++                        for(0..n)|j|{const ns=self.getNeighbours(j);self.qaLiquidNeighbors[j]=.{ns[0],ns[3],ns[1],ns[4],ns[2],ns[5]};}
++                        @import("liquid_gather_compact.zig").prepare(self.qaLiquidNeighbors,self.qaLiquidReverse) catch unreachable;
++                        self.qaLiquidTopologyIdentity=topology_identity;
++                    }
++                    if(@import("liquid_gather_compact.zig").qa_accum.len!=n)@import("liquid_gather_compact.zig").qa_accum=self.simulationArena.allocator().alloc(f64,n) catch unreachable;
++                    _= @import("liquid_gather_compact.zig").step(self.waterMass,self.elevation,self.qaLiquidNeighbors,self.qaLiquidReverse,self.qaLiquidEdges,self.qaLiquidHeads,self.newWaterMass,self.getKmPerWaterMass(),dt,false) catch unreachable;
++                }
++                qa_trace(@intCast(self.waterMass.len),qa_tick,self.getMeanPointArea(),self.waterMass.ptr,self.newWaterMass.ptr,self.qaLiquidEdges.ptr,@import("liquid_gather_compact.zig").qa_accum.ptr);qa_tick+=1;
+                 std.mem.swap([]f32, &self.waterMass, &self.newWaterMass);
+                 std.mem.swap([]f32, &self.waterVaporMass, &self.newWaterVaporMass);
+                 self.simulateAtmosphereWater(dt);

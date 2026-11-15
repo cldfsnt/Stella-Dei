@@ -1,0 +1,9 @@
+# Executable independent oracle (before actual traces)
+
+`web/tests/liquid-wasm-oracle.py` reads concatenated LQTRACE1 candidate frames and LQBASE01 legacy frames. Header:8byte magic,u32 count,u32 tick,f64 area; both have count f32 pre/post; candidate adds count×6 f32 edges and count f64 actual pre-cast values. All little-endian. External helper-graph.json must already match edge-slot order: do NOT permute it again. Default horizon60; explicit --expected-ticks420 only after approved follow-up.
+
+Hot loop uses exact signed integers in common native-mass units2^-149, not per-operation Fraction objects. It checks every cell and every edge, no sampling. The gamma12 bound denominator2^53−12 and half-spacing are compared by integer crossmultiplication. Separate accumulator, cast, combined, donor, finite, duplicate/self, zero-traffic and shape/horizon checks. Exact integer per-step records retain E,A,D,one-way T and derived-bound numerator. Human-readable native/kg approximations are outputs only, never acceptance decisions.
+
+11 lightweight unit tests passed: ordinary rounding, zero/signedzero, smallestsubnormal, largestfinite, donoroverspend, incorrectaccumulator/cast, duplicate/selfedge, NaN, binary/truncation and temporal cancellation. First run had10pass/1testfailure: donoroverspend fixture also produced a negative output, correctly rejected earlier by finite/nonnegative validation. Changed ONLY fixture post tozero to reach intended donor gate; final11pass. No relaxation of implementation.
+
+No real world trace accepted at this checkpoint. Structural/envelope failures raise; practical A/T or D reduction failure returns exit2 and still writes results. Missing/short horizon refuses rather than accepting partial data. All graph and binary file hashes are recorded. Per-step basis is the actual inputs to each solver; trajectory changes mean the two versions can have different later input worlds, explicitly not a same-state physics equivalence claim.

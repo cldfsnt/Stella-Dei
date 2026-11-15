@@ -1,0 +1,206 @@
+{
+  "diagnostic": {
+    "root_events": [
+      {
+        "source_kg": 417676.0468603131,
+        "received_kg": 417676.046708948,
+        "loss_kg": 0.0001513650943252287,
+        "loss_fraction_of_source": 3.6239831195263876e-10,
+        "vapor_inventory_kg": 1680045112596.5898,
+        "vapor_ulp_kg": 0.00022737367544323206,
+        "loss_in_vapor_ulps": 0.665710725,
+        "signal_quantization_fraction_near_one": 5.960464477539063e-08
+      },
+      {
+        "source_kg": 10396.625964741406,
+        "received_kg": 10396.625839348417,
+        "loss_kg": 0.00012539298950287048,
+        "loss_fraction_of_source": 1.2060931106699611e-08,
+        "vapor_inventory_kg": 1635707188312.9592,
+        "vapor_ulp_kg": 0.00022737367544323206,
+        "loss_in_vapor_ulps": 0.5514842,
+        "signal_quantization_fraction_near_one": 5.960464477539063e-08
+      }
+    ],
+    "root_total_source_kg": 428072.6728250545,
+    "root_total_loss_kg": 0.0002767580838280992,
+    "root_aggregate_loss_fraction": 6.46521260050639e-10,
+    "phase_represented_exchange_kg": 2571754654361649.0,
+    "phase_sumabs_error_kg": 0.003208482993954931,
+    "phase_sumabs_over_exchange": 1.247585180224483e-18,
+    "advection_signed_net_kg": -0.11777759149900202,
+    "advection_sum_abs_tick_net_kg": 0.19244912434490669,
+    "advection_endpoint_half_l1_total_kg": 1315202107633746.5,
+    "advection_abs_tick_net_over_endpoint_lowerbound": 1.4632665445704968e-16,
+    "steps": [
+      {
+        "serial": 1,
+        "phase_represented_vapor_exchange_kg": 429209690268271.0,
+        "phase_sumabs_over_exchange": 2.7635091435124904e-18,
+        "advection_net_kg": -0.04676121989621862,
+        "advection_endpoint_half_l1_kg": 219705407272536.62,
+        "abs_advection_net_over_lowerbound": 2.1283599924426536e-16,
+        "water_inventory_kg": 1.644944170721848e+21,
+        "phase_sumabs_over_inventory": 7.210730459137866e-25,
+        "abs_advection_net_over_inventory": 2.842723827866965e-23
+      },
+      {
+        "serial": 2,
+        "phase_represented_vapor_exchange_kg": 427984484081578.44,
+        "phase_sumabs_over_exchange": 7.426450149363997e-19,
+        "advection_net_kg": 0.018497352954893742,
+        "advection_endpoint_half_l1_kg": 219187601920515.62,
+        "abs_advection_net_over_lowerbound": 8.43905074594569e-17,
+        "water_inventory_kg": 1.644944131713744e+21,
+        "phase_sumabs_over_inventory": 1.9322269823363358e-25,
+        "abs_advection_net_over_inventory": 1.1244973369170135e-23
+      },
+      {
+        "serial": 3,
+        "phase_represented_vapor_exchange_kg": 428642805760281.2,
+        "phase_sumabs_over_exchange": 2.33672301424629e-19,
+        "advection_net_kg": -0.030909145902480173,
+        "advection_endpoint_half_l1_kg": 218711972766981.7,
+        "abs_advection_net_over_lowerbound": 1.413235202053211e-16,
+        "water_inventory_kg": 1.6449440925544103e+21,
+        "phase_sumabs_over_inventory": 6.089079341023381e-26,
+        "abs_advection_net_over_inventory": 1.8790392963740062e-23
+      },
+      {
+        "serial": 4,
+        "phase_represented_vapor_exchange_kg": 429207448832266.4,
+        "phase_sumabs_over_exchange": 2.763832341481218e-18,
+        "advection_net_kg": -0.04676121989621862,
+        "advection_endpoint_half_l1_kg": 219705271544275.4,
+        "abs_advection_net_over_lowerbound": 2.12836130728867e-16,
+        "water_inventory_kg": 1.6449441653159614e+21,
+        "phase_sumabs_over_inventory": 7.21153613174102e-25,
+        "abs_advection_net_over_inventory": 2.8427238372091925e-23
+      },
+      {
+        "serial": 5,
+        "phase_represented_vapor_exchange_kg": 428016103618931.94,
+        "phase_sumabs_over_exchange": 7.428136793064644e-19,
+        "advection_net_kg": 0.01883841346805859,
+        "advection_endpoint_half_l1_kg": 219185284643199.6,
+        "abs_advection_net_over_lowerbound": 8.594743711342059e-17,
+        "water_inventory_kg": 1.644944126310483e+21,
+        "phase_sumabs_over_inventory": 1.9328086081848189e-25,
+        "abs_advection_net_over_inventory": 1.1452312067469483e-23
+      },
+      {
+        "serial": 6,
+        "phase_represented_vapor_exchange_kg": 428694121800320.25,
+        "phase_sumabs_over_exchange": 2.3364433011229667e-19,
+        "advection_net_kg": -0.03068177222703694,
+        "advection_endpoint_half_l1_kg": 218706569486237.62,
+        "abs_advection_net_over_lowerbound": 1.4028738276637652e-16,
+        "water_inventory_kg": 1.6449440871513084e+21,
+        "phase_sumabs_over_inventory": 6.089079361024011e-26,
+        "abs_advection_net_over_inventory": 1.8652167247928295e-23
+      }
+    ]
+  },
+  "strict": {
+    "root_events": [
+      {
+        "source_kg": 0.0,
+        "received_kg": 0.0,
+        "loss_kg": 0.0,
+        "loss_fraction_of_source": null,
+        "vapor_inventory_kg": 1680045112596.5898,
+        "vapor_ulp_kg": 0.00022737367544323206,
+        "loss_in_vapor_ulps": 0.0,
+        "signal_quantization_fraction_near_one": 5.960464477539063e-08
+      },
+      {
+        "source_kg": 0.0,
+        "received_kg": 0.0,
+        "loss_kg": 0.0,
+        "loss_fraction_of_source": null,
+        "vapor_inventory_kg": 1635706937778.4148,
+        "vapor_ulp_kg": 0.00022737367544323206,
+        "loss_in_vapor_ulps": 0.0,
+        "signal_quantization_fraction_near_one": 5.960464477539063e-08
+      }
+    ],
+    "root_total_source_kg": 0.0,
+    "root_total_loss_kg": 0.0,
+    "root_aggregate_loss_fraction": null,
+    "phase_represented_exchange_kg": 2571743861082747.5,
+    "phase_sumabs_error_kg": 0.0029735857225432483,
+    "phase_sumabs_over_exchange": 1.1562526764587352e-18,
+    "advection_signed_net_kg": -0.1197102677402695,
+    "advection_sum_abs_tick_net_kg": 0.19301755853351477,
+    "advection_endpoint_half_l1_total_kg": 1315202776527286.2,
+    "advection_abs_tick_net_over_endpoint_lowerbound": 1.4675878273551552e-16,
+    "steps": [
+      {
+        "serial": 1,
+        "phase_represented_vapor_exchange_kg": 429207994585164.8,
+        "phase_sumabs_over_exchange": 2.749072705449277e-18,
+        "advection_net_kg": -0.04676121989621862,
+        "advection_endpoint_half_l1_kg": 219705407272536.62,
+        "abs_advection_net_over_lowerbound": 2.1283599924426536e-16,
+        "water_inventory_kg": 1.644944170721848e+21,
+        "phase_sumabs_over_inventory": 7.173033613395606e-25,
+        "abs_advection_net_over_inventory": 2.842723827866965e-23
+      },
+      {
+        "serial": 2,
+        "phase_represented_vapor_exchange_kg": 427980779440236.25,
+        "phase_sumabs_over_exchange": 4.828269750401275e-19,
+        "advection_net_kg": 0.01826997927945051,
+        "advection_endpoint_half_l1_kg": 219187633357301.06,
+        "abs_advection_net_over_lowerbound": 8.33531481662943e-17,
+        "water_inventory_kg": 1.644944131713744e+21,
+        "phase_sumabs_over_inventory": 1.2562169202498196e-25,
+        "abs_advection_net_over_inventory": 1.1106747595382702e-23
+      },
+      {
+        "serial": 3,
+        "phase_represented_vapor_exchange_kg": 428642809567349.06,
+        "phase_sumabs_over_exchange": 2.3367229934922662e-19,
+        "advection_net_kg": -0.03125020641564502,
+        "advection_endpoint_half_l1_kg": 218712275789463.1,
+        "abs_advection_net_over_lowerbound": 1.4288272710273982e-16,
+        "water_inventory_kg": 1.6449440925544103e+21,
+        "phase_sumabs_over_inventory": 6.089079341023381e-26,
+        "abs_advection_net_over_inventory": 1.8997731629357092e-23
+      },
+      {
+        "serial": 4,
+        "phase_represented_vapor_exchange_kg": 429205753149160.2,
+        "phase_sumabs_over_exchange": 2.7493958293036425e-18,
+        "advection_net_kg": -0.04676121989621862,
+        "advection_endpoint_half_l1_kg": 219705271544275.4,
+        "abs_advection_net_over_lowerbound": 2.12836130728867e-16,
+        "water_inventory_kg": 1.6449441653159614e+21,
+        "phase_sumabs_over_inventory": 7.173839285874874e-25,
+        "abs_advection_net_over_inventory": 2.8427238372091925e-23
+      },
+      {
+        "serial": 5,
+        "phase_represented_vapor_exchange_kg": 428012398840260.7,
+        "phase_sumabs_over_exchange": 4.827913062153277e-19,
+        "advection_net_kg": 0.018383666117172126,
+        "advection_endpoint_half_l1_kg": 219185316063008.88,
+        "abs_advection_net_over_lowerbound": 8.387270847964743e-17,
+        "water_inventory_kg": 1.644944126310483e+21,
+        "phase_sumabs_over_inventory": 1.2562169243762015e-25,
+        "abs_advection_net_over_inventory": 1.1175860518986534e-23
+      },
+      {
+        "serial": 6,
+        "phase_represented_vapor_exchange_kg": 428694125500576.56,
+        "phase_sumabs_over_exchange": 2.3364432809560487e-19,
+        "advection_net_kg": -0.03159126692880987,
+        "advection_endpoint_half_l1_kg": 218706872500701.16,
+        "abs_advection_net_over_lowerbound": 1.4444569833400453e-16,
+        "water_inventory_kg": 1.6449440871513084e+21,
+        "phase_sumabs_over_inventory": 6.089079361024011e-26,
+        "abs_advection_net_over_inventory": 1.920507035805648e-23
+      }
+    ]
+  }
+}

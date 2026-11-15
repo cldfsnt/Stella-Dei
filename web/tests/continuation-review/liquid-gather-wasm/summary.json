@@ -1,0 +1,191 @@
+{
+  "30": {
+    "signed": {
+      "native": -253091.15940083913,
+      "kg": -253091159400839.12,
+      "quantum_units": "-180611886649561974929866542819920937374917060460544"
+    },
+    "sumabs_global_step_drift_D": {
+      "native": 253091.15940083913,
+      "kg": 253091159400839.12,
+      "quantum_units": "180611886649561974929866542819920937374917060460544"
+    },
+    "sumabs_cell_error_A": {
+      "native": 1807675.1940542124,
+      "kg": 1807675194054212.2,
+      "quantum_units": "1290000124937836399919112944003613194006995482443776"
+    },
+    "one_way_gross_transfer_T": {
+      "native": 101874660.09957686,
+      "kg": 1.0187466009957686e+17,
+      "quantum_units": "72700186786162494346955037022426550142882943887998976"
+    },
+    "sum_derived_bound_native": 4268670.70169023,
+    "A_over_T": 0.017744110186844398,
+    "A_over_summed_inventory": 1.831523362475167e-08,
+    "A_over_initial_inventory": 1.0989139704741392e-06,
+    "D_candidate_over_baseline": 0.09187879456632961,
+    "resolution_warning_cell_steps": 1682992,
+    "unresolved_positive_net_receipts": 10649,
+    "maximum_depth_error_m": 0.001030289078037642,
+    "all_local_envelopes_pass": true,
+    "practical_gates_pass": false,
+    "A_over_budget": 0.4234749692306887,
+    "baseline_signed": {
+      "native": -2754619.9380981894,
+      "kg": -2754619938098189.5,
+      "quantum_units": "-1965762475466237442179465190552041690307160541495296"
+    },
+    "ecology": {
+      "initial": {
+        "living": 18,
+        "occupied": 10,
+        "biomass": 0.20058576529845595,
+        "births": 48
+      },
+      "baseline": {
+        "living": 23,
+        "occupied": 13,
+        "biomass": 0.22276405966840684,
+        "births": 56
+      },
+      "candidate": {
+        "living": 23,
+        "occupied": 13,
+        "biomass": 0.2227752930484712,
+        "births": 56
+      }
+    },
+    "coupled_all_surface_plus_vapor_signed_native": {
+      "baseline": -2736236.959294305,
+      "candidate": -234786.53958998946
+    },
+    "gather_f64_gamma_bound_over_T": 1.2907262283972564e-09
+  },
+  "60": {
+    "signed": {
+      "native": -259693.4460046771,
+      "kg": -259693446004677.1,
+      "quantum_units": "-185323435810517581963848137316924771184487547535360"
+    },
+    "sumabs_global_step_drift_D": {
+      "native": 259693.4460046771,
+      "kg": 259693446004677.1,
+      "quantum_units": "185323435810517581963848137316924771184487547535360"
+    },
+    "sumabs_cell_error_A": {
+      "native": 1861791.4722844013,
+      "kg": 1861791472284401.2,
+      "quantum_units": "1328618791558771905601845928343228077009751368531968"
+    },
+    "one_way_gross_transfer_T": {
+      "native": 124977373.89115967,
+      "kg": 1.2497737389115966e+17,
+      "quantum_units": "89186834263303854676807190110501691592690434597453824"
+    },
+    "sum_derived_bound_native": 4268349.290374358,
+    "A_over_T": 0.014897028272539947,
+    "A_over_summed_inventory": 1.8864266138335354e-08,
+    "A_over_initial_inventory": 1.1318559238119857e-06,
+    "D_candidate_over_baseline": 0.08539194841938255,
+    "resolution_warning_cell_steps": 1696494,
+    "unresolved_positive_net_receipts": 14116,
+    "maximum_depth_error_m": 0.0010302900728045873,
+    "all_local_envelopes_pass": true,
+    "practical_gates_pass": false,
+    "A_over_budget": 0.43618536010700093,
+    "baseline_signed": {
+      "native": -3041193.588056494,
+      "kg": -3041193588056494.0,
+      "quantum_units": "-2170268265812895256966639495995761480017657762676736"
+    },
+    "ecology": {
+      "initial": {
+        "living": 64,
+        "occupied": 37,
+        "biomass": 2.5916175625752658,
+        "births": 1560
+      },
+      "baseline": {
+        "living": 64,
+        "occupied": 38,
+        "biomass": 2.6193235446698964,
+        "births": 1621
+      },
+      "candidate": {
+        "living": 64,
+        "occupied": 38,
+        "biomass": 2.610378801357001,
+        "births": 1620
+      }
+    },
+    "coupled_all_surface_plus_vapor_signed_native": {
+      "baseline": -3014082.094334379,
+      "candidate": -232711.60460837837
+    },
+    "gather_f64_gamma_bound_over_T": 1.0520885712150248e-09
+  },
+  "90": {
+    "signed": {
+      "native": -268445.9965381224,
+      "kg": -268445996538122.4,
+      "quantum_units": "-191569464587593657020863170356536616860150692577280"
+    },
+    "sumabs_global_step_drift_D": {
+      "native": 268445.9965381224,
+      "kg": 268445996538122.4,
+      "quantum_units": "191569464587593657020863170356536616860150692577280"
+    },
+    "sumabs_cell_error_A": {
+      "native": 1866010.7887555335,
+      "kg": 1866010788755533.5,
+      "quantum_units": "1331629796407881698023609782171308405457047917690880"
+    },
+    "one_way_gross_transfer_T": {
+      "native": 139588364.13970375,
+      "kg": 1.3958836413970374e+17,
+      "quantum_units": "99613585323495755342641724188330819512657011210715136"
+    },
+    "sum_derived_bound_native": 4267908.474272751,
+    "A_over_T": 0.01336795369912051,
+    "A_over_summed_inventory": 1.890780195673559e-08,
+    "A_over_initial_inventory": 1.1344680686600764e-06,
+    "D_candidate_over_baseline": 0.08526414104449732,
+    "resolution_warning_cell_steps": 1678642,
+    "unresolved_positive_net_receipts": 16377,
+    "maximum_depth_error_m": 0.0010302900728045873,
+    "all_local_envelopes_pass": true,
+    "practical_gates_pass": false,
+    "A_over_budget": 0.4372190266037747,
+    "baseline_signed": {
+      "native": -3148404.3966153,
+      "kg": -3148404396615300.0,
+      "quantum_units": "-2246776455387243266555719788391200099225419458281472"
+    },
+    "ecology": {
+      "initial": {
+        "living": 41,
+        "occupied": 37,
+        "biomass": 2.009137849090621,
+        "births": 3000
+      },
+      "baseline": {
+        "living": 45,
+        "occupied": 37,
+        "biomass": 2.0123720259871334,
+        "births": 3043
+      },
+      "candidate": {
+        "living": 44,
+        "occupied": 37,
+        "biomass": 2.0062091450672597,
+        "births": 3043
+      }
+    },
+    "coupled_all_surface_plus_vapor_signed_native": {
+      "baseline": -3117059.3441218,
+      "candidate": -237122.2812918045
+    },
+    "gather_f64_gamma_bound_over_T": 9.419255822501637e-10
+  }
+}
