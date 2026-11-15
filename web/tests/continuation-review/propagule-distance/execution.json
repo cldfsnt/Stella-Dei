@@ -1,0 +1,21 @@
+{
+  "prepare.log": {
+    "sha256": "95fb7704c93ad61dd7814d50f6f518d77a9a08afca9b117730fb1a75c8b2554f",
+    "bytes": 78
+  },
+  "build.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "run.log": {
+    "sha256": "e5861d445fd9e7b4c2ee3192d7f8f1faeb582f3939f8de39e4b8097d15f2cd02",
+    "bytes": 3139
+  },
+  "census.log": {
+    "sha256": "6aa6dc9f244272843d3c8cd38663edcc5524436e87ed1d12c6d03b6e35892373",
+    "bytes": 961
+  },
+  "compact_graph_uncompressed_sha256": "be67a735d82b0c02385548c4e49f84c062d85ff6b15ccbe0778564ffd71ac53d",
+  "raw_graph_sha256": "141786c544a7a3f70bcdb3f62c856f694c6bf538290854de0d28c80c590b629a",
+  "binary_sha256": "c3a226382aeb33fc6c3fb8bb6f234b25fa85c9e0779a7c466c2af48bb0093f84"
+}

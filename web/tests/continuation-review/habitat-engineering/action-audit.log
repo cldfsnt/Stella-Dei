@@ -1,0 +1,2 @@
+PUBLIC_ACTION_AUDIT exact_production_pond_export=true exact_production_nursery_export=true pond_action_module_exact=true
+PLAYER_METHOD_AUDIT exact_pond_and_nursery_methods=true

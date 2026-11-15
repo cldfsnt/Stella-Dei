@@ -1,0 +1,7 @@
+{
+  "src/renderer.zig": "d39f158efb8fea34c8b4661a7e75a82957f8902225c77d0052d4b525230e39d4",
+  "src/render_diagnostics_policy.zig": "1506e62876ad3041ddcf0a591d5e2998d3b1fc9bad0f2f08c3e79bcd00b8d54c",
+  "web-build.zig": "781be136fe2f7f3ffed4927cbcd2dac225ff5788d898ea114ea08d2b0a689ee4",
+  "web/build.sh": "89cec9af69b2b727b68863138f2dc1086df7dc6142f93455bd1445f3361972d5",
+  "web/tests/render-diagnostics-policy.test.cjs": "54e0c662a01747046b3ae7fc751d383181ccba60031401af04b80217f11e3559"
+}

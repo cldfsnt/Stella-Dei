@@ -1,0 +1,27 @@
+{
+  "source_commit": "01e5c7b520d2963c5f5131337c155c6c906b731d",
+  "local_release": "91ba264e5095bc3aab2e59a0873481b143d0c549",
+  "tree": "c7905fbf4fd7f1d78a1437fc72a1e4809fe4af8f",
+  "site": {
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "checkout_path": "/workspace/scratch/f67c3ac60ca3/stella-site-current/.sites-checkout",
+    "commit_sha": "93c31448742fbfd64931af044edd20110a68533d",
+    "archive": "/workspace/scratch/f67c3ac60ca3/stella-v54-deploy.tar.gz"
+  },
+  "deployment": {
+    "id": "appgdep_6af94c2d88188191b9424a1d4b2d8946",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_adc0e263b9388191a45020377cd12ede",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T06:07:50.086566+00:00"
+  },
+  "archive_manifest_files_verified": 32
+}

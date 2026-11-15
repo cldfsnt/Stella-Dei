@@ -1,0 +1,14 @@
+{
+  "src/main.zig": "2f72c425391bd142d3b6972635370128cb26db87bda1ddc9b22a73ba893f6cdd",
+  "src/states/play.zig": "7c568daf0d6fc46bf34d5a260c205c9d1d9798eceb8678506b57021150e75816",
+  "src/renderer.zig": "f994ba1e269383449daaaed255f457355f65490e0eda8d216d9d95773ab9fd08",
+  "deps/nanovg/src/nanovg_gl.zig": "6ee9fcfb8039194e95bed4dbfe22b6ab2cd89e79482ebe19f3c2a8d2710bc528",
+  "web/tests/egl-nvg-attribution-prepare.py": "a3584adae37310b3f5cf58c897779297d2b158c87d94ef767fcc4d63c6b6fde1",
+  "web/tests/egl-nvg-attribution-build.zig": "4e9bd1154b9a38dc80825b6513956daa16fcd09d08b79dfff7b246eabe8d7b55",
+  "copied_files": {
+    "main.zig": "940549ab37a240b335781da9e487bd960a65d1e64889e71751f25dd790432ba8",
+    "simulation/planet.zig": "da07b3e77684ea0420a498f8445ec117fddf74929636aec680a2895b6ac53d26",
+    "qa-nanovg/nanovg_gl.zig": "0a82352fc25bf099385b492ab5db85023573b3f1b00c79f492cdb9e67ac9d0b6"
+  },
+  "head": "61b53e7c22900d635cc9d7c530c7af97795567ff"
+}

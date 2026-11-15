@@ -1,0 +1,6 @@
+1/5 pond_action.test.basin shapes bounded floor and dry rim, stays repeatable and rejects stale or invalid state atomically...OK
+2/5 pond_action.test.nursery has shallow center shared waterline, reservoir, dry rim, repeatability and atomic rejection...OK
+3/5 pond_action.test.preview is pure and checked writes match frozen unchanged action bitwise across mesh/finite cases...OK
+4/5 pond_action.test.checked plan refuses stale world selection outside input topology owner and tampering atomically...OK
+5/5 pond_action.test.invalid and extreme inputs agree with old action and never mutate through preview...OK
+All 5 tests passed.

@@ -1,0 +1,57 @@
+{
+  "scope": "One preserved historical native world, saved checkpoints; Python double arithmetic, not authoritative f32 live eligibility, connectivity, sunlight or resource guarantee",
+  "rows": [
+    {
+      "day": 30,
+      "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "cells": 40962,
+      "depth_temperature_habitable": 2567,
+      "growth_temperature_subset": 2344,
+      "occupied": 10,
+      "habitable_occupied": 10,
+      "film_0_to_0_2m": 1279,
+      "dry": 5,
+      "deep_over_50m": 36704,
+      "sqrt_mean_area_km": 87.57584970004856
+    },
+    {
+      "day": 40,
+      "input_sha256": "a13061d2f77c719b095d808794efe324d669cc1226ed10973804522d67324859",
+      "cells": 40962,
+      "depth_temperature_habitable": 2567,
+      "growth_temperature_subset": 2357,
+      "occupied": 28,
+      "habitable_occupied": 27,
+      "film_0_to_0_2m": 1275,
+      "dry": 5,
+      "deep_over_50m": 36707,
+      "sqrt_mean_area_km": 87.57584970004856
+    },
+    {
+      "day": 50,
+      "input_sha256": "470d572d6d4ff131bf1ebd62e41a488ceb8e9656e5e5bcd5df8045bbad1f0e54",
+      "cells": 40962,
+      "depth_temperature_habitable": 2574,
+      "growth_temperature_subset": 2366,
+      "occupied": 37,
+      "habitable_occupied": 36,
+      "film_0_to_0_2m": 1274,
+      "dry": 5,
+      "deep_over_50m": 36708,
+      "sqrt_mean_area_km": 87.57584970004856
+    },
+    {
+      "day": 60,
+      "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "cells": 40962,
+      "depth_temperature_habitable": 2581,
+      "growth_temperature_subset": 2373,
+      "occupied": 37,
+      "habitable_occupied": 36,
+      "film_0_to_0_2m": 1276,
+      "dry": 4,
+      "deep_over_50m": 36711,
+      "sqrt_mean_area_km": 87.57584970004856
+    }
+  ]
+}

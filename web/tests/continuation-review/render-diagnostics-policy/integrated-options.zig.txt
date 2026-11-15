@@ -1,0 +1,2 @@
+pub const tracy_enabled: bool = false;
+pub const web_gl_debug: bool = false;

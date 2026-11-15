@@ -1,0 +1,26 @@
+{
+  "main.zig": {
+    "current": "084dad2bb30412aed3e52e85738e8713d1b78a94d9dd70a351011e6ca3dffe10",
+    "copied": "6719a4b73b0c69e69eace936d363b378eb45274e646c3939ac83c448ccd83a04"
+  },
+  "habitat_preview.zig": {
+    "current": "503636ab0975f096118648c39616c5a32bcdfb81d02ba4402e2478730db78b98",
+    "copied": "1b86c939452dc669921cf35b0021d683d410d7530fde14254d1c0994ce38d570"
+  },
+  "pond_action.zig": {
+    "current": "d74f04c8ba44b6c7dc1649d430690d5d3ecda699f6bb3f34f672c21cf8b8f14b",
+    "copied": "d74f04c8ba44b6c7dc1649d430690d5d3ecda699f6bb3f34f672c21cf8b8f14b"
+  },
+  "states/play.zig": {
+    "current": "2159b2bda3d55d0bb2e88fd0227c77af238bc98cc78ff8a0b90eff0c04f01cf5",
+    "copied": "90806dafe55ba2157a63483d6e91087cc88c0ccdf30bcc88e159b1fcc95facd7"
+  },
+  "save_game.zig": {
+    "current": "b6a1d408f4ce440acf9600db9b65dd05063c983c3024e8ba3cb8d0207ce2c7ce",
+    "copied": "b6a1d408f4ce440acf9600db9b65dd05063c983c3024e8ba3cb8d0207ce2c7ce"
+  },
+  "performance_details.zig": {
+    "current": "eec96cb6aa2bab137c44f6a4385b1aec09dcdd6b18e63e5e62d84d3c98c64c33",
+    "copied": "eec96cb6aa2bab137c44f6a4385b1aec09dcdd6b18e63e5e62d84d3c98c64c33"
+  }
+}

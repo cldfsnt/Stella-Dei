@@ -1,0 +1,382 @@
+{
+  "early": {
+    "rows": [
+      {
+        "coupled": "false",
+        "debug": "false",
+        "trial": "0",
+        "frames": "60",
+        "update_ms": "0.000041933333333333334",
+        "render_finish_ms": "9.649945416666666",
+        "total_ms": "9.6503981",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          43353383,
+          0
+        ]
+      },
+      {
+        "coupled": "false",
+        "debug": "true",
+        "trial": "1",
+        "frames": "60",
+        "update_ms": "0.0000549",
+        "render_finish_ms": "7.405201616666667",
+        "total_ms": "7.405589066666667",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          24932013,
+          4680
+        ]
+      },
+      {
+        "coupled": "false",
+        "debug": "true",
+        "trial": "2",
+        "frames": "60",
+        "update_ms": "0.00004603333333333333",
+        "render_finish_ms": "7.767043983333333",
+        "total_ms": "7.767517766666667",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          27806135,
+          4680
+        ]
+      },
+      {
+        "coupled": "false",
+        "debug": "false",
+        "trial": "3",
+        "frames": "60",
+        "update_ms": "0.00004103333333333333",
+        "render_finish_ms": "7.335839833333333",
+        "total_ms": "7.336248566666667",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          24539429,
+          0
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "false",
+        "trial": "0",
+        "frames": "60",
+        "update_ms": "9.251114816666666",
+        "render_finish_ms": "7.88149795",
+        "total_ms": "17.133167433333334",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          27042294,
+          0
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "true",
+        "trial": "1",
+        "frames": "60",
+        "update_ms": "9.209101933333333",
+        "render_finish_ms": "8.428943966666667",
+        "total_ms": "17.63917216666667",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          30093031,
+          4680
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "true",
+        "trial": "2",
+        "frames": "60",
+        "update_ms": "8.5244313",
+        "render_finish_ms": "7.4170942",
+        "total_ms": "15.9420161",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          25505689,
+          4680
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "false",
+        "trial": "3",
+        "frames": "60",
+        "update_ms": "8.42063915",
+        "render_finish_ms": "7.231852933333333",
+        "total_ms": "15.6530576",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          2160,
+          3960,
+          2340,
+          1020,
+          900,
+          2160,
+          2100,
+          25239600,
+          0
+        ]
+      }
+    ],
+    "medians": {
+      "false": {
+        "false": 8.493323333333333,
+        "true": 7.586553416666667
+      },
+      "true": {
+        "false": 16.39311251666667,
+        "true": 16.790594133333336
+      }
+    }
+  },
+  "day60": {
+    "rows": [
+      {
+        "coupled": "false",
+        "debug": "false",
+        "trial": "0",
+        "frames": "60",
+        "update_ms": "0.00011718333333333333",
+        "render_finish_ms": "11.24868545",
+        "total_ms": "11.2491705",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          11580,
+          28380,
+          13620,
+          2880,
+          2760,
+          11580,
+          11520,
+          161356078,
+          0
+        ]
+      },
+      {
+        "coupled": "false",
+        "debug": "true",
+        "trial": "1",
+        "frames": "60",
+        "update_ms": "0.0000953",
+        "render_finish_ms": "9.972880166666666",
+        "total_ms": "9.97334005",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          11580,
+          28380,
+          13620,
+          2880,
+          2760,
+          11580,
+          11520,
+          143211029,
+          27240
+        ]
+      },
+      {
+        "coupled": "false",
+        "debug": "true",
+        "trial": "2",
+        "frames": "60",
+        "update_ms": "0.00009146666666666666",
+        "render_finish_ms": "13.189829183333334",
+        "total_ms": "13.190299916666667",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          11580,
+          28380,
+          13620,
+          2880,
+          2760,
+          11580,
+          11520,
+          290363615,
+          27240
+        ]
+      },
+      {
+        "coupled": "false",
+        "debug": "false",
+        "trial": "3",
+        "frames": "60",
+        "update_ms": "0.00010433333333333334",
+        "render_finish_ms": "12.115595083333334",
+        "total_ms": "12.116083616666666",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          11580,
+          28380,
+          13620,
+          2880,
+          2760,
+          11580,
+          11520,
+          251450873,
+          0
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "false",
+        "trial": "0",
+        "frames": "60",
+        "update_ms": "8.560539033333333",
+        "render_finish_ms": "11.6349758",
+        "total_ms": "20.19605545",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          13736,
+          32693,
+          15911,
+          3058,
+          2938,
+          13736,
+          13676,
+          200774020,
+          0
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "true",
+        "trial": "1",
+        "frames": "60",
+        "update_ms": "8.430708133333333",
+        "render_finish_ms": "11.106902183333334",
+        "total_ms": "19.538095733333332",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          13736,
+          32693,
+          15911,
+          3058,
+          2938,
+          13736,
+          13676,
+          189776391,
+          30695
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "true",
+        "trial": "2",
+        "frames": "60",
+        "update_ms": "8.861818033333334",
+        "render_finish_ms": "11.95371645",
+        "total_ms": "20.816067433333334",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          13736,
+          32693,
+          15911,
+          3058,
+          2938,
+          13736,
+          13676,
+          203301831,
+          30695
+        ]
+      },
+      {
+        "coupled": "true",
+        "debug": "false",
+        "trial": "3",
+        "frames": "60",
+        "update_ms": "9.0137574",
+        "render_finish_ms": "12.949814533333333",
+        "total_ms": "21.964052883333334",
+        "fullsave_exact": "true",
+        "counts": [
+          60,
+          13736,
+          32693,
+          15911,
+          3058,
+          2938,
+          13736,
+          13676,
+          247993306,
+          0
+        ]
+      }
+    ],
+    "medians": {
+      "false": {
+        "false": 11.682627058333333,
+        "true": 11.581819983333332
+      },
+      "true": {
+        "false": 21.080054166666667,
+        "true": 20.177081583333333
+      }
+    }
+  }
+}

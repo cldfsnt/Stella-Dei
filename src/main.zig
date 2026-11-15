@@ -371,6 +371,11 @@ export fn stella_target_distance() f32 {
     return if (webPlayState()) |state| state.targetCameraDistance else -1;
 }
 
+const HabitatPreview=@import("habitat_preview.zig");
+export fn stella_habitat_prepare(world:u32,cell:i32,nursery:i32)[*:0]const u8{return if(webEditableState())|s|HabitatPreview.prepare(s,PerformanceDetails.world_serial,world,cell,nursery).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_habitat_execute(token:u32)[*:0]const u8{return if(webEditableState())|s|HabitatPreview.execute(s,PerformanceDetails.world_serial,token).ptr else "{\"ok\":false,\"reason\":\"World unavailable\"}";}
+export fn stella_habitat_cancel()void{HabitatPreview.cancel();}
+export fn stella_habitat_status()[*:0]const u8{return if(webEditableState())|s|HabitatPreview.status(s,PerformanceDetails.world_serial).ptr else blk:{HabitatPreview.cancel();break :blk "{\"pending\":false,\"token\":0,\"available\":false,\"reason\":\"World unavailable\"}";};}
 const ManualTransport=@import("manual_transport.zig");
 export fn stella_transport_options()[*:0]const u8{return if(webPlayState())|s|ManualTransport.options(s,PerformanceDetails.world_serial).ptr else "{\"available\":false,\"reason\":\"Start an Origin world first\"}";}
 export fn stella_transport_status()[*:0]const u8{return if(webPlayState())|s|ManualTransport.status(s,PerformanceDetails.world_serial).ptr else "{\"pending\":false,\"token\":0}";}
@@ -483,7 +488,7 @@ var speed_json:[512]u8=undefined;
 export fn stella_set_speed(seconds:f32)i32 {
     const state=webEditableState() orelse return -1;
     if(!std.math.isFinite(seconds) or (seconds!=3600 and seconds!=21600 and seconds!=86400))return -1;
-    state.timeScale=seconds;state.simulationClock.reset();return 1;
+    HabitatPreview.cancel();state.timeScale=seconds;state.simulationClock.reset();return 1;
 }
 export fn stella_speed_snapshot()[*:0]const u8 {
     const state=webPlayState() orelse return "{\"status\":\"unavailable\"}";

@@ -9,6 +9,7 @@ pub fn build(b: *std.Build) void {
     lib.addIncludePath(b.path("deps"));
     const opts = b.addOptions();
     opts.addOption(bool, "tracy_enabled", false);
+    opts.addOption(bool, "web_gl_debug", b.option(bool, "web-gl-debug", "Enable per-draw NanoVG GL error polling for diagnostic builds") orelse false);
     lib.root_module.addOptions("build_options", opts);
     const imports = .{ .{ "gl", "deps/gl_web.zig" }, .{ "glfw", "deps/web-vendor/mach-glfw/src/main.zig" }, .{ "zalgebra", "deps/web-vendor/zalgebra/src/main.zig" }, .{ "zigimg", "deps/web-vendor/zigimg/zigimg.zig" }, .{ "nanovg", "deps/nanovg/src/nanovg.zig" } };
     inline for (imports) |entry| {

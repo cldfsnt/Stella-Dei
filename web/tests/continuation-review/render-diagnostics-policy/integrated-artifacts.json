@@ -1,0 +1,23 @@
+{
+  "web/dist/index.js": {
+    "sha256": "53b1637fde443f01f328146b82387750544acb3bf9467462b58ad862d3c1693b",
+    "bytes": 192360
+  },
+  "web/dist/index.wasm": {
+    "sha256": "9f7cf64a3dd6c63aea984a9ecc03ccadcbe78d3c341c22ac8c678d625e8d7ba4",
+    "bytes": 1395624
+  },
+  "web/dist/index.html": {
+    "sha256": "aa6f38c7b9a4cde4dd92a6e8d1a079d3a181d766cd4ceab8c759acbabc7cd788",
+    "bytes": 103550
+  },
+  "zig-out/lib/libstella.a": {
+    "sha256": "21adc772931ee63123bef540ae307839b0382109c81d4363a78708b1a8297ac1",
+    "bytes": 5937832
+  },
+  "concurrent_pond_current": {
+    "bytes": 16327,
+    "sha256": "d74f04c8ba44b6c7dc1649d430690d5d3ecda699f6bb3f34f672c21cf8b8f14b",
+    "note": "Changed after compiler recorded12479-byte input; not an exactcurrenttree build assertion."
+  }
+}

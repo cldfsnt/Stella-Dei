@@ -1,0 +1,44 @@
+[
+  {
+    "world": "early",
+    "sha256": "897ae2b3eaccf023263829612adc7e036eead70b0eda75df48ab5af8c6ac1755",
+    "game_time": 86400.0,
+    "exit": 0,
+    "wall_seconds": 9.073325486002432,
+    "image_hashes": {
+      "0": [
+        "50b681ce7c832e3e10c500c0d03959393a230b0ca92b6b36e0c2c2c38e967a51",
+        "50b681ce7c832e3e10c500c0d03959393a230b0ca92b6b36e0c2c2c38e967a51",
+        "50b681ce7c832e3e10c500c0d03959393a230b0ca92b6b36e0c2c2c38e967a51",
+        "50b681ce7c832e3e10c500c0d03959393a230b0ca92b6b36e0c2c2c38e967a51"
+      ],
+      "1": [
+        "885717f2981cf246f4a2d1c1fa4f084e0f6a9841dfc429f7fb9c954aaac7de60",
+        "885717f2981cf246f4a2d1c1fa4f084e0f6a9841dfc429f7fb9c954aaac7de60",
+        "885717f2981cf246f4a2d1c1fa4f084e0f6a9841dfc429f7fb9c954aaac7de60",
+        "885717f2981cf246f4a2d1c1fa4f084e0f6a9841dfc429f7fb9c954aaac7de60"
+      ]
+    }
+  },
+  {
+    "world": "day60",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "game_time": 5184000.0,
+    "exit": 0,
+    "wall_seconds": 11.507256231998326,
+    "image_hashes": {
+      "0": [
+        "e09c3dd61709974fe69e1bf66755124fd3bfb960ec488d4471d99328c65166a9",
+        "e09c3dd61709974fe69e1bf66755124fd3bfb960ec488d4471d99328c65166a9",
+        "e09c3dd61709974fe69e1bf66755124fd3bfb960ec488d4471d99328c65166a9",
+        "e09c3dd61709974fe69e1bf66755124fd3bfb960ec488d4471d99328c65166a9"
+      ],
+      "1": [
+        "f6bf7bd17c193f03cca3ba5758063b653da8616e85aa61080bf8a43c364589a4",
+        "f6bf7bd17c193f03cca3ba5758063b653da8616e85aa61080bf8a43c364589a4",
+        "f6bf7bd17c193f03cca3ba5758063b653da8616e85aa61080bf8a43c364589a4",
+        "f6bf7bd17c193f03cca3ba5758063b653da8616e85aa61080bf8a43c364589a4"
+      ]
+    }
+  }
+]

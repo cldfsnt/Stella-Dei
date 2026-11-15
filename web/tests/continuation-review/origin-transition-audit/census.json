@@ -1,0 +1,147 @@
+[
+  {
+    "day": 30,
+    "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "cohorts": 18,
+    "occupied": 10,
+    "cohort_forms": {
+      "mat": 12,
+      "ribbon": 2,
+      "canopy": 1,
+      "cushion": 2,
+      "rosette": 1
+    },
+    "dominant_patch_forms": {
+      "mat": 5,
+      "ribbon": 2,
+      "canopy": 1,
+      "rosette": 1,
+      "cushion": 1
+    },
+    "max_height_m_formula_f64": 0.00764077137351439,
+    "median_height_m_formula_f64": 0.0,
+    "trait_ranges": {
+      "organization": [
+        0.0,
+        0.06291063874959946
+      ],
+      "structure": [
+        0.0,
+        0.08916594088077545
+      ],
+      "feeding": [
+        0.0,
+        0.1874849796295166
+      ],
+      "mobility": [
+        0.0,
+        0.06858930736780167
+      ],
+      "efficiency": [
+        0.9090954661369324,
+        1.0544852018356323
+      ]
+    },
+    "rabbits": 0,
+    "nonzero_vegetation": 0,
+    "dormant_plant_trait_entries": 40962
+  },
+  {
+    "day": 60,
+    "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "cohorts": 64,
+    "occupied": 37,
+    "cohort_forms": {
+      "rosette": 13,
+      "mat": 12,
+      "cushion": 16,
+      "canopy": 14,
+      "ribbon": 8,
+      "branching": 1
+    },
+    "dominant_patch_forms": {
+      "rosette": 12,
+      "cushion": 7,
+      "canopy": 8,
+      "ribbon": 6,
+      "branching": 1,
+      "mat": 3
+    },
+    "max_height_m_formula_f64": 0.03465344440309397,
+    "median_height_m_formula_f64": 0.003258048285748002,
+    "trait_ranges": {
+      "organization": [
+        0.0,
+        0.2605021297931671
+      ],
+      "structure": [
+        0.0,
+        0.13595879077911377
+      ],
+      "feeding": [
+        0.0,
+        0.3557032644748688
+      ],
+      "mobility": [
+        0.0,
+        0.15658235549926758
+      ],
+      "efficiency": [
+        0.8831180930137634,
+        1.1588608026504517
+      ]
+    },
+    "rabbits": 0,
+    "nonzero_vegetation": 0,
+    "dormant_plant_trait_entries": 40962
+  },
+  {
+    "day": 90,
+    "input_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "cohorts": 41,
+    "occupied": 37,
+    "cohort_forms": {
+      "rosette": 13,
+      "cushion": 9,
+      "canopy": 7,
+      "ribbon": 7,
+      "branching": 1,
+      "mat": 4
+    },
+    "dominant_patch_forms": {
+      "rosette": 11,
+      "cushion": 8,
+      "canopy": 7,
+      "ribbon": 6,
+      "branching": 1,
+      "mat": 4
+    },
+    "max_height_m_formula_f64": 0.037704923395210886,
+    "median_height_m_formula_f64": 0.00906803805239998,
+    "trait_ranges": {
+      "organization": [
+        0.0,
+        0.2605021297931671
+      ],
+      "structure": [
+        0.0,
+        0.16355346143245697
+      ],
+      "feeding": [
+        0.051488012075424194,
+        0.37779638171195984
+      ],
+      "mobility": [
+        0.0,
+        0.12673817574977875
+      ],
+      "efficiency": [
+        0.8831180930137634,
+        1.2738312482833862
+      ]
+    },
+    "rabbits": 0,
+    "nonzero_vegetation": 0,
+    "dormant_plant_trait_entries": 40962
+  }
+]

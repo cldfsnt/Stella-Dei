@@ -57,7 +57,10 @@ pub const Renderer = struct {
 
         const vg = try nvg.gl.init(allocator, .{
             .antialias = true,
-            .debug = true,
+            // WebGL per-draw getError may synchronize; retain explicit diagnostic builds.
+            // Shader compile/link validation remains independent and always enabled.
+            .debug = @import("render_diagnostics_policy.zig").nanoVGDebug(is_web,
+                if (@hasDecl(@import("build_options"), "web_gl_debug")) @import("build_options").web_gl_debug else false),
         });
         // generate a VAO for nanovg because it doesn't generate itself for some reason
         var vg_vao: gl.GLuint = 0;

@@ -1,0 +1,22 @@
+{
+  "implementation_commit": "ca198de9de8cd4d9953e67992234af9450c0b1bc",
+  "build_exit": 0,
+  "javascript_tests": {
+    "passed": 65,
+    "failed": 0
+  },
+  "files": {
+    "src/main.zig": "084dad2bb30412aed3e52e85738e8713d1b78a94d9dd70a351011e6ca3dffe10",
+    "src/habitat_preview.zig": "503636ab0975f096118648c39616c5a32bcdfb81d02ba4402e2478730db78b98",
+    "src/pond_action.zig": "d74f04c8ba44b6c7dc1649d430690d5d3ecda699f6bb3f34f672c21cf8b8f14b",
+    "src/renderer.zig": "d39f158efb8fea34c8b4661a7e75a82957f8902225c77d0052d4b525230e39d4",
+    "src/render_diagnostics_policy.zig": "1506e62876ad3041ddcf0a591d5e2998d3b1fc9bad0f2f08c3e79bcd00b8d54c",
+    "web/shell.html": "a9eb36ffc35517f050e77e2e7a1a61079ebba732fdbcf91a98e69faa6111d4ce",
+    "web/habitat-plan.js": "6ec0a745914dd9f8ce2b2be9b1417bfb4b27c759aa6daf7256139d1381907044",
+    "web/build.sh": "cc0f478a931432577fc633fd61149906d83e642cd540e84ff75251fe6118de18",
+    "web-build.zig": "781be136fe2f7f3ffed4927cbcd2dac225ff5788d898ea114ea08d2b0a689ee4",
+    "web/dist/index.wasm": "65c685bcb634be406847e68f0dc4f028f9f0ea04b826a91fc3a450e7e390cee1",
+    "web/dist/index.js": "433d11076f7bc3d62f724fcdfddc23bb2c1a7015cd79c97ea749c3bcf2fda814",
+    "web/dist/index.html": "796f5d7f6e0fbfe61a143d0562bb92fe7f596f10857d56f40c4071e2dbcdbd6f"
+  }
+}

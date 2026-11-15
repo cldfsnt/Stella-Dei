@@ -1,0 +1,2 @@
+bash -n web/build.sh: PASS
+STELLA_WEB_GL_DEBUG=invalid bash web/build.sh: exit2, rejected before compilation

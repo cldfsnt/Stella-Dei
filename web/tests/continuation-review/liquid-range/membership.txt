@@ -1,0 +1,1 @@
+652 exact integer membership cases pass; widths4/8/16/32, low/high uint boundaries. Sole production caller uses contiguous iota. No floating point arithmetic changed.

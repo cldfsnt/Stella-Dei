@@ -1,0 +1,16 @@
+{
+  "head": "4aa452637b13c15d5dcae10d54a427f2515ed269",
+  "save_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "production": {
+    "main.zig": "2f72c425391bd142d3b6972635370128cb26db87bda1ddc9b22a73ba893f6cdd",
+    "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+    "simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+    "states/play.zig": "7c568daf0d6fc46bf34d5a260c205c9d1d9798eceb8678506b57021150e75816"
+  },
+  "copied": {
+    "main.zig": "3cec81e7ed22dae0973a16501782883a4aa86344c42e898b2c5dd7391fd70741",
+    "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+    "simulation/planet.zig": "93fcb1a63f549a990b6e83e51906106a7e24f097698998cab6d5dc5f568f3f46",
+    "states/play.zig": "9628ac87925157fd1d79924513b02e0fe9c80cae6afacef07e94655d6e583c81"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "run.log": {
+    "sha256": "7c246a188d442b406d54f5cf19caa194f0005c2ef9b89ba7b3e37505a6ff5df8",
+    "bytes": 113526
+  },
+  "build.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "prepare.log": {
+    "sha256": "1360a3b8784083a80d910830136d524a8c8a5f2c79ec6806d451ae08753c58f4",
+    "bytes": 38
+  },
+  "binary_sha256": "85b539e82d6d0eeb2ca1268fce7fc74f67a7079e09b10de3cf7e3bfc734e4e03",
+  "final_local_save_sha256": {
+    "arm-3-day70.json": "98cea99a1b86d32aabdcf5c4cc4b821248f11989d959056f210372ee350cdc27",
+    "arm-0-day70.json": "ea787373217b1780a26f91a6b084a37589ec61fbd33d9ab7ab7da3b6a356e500",
+    "arm-2-day70.json": "f652033792b194dc129120aff8bf215d46e13ffa260414201408ab314dbfff98",
+    "arm-1-day70.json": "459e4b537c620b83e143357acd8d819ef2364e7bee18eeff546c97d7708962c6"
+  }
+}

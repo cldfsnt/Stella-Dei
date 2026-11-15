@@ -1,0 +1,9 @@
+{
+  "web/shell.html": "a9eb36ffc35517f050e77e2e7a1a61079ebba732fdbcf91a98e69faa6111d4ce",
+  "web/habitat-plan.js": "6ec0a745914dd9f8ce2b2be9b1417bfb4b27c759aa6daf7256139d1381907044",
+  "web/build.sh": "cc0f478a931432577fc633fd61149906d83e642cd540e84ff75251fe6118de18",
+  "web/tests/habitat-plan.test.cjs": "0dee4ac3ca98f332272ef6e554f2673d709e093781520344b84da933e68cb105",
+  "web/tests/shell.test.cjs": "837dbf145a9d347aff45c4901b650612d024af201f34019b7b37541c4dc62c56",
+  "web/tests/advance-day-ui.test.cjs": "ee5febc32884f10be4a7c506fd0f7a608b59c0272caafbb74ac971a168ab2c54",
+  "web/tests/prepare-habitat-ui-fixture.py": "2760b1caa2a18280d476e5287787bd4afe5ac85af1faa3138a71c417a4bb6109"
+}

@@ -1,0 +1,90 @@
+✔ actual shell: start, cancel, redraw wait, dismiss and repeat (4.825839ms)
+✔ missing native API never calls start or hides game (0.799294ms)
+✔ active input guards block globe and tools but permit accessible actions (0.967438ms)
+✔ context loss calls native environment and shows stopped, not advancing (1.651097ms)
+✔ genuine context loss stays frozen after restored event; explicit durable save then reload path (1.296302ms)
+✔ recovery save failure never claims durable save (1.020748ms)
+✔ context loss outside advancement still exposes reload recovery, never leaves a silently frozen game (0.979295ms)
+✔ browser timer APIs use global-call wrappers, never hook-object receivers (0.155755ms)
+✔ release/cancel events reach guarded native input handlers to clear held state (1.748714ms)
+✔ recovery hides generic final-redraw subtitle (0.915118ms)
+✔ only explicit start; duplicate click never restarts; native redraw required (1.848265ms)
+✔ cancel keeps completed count, blocks dismissal until redraw (0.377048ms)
+✔ malformed, unknown, regressed and wrong-token statuses fail closed (0.354604ms)
+✔ status exception never unlocks or silently retries (0.274603ms)
+✔ hidden/context cancellation waits native acknowledgement; repeated session works (0.33856ms)
+✔ validation rejects incomplete-success and unsafe progress (0.196156ms)
+✔ uncertain start cannot reuse prior completed job as new success (0.409196ms)
+✔ explicit dismissal waits for native neutral-input acknowledgement (0.342977ms)
+✔ rejected dismissal does not unlock; wrong world cannot establish a job (0.317559ms)
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ web/tests/colony-labels.test.cjs (131.219984ms)
+✔ explicit review and one-use whole colony execution, exact string identity (3.490658ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.559983ms)
+✔ ineligible source or full target cannot prepare (0.227963ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.46489ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (0.574476ms)
+✔ unknown execution result is not reported as safe failure or retried (0.362506ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (1.543545ms)
+✔ post-execution malformed receipt never claims successful move (0.507535ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (0.321795ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (1.328812ms)
+✔ changing source or destination consumes pending ticket without refreshing options (0.353112ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ web/tests/colony-watch-details.test.cjs (137.005259ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ web/tests/colony-watch-ui.test.cjs (142.162098ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ web/tests/compact-life.test.cjs (81.187769ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.383825ms)
+✔ restricted or missing clipboard stays manually copyable (0.328846ms)
+✔ missing or oversized report never writes or displays stale data (0.175094ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ web/tests/gameplay-measure.test.cjs (109.097429ms)
+✔ preview only, explicit one-use application and exact manual receipt (1.324265ms)
+✔ cancel and repeated preparation never apply (0.61109ms)
+✔ stale world selection token pause availability and pending refuse (0.315485ms)
+✔ malformed preview fails closed with real bounded footprint (0.348996ms)
+✔ failed response, thrown response and malformed success never imply application status falsely (0.51808ms)
+✔ actual refusal is one-use, no silent retry (0.168543ms)
+✔ shell routes both player entry points through preview and cancels destructive lifecycle (0.621346ms)
+✔ receipt changed risk counts, depth, token or exact footprint is unknown (0.833946ms)
+✔ receipt does not survive world or selection change (0.522036ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ web/tests/harness-mode.test.cjs (86.152627ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ web/tests/life-trend.test.cjs (542.736582ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (1.89843ms)
+✔ empty interval and no ticks are explicit (0.288324ms)
+✔ pause menu hidden guard cancels without unpause (0.238739ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.47789ms)
+✔ hard deadline and invalid result terminate (0.224418ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.342867ms)
+✔ invalid or missing pulse fields stop safely (0.349656ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.206801ms)
+✔ web build defaults to explicit false with diagnostic opt in (1.052555ms)
+✔ renderer uses policy and retains independent shader validation (0.747667ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ web/tests/renderer-info.test.cjs (111.82599ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ web/tests/scene-resolution.test.cjs (165.536528ms)
+PASS post-water watch: explicit resume, running, stale world/selection, relabel on pause, zero/refusal and close/cancel; observation begins after edit
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ web/tests/shell.test.cjs (154.98943ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ web/tests/storage-upgrade.test.cjs (101.714378ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ web/tests/storage.test.cjs (80.061752ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ web/tests/touch-controls.test.cjs (102.395335ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 683.455044

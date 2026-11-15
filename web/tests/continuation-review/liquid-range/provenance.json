@@ -1,0 +1,7 @@
+{
+  "src/simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+  "src/simulation/atmosphere_water.zig": "a1addeba8200c858b8b0774e310f3929e38f79c8adbf61ca14cee779015e82b9",
+  "web/tests/egl-liquid-range-prepare.py": "dcbd25e976e6f69d18e45d1efd9ea1d4f95a829bbfeaf87169a0ae7be5d08d40",
+  "head": "1cbd9b6ad02d83ae3a7d0260075f03de797fc275",
+  "copied_planet_sha256": "2207f411312f6e147ee9b76177e5ee720a7ed122486587d4040dd2f524b93ac2"
+}
