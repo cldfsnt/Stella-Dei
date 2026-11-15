@@ -1,0 +1,235 @@
+--- a/src/simulation/planet.zig
++++ b/src/simulation/planet.zig
+@@ -177,6 +177,7 @@
+     microbeCells: []Microbes.Cell = &.{},
+     microbeStats: Microbes.Stats = .{},
+     propaguleFeedback: @import("../propagule_feedback.zig").Tracker = .{},
++    windDispersal: @import("wind_genetics.zig").Config = .{},
+     propaguleAttempts: u64 = 0,
+     propaguleArrivals: u64 = 0,
+     propaguleTrackedLosses: u64 = 0,
+@@ -259,10 +260,12 @@
+ 
+     const GenerationOptions = struct {
+         generate_terrain: bool = true,
++        wind_dispersal: bool = false,
+         water_preset: @import("../world_setup.zig").Preset = .random,
+     };
+ 
+     pub fn generate(allocator: std.mem.Allocator, numSubdivisions: usize, radius: f32, seed: u64, options: GenerationOptions) !Planet {
++        if(options.wind_dispersal and !options.generate_terrain)return error.DispersalRequiresNewWorld;
+         if(!options.generate_terrain and options.water_preset!=.random)return error.PresetRequiresNewTerrain;
+         const zone = tracy.ZoneN(@src(), "Generate planet");
+         defer zone.End();
+@@ -442,6 +445,7 @@
+         std.log.info("The mean area per point of the ico-sphere is {d} km²\n", .{meanPointArea});
+         std.log.info("SIMD Vectors: {} x f32", .{VECTOR_SIZE});
+ 
++        if(options.wind_dispersal){try planet.beginOrigin();planet.windDispersal=.{.enabled=true,.law=1,.stream_seed=seed};}
+         return planet;
+     }
+ 
+@@ -1490,6 +1494,32 @@
+         if (fixed <= 0) return false;
+         self.applyMicrobeFlux(.{ .fixed = fixed });
+         return true;
++    }
++
++    /// Explicit chosen founder genetics; paid exactly like ordinary seeding.
++    pub fn seedPioneer(self:*Planet,index:usize)bool {
++        if(!self.windDispersal.enabled or !self.windDispersal.valid())return false;
++        const id=self.microbeStats.next_lineage;
++        if(!self.seedMicrobes(index))return false;
++        for(&self.microbeCells[index].cohorts)|*c|{if(c.lineage==id){c.aerial_allocation=0.5;return true;}}
++        unreachable;
++    }
++
++    /// Null means retain the ordinary local attempt. Valid opportunities consume
++    /// a saved serial even when their draw chooses local/fails to route.
++    fn tryWindPacket(self:*Planet,index:usize,slot:usize,time:f64)?usize {
++        const G=@import("wind_genetics.zig");const cfg=&self.windDispersal;
++        if(!cfg.enabled or !cfg.valid() or cfg.serial==std.math.maxInt(u64))return null;
++        const c=self.microbeCells[index].cohorts[slot];
++        if(!std.math.isFinite(c.aerial_allocation) or c.aerial_allocation<=0 or c.aerial_allocation>1 or c.biomass<0.02 or c.reproduction_credit<0.01 or c.lineage==0)return null;
++        const event=cfg.serial;cfg.serial+=1;
++        if(G.draw(cfg.stream_seed,event,c.lineage,0x57494e44524f5554)>=c.aerial_allocation)return null;
++        const route=@import("wind_dispersal.zig").route(self.transformedPoints,self.verticesNeighbours,index,self.atmosphericWind(index),self.radius,G.draw(cfg.stream_seed,event,c.lineage,0x57494e4444495354)) catch return null;
++        const viable=G.draw(cfg.stream_seed,event,c.lineage,0x57494e4456494142)<route.survival;
++        const receipt=@import("wind_packet.zig").launch(&self.microbeCells[index],slot,&self.microbeCells[route.index],&self.microbeStats,self.getMeanPointArea(),self.getMeanPointArea(),viable,cfg.*) orelse return null;
++        @import("wind_audit.zig").emit(.{.time=time,.event=event,.from=index,.to=route.index,.parent=c.lineage,.route=route,.receipt=receipt});
++        if(receipt.arrived){self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(index,route.index,receipt.lineage,time);}
++        self.propaguleAttempts+|=1;return route.index;
+     }
+ 
+     /// Explicit player-supplied nutrient input, not an endogenous source.
+@@ -1572,6 +1602,7 @@
+             for (0..cell.cohorts.len) |donor_offset| {
+                 const cohort = (donor_start + donor_offset) % cell.cohorts.len;
+                 if(cell.cohorts[cohort].reproduction_credit>=0.01 and cell.cohorts[cohort].biomass>=0.02){
++                    if(self.windDispersal.enabled){if(self.tryWindPacket(i,cohort,options.gameTime))|destination|{if(active)|bits|ActiveCells.mark(bits,destination);continue;}}
+                     const adjacent=self.getNeighbours(i);
+                     const n=adjacent[@intCast(Microbes.random(&cell.rng)%adjacent.len)];
+                     // Pentagon adjacency pads with self: not a dispersal attempt.
+@@ -1581,7 +1612,7 @@
+                     // Exploration includes harsh real habitats; no favorable-condition gate.
+                     if(std.math.isFinite(env.depth_km) and std.math.isFinite(env.temperature)){
+                         const lineage=self.microbeStats.next_lineage;
+-                        if(Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats)){
++                        if(if(self.windDispersal.enabled) Microbes.prepareWindPacket(cell,cohort,&self.microbeCells[n],&self.microbeStats,true,self.windDispersal) else Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats)){
+                             if(active)|bits|ActiveCells.mark(bits,n);
+                             self.propaguleArrivals+|=1;self.propaguleFeedback.arrived(i,n,lineage,options.gameTime);
+                             continue;
+@@ -1589,14 +1620,14 @@
+                     }
+                 }
+                 if (cell.cohorts[cohort].reproduction_credit < 0.04) continue;
+-                if (Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
++                if (if(self.windDispersal.enabled) Microbes.reproduceWithWind(cell,cohort,cell,&self.microbeStats,self.windDispersal) else Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)) continue;
+                 const neighbors = self.getNeighbours(i);
+                 const start: usize = @intCast(Microbes.random(&cell.rng) % neighbors.len);
+                 for (0..neighbors.len) |offset| {
+                     const n = neighbors[(start + offset) % neighbors.len];
+                     const env = self.microbeEnvironment(n, 1);
+                     if (!Microbes.habitable(env.depth_km, env.temperature)) continue;
+-                    if (Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)){if(active)|bits|ActiveCells.mark(bits,n);break;}
++                    if (if(self.windDispersal.enabled) Microbes.reproduceWithWind(cell,cohort,&self.microbeCells[n],&self.microbeStats,self.windDispersal) else Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)){if(active)|bits|ActiveCells.mark(bits,n);break;}
+                 }
+             }
+         }
+--- a/src/simulation/microbes.zig
++++ b/src/simulation/microbes.zig
+@@ -4,6 +4,18 @@
+ pub const nutrient_per_carbon:f32=0.1;
+ pub const Mode=enum{sandbox,origin};
+ pub const Cohort=struct {
++    pub fn jsonStringify(self:@This(),writer:anytype)!void{
++        try writer.beginObject();
++        inline for(std.meta.fields(@This())) |field| {
++            const value=@field(self,field.name);
++            if(comptime std.mem.eql(u8,field.name,"aerial_allocation")) {
++                // +0 only is canonical legacy; validation rejects hidden -0.
++                if(@as(u32,@bitCast(value))!=0){try writer.objectField(field.name);try writer.write(value);}
++            } else {try writer.objectField(field.name);try writer.write(value);}
++        }
++        try writer.endObject();
++    }
++    aerial_allocation:f32=0,
+     biomass:f32=0, organization:f32=0, support_mass:f32=0, optimum:f32=303, efficiency:f32=1, structure:f32=0, feeding:f32=0, mobility:f32=0, relocations:u32=0, last_from:u32=0, last_to:u32=0, last_move_time:f64=0, lifetime_grazed:f32=0,
+     generation:u32=0, lineage:u64=0, parent:u64=0, reproduction_credit:f32=0,
+ };
+@@ -186,7 +198,13 @@
+ pub fn propagate(donor:*Cell,which:usize,destination:*Cell,stats:*Stats) bool {
+     return reproduceSized(donor,which,destination,stats,true,0.004,0.02,0.01);
+ }
++pub fn prepareWindPacket(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,config:@import("wind_genetics.zig").Config)bool{return reproduceSizedWind(donor,which,destination,stats,mutate,0.004,0.02,0.01,config);}
++pub fn reproduceWithWind(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,config:@import("wind_genetics.zig").Config)bool{return reproduceSizedWind(donor,which,destination,stats,true,0.01,0.03,0.04,config);}
+ fn reproduceSized(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,amount:f32,min_parent:f32,credit:f32) bool {
++    return reproduceSizedWind(donor,which,destination,stats,mutate,amount,min_parent,credit,.{});
++}
++fn reproduceSizedWind(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,amount:f32,min_parent:f32,credit:f32,config:@import("wind_genetics.zig").Config)bool{
++    if(!config.valid())return false;
+     if(which>=4)return false;
+     const parent=&donor.cohorts[which];
+     if(parent.biomass<min_parent or parent.reproduction_credit<credit)return false;
+@@ -209,6 +227,7 @@
+         const r_organization=@as(f32,@floatFromInt(organization_draw>>40))/16777216;
+         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
+         applyRareMutation(&child,parent.*,organization_draw);
++        if(config.enabled)child.aerial_allocation=@import("wind_genetics.zig").mutation(parent.aerial_allocation,config.stream_seed,parent.lineage,child.lineage,child.generation);
+     }
+     parent.support_mass-=child.support_mass;parent.biomass-=amount;parent.support_mass=std.math.clamp(parent.support_mass,0,parent.biomass);parent.reproduction_credit-=credit;destination.cohorts[i]=child;
+     stats.next_lineage+=1;stats.births+=1;
+@@ -244,6 +263,7 @@
+     if(!std.math.isFinite(cell.nutrient) or cell.nutrient<0 or !std.math.isFinite(cell.detritus) or cell.detritus<0)return false;
+     if(biomass(cell)>1.0001)return false;
+     for(cell.cohorts) |c| {
++        if(!std.math.isFinite(c.aerial_allocation) or c.aerial_allocation<0 or c.aerial_allocation>1)return false;
+         if(!std.math.isFinite(c.biomass) or c.biomass<0 or !std.math.isFinite(c.optimum) or c.optimum<270 or c.optimum>335 or !std.math.isFinite(c.efficiency) or c.efficiency<0.5 or c.efficiency>1.3 or !std.math.isFinite(c.reproduction_credit) or c.reproduction_credit<0)return false;
+         if(!std.math.isFinite(c.organization) or c.organization<0 or c.organization>0.7 or !std.math.isFinite(c.support_mass) or c.support_mass<0 or c.support_mass>c.biomass)return false;
+         if(!std.math.isFinite(c.structure) or c.structure<0 or c.structure>1)return false;
+--- a/src/save_schema.zig
++++ b/src/save_schema.zig
+@@ -1,6 +1,9 @@
+ //! Versioned, graphics-independent browser save format. Never includes pointers.
+ const std = @import("std");
+ pub const VERSION: u32 = 7;
++pub const WIND_VERSION:u32=11;
++pub const WindConfig=@import("simulation/wind_genetics.zig").Config;
++pub const SavedWind=struct{enabled:bool,law:u8,stream_seed:u64,serial:u64,pub fn runtime(c:@This())WindConfig{return .{.enabled=c.enabled,.law=c.law,.stream_seed=c.stream_seed,.serial=c.serial};}};
+ pub const CURRENT_ORIGIN_REVISION:u32=5;
+ pub fn originRevision(version:u32)u32{return if(version>=7) CURRENT_ORIGIN_REVISION else version-1;}
+ pub const Microbes = @import("simulation/microbes.zig");
+@@ -110,6 +113,7 @@
+     version: u32 = 1,
+     mode: WorldMode = .sandbox,
+     origin: ?Origin = null,
++    wind_dispersal:?SavedWind=null,
+     sandbox_defense: ?@import("simulation/ecology.zig").DefenseConfig = null,
+     radius: f32,
+     subdivisions: usize,
+@@ -146,8 +150,22 @@
+     plants: []const Plant,
+     rabbits: []const Rabbit,
+ 
++    pub fn jsonStringify(self:Save,writer:anytype)!void{
++        try writer.beginObject();
++        inline for(std.meta.fields(Save))|field|{
++            const value=@field(self,field.name);
++            if(comptime std.mem.eql(u8,field.name,"wind_dispersal")){
++                if(value!=null){try writer.objectField(field.name);try writer.write(value);}
++            }else{try writer.objectField(field.name);try writer.write(value);}
++        }
++        try writer.endObject();
++    }
+     pub fn validate(self: Save) !void {
+-        if ((self.version < 1 or self.version > VERSION) or self.subdivisions > 7 or self.radius != 5000) return error.IncompatibleSave;
++        if ((self.version < 1 or (self.version > VERSION and self.version != WIND_VERSION)) or self.subdivisions > 7 or self.radius != 5000) return error.IncompatibleSave;
++        if(self.version==WIND_VERSION){
++            const cfg=self.wind_dispersal orelse return error.IncompatibleSave;
++            if(self.mode!=.origin or !cfg.enabled or !cfg.runtime().valid())return error.InvalidValue;
++        }else if(self.wind_dispersal!=null)return error.IncompatibleSave;
+         if (self.version == 1 and (self.mode != .sandbox or self.origin != null)) return error.IncompatibleSave;
+         if(self.version<7 and self.sandbox_defense!=null)return error.IncompatibleSave;
+         if(self.sandbox_defense)|cfg|{
+@@ -190,6 +208,9 @@
+                     }
+                     const cell = saved_cell.runtime();
+                     for (cell.cohorts) |cohort| {
++                        try finiteRange(cohort.aerial_allocation,0,1);
++                        if(@as(u32,@bitCast(cohort.aerial_allocation))==0x80000000)return error.InvalidValue;
++                        if(self.wind_dispersal==null and cohort.aerial_allocation!=0)return error.IncompatibleSave;
+                         if (self.version == 2 and cohort.structure != 0) return error.IncompatibleSave;
+                         try finiteRange(cohort.feeding, 0, 1);
+                         try finiteRange(cohort.lifetime_grazed, 0, 1e12);
+--- a/src/save_game.zig
++++ b/src/save_game.zig
+@@ -10,6 +10,12 @@
+ /// Sparse Origin cohorts, wind and rabbit records are copied into allocator.
+ pub fn capture(allocator: std.mem.Allocator, state: anytype) !schema.Save {
+     const p = &state.planet;
++    if(!p.windDispersal.valid() or (p.windDispersal.enabled and p.worldMode!=.origin))return error.InvalidValue;
++    for(p.microbeCells)|cell|for(cell.cohorts)|cohort|{
++        if(!std.math.isFinite(cohort.aerial_allocation) or cohort.aerial_allocation<0 or cohort.aerial_allocation>1 or @as(u32,@bitCast(cohort.aerial_allocation))==0x80000000)return error.InvalidValue;
++        if(!p.windDispersal.enabled and cohort.aerial_allocation!=0)return error.IncompatibleSave;
++    };
++
+     const wind = try allocator.alloc([2]f32, p.airVelocity.len);
+     const wind_error = try allocator.alloc([2]f32, p.airPositionError.len);
+     const rabbits = try allocator.alloc(schema.Rabbit, p.lifeforms.items.len);
+@@ -32,7 +38,7 @@
+         const sparse = try schema.captureSparse(allocator, p.microbeCells);
+         origin = .{ .model_revision = schema.CURRENT_ORIGIN_REVISION, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = p.microbeStats };
+     }
+-    return .{ .version = schema.VERSION, .mode = p.worldMode, .origin = origin, .sandbox_defense = if(p.worldMode==.sandbox and p.sandboxDefense.enabled) p.sandboxDefense else null, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = p.waterVaporMass, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
++    return .{ .version = if(p.windDispersal.enabled)schema.WIND_VERSION else schema.VERSION, .wind_dispersal = if(p.windDispersal.enabled) .{.enabled=true,.law=p.windDispersal.law,.stream_seed=p.windDispersal.stream_seed,.serial=p.windDispersal.serial} else null, .mode = p.worldMode, .origin = origin, .sandbox_defense = if(p.worldMode==.sandbox and p.sandboxDefense.enabled) p.sandboxDefense else null, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = p.waterVaporMass, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
+ }
+ pub fn write(state: anytype, allocator: std.mem.Allocator) !void {
+     var arena = std.heap.ArenaAllocator.init(allocator);
+@@ -64,6 +70,7 @@
+     if (@hasField(@TypeOf(state.*), "ignitionCueSeconds")) state.ignitionCueSeconds = 0;
+     @import("manual_transport.zig").reset();@import("habitat_preview.zig").cancel();@import("advance_day.zig").invalidate("world changed");
+     p.worldMode = saved.mode;
++    p.windDispersal=if(saved.wind_dispersal)|cfg|cfg.runtime() else .{};
+     p.sandboxDefense=saved.sandbox_defense orelse .{};
+     if(@hasField(@TypeOf(state.*),"defensePlantKind"))state.defensePlantKind=-1;
+     if (saved.origin) |origin| {

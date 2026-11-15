@@ -1,0 +1,5 @@
+1/4 wind_dispersal.test.fixed distance bounds and invalid inputs...OK
+2/4 wind_dispersal.test.ties padding order and purity...OK
+3/4 wind_dispersal.test.polar wrap near far and hard bound...OK
+4/4 wind_dispersal.test.borrowed Vec3-shaped storage and small-cell refusal...OK
+All 4 tests passed.

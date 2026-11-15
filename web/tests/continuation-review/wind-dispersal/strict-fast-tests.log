@@ -1,0 +1,4 @@
+1/3 wind_dispersal.test.fixed distance bounds and invalid inputs...OK
+2/3 wind_dispersal.test.ties padding order and purity...OK
+3/3 wind_dispersal.test.polar wrap near far and hard bound...OK
+All 3 tests passed.

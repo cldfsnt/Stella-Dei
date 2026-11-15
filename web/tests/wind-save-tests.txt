@@ -1,0 +1,30 @@
+
+test "wind schema identity traits and canonical legacy omissions" {
+ const a=std.testing.allocator;var saved=fixture();saved.version=11;saved.mode=.origin;
+ var cohorts=[_]Microbes.Cohort{.{}}**4;var cells=[_]SavedCell{.{.cohorts=&cohorts}}**12;
+ saved.origin=.{.model_revision=5,.cells=&cells,.stats=.{.next_lineage=2}};
+ saved.wind_dispersal=.{.enabled=true,.law=1,.stream_seed=std.math.maxInt(u64),.serial=std.math.maxInt(u64)};
+ cohorts[0]=.{.lineage=1,.biomass=0.02,.support_mass=0.001,.aerial_allocation=0.5};try saved.validate();
+ const text=try std.json.stringifyAlloc(a,saved,.{});defer a.free(text);var parsed=try parse(a,text);defer parsed.deinit();try std.testing.expectEqualDeep(saved.wind_dispersal,parsed.value.wind_dispersal);try std.testing.expectEqual(@as(f32,0.5),parsed.value.origin.?.cells[0].runtime().cohorts[0].aerial_allocation);
+ var bad=saved;bad.version=7;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.wind_dispersal=null;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.wind_dispersal.?.law=2;try std.testing.expectError(error.InvalidValue,bad.validate());bad=saved;bad.mode=.sandbox;try std.testing.expectError(error.InvalidValue,bad.validate());
+ cohorts[1].aerial_allocation=std.math.nan(f32);try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].aerial_allocation=1.01;try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].aerial_allocation=-0.0;try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].aerial_allocation=0;
+ saved.version=7;saved.wind_dispersal=null;try std.testing.expectError(error.IncompatibleSave,saved.validate());cohorts[0].aerial_allocation=0;try saved.validate();
+ const oldtext=try std.json.stringifyAlloc(a,saved,.{});defer a.free(oldtext);try std.testing.expect(std.mem.indexOf(u8,oldtext,"wind_dispersal")==null);try std.testing.expect(std.mem.indexOf(u8,oldtext,"aerial_allocation")==null);
+ var old=try @import("legacy/save_schema.zig").parse(a,oldtext);defer old.deinit();const canonical=try std.json.stringifyAlloc(a,old.value,.{});defer a.free(canonical);try std.testing.expectEqualStrings(oldtext,canonical);
+ // Required new semantics cannot be reconstructed from missing identity fields.
+ const missing="{\"enabled\":true,\"law\":1,\"stream_seed\":0}";
+ try std.testing.expectError(error.MissingField,std.json.parseFromSlice(SavedWind,a,missing,.{}));
+}
+
+test "actual frozen Origin and Sandbox candidate wire parses unchanged strict legacy reader" {
+ const paths=[_] []const u8{
+ "/workspace/scratch/f67c3ac60ca3/site-tmp/natural60-day60.json",
+ "/workspace/scratch/f67c3ac60ca3/site-tmp/foraging-production/warm-actual-end.json"};
+ for(paths)|path|{
+  var arena=std.heap.ArenaAllocator.init(std.testing.allocator);defer arena.deinit();const a=arena.allocator();const input=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);
+  const current=try parse(a,input);const baseline=try @import("legacy/save_schema.zig").parse(a,input);
+  const encoded=try std.json.stringifyAlloc(a,current.value,.{});const original=try std.json.stringifyAlloc(a,baseline.value,.{});try std.testing.expectEqualStrings(original,encoded);
+  const old=try @import("legacy/save_schema.zig").parse(a,encoded);try std.testing.expectEqualStrings(original,try std.json.stringifyAlloc(a,old.value,.{}));
+  std.debug.print("OLD_READER_PASS {s} bytes={d}\n",.{path,encoded.len});
+ }
+}
