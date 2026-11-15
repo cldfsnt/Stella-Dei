@@ -1,0 +1,8 @@
+{
+  "planet_exact_after_removing_qa_oracle": true,
+  "save_game_exact": true,
+  "files": {
+    "src/simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+    "src/save_game.zig": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe"
+  }
+}

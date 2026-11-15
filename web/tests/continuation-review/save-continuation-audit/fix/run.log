@@ -1,0 +1,52 @@
+EGL surface=0x2a1bda30 context=0x2a1be040
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x713206e44a617596
+info: Sea Level: 4.838867 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+QA frame=1 selected=13596 elevation=5004.836 water=22469.324 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5948.3594
+Captured <workspace>/site-tmp/load-geometry-fixed/frame-001.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.02 detritus=0 fixed=0 recycled=0 CO2=754.3577270507812 O2=26334.626953125
+ORIGIN stage=empty mode=origin cells=40962 biomass=0 occupied=0 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0 depth_m=2.9296875 temp=293.15 camera=5948.3594 visiblemats=0
+FEEDING_EMPTY result=0 chunks=81 no_assigned_history=true
+STARTER_REAL stale_rejected=true off_canvas_seed=true pace_pause_preserved=true no_auto_care=true
+QA frame=2 selected=13596 elevation=5008.0596 water=38347.645 vegetation=0 rabbits=0 time=0 paused=true tool=PlaceVegetation camera=5348.3594
+Captured <workspace>/site-tmp/load-geometry-fixed/frame-002.ppm
+ORIGIN_ENV time=0 sun=1361 nutrient=0.018 detritus=0 fixed=153390588.5714531 recycled=0 CO2=754.3577133201978 O2=26334.626963110877
+ORIGIN stage=seeded mode=origin cells=40962 biomass=0.019999999552965164 occupied=1 births=0 maxgen=0 rabbits=0 vegetation=0 selected=13596 selectedbio=0.02 depth_m=5 temp=293.15 camera=5348.3594 visiblemats=1
+FORMS_PLAYER_INITIAL patch=13596 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=3421 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13595 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=3420 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13597 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13594 water_target=15 seeded=true biology_assigned=false
+FORMS_PLAYER_INITIAL patch=13598 water_target=15 seeded=true biology_assigned=false
+TARGET_HANDLER stale_invalid_unchanged=true
+DIAGNOSTIC selected=13596 latitude_z=0.22653137 depth_m=5 temp=293.15
+TOTAL_WATER start=1645056853406.8005 end=1645056853406.8005 relative_error=0e0
+STRUCTURE_WORLD max_structure=0 max_generation=0 failed_patches=0
+GRAZING_WORLD capable=0 observed=0 max_feeding=0 consumed_kgC=0 respired_kgC=0
+MOTILITY_WORLD capable=0 resident_movers=0 total_moves=0 movement_respired_kgC=0 unique_lineages=8 mean_update_ms=-nan max_update_ms=0
+PRODUCER_EVER max_support=0 max_organization=0
+PRODUCER_WORLD inherited_capable=0 actual_supported=0 support_density_sum=0 biomass_density_sum=0.1599999964237213
+LOAD_GEOMETRY_BITS 4tilts_all_vertices_three_components_exact=true
+QA frame=3 selected=12352 elevation=5005.369 water=5411.473 vegetation=0 rabbits=0 time=5184000 paused=true tool=None camera=5859.5723
+Captured <workspace>/site-tmp/load-geometry-fixed/frame-003.ppm
+LOAD_GEOMETRY arm=0 refreshed=true point_before={ -2.997916e3, 3.7792275e3, 1.5032041e3 } point_after={ -2.997916e3, 3.7792275e3, 1.5032041e3 } old_state_exact=true
+QA frame=4 selected=12352 elevation=5005.369 water=5411.473 vegetation=0 rabbits=0 time=5184000 paused=true tool=None camera=5859.5723
+Captured <workspace>/site-tmp/load-geometry-fixed/frame-004.ppm
+LOAD_GEOMETRY arm=1 refreshed=false point_before={ -2.997916e3, 3.7792275e3, 1.5032041e3 } point_after={ -2.997916e3, 3.7792275e3, 1.5032041e3 } old_state_exact=true
+LOAD_GEOMETRY_RESULT full_saved_state_equal=true partitions=1
+LOAD_GEOMETRY_RESTORED true
+LOAD_GEOMETRY_FIX_PASS crossgeometry_fullstate_exact=true samegeometry10ticks_exact=true invalid_save_and_geometry_unchanged=true
+SUPPORT_RESTORE mutated_cohorts=52
+PROPAGULE_LOAD transient_observers_cleared=true save_schema_unchanged=true
+ORIGIN_SAVE bytes=10474653 invalid_rejected=true unchanged=true exact_restore=true mode=origin peak_rss_kib=346808
+info: deinit audio
+error(gpa): memory address 0x7ff5c4091000 leaked: 
+

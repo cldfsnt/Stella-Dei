@@ -1,0 +1,32 @@
+diff --git a/src/experimental/hydration_continuous_core.zig b/src/experimental/hydration_mutation_core.zig
+index 5d9fa85..b75686f 100644
+--- a/src/experimental/hydration_continuous_core.zig
++++ b/src/experimental/hydration_mutation_core.zig
+@@ -196,14 +196,16 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
+ /// Donor-funded propagule. Empty cohort slots preserve distinct competitors;
+ /// full slots reject colonization rather than silently overwrite a population.
+ pub fn reproduce(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool) bool {
+-    return reproduceSized(donor,which,destination,stats,mutate,0.01,0.03,0.04);
++    return reproduceSized(donor,which,destination,stats,mutate,0.01,0.03,0.04,null);
+ }
+ /// Small exploratory offspring: fully funded from parent mass and earned growth.
+ /// Destination need not be habitable; normal physiology decides survival there.
+ pub fn propagate(donor:*Cell,which:usize,destination:*Cell,stats:*Stats) bool {
+-    return reproduceSized(donor,which,destination,stats,true,0.004,0.02,0.01);
++    return reproduceSized(donor,which,destination,stats,true,0.004,0.02,0.01,null);
+ }
+-fn reproduceSized(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,amount:f32,min_parent:f32,credit:f32) bool {
++pub fn reproduceWithRetention(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,world_seed:u64)bool{return reproduceSized(donor,which,destination,stats,mutate,0.01,0.03,0.04,world_seed);}
++pub fn propagateWithRetention(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,world_seed:u64)bool{return reproduceSized(donor,which,destination,stats,true,0.004,0.02,0.01,world_seed);}
++fn reproduceSized(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:bool,amount:f32,min_parent:f32,credit:f32,retention_seed:?u64) bool {
+     if(which>=4)return false;
+     const parent=&donor.cohorts[which];
+     if(parent.biomass<min_parent or parent.reproduction_credit<credit)return false;
+@@ -226,6 +228,7 @@ fn reproduceSized(donor:*Cell,which:usize,destination:*Cell,stats:*Stats,mutate:
+         const r_organization=@as(f32,@floatFromInt(organization_draw>>40))/16777216;
+         child.organization=std.math.clamp(child.organization+(r_organization-0.5)*0.12,0,0.7);
+         applyRareMutation(&child,parent.*,organization_draw);
++        if(retention_seed)|world_seed|child.retention_allocation=@import("retention_mutation.zig").allocation(parent.retention_allocation,world_seed,parent.lineage,child.lineage,child.generation);
+     }
+     // Transfer represented parental water associated with actual paid support.
+     const old_water=parent.stored_water;

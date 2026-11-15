@@ -1,0 +1,8 @@
+{
+  "remote_master": "5074f5d93acef68d31d27428f732a119c8aa8d73",
+  "local_head": "ae9dd47ca04019d290a9845e824d566fc5645505",
+  "tree": "2a486845a330794d33ab1aeb78d6af0edc3f3705",
+  "production": "v56 unchanged; hydration remains isolated experiment",
+  "verification": "GitHub master ref fetched after compare-and-swap update",
+  "not_in_this_checkpoint": "later independent review and mutation design commits"
+}

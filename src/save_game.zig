@@ -118,6 +118,8 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     state.solarConstant = saved.solar_constant;
     state.planetRotationTime = saved.rotation_time;
     state.axialTilt = saved.axial_tilt;
+    // Physics can run before the next render; never retain the prior world's geometry.
+    p.refreshTransformedPoints(state.axialTilt);
     state.paused = saved.paused;
     state.stableDaylight = saved.daylight;
     state.displayMode = @enumFromInt(saved.display_mode);

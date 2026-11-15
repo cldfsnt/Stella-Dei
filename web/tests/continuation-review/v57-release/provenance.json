@@ -1,0 +1,14 @@
+{
+  "production_commit": "b308b37675413657da44b177fa5d781096d350f7",
+  "build_exit": 0,
+  "js_tests": 66,
+  "native_save_core_tests": 49,
+  "schema": 6,
+  "files": {
+    "src/save_game.zig": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+    "src/simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+    "web/dist/index.wasm": "b199a5b8318906d6c8dcffce8cdcea2bbd328935d310e7f4b9dcd72943a3330f",
+    "web/dist/index.js": "18a7c465d080f3956c8b7a70f6577828912afc54ac5760edb02b3fc664173915",
+    "web/dist/index.html": "be598acc344f6489ad5e47b2ae27c79a01836348644a13edc82709b7dfe5f7c7"
+  }
+}

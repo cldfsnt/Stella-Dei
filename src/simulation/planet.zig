@@ -544,6 +544,22 @@ pub const Planet = struct {
         return Vec3.new(x, y, z);
     }
 
+    /// Deterministic terrain geometry shared by rendering and save restoration.
+    /// No GL calls, jobs, allocation, saved resource mutation or frame advancement.
+    inline fn terrainPoint(self: *const Planet, point: Vec3, index: usize, rotationMatrix: za.Mat4) Vec3 {
+        @setFloatMode(.optimized);
+        const totalElevation = self.elevation[index];
+        const exaggeratedElev = (totalElevation - self.radius) * HEIGHT_EXAGGERATION_FACTOR + self.radius;
+        const scaledPoint = point.scale(exaggeratedElev);
+        return mulByVec3(rotationMatrix, scaledPoint);
+    }
+
+    pub fn refreshTransformedPoints(self: *Planet, axialTilt: f32) void {
+        @setFloatMode(.optimized);
+        const rotationMatrix = za.Mat4.fromRotation(axialTilt, Vec3.right());
+        for (self.vertices, 0..) |point, i| self.transformedPoints[i] = self.terrainPoint(point, i, rotationMatrix);
+    }
+
     /// Upload all changes to the GPU
     pub fn upload(self: *Planet, loop: *EventLoop, displayMode: DisplayMode, axialTilt: f32) void {
         const stage_timer=@import("../performance_details.zig").beginStage();
@@ -580,10 +596,7 @@ pub const Planet = struct {
             for (self.vertices, 0..) |point, i| {
                 // const waterElevation = self.waterMass[i] * kmPerWaterMass;
                 // const totalElevation = self.elevation[i] + waterElevation;
-                const totalElevation = self.elevation[i];
-                const exaggeratedElev = (totalElevation - self.radius) * HEIGHT_EXAGGERATION_FACTOR + self.radius;
-                const scaledPoint = point.scale(exaggeratedElev);
-                const transformedPoint = mulByVec3(rotationMatrix, scaledPoint);
+                const transformedPoint = self.terrainPoint(point, i, rotationMatrix);
                 const normal = self.normals[i];
                 self.transformedPoints[i] = transformedPoint;
 

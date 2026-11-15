@@ -1,0 +1,10 @@
+{
+  "source_head": "b6eb467b9b039890f3e762321d54d9e9e8a89203",
+  "files": {
+    "src/save_game.zig": "e241ca410bb67473e6b7f47cb6b977c84c1ade95e2c0707cd2e4c488340d7dc1",
+    "src/simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+    "src/states/play.zig": "2159b2bda3d55d0bb2e88fd0227c77af238bc98cc78ff8a0b90eff0c04f01cf5",
+    "src/main.zig": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b"
+  },
+  "copy_main": "cf17d66c80ae250a5f7ee028dddeb44f611f9f749abc2c1fe6fdf6d5a3f124e4"
+}
