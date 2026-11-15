@@ -1,0 +1,39 @@
+{
+  "game_time_seconds": 2880.0,
+  "actual_world_seed": 15021278609987233951,
+  "selected_patch": 180,
+  "soil_kg_m2": 0.03329683918945953,
+  "selected_cell": {
+    "sparse": [
+      {
+        "index": 0,
+        "value": {
+          "root_fraction": 0.0,
+          "biomass": 0.020356910303235054,
+          "organization": 0.0,
+          "support_mass": 0.0,
+          "optimum": 303.0,
+          "efficiency": 1.0,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 0,
+          "lineage": 1,
+          "parent": 0,
+          "reproduction_credit": 0.0004947185516357422
+        }
+      }
+    ],
+    "nutrient": 0.017964309081435204,
+    "detritus": 0.00013746361946687102,
+    "rng": 3163442930887052933
+  },
+  "root_uptake_claimed": false,
+  "fresh_process_exact": true,
+  "render_query_full_save_exact": true
+}

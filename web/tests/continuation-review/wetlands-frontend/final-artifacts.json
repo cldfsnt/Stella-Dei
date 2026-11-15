@@ -1,0 +1,38 @@
+{
+  "sha256": {
+    "index.html": "2657c135cd317519ff4368770bcaa7bad1bc12f64be1be655c1bbbac50fe9ff2",
+    "index.js": "1d41df1f83a0a29831bf9c3666e0fd7ebcd3cf4a9c17897511e351c1f91f759c",
+    "index.wasm": "724d9ec94f53d39ea53a1a062bf40889cf40ff091ccd9f3f97d0174d26ce1f1d",
+    "wetlands-preview.js": "5a357ccaa22ea2aa71f806f8aa8ed3bb6ebf3f1966397babd6c93cb3d93d24e8",
+    "stella-storage.js": "33f675d132fcf457976e25f33de206a3573503f8fb40a6aae11f90ac05e2bfa8"
+  },
+  "module_before_mount": true,
+  "root_v72_existing_files_unchanged": 256,
+  "dom": {
+    "url": "http://127.0.0.1:4173/",
+    "tab": 26,
+    "initial": {
+      "open": true,
+      "display": "block",
+      "height": 402.296875,
+      "summaryHeight": 44
+    },
+    "collapsed": {
+      "open": false,
+      "display": "block",
+      "height": 68,
+      "summaryHeight": 44,
+      "top": 58,
+      "bottom": 126
+    },
+    "reopened": {
+      "open": true,
+      "display": "block",
+      "height": 402.296875,
+      "summaryHeight": 44,
+      "overflowY": "auto",
+      "buttonVisible": true
+    }
+  },
+  "scope": "DOM only. No Play, factory, load, save or gameplay action."
+}

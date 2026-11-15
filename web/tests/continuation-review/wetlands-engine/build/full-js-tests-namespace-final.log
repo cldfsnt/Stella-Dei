@@ -1,0 +1,137 @@
+✔ actual shell: start, cancel, redraw wait, dismiss and repeat (6.141711ms)
+✔ missing native API never calls start or hides game (1.321851ms)
+✔ active input guards block globe and tools but permit accessible actions (3.07333ms)
+✔ context loss calls native environment and shows stopped, not advancing (2.693828ms)
+✔ genuine context loss stays frozen after restored event; explicit durable save then reload path (2.603382ms)
+✔ recovery save failure never claims durable save (2.19045ms)
+✔ context loss outside advancement still exposes reload recovery, never leaves a silently frozen game (1.243853ms)
+✔ browser timer APIs use global-call wrappers, never hook-object receivers (0.33848ms)
+✔ release/cancel events reach guarded native input handlers to clear held state (4.055168ms)
+✔ recovery hides generic final-redraw subtitle (1.206918ms)
+✔ only explicit start; duplicate click never restarts; native redraw required (2.399174ms)
+✔ cancel keeps completed count, blocks dismissal until redraw (0.414725ms)
+✔ malformed, unknown, regressed and wrong-token statuses fail closed (0.588717ms)
+✔ status exception never unlocks or silently retries (0.389096ms)
+✔ hidden/context cancellation waits native acknowledgement; repeated session works (0.434234ms)
+✔ validation rejects incomplete-success and unsafe progress (0.295576ms)
+✔ uncertain start cannot reuse prior completed job as new success (0.829149ms)
+✔ explicit dismissal waits for native neutral-input acknowledgement (0.501927ms)
+✔ rejected dismissal does not unlock; wrong world cannot establish a job (0.38503ms)
+✔ arrival effects control uses authoritative result and is independent of seed hints (5.164369ms)
+✔ native hide discards only visual receipts and export remains guarded (2.418403ms)
+✔ all snapshot points explicitly reviewed, one apply only, no twelve cap (2.318372ms)
+✔ cancel and unavailable invalidate queued planning without applying (0.420063ms)
+✔ changed world or counts refuse before apply (0.441535ms)
+✔ unknown execution receipt never claims unchanged or success (0.339572ms)
+✔ invalid native counts and world refuse planning (0.235104ms)
+✔ malformed newly created plan is cancelled using its verified world/token (1.722375ms)
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ web/tests/colony-labels.test.cjs (174.804917ms)
+✔ explicit review and one-use whole colony execution, exact string identity (5.370179ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.602928ms)
+✔ ineligible source or full target cannot prepare (0.276767ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.783731ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (0.627786ms)
+✔ unknown execution result is not reported as safe failure or retried (0.419562ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (2.053524ms)
+✔ post-execution malformed receipt never claims successful move (0.359211ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (0.481776ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (0.425701ms)
+✔ changing source or destination consumes pending ticket without refreshing options (2.349439ms)
+✔ actual pentagon five destinations accepted while raw self padding remains rejected (0.317498ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ web/tests/colony-watch-details.test.cjs (200.201422ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ web/tests/colony-watch-ui.test.cjs (214.22101ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ web/tests/compact-life.test.cjs (86.735434ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.756536ms)
+✔ restricted or missing clipboard stays manually copyable (0.675728ms)
+✔ missing or oversized report never writes or displays stale data (0.279821ms)
+✔ Sandbox finite grazing guidance and bite counter do not promise recovery (2.114435ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ web/tests/gameplay-measure.test.cjs (113.9676ms)
+✔ preview only, explicit one-use application and exact manual receipt (2.57593ms)
+✔ cancel and repeated preparation never apply (0.367403ms)
+✔ stale world selection token pause availability and pending refuse (0.619032ms)
+✔ malformed preview fails closed with real bounded footprint (0.713695ms)
+✔ failed response, thrown response and malformed success never imply application status falsely (0.88273ms)
+✔ actual refusal is one-use, no silent retry (0.311409ms)
+✔ shell routes both player entry points through preview and cancels destructive lifecycle (2.229609ms)
+✔ receipt changed risk counts, depth, token or exact footprint is unknown (1.790918ms)
+✔ receipt does not survive world or selection change (0.872404ms)
+✔ sunlit is explicit kind 2 with exact 5m shelf; deep remains kind 1 (1.910367ms)
+✔ sunlit receipt cannot silently become deep, and stale world refuses (0.583358ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ web/tests/harness-mode.test.cjs (84.826558ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ web/tests/life-trend.test.cjs (659.88958ms)
+✔ five coherent groups preserve all action IDs exactly once (1.890538ms)
+✔ group switching is UI-only, community direct access starts bounded sampling (1.409273ms)
+✔ moved direct planet actions dismiss Tools only after success (0.381865ms)
+✔ actual Find and Seed handlers close/focus on success but retain refusal (1.270704ms)
+✔ entire scan continues beyond one512 chunk with exact chosen ID and explicit result (1.913793ms)
+✔ cancel, closed UI, new snapshot and changed source prevent queued navigation (0.447394ms)
+✔ unrelated or dead result never claims offspring; no result is scoped to scan (0.482567ms)
+✔ only explicit valid living parent choices, bounded4 and no unsafe integer coercion (0.289686ms)
+✔ post-navigation snapshot from another world never claims success (0.401064ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (2.024279ms)
+✔ empty interval and no ticks are explicit (0.403548ms)
+✔ pause menu hidden guard cancels without unpause (0.21953ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.342186ms)
+✔ hard deadline and invalid result terminate (0.24592ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.293672ms)
+✔ invalid or missing pulse fields stop safely (0.531461ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.193141ms)
+✔ last step is bounded native inspector with explicit units and combined other change (1.899611ms)
+✔ existing snapshot receipt is read-only and changes no export contract (0.340813ms)
+✔ direct water and god tool attempts invalidate prior interval (0.441345ms)
+✔ receipt display uses signed bounded fixed formatting and active tabs (0.864592ms)
+✔ grazing is presented as signed removal, not added cover (0.348575ms)
+✔ observation requires explicit request and sync never rearms (0.713174ms)
+✔ rabbit badge scaling keeps every visible animal and existing two fills, no picking change (1.177494ms)
+✔ web build defaults to explicit false with diagnostic opt in (2.004099ms)
+✔ renderer uses policy and retains independent shader validation (1.250955ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ web/tests/renderer-info.test.cjs (64.167198ms)
+✔ viewing is inert; explicit enable then choice and cancel never plant (1.125265ms)
+✔ stale selection/world and Origin refuse before command (0.226101ms)
+✔ malformed or mismatched postcommand is unknown not false failed promise (0.237368ms)
+✔ refusal remains visible and no silent focus or retry (0.155865ms)
+✔ isolated shell hides whole Origin auto-seed block across mode flips (2.744604ms)
+✔ tool selection preserves valid phenotype and defaults only Plant; shared native routes (0.229246ms)
+✔ retained seed choice does not promise a planting tap after another tool (0.187793ms)
+✔ Sandbox find controls call distinct kinds without planting or time advancement (4.204062ms)
+✔ Sparse and submerged are not falsely reported as no life (1.616325ms)
+✔ Empty/refused/missing export remain truthful and do not mutate (5.340434ms)
+PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately
+✔ web/tests/save-size-safety.test.cjs (102.501116ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ web/tests/scene-resolution.test.cjs (79.200368ms)
+PASS post-water watch: explicit resume, running, stale world/selection, relabel on pause, zero/refusal and close/cancel; observation begins after edit
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ web/tests/shell.test.cjs (189.366471ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ web/tests/storage-upgrade.test.cjs (98.353795ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ web/tests/storage.test.cjs (115.745763ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ web/tests/touch-controls.test.cjs (101.998163ms)
+✔ Watch prepares a private baseline before dismissing only native Inspect (1.109211ms)
+✔ ordinary Watch never resumes; checked Watch requires explicit authorization (0.194694ms)
+✔ generic HTML close and cancel do not trigger native watch transitions (0.368555ms)
+✔ community copy distinguishes sampled forms and unavailable events (1.794974ms)
+✔ bounded census cancels queued work and refuses switched world (0.452462ms)
+✔ Sandbox occupied defense traits use actual range and patch units, not taxonomy (0.335775ms)
+✔ positive tiny toughness does not display as zero (0.172449ms)
+ℹ tests 111
+ℹ suites 0
+ℹ pass 111
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 903.856863
