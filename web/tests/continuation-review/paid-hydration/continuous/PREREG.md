@@ -1,0 +1,7 @@
+# Continuous internal hydration adapter, fixed next hypothesis
+
+Historical exact-depth-zero law rejected by e31e1b4 boundary proof; all prior results retained. Before execution, freeze new effective hydration h_eff=h*(1-aquaticSubmergence(depth)) using EXISTING15–20cm fade. Only finite depth>=0 and273.15<temperature<355; no internal hydration benefit at fullsubmergence>=20cm or invalid temperatures. Mortality/exposure blend and max(existing habitat,h_eff) otherwise unchanged. No coefficient search.
+
+Adapter: actual patch area supplied, actual f32 liquid/vapor pools (billionkg/patch), cohort-owned f64 storedwater and Cell liquid_return/vapor_return kg/m². Fair simultaneous capacity-deficit uptake, actual represented debit only, bounded credits; residual nonhydrating local escrow. Existing capacity10kgwater/kg retainedsupportC and evaporation.1kgwater/kgcollectingC/day*(.5+.5clampedlight) unchanged. No hidden held/control reservoir, irrigation or supplied hydration in adapter. Returns flux for caller's unchanged atmosphere-C/O2 accounting.
+
+Re-run frozen seven-day8conditions ×2timesteps and30daydrought using prescribed exposure outside adapter only; all changed outcomes reported, not replacement evidence. Boundary controls at0,1micrometre,150mm,200mm for h0/h1; temperature/deepwater exclusions and invalid atomicrefusal. Units/area and extreme f32 pool receipts, zeroallocation legacy parity and lifecycle tests remain mandatory. No production, save or fullplanet claim; thermal phase energy remains phenomenological as existing model.

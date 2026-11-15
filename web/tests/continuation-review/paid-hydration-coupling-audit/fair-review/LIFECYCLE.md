@@ -1,0 +1,11 @@
+# Independent lifecycle read/test review
+
+Reviewed isolated owner checkpoint1d051b9. No lifecycle or production source edits.36 imported/local ReleaseSafe tests pass in independent qa_hydration_lifecycle_audit.zig.
+
+The additional gross-grazing fixture intentionally has a cohort both consume prey and be consumed. Its biomass increases .4→.488, yet its water falls .2→.19399999910593035, with .006000000894069657 credited to source liquid return. This confirms water release follows gross snapshot predation rather than incorrectly using net biomass loss. No prey water is credited as free predator hydration. Total water remains within1e−15.
+
+The additional same-cell birth fixture begins with both existing liquid and vapor escrows. Parent and child share the same Cell pointer but use distinct living/empty slots; represented water is split once, allocation copied, both escrows preserved (capacity-related liquid return allowed), and validCell passes. Total water remains within1e−15. Owner's existing tests separately cover cross-cell birth, propagules, cutoff death, support-shedding relocation and disabled old-field/RNG parity.
+
+Read-through found no new valid-state accounting blocker in these operations. Autonomous movement drops support and returns all owned water at SOURCE before clearing/reusing the slot, rather than carrying water in a now-capacityless cohort. Gross grazing release precedes new assimilated support, so regrowth cannot erase the required release. Capacity settlement occurs before photosynthetic regrowth and after transfers. Ordinary mortality currently releases only excess above reduced capacity; this is the declared capacity-settlement hypothesis, not a proof that water follows every lost tissue fraction proportionally.
+
+Still not a complete integrated hydration model: Environment.qa_hydration remains an external input. The future uptake/evaporation adapter must derive it only from paid actual current stores and maintain ordering after capacity loss. Manual transport, Planet loops, saved schemas and rendering are not covered. Birth APIs assume valid input cells; a dead slot improperly retaining water is invalidCell and must be settled/rejected before reuse. No calibrated plant physiology, mutation of allocation, or full coupled inherited benefit is established by these ownership tests.

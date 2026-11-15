@@ -1,0 +1,8 @@
+{
+  "src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+  "src/experimental/hydration_lifecycle_core.zig": "0ca1cb26e04291c8bcf9633c1b09641c4c5534811a5b3896015d0fef26da16c2",
+  "src/experimental/hydration_schema_types.zig": "abb328a8115e71a78f9dc7f1f6b637f556c3fa496a265e8e4c31f7e5cbe381e0",
+  "src/experimental/hydration_save_schema.zig": "6ecc839802a79614da292374bacae89f4022c54fb22664d196e7e8d5a0b60401",
+  "web/tests/prepare-hydration-schema.py": "e91d873ce2d89db4a6fc8c5316a169c4e1356d94de8e1135ee40cdb2bc540c2d",
+  "web/tests/hydration-schema-tests.zig.part": "21b7733dd510a80ef6bdc3911fa3e3cbc6efb084a53e1ad292b9c43be44db8bb"
+}

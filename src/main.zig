@@ -609,7 +609,7 @@ export fn stella_save() i32 {
     if(AdvanceDay.current.recovery_required){
       const state=webPlayState() orelse return -4;
       if(!AdvanceDay.current.canRecoverySave(state,PerformanceDetails.world_serial))return -4;
-      @import("save_game.zig").write(state,game.allocator) catch return -2;
+      @import("save_game.zig").write(state,game.allocator) catch |err| return if (err == error.SaveTooLarge) -5 else -2;
       return 0; // Shell must still complete FS.syncfs(false) before claiming durability.
     }
     if(AdvanceDay.blocksInput())return -4;
@@ -618,7 +618,7 @@ export fn stella_save() i32 {
     const state = webPlayState() orelse return -1;
     @import("save_game.zig").write(state, game.allocator) catch |err| {
         std.log.err("Save failed: {s}", .{@errorName(err)});
-        return -2;
+        return if (err == error.SaveTooLarge) -5 else -2;
     };
     return 0;
 }

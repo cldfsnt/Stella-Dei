@@ -1,6 +1,7 @@
 //! Filesystem save adapter. Browser shell syncs /saves to IndexedDB explicitly.
 const std = @import("std");
 pub const schema = @import("save_schema.zig");
+pub const save_io = @import("save_io.zig");
 pub const path = "/saves/world.json";
 
 /// Serialization view, NOT an immutable snapshot: dense planet slices are borrowed.
@@ -39,18 +40,10 @@ pub fn write(state: anytype, allocator: std.mem.Allocator) !void {
     const saved = try capture(arena.allocator(), state);
     try saved.validate();
     try std.fs.cwd().makePath("/saves");
-    const file = try std.fs.cwd().createFile("/saves/world.tmp", .{});
-    var closed = false;
-    defer if (!closed) file.close();
-    var buffer = std.io.bufferedWriter(file.writer());
-    try std.json.stringify(saved, .{}, buffer.writer());
-    try buffer.flush();
-    file.close();
-    closed = true;
-    try std.fs.cwd().rename("/saves/world.tmp", path);
+    try save_io.writeJsonAtomic(std.fs.cwd(), path, "/saves/world.tmp", saved, save_io.max_save_bytes);
 }
 pub fn read(allocator: std.mem.Allocator) !std.json.Parsed(schema.Save) {
-    const bytes = try std.fs.cwd().readFileAlloc(allocator, path, 128 * 1024 * 1024);
+    const bytes = try std.fs.cwd().readFileAlloc(allocator, path, save_io.max_save_bytes);
     defer allocator.free(bytes);
     return schema.parse(allocator, bytes);
 }

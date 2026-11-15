@@ -1,0 +1,5 @@
+{
+  "src/qa_hydration_fair_audit.zig": "2db08af21a5b6dd8692f7a50110a46f0957094d26efb97e32de0e459d3a820a2",
+  "src/experimental/paid_hydration_fair.zig": "6b9b23b603274b833d0dbfe4c9d027fc39fd4d529053001fcb4d2c6c52f16e68",
+  "src/experimental/paid_hydration_core.zig": "7af755f63bd957d61f1bcd03d61e18a47a667853dff6bb4db7349b66384bed44"
+}

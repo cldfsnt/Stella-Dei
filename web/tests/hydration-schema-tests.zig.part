@@ -1,0 +1,89 @@
+fn waterFixture(cells: []const SavedCell) Save {
+    var s=fixture(); s.version=7;s.mode=.origin;s.origin=.{.model_revision=6,.cells=cells,.stats=.{.next_lineage=50,.births=20}};return s;
+}
+test "hydration v2 through v6 missing fields default zero and preserve RNG" {
+    for (2..7) |v| {
+        const json=if(v==2) "{\"cohorts\":[{\"biomass\":0.1,\"lineage\":1},{}],\"rng\":18446744073709551600}" else "{\"cohorts\":[{\"biomass\":0.1,\"lineage\":1},{},{},{}],\"rng\":18446744073709551600}";
+        var p=try std.json.parseFromSlice(SavedCell,std.testing.allocator,json,.{});defer p.deinit();
+        var cells=[_]SavedCell{p.value}**12;var s=waterFixture(&cells);s.version=@intCast(v);s.origin.?.model_revision=@intCast(v-1);try s.validate();
+        const c=p.value.runtime();try std.testing.expectEqual(@as(u64,18446744073709551600),c.rng);
+        try std.testing.expectEqual(@as(f64,0),Microbes.waterTotal(c));
+        for(c.cohorts)|a|try std.testing.expectEqual(@as(f32,0),a.retention_allocation);
+        // A new nonzero trait or return pool cannot masquerade as an old save.
+        var live=c;live.cohorts[0].retention_allocation=0.5;
+        cells[0]=SavedCell.capture(&live);if(v==2)cells[0].cohorts=live.cohorts[0..2];
+        try std.testing.expectError(error.IncompatibleSave,s.validate());
+        cells[0]=p.value;cells[0].liquid_return=0.125;try std.testing.expectError(error.IncompatibleSave,s.validate());
+        cells[0]=p.value;cells[0].vapor_return=0.125;try std.testing.expectError(error.IncompatibleSave,s.validate());
+    }
+}
+test "hydration all capture seams preserve owned stores and empty escrow-only cells" {
+    var cells=[_]Microbes.Cell{.{}}**12;
+    cells[0].cohorts[3]=.{.biomass=0.2,.support_mass=0.1,.organization=0.5,.lineage=1,.retention_allocation=0.6,.stored_water=0.25};
+    cells[0].liquid_return=0.125;cells[0].vapor_return=0.0625;
+    cells[1].liquid_return=0.5;cells[1].vapor_return=0.25;
+    var dense:[12]SavedCell=undefined;for(&cells,&dense)|*c,*out|out.*=SavedCell.capture(c);
+    for(dense,cells)|s,c|try std.testing.expectEqualDeep(c,s.runtime());
+    const sparse=try captureSparse(std.testing.allocator,&cells);defer sparse.deinit(std.testing.allocator);
+    try std.testing.expectEqual(@as(usize,1),sparse.entries.len);try std.testing.expectEqual(@as(usize,0),sparse.cells[1].sparse.?.len);
+    var s=waterFixture(sparse.cells);s.origin.?.cohort_encoding=.sparse_indexed;try s.validate();
+    const b=try std.json.stringifyAlloc(std.testing.allocator,s,.{});defer std.testing.allocator.free(b);
+    var p=try parse(std.testing.allocator,b);defer p.deinit();for(p.value.origin.?.cells,cells)|x,c|try std.testing.expectEqualDeep(c,x.runtime());
+    const zero=try std.json.stringifyAlloc(std.testing.allocator,SavedCell.capture(&cells[2]),.{});defer std.testing.allocator.free(zero);
+    try std.testing.expect(std.mem.indexOf(u8,zero,"liquid_return")==null);try std.testing.expect(std.mem.indexOf(u8,zero,"vapor_return")==null);
+}
+test "hydration invalid values reject before experimental destination assignment" {
+    var original=[_]Microbes.Cell{.{}}**12;
+    original[0].cohorts[0]=.{.biomass=0.2,.support_mass=0.1,.organization=0.5,.lineage=1,.retention_allocation=0.5,.stored_water=0.2};
+    var dest=original;
+    for(0..8)|case|{
+        var input=original;switch(case){
+            0=>input[0].cohorts[0].stored_water=std.math.nan(f64),
+            1=>input[0].cohorts[0].retention_allocation=1.1,
+            2=>input[0].cohorts[0].stored_water=1,
+            3=>input[0].cohorts[0].biomass=0,
+            4=>input[0].liquid_return=-1,
+            5=>input[0].vapor_return=std.math.inf(f64),
+            6=>input[0].cohorts[0].retention_allocation=-0.1,
+            else=>input[0].cohorts[0].stored_water=-0.1,
+        }
+        var wire:[12]SavedCell=undefined;for(&input,&wire)|*c,*out|out.*=SavedCell.capture(c);
+        const s=waterFixture(&wire);
+        if(s.validate()) |_| { for(s.origin.?.cells,&dest)|c,*out|out.*=c.runtime();return error.InvalidAccepted; } else |_| {}
+        try std.testing.expectEqualDeep(original,dest);
+    }
+}
+test "hydration four maximal cohorts fit bounded snapshot payload fixture" {
+    var c:Microbes.Cell=.{};
+    for(&c.cohorts,0..)|*a,i|a.*=.{.biomass=0.2,.support_mass=0.1,.organization=0.5,.lineage=999999999999999-i,.parent=999999999999990-i,.generation=4294967295,.retention_allocation=0.6,.stored_water=0.5,.lifetime_grazed=999999999999,.reproduction_credit=999999999999};
+    c.liquid_return=1e30;c.vapor_return=1e30;
+    const b=try std.json.stringifyAlloc(std.testing.allocator,c,.{});defer std.testing.allocator.free(b);
+    // Payload-only bound: real Life snapshot envelope/native export is not integrated.
+    try std.testing.expect(b.len<4096);
+    std.debug.print("HYDRATION_SCHEMA_LAYOUT cohort={d} cell={d} four_cohort_payload={d} snapshot8192_headroom={d}\n",.{@sizeOf(Microbes.Cohort),@sizeOf(Microbes.Cell),b.len,8192-b.len});
+}
+test "hydration valid dense save-size lower bound exposes inherited loading limit" {
+    const Old=@import("../save_schema.zig");
+    var new:Microbes.Cell=.{};
+    for(&new.cohorts,0..)|*c,i| c.*=.{.biomass=0.25,.support_mass=0.17,.organization=0.68,.lineage=999999999999999-i,.parent=999999999999990-i,.generation=4294967295,.retention_allocation=0.7,.stored_water=0.9,.lifetime_grazed=999999999999,.reproduction_credit=999999999999};
+    new.liquid_return=0.125;new.vapor_return=0.0625;
+    try std.testing.expect(Microbes.validCell(new,1000000000000000));
+    var old:Old.Microbes.Cell=.{};
+    for(new.cohorts,&old.cohorts)|c,*out|{inline for(std.meta.fields(Old.Microbes.Cohort))|f|@field(out.*,f.name)=@field(c,f.name);}
+    const new_bytes=try std.json.stringifyAlloc(std.testing.allocator,SavedCell.capture(&new),.{});defer std.testing.allocator.free(new_bytes);
+    const old_bytes=try std.json.stringifyAlloc(std.testing.allocator,Old.SavedCell.capture(&old),.{});defer std.testing.allocator.free(old_bytes);
+    const cells:usize=10*16384+2;
+    const old_lower=cells*(old_bytes.len+1);const new_lower=cells*(new_bytes.len+1);
+    // Cell JSON alone exceeds the production reader limit; all climate arrays add more.
+    try std.testing.expect(old_lower>128*1024*1024);try std.testing.expect(new_lower>old_lower);
+    std.debug.print("HYDRATION_SIZE old_cell={d} new_cell={d} max_grid={d} old_cells_lower_bytes={d} new_cells_lower_bytes={d} added_bytes={d}\n",.{old_bytes.len,new_bytes.len,cells,old_lower,new_lower,new_lower-old_lower});
+}
+test "hydration read-only legacy parse retains original bytes and version until explicit conversion" {
+    var empty=[_]Microbes.Cell{.{}}**12;var wire:[12]SavedCell=undefined;
+    for(&empty,&wire)|*c,*out|out.*=SavedCell.capture(c);
+    var old=waterFixture(&wire);old.version=6;old.origin.?.model_revision=5;
+    const original=try std.json.stringifyAlloc(std.testing.allocator,old,.{});defer std.testing.allocator.free(original);
+    const independent=try std.testing.allocator.dupe(u8,original);defer std.testing.allocator.free(independent);
+    var parsed=try parse(std.testing.allocator,original);defer parsed.deinit();
+    try std.testing.expectEqual(@as(u32,6),parsed.value.version);try std.testing.expectEqualStrings(independent,original);
+}

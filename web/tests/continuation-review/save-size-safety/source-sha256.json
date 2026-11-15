@@ -1,0 +1,8 @@
+{
+  "src/save_io.zig": "8099bc5dc4197335a84d6cdcf974cdb2bac7685fd3fe7b7cb9eec0c40c971df3",
+  "src/save_game.zig": "e241ca410bb67473e6b7f47cb6b977c84c1ade95e2c0707cd2e4c488340d7dc1",
+  "src/main.zig": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+  "web/stella-storage.js": "4c62e690a6b674a092d694c7d94201fdcf4dd9bf109ffc46321872d612f2713a",
+  "web/shell.html": "fcfd28048d927a36d3b2733f6716493aca90da8ccbba703463722bff22760252",
+  "web/tests/save-size-safety.test.cjs": "b8e18496716eafe57c7375d95c6d3e048955eb380b3beee42a64c93d8b33fe0c"
+}

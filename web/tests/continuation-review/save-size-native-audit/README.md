@@ -1,0 +1,13 @@
+# Independent save-size safety review
+
+Production candidate owned by review_changes; this checkpoint contains only QA/evidence. The current schema remains unchanged. The shared128MiB cap applies to both writing and reading.
+
+Read-only inspection: BoundedWriter is outside the buffered sink, counting serialized bytes as accepted. Each write rejects a chunk exceeding remaining allowance before forwarding it; subtraction avoids addition overflow. Child partial writes increment only the count actually accepted. Exact-limit output is allowed. JSON/flush/open/rename failures occur before canonical replacement; deferred cleanup closes/removes the temporary path. Rename is the sole canonical replacement step. Tests cover ordinary bytes, exact boundary, overflow, partial sink exhaustion and open/rename failure. This is not a guarantee against OS power loss, malicious alias paths, failure of temporary cleanup itself, or browser persistent-storage quota. The production target/temp paths are fixed distinct names. Browser durability still requires successful FS.syncfs and storage quota handling.
+
+Independent native fixture uses the actual natural60 saved world, actual save capture/validation/serialization and real file write/read on isolated QA storage. It bypasses only the stella_save web-availability guard and web-only queue pump; native jobs are already joined. That export is the sole named public-body audit exception. Copied save_game paths are redirected to a dedicated QA directory. A copied write-limit variable is injected only for bounded test failure; production remains128MiB, and read stays128MiB. No oversized synthetic planetary allocation is needed.
+
+Planned assertions: normal full-save byte equality and validated readback; no world mutation; missing temp after success; one-byte-too-small write returns−5 with previous canonical identical and temp absent; same failure code/preservation on the actual recovery save branch; exact-limit recovery save succeeds. The context-recovery controller event is explicitly simulated without causing real EGL context loss. No browser quota or hardware recovery acceptance is claimed.
+
+## Verified result
+
+Native build/run exit0. Actual world serialization10,474,652bytes; every planned assertion passed, including both export error mappings, prior canonical equality and exact-limit recovery success. Copied save_io is byte-identical to production (recorded provenance); all55 public exports audited, with only the declared stella_save native bridge. Original world restore passes. Inherited GPA teardown leak is retained in log; no leak-free claim. No source fix or coefficient change was needed for this acceptance.

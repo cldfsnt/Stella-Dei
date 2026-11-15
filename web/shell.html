@@ -574,7 +574,7 @@ document.getElementById('advance-day-dismiss').onclick=()=>advanceDay.dismiss();
 document.getElementById('advance-day-recovery-save').onclick=async()=>{
  const out=document.getElementById('advance-day-recovery-result');if(storage.state().busy)return;
  try{const current=JSON.parse(Module.ccall('stella_advance_status','string',[],[]));if(!advanceDay.isLocked()||!StellaAdvanceDay.valid(current)||current.recovery_required!==true||current.recovery_save_allowed!==true||Module.failed){out.textContent='Recovery save is unavailable. Reload would lose unsaved progress.';return;}
- out.textContent='Saving completed progress to this browser…';document.getElementById('advance-day-reload').disabled=true;const saved=await storage.save();out.textContent=saved?'Completed progress saved in this browser. Reload, then use More → Load planet.':'Save failed or unavailable. Progress is still only in memory; reload may lose it.';
+ out.textContent='Saving completed progress to this browser…';document.getElementById('advance-day-reload').disabled=true;const saved=await storage.save();out.textContent=saved?'Completed progress saved in this browser. Reload, then use More → Load planet.':(storage.state().lastSaveError||'Save failed or unavailable. Progress is still only in memory; reload may lose it.')+' Reload may lose unsaved progress.';
  }catch{out.textContent='Save could not be confirmed. Reload may lose unsaved progress.';}finally{document.getElementById('advance-day-reload').disabled=storage.state().busy;}
 };
 document.getElementById('advance-day-reload').onclick=()=>{if(storage.state().busy)return;if(confirm('Reload the game? Any progress not saved to this browser will be lost.'))location.reload();};

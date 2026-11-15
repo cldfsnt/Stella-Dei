@@ -1,0 +1,7 @@
+{
+  "src/simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+  "src/simulation/atmosphere_water.zig": "a1addeba8200c858b8b0774e310f3929e38f79c8adbf61ca14cee779015e82b9",
+  "src/simulation/surface_physics.zig": "490b309b19ef81a9298634f871f7d44405e5596d42e38bbbe91b2b547aba1635",
+  "src/experimental/paid_hydration.zig": "fa69c02c5f3548338a9ee0930e9333e3040cbeced6de0499b0cb4c56fb9cb930",
+  "src/experimental/paid_hydration_core.zig": "7af755f63bd957d61f1bcd03d61e18a47a667853dff6bb4db7349b66384bed44"
+}

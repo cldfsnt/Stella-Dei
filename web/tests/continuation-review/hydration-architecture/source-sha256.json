@@ -1,0 +1,10 @@
+{
+  "src/simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+  "src/simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+  "src/save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+  "src/save_game.zig": "b6a1d408f4ce440acf9600db9b65dd05063c983c3024e8ba3cb8d0207ce2c7ce",
+  "src/manual_transfer_core.zig": "eb3cb5dfa9ede171bb84390258970d4c32991d664ef8009b2cc7bfbd3e674ea3",
+  "src/experimental/paid_hydration.zig": "fa69c02c5f3548338a9ee0930e9333e3040cbeced6de0499b0cb4c56fb9cb930",
+  "src/experimental/paid_hydration_core.zig": "7af755f63bd957d61f1bcd03d61e18a47a667853dff6bb4db7349b66384bed44",
+  "src/qa_hydration_layout.zig": "edcf9e7f9cd60579f8c292ee92f64cd319d7d8b708b14274919cd33301a35c9c"
+}

@@ -1,0 +1,18 @@
+{
+  "main.zig": {
+    "production": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+    "copied": "b57d01833e4c8ba4ff04f2ca809e91b1ffeb26bd7589e140b91cc2a5d0666377"
+  },
+  "save_game.zig": {
+    "production": "e241ca410bb67473e6b7f47cb6b977c84c1ade95e2c0707cd2e4c488340d7dc1",
+    "copied": "6900f4c75597187b3ea810b4e906a6218cf0c2ad5c2ac8c714cba81bb95ef3f3"
+  },
+  "save_io.zig": {
+    "production": "8099bc5dc4197335a84d6cdcf974cdb2bac7685fd3fe7b7cb9eec0c40c971df3",
+    "copied": "8099bc5dc4197335a84d6cdcf974cdb2bac7685fd3fe7b7cb9eec0c40c971df3"
+  },
+  "save_schema.zig": {
+    "production": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+    "copied": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3"
+  }
+}

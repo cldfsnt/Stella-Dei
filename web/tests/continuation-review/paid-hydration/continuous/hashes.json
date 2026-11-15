@@ -1,0 +1,8 @@
+{
+  "hydration-continuous-first": "20ae19484ffbe31d1a0fdf9d9c60df1eb79a2cf00d47b0fd2fd4de1ca050a184",
+  "hydration-continuous-final": "b6d022f92e050cf91887146667851e6a05c9908bd78f09a0c244a42a0d354592",
+  "src/experimental/hydration_continuous_core.zig": "cadf8f699a3655c444ddefd68ce270443b05a70f291386ac95f2ed3523278a87",
+  "src/experimental/hydration_exchange.zig": "c12d85acad2b3efe8540e5828eef2d6c8d4a7f956bc5e3f3f0c20443f84edaa5",
+  "src/qa_hydration_continuous.zig": "f42005ca1be9cef54f0761603fef8abab45a4e4afd8463e8214346d938112b08",
+  "web/tests/prepare-hydration-continuous.py": "f7c5130ee18365f08624d92376af049f63276923e9c251a2abd17a903a2c3ed4"
+}

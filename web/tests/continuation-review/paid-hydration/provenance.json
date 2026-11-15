@@ -1,0 +1,21 @@
+{
+  "head": "2c72f1ef7e71f77af6f8635a97999a024d24acc7",
+  "production_sha256": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+  "candidate_sha256": "7af755f63bd957d61f1bcd03d61e18a47a667853dff6bb4db7349b66384bed44",
+  "final_hashes": {
+    "src/experimental/paid_hydration_core.zig": "7af755f63bd957d61f1bcd03d61e18a47a667853dff6bb4db7349b66384bed44",
+    "src/experimental/paid_hydration.zig": "fa69c02c5f3548338a9ee0930e9333e3040cbeced6de0499b0cb4c56fb9cb930",
+    "src/qa_paid_hydration.zig": "ba30e047672883d0906e507701655557752fc673c00f862d0aa889a1b81d6963",
+    "src/simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+    "web/tests/prepare-paid-hydration.py": "1d64e3990698ee2932f3ba1026f32c65e1c8a52e5b43200cf966942ef11b1ef4"
+  },
+  "decompressed_log_sha256": {
+    "hydration-setup-failure": "fcf62af37c4c2ffb56e5a360f009f74aa800fc56c8e515983f6bd9f0bbe18e7c",
+    "hydration-setup-failure-2": "83d4e53d5fe30e9de1d760275050881d506b0ee3f951a8b10058f1c5069b02f0",
+    "hydration-first": "45329da52837320b7afaad2c1e18739c524035725c633fac2dbfdd818c290789",
+    "hydration-final": "366990112285d62c1f16f77c1d85607816b51413af98874d0460272dd26741fc",
+    "hydration-scarce": "593cbea99f475cf0fa2d253b43fb4258447494f53da879d18c508d77affa8980"
+  },
+  "target": "Zig0.13 x86_64-linux ReleaseSafe",
+  "results": "79 tests passed"
+}

@@ -1,0 +1,12 @@
+install
++- run test
+   +- zig test ReleaseSafe native 1 errors
+src/experimental/hydration_schema_types.zig:128:22: error: use of undeclared identifier 'actualDecrease'
+error: the following command failed with 1 compilation errors:
+<workspace>/stella-review-tools/zig-linux-x86_64-0.13.0/zig test -OReleaseSafe -I deps -I deps/nanovg/src -I deps/web-vendor/glfw/include --dep build_options --dep gl --dep glfw --dep zalgebra --dep zigimg --dep nanovg -Mroot=<workspace>/stella-independent-review/src/qa_hydration_schema.zig -Mbuild_options=<workspace>/site-tmp/hydration-schema-cache/c/dae75f2f4fc24c799774c029add80b30/options.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mgl=deps/gl3v3.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mglfw=deps/web-vendor/mach-glfw/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzalgebra=deps/web-vendor/zalgebra/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzigimg=deps/web-vendor/zigimg/zigimg.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mnanovg=deps/nanovg/src/nanovg.zig -lc --cache-dir <workspace>/site-tmp/hydration-schema-cache --global-cache-dir <home>/.cache/zig --name test --listen=- 
+Build Summary: 1/4 steps succeeded; 1 failed (disable with --summary none)
+install transitive failure
++- run test transitive failure
+   +- zig test ReleaseSafe native 1 errors
+error: the following build command failed with exit code 1:
+<workspace>/site-tmp/hydration-schema-cache/o/4fce7a5d4810602e0f4b4dc300c5c64d/build <workspace>/stella-review-tools/zig-linux-x86_64-0.13.0/zig web/tests <workspace>/site-tmp/hydration-schema-cache <home>/.cache/zig --seed 0x6ce0902f -Zef1abff77e353f60 -Dsource=src/qa_hydration_schema.zig

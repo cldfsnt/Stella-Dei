@@ -1,0 +1,8 @@
+{
+  "import_only_exact": true,
+  "src/manual_transfer_core.zig": "eb3cb5dfa9ede171bb84390258970d4c32991d664ef8009b2cc7bfbd3e674ea3",
+  "src/experimental/hydration_manual_transfer.zig": "410de7d8ebde921cbcba07b633c9441b5d8ee2489f608a2cb15388c94ee26014",
+  "src/qa_hydration_manual.zig": "30f356b5b5db8bc89cc04be72e5edee134dc57633e48accf4ae5e86470fe1f09",
+  "hydration-manual": "908de97d3dfb9b2c17d10642d15e5de2d32a0af885379d9605e12e198d0ba704",
+  "hydration-manual-setup-failure": "558473632a4d797594d38da52def63ec2b1fbc07cd7c16f7a8c18e94e279771c"
+}

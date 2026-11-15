@@ -1,0 +1,6 @@
+1/5 save_io.test.bounded JSON writer exact limit normal-byte parity and overflow...OK
+2/5 save_io.test.bounded writer propagates partial sink failure without overcount...OK
+3/5 save_io.test.atomic JSON overflow retains previous bytes and removes temporary...OK
+4/5 save_io.test.atomic JSON open and rename failures retain destination and clean temporary...OK
+5/5 save_io.test.atomic JSON serialization failure cleans partial temporary without replacing canonical...OK
+All 5 tests passed.

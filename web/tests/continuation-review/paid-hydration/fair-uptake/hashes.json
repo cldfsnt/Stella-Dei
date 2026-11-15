@@ -1,0 +1,7 @@
+{
+  "hydration-fair": "86f89293c1cba977110b9048bda7184590b532aa960ce4de04fa1bfa22499bfc",
+  "hydration-fair-matrix": "b66dddddebe1449d595e732a0cdbac6c3066b473dd439f0276027b935f006edb",
+  "src/experimental/paid_hydration_fair.zig": "6b9b23b603274b833d0dbfe4c9d027fc39fd4d529053001fcb4d2c6c52f16e68",
+  "src/qa_hydration_fair.zig": "09f777a0c5dbc4c61d35f6389ba27e4c1e696b92e0b37011562beca11206e441",
+  "src/qa_paid_hydration_fair_matrix.zig": "2a08bb2e7fe0d38c16395b448da765b52d5f8836871aa4a9e413d5fd038ce536"
+}

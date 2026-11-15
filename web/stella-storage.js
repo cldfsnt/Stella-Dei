@@ -1,6 +1,6 @@
 (function(root){
   function createStorage(module,feedback,options={}){
-    let available=false,busy=false;
+    let available=false,busy=false,lastSaveError=null;
     // The boundary describes the saved bytes to protect, not the running schema.
     // v20 still writes v6 but changes climate; it explicitly opts into this backup.
     const preserveLegacy=options.preserveLegacyThroughVersion===6||options.targetSchemaVersion===7;
@@ -50,16 +50,17 @@
       catch(error){feedback('Browser storage unavailable. You can play, but saves will not persist here.',true);return false;}
     }
     async function save(){
+      lastSaveError=null;
       if(busy)return false;if(!available){feedback('Save unavailable: browser storage did not open.',true);return false;}
       busy=true;module.storageOperation=true;feedback('Saving to this browser…');
       try{
         if(preserveLegacy)await preserveLegacySave();
-        const code=module._stella_save();if(code!==0)throw Error(code===-1?'Create or load a planet first.':'The game could not serialize this world.');
+        const code=module._stella_save();if(code!==0)throw Error(code===-1?'Create or load a planet first.':code===-5?'This world exceeds the 128 MiB save limit. Your previous save was not replaced. Current progress is still only in memory.':'The game could not serialize this world.');
         await sync(false);
         feedback('Saved in this browser. Clearing site data removes this save.'+(backup.durable?' Your pre-upgrade backup is also kept in this browser; automatic restore is not available.':''));
         return true;
       }
-      catch(error){feedback('Save failed: '+error.message,true);return false;}
+      catch(error){lastSaveError=error.message;feedback('Save failed: '+lastSaveError,true);return false;}
       finally{busy=false;module.storageOperation=false;}
     }
     async function load(){
@@ -69,7 +70,7 @@
       catch(error){feedback('Load failed: '+error.message,true);return false;}
       finally{busy=false;module.storageOperation=false;}
     }
-    return{initialize,save,load,state:()=>({available,busy,backup:{...backup}})};
+    return{initialize,save,load,state:()=>({available,busy,lastSaveError,backup:{...backup}})};
   }
   if(typeof module!=='undefined'&&module.exports)module.exports={createStorage};else root.createStellaStorage=createStorage;
 })(typeof window==='undefined'?globalThis:window);

@@ -1,0 +1,70 @@
+1/36 qa_hydration_lifecycle_audit.test.net biomass gainer still releases water for gross predation before assimilation...LIFECYCLE_GROSS before_mass=0.4 after_mass=0.488 before_water=0.2 after_water=0.19399999910593035 liquid_return=0.006000000894069657
+OK
+2/36 qa_hydration_lifecycle_audit.test.same-cell funded birth splits water once while retaining both existing phase escrows...OK
+3/36 experimental.hydration_lifecycle_core.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+4/36 experimental.hydration_lifecycle_core.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+5/36 experimental.hydration_lifecycle_core.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+6/36 experimental.hydration_lifecycle_core.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+OK
+7/36 experimental.hydration_lifecycle_core.test.grazing is bounded, order independent, and conservative...OK
+8/36 experimental.hydration_lifecycle_core.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+9/36 experimental.hydration_lifecycle_core.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=416
+OK
+10/36 experimental.hydration_lifecycle_core.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+11/36 experimental.hydration_lifecycle_core.test.darkness carbon starvation and drying do not create growth...OK
+12/36 experimental.hydration_lifecycle_core.test.live competing trait distribution responds to environment, order independent...OK
+13/36 experimental.hydration_lifecycle_core.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+14/36 experimental.hydration_lifecycle_core.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+OK
+15/36 experimental.hydration_lifecycle_core.test.one coarse relocation per simulation instant with no ghost cohort...OK
+16/36 experimental.hydration_lifecycle_core.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+17/36 experimental.hydration_lifecycle_core.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+18/36 experimental.hydration_lifecycle_core.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=21
+OK
+19/36 experimental.hydration_lifecycle_core.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+20/36 experimental.hydration_lifecycle_core.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+OK
+21/36 experimental.hydration_lifecycle_core.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+22/36 experimental.hydration_lifecycle_core.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+23/36 experimental.hydration_lifecycle_core.test.producer architecture is functional continuous and resource conserving...OK
+24/36 experimental.hydration_lifecycle_core.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+OK
+25/36 experimental.hydration_lifecycle_core.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+26/36 experimental.hydration_lifecycle_core.test.film adaptation requires real tissue and inherited structure, never dry or frozen fixation...OK
+27/36 experimental.hydration_lifecycle_core.test.film growth is resource funded with conservative paid offspring and unchanged water input...OK
+28/36 experimental.hydration_lifecycle_core.test.film tradeoff matrix synthetic controls do not prove natural evolution...FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+OK
+29/36 experimental.hydration_lifecycle_core.test.smooth aquatic boundary and fluctuating shoreline remain conservative...OK
+30/36 experimental.hydration_lifecycle_core.test.tall supported exposed mortality meets aquatic limit continuously...OK
+31/36 experimental.hydration_lifecycle_core.test.zero water and zero paid tissue limits have no survival windfall...OK
+32/36 experimental.hydration_lifecycle_core.test.rare mutation distribution preserves ordinary offspring and six draws with funded inheritance...RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+OK
+33/36 experimental.hydration_lifecycle_core.test.rare mutation bounded at extremes deterministic and never funds tissue...OK
+34/36 experimental.hydration_lifecycle_core.test.actual rare thermal offspring can help or harm under matched environments...RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+OK
+35/36 experimental.hydration_lifecycle_core.test.represented receivers never exceed their supplied growth budget...OK
+36/36 experimental.hydration_lifecycle_core.test.actual removals remain bounded across small and near-total debits...OK
+All 36 tests passed.

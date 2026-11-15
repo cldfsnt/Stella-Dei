@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const {createStorage}=require('../stella-storage.js');
+(async()=>{
+ const messages=[],syncs=[];let code=-5;
+ const module={FS:{analyzePath:()=>({exists:true}),mount(){},syncfs(populate,cb){syncs.push(populate);cb(null);}},IDBFS:{},_stella_save:()=>code};
+ const store=createStorage(module,(...x)=>messages.push(x));await store.initialize();
+ assert.equal(await store.save(),false);
+ assert.match(store.state().lastSaveError,/128 MiB/);assert.match(messages.at(-1)[0],/previous save was not replaced/);
+ assert.deepEqual(syncs,[true]);assert.equal(module.storageOperation,false);
+ code=-2;assert.equal(await store.save(),false);assert.doesNotMatch(store.state().lastSaveError,/128 MiB/);
+ code=0;assert.equal(await store.save(),true);assert.equal(store.state().lastSaveError,null);assert.deepEqual(syncs,[true,false]);
+ const main=fs.readFileSync(path.join(__dirname,'../../src/main.zig'),'utf8');
+ const body=main.slice(main.indexOf('export fn stella_save()'),main.indexOf('export fn stella_load()'));
+ assert.equal((body.match(/err == error.SaveTooLarge\) -5 else -2/g)||[]).length,2,'normal and recovery save use the same size error');
+ const shell=fs.readFileSync(path.join(__dirname,'../shell.html'),'utf8');
+ const recovery=shell.slice(shell.indexOf("document.getElementById('advance-day-recovery-save').onclick"),shell.indexOf("document.getElementById('advance-day-reload').onclick"));
+ assert.match(recovery,/storage\.state\(\)\.lastSaveError/);assert.match(recovery,/Reload may lose unsaved progress/);
+ console.log('PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately');
+})().catch(e=>{console.error(e);process.exit(1)});
