@@ -1966,14 +1966,18 @@ pub const PlayState = struct {
         vg.fill();
         const origin = self.planet.worldMode == .origin;
         if (self.watchLifeView) {
-            const compactWidth = (width - 32) / 3;
+            const compactWidth = (width - 40) / 4;
             if (ui.button(vg, game, "watch-pause", 8, 6, compactWidth, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
             if (ui.button(vg, game, "watch-tools", 16 + compactWidth, 6, compactWidth, 44, "Tools")) {
                 self.watchLifeView = false;
                 self.colonyPeek.clear();
                 self.seedTargets.count = 0;
             }
-            if (ui.button(vg, game, "watch-speed", 24 + 2 * compactWidth, 6, compactWidth, 44, guidance.speedLabel(self.timeScale))) {
+            // Explicit one-shot framing only: never follow life automatically.
+            if (ui.button(vg, game, "watch-fit", 24 + 2 * compactWidth, 6, compactWidth, 44, "Fit life")) {
+                _ = self.fitLivingClusterResult(width, height);
+            }
+            if (ui.button(vg, game, "watch-speed", 32 + 3 * compactWidth, 6, compactWidth, 44, guidance.speedLabel(self.timeScale))) {
                 self.timeScale = guidance.nextSpeed(self.timeScale);
                 self.mobileFeedback = guidance.speedHint(self.timeScale, self.paused);
                 self.mobileFeedbackSeconds = 3;

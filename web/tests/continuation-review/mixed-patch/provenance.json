@@ -1,0 +1,7 @@
+{
+  "/workspace/scratch/f67c3ac60ca3/site-tmp/watch-natural-30day.json": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+  "/workspace/scratch/f67c3ac60ca3/site-tmp/mixed-patch-src/main.zig": "76aff6abe8c5ba21dfee9c7af01bdafa4d3601cae8db537458e8c39db4afc4cb",
+  "/workspace/scratch/f67c3ac60ca3/site-tmp/mixed-patch-src/simulation/planet.zig": "bdf96dcf96d8f873e5f4015dc068b7390960858e2deeb884897c726037dda48c",
+  "src/patch_watch.zig": "bd3d4ca0104e57a3af72fd8e4765484463cd212aa614f34e0405149854516055",
+  "src/colony_snapshot.zig": "c937b803cd4d6449733a2827e51c69a75b378f0006074f7b4cfdf7c3a80d6f1a"
+}
