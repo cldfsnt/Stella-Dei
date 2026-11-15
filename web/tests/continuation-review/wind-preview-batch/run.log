@@ -1,0 +1,24 @@
+EGL surface=0x107e19e0 context=0x107e1ff0
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0xd0764d4f4476689f
+info: Sea Level: -0.3515625 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+DIRECT {"pioneer":false,"eligible":205,"planted":205,"co2_before":7.543577270507812e2,"co2_after":7.543549122811804e2,"oxygen_before":2.6334626953125e4,"oxygen_after":2.633462900022981e4}
+BATCH_APPLY {"ok":true,"founder_kind":"ordinary","phase":"applied","token":2,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Applied one resource-paid seed per planned point where funding succeeded","batch_size":512}
+DIRECT {"pioneer":true,"eligible":205,"planted":205,"co2_before":7.543577270507812e2,"co2_after":7.543549122811804e2,"oxygen_before":2.6334626953125e4,"oxygen_after":2.633462900022981e4}
+BATCH_APPLY {"ok":true,"founder_kind":"pioneer","phase":"applied","token":4,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Applied one resource-paid seed per planned point where funding succeeded","batch_size":512}
+Captured /tmp/stella-egl-001.ppm
+STALE {"case":0,"reply":{"ok":false,"founder_kind":"pioneer","phase":"cancelled","token":5,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Plan unavailable or already applied","batch_size":512}}
+STALE {"case":1,"reply":{"ok":false,"founder_kind":"pioneer","phase":"cancelled","token":6,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Plan unavailable or already applied","batch_size":512}}
+STALE {"case":2,"reply":{"ok":false,"founder_kind":"pioneer","phase":"failed","token":7,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"World resources changed; nothing seeded","batch_size":512}}
+STALE {"case":3,"reply":{"ok":false,"founder_kind":"pioneer","phase":"cancelled","token":8,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Plan unavailable or already applied","batch_size":512}}
+STALE {"case":4,"reply":{"ok":false,"founder_kind":"pioneer","phase":"cancelled","token":9,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Plan unavailable or already applied","batch_size":512}}
+STALE {"case":5,"reply":{"ok":false,"founder_kind":"pioneer","phase":"cancelled","token":10,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Plan unavailable or already applied","batch_size":512}}
+STALE {"case":6,"reply":{"ok":false,"founder_kind":"pioneer","phase":"ready","token":11,"world":1,"scanned":40962,"total":40962,"eligible":205,"planted":205,"skipped":0,"ineligible":40757,"resource_skips":0,"identity_skips":0,"reason":"Plan unavailable or already applied","batch_size":512}}
+WIND_PREVIEW_BATCH_COMPLETE first_play_once=true all_points=true direct_paid_exact=true cancel_exact=true kind_immutable=true stale_config_material_time_world=true duplicate_inert=true oom_atomic=true partial_occupied=true legacy_ordinary_exact=true pioneer_disabled_refusal=true wind_namespace=true save_reload=true original_exact=true

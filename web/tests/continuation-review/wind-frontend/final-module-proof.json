@@ -1,0 +1,37 @@
+{
+  "scope": "Actual built Node Module export and uninitialized guards; no browser graphics or initialized player flow",
+  "exports": [
+    "stella_auto_seed_pioneer_start",
+    "stella_wind_snapshot",
+    "stella_wind_new",
+    "stella_seed_pioneer",
+    "stella_save_expected"
+  ],
+  "snapshot": {
+    "status": "unavailable",
+    "world_serial": 0,
+    "enabled": false,
+    "writer_version": 0,
+    "law": 0,
+    "cell": null,
+    "aerial_allocations": []
+  },
+  "guards": {
+    "fresh": -1,
+    "pioneer": -1,
+    "save": -1
+  },
+  "batch": {
+    "ok": false,
+    "phase": "failed",
+    "reason": "World unavailable"
+  },
+  "sha256": {
+    "index.html": "3ec93b8cb68677e7748bc75b4c71ca0596c24914c7b3cfaa67ead7e2537727d0",
+    "index.js": "b4011fc664e6376bc41dd7b29ceaf5bc815f659ef24f1f3977ed06ef3a90f767",
+    "index.wasm": "6ef6f586b31eb427d8b26e6bd435101272172bd01edc672c210cc5eef76c6cb3",
+    "wind-origin.js": "4d4b41578091f73c2b17970264ee0f34821a9d6029c08690b754de46130c1011",
+    "stella-storage.js": "0a90fe2af718dc1526804773da95ad997fedaafaf1ff64ee36126ce4bce0e402",
+    "auto-seed.js": "7ef9d974d641f408039e509dd6c2f66204b6756aa69414e40d13921fa36ab263"
+  }
+}

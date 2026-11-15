@@ -48,3 +48,39 @@ if build.exists():
 # Unchanged license and preload packager needed by the isolated full build.
 shutil.copy2(root/'package.py',out/'package.py')
 shutil.copy2(root.parent/'LICENSE',out.parent/'LICENSE')
+
+# Temporary opt-in runtime boundary: no main/Wetlands storage fallback.
+html=out/'shell.html';s=html.read_text()
+needle='<aside id="patch-watch-hud"';assert s.count(needle)==1
+s=s.replace(needle,(root/'wind-banner.html').read_text()+needle,1)
+needle="const welcomeKey='stella-guide-dismissed-v1';";assert s.count(needle)==1
+s=s.replace(needle,"const welcomeKey='stella-wind-guide-dismissed-v1';",1)
+html.write_text(s)
+for name in ['stella-storage.js','wind-storage.js']:
+ p=out/name;t=p.read_text();assert '/saves' in t;t=t.replace('/saves','/wind-saves');assert '/saves' not in t;p.write_text(t)
+for name in ['storage-upgrade.test.cjs','wind-storage.test.cjs']:
+ p=tests/name;p.write_text(p.read_text().replace('/saves','/wind-saves'))
+
+# Separate Pioneer batch uses the same planned transaction and dialog, never a seed loop.
+shutil.copy2(root/'wind-auto-seed.js',out/'auto-seed.js')
+p=out/'shell.html';s=p.read_text()
+def patch(a,b):
+ global s
+ assert s.count(a)==1,a
+ s=s.replace(a,b,1)
+patch('<button id="auto-seed-open" disabled>Auto-seed world…</button>','<button id="auto-seed-open" disabled>Auto-seed world…</button><button id="auto-seed-pioneer-open">Plan Pioneer Auto-seed…</button>')
+patch('AutoSeed.create({available:', 'AutoSeed.create({requireFounderKind:true,available:')
+a=s.index("document.getElementById('auto-seed-open').onclick=()=>{")
+b=s.index("\ndocument.getElementById('auto-seed-apply')",a)
+old=s[a:b]
+body=old.replace("document.getElementById('auto-seed-open').onclick=()=>{",'function openAutoSeed(kind){')
+body=body.replace('autoSeed.start(data.world_serial);',"if(kind==='pioneer'){const w=JSON.parse(Module.ccall('stella_wind_snapshot','string',[],[]));if(w.status!=='wind'||!w.enabled||w.world_serial!==data.world_serial)throw Error('Pioneer planning requires the current wind-enabled world.');}autoSeed.start(data.world_serial,kind);")
+body=body.replace("const sheet=document.getElementById('auto-seed-sheet');", "document.getElementById('auto-seed-title').textContent=kind==='pioneer'?'Pioneer Auto-seed · 50% inherited aerial allocation':'Auto-seed world · ordinary local founders';const sheet=document.getElementById('auto-seed-sheet');")
+body=body.replace("function openAutoSeed(kind){", "function openAutoSeed(kind){if(storage.state().busy||advanceDay.isLocked()){feedback('Save or action busy. Wait before planning.',true);return;}")
+s=s[:a]+body+"\ndocument.getElementById('auto-seed-open').onclick=()=>openAutoSeed('ordinary');\ndocument.getElementById('auto-seed-pioneer-open').onclick=()=>openAutoSeed('pioneer');"+s[b:]
+p.write_text(s)
+
+p=out/'shell.html';s=p.read_text()
+a='<b>Choose your living world.</b> Origin begins with simple microbes; Sandbox offers plants and rabbits. Choose Random or Continents for a new world. Pinch to zoom; drag to explore.'
+b='<b>Explore wind dispersal.</b> This preview starts a fresh Origin world. Seed or plan paid Pioneer founders from Tools → Plant, or Load this preview’s save from Tools → World. The main game opens separately from the preview notice. Pinch to zoom; drag to explore.'
+assert s.count(a)==1;s=s.replace(a,b,1);p.write_text(s)

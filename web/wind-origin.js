@@ -24,6 +24,6 @@ function create(h){let current=null;
  }
  return {refresh,fresh,pioneer};
 }
-function mount(doc,h){const ui=create({...h,render:(s,text)=>{doc.getElementById('wind-law-status').textContent=text;doc.getElementById('wind-law-details').textContent=details(s);doc.getElementById('wind-new').disabled=!s||!h.available();doc.getElementById('wind-pioneer').disabled=!s||s.status!=='wind'||!uint(s.cell)||!h.available();}});doc.getElementById('wind-new').onclick=ui.fresh;doc.getElementById('wind-pioneer').onclick=ui.pioneer;doc.getElementById('wind-refresh').onclick=ui.refresh;ui.refresh();return ui;}
+function mount(doc,h){const ui=create({...h,render:(s,text)=>{doc.getElementById('wind-law-status').textContent=text;doc.getElementById('wind-law-details').textContent=details(s);doc.getElementById('wind-new').disabled=!s||!h.available();doc.getElementById('wind-pioneer').disabled=!s||s.status!=='wind'||!uint(s.cell)||!h.available();const batch=doc.getElementById('auto-seed-pioneer-open');if(batch)batch.disabled=!s||s.status!=='wind'||!h.available();}});doc.getElementById('wind-new').onclick=ui.fresh;doc.getElementById('wind-pioneer').onclick=ui.pioneer;doc.getElementById('wind-refresh').onclick=ui.refresh;ui.refresh();return ui;}
 const api={valid,describe,details,create,mount};if(typeof module==='object'&&module.exports)module.exports=api;else root.StellaWind=api;
 })(typeof globalThis==='undefined'?this:globalThis);

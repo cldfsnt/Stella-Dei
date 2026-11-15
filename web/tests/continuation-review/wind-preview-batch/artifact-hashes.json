@@ -1,0 +1,42 @@
+{
+  "startup.log": {
+    "bytes": 389,
+    "sha256": "69d458a3862a55f62b79fb79ec630c1555b955790799711fc1f36ccdebb926e0"
+  },
+  "build.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "pioneer-world.json.gz": {
+    "bytes": 753661,
+    "sha256": "2eb5dce2239e820cbfd419bbaed94e27129a98de1438e6371a882db8ba8062cc"
+  },
+  "pioneer-batch.png": {
+    "bytes": 31236,
+    "sha256": "531ea9c3ff66292f60d319c01e56acbc473c096bea37fb5b597627bec9a857cb"
+  },
+  "disk-before.sha256": {
+    "bytes": 124,
+    "sha256": "af6e0cc46e903a3a0be451b444b8eacdb2d7a8a5039fbb0abc2bb0a18bb13c23"
+  },
+  "PREREGISTRATION.md": {
+    "bytes": 1736,
+    "sha256": "86f6ed2b1a1b077616ac7b49cb2135a7ee6d26e0ff31c1857cb634e597271398"
+  },
+  "owner-hashes.json": {
+    "bytes": 24807,
+    "sha256": "7c86669e8c5f932465fa8257d3a23a963e2cf7f104e6e4f3bfe2c4a40605a259"
+  },
+  "run.log": {
+    "bytes": 3779,
+    "sha256": "ef4819ca3618e5cae7604de094eab54576a2d11819283cdda20a03f98338e925"
+  },
+  "qa-source-hashes.json": {
+    "bytes": 24807,
+    "sha256": "c1695a633af1eac2b4a0c80d7b6531c7124adfd44bfa5255dfc46f5970980615"
+  },
+  "pioneer-world.uncompressed": {
+    "bytes": 9460611,
+    "sha256": "67e6bdbb9e45f3e5c1032c419d797b1f0fc5f835902b27c791fd1fde4d5f2432"
+  }
+}
