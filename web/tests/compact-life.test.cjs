@@ -1,0 +1,17 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync(path.join(__dirname,'../shell.html'),'utf8');
+const fn=html.slice(html.indexOf('function compactColonyRows('),html.indexOf('function refreshLife(){'));
+const ctx={};vm.createContext(ctx);vm.runInContext(fn,ctx);
+const d={cohorts:[{lineage:'18446744073709551615',biomass:.3},{lineage:'9007199254740993',biomass:.1},{lineage:'2',biomass:0},{lineage:'3',biomass:1e-8}],tissues:[{form:'cushion'},{form:'frond'},{form:'absent'},{form:'mat'}]};
+const before=JSON.stringify(d),r=ctx.compactColonyRows(d);assert.match(r,/18446744073709551615 · cushion · 75%/);assert.match(r,/9007199254740993 · frond · 25%/);assert.match(r,/ID #3 · mat · <1% · 1.00e-8/);assert.doesNotMatch(r,/absent/);assert.equal(JSON.stringify(d),before);
+assert.equal(ctx.compactColonyRows({cohorts:[]}), 'No living biomass observed here.');
+for(const biomass of [NaN,Infinity,-1])assert.match(ctx.compactColonyRows({cohorts:[{biomass}]}),/unavailable/);
+assert.match(ctx.compactColonyRows({cohorts:Array(5).fill({biomass:1})}),/unavailable/);
+const dialog=html.slice(html.indexOf('<dialog id="life-sheet"'),html.indexOf('</dialog>',html.indexOf('<dialog id="life-sheet"')));
+assert.ok(dialog.indexOf('id="watch-patch"')<dialog.indexOf('id="cohort-details"'));
+assert.ok(dialog.indexOf('id="water-minus"')<dialog.indexOf('id="cohort-details"'));
+assert.ok(dialog.indexOf('id="fine-water"')<dialog.indexOf('id="life-colony-shares"'));
+for(const id of ['advanced-water','competition-details','cohort-details','condition-details','feeding-details','life-help'])assert.match(dialog,new RegExp('<details id="'+id+'">'));
+assert.match(html,/details:not\(\[open\]\)>:not\(summary\)\{display:none\}/);
+const trend=require('../life-trend.js').create();let last;for(let day=0;day<=2;day+=.5)last=trend.sample({status:'origin',cell:1,day,cohorts:[{biomass:day===2?0:.1}]});assert.equal(last.label,'No living biomass observed here');
+console.log('PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend');

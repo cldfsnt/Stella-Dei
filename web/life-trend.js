@@ -19,7 +19,7 @@
    const first=history[0],days=d.day-first.day;if(days<2||first.mass<=0)return null;
    const delta=mass-first.mass,pct=delta/first.mass*100;
    const direction=mass===0?'lost':Math.abs(delta)<0.0001||Math.abs(pct)<5?'steady':delta>0?'rising':'falling';
-   return {direction,days,percent:pct,from:first.mass,to:mass,label:direction==='lost'?'Observed colony loss':direction==='steady'?'Net biomass steady':'Net biomass '+direction};
+   return {direction,days,percent:pct,from:first.mass,to:mass,label:direction==='lost'?'No living biomass observed here':direction==='steady'?'Net biomass steady':'Net biomass '+direction};
   }
   return {sample,reset,forget};
  }

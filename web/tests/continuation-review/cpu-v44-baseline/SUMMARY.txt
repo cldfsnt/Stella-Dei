@@ -1,0 +1,8 @@
+FRAME_PLATFORM renderer=llvmpipe (LLVM 19.1.7, 256 bits) version=4.5 (Core Profile) Mesa 25.0.7-2+deb13u1
+PHYSICS_PHASE ticks=60 temperature_total_ms=133.3705 water_inclusive_total_ms=378.4795 atmosphere_nested_total_ms=269.1221 water_excluding_atmosphere_total_ms=109.3574 organisms_total_ms=47.8896 scheduler_parallel_count=1
+ATMOSPHERE_PHASE wind_cache_ms=42.2776 edge_cache_ms=85.5089 phase_relaxation_ms=46.6572 coefficient_ms=42.6514 gather_ms=52.0169
+FRAME_SUMMARY stage=early requested_hps=24 cells=40962 occupied_start=1 cohorts_start=1 frames=60 ticks=60 sim_hours=24.000 update_mean_ms=9.3318 physics_mean_per_frame_ms=9.3308 physics_max_ms=13.6583 render_finish_mean_ms=8.2592 total_mean_ms=17.5914 total_p95_ms=20.4507 total_max_ms=23.7544 compute_throughput_hps=22.738 fixed_input_dt=0.016666667 gpu_finish=true
+FRAME_PLATFORM renderer=llvmpipe (LLVM 19.1.7, 256 bits) version=4.5 (Core Profile) Mesa 25.0.7-2+deb13u1
+PHYSICS_PHASE ticks=60 temperature_total_ms=145.0528 water_inclusive_total_ms=382.1576 atmosphere_nested_total_ms=269.2491 water_excluding_atmosphere_total_ms=112.9085 organisms_total_ms=61.9491 scheduler_parallel_count=1
+ATMOSPHERE_PHASE wind_cache_ms=44.0911 edge_cache_ms=82.8041 phase_relaxation_ms=50.4117 coefficient_ms=43.4625 gather_ms=48.4690
+FRAME_SUMMARY stage=established30d requested_hps=24 cells=40962 occupied_start=10 cohorts_start=18 frames=60 ticks=60 sim_hours=24.000 update_mean_ms=9.8213 physics_mean_per_frame_ms=9.8202 physics_max_ms=35.8311 render_finish_mean_ms=9.7688 total_mean_ms=19.5905 total_p95_ms=25.0522 total_max_ms=49.4791 compute_throughput_hps=20.418 fixed_input_dt=0.016666667 gpu_finish=true

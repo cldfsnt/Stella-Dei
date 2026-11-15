@@ -1,0 +1,14 @@
+//! Pure WASM correctness only, not Emscripten/browser performance.
+const std=@import("std");const Ref=@import("simulation/atmosphere_water.zig");const C=@import("qa_coefficient_cache.zig").Entry;
+var checked:u32=0;
+export fn parity_count()u32{return checked;}
+export fn parity_run()u32{
+ checked=0;var failures:u32=0;var cache=C{};
+ for(0..32768)|i|{
+  const x:f64=@floatFromInt(i);const rate=(@mod(x,1024)+1)*0.000000123;const dt=(@mod(x,1536)+1)*0.75;const mass=x*0.03125;
+  for([_]f64{mass,mass*0.13,mass*0.9})|m|{if(@as(u32,@bitCast(Ref.coefficient32(m,rate,dt)))!=@as(u32,@bitCast(cache.coefficient32(m,rate,dt))))failures+=1;checked+=1;}
+ }
+ const edge=[_]f64{0,-0.0,-1,1e-320,1e-12,1,60,360,1440,86400,1e300,std.math.floatMax(f64),std.math.inf(f64),std.math.nan(f64)};
+ for(edge)|mass|for(edge)|rate|for(edge)|dt|{if(@as(u32,@bitCast(Ref.coefficient32(mass,rate,dt)))!=@as(u32,@bitCast(cache.coefficient32(mass,rate,dt))))failures+=1;checked+=1;};
+ return failures;
+}

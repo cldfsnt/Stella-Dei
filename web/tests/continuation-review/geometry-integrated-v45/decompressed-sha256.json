@@ -1,0 +1,12 @@
+{
+  "check-baseline.log": "e64f2f51679d1c8ebf5b0aaaa5dae388e42a8eddf79b28c45f755baf0fa46230",
+  "baseline-3.log": "439384487bd9ecb8782e72fcbe72fe0f1f27f44c0179dc458af95000a1bf39fb",
+  "baseline-1.log": "a9ac80c5614edefce47e8084e61dd6bfe9f827ff5a6ccdefddb5d60460259c3a",
+  "candidate-3.log": "d87bbf7d5a19df79da69ef3e0076d1eda2af0222b3089ec6d60aa4312a165974",
+  "check-candidate.log": "071343d1aa38cbc6dcad26bbfb5436fb05502451770e41c4f108a826fb5689ac",
+  "geometry-v45-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidate-1.log": "4d672cc9802035b20a75b1c131e6d896b9ae67a49b0c9a16e0049bd250b535aa",
+  "candidate-2.log": "e1da4f38779624e148a1c95d9b17bb08612456c2b360838a5246a5742ccffaff",
+  "geometry-v45-build-obsolete-fixture.log": "0dae2807a454a8ddfead4264ba6b6d6494381c1d5e38d1e25090987ada001750",
+  "baseline-2.log": "e08b7d779c437b9541ebf9d570fa9976af5e3c671251ed4e44b5c9239afa1c11"
+}
