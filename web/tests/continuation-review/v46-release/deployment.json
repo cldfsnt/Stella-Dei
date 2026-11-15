@@ -1,0 +1,17 @@
+{
+ "status":"succeeded",
+ "time_utc":"2026-11-15T02:53:40.485390+00:00",
+ "fork_commit":"7bfbc6d886895d04274d439b059223420829d07b",
+ "local_source_commit":"8bbb768a08310f5c8dd0b9868656d5c2414805f9",
+ "exact_source_tree":"2584ba8d069087f69308e4fed2de74a0bbe12197",
+ "site_source_commit":"237a466b294799b60aedc364dc781617f2790ad4",
+ "url":"https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+ "audience":"owner-only unchanged",
+ "static_files_verified":28,
+ "sha256":{
+  "index.html":"7f5f735f953b7e1079c064395b1add5d39d9b6255addb0018957b6512c1c3f7f",
+  "index.js":"60261217f72cfe8a3b46877c349f5354b00e96522f4ef910504719b9d2e7e124",
+  "index.wasm":"1efc5c4cd4ab7ff339b719f0c02c551f6a29b9bfdc7f2bb685081dc0cb2f9b58"
+ },
+ "limits":"Native gameplay proxy plus mocked shell controls, not actual browser game performance or Android. No automatic resolution switch; sharp remains default."
+}
