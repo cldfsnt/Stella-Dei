@@ -1,0 +1,8 @@
+{
+  "checked_utc": "2026-11-15T13:02:22.757298+00:00",
+  "shell_sha256": "1e2714c52ddbb5ae25c3633be6eef7539d38a5076165b47a86fb7dedd8422d86",
+  "controller_sha256": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+  "fixture_sha256": "7da14eb53b8da480295d4f7e61aa642a9469fc5bb77ec4d506d53534d7dfce53",
+  "browser_tab": "14",
+  "mock_only": true
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "day": 30,
+    "ticks": 60,
+    "sha256": "86d7021b8971152d4f07842da29f225fc5f3e54e4acf7e02942ab253fcd3554a",
+    "exact_production_baseline": true
+  },
+  {
+    "day": 60,
+    "ticks": 60,
+    "sha256": "d112d22906d769b37fe60c9b971f94590174c8fc6788f7f5a38dd1f5829b74a8",
+    "exact_production_baseline": true
+  },
+  {
+    "day": 90,
+    "ticks": 60,
+    "sha256": "8b0277dea0d0b39bfbeb2e24e8aa557819771b74bc3af4312c449d32023eb11b",
+    "exact_production_baseline": true
+  }
+]

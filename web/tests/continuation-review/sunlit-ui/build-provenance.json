@@ -1,0 +1,32 @@
+{
+  "source": {
+    "web/shell.html": "1e2714c52ddbb5ae25c3633be6eef7539d38a5076165b47a86fb7dedd8422d86",
+    "web/habitat-plan.js": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "src/main.zig": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+    "src/habitat_preview.zig": "8d78741ddc7dbc587354f34f0e862dbad9f87a7d2f8d3dd3a6ac741b73ce823a",
+    "src/pond_action.zig": "34443a9ed3ebba0eb9d9f8aa1b892d948e9decee2256d65e16ce2e3d1658cab1",
+    "src/states/play.zig": "6dfac0adb73e3a90a0354af46410475e56cbf2d0ad19a0bbdf747ed6d69bb59a",
+    "src/simulation/planet.zig": "0be6803d6aa8178ecb4e16c98613724b6eafc339566c66d9a316cf12d97fbb8d",
+    "src/simulation/atmosphere_water.zig": "de00ce4e98fe78c25092e7a00437a396ac4c8b14e03198ab18f7978a68f12dea"
+  },
+  "artifacts": {
+    "web/dist/renderer-info.js": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "web/dist/index.js": "30899d122427b9cd1ba2dc2c02b2402d8a6fbfa71ea51b901210bb60e4d581b7",
+    "web/dist/colony-watch-details.js": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "web/dist/gameplay-harness.js": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "web/dist/colony-transport.js": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "web/dist/touch-controls.js": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "web/dist/patch-watch.js": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "web/dist/index.html": "ce74719674ec6e50c92f320faa9f8227bb724af1829c7b79ffc83daa7cb7f96d",
+    "web/dist/copy-report.js": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "web/dist/habitat-plan.js": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "web/dist/life-trend.js": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "web/dist/webgl-startup-diagnostic.html": "c7489c39370750478ec33990d12a2fc8f4390c9d27b27d1e05689b2656ca2e23",
+    "web/dist/advance-day.js": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "web/dist/index.wasm": "6f198f4a8faf5e921991aad0fa102fae80b2e8dde86a7eaafc47e199f05dd6c4",
+    "web/dist/gameplay-measure.js": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "web/dist/stella-storage.js": "4c62e690a6b674a092d694c7d94201fdcf4dd9bf109ffc46321872d612f2713a"
+  },
+  "build": "STELLA_TOOLCHAINS=/workspace/scratch/f67c3ac60ca3/stella-review-tools STELLA_WEB_CACHE=/workspace/scratch/f67c3ac60ca3/site-tmp/v34-web-cache bash web/build.sh",
+  "deployed": false
+}

@@ -1,0 +1,15 @@
+# Current nursery is growing; offspring habitat is the actionable contrast
+
+Actual fixed seed42 Find habitat→Nursery→one seed→Watch at24h/s completed seven simulated days420fixed inputframes. No care after initial explicit god actions. All final Fit/save-byte assertions completed. The inherited harness then stalled during teardown after final screenshot/report; it was stopped withCtrl-C/exit130. This is NOT a clean process-exit pass. Daily data and day3/day7 snapshots were written before shutdown. Production microbial/Planet source hashes match the copy exactly at preparation; all55publicexports exact.
+
+The colony spreads: day3 four living/fourpatches; day7 nine living/sixpatches,9births,9arrivals,1trackedloss. Total biomass.02→.07960999kgC/m² summed over patches; founder.04135320. Real grazing begins byday5 and cumulative consumption reaches50,347,738.93kgC. Do not interpret that huge grid-integrated quantity as individual animals: perpatch densities are small and patches enormous. All living descendants are generation1; no supported tissue byday7 in this particular random sequence. No forced mutation or taxonomic claim.
+
+The game does not need a blind growth-rate boost based on this run. It already displays spreading colonies plus arrival/loss cues. Screenshot was inspected at390×700, not browser/phone verification. Fit increases visible occupied markers5→6 without biology/time changes; existing control solves that framing issue, so no duplicate UI proposed.
+
+Concrete ecological contrast: nursery founder remains at4.4514m depth, whereas all five occupied neighbor patches are14.3035–14.4017m. Existing availableLight=surface*exp(-depth_m/20) gives founder~.8005 versus neighbors~.4867–.4891 surface-light fractions. Children start with paid.004mass and remain.00259–.00934; none reaches.02propagule donor threshold. Local crowding/grazing and whole inherited traits also differ, so depth is a mechanistic hypothesis, not a proven causal diagnosis from this one trajectory.
+
+## Proposed narrow playable test, not implemented
+
+An explicit **shallow nursery shelf** god-tool variant: same bounded19patch terrain action, seven floor patches all5m deep rather than existing5mcenter/15mreservoir; preserve external rim/head isolation and all biology. Fewer supplied water reserves and different thermal response are real costs, not an invisible success bonus. Existing nursery remains the control. No additional seeding, care, advantageous mutations or arbitrary nutrient/biomass additions.
+
+One paired fixed seed42 seven-day test could establish whether funded descendants grow and reproduce sooner without simply claiming more light guarantees success. Record external water/terrain change, real depth/temperature, all births/feeding/occupancy/fates and conserved biology before/after god action. Preserve all negative outcomes and do not sweep depths after seeing results. This would be a meaningful habitat choice, not a change to basic ecological rates. Needs parent approval before implementation; no production edits yet.

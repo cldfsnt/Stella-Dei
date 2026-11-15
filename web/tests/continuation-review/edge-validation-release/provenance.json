@@ -1,0 +1,39 @@
+{
+  "base_head": "9ea7414be04cd736c4deffe5611de23994d9b555",
+  "source": {
+    "simulation/atmosphere_water.zig": {
+      "production": "de00ce4e98fe78c25092e7a00437a396ac4c8b14e03198ab18f7978a68f12dea",
+      "wasm_copy": "de00ce4e98fe78c25092e7a00437a396ac4c8b14e03198ab18f7978a68f12dea",
+      "native_copy": "de00ce4e98fe78c25092e7a00437a396ac4c8b14e03198ab18f7978a68f12dea"
+    },
+    "simulation/planet.zig": {
+      "production": "0be6803d6aa8178ecb4e16c98613724b6eafc339566c66d9a316cf12d97fbb8d",
+      "wasm_copy": "5365baf2538555b768b6a78b44b4641f830ad67ef18e5f5214bb6c510cf5e465",
+      "native_copy": "b0060d3eec2a9882fabfeb73719cbb7fd6fe9d3b67f7cd0f1e24da6bb57b6004"
+    },
+    "states/play.zig": {
+      "production": "0baf5f97f08ba9c685375ee1eef8f00ee6799eab5fa87cf94478231d02379bef",
+      "wasm_copy": "0baf5f97f08ba9c685375ee1eef8f00ee6799eab5fa87cf94478231d02379bef",
+      "native_copy": "e73b5fef9468a20b30c8b64e7b86ff45c6b345caf00ab3df7fde6ddd28187493"
+    },
+    "main.zig": {
+      "production": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+      "wasm_copy": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+      "native_copy": "817da0c49464a91b14da64a59e9c7e25af3893d22bc1fbe0aa69db2d498e4776"
+    },
+    "save_game.zig": {
+      "production": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+      "wasm_copy": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+      "native_copy": "a4c081b01e8027ee8d650deef161bead62893d9c74e7055e2402e4f6d9360649"
+    },
+    "simulation/microbes.zig": {
+      "production": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "wasm_copy": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "native_copy": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986"
+    }
+  },
+  "native_export_count": 55,
+  "native_unexplained_export_mismatches": [],
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "no_new_performance_gate": true
+}

@@ -1024,6 +1024,15 @@ pub const PlayState = struct {
         return @intFromBool(self.applySelectedTool(.PlaceVegetation,true,0));
     }
 
+    pub fn makeSelectedSunlitNursery(self:*PlayState, expected_point:u32) i32 {
+        const count=@import("../pond_action.zig").makeSunlitNursery(&self.planet,expected_point,self.selectedPoint);
+        if(count>0) {
+            self.mobileFeedback="Sunlit nursery shaped: 5 m floors, less water reserve; seed separately";
+            self.mobileFeedbackSeconds=5;
+        }
+        return count;
+    }
+
     pub fn makeSelectedNursery(self:*PlayState, expected_point:u32) i32 {
         const count=@import("../pond_action.zig").makeNursery(&self.planet,expected_point,self.selectedPoint);
         if(count>0) {

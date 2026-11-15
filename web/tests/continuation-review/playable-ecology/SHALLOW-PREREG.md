@@ -1,0 +1,7 @@
+# Paired shallow shelf nursery, fixed before outcomes
+
+Parent approved seed42, seven simulated days, exactly the previous Find habitat→nursery→seed→Watch route. Control unchanged5mcenter/15mneighbor reservoir; candidate raises all floor patches to the center shelf and fills5m, preserving initial shared waterline and dry rim. Same bounded19patches and same physiology, RNG, nutrients and one seed; no later care. External water added/removed logged separately. Different thermal mass/water buffer is a real tradeoff. No rates/trait assignment or selection of favorable depth after outcomes.
+
+QA-only copied pond module switch controls existing shape and preview identically. Validate preview purity, wrongworld/selection atomic refusal, direct versus checked-plan exact state, repeated shape idempotence, onlywater/elevation differences and exact save roundtrip before seed. Existing unit tests run with default deepflagfalse; new shallow invariants exercised on actual topology. Preserve old baseline/run130; new harness exits only after final assertions to bypass inherited teardown stall, not conceal it. No production/API/UI changes in this trial.
+
+Compare all seven daily outcomes: daughter growth/generation, occupancy, birth/arrival/loss, actual grazing, water/temperature and nutrients, not a predetermined winner. Candidate is a deliberate habitat option, not evolved adaptation or new species. Need independent review and meaningful results before shipping; old nursery remains available in design.

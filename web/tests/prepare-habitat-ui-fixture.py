@@ -9,4 +9,4 @@ s=s.replace('<body>','<body><aside style="padding:12px;background:#6d3c00;color:
 for name in re.findall(r'<script src="([^"]+)"',s):
  source=r/'web'/name
  if source.exists():shutil.copy(source,out/name)
-mock=(r/'web/tests/continuation-review/habitat-ui/mock-native.js').read_text();s=s.replace('</body>','<script>'+mock+'</script></body>');(out/'index.html').write_text(s)
+mock=(Path(sys.argv[2]) if len(sys.argv)>2 else r/'web/tests/continuation-review/habitat-ui/mock-native.js').read_text();s=s.replace('</body>','<script>'+mock+'</script></body>');(out/'index.html').write_text(s)

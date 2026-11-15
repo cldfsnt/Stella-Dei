@@ -1132,6 +1132,37 @@ pub const Planet = struct {
         } else self.atmosphericWind(from);
         return AtmosphereWater.edgeRate(.{a.x(),a.y(),a.z()},.{b.x(),b.y(),b.z()},wind);
     }
+    fn fillAtmosphericEdgeScratch(self: *Planet, comptime targets_finite: bool) void {
+        for (self.atmosphericEdgeScratch, 0..) |*rates, i| {
+            const point = self.transformedPoints[i];
+            const wind: [3]f64 = if (self.atmosphericWindScratch.len == self.transformedPoints.len) blk: {
+                const w = self.atmosphericWindScratch[i];
+                break :blk .{ w[0], w[1], w[2] };
+            } else self.atmosphericWind(i);
+            const source = AtmosphereWater.EdgeSource.init(.{ point.x(), point.y(), point.z() }, wind);
+            for (self.getNeighbours(i), 0..) |n, j| {
+                const target = self.transformedPoints[n];
+                const coordinates = [3]f64{ target.x(), target.y(), target.z() };
+                rates[j] = if (targets_finite) source.rateFiniteTarget(coordinates) else source.rate(coordinates);
+            }
+        }
+    }
+
+    /// Called after wind jobs join. Validate current geometry once, not once per
+    /// directed edge. Finite f32 coordinates remain finite when widened to f64.
+    /// The uncommon invalid batch keeps the original checked behavior wholesale.
+    fn rebuildAtmosphericEdgeScratch(self: *Planet) void {
+        if (!self.ensureAtmosphericEdgeScratch()) return;
+        var targets_finite = true;
+        for (self.transformedPoints) |point| {
+            if (!std.math.isFinite(point.x()) or !std.math.isFinite(point.y()) or !std.math.isFinite(point.z())) {
+                targets_finite = false;
+                break;
+            }
+        }
+        if (targets_finite) self.fillAtmosphericEdgeScratch(true) else self.fillAtmosphericEdgeScratch(false);
+    }
+
     /// Runs only after every liquid/velocity job has joined. No neighbor writes.
     /// Phase relaxation is phenomenological: no latent-heat or real-weather claim.
     fn simulateAtmosphereWater(self:*Planet,dt:f32) void {
@@ -1141,18 +1172,8 @@ pub const Planet = struct {
         if(self.ensureAtmosphericWindScratch())for(self.atmosphericWindScratch,0..)|*cached,i|{
             const wind=self.atmosphericWind(i);cached.*=.{@floatCast(wind[0]),@floatCast(wind[1]),@floatCast(wind[2])};
         };
-        // No static geometry/velocity cache: rebuild every tick after wind refresh.
-        if(self.ensureAtmosphericEdgeScratch())for(self.atmosphericEdgeScratch,0..)|*rates,i|{
-            const point=self.transformedPoints[i];
-            const wind:[3]f64=if(self.atmosphericWindScratch.len==self.transformedPoints.len) blk:{
-                const w=self.atmosphericWindScratch[i];break :blk .{w[0],w[1],w[2]};
-            } else self.atmosphericWind(i);
-            const source=AtmosphereWater.EdgeSource.init(.{point.x(),point.y(),point.z()},wind);
-            for(self.getNeighbours(i),0..)|n,j|{
-                const target=self.transformedPoints[n];
-                rates[j]=source.rate(.{target.x(),target.y(),target.z()});
-            }
-        };
+        // Geometry and wind can change between ticks; no validity flag persists.
+        self.rebuildAtmosphericEdgeScratch();
         const divider=self.getSubstanceDivider();const k:f64=1.380649e-23;
         const phase_step=AtmosphereWater.PhaseStep.init(dt);
         for(self.waterMass,self.waterVaporMass,0..)|liquid,vapor,i|{
@@ -1789,3 +1810,34 @@ pub const Planet = struct {
         self.atmosphereMesh.deinit(self.allocator);
     }
 };
+
+// This regression calls the actual per-tick cache branch, not a surrogate batch.
+test "atmospheric target validation refreshes geometry and preserves invalid fallback" {
+    var points = [_]Vec3{ Vec3.new(1, 2, 3), Vec3.new(-2, 3, 4), Vec3.new(0, 0, -0.0) };
+    var neighbors = [_][6]u32{ .{ 0, 1, 2, 1, 2, 0 }, .{ 0, 1, 2, 0, 2, 1 }, .{ 0, 1, 2, 0, 1, 2 } };
+    var winds = [_][3]f32{ .{ 0.1, -0.2, 0.3 }, .{ -0.4, 0.5, 0.6 }, .{ 0, 1, 0 } };
+    var rates: [3][6]f64 = undefined;
+    var p: Planet = undefined;
+    p.transformedPoints = &points;
+    p.verticesNeighbours = &neighbors;
+    p.atmosphericWindScratch = &winds;
+    p.atmosphericEdgeScratch = &rates;
+    for (0..4) |pass| {
+        points[1] = Vec3.new(if (pass == 1) std.math.nan(f32) else -2, 3, 4);
+        winds[0][0] = if (pass == 2) std.math.inf(f32) else 0.1;
+        if (pass == 3) neighbors[0] = .{ 2, 1, 0, 2, 0, 1 };
+        p.rebuildAtmosphericEdgeScratch();
+        for (0..3) |i| for (p.getNeighbours(i), 0..) |j, slot| {
+            const a = points[i]; const b = points[j]; const w = winds[i];
+            const expected = AtmosphereWater.edgeRate(.{ a.x(), a.y(), a.z() }, .{ b.x(), b.y(), b.z() }, .{ w[0], w[1], w[2] });
+            try std.testing.expectEqual(@as(u64, @bitCast(expected)), @as(u64, @bitCast(rates[i][slot])));
+        };
+    }
+    // Allocation failure keeps the existing generic uncached lookup available.
+    var failing = std.testing.FailingAllocator.init(std.testing.allocator, .{ .fail_index = 0 });
+    p.allocator = failing.allocator();
+    p.atmosphericEdgeScratch = &.{};
+    p.rebuildAtmosphericEdgeScratch();
+    try std.testing.expectEqual(@as(usize, 0), p.atmosphericEdgeScratch.len);
+    try std.testing.expectEqual(@as(u64, @bitCast(p.atmosphericEdgeRate(0, 1))), @as(u64, @bitCast(p.cachedAtmosphericEdgeRate(0, 1))));
+}

@@ -35,12 +35,28 @@ pub const EdgeSource=struct{
   var valid=true;for(0..3)|i|{if(!std.math.isFinite(from[i]) or !std.math.isFinite(wind[i]))valid=false;}
   return .{.from=from,.wind=wind,.valid=valid};
  }
- pub fn rate(s:EdgeSource,to:[3]f64)f64{
-  if(!s.valid)return 0;
-  var length2:f64=0;var dot:f64=0;
-  for(0..3)|i|{if(!std.math.isFinite(to[i]))return 0;const d=to[i]-s.from[i];length2+=d*d;dot+=s.wind[i]*d;}
-  if(length2<=0 or !std.math.isFinite(length2) or !std.math.isFinite(dot))return 0;
-  return @max(0,dot/length2);
+ pub fn rate(s: EdgeSource, to: [3]f64) f64 {
+  return s.rateChecked(to, false);
+ }
+ /// Caller must validate all three target coordinates immediately before this
+ /// calculation. Planet uses this only after a fresh, whole-batch finite scan;
+ /// any invalid target selects the ordinary checked path for the entire batch.
+ /// Source/wind and accumulated length/dot validation are never skipped.
+ pub fn rateFiniteTarget(s: EdgeSource, to: [3]f64) f64 {
+  return s.rateChecked(to, true);
+ }
+ fn rateChecked(s: EdgeSource, to: [3]f64, comptime target_validated: bool) f64 {
+  if (!s.valid) return 0;
+  var length2: f64 = 0;
+  var dot: f64 = 0;
+  for (0..3) |i| {
+   if (!target_validated and !std.math.isFinite(to[i])) return 0;
+   const d = to[i] - s.from[i];
+   length2 += d * d;
+   dot += s.wind[i] * d;
+  }
+  if (length2 <= 0 or !std.math.isFinite(length2) or !std.math.isFinite(dot)) return 0;
+  return @max(0, dot / length2);
  }
 };
 

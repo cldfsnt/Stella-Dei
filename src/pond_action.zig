@@ -2,12 +2,15 @@
 const std = @import("std");
 fn includes(ids:[]const usize, id:usize) bool { for(ids)|v|{if(v==id)return true;}return false; }
 pub fn makePond(planet:anytype, expected:usize, selected:usize) i32 {
-    return shapeBasin(planet,expected,selected,false);
+    return shapeBasin(planet,expected,selected,false,false);
 }
 pub fn makeNursery(planet:anytype, expected:usize, selected:usize) i32 {
-    return shapeBasin(planet,expected,selected,true);
+    return shapeBasin(planet,expected,selected,true,false);
 }
-fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool) i32 {
+pub fn makeSunlitNursery(planet:anytype, expected:usize, selected:usize) i32 {
+    return shapeBasin(planet,expected,selected,true,true);
+}
+fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool, sunlit:bool) i32 {
     if (planet.worldMode != .origin or expected != selected or selected >= planet.waterMass.len or planet.elevation.len != planet.waterMass.len) return -1;
     const conversion = planet.getKmPerWaterMass();
     if (!std.math.isFinite(conversion) or conversion <= 0) return -1;
@@ -32,7 +35,7 @@ fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool) i32 
     var base:f32=planet.elevation[selected]-(if(nursery)@as(f32,0.010) else 0);
     for(ids[0..count],0..)|idx,slot| {
         if(!std.math.isFinite(planet.elevation[idx]) or !std.math.isFinite(planet.waterMass[idx]) or planet.waterMass[idx]<0)return -1;
-        if(slot<floor_count)base=@max(base,planet.elevation[idx]-(if(nursery and slot==0)@as(f32,0.010) else 0));
+        if(slot<floor_count)base=@max(base,planet.elevation[idx]-(if(nursery and (sunlit or slot==0))@as(f32,0.010) else 0));
         for(planet.getNeighbours(idx))|outside| {
             if(outside>=planet.waterMass.len)return -1;
             if(includes(ids[0..count],outside))continue;
@@ -42,7 +45,7 @@ fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool) i32 
             base=@max(base,surface);
         }
     }
-    const floor_water_mass: f32=0.015/conversion;
+    const floor_water_mass: f32=(if(sunlit) @as(f32,0.005) else 0.015)/conversion;
     if(!std.math.isFinite(floor_water_mass) or floor_water_mass<=0)return -1;
     const center_elevation=base+(if(nursery)@as(f32,0.010) else 0);
     const center_water_mass: f32=(if(nursery)@as(f32,0.005) else 0.015)/conversion;
@@ -52,7 +55,7 @@ fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool) i32 
     // All validation precedes mutation. Renderer uploads elevations each frame,
     // as with the existing terrain brush; no separate terrain cache is retained.
     for(ids[0..count],0..)|idx,i| {
-        planet.elevation[idx]=if(i<floor_count)base else @max(planet.elevation[idx],rim);
+        planet.elevation[idx]=if(i<floor_count)base+(if(sunlit) @as(f32,0.010) else 0) else @max(planet.elevation[idx],rim);
         // Basin is an explicit larger intervention; fine-depth editor stays capped at 5m.
         planet.waterMass[idx]=if(i<floor_count)floor_water_mass else 0;
         if(i==0){planet.elevation[idx]=center_elevation;planet.waterMass[idx]=center_water_mass;}
@@ -62,7 +65,7 @@ fn shapeBasin(planet:anytype, expected:usize, selected:usize, nursery:bool) i32 
 /// Bounded, allocation-free preview. No world or biology writes. Native session
 /// owner must supply its actual world serial, not a user-supplied assertion.
 pub const Plan = struct {
-    owner:usize, world:u32, selected:usize, nursery:bool, conversion_bits:u32,
+    owner:usize, world:u32, selected:usize, nursery:bool, sunlit:bool=false, conversion_bits:u32,
     count:usize, floor_count:usize,
     ids:[19]usize=[_]usize{0}**19,
     elevations:[19]f32=[_]f32{0}**19,
@@ -87,7 +90,7 @@ pub const Plan = struct {
 /// snapshot. Never silently apply a changed preview. Writes only water/terrain.
 pub fn applyChecked(planet:anytype,plan:*const Plan,selected:usize,world:u32) i32 {
     if(plan.owner!=@intFromPtr(planet) or plan.world!=world or plan.selected!=selected)return -1;
-    const fresh=preview(planet,plan.selected,selected,plan.nursery,world) orelse return -1;
+    const fresh=previewKind(planet,plan.selected,selected,plan.nursery,plan.sunlit,world) orelse return -1;
     if(!std.meta.eql(plan.*,fresh))return -1;
     for(plan.ids[0..plan.count],0..)|idx,i| {
         planet.elevation[idx]=plan.elevations[i];planet.waterMass[idx]=plan.waters[i];
@@ -95,6 +98,10 @@ pub fn applyChecked(planet:anytype,plan:*const Plan,selected:usize,world:u32) i3
     return @intCast(plan.count);
 }
 pub fn preview(planet:anytype, expected:usize, selected:usize, nursery:bool, world:u32) ?Plan {
+    return previewKind(planet,expected,selected,nursery,false,world);
+}
+pub fn previewKind(planet:anytype, expected:usize, selected:usize, nursery:bool, sunlit:bool, world:u32) ?Plan {
+    if(sunlit and !nursery)return null;
     if (planet.worldMode != .origin or expected != selected or selected >= planet.waterMass.len or planet.elevation.len != planet.waterMass.len) return null;
     const conversion = planet.getKmPerWaterMass();
     if (!std.math.isFinite(conversion) or conversion <= 0) return null;
@@ -119,7 +126,7 @@ pub fn preview(planet:anytype, expected:usize, selected:usize, nursery:bool, wor
     var base:f32=planet.elevation[selected]-(if(nursery)@as(f32,0.010) else 0);
     for(ids[0..count],0..)|idx,slot| {
         if(!std.math.isFinite(planet.elevation[idx]) or !std.math.isFinite(planet.waterMass[idx]) or planet.waterMass[idx]<0)return null;
-        if(slot<floor_count)base=@max(base,planet.elevation[idx]-(if(nursery and slot==0)@as(f32,0.010) else 0));
+        if(slot<floor_count)base=@max(base,planet.elevation[idx]-(if(nursery and (sunlit or slot==0))@as(f32,0.010) else 0));
         for(planet.getNeighbours(idx))|outside| {
             if(outside>=planet.waterMass.len)return null;
             if(includes(ids[0..count],outside))continue;
@@ -129,14 +136,14 @@ pub fn preview(planet:anytype, expected:usize, selected:usize, nursery:bool, wor
             base=@max(base,surface);
         }
     }
-    const floor_water_mass: f32=0.015/conversion;
+    const floor_water_mass: f32=(if(sunlit) @as(f32,0.005) else 0.015)/conversion;
     if(!std.math.isFinite(floor_water_mass) or floor_water_mass<=0)return null;
     const center_elevation=base+(if(nursery)@as(f32,0.010) else 0);
     const center_water_mass: f32=(if(nursery)@as(f32,0.005) else 0.015)/conversion;
     if(!std.math.isFinite(center_elevation) or !std.math.isFinite(center_water_mass) or center_water_mass<=0)return null;
     const rim=base+0.017;
     if(!std.math.isFinite(rim) or rim<=base)return null;
-    var plan:Plan=.{ .owner=@intFromPtr(planet), .world=world, .selected=selected, .nursery=nursery, .conversion_bits=@bitCast(conversion), .count=count, .floor_count=floor_count };
+    var plan:Plan=.{ .owner=@intFromPtr(planet), .world=world, .selected=selected, .nursery=nursery, .sunlit=sunlit, .conversion_bits=@bitCast(conversion), .count=count, .floor_count=floor_count };
     // Preserve every read dependency, including outside-neighbor values even if
     // they did not win the max. Bounded real mesh degree is six.
     for(ids[0..count],0..)|idx,i| {
@@ -149,7 +156,7 @@ pub fn preview(planet:anytype, expected:usize, selected:usize, nursery:bool, wor
             plan.neighbors[i][j]=outside;
             if(!plan.remember(planet,outside))return null;
         }
-        plan.elevations[i]=if(i<floor_count)base else @max(planet.elevation[idx],rim);
+        plan.elevations[i]=if(i<floor_count)base+(if(sunlit) @as(f32,0.010) else 0) else @max(planet.elevation[idx],rim);
         plan.waters[i]=if(i<floor_count)floor_water_mass else 0;
         if(i==0){plan.elevations[i]=center_elevation;plan.waters[i]=center_water_mass;}
         const delta=@as(f64,plan.waters[i])-@as(f64,planet.waterMass[idx]);
@@ -232,7 +239,7 @@ test "preview is pure and checked writes match frozen unchanged action bitwise a
         const before=p;var old=p;
         const plan=preview(&p,0,0,nursery,17) orelse return error.UnexpectedRefusal;
         try std.testing.expect(std.meta.eql(before,p));
-        const n=shapeBasin(&old,0,0,nursery);
+        const n=shapeBasin(&old,0,0,nursery,false);
         try std.testing.expectEqual(n,applyChecked(&p,&plan,0,17));
         try std.testing.expect(std.meta.eql(old,p));
         try std.testing.expectEqual(@as(usize,if(p.pentagon)16 else 19),plan.count);
@@ -258,7 +265,7 @@ test "checked plan refuses stale world selection outside input topology owner an
 test "invalid and extreme inputs agree with old action and never mutate through preview" {
     for([_]f32{0,-1,std.math.inf(f32),std.math.nan(f32),1e-38,1e38})|value| {
         var p=PlanFixture{.conversion=value};var old=p;
-        const plan=preview(&p,0,0,true,1);const rc=shapeBasin(&old,0,0,true);
+        const plan=preview(&p,0,0,true,1);const rc=shapeBasin(&old,0,0,true,false);
         try std.testing.expectEqual(rc>=0,plan!=null);
         if(plan)|q|{try std.testing.expectEqual(rc,applyChecked(&p,&q,0,1));try std.testing.expectEqualSlices(f32,&old.waterMass,&p.waterMass);}
     }
@@ -268,4 +275,21 @@ test "invalid and extreme inputs agree with old action and never mutate through 
     }
     var p=PlanFixture{};p.elevation=[_]f32{1e30}**20;
     try std.testing.expect(preview(&p,0,0,false,1)==null);
+}
+
+test "Sunlit kind is bound, pure, repeatable and preserves deep nursery" {
+    for(0..100)|k| {
+        var p=PlanFixture{.pentagon=k%2==0};
+        for(0..20)|i|p.elevation[i]+= @as(f32,@floatFromInt((i*7+k)%23))*0.002;
+        const before=p;const plan=previewKind(&p,0,0,true,true,9).?;
+        try std.testing.expect(std.meta.eql(before,p));
+        var direct=p;_=makeSunlitNursery(&direct,0,0);
+        try std.testing.expect(applyChecked(&p,&plan,0,9)>0);
+        try std.testing.expect(std.meta.eql(direct,p));
+        for(plan.ids[0..plan.floor_count])|id|try std.testing.expectEqual(@as(f32,0.005),p.waterMass[id]);
+        const once=p;_=makeSunlitNursery(&p,0,0);try std.testing.expect(std.meta.eql(once,p));
+        p=before;var changed=plan;changed.sunlit=false;
+        try std.testing.expectEqual(@as(i32,-1),applyChecked(&p,&changed,0,9));try std.testing.expect(std.meta.eql(before,p));
+        _=makeNursery(&p,0,0);try std.testing.expectEqual(@as(f32,0.015),p.waterMass[1]);
+    }
 }

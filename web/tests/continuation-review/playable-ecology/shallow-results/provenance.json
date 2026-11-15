@@ -1,0 +1,15 @@
+{
+  "control.log": "bc15ad072f278078c5bdf671ed3ee7389e63710938580e576925f2102a7c295c",
+  "shallow.log": "cad6ee51a9fda64d4afac07a016893ca6c6c70cffc54e5a538ace51b47352e0b",
+  "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "unit.log": "c4239dcd27a0401aad345708e84278acc24b30a83ccf448df19db868bd31c5d7",
+  "control-day-3.json": "9b0e43805c0c66536f6162a062fa38095c0a2ebf6f2c4bf9fff1e33b3dae6b9e",
+  "control-day-7.json": "070f861f20c8dabeb1e583d548eabcb3e58553adec18392e4fe48a914b26c493",
+  "shallow-day-3.json": "947eef809ae475f1d7f9789c44d55fc83ab64eb75156dfab358e3dc296155349",
+  "shallow-day-7.json": "7fb216bb5b8f927aba515f1936aa51c3003636c39101bab3f8349efa734bd262",
+  "install/bin/stella-egl": "3518daba9fe25a524c1f18f26bfee21afa705d8a1d7a5806e95a923aeb385a17",
+  "src/pond_action.zig": "2b08ecb350322902890c83c160600072ca12231077f2e04c8cadf9040494f44f",
+  "src/main.zig": "e78ed3ab69c58cdb6b89e959a1279f894b46c6f2c43dc7925d8badac8e8baaa9",
+  "src/simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+  "src/simulation/planet.zig": "0be6803d6aa8178ecb4e16c98613724b6eafc339566c66d9a316cf12d97fbb8d"
+}

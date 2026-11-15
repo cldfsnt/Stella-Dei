@@ -8,7 +8,7 @@ fn failure(why:[]const u8)[:0]const u8{return json(.{.ok=false,.reason=why});}
 fn reason(state:anytype)?[]const u8{if(state.planet.worldMode!=.origin)return "Origin worlds only";if(!state.paused)return "Pause the game before previewing terrain changes";if(!std.math.isFinite(state.gameTime))return "Invalid simulation time";if(state.selectedPoint>=state.planet.microbeCells.len)return "Select a patch first";return null;}
 fn fresh(state:anytype,world:u32,p:*const Pending)bool{
  if(reason(state)!=null or state.gameTime!=p.time or world!=p.plan.world or state.selectedPoint!=p.plan.selected or @intFromPtr(&state.planet)!=p.plan.owner)return false;
- const plan=Basin.preview(&state.planet,p.plan.selected,state.selectedPoint,p.plan.nursery,world) orelse return false;
+ const plan=Basin.previewKind(&state.planet,p.plan.selected,state.selectedPoint,p.plan.nursery,p.plan.sunlit,world) orelse return false;
  if(!std.meta.eql(plan,p.plan))return false;
  for(plan.ids[0..plan.count],0..)|id,i|{if(id>=state.planet.microbeCells.len or !std.meta.eql(state.planet.microbeCells[id],p.cells[i]))return false;}
  return true;
@@ -19,12 +19,12 @@ fn receipt(p:*const Pending,manual:bool)[:0]const u8{
  const plan=&p.plan;var living_floor:usize=0;var living_rim:usize=0;
  for(p.cells[0..plan.count],0..)|cell,i|{var living=false;for(cell.cohorts)|c|{if(c.biomass>0)living=true;}if(living){if(i<plan.floor_count)living_floor+=1 else living_rim+=1;}}
  const conversion:@TypeOf(@as(f32,0))=@bitCast(plan.conversion_bits);
- return json(.{.ok=true,.manual=manual,.token=p.token,.world=plan.world,.cell=plan.selected,.kind=if(plan.nursery) "nursery" else "pond",.floor_ids=plan.ids[0..plan.floor_count],.rim_ids=plan.ids[plan.floor_count..plan.count],.floor_count=plan.floor_count,.rim_count=plan.count-plan.floor_count,.living_floor_patches=living_floor,.living_rim_patches=living_rim,.water_added_kg=plan.water_added*1e9,.water_removed_kg=plan.water_removed*1e9,.water_added_depth_sum_m=plan.water_added*@as(f64,conversion)*1000,.water_removed_depth_sum_m=plan.water_removed*@as(f64,conversion)*1000,.center_depth_m=if(plan.nursery)@as(u32,5) else 15,.other_floor_depth_m=@as(u32,15),.rim_depth_m=@as(u32,0),.warning="Rim patches are raised and dried, including any living colonies. No organisms are added; survival is not guaranteed."});
+ return json(.{.ok=true,.manual=manual,.token=p.token,.world=plan.world,.cell=plan.selected,.kind=if(plan.sunlit) "sunlit_nursery" else if(plan.nursery) "nursery" else "pond",.floor_ids=plan.ids[0..plan.floor_count],.rim_ids=plan.ids[plan.floor_count..plan.count],.floor_count=plan.floor_count,.rim_count=plan.count-plan.floor_count,.living_floor_patches=living_floor,.living_rim_patches=living_rim,.water_added_kg=plan.water_added*1e9,.water_removed_kg=plan.water_removed*1e9,.water_added_depth_sum_m=plan.water_added*@as(f64,conversion)*1000,.water_removed_depth_sum_m=plan.water_removed*@as(f64,conversion)*1000,.center_depth_m=if(plan.nursery)@as(u32,5) else 15,.other_floor_depth_m=if(plan.sunlit)@as(u32,5) else 15,.rim_depth_m=@as(u32,0),.warning="Rim patches are raised and dried, including any living colonies. No organisms are added; survival is not guaranteed."});
 }
 pub fn prepare(state:anytype,world:u32,expected_world:u32,cell:i32,nursery:i32)[:0]const u8{
  cancel();if(reason(state))|why|return failure(why);
- if(world!=expected_world or cell<0 or @as(usize,@intCast(cell))!=state.selectedPoint or nursery<0 or nursery>1)return failure("Selection or world changed; preview again");
- const plan=Basin.preview(&state.planet,state.selectedPoint,state.selectedPoint,nursery==1,world) orelse return failure("This basin cannot be shaped safely");
+ if(world!=expected_world or cell<0 or @as(usize,@intCast(cell))!=state.selectedPoint or nursery<0 or nursery>2)return failure("Selection or world changed; preview again");
+ const plan=Basin.previewKind(&state.planet,state.selectedPoint,state.selectedPoint,nursery!=0,nursery==2,world) orelse return failure("This basin cannot be shaped safely");
  var cells:[19]M.Cell=undefined;
  for(plan.ids[0..plan.count],0..)|id,i|{if(id>=state.planet.microbeCells.len)return failure("Population unavailable");cells[i]=state.planet.microbeCells[id];for(cells[i].cohorts)|c|if(!std.math.isFinite(c.biomass) or c.biomass<0)return failure("Population unavailable");}
  if(sequence==std.math.maxInt(u32))return failure("Preview limit reached; reload before another action");sequence+=1;
@@ -69,4 +69,22 @@ test "observed unpause invalidates even when re-paused at same simulation time"{
  cancel();var s=Fixture{};_=prepare(&s,1,1,0,0);const token=pending.?.token;
  s.paused=false;guard(&s,1);s.paused=true;const before=s;
  _=execute(&s,1,token);try std.testing.expect(std.meta.eql(before,s));try std.testing.expect(pending==null);
+}
+
+test "Sunlit public preview and execute agree on kind depths and material" {
+    cancel();var s=Fixture{};const before=s;
+    const reply=prepare(&s,7,7,0,2);
+    try std.testing.expect(std.mem.indexOf(u8,reply,"\"kind\":\"sunlit_nursery\"")!=null);
+    try std.testing.expect(std.mem.indexOf(u8,reply,"\"other_floor_depth_m\":5")!=null);
+    const p=pending.?;try std.testing.expect(std.meta.eql(before,s));
+    for(p.plan.waters[0..p.plan.floor_count])|water|try std.testing.expectEqual(@as(f32,0.005),water);
+    var expected=s;_=Basin.makeSunlitNursery(&expected.planet,0,0);
+    const done=execute(&s,7,p.token);try std.testing.expect(std.mem.indexOf(u8,done,"\"kind\":\"sunlit_nursery\"")!=null);
+    try std.testing.expectEqualSlices(f32,&expected.planet.waterMass,&s.planet.waterMass);
+    try std.testing.expectEqualSlices(f32,&expected.planet.elevation,&s.planet.elevation);
+    const once=s;_=execute(&s,7,p.token);try std.testing.expect(std.meta.eql(once,s));
+    _=prepare(&s,7,7,0,2);const token=pending.?.token;s.gameTime+=1;const stale=s;
+    _=execute(&s,7,token);try std.testing.expect(std.meta.eql(stale,s));
+    _=prepare(&s,7,7,0,1);try std.testing.expect(std.mem.indexOf(u8,receipt(&pending.?,false),"\"other_floor_depth_m\":15")!=null);
+    cancel();
 }

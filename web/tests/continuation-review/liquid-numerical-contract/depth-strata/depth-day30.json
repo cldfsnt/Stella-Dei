@@ -1,0 +1,157 @@
+{
+  "note": "Context only; frozen world A/T acceptance remains FAIL. Bands classify each actual pre-transport cell-step. Incoming/outgoing band ratios use different edge attribution and are not new acceptance gates. Incident flow double-counts world directed traffic. Percentiles nearest-rank over ALL cell-steps including zero error.",
+  "frames": 60,
+  "area_m2": 7669529600.0,
+  "bands": [
+    {
+      "band": "[0,0.02)m",
+      "cell_steps": 8107,
+      "A_native": 0.01077707696822472,
+      "A_kg": 10777076.96822472,
+      "signed_native": -1.8536782590672374e-05,
+      "incoming_once_native": 4907.438569140504,
+      "outgoing_once_native": 10556.012090236793,
+      "A_over_incoming_once": 2.1960696637130258e-06,
+      "A_over_outgoing_once": 1.0209420826821891e-06,
+      "A_over_incident": 6.969386850074965e-07,
+      "depth_error_m": {
+        "0.5": 1.0770975102357378e-10,
+        "0.9": 4.352105385214075e-10,
+        "0.99": 8.820785021817813e-10,
+        "0.999": 9.831095200528224e-10,
+        "1.0": 9.947669451917887e-10
+      },
+      "max_relative_nonzero_initial_pool": 3.1404312364548635e-07,
+      "zero_initial_pool_steps": 178,
+      "positive_net_receipts_swallowed": 0,
+      "max_error_witness": {
+        "cell": 33761,
+        "tick": 0,
+        "error_units": "5444517870735015415413993718908291383296",
+        "pre_depth_m": 0.019742389506944753,
+        "intended_net_native": -1.6219100952148438
+      }
+    },
+    {
+      "band": "[0.02,0.2)m",
+      "cell_steps": 74163,
+      "A_native": 1.4897288155334536,
+      "A_kg": 1489728815.5334537,
+      "signed_native": -0.007552992174169049,
+      "incoming_once_native": 486493.10586954246,
+      "outgoing_once_native": 1415655.6603740454,
+      "A_over_incoming_once": 3.06217867747737e-06,
+      "A_over_outgoing_once": 1.052324274350612e-06,
+      "A_over_incident": 7.831820738581916e-07,
+      "depth_error_m": {
+        "0.5": 2.082793291495307e-09,
+        "0.9": 6.092947539299705e-09,
+        "0.99": 7.771616759310849e-09,
+        "0.999": 7.95813556153431e-09,
+        "1.0": 7.95813556153431e-09
+      },
+      "max_relative_nonzero_initial_pool": 5.8995048199037663e-08,
+      "zero_initial_pool_steps": 0,
+      "positive_net_receipts_swallowed": 0,
+      "max_error_witness": {
+        "cell": 4401,
+        "tick": 0,
+        "error_units": "43556142965880123323311949751266331066368",
+        "pre_depth_m": 0.18551841683456213,
+        "intended_net_native": -14.48272705078125
+      }
+    },
+    {
+      "band": "[0.2,2)m",
+      "cell_steps": 156239,
+      "A_native": 13.615013734379318,
+      "A_kg": 13615013734.379318,
+      "signed_native": 0.002996202267240733,
+      "incoming_once_native": 4033661.7233717483,
+      "outgoing_once_native": 11460884.465991974,
+      "A_over_incoming_once": 3.3753484223755115e-06,
+      "A_over_outgoing_once": 1.1879548890645673e-06,
+      "A_over_incident": 8.786971601482195e-07,
+      "depth_error_m": {
+        "0.5": 7.709443825236361e-09,
+        "0.9": 2.6423496981656883e-08,
+        "0.99": 5.7618766653530626e-08,
+        "0.999": 6.30433551515296e-08,
+        "1.0": 6.366508449227447e-08
+      },
+      "max_relative_nonzero_initial_pool": 5.9206976939719773e-08,
+      "zero_initial_pool_steps": 0,
+      "positive_net_receipts_swallowed": 0,
+      "max_error_witness": {
+        "cell": 21240,
+        "tick": 0,
+        "error_units": "348449143727040986586495598010130648530944",
+        "pre_depth_m": 1.1538434538980722,
+        "intended_net_native": -254.86376953125
+      }
+    },
+    {
+      "band": "[2,100)m",
+      "cell_steps": 23031,
+      "A_native": 118.12523257388966,
+      "A_kg": 118125232573.88966,
+      "signed_native": -1.6632677404559217,
+      "incoming_once_native": 1735880.0437284796,
+      "outgoing_once_native": 4345445.164640427,
+      "A_over_incoming_once": 6.804919095686454e-05,
+      "A_over_outgoing_once": 2.718368961023679e-05,
+      "A_over_incident": 1.9424258451320752e-05,
+      "depth_error_m": {
+        "0.5": 1.975234115546445e-07,
+        "0.9": 1.9472562952129262e-06,
+        "0.99": 3.8029318585341332e-06,
+        "0.999": 4.0459347713642645e-06,
+        "1.0": 4.073321948824076e-06
+      },
+      "max_relative_nonzero_initial_pool": 5.904940097125215e-08,
+      "zero_initial_pool_steps": 0,
+      "positive_net_receipts_swallowed": 14,
+      "max_error_witness": {
+        "cell": 23211,
+        "tick": 44,
+        "error_units": "22293939551192204372266450780499726141751296",
+        "pre_depth_m": 71.48257013050709,
+        "intended_net_native": 1.093759536743164
+      }
+    },
+    {
+      "band": "[100,infinity)m",
+      "cell_steps": 2196180,
+      "A_native": 1807541.9533020116,
+      "A_kg": 1807541953302011.5,
+      "signed_native": -253089.49155777198,
+      "incoming_once_native": 95613717.78803796,
+      "outgoing_once_native": 84642118.79648018,
+      "A_over_incoming_once": 0.01890462995392644,
+      "A_over_outgoing_once": 0.021355112312915987,
+      "A_over_incident": 0.010027647301475831,
+      "depth_error_m": {
+        "0.5": 1.2799666283782743e-05,
+        "0.9": 0.0002575722695094105,
+        "0.99": 0.000515144539018821,
+        "0.999": 0.0005151450364022937,
+        "1.0": 0.001030289078037642
+      },
+      "max_relative_nonzero_initial_pool": 5.9527252327307085e-08,
+      "zero_initial_pool_steps": 0,
+      "positive_net_receipts_swallowed": 10635,
+      "max_error_witness": {
+        "cell": 88,
+        "tick": 0,
+        "error_units": "5638936159381092080883012020616787560302116864",
+        "pre_depth_m": 18122.80325510446,
+        "intended_net_native": -71.9018325805664
+      }
+    }
+  ],
+  "sha256": {
+    "trace": "2a2859c1163d4fe2fe3f7e60004b34ba9df32f9f3a7c97edc2d5d472012d9ab0",
+    "graph": "77b9f3fcd00d44244c5c40f84b460623ebec0791a5cca7caf94cd3b984a39dff",
+    "audit": "44e8b607d5f8fd359f372f9296a3629c81f735a1bfa28d9364d3be01c06ee033"
+  }
+}
