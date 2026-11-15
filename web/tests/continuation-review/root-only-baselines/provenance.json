@@ -1,0 +1,61 @@
+{
+  "production_head": "5f13bdf599898c7347dd978f91b1f8e35e060036",
+  "binary_sha256": "62419187a33eae7f057cc5c42a678601bb84935054f611caec334b4b168ce1d8",
+  "source": {
+    "simulation/planet.zig": {
+      "production": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+      "qa": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651"
+    },
+    "simulation/microbes.zig": {
+      "production": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "qa": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986"
+    },
+    "main.zig": {
+      "production": "288649961eab35cd55d14d95469e8001e79b79460a5027771bf29f58e1dd373b",
+      "qa": "bf81844c7da40a99e6394a43f1949429103f81fad8e6a96cd6a2dc0345f51665"
+    },
+    "save_game.zig": {
+      "production": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe",
+      "qa": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe"
+    },
+    "save_schema.zig": {
+      "production": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+      "qa": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3"
+    }
+  },
+  "runs": [
+    {
+      "input": "natural60-day30.json",
+      "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+      "exit": 0,
+      "outputs": {
+        "arm-0.json.restored.json": "73013289c7b732d8702af384f7bf98f857916c92674babc8a5171acab6f1b633",
+        "arm-0.json": "cad16fa3e5b53e0f040e7ac4470c68d3c123e0f880b9307a60739b7ca374ce5f",
+        "arm-0.json.uninterrupted.json": "73013289c7b732d8702af384f7bf98f857916c92674babc8a5171acab6f1b633"
+      },
+      "log_sha256": "4eedd107556c482f0e4a40645b4c44c3a215c7e658dfd479ee2b7dfdb83b7428"
+    },
+    {
+      "input": "natural60-day60.json",
+      "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+      "exit": 0,
+      "outputs": {
+        "arm-0.json.restored.json": "ebbdffe347209f1796578fb9a5eb7fac3ffc814246dfa9edab45c215eb4f750c",
+        "arm-0.json": "e2a46ebbb52b0fc2f077ece7f78663085088ff57c78bad57c5b3d27810fa79cb",
+        "arm-0.json.uninterrupted.json": "ebbdffe347209f1796578fb9a5eb7fac3ffc814246dfa9edab45c215eb4f750c"
+      },
+      "log_sha256": "f54bfd92cd3000e7b7898899b34151e87dd503a13a2fde70b2461b6e950878ea"
+    },
+    {
+      "input": "grazing-coupled/arm-0-day90.json",
+      "input_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+      "exit": 0,
+      "outputs": {
+        "arm-0.json.restored.json": "291442f2c58d2aa5eac7f7ab3067e3e79696ea6c5dbaa7ec2c7f1d6978de7377",
+        "arm-0.json": "2b48c7351d76f2bb9578b5e0a931c1a0a5fbc2361f32900d5c8851f3c8e0f2bd",
+        "arm-0.json.uninterrupted.json": "291442f2c58d2aa5eac7f7ab3067e3e79696ea6c5dbaa7ec2c7f1d6978de7377"
+      },
+      "log_sha256": "f53f43621f46abeb55216927cdb096b4990e8da9ff40fc05de68fca445d061b6"
+    }
+  ]
+}

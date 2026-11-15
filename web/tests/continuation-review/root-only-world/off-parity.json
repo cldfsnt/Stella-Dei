@@ -1,0 +1,65 @@
+[
+  {
+    "day": "day30",
+    "suffix": "",
+    "equal": true,
+    "baseline_sha256": "cad16fa3e5b53e0f040e7ac4470c68d3c123e0f880b9307a60739b7ca374ce5f",
+    "candidate_sha256": "42bbd02c5db64e097ba57ba231388ac44ffca7254f503be381a78f7fd9cb5386"
+  },
+  {
+    "day": "day30",
+    "suffix": ".uninterrupted.json",
+    "equal": true,
+    "baseline_sha256": "73013289c7b732d8702af384f7bf98f857916c92674babc8a5171acab6f1b633",
+    "candidate_sha256": "170c662b56c84a1fa8d012888a8df7b8ac51b0898b2fe6ad2baf55bdd553d72e"
+  },
+  {
+    "day": "day30",
+    "suffix": ".restored.json",
+    "equal": true,
+    "baseline_sha256": "73013289c7b732d8702af384f7bf98f857916c92674babc8a5171acab6f1b633",
+    "candidate_sha256": "170c662b56c84a1fa8d012888a8df7b8ac51b0898b2fe6ad2baf55bdd553d72e"
+  },
+  {
+    "day": "day60",
+    "suffix": "",
+    "equal": true,
+    "baseline_sha256": "e2a46ebbb52b0fc2f077ece7f78663085088ff57c78bad57c5b3d27810fa79cb",
+    "candidate_sha256": "b96f5d0f9f060993346ba671ba65bef1a932d50ba5db4a718a225898e508e2eb"
+  },
+  {
+    "day": "day60",
+    "suffix": ".uninterrupted.json",
+    "equal": true,
+    "baseline_sha256": "ebbdffe347209f1796578fb9a5eb7fac3ffc814246dfa9edab45c215eb4f750c",
+    "candidate_sha256": "6783d9db3e18c5e729208493a8af88a3d088852a5b39454c8bc8f92fdd17cb25"
+  },
+  {
+    "day": "day60",
+    "suffix": ".restored.json",
+    "equal": true,
+    "baseline_sha256": "ebbdffe347209f1796578fb9a5eb7fac3ffc814246dfa9edab45c215eb4f750c",
+    "candidate_sha256": "6783d9db3e18c5e729208493a8af88a3d088852a5b39454c8bc8f92fdd17cb25"
+  },
+  {
+    "day": "day90",
+    "suffix": "",
+    "equal": true,
+    "baseline_sha256": "2b48c7351d76f2bb9578b5e0a931c1a0a5fbc2361f32900d5c8851f3c8e0f2bd",
+    "candidate_sha256": "5bdbc1abd7a3861223807360a7e72390bf6a7dae59d42c8f0f4615663e98b3a9"
+  },
+  {
+    "day": "day90",
+    "suffix": ".uninterrupted.json",
+    "equal": true,
+    "baseline_sha256": "291442f2c58d2aa5eac7f7ab3067e3e79696ea6c5dbaa7ec2c7f1d6978de7377",
+    "candidate_sha256": "2b145f0d4bb7b6c3a4607be146c6d810be9172b377d057be9eb546b37abbb435"
+  },
+  {
+    "day": "day90",
+    "suffix": ".restored.json",
+    "equal": true,
+    "baseline_sha256": "291442f2c58d2aa5eac7f7ab3067e3e79696ea6c5dbaa7ec2c7f1d6978de7377",
+    "candidate_sha256": "2b145f0d4bb7b6c3a4607be146c6d810be9172b377d057be9eb546b37abbb435"
+  }
+]

@@ -1,0 +1,9 @@
+# Independent production baseline for root-only scheduler parity
+
+Three actual production worlds (day30, day60 and unablated day90), each40,962cells, completed the existing native coupled baseline harness with exit0. `Planet` and microbial core bytes match current production exactly; source hashes are recorded. Each immutable input is applied before10actual1440-second ticks and serialized immediately to arm-0.json. These are reference endpoints, not candidate parity results.
+
+Every baseline also passed exact capture/apply roundtrip, actual uninterrupted-vs-restored10tick continuation, second restored continuation, invalid-load prior-state preservation and final original-input restoration. Original saved files were only read and their hashes preserved. Outputs remain in the isolated coordinator directory for direct candidate comparisons; hashes and complete compressed logs are versioned here. No browser, device or rendering-speed claim. Existing native GPA teardown diagnostic remains in logs; all assertions passed and exit0.
+
+Build setup first failed because relative Zig cache path duplicated web/tests. Retained initial log; explicit absolute --cache-dir resolved it without source changes. Empty successful build log is preserved.
+
+Reproduction: current web/tests/egl-hydration-coupled-prepare.py with a distinct output/src and baseline argument; pinned Zig0.13.0 build through web/tests/egl-propagule-visual-build.zig, explicit absolute --cache-dir and -Dsource. Run with LIBGL_ALWAYS_SOFTWARE=1,EGL_PLATFORM=surfaceless,STELLA_ORIGIN_COUPLED=1,STELLA_ORIGIN_FAST=1,STELLA_ORIGIN_WIDTH=390,QA_PULSE_SAVE set to each hashed input and a unique STELLA_EGL_CAPTURE_PREFIX. Copy each run's three arm-0.json* outputs before the next input. No performance measurements taken during concurrent work.

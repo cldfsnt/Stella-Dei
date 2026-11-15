@@ -1,0 +1,28 @@
+{
+  "stage": "pre-activation source and first build; save-glue newer than first binary",
+  "source": {
+    "main.zig": "f711a4932a145301cdedc1d1d53e2ee7ef220f35b59d5daaad1ae78608c353f5",
+    "simulation/planet.zig": "ca9a99179688a3b758c92bfc8688d3e596f9a507378badbe2003c0ac7d6b3bef",
+    "simulation/microbes.zig": "3d2098d0df954150527f29f762363d352f137f8e2e3c044264b6202f2647887c",
+    "simulation/root_throughflow.zig": "47f41ecfb9c415457b3a8edb216bf523668fe299bac0fd4d7f2e63cfa47a3ec9",
+    "simulation/root_scheduler_audit.zig": "2f5a0d3fa77c019297e7145e825e3f0cf47bbcff7e0deb042a5799fdf5883a23",
+    "save_schema.zig": "0de70e9c0ef7cd7b6cbbca751979dd107809bbf6f844bdb2796ba2f93784209c",
+    "save_game.zig": "b20942778aa313bed62ced99be349af0c15f0ece4f15f3dba3bf0de227280596"
+  },
+  "build-first.log": {
+    "sha256": "b127eb2a8554a4229bc3deb340474f6df938f6b9d479b21c55f9a2bb84b6a36c",
+    "bytes": 2182
+  },
+  "build-second.log": {
+    "sha256": "b5545f71466b5fb1214a5c03d6dca611a7395b8ee1e5e43184c1a9fe61c781c2",
+    "bytes": 3895
+  },
+  "build-third.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "core-tests.log": {
+    "sha256": "16dace46161365d26732e5bbd43e5f795eb685cb26f169a8290f944137007b16",
+    "bytes": 6086
+  }
+}

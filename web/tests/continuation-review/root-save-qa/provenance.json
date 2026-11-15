@@ -1,0 +1,21 @@
+{
+  "main.zig": "297bc1fde19151542681b8558e19fdfafc547bbe4cdb17c630d0cd5f0278dfd4",
+  "save_schema.zig": "0de70e9c0ef7cd7b6cbbca751979dd107809bbf6f844bdb2796ba2f93784209c",
+  "save_game.zig": "b20942778aa313bed62ced99be349af0c15f0ece4f15f3dba3bf0de227280596",
+  "simulation/planet.zig": "ca9a99179688a3b758c92bfc8688d3e596f9a507378badbe2003c0ac7d6b3bef",
+  "simulation/microbes.zig": "3d2098d0df954150527f29f762363d352f137f8e2e3c044264b6202f2647887c",
+  "simulation/capillary_bucket.zig": "d27475577a89e14d620c8a0c1f5b6354420a6ba2add211b10e28106777b0b8c2",
+  "simulation/root_throughflow.zig": "47f41ecfb9c415457b3a8edb216bf523668fe299bac0fd4d7f2e63cfa47a3ec9",
+  "uninterrupted.json": {
+    "sha256": "92818b65c78ead9b21f204410a2a4a403a55ca2682eb482956918d1caa609b70",
+    "bytes": 10705046
+  },
+  "resumed.json": {
+    "sha256": "92818b65c78ead9b21f204410a2a4a403a55ca2682eb482956918d1caa609b70",
+    "bytes": 10705046
+  },
+  "native_input": {
+    "path": "natural60-day60.json",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+  }
+}

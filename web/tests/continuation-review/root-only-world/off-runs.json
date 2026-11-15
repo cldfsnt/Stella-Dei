@@ -1,0 +1,20 @@
+[
+  {
+    "label": "day30",
+    "input": "natural60-day30.json",
+    "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "exit": 0
+  },
+  {
+    "label": "day60",
+    "input": "natural60-day60.json",
+    "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "exit": 0
+  },
+  {
+    "label": "day90",
+    "input": "grazing-coupled/arm-0-day90.json",
+    "input_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "exit": 0
+  }
+]

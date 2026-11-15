@@ -1,0 +1,17 @@
+# Actual root-only scheduler: fixed first-world gates
+
+All three OFF and all five ON arms completed with exit0. Current production native baselines are recorded separately. OFF matches every old saved field exactly at10ticks and at uninterrupted/restored20tick endpoints on day30/day60/day90 (nine comparisons). Normalization removes only validated root0/emptysoil/disabledconfig and changes explicit schema10/model9 identity to6/5. First comparator assumed dense cohorts and failed before any result; corrected to observed sparse_indexed encoding. No numeric tolerances or old field exclusions.
+
+ON: fixed60ticks at1440seconds (one day), no interventions/refills/retargeting. Three root0 inputs and day60 prescribedroot.25 at conductance1 and10. Soil begins zero and actual standing water funds infiltration. Each arm visits2,457,720 climate columns (40,962×60), including empty patches. Final local soil density sums are3554.19/3550.97/3542.23kg/m² summed over patches, NOT planet kilograms. Root478's patch12352 ends with0.996995223kg/m² actualsoil in all three day60 arms.
+
+## Important negative progression result
+
+ALL actual root demand, paid uptake and credited hydration areZERO. The chosen resident remains submerged; both conductances therefore give no hydrological benefit. In root.25 arms, observed family membership reaches3 IDs, with inherited-root assertions passing, but only original478 is alive at endpoint. Endpoint biomass0.121794298kgC/m² and support0.016352620 are equal across all three day60 arms. These are prescribed roots and observed offspring, not roots evolved from zero or land establishment. No favorable founder substitution or longer horizon was used.
+
+Root0 colony totals18→23,64→64,41→45; these are candidate trajectories, not treatment effects versus a one-day production control. Climate and advection remain real; no UI action or water fixture was introduced. The actual save/load and10tick continuation after EACH of all eight arms passed exact full serialized equality. Final original input restoration also passed. Separate56ac00c proves invalid-load atomicity/unsupported inputs. All55 public exports remain byte-identical to production. This is native engine execution, not actualbrowser/Android or performance verification.
+
+## Numerical limits retained
+
+Infiltration requests total~39817–39827 localdensity units while represented actual uptake is~3544–3555; ocean-scale native quantum can block small perstep requests. Rootpatch fill is separately reported; global ratios cannot establish rootkinetics. Phase condensation diagnostic maximum approaches1kg/m² in large columns; cumulative phase sums are retained. Wholeworld water inventory declines over the day, but no one-day production counterfactual/transport attribution is yet supplied. Do not ascribe total drift tosoil or claim fullconservation. Audit phase arrays use endpointf64 diagnostics, NOT rigorous upperbounds; local helpers have separate exact-number sourcefunding tests. Zero actual rootthroughflow means these trials do not validate its wholeworld nonzero receiving path.
+
+Complete305 ON observations, all OFF/ON logs, failures/setup logs, source/binary/endpoint hashes are retained. Original raw inputs and endpoint JSONs stay local unchanged for follow-up comparison. Inherited GPA teardown diagnostic remains, all assertions passed exit0. Two harness-only variable shadowing failures preceded successful build; no candidatephysics was changed to fix them.

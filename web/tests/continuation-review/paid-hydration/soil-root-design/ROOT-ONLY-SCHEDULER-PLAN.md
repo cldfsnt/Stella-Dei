@@ -36,3 +36,11 @@ Hard: no nominal source-unfunded root/soil credit; no negative/nonfinite pools; 
 No new practical whole-engine absolute tolerance chosen here. Report errors relative to capacity1kg/m², actual source inventory and actual root-demand scale, with skipped/requested/paid kinetics and cold/exposure classification. The local1e-9gate is not imported. If new boundary error materially affects the observed root strategy or f32vapor receives0/rounded excess, retain it and stop promotion, not invent hidden water/precision credits. Fullframe/nativeproxy performance and allocations measured separately before considering practical deployment.
 
 This bounded run can establish a real scheduler and persisted root-only path, not natural evolution or finished land ecology. Root mutation, combined water-storage ownership, actualland dispersal gates and robust biological competition remain later explicit work.
+
+## Pre-activation amendment: conductance and coupling limits
+
+Freeze both conductances1 and10 kgH2O/(kgRootC·day), exactly the earlier local comparisons, for the prescribed root.25 day60 arm. Root0 control is shared (no conductance-dependent requests). No choosing the better result afterward. Root vapor is added after this tick's atmospheric advection/condensation and enters those processes next tick; no second phase call. Source-paid physiological credit is independent of f32 vapor rounding; a zero source receipt produces zero h. Record zero/rounded vapor credit separately and retain the water residual, never invent an error-credit reservoir.
+
+Soil sensible heat capacity is omitted in this bounded model: maximum1kg/m² soilwater would contribute4184J/m²/K, 1.084% of dry-ground385910 baseline, .1253% at known478's standing water and .001996% at50m depth. These are omitted-capacity bounds, NOT temperature or energy-error bounds. Latent heat was already absent and remains absent. No energy-conservation claim.
+
+Draft unit audit before activation: first unexecuted helper omitted the /86400 conversion; fire caught this against the original local harness. Corrected to per-day law before any enabled outcomes. Preserve this correction as a pre-execution defect, not biological tuning.
