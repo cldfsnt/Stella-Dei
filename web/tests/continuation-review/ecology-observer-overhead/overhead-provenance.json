@@ -1,0 +1,15 @@
+{
+  "source_head": "af2ede778df542a04f913bfa0a8ce2bf43322a3a",
+  "guard_note": "QA only guards physiologyDeaths when observer disabled; existing before_cohorts remains unchanged. No render/census/serialization inside timed loop.",
+  "hashes": {
+    "main.zig": "93ab7e414ac2bf9d488a4585117e49b96d888a5e3cf21149700b527a469fdeb1",
+    "simulation/planet.zig": "99bcfaecc3097a267a0d711cead06c739a25b3427519b58fd0dd04314c36eecb",
+    "world_ecology.zig": "44c5950119bcb8ced381f7651cb5836fc33daddf27bca05d8920cbfb4dfe90a8",
+    "recent_ecology.zig": "c000f2d871f9aee4cca3fb9a0d6a19e427c53503babebbe98188ed7987176933"
+  },
+  "input": {
+    "path": "../site-tmp/natural60-day60.json",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+  },
+  "binary_sha256": "e2df1745f21c5c67a3fe791600a8ed52cfb224dd14c69794d976c3e017d5ea4d"
+}

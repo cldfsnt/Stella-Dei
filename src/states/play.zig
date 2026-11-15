@@ -1520,16 +1520,22 @@ pub const PlayState = struct {
         if(!scan.active or scan.total!=n or scan.storage!=storage or scan.geometry!=@intFromPtr(self.planet.transformedPoints.ptr) or scan.seed!=self.planet.seed or scan.radius!=self.planet.radius or scan.selection!=self.selectedPoint){scan.*=.{};return -4;}
         const end=scan.end();
         var ready:?usize=null;
+        const conversion=self.planet.getKmPerWaterMass();
+        if(!std.math.isFinite(conversion) or conversion<=0){scan.*=.{};return -4;}
         for(scan.cursor..end)|i|{
             const fuel=self.planet.microbeCells[i].detritus;
             const point=self.planet.transformedPoints[i];const length=point.length();
             if(!std.math.isFinite(fuel) or fuel<=0 or !std.math.isFinite(length) or length<=0 or @abs(point.norm().z())>0.95)continue;
-            scan.consider(i,fuel);
-            if(self.planet.waterMass[i]==0 and @import("../experimental/planet_ignition.zig").preview(&self.planet,i,i).success()){ready=i;break;}
+            const water=self.planet.waterMass[i];
+            if(!std.math.isFinite(water) or water<0)continue;
+            if(water==0){
+                if(@import("../experimental/planet_ignition.zig").preview(&self.planet,i,i).success()){ready=i;break;}
+                scan.considerBlocked(i,fuel);
+            }else scan.considerWet(i,fuel,@as(f64,water)*@as(f64,conversion)*1000);
         }
         scan.cursor=end;
         if(ready==null and end<n)return 2;
-        const candidate=ready orelse scan.fallback orelse {scan.active=false;return 0;};
+        const candidate=ready orelse scan.fallback orelse scan.blocked orelse {scan.active=false;return 0;};
         scan.active=false;
         // A running world can alter candidates between chunks; never navigate on vanished fuel.
         const fuel=self.planet.microbeCells[candidate].detritus;

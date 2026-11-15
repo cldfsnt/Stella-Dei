@@ -1,0 +1,58 @@
+{
+  "arms": [
+    {
+      "arm": 0,
+      "enabled": false,
+      "ticks": 60,
+      "warmup": 12,
+      "total_ns": 567274081,
+      "full_save_rng_exact": true,
+      "mean_ms": 9.454568016666668,
+      "median_ms": 9.13886,
+      "min_ms": 7.304201,
+      "max_ms": 14.156532
+    },
+    {
+      "arm": 1,
+      "enabled": true,
+      "ticks": 60,
+      "warmup": 12,
+      "total_ns": 546553097,
+      "full_save_rng_exact": true,
+      "mean_ms": 9.109218283333334,
+      "median_ms": 7.855309,
+      "min_ms": 7.238392,
+      "max_ms": 58.563842
+    },
+    {
+      "arm": 2,
+      "enabled": true,
+      "ticks": 60,
+      "warmup": 12,
+      "total_ns": 478496186,
+      "full_save_rng_exact": true,
+      "mean_ms": 7.974936433333333,
+      "median_ms": 7.91752,
+      "min_ms": 7.126003,
+      "max_ms": 12.393127
+    },
+    {
+      "arm": 3,
+      "enabled": false,
+      "ticks": 60,
+      "warmup": 12,
+      "total_ns": 483248521,
+      "full_save_rng_exact": true,
+      "mean_ms": 8.054142016666667,
+      "median_ms": 7.921541,
+      "min_ms": 7.37604,
+      "max_ms": 13.750691
+    }
+  ],
+  "on_off_mean_ratio_pairs": [
+    0.9634727115268994,
+    0.9901658571242683
+  ],
+  "pooled_mean_ratio": 0.975751764929661,
+  "conclusion": "No material slowdown detected in this bounded noisy native scheduler proxy; no speedup or device claim."
+}

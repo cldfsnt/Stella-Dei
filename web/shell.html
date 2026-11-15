@@ -152,7 +152,7 @@ function findDeadMatter(){
   let result;try{result=Module._stella_find_detritus(restart?1:0);}catch{cancelDetritusSearch();document.getElementById('god-result').textContent='Search unavailable; no ignition was requested. Try again.';return;}
   if(result===2){document.getElementById('god-result').textContent='Searching existing dead carbon in small batches… No water or life is changed.';requestAnimationFrame(()=>advance(false));return;}
   detritusSearchBusy=false;document.getElementById('find-detritus').disabled=false;document.getElementById('cancel-detritus').hidden=true;
-  const message=result===1?'Found existing dry dead carbon. Inspect it in Life snapshot; ignition remains your choice.':result===3?'Found existing wet dead carbon. Nothing was drained or ignited. Inspect in Life snapshot; water removal is a separate deliberate choice.':result===4?'Found existing dead carbon, but ignition is blocked. Reopen God tools to see the reason.':result===0?'No safely frameable dead organic matter found in this scan. No fuel was created.':result===-2?'Dead-organic-matter search is for Origin worlds.':'Search cancelled or world changed. Try again.';
+  const message=result===1?'Found existing dry dead carbon. Inspect it in Life snapshot; ignition remains your choice.':result===3?'Found wet dead carbon, prioritizing fewer estimated Water − taps, then more fuel. Nothing was drained or ignited. Pause, inspect the water depth, then deliberately remove water if you choose; reopen God tools to ignite.':result===4?'Found existing dead carbon, but ignition is blocked. Reopen God tools to see the reason.':result===0?'No safely frameable dead organic matter found in this scan. No fuel was created.':result===-2?'Dead-organic-matter search is for Origin worlds.':'Search cancelled or world changed. Try again.';
   document.getElementById('god-result').textContent=message;
   if(result===1||result===3||result===4){refreshGodTarget();document.getElementById('god-sheet').close();feedback(message);canvas.focus();}
  };
@@ -163,18 +163,20 @@ const ignitionReasons={none:'Ready: dry dead carbon and oxygen available',invali
 const godReasons={none:'Ready',dry:'Needs water: choose a wet patch',wet:'Needs dry ground',no_cover:'Needs vegetation cover',origin:'Sandbox cover only; use separate Origin detritus tool',precision:'Below map precision: try a shallower patch',invalid:'Unsafe or invalid conditions: choose another patch',stale:'Selection changed: refresh target'};
 
 function refreshGodTarget(){
+ let targetWater=null;
  godPoint=null;godEligibility=null;ignitionEligibility=null;
  document.getElementById('god-availability').textContent='Refresh a valid target to check available tools.';
  document.getElementById('god-target').textContent='Touch a planet patch, then refresh target.';
  if(Module.started&&!Module.failed&&typeof Module._stella_god_target==='function')try{
   const d=JSON.parse(Module.ccall('stella_god_target','string',[],[]));
   if(d.status==='ready'&&Number.isSafeInteger(d.cell)&&d.cell>=0&&Number.isFinite(d.water_m)&&Number.isFinite(d.temperature_c)){
-   godPoint=d.cell;ignitionEligibility=d.eligibility&&Object.hasOwn(ignitionReasons,d.eligibility.ignition)?d.eligibility.ignition:null;godEligibility=d.eligibility&&['wave','lightning','scorch'].every(k=>Object.hasOwn(godReasons,d.eligibility[k]))?d.eligibility:null;document.getElementById('god-target').textContent='Patch '+d.cell+' · '+d.water_m.toFixed(2)+' m water · '+d.temperature_c.toFixed(1)+'°C. Tools do not change pause or pace.';
+   targetWater=d.water_m;godPoint=d.cell;ignitionEligibility=d.eligibility&&Object.hasOwn(ignitionReasons,d.eligibility.ignition)?d.eligibility.ignition:null;godEligibility=d.eligibility&&['wave','lightning','scorch'].every(k=>Object.hasOwn(godReasons,d.eligibility[k]))?d.eligibility:null;document.getElementById('god-target').textContent='Patch '+d.cell+' · '+d.water_m.toFixed(2)+' m water · '+d.temperature_c.toFixed(1)+'°C. Tools do not change pause or pace.';
   }
  }catch{}
  for(const [id,key] of [['god-wave','wave'],['god-heat','lightning'],['god-scorch','scorch']])document.getElementById(id).disabled=godPoint===null||!godEligibility||godEligibility[key]!=='none';
  document.getElementById('god-ignite').disabled=godPoint===null||ignitionEligibility!=='none';
  if(godPoint!==null)document.getElementById('god-availability').textContent=godEligibility?['Wave: '+godReasons[godEligibility.wave],'Lightning: '+godReasons[godEligibility.lightning],'Scorch: '+godReasons[godEligibility.scorch],'Detritus ignition: '+(ignitionEligibility===null?'Checks unavailable':ignitionReasons[ignitionEligibility]),'Snapshot only; conditions are checked again when you act.'].join('\n'):'Tool checks unavailable. Refresh target before acting.';
+ if(ignitionEligibility==='wet'&&Number.isFinite(targetWater)&&targetWater>0){const taps=Math.ceil(targetWater);document.getElementById('god-availability').textContent+='\nAbout '+taps.toLocaleString()+' Water − tap'+(taps===1?'':'s')+' at this depth (up to 1 m each). External water removal, not evaporation; drying can harm colonies. Pause first; rounding or running water can change this estimate. No automatic draining.';}
 }
 function invokeGod(kind){
  if(detritusSearchBusy){document.getElementById('god-result').textContent='Finish or cancel the search before acting.';return;}

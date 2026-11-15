@@ -1,0 +1,7 @@
+{
+  "../site-tmp/fire-route-player/src/main.zig": "867c96ad27ae0aaab7310c6c3590047a41f78b4579a316c95a5315cd66fb4273",
+  "../site-tmp/fire-route-player/src/states/play.zig": "6a7d2acaadba755eef762a9b7f132594eb266d50abaadab3cba284ab17634dc7",
+  "../site-tmp/fire-route-player/src/detritus_finder.zig": "051b4f2ef808aaaa923a6d2fbec2eb7a091b5cfec2e6ae02079fdda5e2d95002",
+  "../site-tmp/fire-route-player/install/bin/stella-egl": "3eccf6d0a35481b031786cbf9fb88a1d09fb5f2ba8b8f7549c4019362e23723c",
+  "../site-tmp/fire-route-audit/install/bin/stella-egl": "407dec9e895ed47ec54bca798be266b33cac80f1a11aaabd6993e831e044c855"
+}
