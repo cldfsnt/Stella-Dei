@@ -1,0 +1,156 @@
+{
+  "start": "2026-11-15T19:13:09.468593+00:00",
+  "end": "2026-11-15T19:13:26.099628+00:00",
+  "rows": [
+    {
+      "arm": "plain",
+      "mode": "off",
+      "index": 0,
+      "ms_per_tick": 12.871719633333333,
+      "stages_ms_per_tick": {
+        "thermal": 0.0,
+        "liquid_wind": 0.0,
+        "atmosphere_prepare": 0.0,
+        "column": 0.0,
+        "coefficient": 0.0,
+        "gather": 0.0,
+        "ecology": 0.0
+      }
+    },
+    {
+      "arm": "plain",
+      "mode": "on",
+      "index": 1,
+      "ms_per_tick": 32.88061216666667,
+      "stages_ms_per_tick": {
+        "thermal": 0.0,
+        "liquid_wind": 0.0,
+        "atmosphere_prepare": 0.0,
+        "column": 0.0,
+        "coefficient": 0.0,
+        "gather": 0.0,
+        "ecology": 0.0
+      }
+    },
+    {
+      "arm": "traced",
+      "mode": "on",
+      "index": 2,
+      "ms_per_tick": 29.86475225,
+      "stages_ms_per_tick": {
+        "thermal": 2.1649615500000077,
+        "liquid_wind": 3.191898649999992,
+        "atmosphere_prepare": 3.4534859833333202,
+        "column": 16.799382933333312,
+        "coefficient": 0.9714482499999993,
+        "gather": 2.321780066666645,
+        "ecology": 0.9405863833333418
+      }
+    },
+    {
+      "arm": "traced",
+      "mode": "off",
+      "index": 3,
+      "ms_per_tick": 14.593775916666663,
+      "stages_ms_per_tick": {
+        "thermal": 2.3380183999999864,
+        "liquid_wind": 3.311527550000025,
+        "atmosphere_prepare": 2.351967499999975,
+        "column": 2.334349999999998,
+        "coefficient": 1.086400016666668,
+        "gather": 2.0883009499999874,
+        "ecology": 1.06828153333335
+      }
+    },
+    {
+      "arm": "traced",
+      "mode": "off",
+      "index": 4,
+      "ms_per_tick": 13.370483799999999,
+      "stages_ms_per_tick": {
+        "thermal": 2.1840310333333357,
+        "liquid_wind": 3.0559927166666805,
+        "atmosphere_prepare": 2.163146433333328,
+        "column": 2.201387833333323,
+        "coefficient": 1.0802791666666716,
+        "gather": 1.921665699999996,
+        "ecology": 0.7513321666666702
+      }
+    },
+    {
+      "arm": "traced",
+      "mode": "on",
+      "index": 5,
+      "ms_per_tick": 25.833422766666665,
+      "stages_ms_per_tick": {
+        "thermal": 2.029108216666676,
+        "liquid_wind": 2.9180911333333217,
+        "atmosphere_prepare": 2.0783881500000043,
+        "column": 15.085405683333308,
+        "coefficient": 0.9275854000000038,
+        "gather": 1.9937604333333354,
+        "ecology": 0.7882350000000031
+      }
+    },
+    {
+      "arm": "plain",
+      "mode": "on",
+      "index": 6,
+      "ms_per_tick": 33.67957855,
+      "stages_ms_per_tick": {
+        "thermal": 0.0,
+        "liquid_wind": 0.0,
+        "atmosphere_prepare": 0.0,
+        "column": 0.0,
+        "coefficient": 0.0,
+        "gather": 0.0,
+        "ecology": 0.0
+      }
+    },
+    {
+      "arm": "plain",
+      "mode": "off",
+      "index": 7,
+      "ms_per_tick": 14.039546083333331,
+      "stages_ms_per_tick": {
+        "thermal": 0.0,
+        "liquid_wind": 0.0,
+        "atmosphere_prepare": 0.0,
+        "column": 0.0,
+        "coefficient": 0.0,
+        "gather": 0.0,
+        "ecology": 0.0
+      }
+    }
+  ],
+  "summary": {
+    "off": {
+      "plain": 13.455632858333331,
+      "traced": 13.98212985833333,
+      "overhead_percent": 3.912837140721548,
+      "stage_medians": {
+        "thermal": 2.261024716666661,
+        "liquid_wind": 3.1837601333333527,
+        "atmosphere_prepare": 2.2575569666666517,
+        "column": 2.267868916666661,
+        "coefficient": 1.08333959166667,
+        "gather": 2.0049833249999915,
+        "ecology": 0.90980685000001
+      }
+    },
+    "on": {
+      "plain": 33.28009535833334,
+      "traced": 27.849087508333334,
+      "overhead_percent": -16.31908740501875,
+      "stage_medians": {
+        "thermal": 2.097034883333342,
+        "liquid_wind": 3.0549948916666567,
+        "atmosphere_prepare": 2.7659370666666625,
+        "column": 15.94239430833331,
+        "coefficient": 0.9495168250000016,
+        "gather": 2.1577702499999902,
+        "ecology": 0.8644106916666725
+      }
+    }
+  }
+}

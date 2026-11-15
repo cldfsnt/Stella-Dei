@@ -1,0 +1,73 @@
+{
+  "driver_commit": "83c8e91",
+  "prereg": "9737f48",
+  "model": "unchanged day30 c6819a0",
+  "changed_source_files": [
+    "main.zig"
+  ],
+  "files": {
+    "build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "main-0.log": {
+      "sha256": "43cefb531d60e3213c81d00cf1558c22a24dcd900abdff83fc14ba7842d20932",
+      "bytes": 1386889
+    },
+    "main-1.log": {
+      "sha256": "7f966da042c05549cb3ed5660a0b239966ff7560995f5f77bf5f71046920a637",
+      "bytes": 1379587
+    },
+    "resume-0.log": {
+      "sha256": "8fa92f1e28265178e0bc5ff892af608bd0cfa0f139d6c4826cb82352791a3f03",
+      "bytes": 620375
+    },
+    "resume-1.log": {
+      "sha256": "65df1ae121ef3370a0ad2fbd613dcab1567524b9557d0d3a1a5a4c63e9cd2f4d",
+      "bytes": 620368
+    },
+    "arm-0-0.json": {
+      "sha256": "6fe6fb16f1e55136c33fe9fbf7b4f4ba7f9cd5e411dce34efdae7911545aefb3",
+      "bytes": 12656507
+    },
+    "arm-1-0.json": {
+      "sha256": "e4de38a3b4fada053bc3beff1777c0173eb1fac4d8a51b2237b78fce1c1d5fd4",
+      "bytes": 12656502
+    },
+    "arm-0-30.json": {
+      "sha256": "89a11761eebc3bb06e3bb146f30c422e56ad6c9df2345d632b93862703deb5f4",
+      "bytes": 12672456
+    },
+    "arm-1-30.json": {
+      "sha256": "a85349841d050a0eca0918b2877cdec8526e42542f342bc9931377347485bf1b",
+      "bytes": 12672904
+    },
+    "arm-0-60.json": {
+      "sha256": "5387fff6108233291d880d0548e1b583e23a767d190ad0a7cf73bf465de77374",
+      "bytes": 12668702
+    },
+    "arm-1-60.json": {
+      "sha256": "91cbb3bb4ae87eb4d9deafebd42c487d82e03c5a273b7d26f63998c188b2efaa",
+      "bytes": 12668743
+    },
+    "analysis.json": {
+      "sha256": "7339a8232455ef0ac5bda0a5fea60704e6840eb7a680623b382dc8455a570ccf",
+      "bytes": 8005
+    },
+    "receipt-audit.json": {
+      "sha256": "99e0d480919ab8e4b5dc3a2f9e4d341146928f4952aa3d509e396b4cc4be1129",
+      "bytes": 5793
+    },
+    "source-hashes.json": {
+      "sha256": "22fcecff866f091b1869d1173b4323afc08cd56d618f954105609f7ec225674d",
+      "bytes": 24450
+    }
+  },
+  "completed_processes": [
+    "main-0",
+    "main-1",
+    "resume-0",
+    "resume-1"
+  ],
+  "all_exit_codes": 0
+}

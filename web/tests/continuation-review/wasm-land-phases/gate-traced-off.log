@@ -1,0 +1,6 @@
+LAYOUT plant=12 planet=3000 cells=40962
+BETA_LAYOUT enabled=false soil_bytes=0 vapor_bytes=0 scratch_bytes=0 cohort_bytes=88
+LAND_PHASES { 1.2952726700000017e2, 1.809614799999996e2, 1.2602371900000054e2, 1.2806220300000052e2, 6.3186767000000145e1, 1.46123715e2, 7.334127699999976e1 }
+FIRST_TICK ms=11.881556000000046 stages={ 0e0, 0e0, 0e0, 0e0 } sub={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+ATMOSPHERE_SUBSTAGES ms={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+WASM_PLANET ticks=72 cells=40962 width=4 parallel=1 total_ms=848.8831260000001 temperature_ms=0 liquid_wind_ms=0 atmosphere_ms=0 ecology_ms=0
