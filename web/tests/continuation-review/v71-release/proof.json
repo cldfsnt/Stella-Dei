@@ -1,0 +1,39 @@
+{
+  "label": "Build v71 · Requested plant balance and biological light",
+  "runtime_fork": "48a969a78f116f4a8d7fb8dec464be5f03eb73bb",
+  "runtime_local": "d610e61",
+  "prior_site": "6d46066e8d5d291a232835f95b0325059593ae78",
+  "source": {
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "checkout_path": "/workspace/scratch/f67c3ac60ca3/stella-site-current/.sites-checkout",
+    "commit_sha": "7dee8e6405e4418614ee7ec2180866d0442923d9",
+    "archive": "/workspace/scratch/f67c3ac60ca3/stella-v71-deploy.tar.gz"
+  },
+  "deployment": {
+    "id": "appgdep_6af9edd39d9c8191a0093e6dcf208841",
+    "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+    "title": "Stella Dei Browser Port",
+    "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_190a9a3e2520819190a953fd2149e69f",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-15T17:37:32.826745+00:00"
+  },
+  "audience": {
+    "owner_only": true,
+    "external_visitors": 0,
+    "policy_revision": 1,
+    "unchanged": true
+  },
+  "archive_sha256": "113ca007f8de99d57817e0683b8bb6a4c3643756ae62d5ea8738b26b9742bc69",
+  "raw_wasm_sha256": "c72deca63ff6d64dc471005a6cf18a10b80d2bbc3d6c9f7e620d76899c5ef53b",
+  "packaged_html_sha256": "ee68baad0d0ab43771e3c0d6cb46f7407aa80eb5403625c1bf6607c42d7dd188",
+  "manifest_files": 37,
+  "archive_entries": 41,
+  "all_archive_hashes_verified": true
+}
