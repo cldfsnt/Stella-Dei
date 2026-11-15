@@ -1,0 +1,51 @@
+{
+  "preregistration": "57b99dd",
+  "harness": "63a8d8f",
+  "released_ui": "v74",
+  "unchanged_simulation_hash_check_before_instrumentation": true,
+  "observer_identical_to_day7": true,
+  "binary_sha256": "01c384bf65ae0b4eec4110c8e4cffb628eda22b14dd11287422f443df872d464",
+  "input_day7_sha256": "1ca64f84b809902f40c873ae79dfe25c42d81b8537e180ff41caecf3a813f0a1",
+  "artifacts": {
+    "day-14.json": {
+      "sha256": "81633eff31b77cf03079db0a8cbb5d2462108fddd9bf4b560eea2b83a60ae6ee",
+      "bytes": 12943962
+    },
+    "day-21.json": {
+      "sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e",
+      "bytes": 13284659
+    },
+    "resume-day-21.json": {
+      "sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e",
+      "bytes": 13284659
+    },
+    "run.log": {
+      "sha256": "7022d1a4f4463754547c7721d8a3b855c097604d19fb8fe78db29783e2f6d9ac",
+      "bytes": 5189861
+    },
+    "resume.log": {
+      "sha256": "b98ef1ab743c8e51b18f6b71a7923af32dad94b08cd024a874afa60430fd7924",
+      "bytes": 4067488
+    }
+  },
+  "runs": [
+    {
+      "mode": "main",
+      "exit": 0,
+      "ticks": 840,
+      "elapsed_ms": 18597
+    },
+    {
+      "mode": "resume",
+      "exit": 0,
+      "ticks": 420,
+      "elapsed_ms": 9000
+    }
+  ],
+  "full_state_restart_exact": true,
+  "viewport": [
+    390,
+    700
+  ],
+  "maximum_archived_file_bytes": 2488073
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "offline f64 evaluation of recorded POST-step states, not missing phase snapshots",
+  "records": 3664,
+  "min_depth_m": 0.06442232429981232,
+  "max_geometry_height_m": 0.012987811729618179,
+  "min_depth_minus_height_m": 0.06272289243501003,
+  "first_supported_tick": 693
+}
