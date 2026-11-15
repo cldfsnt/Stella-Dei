@@ -6,8 +6,8 @@ function describe(d){
  let lines=[];
  if(d.mode==='origin'){
   if(!Array.isArray(d.forms)||d.forms.length>6)throw Error('Invalid forms');
-  lines.push('Worldwide: '+count(d.colonies)+' living colonies sampled. Top forms by summed biomass density (not species):');
-  const forms=d.forms.filter(f=>number(f.biomass_sum)>0).slice(0,3);
+  lines.push('Worldwide: '+count(d.colonies)+' living colonies sampled. Living growth forms by summed biomass density (not species):');
+  const forms=d.forms.filter(f=>number(f.biomass_sum)>0);
   lines.push(...forms.map(f=>{if(!/^[a-z -]{1,40}$/i.test(f.form))throw Error('Invalid form');return f.form+': '+count(f.colony_count)+' colonies · '+number(f.biomass_sum).toPrecision(3)+' summed kg C/m²';}));
   if(!forms.length)lines.push('No living forms found in this sample.');
  }else lines.push('Worldwide: '+count(d.rabbits)+' rabbits · '+count(d.vegetated_patches)+' patches with plants · '+number(d.cover_sum).toFixed(2)+' summed patch cover (not trees).');
@@ -28,6 +28,21 @@ function describe(d){
  else lines.push('Recent events unavailable until simulation is observed; not zero.');
  return lines.join('\n');
 }
-function create(h){let epoch=0;return {cancel(){epoch++;},start(){const mine=++epoch;let first=true,world=null;function step(){if(mine!==epoch||!h.available())return;try{const d=h.read(first?1:0);first=false;if(world===null)world=d.world;else if(d.world!==world)throw Error('World changed');if(d.status==='pending'){h.show('Sampling living community…');h.schedule(step);return;}h.show(describe(d));}catch{h.show('Community sample unavailable or changed. Refresh to try again.');}}step();}};}
-const api={describe,create};if(typeof module==='object'&&module.exports)module.exports=api;else root.WorldEcology=api;
+const names=['Microbial mat','Cushion','Rosette','Ribbon','Branching','Canopy'];
+function formRows(d){
+ if(!d||d.status!=='ready'||d.mode!=='origin'||!Number.isInteger(d.world)||d.world<0||d.world>4294967295)return [];
+ if(!Array.isArray(d.forms)||d.forms.length!==6)return [];
+ const seen=new Set();let total=0;
+ const rows=d.forms.map(f=>{const id=f.form_id;if(!Number.isInteger(id)||id<0||id>5||seen.has(id)||f.form!==names[id]||!Number.isSafeInteger(f.colony_count)||f.colony_count<0||!Number.isFinite(f.biomass_sum)||f.biomass_sum<0)throw Error('Invalid forms');seen.add(id);total+=f.colony_count;return {id,name:names[id],count:f.colony_count,world:d.world};});
+ if(total!==d.colonies)throw Error('Invalid form total');return rows;
+}
+function create(h){let epoch=0,rows=[];
+ const publish=r=>{rows=r;if(h.forms)h.forms(r);};
+ function cancel(){epoch++;publish([]);}
+ return {cancel,start(){const mine=++epoch;publish([]);let first=true,world=null;function step(){if(mine!==epoch)return;if(!h.available()){publish([]);return;}try{const d=h.read(first?1:0);first=false;if(world===null)world=d.world;else if(d.world!==world)throw Error('World changed');if(d.status==='pending'){h.show('Sampling living community…');h.schedule(step);return;}const text=describe(d),next=formRows(d);h.show(text);publish(next);}catch{publish([]);h.show('Community sample unavailable or changed. Refresh to try again.');}}step();},visit(id){const row=rows.find(r=>r.id===id);if(!row||row.count===0||!h.available()||!h.visit)return false;cancel();let result;try{result=h.visit(row.world,id);}catch{result=null;}
+ const message=result===1?'Visiting an existing '+row.name+' colony. Growth form, not species; no life changed.':result===0?'No living '+row.name+' remains. Refresh the community sample.':result===-2?'World changed or an action is busy. Refresh before visiting.':result===-4?'A matching colony could not be framed safely. No life changed.':'Visit unavailable. Refresh the community sample; no life changed.';
+ h.show(message);if(h.result)h.result(result,message);return result===1;
+ }};
+}
+const api={describe,create,formRows};if(typeof module==='object'&&module.exports)module.exports=api;else root.WorldEcology=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

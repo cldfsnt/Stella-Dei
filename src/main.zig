@@ -616,6 +616,13 @@ export fn stella_find_sandbox_life(kind:u32) i32 {
     return state.findSandboxLife(kind,@floatFromInt(size.width),@floatFromInt(size.height));
 }
 
+export fn stella_visit_growth_form(world:u32,form:u32)i32 {
+    const state=webPlayState() orelse return -1;
+    if(AdvanceDay.blocksInput())return -2;
+    const size=game.window.getFramebufferSize();
+    return state.visitGrowthForm(world,form,@floatFromInt(size.width),@floatFromInt(size.height));
+}
+
 export fn stella_find_life() i32 {
     const state=webEditableState() orelse return -1;
     const size=game.window.getFramebufferSize();

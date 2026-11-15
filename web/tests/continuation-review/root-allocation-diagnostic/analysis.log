@@ -1,0 +1,84 @@
+{
+  "start_utc": "2026-11-15T20:56:47.306611+00:00",
+  "end_utc": "2026-11-15T20:56:55.242711+00:00",
+  "initial_only_difference": [
+    [
+      "/origin/cells/18327/sparse/2/value/root_fraction",
+      0.03125,
+      0.25
+    ]
+  ],
+  "control_exact_frozen": true,
+  "opportunity_at_first_consumption": {
+    "support_at_first_consumption": 8.706431253813207e-05,
+    "original_root": 2.7207597668166272e-06,
+    "prescribed_root": 2.1766078134533018e-05,
+    "aboveground_original": 8.434355277131544e-05,
+    "aboveground_prescribed": 6.529823440359905e-05,
+    "aboveground_relative_reduction": 0.22580645161290325
+  }
+}
+[
+  {
+    "arm": 0,
+    "root_fraction": 0.03125,
+    "alive24h": false,
+    "last_alive_tick": 6,
+    "last_live_cohort": {
+      "root_fraction": 0.03125,
+      "biomass": 0.002607685513794422,
+      "organization": 0.02313738502562046,
+      "support_mass": 6.02830114075914e-05,
+      "optimum": 299.4066162109375,
+      "efficiency": 0.9847798943519592,
+      "structure": 0.02018645964562893,
+      "feeding": 0.0,
+      "mobility": 0.0,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0,
+      "generation": 3,
+      "lineage": 524,
+      "parent": 319,
+      "reproduction_credit": 0.07819822430610657
+    },
+    "root_credit_kg_m2": 2.545327054217191e-06,
+    "positive_pulses": 7,
+    "consumption_records": 13,
+    "direct_children": [],
+    "restart_exact": true
+  },
+  {
+    "arm": 1,
+    "root_fraction": 0.25,
+    "alive24h": false,
+    "last_alive_tick": 19,
+    "last_live_cohort": {
+      "root_fraction": 0.25,
+      "biomass": 0.002508890349417925,
+      "organization": 0.02313738502562046,
+      "support_mass": 5.8005905884783715e-05,
+      "optimum": 299.4066162109375,
+      "efficiency": 0.9847798943519592,
+      "structure": 0.02018645964562893,
+      "feeding": 0.0,
+      "mobility": 0.0,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0,
+      "generation": 3,
+      "lineage": 524,
+      "parent": 319,
+      "reproduction_credit": 0.07871201634407043
+    },
+    "root_credit_kg_m2": 5.322666847129671e-05,
+    "positive_pulses": 20,
+    "consumption_records": 39,
+    "direct_children": [],
+    "restart_exact": true
+  }
+]

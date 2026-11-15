@@ -2,7 +2,7 @@
 const std=@import("std");const M=@import("simulation/microbes.zig");const Recent=@import("recent_ecology.zig");const Ecology=@import("simulation/ecology.zig");
 pub var enabled=true;
 var owner:usize=0;var serial:u32=0;var observed_mode:M.Mode=.origin;var recent:Recent.Observer=.{};
-const Form=struct{form:[]const u8,biomass_sum:f64=0,colony_count:usize=0};
+const Form=struct{form:[]const u8,form_id:u32=0,biomass_sum:f64=0,colony_count:usize=0};
 const Census=struct{active:bool=false,ready:bool=false,mode:M.Mode=.origin,owner:usize=0,world:u32=0,storage:usize=0,total:usize=0,cursor:usize=0,start:f64=0,end:f64=0,forms:[6]Form=undefined,cover_sum:f64=0,vegetated_patches:usize=0,colonies:usize=0,defense_enabled:bool=false,trait_storage:usize=0,tender_patches:usize=0,defended_patches:usize=0,tender_cover:f64=0,defended_cover:f64=0,toughness_min:f32=1,toughness_max:f32=0};
 var census:Census=.{};var buffer:[4096]u8=undefined;
 pub fn reset()void{owner=0;serial=0;observed_mode=.origin;recent.reset();census=.{};}
@@ -28,7 +28,7 @@ pub fn snapshot(p:anytype,world:u32,time:f64,restart:bool)[:0]const u8{
  bind(p,world);const origin=p.worldMode==.origin;const n=if(origin)p.microbeCells.len else p.vegetation.len;
  const defense_enabled=!origin and p.sandboxDefense.enabled;const trait_storage=if(origin)0 else @intFromPtr(p.plantTraits.ptr);
  const storage=if(origin)@intFromPtr(p.microbeCells.ptr) else @intFromPtr(p.vegetation.ptr);
- if(restart){census=.{.active=true,.mode=p.worldMode,.owner=@intFromPtr(p),.world=world,.storage=storage,.total=n,.start=time,.end=time,.defense_enabled=defense_enabled,.trait_storage=trait_storage};for(&census.forms,0..)|*f,i|f.*=.{.form=M.producerFormName(@enumFromInt(i))};}
+ if(restart){census=.{.active=true,.mode=p.worldMode,.owner=@intFromPtr(p),.world=world,.storage=storage,.total=n,.start=time,.end=time,.defense_enabled=defense_enabled,.trait_storage=trait_storage};for(&census.forms,0..)|*f,i|f.*=.{.form=M.producerFormName(@enumFromInt(i)),.form_id=@intCast(i)};}
  if((census.active or census.ready) and (census.mode!=p.worldMode or census.world!=world or census.owner!=@intFromPtr(p) or census.storage!=storage or census.total!=n or census.defense_enabled!=defense_enabled or census.trait_storage!=trait_storage or time<census.end)){census=.{};return json(.{.status="stale"});}
  if(!origin and p.plantTraits.len!=n){census=.{};return json(.{.status="unavailable"});}
  if(census.active){const end=@min(n,census.cursor+@min(@as(usize,512),n-census.cursor));for(census.cursor..end)|i|{

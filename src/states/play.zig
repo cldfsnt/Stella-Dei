@@ -1648,6 +1648,22 @@ pub const PlayState = struct {
         return switch(found.visibility){.visible,.rabbit=>1,.sparse=>2,.submerged=>3};
     }
 
+    /// Explicit navigation to a current living morphology, never a cached census result.
+    pub fn visitGrowthForm(self:*PlayState,world:u32,form:u32,width:f32,height:f32)i32 {
+        if(self.planet.worldMode!=.origin)return -1;
+        if(world!=@import("../performance_details.zig").world_serial or self.showEscapeMenu or self.showPlanetControl)return -2;
+        if(form>=6)return -3;
+        if(!std.math.isFinite(width) or !std.math.isFinite(height) or width<240 or height<240)return -4;
+        const F=@import("../growth_form_finder.zig");
+        const found=(F.find(self.planet.microbeCells,self.planet.transformedPoints,self.targetCameraPos.data,@enumFromInt(form)) catch return -4) orelse return 0;
+        const point=self.planet.transformedPoints[found.cell];
+        self.displayMode=.Normal;self.watchLife();
+        self.selectedPoint=found.cell;self.clickedPoint=found.cell;self.pointerOnPlanet=true;
+        self.colonyPeek.set(found.cell,self.planet.microbeCells[found.cell],self.gameTime);self.colonyPeek.focused=found.lineage;self.colonyPeek.focused_form=@enumFromInt(form);
+        self.targetCameraPos=point.norm();self.setOrbitDistance(point.length()+200,true);self.cameraGroundPoint=found.cell;
+        self.mobileFeedback="Living growth form found; Details shows this patch's colonies";self.mobileFeedbackSeconds=5;return 1;
+    }
+
     pub fn findLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
         return self.frameLivingCluster(width,height,true);
     }
@@ -1862,6 +1878,7 @@ pub const PlayState = struct {
     /// Close view scans <=512 neighbours plus selected patch; globe scans real living cells.
     /// Allocation-free, de-cluttered, <=64 glyphs in either view.
     fn renderSprouts(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
+        if(self.colonyPeek.cell!=null and self.colonyPeek.cell.?!=self.selectedPoint){self.colonyPeek.focused=0;self.colonyPeek.focused_form=null;}
         self.colonyTargets.count=0;
         self.colonyTargetWidth=width;self.colonyTargetHeight=height;
         self.colonyTargetWorld=@intFromPtr(self.planet.microbeCells.ptr);
@@ -1935,6 +1952,7 @@ pub const PlayState = struct {
                 for(self.planet.microbeCells[index].cohorts) |co| {
                     if(co.biomass>0 and (co.support_mass>dominant.support_mass or (co.support_mass==dominant.support_mass and co.biomass>dominant.biomass))) dominant=co;
                 }
+                if(index==self.selectedPoint){if(self.colonyPeek.focusedCohort(self.selectedPoint,self.planet.microbeCells[index]))|visited|dominant=visited;}
                 const color=biology_visuals.lineageColor(dominant.optimum);
                 const form = @tagName(Microbes.producerForm(dominant));
                 // Dense real biomass reads as a colony rather than a single sticker.
@@ -2062,11 +2080,13 @@ pub const PlayState = struct {
         if(!self.watchLifeView or self.planet.worldMode!=.origin or self.showPointDetails or self.showEscapeMenu or self.showPlanetControl)return false;
         const cell=self.colonyPeek.cell orelse return false;
         if(cell>=self.planet.microbeCells.len){self.colonyPeek.clear();return false;}
+        _=self.colonyPeek.focusedCohort(self.selectedPoint,self.planet.microbeCells[cell]);
         const v=self.colonyPeek.observe(self.planet.microbeCells[cell],self.gameTime);
         if(self.colonyPeek.cell==null)return false;
         const vg=renderer.vg;vg.fontFace("sans-serif");vg.fontSize(12);vg.textAlign(.{.horizontal=.left,.vertical=.middle});
         var text:[160]u8=undefined;
-        const line=if(v.count==0) "Pinned patch: no living colonies" else std.fmt.bufPrint(&text,"Top {s} {d:.0}% · {s} over {d:.1}d",.{@tagName(v.items[v.dominant].form),v.items[v.dominant].share*100,@import("../colony_peek.zig").label(v.trend),v.days}) catch "Pinned colony";
+        var focus:?usize=null;for(v.items[0..v.count],0..)|item,i|{if(item.lineage==self.colonyPeek.focused)focus=i;}
+        const line=if(focus) |i| std.fmt.bufPrint(&text,"Visited {s} · {d:.0}% of patch biomass",.{@tagName(v.items[i].form),v.items[i].share*100}) catch "Visited colony" else if(v.count==0) "Pinned patch: no living colonies" else std.fmt.bufPrint(&text,"Top {s} {d:.0}% · {s} over {d:.1}d",.{@tagName(v.items[v.dominant].form),v.items[v.dominant].share*100,@import("../colony_peek.zig").label(v.trend),v.days}) catch "Pinned colony";
         var bounds:[4]f32=undefined;_=vg.textBounds(0,0,line,&bounds);if(bounds[2]-bounds[0]>width-20)vg.fontSize(12*(width-20)/(bounds[2]-bounds[0]));
         vg.fillColor(nvg.rgb(225,240,241));_=vg.text(10,height-72,line);
         var x:f32=10;
@@ -2074,7 +2094,7 @@ pub const PlayState = struct {
             const w=(width-20)*item.share;
             vg.beginPath();vg.rect(x,height-58,w,7);
             const color=biology_visuals.lineageColor(item.optimum);vg.fillColor(nvg.rgb(color[0],color[1],color[2]));vg.fill();
-            if(index==v.dominant){vg.beginPath();vg.rect(x,height-58,w,7);vg.strokeColor(nvg.rgb(230,252,255));vg.strokeWidth(1);vg.stroke();}
+            if(index==(focus orelse v.dominant)){vg.beginPath();vg.rect(x,height-58,w,7);vg.strokeColor(nvg.rgb(230,252,255));vg.strokeWidth(1);vg.stroke();}
             if(index>0){vg.beginPath();vg.moveTo(x,height-58);vg.lineTo(x,height-51);vg.strokeColor(nvg.rgba(8,25,37,220));vg.strokeWidth(1);vg.stroke();}
             x+=w;
         }
@@ -2311,7 +2331,10 @@ pub const PlayState = struct {
                     const cell = self.planet.microbeCells[point];
                     var c = cell.cohorts[0];
                     for (cell.cohorts[1..]) |cohort| { if (cohort.biomass > c.biomass) c = cohort; }
-                    mobileDetailLabel(vg, game, "Microbial mat · {d:.3} kg C/m²", .{Microbes.biomass(cell)}, px+16, py+62, pw-32);
+                    const visited=if(point==self.selectedPoint)self.colonyPeek.focusedCohort(point,cell) else null;
+                    if(visited)|cohort|c=cohort;
+                    if(visited!=null) mobileDetailLabel(vg,game,"Visited {s} · {d:.3} kg C/m²",.{@tagName(Microbes.producerForm(c)),c.biomass},px+16,py+62,pw-32)
+                    else mobileDetailLabel(vg, game, "Patch biomass · {d:.3} kg C/m²", .{Microbes.biomass(cell)}, px+16, py+62, pw-32);
                     mobileDetailLabel(vg, game, "Water {d:.2}m · {d:.1}°C", .{self.planet.waterMass[point]*self.planet.getKmPerWaterMass()*1000,self.planet.temperature[point]-273.15}, px+16,py+94,pw-32);
                     mobileDetailLabel(vg, game, "Nutrients: {d:.3} kg/m²", .{cell.nutrient},px+16,py+126,pw-32);
                     if (c.biomass > 0) {

@@ -1,0 +1,13 @@
+# Fixed fresh Wetlands all-seed journey (before outcomes)
+
+New question: does the actual optional law3 preview provide visible paid population growth, spread, inherited structure/roots and meaningful observation within seven days? Not a search for survivors or an establishment claim.
+
+Use the frozen `wetlands-preview/src` engine and the already verified public fresh-factory helper. Clock PRNG42, web subdivision6, unchanged generated world seed15021278609987233951. Zero initial founders/roots/soil. One actual Auto-seed ALL initially eligible points transaction, with complete planning purity, count/skip receipt, initial and post-apply resources. If no paid seeds or integrity fails, stop. No nursery, water adjustment, free roots, care, reseeding, coefficient edits or seed search.
+
+Exactly420 actual1440-second scheduler ticks (seven days). Save day0/day3/day7; a separate process resumes day3 for240ticks and must equal uninterrupted day7 complete saved state/RNG. No post-outcome extension. Runtime stop900seconds per process; record host runtime, not browser/device pace. Daily census plus per-tick identity transitions records births, disappeared living IDs (not inferred causes), movement, biomass, generations, occupied patches, six morphology categories and positive-root fates/support. Actual global paid-birth counters are cross-checked against new living IDs. No taxonomic species claim.
+
+Observational-only copied hooks may record source-funded root credits before consumption and actual hydration-function returns with owner/current/entry demand, explicitly not summing duplicate mortality/growth use as separate doses. Root scratch clears normally. First two ticks run with observer off/on from the same saved day0 and require exact endpoints before the long trial. No model arithmetic is changed.
+
+At day0 use actual Find living cluster once, then render fixed portrait390x700; this sets the viewing camera only. Preserve that camera for day7 comparison. Also test actual day7 Find and selection/Peek to identify whether surviving life remains discoverable. Save day7 before the additional presentation-only action, compare non-camera biology/RNG unchanged. Render screenshots must be visually inspected; native software-render proxy, not Android/WebGL/performance proof. Time-to-change is reported from fixed daily/identity records (first paid birth, form change, occupied-patch change), not invented realtime experience.
+
+Retain all outcomes, failures and source hashes. Compress logs/checkpoints; do not duplicate build/cache trees. Main release, preview owner source, persistence laws and deployment stay unchanged. Recommend at most one concrete observed player blocker after results.

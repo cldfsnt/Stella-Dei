@@ -1,0 +1,7 @@
+# Fixed paid-root-allocation diagnostic
+
+Before outcomes: two coupled law3 arms from immutable actual day30 lineage524, cell18327 slot2. Reuse the frozen final-demand shoreline fixture and input law3-initial.json, with only the second arm's root_fraction changed from1/32 to1/4. Total biomass, paid support, carbon/nutrients/water and RNG must be identical at start; aboveground support decreases by the allocated difference. This is a prescribed phenotype intervention, NOT natural evolution or a new law.
+
+Both arms receive the same existing 0mm target-water action, then exactly60×1440s (24h), no refill, parameter adjustment or selected favorable repeats. Normal whole-world reproduction/mutation remains as frozen; no new mutation intervention. Save at12h and24h, then independently reload12h in a fresh process and require exact24h endpoint and continuation traces. Existing actual credit/final-demand consumption instrumentation retained; check finite source-funded credit, owner matching, h*max(entry,current)<=credit and cleared transient state. Report mortality/extinction time, biomass/support/root/aboveground allocation, actual root credits and hydration, offspring, and all negative outcomes. No performance claim.
+
+Control must reproduce prior frozen law3 dry endpoint exactly. Only main fixture setup/output paths may differ from frozen source; no production or model edits. Retain first failures. No further world trials authorized here.

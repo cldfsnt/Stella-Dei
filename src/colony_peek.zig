@@ -15,11 +15,16 @@ pub fn read(cell:M.Cell)View{
  return v;
 }
 pub const Pin=struct{
- cell:?usize=null,since:f64=0,baseline:View=.{},
+ cell:?usize=null,focused:u64=0,focused_form:?M.ProducerForm=null,since:f64=0,baseline:View=.{},
  pub fn clear(self:*Pin)void{self.*=.{};}
  pub fn set(self:*Pin,cell:usize,data:M.Cell,time:f64)void{
   if(!std.math.isFinite(time)){self.clear();return;}
   self.*=.{.cell=cell,.since=time,.baseline=read(data)};
+ }
+ pub fn focusedCohort(self:*Pin,selected:usize,data:M.Cell)?M.Cohort{
+  if(self.cell==null or self.cell.?!=selected){self.focused=0;self.focused_form=null;return null;}
+  if(self.focused!=0 and self.focused_form!=null)for(data.cohorts)|c|{if(c.lineage==self.focused and @import("growth_form_finder.zig").matches(c,self.focused_form.?))return c;};
+  self.focused=0;self.focused_form=null;return null;
  }
  pub fn observe(self:*Pin,data:M.Cell,time:f64)View{
   if(self.cell==null or !std.math.isFinite(time) or time<self.since){self.clear();return .{};}
@@ -49,4 +54,10 @@ test "empty invalid and replacement observations never invent growth"{
  p.set(1,c,0);c.cohorts[2].lineage=100;try std.testing.expectEqual(Trend.turnover,p.observe(c,3*86400).trend);
  c.cohorts[2].biomass=std.math.nan(f32);try std.testing.expectEqual(@as(usize,0),p.observe(c,4*86400).count);
  p.clear();try std.testing.expect(p.cell==null);
+}
+
+test "visited focus clears on reclassification death and selection change"{
+ var c=M.Cell{};c.cohorts[0]=.{.lineage=5,.biomass=0.02,.support_mass=0.001,.organization=0.1,.structure=0.2};var p=Pin{};p.set(4,c,0);p.focused=5;p.focused_form=.branching;
+ try std.testing.expect(p.focusedCohort(4,c)!=null);c.cohorts[0].structure=0;try std.testing.expect(p.focusedCohort(4,c)==null);try std.testing.expectEqual(@as(u64,0),p.focused);
+ p.focused=5;p.focused_form=.rosette;c.cohorts[0].biomass=0;try std.testing.expect(p.focusedCohort(4,c)==null);p.focused=5;p.focused_form=.rosette;try std.testing.expect(p.focusedCohort(3,c)==null);
 }

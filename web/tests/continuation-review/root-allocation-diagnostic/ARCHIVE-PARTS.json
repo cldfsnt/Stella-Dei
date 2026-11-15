@@ -1,0 +1,24 @@
+{
+  "original": "fixed-evidence.tar.gz",
+  "bytes": 19085683,
+  "sha256": "f40fa510b44b06a48cfa75cf2ff0755c008fc3f867b9a282052adae152465b01",
+  "parts": [
+    {
+      "file": "fixed-evidence.tar.gz.part0",
+      "bytes": 8388608,
+      "sha256": "ec691062c6191d7136f47b926dd77ce6e8ae8805f32c2c39f9591d44ad12f287"
+    },
+    {
+      "file": "fixed-evidence.tar.gz.part1",
+      "bytes": 8388608,
+      "sha256": "b06ac80b3d3bb7c2f31374f9248ee695903f3fff82e36d9954a9d8c208f8bf0c"
+    },
+    {
+      "file": "fixed-evidence.tar.gz.part2",
+      "bytes": 2308467,
+      "sha256": "482bccd4c4b20d31c5aa938ed23d937d1be4ca2731ae0b584ace9a437827226e"
+    }
+  ],
+  "reassemble": "cat fixed-evidence.tar.gz.part0 fixed-evidence.tar.gz.part1 fixed-evidence.tar.gz.part2 > fixed-evidence.tar.gz",
+  "reason": "Lossless parts fit connected GitHub request size. Original remains locally; no evidence removed."
+}

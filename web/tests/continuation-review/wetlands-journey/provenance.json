@@ -1,0 +1,52 @@
+{
+  "source_preregistration": "094d344",
+  "harness_commit": "6f69b8b",
+  "engine_owner_unchanged": true,
+  "binary_sha256": "64ac2f824c070ad97dcc4bac09f41f90a4933b79e29adfd2ce7a4763a27661ee",
+  "artifacts": {
+    "day-0.json": {
+      "sha256": "96b765dbf7de6b3ddf17e1912b28209254839b4a8e9c21c1d98010bb2aed3600",
+      "bytes": 9787395
+    },
+    "day-3.json": {
+      "sha256": "63b683d9b03291acb3741bfd192bc4612444a930f12129e57233b1f2b69a6d19",
+      "bytes": 12681494
+    },
+    "day-7.json": {
+      "sha256": "1ca64f84b809902f40c873ae79dfe25c42d81b8537e180ff41caecf3a813f0a1",
+      "bytes": 12817715
+    },
+    "resume-day-7.json": {
+      "sha256": "1ca64f84b809902f40c873ae79dfe25c42d81b8537e180ff41caecf3a813f0a1",
+      "bytes": 12817715
+    },
+    "run.log": {
+      "sha256": "e1ad4a73a1c043193a8e204f8478a5959e9e5abc594ec54d10993a8f9c216a25",
+      "bytes": 333604
+    },
+    "resume.log": {
+      "sha256": "22aa49c367b85468ea0885699923695fb755b0a4e9dbf0d08bbacec3e992338c",
+      "bytes": 211502
+    }
+  },
+  "runs": [
+    {
+      "mode": "main",
+      "exit": 0,
+      "ticks": 420,
+      "elapsed_ms": 10085
+    },
+    {
+      "mode": "resume",
+      "exit": 0,
+      "ticks": 240,
+      "elapsed_ms": 5421
+    }
+  ],
+  "viewport": [
+    390,
+    700
+  ],
+  "observer_two_tick_on_off_exact": true,
+  "day3_restart_exact": true
+}
