@@ -1,0 +1,26 @@
+{
+  "freeze": "60898e3",
+  "viewport": [
+    390,
+    700
+  ],
+  "no_simulation_steps": true,
+  "cases": [
+    {
+      "name": "growth-form-native",
+      "build_exit": 0,
+      "run_exit": 0,
+      "binary_sha256": "9903dfa0f99f207994fa58fecff85269d73d247abd63f31cbdeabb492604f508",
+      "input": "/workspace/scratch/f67c3ac60ca3/site-tmp/wetlands-journey/day-7.json",
+      "input_sha256": "1ca64f84b809902f40c873ae79dfe25c42d81b8537e180ff41caecf3a813f0a1"
+    },
+    {
+      "name": "growth-form-main-native",
+      "build_exit": 0,
+      "run_exit": 0,
+      "binary_sha256": "633703520b4015b96211b553f8acee54645c1753d070f2acefef29cadd679138",
+      "input": "/workspace/scratch/f67c3ac60ca3/site-tmp/root-only-baseline-coordinator/day60/arm-0.json",
+      "input_sha256": "e2a46ebbb52b0fc2f077ece7f78663085088ff57c78bad57c5b3d27810fa79cb"
+    }
+  ]
+}

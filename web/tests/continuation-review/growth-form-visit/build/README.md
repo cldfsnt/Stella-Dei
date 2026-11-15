@@ -1,0 +1,5 @@
+# Final main and Wetlands growth-form visitor builds
+
+Both supported full build.sh runs exited0. Separate pre-build source manifests are unchanged after compilation and include aggregate manifest hashes. Artifact manifests cover every built runtime asset. Main source and optional law3 preview remain distinct. Compared with frozen preview87bf11e, only main/Play/colony_peek/world_ecology changed plus the new growth_form_finder helper; no physics/save/factory authority module changed. Isolated storage and compact/reopenable disclosure were checked in final assets.
+
+Toolchain Zig0.13.0 wasm32-emscripten ReleaseSafe, Emscripten3.1.64 -O2, WebGL2/debugfalse,128MiB initial memory/8MiB stack/growth enabled. Actual native acceptance for mainlegacy and Wetlands is independently owned by grazing; all116 frontend regressions passed. Native preservation claims are same-platform fullstate/RNG comparisons with explicitly allowed camera fields, not cross-platform bit parity or device performance. Module export and browser DOM checks follow separately; compilation is not browserGPU proof. No deployment performed.

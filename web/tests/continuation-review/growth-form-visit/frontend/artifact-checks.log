@@ -1,0 +1,22 @@
+{"visit_type":"function","uninitialized_visit":-1,"wetlands":false,"snapshot":null}
+{"visit_type":"function","uninitialized_visit":-1,"wetlands":true,"snapshot":"{\"status\":\"unavailable\",\"enabled\":false,\"world_serial\":0,\"receipt_available\":false}"}
+{"artifact":"web/dist/index.html","six_rows":true,"zero_disabled":true,"contract":[42,2],"stale_refusal":true,"closed_cancel":true}
+✔ actual shell form buttons bind current sample and cancel safely (1.95821ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10.483562
+{"artifact":"../site-tmp/wetlands-preview/web/dist/index.html","six_rows":true,"zero_disabled":true,"contract":[42,2],"stale_refusal":true,"closed_cancel":true}
+✔ actual shell form buttons bind current sample and cancel safely (1.964399ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10.493567

@@ -1,0 +1,150 @@
+{
+  "LICENSE": {
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "bytes": 35149
+  },
+  "advance-day.js": {
+    "sha256": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "bytes": 4398
+  },
+  "assets-0.bin": {
+    "sha256": "84731fd47ef207adf97171f3918cd06eeb42977b8920efd029854d80ae3f55eb",
+    "bytes": 16777216
+  },
+  "assets-1.bin": {
+    "sha256": "84676ce5ad8112afefe0b17126434abff1192268efd68d0d2edf68337fcc12e6",
+    "bytes": 16777216
+  },
+  "assets-2.bin": {
+    "sha256": "3bb180c6588ac421de22c90f93e7e3f855362470b964e2a2e03cd9ad8aa19997",
+    "bytes": 16777216
+  },
+  "assets-3.bin": {
+    "sha256": "d4c9b38d41f0cea7025115a43f0ca0fceefd530bb940383c0d53125cf3642e8f",
+    "bytes": 14745726
+  },
+  "auto-seed.js": {
+    "sha256": "153067a0b36fe5bca5902a42ff86fff53e65761a50fc68d44fba7c179dcb8448",
+    "bytes": 4276
+  },
+  "colony-transport.js": {
+    "sha256": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "bytes": 8057
+  },
+  "colony-watch-details.js": {
+    "sha256": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "bytes": 1792
+  },
+  "copy-report.js": {
+    "sha256": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "bytes": 619
+  },
+  "gameplay-harness.js": {
+    "sha256": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "bytes": 8751
+  },
+  "gameplay-measure.js": {
+    "sha256": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "bytes": 2836
+  },
+  "habitat-plan.js": {
+    "sha256": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "bytes": 5808
+  },
+  "index.html": {
+    "sha256": "b884b90d9dcf46a1aca08a42b2ad4b672eff2590fb2d252745939611af05a4d4",
+    "bytes": 125101
+  },
+  "index.js": {
+    "sha256": "8aaeb63c707c66a2d6e5f9897b2c5fb4dd73f20ca3dd9ac08e5f8f362913d488",
+    "bytes": 194577
+  },
+  "index.wasm": {
+    "sha256": "83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957",
+    "bytes": 1491130
+  },
+  "life-trend.js": {
+    "sha256": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "bytes": 2447
+  },
+  "offspring-search.js": {
+    "sha256": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e",
+    "bytes": 2202
+  },
+  "patch-watch.js": {
+    "sha256": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "bytes": 2372
+  },
+  "qa-sunlit-fixture/advance-day.js": {
+    "sha256": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "bytes": 4398
+  },
+  "qa-sunlit-fixture/colony-transport.js": {
+    "sha256": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "bytes": 8057
+  },
+  "qa-sunlit-fixture/colony-watch-details.js": {
+    "sha256": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "bytes": 1792
+  },
+  "qa-sunlit-fixture/copy-report.js": {
+    "sha256": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "bytes": 619
+  },
+  "qa-sunlit-fixture/gameplay-measure.js": {
+    "sha256": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "bytes": 2836
+  },
+  "qa-sunlit-fixture/habitat-plan.js": {
+    "sha256": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "bytes": 5808
+  },
+  "qa-sunlit-fixture/index.html": {
+    "sha256": "28d208a919352a069bd21b844f695acd800b36cf926bd854b77564182283b7d1",
+    "bytes": 116753
+  },
+  "qa-sunlit-fixture/life-trend.js": {
+    "sha256": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "bytes": 2447
+  },
+  "qa-sunlit-fixture/patch-watch.js": {
+    "sha256": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "bytes": 2372
+  },
+  "qa-sunlit-fixture/renderer-info.js": {
+    "sha256": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "bytes": 1977
+  },
+  "qa-sunlit-fixture/stella-storage.js": {
+    "sha256": "4c62e690a6b674a092d694c7d94201fdcf4dd9bf109ffc46321872d612f2713a",
+    "bytes": 5171
+  },
+  "qa-sunlit-fixture/touch-controls.js": {
+    "sha256": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "bytes": 4427
+  },
+  "renderer-info.js": {
+    "sha256": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "bytes": 1977
+  },
+  "sandbox-defense.js": {
+    "sha256": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3",
+    "bytes": 2097
+  },
+  "stella-storage.js": {
+    "sha256": "4c62e690a6b674a092d694c7d94201fdcf4dd9bf109ffc46321872d612f2713a",
+    "bytes": 5171
+  },
+  "touch-controls.js": {
+    "sha256": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "bytes": 4427
+  },
+  "webgl-startup-diagnostic.html": {
+    "sha256": "c7489c39370750478ec33990d12a2fc8f4390c9d27b27d1e05689b2656ca2e23",
+    "bytes": 2810
+  },
+  "world-ecology.js": {
+    "sha256": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "bytes": 5502
+  }
+}

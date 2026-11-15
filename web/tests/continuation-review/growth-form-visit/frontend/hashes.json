@@ -1,0 +1,16 @@
+{
+  "main": {
+    "index.html": "b884b90d9dcf46a1aca08a42b2ad4b672eff2590fb2d252745939611af05a4d4",
+    "index.js": "8aaeb63c707c66a2d6e5f9897b2c5fb4dd73f20ca3dd9ac08e5f8f362913d488",
+    "index.wasm": "83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957",
+    "world-ecology.js": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "stella-storage.js": "4c62e690a6b674a092d694c7d94201fdcf4dd9bf109ffc46321872d612f2713a"
+  },
+  "wetlands": {
+    "index.html": "1f55754812fc1f4a407ca858182e38fc7c4664bc69109829a1168e6f754f1548",
+    "index.js": "445c50ca61c04bd2ecdf7615d648a012c8f3802ffce1bdf37f1135834ae01b7c",
+    "index.wasm": "1e0edfc43b856498cca948ad192a90362353cea80632e013478887087c1add65",
+    "world-ecology.js": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "stella-storage.js": "33f675d132fcf457976e25f33de206a3573503f8fb40a6aae11f90ac05e2bfa8"
+  }
+}
