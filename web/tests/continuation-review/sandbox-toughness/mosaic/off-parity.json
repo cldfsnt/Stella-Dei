@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "ticks": 10,
+  "exclusions": "only newly serialized toughness=0 field on every plant; all other save fields/RNG exactly equal"
+}

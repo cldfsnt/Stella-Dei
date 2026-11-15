@@ -1,0 +1,32 @@
+{
+  "input": "site-tmp/foraging-production/warm-actual-end.json",
+  "input_sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+  "resolution": [
+    390,
+    700
+  ],
+  "views": {
+    "close": {
+      "zero_pixel_exact": true,
+      "changed_pixels_025_vs_05": 1786,
+      "ppm_sha256": {
+        "0": "f5e8ceac79263c7495b47582e210c3facfa0c078d59958cedab0232d76e72983",
+        "1": "f5e8ceac79263c7495b47582e210c3facfa0c078d59958cedab0232d76e72983",
+        "2": "1264f2981eca523c173af25e5508a37fe49728631ae3b4848eb6db88938970d7",
+        "3": "540780cf5e1424c7ffdc9f7e48e79d22aa1b23735491db64f4f60d9b3edbcffa"
+      }
+    },
+    "globe": {
+      "zero_pixel_exact": true,
+      "changed_pixels_025_vs_05": 1166,
+      "ppm_sha256": {
+        "0": "13f5b6c41946c5a5f4041d3e5247df2e0cc9c71c37492e287920618381e98a3c",
+        "1": "13f5b6c41946c5a5f4041d3e5247df2e0cc9c71c37492e287920618381e98a3c",
+        "2": "2dffbcd0c048aaaaca68e514efcca086c408bce067faecebf499dc57d59be806",
+        "3": "a9a75cf0c6bc109f965838922608d075f85dff8ddbcd4d66df2df01d23db784e"
+      }
+    }
+  },
+  "runtime": "native ReleaseSafe Zig0.13, existing EGL offscreen desktop OpenGL shim; not browser or device",
+  "production_edited": false
+}

@@ -2088,6 +2088,9 @@ pub const PlayState = struct {
             }
         }
 
+        // Keep every actual rabbit represented without blanketing distant plant cover.
+        // Near badges and the independent 3D meshes/inspection remain unchanged.
+        const marker_scale=@import("../rabbit_marker_scale.zig").scale(self.cameraDistance,self.planet.radius);
         for (self.planet.lifeforms.items) |lifeform| {
             const p = lifeform.position;
             if (p.dot(self.cameraPos.sub(p)) <= 0) continue; // far hemisphere
@@ -2098,11 +2101,11 @@ pub const PlayState = struct {
             if (x < 6 or x > width - 6 or y < toolBottom + 6 or y > height - 90) continue;
             vg.beginPath();
             vg.fillColor(nvg.rgb(255, 178, 70));
-            vg.roundedRect(x - 6, y - 6, 12, 12, 6);
+            vg.roundedRect(x - 6*marker_scale, y - 6*marker_scale, 12*marker_scale, 12*marker_scale, 6*marker_scale);
             vg.fill();
             vg.beginPath();
             vg.fillColor(nvg.rgb(60, 30, 8));
-            vg.roundedRect(x - 2, y - 2, 4, 4, 2);
+            vg.roundedRect(x - 2*marker_scale, y - 2*marker_scale, 4*marker_scale, 4*marker_scale, 2*marker_scale);
             vg.fill();
         }
         vg.beginPath();

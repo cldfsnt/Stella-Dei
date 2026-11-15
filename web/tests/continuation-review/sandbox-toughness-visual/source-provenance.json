@@ -1,0 +1,9 @@
+{
+  "head": "bd6d3c28e126a4111abf40d2afcc6a7677096719",
+  "source": {
+    "simulation/ecology.zig": "55aae7913602ec7d93435d9c102e654aec2e419a57c0da92b6e3c874cd99817c",
+    "states/play.zig": "efe4d09b1a1cd9616d8a18c074283d9058ee0faab42c91701c09b0351f65a7a1",
+    "main.zig": "a351169ef29bce1c8ce200839303d9abdae93e7a3cfe795df73fc7100734de40"
+  },
+  "scope": "isolated render only, prescribed traits, no biology candidate or schema promotion"
+}

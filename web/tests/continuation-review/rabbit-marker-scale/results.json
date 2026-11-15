@@ -1,0 +1,31 @@
+{
+  "input_sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+  "resolution": [
+    390,
+    700
+  ],
+  "native_only": true,
+  "views": {
+    "close": {
+      "pixel_equal": true,
+      "hashes": [
+        "f5e8ceac79263c7495b47582e210c3facfa0c078d59958cedab0232d76e72983",
+        "f5e8ceac79263c7495b47582e210c3facfa0c078d59958cedab0232d76e72983"
+      ]
+    },
+    "globe": {
+      "pixel_equal": false,
+      "hashes": [
+        "13f5b6c41946c5a5f4041d3e5247df2e0cc9c71c37492e287920618381e98a3c",
+        "5a4eb84c2c02322f06ebc995233cb96cbd510e3a3bad679911b155597df4352c"
+      ]
+    },
+    "rabbit-close": {
+      "pixel_equal": true,
+      "hashes": [
+        "aa3440687ba9d9a630b0a1f674109b48c76e6172d0e1d42c029ef696d5d8bb23",
+        "aa3440687ba9d9a630b0a1f674109b48c76e6172d0e1d42c029ef696d5d8bb23"
+      ]
+    }
+  }
+}

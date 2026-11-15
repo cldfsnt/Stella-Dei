@@ -1,0 +1,76 @@
+[
+  {
+    "grazed_arm": 0,
+    "ungrazed_arm": 2,
+    "initial_differences": [
+      "rabbits"
+    ],
+    "initial": [
+      {
+        "d": 0,
+        "patches": 59,
+        "cover": 30.870777444574898,
+        "temperature_min": 292.2015075683594,
+        "temperature_max": 306.6526184082031
+      },
+      {
+        "d": 0.5,
+        "patches": 58,
+        "cover": 30.83016869386927,
+        "temperature_min": 292.089599609375,
+        "temperature_max": 306.4066162109375
+      }
+    ],
+    "grazed_cover": [
+      1.6225595456703055,
+      1.4812335141333688
+    ],
+    "ungrazed_cover": [
+      46.9285757504135,
+      11.706885452527832
+    ],
+    "grazed_over_ungrazed_tender_defense": [
+      0.03457508606908891,
+      0.12652669406733885
+    ],
+    "defense_over_tender_retention_ratio": 3.6594758958664526,
+    "defense_minus_tender_retention": 0.09195160799824995
+  },
+  {
+    "grazed_arm": 1,
+    "ungrazed_arm": 3,
+    "initial_differences": [
+      "rabbits"
+    ],
+    "initial": [
+      {
+        "d": 0,
+        "patches": 59,
+        "cover": 30.83016869386927,
+        "temperature_min": 292.089599609375,
+        "temperature_max": 306.4066162109375
+      },
+      {
+        "d": 0.5,
+        "patches": 58,
+        "cover": 30.870777444574898,
+        "temperature_min": 292.2015075683594,
+        "temperature_max": 306.6526184082031
+      }
+    ],
+    "grazed_cover": [
+      3.2328349633932847,
+      1.1743685508212514
+    ],
+    "ungrazed_cover": [
+      48.80909931960924,
+      11.294690102348344
+    ],
+    "grazed_over_ungrazed_tender_defense": [
+      0.0662342679635246,
+      0.1039752786645365
+    ],
+    "defense_over_tender_retention_ratio": 1.5698109432083702,
+    "defense_minus_tender_retention": 0.03774101070101189
+  }
+]

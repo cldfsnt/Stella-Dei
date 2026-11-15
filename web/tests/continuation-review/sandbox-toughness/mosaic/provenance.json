@@ -1,0 +1,67 @@
+{
+  "head": "6ad08ce3ba69d2321fe1d87c1b57af2cd16e1306",
+  "exit_code": 0,
+  "gate": "four fixed420tick arms; extra10tick continuation excluded from outcomes",
+  "files": [
+    {
+      "path": "../site-tmp/foraging-production/warm-actual-end.json",
+      "sha256": "362c943ce1e6869876a4c2767a85f4debd61602ab2ec0e44000674d60a892187",
+      "bytes": 7044707
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/install/bin/stella-egl",
+      "sha256": "940e2930462d43f4c3ff34fbc62a30a2901a115e30f8826235b44e619f67f402",
+      "bytes": 12198336
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/off-ten.json",
+      "sha256": "5cc8aecde0dc994c7709c291fa3fe77be58d5bf7738b45fcab3b46d885ca850d",
+      "bytes": 7699861
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic-baseline/off-ten.json",
+      "sha256": "bb7e83814002720f58e6fce4c043502f8de214e2f080f2f54558e6f1e8615dbc",
+      "bytes": 7044469
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-0-end.json",
+      "sha256": "ea9d5871c64a1348d71b9df79cd134d41a68f403fe38089824c3953cc219d785",
+      "bytes": 7720091
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-0-start.json",
+      "sha256": "6c268e8086dbc60d9fb212b06e99447aa96ae48d9a67a3c50ac006f2d8b360c6",
+      "bytes": 7700232
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-1-end.json",
+      "sha256": "039364d098e126883aee78a929f61881c69aa6c871e8147eb58f3cc56bcb8769",
+      "bytes": 7719376
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-1-start.json",
+      "sha256": "bc449ad335b55f9ee01d91f530c09909a85337fd06ff85df92bc6fd602c51b8e",
+      "bytes": 7700232
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-2-end.json",
+      "sha256": "0a5dca6787c601f2ba923ba0f7c348775945ec4abc3e06bd31988e443b96f66e",
+      "bytes": 7672073
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-2-start.json",
+      "sha256": "f1eaca117a64f4d37ddc0dbcb64d362140e8fecbb8a4a7bffb68bf7d739761bb",
+      "bytes": 7670305
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-3-end.json",
+      "sha256": "acf1df0ef3cab13050661aba0713e133cac8993bbe04665d87137fe1897bb7e0",
+      "bytes": 7672091
+    },
+    {
+      "path": "../site-tmp/toughness-mosaic/arm-3-start.json",
+      "sha256": "e73424d4579ac45299f5c6d67dabde1d81178f922d7f0edf3a5c7c571560b707",
+      "bytes": 7670305
+    }
+  ]
+}
