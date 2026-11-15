@@ -1,0 +1,89 @@
+1/56 qa_manual_transport_session.test.bounded options exact ID and one-use commit with no world mutation except slots...OK
+2/56 qa_manual_transport_session.test.unpause selection environment cell and world invalidation are atomic...OK
+3/56 qa_manual_transport_session.test.bad source IDs and explicit cancellation refuse...OK
+4/56 qa_manual_transport_session.test.successful manual move clears observations but preserves selection camera-independent model and pause...OK
+5/56 qa_manual_transport_session.test.explicit receipt inspection never selects replacement colony and reset forgets cause...OK
+6/56 qa_manual_transport_session.test.manual success forgets only moved pending arrival without emitting events; refusal preserves tracker...OK
+7/56 colony_peek.test.actual shares and same-lineage changes are distinct from turnover...OK
+8/56 colony_peek.test.empty invalid and replacement observations never invent growth...OK
+9/56 community_sample.test.sampled counts are explicit unknown until captured and reject old world or clock...OK
+10/56 propagule_feedback.test.only real registered cross-cell arrivals can later report failure once...OK
+11/56 propagule_feedback.test.bounded tracker evicts old arrivals without inventing failures...OK
+12/56 propagule_feedback.test.tracked older colony loss remains observable without claiming failed establishment...OK
+13/56 simulation.microbes.test.inherited motility finds real adjacent prey without duplicates and improves survival versus immobile control...MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+OK
+14/56 simulation.microbes.test.movement respects adjacency habitat occupancy oxygen and charges exact resource cost...OK
+15/56 simulation.microbes.test.motility has a benign photosynthetic cost and cannot overwrite full patches...OK
+16/56 simulation.microbes.test.real inherited grazing consumes prey and funds offspring in darkness, unlike controls...GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+OK
+17/56 simulation.microbes.test.grazing is bounded, order independent, and conservative...OK
+18/56 simulation.microbes.test.feeding investment costs photosynthesis and requires oxygen for grazing...OK
+19/56 simulation.microbes.test.bounded day night food web keeps accounting through repeated real births...FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=336
+OK
+20/56 simulation.microbes.test.carbon and nutrients conserved across growth death recycling and transfer...OK
+21/56 simulation.microbes.test.darkness carbon starvation and drying do not create growth...OK
+22/56 simulation.microbes.test.live competing trait distribution responds to environment, order independent...OK
+23/56 simulation.microbes.test.full cohort slots reject propagule without dropping mass or replacing lineage...OK
+24/56 simulation.microbes.test.feeding remains finite and conservative at exposed simulated step sizes...GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+OK
+25/56 simulation.microbes.test.one coarse relocation per simulation instant with no ghost cohort...OK
+26/56 simulation.microbes.test.read-only relocation explanations share actual eligibility without advancing randomness...OK
+27/56 simulation.microbes.test.producer tissue is conserved subset through growth grazing reproduction and movement...OK
+28/56 simulation.microbes.test.real inherited organization grows support with finite light and fair sharing...PRODUCER32 expressed=21
+OK
+29/56 simulation.microbes.test.infinitesimal producer tissue is continuous with zero-support baseline...OK
+30/56 simulation.microbes.test.production organization trades open-water growth for continuous crowded light competition...PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+OK
+31/56 simulation.microbes.test.all-support and rounded daughter subsets remain valid without changing carbon...OK
+32/56 simulation.microbes.test.aquatic growth forms require actual tissue and follow inherited traits...OK
+33/56 simulation.microbes.test.producer architecture is functional continuous and resource conserving...OK
+34/56 simulation.microbes.test.simple seeded colonies evolve multiple real aquatic forms without assigned traits...EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+OK
+35/56 simulation.microbes.test.exploratory propagule is paid conserved and cannot chain without new growth...OK
+36/56 simulation.microbes.test.film adaptation requires real tissue and inherited structure, never dry or frozen fixation...OK
+37/56 simulation.microbes.test.film growth is resource funded with conservative paid offspring and unchanged water input...OK
+38/56 simulation.microbes.test.film tradeoff matrix synthetic controls do not prove natural evolution...FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+OK
+39/56 simulation.microbes.test.smooth aquatic boundary and fluctuating shoreline remain conservative...OK
+40/56 simulation.microbes.test.tall supported exposed mortality meets aquatic limit continuously...OK
+41/56 simulation.microbes.test.zero water and zero paid tissue limits have no survival windfall...OK
+42/56 simulation.microbes.test.rare mutation distribution preserves ordinary offspring and six draws with funded inheritance...RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+OK
+43/56 simulation.microbes.test.rare mutation bounded at extremes deterministic and never funds tissue...OK
+44/56 simulation.microbes.test.actual rare thermal offspring can help or harm under matched environments...RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+OK
+45/56 simulation.microbes.test.represented receivers never exceed their supplied growth budget...OK
+46/56 simulation.microbes.test.actual removals remain bounded across small and near-total debits...OK
+47/56 patch_watch.test.exact patch flux, empty ticks, no identity/lifetime dependence...OK
+48/56 patch_watch.test.pause selection load clock and invalid flux stop immediately...OK
+49/56 patch_watch.test.no grazing records zero and zero simulated duration is not inferred...OK
+50/56 patch_watch.test.owner isolation and tick-boundary deadline...OK
+51/56 patch_watch.test.bad time and counter overflow stop without wrapping...OK
+52/56 patch_watch.test.ecology flux sums are atomic and selected-patch only...OK
+53/56 patch_watch.test.population snapshots are bounded finite actual living cohorts...OK
+54/56 patch_watch.test.empty start can receive arrivals at tick end; no-step and invalid timing freeze state...OK
+55/56 colony_snapshot.test.exact string IDs beyond JS integer range and max u64...OK
+56/56 colony_snapshot.test.bounded finite unique living identities with tiny survivors...OK
+All 56 tests passed.

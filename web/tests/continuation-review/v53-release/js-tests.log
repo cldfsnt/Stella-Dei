@@ -1,0 +1,60 @@
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ web/tests/colony-labels.test.cjs (108.724849ms)
+✔ explicit review and one-use whole colony execution, exact string identity (3.429075ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.625392ms)
+✔ ineligible source or full target cannot prepare (0.33231ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.663459ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (0.831963ms)
+✔ unknown execution result is not reported as safe failure or retried (0.42535ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (1.834233ms)
+✔ post-execution malformed receipt never claims successful move (0.537269ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (0.39793ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (1.74579ms)
+✔ changing source or destination consumes pending ticket without refreshing options (0.273673ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ web/tests/colony-watch-details.test.cjs (109.884556ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ web/tests/colony-watch-ui.test.cjs (114.553593ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ web/tests/compact-life.test.cjs (200.581922ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.793892ms)
+✔ restricted or missing clipboard stays manually copyable (0.615176ms)
+✔ missing or oversized report never writes or displays stale data (0.275795ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ web/tests/gameplay-measure.test.cjs (137.716912ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ web/tests/harness-mode.test.cjs (144.077403ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ web/tests/life-trend.test.cjs (519.180247ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (1.452678ms)
+✔ empty interval and no ticks are explicit (0.241004ms)
+✔ pause menu hidden guard cancels without unpause (0.158318ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.241614ms)
+✔ hard deadline and invalid result terminate (0.142895ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.203677ms)
+✔ invalid or missing pulse fields stop safely (4.310753ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.165709ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ web/tests/renderer-info.test.cjs (118.084432ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ web/tests/scene-resolution.test.cjs (103.422727ms)
+PASS post-water watch: explicit resume, running, stale world/selection, relabel on pause, zero/refusal and close/cancel; observation begins after edit
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ web/tests/shell.test.cjs (155.390193ms)
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ web/tests/storage-upgrade.test.cjs (102.551936ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ web/tests/storage.test.cjs (90.05915ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ web/tests/touch-controls.test.cjs (72.134009ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 639.304224

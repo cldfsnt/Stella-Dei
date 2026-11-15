@@ -117,7 +117,8 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     var support_respired:f32=0;
     for(&cell.cohorts) |*c| {
         if(c.biomass<=0)continue;
-        const upkeep=@min(c.biomass,supportMaintenancePerDay(c.*)*days*support_scale);
+        const wanted_upkeep=@min(c.biomass,supportMaintenancePerDay(c.*)*days*support_scale);
+        const upkeep=actualDecrease(c.biomass,wanted_upkeep);
         if(upkeep>0){const factor=1-upkeep/c.biomass;c.biomass-=upkeep;c.support_mass=@min(c.biomass,c.support_mass*factor);cell.nutrient+=upkeep*nutrient_per_carbon;support_respired+=upkeep;}
         const fitness=thermalFitness(env.temperature,c.optimum);
         const dry=env.depth_km<0.0002 and env.temperature>260 and env.temperature<355;
@@ -129,7 +130,8 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
         const contact=filmContact(c.*,env.depth_km);
         const mortality:f32=if(film) dry_mortality*(1-contact)+film_mortality*contact else if(dry) dry_mortality else if(!habitable(env.depth_km,env.temperature)) 4 else 0.04+(1-fitness)*0.7+0.10*c.structure+0.10*c.feeding+0.05*c.mobility;
         const exposed=std.math.clamp((producerHeightMeters(c.*)-env.depth_km*1000)/0.1,0,1)*(if(film) filmExposureMultiplier(c.*,env.depth_km) else @as(f32,1));
-        const dead=c.biomass*(1-@exp(-(mortality+3*exposed)*days));
+        const wanted_dead=c.biomass*(1-@exp(-(mortality+3*exposed)*days));
+        const dead=actualDecrease(c.biomass,wanted_dead);
         if(c.biomass>0)c.support_mass*=1-dead/c.biomass;
         c.biomass-=dead;c.support_mass=@min(c.support_mass,c.biomass);cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
         // Below 25% of one propagule, recycle unresolved failed establishment.
@@ -156,10 +158,15 @@ pub fn step(cell:*Cell,env:Environment,elapsed:f32) Flux {
     }
     var potential:f32=0;for(potentials)|v|potential+=v;
     const growth=@min(potential,@min(space,@min(available,cell.nutrient/nutrient_per_carbon)));
+    var actual_growth:f64=0;
     if(potential>0)for(&cell.cohorts,0..) |*c,i| {
-        const share=growth*potentials[i]/potential;c.biomass+=share;c.support_mass=@min(c.biomass,c.support_mass+share*c.organization);c.reproduction_credit+=share;
+        const budget=@min(@as(f64,growth)-actual_growth,@as(f64,growth)*potentials[i]/potential);
+        var after:f32=@floatCast(@as(f64,c.biomass)+@max(0,budget));
+        if(@as(f64,after)-c.biomass>budget)after=std.math.nextAfter(f32,after,c.biomass);
+        const share=after-c.biomass;c.biomass=after;actual_growth+=share;
+        c.support_mass=@min(c.biomass,boundedAdd(c.support_mass,@as(f64,share)*c.organization));c.reproduction_credit=boundedAdd(c.reproduction_credit,share);
     };
-    cell.nutrient=@max(0,cell.nutrient-growth*nutrient_per_carbon);result.fixed=growth;
+    cell.nutrient=@max(0,cell.nutrient-@as(f32,@floatCast(actual_growth*nutrient_per_carbon)));result.fixed=@floatCast(actual_growth);
     var grazing_respired:f32=0;
     if(habitable(env.depth_km,env.temperature)){
         const grazing=graze(cell,days,@max(0,env.oxygen_carbon_capacity-support_respired));
@@ -941,4 +948,45 @@ test "actual rare thermal offspring can help or harm under matched environments"
         found[direction]=true;if(found[0] and found[1])break;
     }
     try std.testing.expect(found[0] and found[1]);
+}
+
+fn boundedAdd(old:f32,budget:f64)f32{
+ var after:f32=@floatCast(@as(f64,old)+budget);
+ if(@as(f64,after)-old>budget)after=std.math.nextAfter(f32,after,old);
+ return after;
+}
+fn actualDecrease(old:f32,wanted:f32)f32{
+ var after=old-wanted;
+ if(@as(f64,old)-after>@as(f64,wanted))after=std.math.nextAfter(f32,after,old);
+ return old-after;
+}
+
+// Directed receivers retain uncredited roundoff rather than creating paid tissue
+// or offspring credit. This does not make every f32 resource store exact.
+test "represented receivers never exceed their supplied growth budget" {
+    for (0..10000) |i| {
+        const old:f32=0.00001+@as(f32,@floatFromInt(i))*0.0001;
+        const budget:f64=0.0009028147906064987;
+        const after=boundedAdd(old,budget);
+        try std.testing.expect(after>=old);
+        try std.testing.expect(@as(f64,after)-old<=budget);
+    }
+    for ([_]f32{0,0.000001,0.02,0.5}) |old| {
+        try std.testing.expectEqual(old,boundedAdd(old,0));
+        for ([_]f64{1e-12,0.00001,0.01,0.2}) |budget| {
+            const after=boundedAdd(old,budget);
+            try std.testing.expect(after>=old);
+            try std.testing.expect(@as(f64,after)-old<=budget);
+        }
+    }
+}
+test "actual removals remain bounded across small and near-total debits" {
+    for ([_]f32{0.000001,0.003,0.1,0.9}) |old| {
+        for ([_]f32{0,0.001,0.25,0.5,0.9,1}) |fraction| {
+            const wanted=old*fraction;
+            const removed=actualDecrease(old,wanted);
+            try std.testing.expect(removed>=0 and removed<=wanted);
+            try std.testing.expect(old-removed>=0);
+        }
+    }
 }

@@ -1,0 +1,23 @@
+[
+  {
+    "world": "early",
+    "sha256": "897ae2b3eaccf023263829612adc7e036eead70b0eda75df48ab5af8c6ac1755",
+    "game_time": 86400.0,
+    "exit": 0,
+    "wall_seconds": 19.193281263000245
+  },
+  {
+    "world": "day30",
+    "sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "game_time": 2592000.0,
+    "exit": 0,
+    "wall_seconds": 17.452947161997145
+  },
+  {
+    "world": "day60",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "game_time": 5184000.0,
+    "exit": 0,
+    "wall_seconds": 17.96083381599965
+  }
+]
