@@ -2,7 +2,8 @@
 """Isolated v72 beta integration. Never modifies production src."""
 from pathlib import Path
 import shutil,subprocess,sys,json,hashlib
-r=Path(__file__).resolve().parents[2];o=r.parent/'site-tmp/origin-land-beta/src';old=r.parent/'site-tmp/mature-daylight/src/simulation'
+r=Path(__file__).resolve().parents[2];o=Path(sys.argv[1]).resolve() if len(sys.argv)>1 else r.parent/'site-tmp/origin-land-beta/src';old=r.parent/'site-tmp/mature-daylight/src/simulation'
+assert o.resolve().is_relative_to((r.parent/'site-tmp').resolve()),'isolated site-tmp output only'
 assert not o.exists(),'refuse overwrite of sibling save work; use explicit separate tree for regeneration'
 shutil.copytree(r/'src',o)
 subprocess.run([sys.executable,str(r/'web/tests/root-beta-microbes-patch.py'),str(o/'simulation/microbes.zig')],check=True)
@@ -92,6 +93,7 @@ for base,idx in [('self.planet','selectedPoint'),('planet','point')]:s=s.replace
 s=s.replace('    pub fn saveGame(self: *PlayState) !void {','    pub fn saveGame(self: *PlayState) !void {\n        if(self.planet.landBeta.enabled)return error.BetaRequiresModernSave;')
 p.write_text(s)
 subprocess.run([sys.executable,str(r/'web/tests/patch-land-beta-legacy-thermal.py'),str(o/'simulation/planet.zig')],check=True)
+subprocess.run([sys.executable,str(r/'web/tests/patch-origin-land-borrowed.py'),str(o)],check=True)
 subprocess.run([sys.executable,str(r/'web/tests/origin-land-beta-save-patch.py'),str(o)],check=True)
-(o.parent/'source-manifest.json').write_text(json.dumps({'production_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=r,text=True).strip(),'files':{str(p.relative_to(o)):hashlib.sha256(p.read_bytes()).hexdigest()for p in o.rglob('*.zig')}},indent=2)+'\n')
+(o.parent/'source-manifest.json').write_text(json.dumps({'borrowed_cell_reference':'d726898; original arithmetic, value wrappers preserved; no coefficient hoist', 'production_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=r,text=True).strip(),'files':{str(p.relative_to(o)):hashlib.sha256(p.read_bytes()).hexdigest()for p in o.rglob('*.zig')}},indent=2)+'\n')
 print(o)

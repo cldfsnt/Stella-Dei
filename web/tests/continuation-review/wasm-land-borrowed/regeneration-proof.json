@@ -1,0 +1,17 @@
+{
+  "simulation/planet.zig": {
+    "sha256": "874f0dc1532bb76a87ebe45538fe6e22b5815af64d04ec6a1315d33df6833dda",
+    "exact_tested_source": true,
+    "normalization": "only two unused QA timing-global declarations stripped from tested Planet"
+  },
+  "simulation/capillary_bucket.zig": {
+    "sha256": "771ce002d6be5835a9e34cbfb7c590f7c46e6d0aa705a30c5654b15aa5393eff",
+    "exact_tested_source": true,
+    "normalization": "none"
+  },
+  "simulation/shared_soil.zig": {
+    "sha256": "04923b4af5972c029b4f75ba0e6020ceceddd42437d925d0590249cbc392f632",
+    "exact_tested_source": true,
+    "normalization": "none"
+  }
+}

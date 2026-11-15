@@ -1,0 +1,12 @@
+{
+  "named_executable_sections_identical": true,
+  "old_main368": [
+    "(call $__memcpy (local.get $21) (i32.add (local.get $6) (i32.const 4144) ) (i32.const 368) )",
+    "(call $__memcpy (i32.add (local.get $11) (i32.const 264) ) (i32.add (i32.load offset=2708 (local.get $4) ) (local.get $7) ) (i32.const 368) )",
+    "(call $__memcpy (i32.add (local.get $11) (i32.const 1176) ) (i32.add (local.get $11) (i32.const 264) ) (i32.const 368) )"
+  ],
+  "new_main368": [
+    "(call $__memcpy (local.get $22) (i32.add (local.get $7) (i32.const 4144) ) (i32.const 368) )"
+  ],
+  "two_column_copies_removed": true
+}

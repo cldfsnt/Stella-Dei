@@ -1,0 +1,5 @@
+{'arm': 'baseline', 'index': 0, 'ms_per_tick': 32.71091795}
+{'arm': 'candidate', 'index': 1, 'ms_per_tick': 28.17241501666667}
+{'arm': 'candidate', 'index': 2, 'ms_per_tick': 29.659629716666664}
+{'arm': 'baseline', 'index': 3, 'ms_per_tick': 33.31892928333333}
+{'start': '2026-11-15T19:31:12.572336+00:00', 'end': '2026-11-15T19:31:23.508083+00:00', 'rows': [{'arm': 'baseline', 'index': 0, 'ms_per_tick': 32.71091795}, {'arm': 'candidate', 'index': 1, 'ms_per_tick': 28.17241501666667}, {'arm': 'candidate', 'index': 2, 'ms_per_tick': 29.659629716666664}, {'arm': 'baseline', 'index': 3, 'ms_per_tick': 33.31892928333333}], 'baseline': 33.014923616666664, 'candidate': 28.916022366666667, 'percent': -12.415298298405819}

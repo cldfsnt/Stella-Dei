@@ -1,0 +1,9 @@
+# Initial immersion prototype: HOLD, not an accepted law
+
+Separate copy `site-tmp/origin-immersion/src`; no production or original beta tree edits. Preparer adds an explicit experimental physiology_law2, schema9/formatv2; law1 retains schema8/formatv1 and omits default physiology field from JSON. Save apply copies validated config unchanged; no automatic law2 enable. These wire changes are drafted, NOT yet schema-compiled or native-continuation tested.
+
+Initial focused compilation/test exited0 (log retained), including exact law1 versus frozen reference across96 depth/temperature/root combinations, geometric endpoints, temperature/depth guards, dry/zero-height unchanged, wet dark mortality and source-budget checks. Imported core tests also run. No whole-world trial or performance claim. Nutrient recycling means zero initial nutrient is not a zero total nutrient budget; that test is only a loose preliminary cap, not complete resource accounting proof.
+
+**Independent review found a blocking trait discontinuity:** any positive architecture height can become fully immersed at fixed water depth while exactly zero height retains legacy response. This also affects root_fraction approaching1 versus exactly1. Passing existing controls does not validate this behavior. Implementation paused before schema tests or whole-world outcomes; do not use this draft to infer survival or promote it.
+
+Existing producer height represents support architecture, not basal body thickness. A coherent physical alternative needs a declared basal thickness from actual biomass and a volumetric carbon density, which this model does not specify. No arbitrary floor/density has been chosen. A continuous weighting from existing paid tissue fraction avoids the unlock but does not fully remove drying stress for submerged organisms; it is not an equivalent fix. Resolve this geometry contract before further implementation. Legacy and prior beta law1 sources remain unchanged.
