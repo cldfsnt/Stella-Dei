@@ -1,0 +1,12 @@
+install
++- install stella-egl
+   +- zig build-exe stella-egl ReleaseSafe native 1 errors
+/workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/src/simulation/planet.zig:1765:304: error: expected statement, found ';'
+error: the following command failed with 1 compilation errors:
+/workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig build-exe -cflags -DFONS_NO_STDIO -DSTBI_NO_STDIO -fno-sanitize=undefined -- web/tests/../../deps/miniaudio.c web/tests/../../deps/nanovg/src/fontstash.c web/tests/../../deps/nanovg/src/stb_image.c web/tests/egl-propagule-visual-shim.c -OReleaseSafe -I deps -I deps/nanovg/src -I deps/web-vendor/glfw/include --dep build_options --dep gl --dep glfw --dep zalgebra --dep zigimg --dep nanovg -Mroot=/workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/src/main.zig -Mbuild_options=/workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/cache/c/dae75f2f4fc24c799774c029add80b30/options.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mgl=deps/gl3v3.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mglfw=deps/web-vendor/mach-glfw/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzalgebra=deps/web-vendor/zalgebra/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzigimg=deps/web-vendor/zigimg/zigimg.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mnanovg=deps/nanovg/src/nanovg.zig -lc --cache-dir /workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/cache --global-cache-dir /home/agent/.cache/zig --name stella-egl --listen=- 
+Build Summary: 1/4 steps succeeded; 1 failed (disable with --summary none)
+install transitive failure
++- install stella-egl transitive failure
+   +- zig build-exe stella-egl ReleaseSafe native 1 errors
+error: the following build command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/cache/o/a5d05d6b614e521fdb7f055f9b9592ff/build /workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig web/tests /workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/cache /home/agent/.cache/zig --seed 0x9b866df -Z3c00b65bfd0db577 --prefix /workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/install -Dsource=/workspace/scratch/f67c3ac60ca3/site-tmp/origin-final-demand-native/src/main.zig

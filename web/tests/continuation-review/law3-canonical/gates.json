@@ -1,0 +1,132 @@
+{
+  "early-off-baseline": {
+    "sha256": "f1f590482e4961a562c16b377992ab0f993cdf1b0681240edc18c677cb36a7c2",
+    "ticks": 72,
+    "zero_exact": true,
+    "restart_exact": null,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=false soil_bytes=0 vapor_bytes=0 scratch_bytes=0 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=0 owner_bytes=0"
+    ]
+  },
+  "early-off-candidate": {
+    "sha256": "f1f590482e4961a562c16b377992ab0f993cdf1b0681240edc18c677cb36a7c2",
+    "ticks": 72,
+    "zero_exact": true,
+    "restart_exact": null,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=false soil_bytes=0 vapor_bytes=0 scratch_bytes=0 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=0 owner_bytes=0"
+    ]
+  },
+  "early-law3-baseline": {
+    "sha256": "bfda77f052705ebbce3fdcc3f5c8ed45df39dc1e6a6a1fb0f983c2e20ee1f8cd",
+    "ticks": 72,
+    "zero_exact": true,
+    "restart_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "early-law3-candidate": {
+    "sha256": "bfda77f052705ebbce3fdcc3f5c8ed45df39dc1e6a6a1fb0f983c2e20ee1f8cd",
+    "ticks": 72,
+    "zero_exact": true,
+    "restart_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "populated-law3-baseline": {
+    "sha256": "dfed0da1e87944a35e0c53f314ac4c9a51157ac8a0b1180273474d2e0eafaab6",
+    "ticks": 72,
+    "zero_exact": true,
+    "restart_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "populated-law3-candidate": {
+    "sha256": "dfed0da1e87944a35e0c53f314ac4c9a51157ac8a0b1180273474d2e0eafaab6",
+    "ticks": 72,
+    "zero_exact": true,
+    "restart_exact": true,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "historical-law1-baseline": {
+    "sha256": "8777a0d7e9a202b7290a0c3d9e5fa6372ad3b7247f03511690b2c06f9076bb83",
+    "ticks": 4,
+    "zero_exact": true,
+    "restart_exact": null,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "historical-law1-candidate": {
+    "sha256": "8777a0d7e9a202b7290a0c3d9e5fa6372ad3b7247f03511690b2c06f9076bb83",
+    "ticks": 4,
+    "zero_exact": true,
+    "restart_exact": null,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "historical-law2-baseline": {
+    "sha256": "9a68fdedf1e140c28fa4abfcd413be0ee2dea9d269ce2a5072814becdedbc258",
+    "ticks": 4,
+    "zero_exact": true,
+    "restart_exact": null,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "historical-law2-candidate": {
+    "sha256": "9a68fdedf1e140c28fa4abfcd413be0ee2dea9d269ce2a5072814becdedbc258",
+    "ticks": 4,
+    "zero_exact": true,
+    "restart_exact": null,
+    "layout": [
+      "LAYOUT plant=12 planet=3008 cells=40962",
+      "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+      "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784"
+    ]
+  },
+  "native-law3": {
+    "exact": true,
+    "sha256": "0289d001b988e0e104e6c4a5da45d483c7275cb513ed8fd2325aece601791f6a"
+  },
+  "native-law2": {
+    "exact": true,
+    "sha256": "8f24cb690ef824e0e9d9b66f9fc38a418dc36c96d8b7024c62a1afbd1758780b"
+  },
+  "native-law1": {
+    "exact": true,
+    "sha256": "de94af039ded9ce6720ab8d93c138f6a7a1fa886a4188d503b0dd3a117224065"
+  },
+  "native-populated100mm": {
+    "exact": true,
+    "sha256": "df1a3340dcd89597f4d2b0d44cdaffc5d75c4d2a61bbb5a509a33e6902188645"
+  },
+  "native-legacy": {
+    "exact": true,
+    "sha256": "3a029459e945a1376f9f4baa3af0b046f3e07b8793d00f34af107cc1a35130ec"
+  }
+}

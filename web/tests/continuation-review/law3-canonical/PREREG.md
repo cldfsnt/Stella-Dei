@@ -1,0 +1,9 @@
+# Canonical isolated law3 integration gate, frozen before outcomes
+
+Only combine frozen final-demand law3 (012cd08) with verified readonly borrowed-Cell patch (28854f1). No rejected live-loop, coefficient hoist, phase changes or new parameters. Separate source copies and actual Planet.simulate Node/WASM harness, ReleaseSafe, cooperative single-thread width4. A=frozen law3, B=same with borrowed helper. Model outcomes must match byte-exact on same target; native separately matches frozen native, not cross-target SIMD equality.
+
+Three fixed timing inputs: genuine early/default empty off snapshot; same initial beta-world snapshot explicitly identified law3; actual day30 law3 player100mm snapshot (depth-3-arm-0-0). No favorable input search. Before timing: zero-tick typed state equality, actual72tick exact A/B endpoints, new-process72+2vs74 for both law3 scenarios, historical law1/law2 exact4tick outputs, actual native4tick counterparts including legacy/100mm. No timing if integrity fails.
+
+Exactly one ABBA per timing input, twelve runs total. Each fresh process restores identical input,12warmup +60timed1440s ticks. Timer includes complete simulation+clock increment, excludes parse/load/capture/serialization. Verify every timed endpoint against its own correctness output. Report all rows, per-world paired direction/medians and uncertainty, no repeats/tuning. This compares equivalent law3 implementations, not benefit/cost of changed ecology relative to legacy physics. No frame, rendering, browser or deviceFPS claim.
+
+Memory report must include authoritative f64 soil/vapor, scratch vapor/coefficient, f64 amount plus u64 lineage arrays, cohort/Cell sizes and cell-array bytes; allocated WASM heap capacity if obtainable, labeled including harness I/O rather than exact game resident memory. Production and frozen historical sources untouched. Future temporary preview remains separately authorized, not part of this test.

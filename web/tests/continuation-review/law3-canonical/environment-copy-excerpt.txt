@@ -1,0 +1,123 @@
+    8697: 20 3b        	local.get	59
+    8699: 29 03 00     	i64.load	0
+    869c: 37 03 00     	i64.store	0
+    869f: 20 03        	local.get	3
+    86a1: 41 c8 0c     	i32.const	1608
+    86a4: 6a           	i32.add 
+    86a5: 41 10        	i32.const	16
+    86a7: 6a           	i32.add 
+    86a8: 20 3c        	local.get	60
+    86aa: 29 03 00     	i64.load	0
+    86ad: 37 03 00     	i64.store	0
+    86b0: 20 03        	local.get	3
+    86b2: 41 c8 0c     	i32.const	1608
+    86b5: 6a           	i32.add 
+    86b6: 41 18        	i32.const	24
+    86b8: 6a           	i32.add 
+    86b9: 20 21        	local.get	33
+    86bb: 29 03 00     	i64.load	0
+    86be: 37 03 00     	i64.store	0
+    86c1: 20 03        	local.get	3
+    86c3: 41 c8 0c     	i32.const	1608
+    86c6: 6a           	i32.add 
+    86c7: 41 20        	i32.const	32
+    86c9: 6a           	i32.add 
+    86ca: 20 20        	local.get	32
+    86cc: 29 03 00     	i64.load	0
+    86cf: 37 03 00     	i64.store	0
+    86d2: 20 03        	local.get	3
+    86d4: 41 c8 0c     	i32.const	1608
+    86d7: 6a           	i32.add 
+    86d8: 41 28        	i32.const	40
+    86da: 6a           	i32.add 
+    86db: 20 3d        	local.get	61
+    86dd: 29 03 00     	i64.load	0
+    86e0: 37 03 00     	i64.store	0
+    86e3: 20 03        	local.get	3
+    86e5: 41 c8 0c     	i32.const	1608
+    86e8: 6a           	i32.add 
+    86e9: 41 30        	i32.const	48
+    86eb: 6a           	i32.add 
+    86ec: 20 3e        	local.get	62
+    86ee: 29 03 00     	i64.load	0
+    86f1: 37 03 00     	i64.store	0
+    86f4: 20 03        	local.get	3
+    86f6: 41 c8 0c     	i32.const	1608
+    86f9: 6a           	i32.add 
+    86fa: 41 38        	i32.const	56
+    86fc: 6a           	i32.add 
+    86fd: 20 3f        	local.get	63
+    86ff: 29 03 00     	i64.load	0
+    8702: 37 03 00     	i64.store	0
+    8705: 20 03        	local.get	3
+    8707: 20 39        	local.get	57
+    8709: 38 02 98 0d  	f32.store	1688
+    870d: 20 03        	local.get	3
+    870f: 20 38        	local.get	56
+    8711: 38 02 94 0d  	f32.store	1684
+    8715: 20 03        	local.get	3
+    8717: 20 1b        	local.get	27
+    8719: 38 02 90 0d  	f32.store	1680
+    871d: 20 03        	local.get	3
+    871f: 20 37        	local.get	55
+    8721: 38 02 8c 0d  	f32.store	1676
+    8725: 20 03        	local.get	3
+    8727: 20 05        	local.get	5
+    8729: 38 02 88 0d  	f32.store	1672
+    872d: 20 03        	local.get	3
+    872f: 20 08        	local.get	8
+    8731: 29 03 00     	i64.load	0
+    8734: 37 03 c8 0c  	i64.store	1608
+    8738: 20 03        	local.get	3
+    873a: 2b 03 80 06  	f64.load	768
+    873e: 21 04        	local.set	4
+    8740: 20 2b        	local.get	43
+    8742: 41 08        	i32.const	8
+    8744: 6a           	i32.add 
+    8745: 20 40        	local.get	64
+    8747: 29 03 00     	i64.load	0
+    874a: 37 02 00     	i64.store	0:p2align=2
+    874d: 20 2b        	local.get	43
+    874f: 20 03        	local.get	3
+    8751: 29 03 88 02  	i64.load	264
+    8755: 37 02 00     	i64.store	0:p2align=2
+    8758: 20 2a        	local.get	42
+    875a: 20 03        	local.get	3
+    875c: 28 00 81 02  	i32.load	257:p2align=0
+    8760: 36 00 00     	i32.store	0:p2align=0
+    8763: 20 2a        	local.get	42
+    8765: 41 03        	i32.const	3
+    8767: 6a           	i32.add 
+    8768: 20 03        	local.get	3
+    876a: 41 81 02     	i32.const	257
+    876d: 6a           	i32.add 
+    876e: 41 03        	i32.const	3
+    8770: 6a           	i32.add 
+    8771: 28 00 00     	i32.load	0:p2align=0
+    8774: 36 00 00     	i32.store	0:p2align=0
+    8777: 20 03        	local.get	3
+    8779: 41 01        	i32.const	1
+    877b: 3a 00 b0 0d  	i32.store8	1712
+    877f: 20 03        	local.get	3
+    8781: 41 00        	i32.const	0
+    8783: 3a 00 ad 0d  	i32.store8	1709
+    8787: 20 03        	local.get	3
+    8789: 20 41        	local.get	65
+    878b: 3a 00 ac 0d  	i32.store8	1708
+    878f: 20 03        	local.get	3
+    8791: 41 b8 0d     	i32.const	1720
+    8794: 6a           	i32.add 
+    8795: 20 01        	local.get	1
+    8797: 20 04        	local.get	4
+    8799: 20 47        	local.get	71
+    879b: 20 18        	local.get	24
+    879d: 20 03        	local.get	3
+    879f: 41 c8 0c     	i32.const	1608
+    87a2: 6a           	i32.add 
+    87a3: 20 13        	local.get	19
+    87a5: 41 0a        	i32.const	10
+    87a7: 20 0a        	local.get	10
+    87a9: 10 d6 80 80 80 00    	call	86
+			000087aa:  R_WASM_FUNCTION_INDEX_LEB	simulation.shared_soil.stepBorrowed+0
+    87af: 20 03        	local.get	3
+    87b1: 2d 00 b0 0e  	i32.load8_u	1840

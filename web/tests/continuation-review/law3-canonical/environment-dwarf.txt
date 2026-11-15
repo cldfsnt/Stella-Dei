@@ -1,0 +1,12 @@
+ <1><5b345>: Abbrev Number: 7 (DW_TAG_structure_type)
+    <5b346>   DW_AT_name        : (indirect string, offset: 0xc7ee): simulation.microbes.Environment
+    <5b34a>   DW_AT_byte_size   : 104
+    <5b34b>   DW_AT_alignment   : 8
+ <2><5b34c>: Abbrev Number: 8 (DW_TAG_member)
+    <5b34d>   DW_AT_name        : (indirect string, offset: 0x100ec): root_credit
+ <1><5b859>: Abbrev Number: 7 (DW_TAG_structure_type)
+    <5b85a>   DW_AT_name        : (indirect string, offset: 0xc7ed): ?simulation.microbes.Environment
+    <5b85e>   DW_AT_byte_size   : 112
+    <5b85f>   DW_AT_alignment   : 8
+ <2><5b860>: Abbrev Number: 8 (DW_TAG_member)
+    <5b861>   DW_AT_name        : (indirect string, offset: 0x4067d): data

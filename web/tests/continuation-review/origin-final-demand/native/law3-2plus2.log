@@ -1,0 +1,17 @@
+EGL surface=0x2a140200 context=0x2a140810
+info: Loading states.play.PlayState...
+info: 0.0000001303861 km / water ton
+info: seed 0x713206e44a617596
+info: Sea Level: 4.838867 km
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+LAND_NATIVE beginOrigin_idempotent=true invalid_version_law_atomic=true physiology_atomic=true
+FINAL_DEMAND saved_reload_discards_transient_receipts=true
+BASAL_ROUTE actual_physiology=1211 actual_root_demand_evaluations=2
+FINAL_DEMAND post_step_receipts_consumed=true
+LAND_NATIVE legacy_reset_off=true
+LAND_GATE ticks=2 full_reload_exact=true bytes=12661254

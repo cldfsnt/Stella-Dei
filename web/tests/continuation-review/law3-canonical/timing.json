@@ -1,0 +1,95 @@
+{
+  "start": "2026-11-15T20:16:49.964153+00:00",
+  "end": "2026-11-15T20:17:20.186373+00:00",
+  "rows": [
+    {
+      "scenario": "early-off",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 13.544889066666665
+    },
+    {
+      "scenario": "early-off",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 13.91665425
+    },
+    {
+      "scenario": "early-off",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 13.505640683333333
+    },
+    {
+      "scenario": "early-off",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 13.445949633333333
+    },
+    {
+      "scenario": "early-law3",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 38.257420149999994
+    },
+    {
+      "scenario": "early-law3",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 28.662129833333335
+    },
+    {
+      "scenario": "early-law3",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 31.48732703333333
+    },
+    {
+      "scenario": "early-law3",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 32.570501566666664
+    },
+    {
+      "scenario": "populated-law3",
+      "index": 0,
+      "arm": "baseline",
+      "ms_per_tick": 35.0473479
+    },
+    {
+      "scenario": "populated-law3",
+      "index": 1,
+      "arm": "candidate",
+      "ms_per_tick": 34.285849549999995
+    },
+    {
+      "scenario": "populated-law3",
+      "index": 2,
+      "arm": "candidate",
+      "ms_per_tick": 33.871296583333326
+    },
+    {
+      "scenario": "populated-law3",
+      "index": 3,
+      "arm": "baseline",
+      "ms_per_tick": 33.790068766666664
+    }
+  ],
+  "summary": {
+    "early-off": {
+      "reference_ms": 13.495419349999999,
+      "canonical_ms": 13.711147466666667,
+      "percent": 1.5985284419240298
+    },
+    "early-law3": {
+      "reference_ms": 35.413960858333326,
+      "canonical_ms": 30.074728433333334,
+      "percent": -15.076631632249649
+    },
+    "populated-law3": {
+      "reference_ms": 34.41870833333333,
+      "canonical_ms": 34.078573066666664,
+      "percent": -0.9882278654171794
+    }
+  }
+}

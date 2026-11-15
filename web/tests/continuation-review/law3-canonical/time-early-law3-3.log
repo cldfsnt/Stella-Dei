@@ -1,0 +1,7 @@
+LAYOUT plant=12 planet=3008 cells=40962
+BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88
+ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784
+FIRST_TICK ms=32.829440999999974 stages={ 0e0, 0e0, 0e0, 0e0 } sub={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+ATMOSPHERE_SUBSTAGES ms={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+WASM_PLANET ticks=72 cells=40962 width=4 parallel=1 total_ms=1954.2300939999998 temperature_ms=0 liquid_wind_ms=0 atmosphere_ms=0 ecology_ms=0
+WASM_HEAP_CAPACITY bytes=134217728 includes_harness_io=1

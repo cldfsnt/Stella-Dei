@@ -1,0 +1,43 @@
+{
+  "read_only_existing_logs": true,
+  "new_simulations": 0,
+  "analysis_sha256": "cac6c641094b081ae071dc3cee37811c3a0847db16e5dd37486f36d4ae4725ae",
+  "inputs": [
+    {
+      "path": "../site-tmp/origin-shoreline/depth-3-arm-0-0.json",
+      "sha256": "be5e86d6df33a8bdcbef957d87cd9cbd9a8881f948300a90faa7629288ceefc3"
+    },
+    {
+      "path": "../site-tmp/origin-shoreline/depth-3-arm-0-60.json",
+      "sha256": "0260ad471d75b474eb2f9fd68692b2662ef6b295242610e2c84a2ff6f89725c9"
+    },
+    {
+      "path": "../site-tmp/origin-shoreline/main-3-0.log",
+      "sha256": "d219ed9d5f16abf8764a31be7e8ecc498d8337e2f4395fd79bdd7ac2bec77cc6"
+    },
+    {
+      "path": "../site-tmp/origin-basal-shoreline/depth-3-arm-0-0.json",
+      "sha256": "bee91a8467891859a759398e4d28120e1ffc30246fff67b3b9c28b9717377026"
+    },
+    {
+      "path": "../site-tmp/origin-basal-shoreline/depth-3-arm-0-60.json",
+      "sha256": "e9aecb2f3324627155b04d7f928e86ddec3b23e1ca1676465084f0e3fd0a0c4d"
+    },
+    {
+      "path": "../site-tmp/origin-basal-shoreline/main-3-0.log",
+      "sha256": "2350b86630cb5bb0639b6ae39323b4c202c58edc59edc63dc2ec92c5413ecced"
+    },
+    {
+      "path": "../site-tmp/origin-final-demand-shoreline/depth-3-arm-0-0.json",
+      "sha256": "9289770a5225a68696c95e93c43ae904fe73e584a99bb43cca265e3a93d23f1d"
+    },
+    {
+      "path": "../site-tmp/origin-final-demand-shoreline/depth-3-arm-0-60.json",
+      "sha256": "b704da4672586202bcac5d6ad3f0c6bb5349624037c97e0db85acf864be06951"
+    },
+    {
+      "path": "../site-tmp/origin-final-demand-shoreline/main-3-0.log",
+      "sha256": "9e4de0663e598ec1c32e398f20a7ae8813a92d8cded2235fc6470ff6855dc4ad"
+    }
+  ]
+}
