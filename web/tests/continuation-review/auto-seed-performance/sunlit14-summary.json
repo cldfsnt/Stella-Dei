@@ -1,0 +1,106 @@
+[
+  {
+    "arm": 0,
+    "populated": false,
+    "start_living": 54,
+    "end_living": 58,
+    "glyphs_before": 6,
+    "glyphs_after": 6,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 9.68531085,
+        "median_ms": 9.191538,
+        "max_ms": 20.178621
+      },
+      "render_ns": {
+        "mean_ms": 8.2136123,
+        "median_ms": 7.9424915,
+        "max_ms": 12.133034
+      },
+      "full_ns": {
+        "mean_ms": 17.898923149999998,
+        "median_ms": 17.159694,
+        "max_ms": 29.720912
+      }
+    }
+  },
+  {
+    "arm": 1,
+    "populated": true,
+    "start_living": 7987,
+    "end_living": 11805,
+    "glyphs_before": 6,
+    "glyphs_after": 6,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 12.58454015,
+        "median_ms": 12.3082065,
+        "max_ms": 17.738014
+      },
+      "render_ns": {
+        "mean_ms": 9.05232505,
+        "median_ms": 8.324001,
+        "max_ms": 24.182402
+      },
+      "full_ns": {
+        "mean_ms": 21.6368652,
+        "median_ms": 20.684884,
+        "max_ms": 36.455906
+      }
+    }
+  },
+  {
+    "arm": 2,
+    "populated": true,
+    "start_living": 7987,
+    "end_living": 11805,
+    "glyphs_before": 6,
+    "glyphs_after": 6,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 11.789875683333333,
+        "median_ms": 11.606611,
+        "max_ms": 14.673921
+      },
+      "render_ns": {
+        "mean_ms": 8.096596683333333,
+        "median_ms": 7.79173,
+        "max_ms": 13.906755
+      },
+      "full_ns": {
+        "mean_ms": 19.886472366666666,
+        "median_ms": 19.629319,
+        "max_ms": 24.549364
+      }
+    }
+  },
+  {
+    "arm": 3,
+    "populated": false,
+    "start_living": 54,
+    "end_living": 58,
+    "glyphs_before": 6,
+    "glyphs_after": 6,
+    "same_variant_full_save_rng_exact": true,
+    "timings": {
+      "physics_ns": {
+        "mean_ms": 9.824883300000002,
+        "median_ms": 9.6941355,
+        "max_ms": 13.888627
+      },
+      "render_ns": {
+        "mean_ms": 8.591722366666668,
+        "median_ms": 8.330194,
+        "max_ms": 12.537403
+      },
+      "full_ns": {
+        "mean_ms": 18.41660566666667,
+        "median_ms": 17.7860495,
+        "max_ms": 23.363517
+      }
+    }
+  }
+]

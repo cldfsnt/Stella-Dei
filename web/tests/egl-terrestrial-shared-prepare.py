@@ -14,6 +14,11 @@ s=s.replace('if(c.biomass<=0 or c.root_fraction==0 or c.support_mass<=0)continue
 s=s.replace('const request=P.lowerSum(wants);const denominator=P.upperSum(wants);','const root_request=P.lowerSum(wants);var all=[_]f64{wants[0],wants[1],wants[2],wants[3],bare};std.mem.sort(f64,&all,{},std.sort.asc(f64));var request:f64=0;var denominator:f64=0;for(all)|x|if(x>0){request=std.math.nextAfter(f64,request+x,0);denominator=std.math.nextAfter(f64,denominator+x,std.math.inf(f64));};if(!std.math.isFinite(denominator))return null;')
 s=s.replace('if(request>0)std.debug.print(', 'if(denominator>0)out.bare_credit=@min(bare,P.downProduct(receipt.funded,P.downRatio(bare,denominator)));\n if(root_request>0)std.debug.print(')
 s=s.replace('VAPOR_ROOT','SHARED_ROOT')
+s=s.replace('//! Root-only post-advection exchange. No abiotic phases, stores or return escrow.','//! Shared finite-soil exchange at the abiotic phase; transient root credits consumed later. No escrow.')
+s=s.replace(' return out;\n}',r''' if(root_request>0)std.debug.print("SHARED_ALLOCATION {{\"bare_request\":{d},\"bare_credit\":{d},\"denominator\":{d},\"funded\":{d}}}\n",.{bare,out.bare_credit,denominator,receipt.funded});
+ return out;
+}''')
+
 (o/'simulation/shared_soil.zig').write_text(s)
 p=o/'simulation/capillary_bucket.zig';s=p.read_text()
 s=s.replace('pub const Params = struct {','pub const Params = struct { cell:?@import("microbes.zig").Cell=null, environment:?@import("microbes.zig").Environment=null, conductance:u8=10,')

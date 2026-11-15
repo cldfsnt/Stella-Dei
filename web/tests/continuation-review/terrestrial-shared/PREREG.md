@@ -1,0 +1,13 @@
+# Shared finite-soil exchange: isolated fixed-input gate
+
+Authorized after archived two-tick/halved-timestep negative; frozen design0773385, implementationbc5b557/c00dbe1 before ecological outcomes. No production changes.
+
+Use original same Sunlit14 donor44/target29441 setup and original conditioning law: actual Water+1m,1440s conditioning,Water−,manual transport. Restore that exact frozen conditioned state for4arms: old/root0,old/root.25,new/root0,new/root.25. Two1440s actual coupled ticks,48minutes total. No more timestep sweep, refill, new donor, mutation or7dayrun.
+
+New law: bare-soil potential W*(1−exp(−exposed_seconds/86400)), capped by remaining SAME inherited atmospheric evaporation demand. Existing1mm capacity,1mm/day infiltration and root conductance10/day unchanged. One-day soil-access time is an explicit uncalibrated game-scale hypothesis matching wetting and Advance-day scale, not botanical calibration. Root requests use paid tissue and normalized W/C (C fixed1), current frond demand, temperature/depth/exposure. All five simultaneous demands share one finite soil debit/vapor receipt; canonical sorted sums/downward proportional receipts; bare water earns no root physiology. Existing practical dual arithmetic/2^-20 source-relative bridge gate unchanged.
+
+Compute root receipts at abiotic phase from pre-column cohort/depth/light; apply transient h once in later biological step, bypass old post-advection withdrawal. Root exposure created by standing-water depletion during that column is delayed to next tick; this target is alreadydry, so that issue does not affect this gate. Vapor advection follows physical receipt normally. Empty/dead patches still evaporate and recharge. No protected pool. Roots use actual current physical water, not a nominal recharge amount.
+
+Feature switch is private global QA state, NOT persisted new model configuration. Version11 own state reload equality inherited from original fixture is only state roundtrip under the held law; it does not establish production-compatible law persistence/continuation or disabled legacy trajectory equivalence. Promotion requires explicit saved law/version and lifecycle design.
+
+Required gates: unchanged original setup and old-arm outcome records; exact source/receiver-funded root and bare credits and no doubled biology withdrawal; same practical receipt budget; valid finite pools; focused slot permutation/zero/invalid/cold/deep tests; actual48minute endpoints and all failures retained. Root0/new isolates bare law from root hydration. Do not call a geometry-only allocation difference hydration benefit or infer land establishment from48minutes.

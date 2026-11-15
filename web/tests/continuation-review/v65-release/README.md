@@ -1,0 +1,11 @@
+# v65 release: all-point seeding, grouped tools, recent world life
+
+Runtime fork master bf5a1f9129d591902af878439197ffe32889aa9c, matching local bc5b557afcd1c996200bccb031e58fd8fe893b80 tree6398cedfa17d33b30d269f59cd4a816576f19a35. Production build frozen516765feafb16f3581d9bb6cd0ed37127bd7eec4;243 source hashes verified from committed blobs, not concurrent research worktree.89 JS tests and full WASM pass.
+
+Existing owner-private Site deployed successfully2026-11-15T14:46:54.669524Z. Source f75265269637133a5fa44bd0dee5c145a7fbf1e9; deployment appgdep_6af9c5d5fd988191bbeba9006fb15a4a; saved version appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_e2441092fde48191997f7b92fb044c34. Audience unchanged. URL https://stella-dei-browser-lab.workspace-823194.chatgpt.site . Build v65 · Seed the world and watch recent life.
+
+Archive stella-v65-deploy.tar.gz SHA256 a0902b4fa5354f799c57eff2b41ce26ca6651f3f348ac47202af349fde4aad3f;40 members,36 manifest hashes verified, no mock or diagnostic fixtures. WASM509a885b1a00f93fb0266cb73a38374b5ec5ef804f0745b5a10cd3fdeeb19e57; JS a5302860dde8f269fd0bc8e0974f9b7722a0f6df27724875fdc619cb5ab01735; releaseHTML8c366f5bdfbd4817013e0fc4031b72b8f47f6cac894c6860f9a8817bafedb26c.
+
+Actual native transaction7933 initial eligible points received7933 existing-resource-paid seeds, exact sequential reference, atomic cancel/stale/OOM, save/reload/continuation pass. Actual4h0births5physiology colony deaths reconciled. Session observer up to24 simulated hours in hourly buckets, reset on load; not complete lifetime/all-cause mortality or species count. Main World stats opens global summary; mobile groups Plant/Observe/God tools/World/Speed. Browser358px mock verifies controls/warnings/navigation only, not WebGL or device.
+
+Pre-apply exact count warns large populations may slow simulation/rendering, save first to restore; cancel before Apply changes nothing. Memory preflight disclosed. No silent cap. Natural60 fixed profile2365 added seeds showed increased frame cost; separately7933 input was timed during a sibling compilation14:45:00–08UTC, so its higher medians cannot estimate an isolated slowdown. All repeated endpoints/RNG exact. Neither is a device/worst-case rendering claim. Schema6/model5 preserved; isolated soil-root prototype not shipped.
