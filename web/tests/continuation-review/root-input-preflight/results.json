@@ -1,0 +1,1643 @@
+[
+  {
+    "path": "natural60-day30.json",
+    "sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "bytes": 10452371,
+    "version": 6,
+    "model_revision": 5,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 2592000.0,
+    "days": 30.0,
+    "cells": 40962,
+    "serialized_cohorts": 18,
+    "living": 18,
+    "occupied": 10,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "stats"
+    ],
+    "retention_mutation_present": false,
+    "retention_mutation": null,
+    "cohort_inventory": {
+      "biomass": {
+        "present": 18,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 18,
+        "nonfinite": 0,
+        "sum": 0.20058576529845595,
+        "minimum": 0.003154275706037879,
+        "maximum": 0.02962562069296837
+      },
+      "support_mass": {
+        "present": 18,
+        "absent": 0,
+        "explicit_zero": 12,
+        "nonzero": 6,
+        "nonfinite": 0,
+        "sum": 0.0021020515196141787,
+        "minimum": 0.0,
+        "maximum": 0.0010087540140375495
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 18,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 0,
+        "absent": 18,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "stored_water": {
+        "present": 0,
+        "absent": 18,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 819.2199231956765,
+        "minimum": 0.00023760019394103438,
+        "maximum": 0.02306394837796688
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40951,
+        "nonzero": 11,
+        "nonfinite": 0,
+        "sum": 0.27968078349658754,
+        "minimum": 0.0,
+        "maximum": 0.07642566412687302
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 5,
+        "nonzero": 40957,
+        "nonfinite": 0,
+        "sum": 1644965158896.169,
+        "minimum": 0.0,
+        "maximum": 166226144.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 46024692.46081111,
+        "minimum": 0.005936260800808668,
+        "maximum": 2725.551513671875
+      }
+    },
+    "accepted_input_scope": true,
+    "reasons": []
+  },
+  {
+    "path": "natural60-day60.json",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "bytes": 10474653,
+    "version": 6,
+    "model_revision": 5,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 5184000.0,
+    "days": 60.0,
+    "cells": 40962,
+    "serialized_cohorts": 64,
+    "living": 64,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "stats"
+    ],
+    "retention_mutation_present": false,
+    "retention_mutation": null,
+    "cohort_inventory": {
+      "biomass": {
+        "present": 64,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 2.5916175625752658,
+        "minimum": 0.002724584424868226,
+        "maximum": 0.27053937315940857
+      },
+      "support_mass": {
+        "present": 64,
+        "absent": 0,
+        "explicit_zero": 12,
+        "nonzero": 52,
+        "nonfinite": 0,
+        "sum": 0.15789770668432412,
+        "minimum": 0.0,
+        "maximum": 0.022413022816181183
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 64,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 0,
+        "absent": 64,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "stored_water": {
+        "present": 0,
+        "absent": 64,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.9808200863772,
+        "minimum": 0.0001784085325198248,
+        "maximum": 0.043200064450502396
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40899,
+        "nonzero": 63,
+        "nonfinite": 0,
+        "sum": 4.851763272192329,
+        "minimum": 0.0,
+        "maximum": 0.35300344228744507
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644901469450.3345,
+        "minimum": 0.0,
+        "maximum": 166214960.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 45080627.734586835,
+        "minimum": 0.004666859284043312,
+        "maximum": 2808.931884765625
+      }
+    },
+    "accepted_input_scope": true,
+    "reasons": []
+  },
+  {
+    "path": "grazing-coupled/arm-0-day90.json",
+    "sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "bytes": 10464284,
+    "version": 6,
+    "model_revision": 5,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 7776000.0,
+    "days": 90.0,
+    "cells": 40962,
+    "serialized_cohorts": 41,
+    "living": 41,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "stats"
+    ],
+    "retention_mutation_present": false,
+    "retention_mutation": null,
+    "cohort_inventory": {
+      "biomass": {
+        "present": 41,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 41,
+        "nonfinite": 0,
+        "sum": 2.009137849090621,
+        "minimum": 0.0027052508667111397,
+        "maximum": 0.23113888502120972
+      },
+      "support_mass": {
+        "present": 41,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 37,
+        "nonfinite": 0,
+        "sum": 0.15000839743498526,
+        "minimum": 0.0,
+        "maximum": 0.03432658687233925
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 41,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 0,
+        "absent": 41,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "stored_water": {
+        "present": 0,
+        "absent": 41,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 819.0390679484117,
+        "minimum": 8.918235107557848e-05,
+        "maximum": 0.0556001178920269
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40897,
+        "nonzero": 65,
+        "nonfinite": 0,
+        "sum": 4.088567151018651,
+        "minimum": 0.0,
+        "maximum": 0.2136520892381668
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 3,
+        "nonzero": 40959,
+        "nonfinite": 0,
+        "sum": 1644833239739.823,
+        "minimum": 0.0,
+        "maximum": 166207424.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44260161.552870065,
+        "minimum": 0.003696393221616745,
+        "maximum": 2878.6015625
+      }
+    },
+    "accepted_input_scope": true,
+    "reasons": []
+  },
+  {
+    "path": "retention-coupled/arm-0.json",
+    "sha256": "41a41638d82cdc0e203372632c566689822347a4800cf5f8464b14172d0f024f",
+    "bytes": 10474044,
+    "version": 8,
+    "model_revision": 7,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 6048000.0,
+    "days": 70.0,
+    "cells": 40962,
+    "serialized_cohorts": 56,
+    "living": 56,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "retention_allocation",
+      "stored_water",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [
+      "retention_allocation",
+      "stored_water"
+    ],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "retention_mutation",
+      "stats"
+    ],
+    "retention_mutation_present": true,
+    "retention_mutation": {
+      "law": 1,
+      "enabled": false,
+      "stream_seed": 0
+    },
+    "cohort_inventory": {
+      "biomass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 56,
+        "nonfinite": 0,
+        "sum": 2.422194801038131,
+        "minimum": 0.002494433196261525,
+        "maximum": 0.22126615047454834
+      },
+      "support_mass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 7,
+        "nonzero": 49,
+        "nonfinite": 0,
+        "sum": 0.16816638450352517,
+        "minimum": 0.0,
+        "maximum": 0.031496353447437286
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 56,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "stored_water": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.997762460509,
+        "minimum": 0.0001626890734769404,
+        "maximum": 0.047200072556734085
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40898,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 4.787686825729907,
+        "minimum": 0.0,
+        "maximum": 0.30863940715789795
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644879104840.8262,
+        "minimum": 0.0,
+        "maximum": 166213584.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44790872.35409153,
+        "minimum": 0.00431402213871479,
+        "maximum": 2843.5078125
+      }
+    },
+    "accepted_input_scope": false,
+    "reasons": [
+      "unsupported schema/model identity; no field-dropping migration",
+      "experimental cohort/cell/config fields present"
+    ]
+  },
+  {
+    "path": "retention-coupled/arm-1.json",
+    "sha256": "4382e60ca824e5727aadae48aa4d84b4be101a2733e370a55011eaed8bdfaa33",
+    "bytes": 10475115,
+    "version": 8,
+    "model_revision": 7,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 6048000.0,
+    "days": 70.0,
+    "cells": 40962,
+    "serialized_cohorts": 58,
+    "living": 58,
+    "occupied": 38,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "retention_allocation",
+      "stored_water",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [
+      "retention_allocation",
+      "stored_water"
+    ],
+    "extra_cell_fields": [
+      "liquid_return",
+      "vapor_return"
+    ],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "retention_mutation",
+      "stats"
+    ],
+    "retention_mutation_present": true,
+    "retention_mutation": {
+      "law": 1,
+      "enabled": true,
+      "stream_seed": 0
+    },
+    "cohort_inventory": {
+      "biomass": {
+        "present": 58,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 58,
+        "nonfinite": 0,
+        "sum": 2.4319423667620867,
+        "minimum": 0.0025503772776573896,
+        "maximum": 0.22126615047454834
+      },
+      "support_mass": {
+        "present": 58,
+        "absent": 0,
+        "explicit_zero": 6,
+        "nonzero": 52,
+        "nonfinite": 0,
+        "sum": 0.17110284091708017,
+        "minimum": 0.0,
+        "maximum": 0.031463008373975754
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 58,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 58,
+        "absent": 0,
+        "explicit_zero": 58,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "stored_water": {
+        "present": 58,
+        "absent": 0,
+        "explicit_zero": 58,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.9967876342853,
+        "minimum": 0.00018181516497861594,
+        "maximum": 0.047200072556734085
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40898,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 4.784545625094324,
+        "minimum": 0.0,
+        "maximum": 0.3160959482192993
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 1,
+        "absent": 40961,
+        "explicit_zero": 0,
+        "nonzero": 1,
+        "nonfinite": 0,
+        "sum": 8.989470138662231e-06,
+        "minimum": 8.989470138662231e-06,
+        "maximum": 8.989470138662231e-06
+      },
+      "vapor_return": {
+        "present": 1,
+        "absent": 40961,
+        "explicit_zero": 0,
+        "nonzero": 1,
+        "nonfinite": 0,
+        "sum": 6.926800984406385e-06,
+        "minimum": 6.926800984406385e-06,
+        "maximum": 6.926800984406385e-06
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644879104840.8262,
+        "minimum": 0.0,
+        "maximum": 166213584.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44790872.35409153,
+        "minimum": 0.00431402213871479,
+        "maximum": 2843.5078125
+      }
+    },
+    "accepted_input_scope": false,
+    "reasons": [
+      "unsupported schema/model identity; no field-dropping migration",
+      "experimental cohort/cell/config fields present"
+    ]
+  },
+  {
+    "path": "retention-coupled/arm-2.json",
+    "sha256": "af0d8bf810efbb339ee54a73766b4b6cfeadccc78fd91f8364a813086371e30c",
+    "bytes": 10474044,
+    "version": 8,
+    "model_revision": 7,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 6048000.0,
+    "days": 70.0,
+    "cells": 40962,
+    "serialized_cohorts": 56,
+    "living": 56,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "retention_allocation",
+      "stored_water",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [
+      "retention_allocation",
+      "stored_water"
+    ],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "retention_mutation",
+      "stats"
+    ],
+    "retention_mutation_present": true,
+    "retention_mutation": {
+      "law": 1,
+      "enabled": false,
+      "stream_seed": 1
+    },
+    "cohort_inventory": {
+      "biomass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 56,
+        "nonfinite": 0,
+        "sum": 2.422194801038131,
+        "minimum": 0.002494433196261525,
+        "maximum": 0.22126615047454834
+      },
+      "support_mass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 7,
+        "nonzero": 49,
+        "nonfinite": 0,
+        "sum": 0.16816638450352517,
+        "minimum": 0.0,
+        "maximum": 0.031496353447437286
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 56,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "stored_water": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.997762460509,
+        "minimum": 0.0001626890734769404,
+        "maximum": 0.047200072556734085
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40898,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 4.787686825729907,
+        "minimum": 0.0,
+        "maximum": 0.30863940715789795
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644879104840.8262,
+        "minimum": 0.0,
+        "maximum": 166213584.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44790872.35409153,
+        "minimum": 0.00431402213871479,
+        "maximum": 2843.5078125
+      }
+    },
+    "accepted_input_scope": false,
+    "reasons": [
+      "unsupported schema/model identity; no field-dropping migration",
+      "experimental cohort/cell/config fields present"
+    ]
+  },
+  {
+    "path": "retention-coupled/arm-3.json",
+    "sha256": "e09e29f126bd4fc3ac75da56cb8fa1672ed39b5f3cb724a6909f4b6007659efe",
+    "bytes": 10474113,
+    "version": 8,
+    "model_revision": 7,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 6048000.0,
+    "days": 70.0,
+    "cells": 40962,
+    "serialized_cohorts": 56,
+    "living": 56,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "retention_allocation",
+      "stored_water",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [
+      "retention_allocation",
+      "stored_water"
+    ],
+    "extra_cell_fields": [
+      "liquid_return",
+      "vapor_return"
+    ],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "retention_mutation",
+      "stats"
+    ],
+    "retention_mutation_present": true,
+    "retention_mutation": {
+      "law": 1,
+      "enabled": true,
+      "stream_seed": 1
+    },
+    "cohort_inventory": {
+      "biomass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 56,
+        "nonfinite": 0,
+        "sum": 2.4221947113983333,
+        "minimum": 0.002494433196261525,
+        "maximum": 0.22126615047454834
+      },
+      "support_mass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 7,
+        "nonzero": 49,
+        "nonfinite": 0,
+        "sum": 0.16816642314613606,
+        "minimum": 0.0,
+        "maximum": 0.031496353447437286
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 56,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 55,
+        "nonzero": 1,
+        "nonfinite": 0,
+        "sum": 0.03125,
+        "minimum": 0.0,
+        "maximum": 0.03125
+      },
+      "stored_water": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.9977624740131,
+        "minimum": 0.0001626890734769404,
+        "maximum": 0.047200072556734085
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40898,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 4.787686944939196,
+        "minimum": 0.0,
+        "maximum": 0.30863940715789795
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 1,
+        "absent": 40961,
+        "explicit_zero": 0,
+        "nonzero": 1,
+        "nonfinite": 0,
+        "sum": 0.00012122712617275815,
+        "minimum": 0.00012122712617275815,
+        "maximum": 0.00012122712617275815
+      },
+      "vapor_return": {
+        "present": 1,
+        "absent": 40961,
+        "explicit_zero": 0,
+        "nonzero": 1,
+        "nonfinite": 0,
+        "sum": 6.1030428117908e-06,
+        "minimum": 6.1030428117908e-06,
+        "maximum": 6.1030428117908e-06
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644879104840.8262,
+        "minimum": 0.0,
+        "maximum": 166213584.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44790872.35409153,
+        "minimum": 0.00431402213871479,
+        "maximum": 2843.5078125
+      }
+    },
+    "accepted_input_scope": false,
+    "reasons": [
+      "unsupported schema/model identity; no field-dropping migration",
+      "experimental cohort/cell/config fields present"
+    ]
+  },
+  {
+    "path": "retention-coupled/arm-4.json",
+    "sha256": "83f54c8a60ccda1ce58dd547b79b33f78b9212ad23e59eb50af6c8e272406caf",
+    "bytes": 10474045,
+    "version": 8,
+    "model_revision": 7,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 6048000.0,
+    "days": 70.0,
+    "cells": 40962,
+    "serialized_cohorts": 56,
+    "living": 56,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "retention_allocation",
+      "stored_water",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [
+      "retention_allocation",
+      "stored_water"
+    ],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "retention_mutation",
+      "stats"
+    ],
+    "retention_mutation_present": true,
+    "retention_mutation": {
+      "law": 1,
+      "enabled": false,
+      "stream_seed": 42
+    },
+    "cohort_inventory": {
+      "biomass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 56,
+        "nonfinite": 0,
+        "sum": 2.422194801038131,
+        "minimum": 0.002494433196261525,
+        "maximum": 0.22126615047454834
+      },
+      "support_mass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 7,
+        "nonzero": 49,
+        "nonfinite": 0,
+        "sum": 0.16816638450352517,
+        "minimum": 0.0,
+        "maximum": 0.031496353447437286
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 56,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "stored_water": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.997762460509,
+        "minimum": 0.0001626890734769404,
+        "maximum": 0.047200072556734085
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40898,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 4.787686825729907,
+        "minimum": 0.0,
+        "maximum": 0.30863940715789795
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644879104840.8262,
+        "minimum": 0.0,
+        "maximum": 166213584.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44790872.35409153,
+        "minimum": 0.00431402213871479,
+        "maximum": 2843.5078125
+      }
+    },
+    "accepted_input_scope": false,
+    "reasons": [
+      "unsupported schema/model identity; no field-dropping migration",
+      "experimental cohort/cell/config fields present"
+    ]
+  },
+  {
+    "path": "retention-coupled/arm-5.json",
+    "sha256": "cd8fc049ed5ce08286468ca2d4949808649a4834fdc397caf84024d2233b02a6",
+    "bytes": 10474059,
+    "version": 8,
+    "model_revision": 7,
+    "mode": "origin",
+    "encoding": "sparse_indexed",
+    "game_time": 6048000.0,
+    "days": 70.0,
+    "cells": 40962,
+    "serialized_cohorts": 56,
+    "living": 56,
+    "occupied": 37,
+    "duplicate_sparse_indices": 0,
+    "cohort_fields": [
+      "biomass",
+      "efficiency",
+      "feeding",
+      "generation",
+      "last_from",
+      "last_move_time",
+      "last_to",
+      "lifetime_grazed",
+      "lineage",
+      "mobility",
+      "optimum",
+      "organization",
+      "parent",
+      "relocations",
+      "reproduction_credit",
+      "retention_allocation",
+      "stored_water",
+      "structure",
+      "support_mass"
+    ],
+    "extra_cohort_fields": [
+      "retention_allocation",
+      "stored_water"
+    ],
+    "extra_cell_fields": [],
+    "origin_keys": [
+      "cells",
+      "cohort_encoding",
+      "model_revision",
+      "retention_mutation",
+      "stats"
+    ],
+    "retention_mutation_present": true,
+    "retention_mutation": {
+      "law": 1,
+      "enabled": true,
+      "stream_seed": 42
+    },
+    "cohort_inventory": {
+      "biomass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 56,
+        "nonfinite": 0,
+        "sum": 2.422194886719808,
+        "minimum": 0.002494433196261525,
+        "maximum": 0.22126615047454834
+      },
+      "support_mass": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 7,
+        "nonzero": 49,
+        "nonfinite": 0,
+        "sum": 0.16816638450353494,
+        "minimum": 0.0,
+        "maximum": 0.031496353447437286
+      },
+      "root_fraction": {
+        "present": 0,
+        "absent": 56,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "retention_allocation": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 54,
+        "nonzero": 2,
+        "nonfinite": 0,
+        "sum": 0.0625,
+        "minimum": 0.0,
+        "maximum": 0.03125
+      },
+      "stored_water": {
+        "present": 56,
+        "absent": 0,
+        "explicit_zero": 56,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      }
+    },
+    "cell_inventory": {
+      "nutrient": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 818.9977624511957,
+        "minimum": 0.0001626890734769404,
+        "maximum": 0.047200072556734085
+      },
+      "detritus": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 40898,
+        "nonzero": 64,
+        "nonfinite": 0,
+        "sum": 4.787686795927584,
+        "minimum": 0.0,
+        "maximum": 0.30863940715789795
+      },
+      "soil_water": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "liquid_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      },
+      "vapor_return": {
+        "present": 0,
+        "absent": 40962,
+        "explicit_zero": 0,
+        "nonzero": 0,
+        "nonfinite": 0,
+        "sum": 0.0,
+        "minimum": null,
+        "maximum": null
+      }
+    },
+    "physical_inventory": {
+      "water": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 4,
+        "nonzero": 40958,
+        "nonfinite": 0,
+        "sum": 1644879104840.8262,
+        "minimum": 0.0,
+        "maximum": 166213584.0
+      },
+      "vapor": {
+        "present": 40962,
+        "absent": 0,
+        "explicit_zero": 0,
+        "nonzero": 40962,
+        "nonfinite": 0,
+        "sum": 44790872.35409153,
+        "minimum": 0.00431402213871479,
+        "maximum": 2843.5078125
+      }
+    },
+    "accepted_input_scope": false,
+    "reasons": [
+      "unsupported schema/model identity; no field-dropping migration",
+      "experimental cohort/cell/config fields present"
+    ]
+  }
+]
