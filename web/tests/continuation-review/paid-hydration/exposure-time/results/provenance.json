@@ -1,0 +1,10 @@
+{
+  "first-run.log": "35aeb92463b8960a08d29df287be490775b2a68933b5e7302e42a1a14f9ae8bf",
+  "run-traces.log": "593b745db495abf64bab46227014b641b23f0c0facef57c5ede3316aa5fb09df",
+  "src/experimental/exposure_fixtures.json": "daa3d61531280e2a7ea9837ab96eb1af065411610eb881fa5325d2e7c074fcfc",
+  "src/experimental/hydration_exchange_signal.zig": "23af5c552c231df0a0314451c0c92914147107ef2d8a0c98d0da7d31357d655c",
+  "src/experimental/hydration_signal.zig": "355d7cfde4e79115da9f2dec6cc3c890ce0964c69ebd19a818451f30fa795f9a",
+  "src/qa_hydration_signal_matrix.zig": "2381d6e84a96fc92fb5a1b8d020870acd1354f1acad8b5a477dceb2661ef2328",
+  "../site-tmp/retention-coupled/arm-3.json": "e09e29f126bd4fc3ac75da56cb8fa1672ed39b5f3cb724a6909f4b6007659efe",
+  "../site-tmp/retention-coupled/arm-5.json": "cd8fc049ed5ce08286468ca2d4949808649a4834fdc397caf84024d2233b02a6"
+}

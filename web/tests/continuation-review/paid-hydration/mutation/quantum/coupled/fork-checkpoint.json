@@ -1,0 +1,7 @@
+{
+  "remote_master": "6c71eae20943bec85b10911caeb96961a84007f5",
+  "local_head": "9b8560923097ee2fc2bd7e36599b326aa8e044af",
+  "tree": "24324ec026a21b4898c132d20b61914ff3db8050",
+  "verification": "compare-and-swap branch update then fetched remote ref",
+  "live": "v57 unchanged; experimental receipt/physiology not enabled"
+}

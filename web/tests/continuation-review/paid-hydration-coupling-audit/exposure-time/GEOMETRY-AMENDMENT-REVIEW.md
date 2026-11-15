@@ -1,0 +1,11 @@
+# Pre-outcome geometry amendment review
+
+Recommendation: replace proposed E1 compatibility-depth fade with the coordinator's explicit uniform-vertical-frond geometry surrogate BEFORE implementation/outcomes. Preserve original proposal/history and freeze the new selection; no retrospective winner selection. E0 remains old all-depth evaporation, H0/H1 remain endpoint/analytic-mean signals. No coefficients, uptake, reproductive rules or existing temperature/hydration-response gates change.
+
+For finite nonnegative actual depth in metres and paid height h>0, aerial fraction is clamp((h-depth)/h,0,1). For h=0, dry gives1 and positive water gives0. This reproduces1cm under10cm→0,50cm under20cm→.6, and dry→1 without inventing a15cm anatomical threshold. It assumes uniform vertical distribution of photosynthetic tissue, not measured microbial anatomy. An accurate leaf-area profile is not present in this model.
+
+Use actual same-step depth after paid uptake and height at the start of depletion; calculate safely in f64 and reject invalid negative/nonfinite values instead of silently granting protection. Snapshot conventions remain an operator-splitting approximation. Height can change later through upkeep/growth, so1440/720/360s comparison is still necessary. Cap0/zero tissue/store must never generate water or hydration.
+
+Retention allocation reduces structural height through existing `support*(1-allocation)` and thus can lower exposure; it also sacrifices paid competitive height/spread/protection. This is a real coupled consequence of the existing allocation rule, not an independently calibrated adaptation. Record height, exposed fraction and resource costs in the assay. At allocation1 or zero support, geometric height0 is an idealized surface mat: arbitrarily thin positive water fully covers it. This dry/tiny-film boundary must remain visible in tests, not hidden behind an epsilon or claimed continuous physical anatomy.
+
+The proposed full-cell assay remains imposed habitat and finite common resources, not natural land colonization. Clarify whether actual reproduction is invoked with a fixed preregistered schedule; M.step alone has no reproduction scheduler, so a physiology-only assay must explicitly say no reproduction rather than implying actual descendant dynamics. Existing material-ledger, no-refill and all-outcomes requirements stand.

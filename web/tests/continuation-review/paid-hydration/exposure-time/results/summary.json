@@ -1,0 +1,3204 @@
+{
+  "cases": 80,
+  "daily_records": 312,
+  "trace_parity": true,
+  "births_simulated": false,
+  "all_dry_extinct_day1": true,
+  "max_water_residual": 2.2737367544323206e-13,
+  "max_carbon_residual": 8.366478141397238e-07,
+  "max_nitrogen_residual": 1.331565590428907e-09,
+  "endpoints": [
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        19,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 1.7382262740284204e-08,
+      "nitrogen_residual": 1.7256748287286516e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        39,
+        1,
+        null,
+        9
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.1329469745978713e-08,
+      "nitrogen_residual": 1.1181136919113932e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        79,
+        2,
+        null,
+        17
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.134622137527913e-08,
+      "nitrogen_residual": 1.8646780473863256e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0008633646393294233,
+      "evaporation": 0.0008727072117229303,
+      "last_height_m": [
+        0.001181931933388114,
+        0.00833959225565195,
+        0.0,
+        0.020286239683628082
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.034801920875907e-08,
+      "nitrogen_residual": 9.131773115456099e-11,
+      "mass": 0.018923521041870117,
+      "water": 2.0707487256004242e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.007997176609933376,
+          "support_mass": 0.00010812212713062763,
+          "retention_allocation": 0.03125,
+          "stored_water": 2.0707487256004242e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004545185714960098,
+          "support_mass": 0.0005625731428153813,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006381158716976643,
+          "support_mass": 0.001573509769514203,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0008736101286194755,
+      "evaporation": 0.0008825582871213555,
+      "last_height_m": [
+        0.0011928960448130965,
+        0.008248991332948208,
+        0.0,
+        0.020087534561753273
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.421155270189047e-08,
+      "nitrogen_residual": 8.043029610382835e-11,
+      "mass": 0.018923521973192692,
+      "water": 2.1101901147630997e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.008175715804100037,
+          "support_mass": 0.00011030215682694688,
+          "retention_allocation": 0.03125,
+          "stored_water": 2.1101901147630997e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.0044752201065421104,
+          "support_mass": 0.0005533449584618211,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006272586062550545,
+          "support_mass": 0.0015476166736334562,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0008930201686598595,
+      "evaporation": 0.0008913876054187618,
+      "last_height_m": [
+        0.0012028820347040892,
+        0.008161403238773346,
+        0.0,
+        0.019895635545253754
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 4.728462954517454e-08,
+      "nitrogen_residual": 2.1861746961338024e-10,
+      "mass": 0.01892352057620883,
+      "water": 3.1682622890609005e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.008339889347553253,
+          "support_mass": 0.00011228460789425299,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.1682622890609005e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004410715773701668,
+          "support_mass": 0.0005448355805128813,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006172915454953909,
+          "support_mass": 0.0015238411724567413,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        33,
+        null,
+        55
+      ],
+      "uptake": 0.0006319628811464783,
+      "evaporation": 0.0006253655730413878,
+      "last_height_m": [
+        0.0019298369297757745,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 2.2737367544323206e-13,
+      "carbon_residual": 5.982292350381613e-08,
+      "nitrogen_residual": 4.4447929538338204e-10,
+      "mass": 0.01892351731657982,
+      "water": 3.5846330749210364e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351731657982,
+          "support_mass": 0.0002832034369930625,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.5846330749210364e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        64,
+        null,
+        107
+      ],
+      "uptake": 0.0006963792725881714,
+      "evaporation": 0.0006834376184488347,
+      "last_height_m": [
+        0.0019294815137982368,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 2.2737367544323206e-13,
+      "carbon_residual": 6.701156962662935e-08,
+      "nitrogen_residual": 8.484709428102644e-10,
+      "mass": 0.018923528492450714,
+      "water": 4.184114121017045e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.018923528492450714,
+          "support_mass": 0.00028311795904301107,
+          "retention_allocation": 0.03125,
+          "stored_water": 4.184114121017045e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        127,
+        null,
+        213
+      ],
+      "uptake": 0.0007206357164738097,
+      "evaporation": 0.0006839062005435414,
+      "last_height_m": [
+        0.0019294994417577982,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 2.2737367544323206e-13,
+      "carbon_residual": 8.870119927451015e-08,
+      "nitrogen_residual": 8.661264292580961e-10,
+      "mass": 0.01892351359128952,
+      "water": 6.515327120723669e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351359128952,
+          "support_mass": 0.0002831033489201218,
+          "retention_allocation": 0.03125,
+          "stored_water": 6.515327120723669e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        19,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 1.70766725204885e-08,
+      "nitrogen_residual": 1.7256748287286516e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        39,
+        1,
+        null,
+        9
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.82707333099097e-08,
+      "nitrogen_residual": 8.852830621353114e-11,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        79,
+        2,
+        null,
+        17
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.134622137527913e-08,
+      "nitrogen_residual": 1.8646780473863256e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 8.033762242121156e-06,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.001219256897456944,
+        0.007999151013791561,
+        0.0,
+        0.019542617723345757
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.886372385546565e-08,
+      "nitrogen_residual": 4.3905870258931223e-11,
+      "mass": 0.018923521507531404,
+      "water": 3.5880195810023e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.008596779778599739,
+          "support_mass": 0.00011532277858350426,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.5880195810023e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004309181123971939,
+          "support_mass": 0.0005314492154866457,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006017560604959726,
+          "support_mass": 0.0014868028229102492,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 8.161962341546314e-06,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0012192417634651065,
+        0.008003843016922474,
+        0.0,
+        0.01955212652683258
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.6837369659915566e-08,
+      "nitrogen_residual": 1.3545139836146358e-10,
+      "mass": 0.018923523370176554,
+      "water": 3.5989112348033814e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.00860369112342596,
+          "support_mass": 0.00011541886487975717,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.5989112348033814e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004306589253246784,
+          "support_mass": 0.0005311054410412908,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006013242993503809,
+          "support_mass": 0.0014857708010822535,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 7.985217962414026e-06,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.001219182158820331,
+        0.008006630465388298,
+        0.0,
+        0.019557828083634377
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.223431122023612e-08,
+      "nitrogen_residual": 1.5601122997643824e-10,
+      "mass": 0.01892352243885398,
+      "water": 3.604048060878995e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.00860630627721548,
+          "support_mass": 0.00011545651068445295,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.604048060878995e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004305627197027206,
+          "support_mass": 0.0005309755215421319,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006011588964611292,
+          "support_mass": 0.0014853711472824216,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        33,
+        null,
+        55
+      ],
+      "uptake": 6.419338192563501e-05,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0019298369297757745,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 5.982292350381613e-08,
+      "nitrogen_residual": 4.4447929538338204e-10,
+      "mass": 0.01892351731657982,
+      "water": 8.829399121168535e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351731657982,
+          "support_mass": 0.0002832034369930625,
+          "retention_allocation": 0.03125,
+          "stored_water": 8.829399121168535e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        64,
+        null,
+        107
+      ],
+      "uptake": 6.395133691072067e-05,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0019294815137982368,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 6.701156962662935e-08,
+      "nitrogen_residual": 8.484709428102644e-10,
+      "mass": 0.018923528492450714,
+      "water": 8.832806088321377e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.018923528492450714,
+          "support_mass": 0.00028311795904301107,
+          "retention_allocation": 0.03125,
+          "stored_water": 8.832806088321377e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        127,
+        null,
+        213
+      ],
+      "uptake": 3.214741012405454e-05,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0019294994417577982,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.870119927451015e-08,
+      "nitrogen_residual": 8.661264292580961e-10,
+      "mass": 0.01892351359128952,
+      "water": 5.667535529570908e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351359128952,
+          "support_mass": 0.0002831033489201218,
+          "retention_allocation": 0.03125,
+          "stored_water": 5.667535529570908e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        20,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 2.637534635141492e-08,
+      "nitrogen_residual": 2.0866541654285253e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        40,
+        1,
+        null,
+        9
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.718661562539637e-08,
+      "nitrogen_residual": 2.989261112945618e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        79,
+        2,
+        null,
+        17
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 4.20550350099802e-08,
+      "nitrogen_residual": 2.930938044348741e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0008818235148040305,
+      "evaporation": 0.0008904830506071446,
+      "last_height_m": [
+        0.0012028636410832405,
+        0.008155365474522114,
+        0.0,
+        0.019883593544363976
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 4.202593117952347e-08,
+      "nitrogen_residual": 5.630942934153893e-11,
+      "mass": 0.018923521973192692,
+      "water": 2.139052384639702e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.00832374207675457,
+          "support_mass": 0.0001120698289014399,
+          "retention_allocation": 0.03125,
+          "stored_water": 2.139052384639702e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004416842479258776,
+          "support_mass": 0.0005456472863443196,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006182937417179346,
+          "support_mass": 0.0015262397937476635,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.000890218496460875,
+      "evaporation": 0.0008919785769345859,
+      "last_height_m": [
+        0.0012036397820338607,
+        0.008152457885444164,
+        0.0,
+        0.01987643353641033
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.403650670312345e-08,
+      "nitrogen_residual": 1.1243625475110264e-10,
+      "mass": 0.018923523370176554,
+      "water": 2.8289979175800304e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.008347454480826855,
+          "support_mass": 0.00011236871796427295,
+          "retention_allocation": 0.03125,
+          "stored_water": 2.8289979175800304e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004407666623592377,
+          "support_mass": 0.0005444361013360322,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006168402265757322,
+          "support_mass": 0.0015227701514959335,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0008980385328140984,
+      "evaporation": 0.0008961217986264579,
+      "last_height_m": [
+        0.0012082256143912673,
+        0.00811192486435175,
+        0.0,
+        0.019787520170211792
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.313834895379841e-08,
+      "nitrogen_residual": 2.1467372844641286e-10,
+      "mass": 0.018923521973192692,
+      "water": 3.1966793837151875e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.008425685577094555,
+          "support_mass": 0.00011331081623211503,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.1966793837151875e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004376920871436596,
+          "support_mass": 0.0005403785617090762,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006120915524661541,
+          "support_mass": 0.0015114411944523454,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        33,
+        null,
+        55
+      ],
+      "uptake": 0.0006319628811464783,
+      "evaporation": 0.0006253655730413878,
+      "last_height_m": [
+        0.0019298369297757745,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 2.2737367544323206e-13,
+      "carbon_residual": 5.982292350381613e-08,
+      "nitrogen_residual": 4.4447929538338204e-10,
+      "mass": 0.01892351731657982,
+      "water": 3.5846330749210364e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351731657982,
+          "support_mass": 0.0002832034369930625,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.5846330749210364e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        64,
+        null,
+        107
+      ],
+      "uptake": 0.0006963792725881714,
+      "evaporation": 0.0006834376184488347,
+      "last_height_m": [
+        0.0019294815137982368,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 2.2737367544323206e-13,
+      "carbon_residual": 6.701156962662935e-08,
+      "nitrogen_residual": 8.484709428102644e-10,
+      "mass": 0.018923528492450714,
+      "water": 4.184114121017045e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.018923528492450714,
+          "support_mass": 0.00028311795904301107,
+          "retention_allocation": 0.03125,
+          "stored_water": 4.184114121017045e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        127,
+        null,
+        213
+      ],
+      "uptake": 0.0007206357164738097,
+      "evaporation": 0.0006839062005435414,
+      "last_height_m": [
+        0.0019294994417577982,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 2.2737367544323206e-13,
+      "carbon_residual": 8.870119927451015e-08,
+      "nitrogen_residual": 8.661264292580961e-10,
+      "mass": 0.01892351359128952,
+      "water": 6.515327120723669e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351359128952,
+          "support_mass": 0.0002831033489201218,
+          "retention_allocation": 0.03125,
+          "stored_water": 6.515327120723669e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        20,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 2.637534635141492e-08,
+      "nitrogen_residual": 2.0866541654285253e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        40,
+        1,
+        null,
+        9
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.718661562539637e-08,
+      "nitrogen_residual": 2.989261112945618e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        79,
+        2,
+        null,
+        17
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 4.20550350099802e-08,
+      "nitrogen_residual": 2.930938044348741e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 8.033762242121156e-06,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.001219256897456944,
+        0.007999151013791561,
+        0.0,
+        0.019542617723345757
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.886372385546565e-08,
+      "nitrogen_residual": 4.3905870258931223e-11,
+      "mass": 0.018923521507531404,
+      "water": 3.5880195810023e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.008596779778599739,
+          "support_mass": 0.00011532277858350426,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.5880195810023e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004309181123971939,
+          "support_mass": 0.0005314492154866457,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006017560604959726,
+          "support_mass": 0.0014868028229102492,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 8.161962341546314e-06,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0012192417634651065,
+        0.008003843016922474,
+        0.0,
+        0.01955212652683258
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.6837369659915566e-08,
+      "nitrogen_residual": 1.3545139836146358e-10,
+      "mass": 0.018923523370176554,
+      "water": 3.5989112348033814e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.00860369112342596,
+          "support_mass": 0.00011541886487975717,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.5989112348033814e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004306589253246784,
+          "support_mass": 0.0005311054410412908,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006013242993503809,
+          "support_mass": 0.0014857708010822535,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 7.985217962414026e-06,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.001219182158820331,
+        0.008006630465388298,
+        0.0,
+        0.019557828083634377
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.223431122023612e-08,
+      "nitrogen_residual": 1.5601122997643824e-10,
+      "mass": 0.01892352243885398,
+      "water": 3.604048060878995e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.00860630627721548,
+          "support_mass": 0.00011545651068445295,
+          "retention_allocation": 0.03125,
+          "stored_water": 3.604048060878995e-05
+        },
+        {
+          "lineage": 2033,
+          "biomass": 0.004305627197027206,
+          "support_mass": 0.0005309755215421319,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        },
+        {
+          "lineage": 2086,
+          "biomass": 0.006011588964611292,
+          "support_mass": 0.0014853711472824216,
+          "retention_allocation": 0.0,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        33,
+        null,
+        55
+      ],
+      "uptake": 6.419338192563501e-05,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0019298369297757745,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 5.982292350381613e-08,
+      "nitrogen_residual": 4.4447929538338204e-10,
+      "mass": 0.01892351731657982,
+      "water": 8.829399121168535e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351731657982,
+          "support_mass": 0.0002832034369930625,
+          "retention_allocation": 0.03125,
+          "stored_water": 8.829399121168535e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        64,
+        null,
+        107
+      ],
+      "uptake": 6.395133691072067e-05,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0019294815137982368,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 6.701156962662935e-08,
+      "nitrogen_residual": 8.484709428102644e-10,
+      "mass": 0.018923528492450714,
+      "water": 8.832806088321377e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.018923528492450714,
+          "support_mass": 0.00028311795904301107,
+          "retention_allocation": 0.03125,
+          "stored_water": 8.832806088321377e-05
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        127,
+        null,
+        213
+      ],
+      "uptake": 3.214741012405454e-05,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0019294994417577982,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.870119927451015e-08,
+      "nitrogen_residual": 8.661264292580961e-10,
+      "mass": 0.01892351359128952,
+      "water": 5.667535529570908e-05,
+      "living": [
+        {
+          "lineage": 2003,
+          "biomass": 0.01892351359128952,
+          "support_mass": 0.0002831033489201218,
+          "retention_allocation": 0.03125,
+          "stored_water": 5.667535529570908e-05
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.6222551241517067e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        68,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.520146366208792e-08,
+      "nitrogen_residual": 7.525110933687129e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        135,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.187190931290388e-08,
+      "nitrogen_residual": 1.331565590428907e-09,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 5.471520125865936e-08,
+      "nitrogen_residual": 9.234399356294887e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 1.9519939087331295e-07,
+      "nitrogen_residual": 1.002537913796786e-10,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 6.560003384947777e-08,
+      "nitrogen_residual": 3.7828200294409697e-10,
+      "mass": 0.03015204519033432,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204519033432,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.9234797693789005e-07,
+      "nitrogen_residual": 5.194075725079017e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.888999344781041e-07,
+      "nitrogen_residual": 6.100163429945127e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.366478141397238e-07,
+      "nitrogen_residual": 5.908996902892483e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.6222551241517067e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        68,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.520146366208792e-08,
+      "nitrogen_residual": 7.525110933687129e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        135,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.187190931290388e-08,
+      "nitrogen_residual": 1.331565590428907e-09,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 5.471520125865936e-08,
+      "nitrogen_residual": 9.234399356294887e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 1.9519939087331295e-07,
+      "nitrogen_residual": 1.002537913796786e-10,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 6.560003384947777e-08,
+      "nitrogen_residual": 3.7828200294409697e-10,
+      "mass": 0.03015204519033432,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204519033432,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.9234797693789005e-07,
+      "nitrogen_residual": 5.194075725079017e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.888999344781041e-07,
+      "nitrogen_residual": 6.100163429945127e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.366478141397238e-07,
+      "nitrogen_residual": 5.908996902892483e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.6222551241517067e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        68,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.520146366208792e-08,
+      "nitrogen_residual": 7.525110933687129e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        135,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.187190931290388e-08,
+      "nitrogen_residual": 1.331565590428907e-09,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 5.471520125865936e-08,
+      "nitrogen_residual": 9.234399356294887e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 1.9519939087331295e-07,
+      "nitrogen_residual": 1.002537913796786e-10,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 6.560003384947777e-08,
+      "nitrogen_residual": 3.7828200294409697e-10,
+      "mass": 0.03015204519033432,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204519033432,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.9234797693789005e-07,
+      "nitrogen_residual": 5.194075725079017e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.888999344781041e-07,
+      "nitrogen_residual": 6.100163429945127e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.366478141397238e-07,
+      "nitrogen_residual": 5.908996902892483e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.6222551241517067e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        68,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.520146366208792e-08,
+      "nitrogen_residual": 7.525110933687129e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        135,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.187190931290388e-08,
+      "nitrogen_residual": 1.331565590428907e-09,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.175,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 5.471520125865936e-08,
+      "nitrogen_residual": 9.234399356294887e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.175,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 1.9519939087331295e-07,
+      "nitrogen_residual": 1.002537913796786e-10,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.175,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 6.560003384947777e-08,
+      "nitrogen_residual": 3.7828200294409697e-10,
+      "mass": 0.03015204519033432,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204519033432,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 1.0,
+      "dt_s": 1440.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 2.9234797693789005e-07,
+      "nitrogen_residual": 5.194075725079017e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 1.0,
+      "dt_s": 720.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 3.888999344781041e-07,
+      "nitrogen_residual": 6.100163429945127e-11,
+      "mass": 0.030152039602398872,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.030152039602398872,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 1.0,
+      "dt_s": 360.0,
+      "horizon_days": 1,
+      "extinction_tick": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 8.366478141397238e-07,
+      "nitrogen_residual": 5.908996902892483e-11,
+      "mass": 0.03015204146504402,
+      "water": 0.0,
+      "living": [
+        {
+          "lineage": 1828,
+          "biomass": 0.03015204146504402,
+          "support_mass": 0.0,
+          "retention_allocation": 0.03125,
+          "stored_water": 0.0
+        }
+      ]
+    },
+    {
+      "fixture": 0,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        19,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 4.103640094399452e-08,
+      "nitrogen_residual": 1.7256748287286516e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        19,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 4.103640094399452e-08,
+      "nitrogen_residual": 1.7256748287286516e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        20,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 6.168556865304708e-08,
+      "nitrogen_residual": 2.0866541654285253e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 0,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        20,
+        1,
+        null,
+        5
+      ],
+      "uptake": 1.7824825966259957e-06,
+      "evaporation": 3.1832542246137236e-05,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 2.842170943040401e-14,
+      "carbon_residual": 6.168556865304708e-08,
+      "nitrogen_residual": 2.0866541654285253e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 0,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.799826562404633e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 1,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.799826562404633e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 2,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.799826562404633e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    },
+    {
+      "fixture": 1,
+      "law": 3,
+      "initial_depth_m": 0.0,
+      "dt_s": 1440.0,
+      "horizon_days": 30,
+      "extinction_tick": [
+        34,
+        null,
+        null,
+        null
+      ],
+      "uptake": 0.0,
+      "evaporation": 0.0,
+      "last_height_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_exposure": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "water_residual": 0.0,
+      "carbon_residual": 7.799826562404633e-08,
+      "nitrogen_residual": 3.37503872072098e-10,
+      "mass": 0.0,
+      "water": 0.0,
+      "living": []
+    }
+  ]
+}
