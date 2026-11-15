@@ -1,0 +1,29 @@
+{
+  "input_sha256": "cd8fc049ed5ce08286468ca2d4949808649a4834fdc397caf84024d2233b02a6",
+  "uniform_actual_area_m2": 7669529600,
+  "endpoint_only_not_entire_trajectory_causality": true,
+  "rows": [
+    {
+      "id": 2078,
+      "patch": 13593,
+      "liquid_1e9kg": 2468.49365234375,
+      "prior_f32_liquid_1e9kg": 2468.493408203125,
+      "one_quantum_kg_per_m2": 3.1832542246137236e-05,
+      "capacity_kg_per_m2": 0.0,
+      "stored_kg_per_m2": 0.0,
+      "capacity_below_quantum": true,
+      "paid_support": 0.0
+    },
+    {
+      "id": 1828,
+      "patch": 13668,
+      "liquid_1e9kg": 2769.0810546875,
+      "prior_f32_liquid_1e9kg": 2769.080810546875,
+      "one_quantum_kg_per_m2": 3.1832542246137236e-05,
+      "capacity_kg_per_m2": 0.0,
+      "stored_kg_per_m2": 0.0,
+      "capacity_below_quantum": true,
+      "paid_support": 0.0
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+from pathlib import Path
+import subprocess,sys,json,hashlib
+root=Path(__file__).resolve().parents[2];out=Path(sys.argv[1]);subprocess.run([sys.executable,str(root/'web/tests/egl-hydration-coupled-prepare.py'),str(out),'candidate'],check=True)
+# Only isolated copies. Existing explicit wrappers retain original six-trait behavior.
+s=(root/'src/experimental/hydration_mutation_core.zig').read_text();s='pub var qa_births:u64=0;pub var qa_positive:u64=0;pub var qa_negative:u64=0;pub var qa_expressed:u64=0;\n'+s.replace('//!','//')
+s=s.replace('    settleWater(donor);settleWater(destination);','''    if(retention_seed)|world_seed|{if(mutate){qa_births+=1;const proposal=@import("retention_mutation.zig").proposal(world_seed,child.parent,child.lineage,child.generation);if(proposal>0)qa_positive+=1;if(proposal<0)qa_negative+=1;if(child.retention_allocation!=parent.retention_allocation)qa_expressed+=1;}}
+    settleWater(donor);settleWater(destination);''',1)
+s=s.replace('    stats.next_lineage+=1;stats.births+=1;', '    if(retention_seed)|world_seed|{if(child.retention_allocation>0 or parent.retention_allocation>0)std.debug.print("MUTATION_PAID_BIRTH key={d} parent={d} child={d} allocation={d} mass={d} support={d} water={d} parent_water={d}\\n",.{world_seed,child.parent,child.lineage,destination.cohorts[i].retention_allocation,destination.cohorts[i].biomass,destination.cohorts[i].support_mass,destination.cohorts[i].stored_water,parent.stored_water});}\n    stats.next_lineage+=1;stats.births+=1;',1)
+config='''pub const RetentionConfig=struct{law:u8=0,enabled:bool=false,stream_seed:u64=0};
+pub fn validRetentionConfig(c:RetentionConfig)bool{return (c.law==0 and !c.enabled and c.stream_seed==0) or c.law==1;}
+'''
+s=config+s;(out/'simulation/microbes.zig').write_text(s);(out/'simulation/retention_mutation.zig').write_text((root/'src/experimental/retention_mutation.zig').read_text())
+p=out/'save_schema.zig';s=p.read_text().replace('VERSION: u32 = 7','VERSION: u32 = 8').replace('pub const Origin = struct {','pub const Origin = struct {\n    retention_mutation: Microbes.RetentionConfig = .{},',1)
+needle='                if (origin.cells.len != count)';s=s.replace(needle,'''                if(!Microbes.validRetentionConfig(origin.retention_mutation))return error.InvalidValue;
+                if(self.version<8 and !std.meta.eql(origin.retention_mutation,Microbes.RetentionConfig{}))return error.IncompatibleSave;
+'''+needle,1);p.write_text(s)
+p=out/'simulation/planet.zig';s=p.read_text().replace('    worldMode: Microbes.Mode = .sandbox,','    worldMode: Microbes.Mode = .sandbox,\n    retentionMutation: Microbes.RetentionConfig = .{},',1).replace('        self.worldMode = .origin;','        self.worldMode = .origin;self.retentionMutation=.{};',1)
+s=s.replace('Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats)','(if(self.retentionMutation.enabled) Microbes.propagateWithRetention(cell,cohort,&self.microbeCells[n],&self.microbeStats,self.retentionMutation.stream_seed) else Microbes.propagate(cell,cohort,&self.microbeCells[n],&self.microbeStats))')
+s=s.replace('Microbes.reproduce(cell, cohort, cell, &self.microbeStats, true)','(if(self.retentionMutation.enabled) Microbes.reproduceWithRetention(cell,cohort,cell,&self.microbeStats,true,self.retentionMutation.stream_seed) else Microbes.reproduce(cell,cohort,cell,&self.microbeStats,true))')
+s=s.replace('Microbes.reproduce(cell, cohort, &self.microbeCells[n], &self.microbeStats, true)','(if(self.retentionMutation.enabled) Microbes.reproduceWithRetention(cell,cohort,&self.microbeCells[n],&self.microbeStats,true,self.retentionMutation.stream_seed) else Microbes.reproduce(cell,cohort,&self.microbeCells[n],&self.microbeStats,true))');p.write_text(s)
+p=out/'save_game.zig';s=p.read_text().replace('.stats = p.microbeStats }','.stats = p.microbeStats, .retention_mutation=p.retentionMutation }',1).replace('    p.worldMode = saved.mode;','    p.worldMode = saved.mode;p.retentionMutation=.{};',1).replace('        p.microbeStats = origin.stats;','        p.microbeStats = origin.stats;p.retentionMutation=origin.retention_mutation;',1);p.write_text(s)
+p=out/'main.zig';s=p.read_text();start=s.index('          const frozen=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});');end=s.index('\n        try originSaveCheck',start)
+block=r'''
+          const frozen=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const baseline=try std.json.parseFromSlice(saves.schema.Save,a,frozen,.{.allocate=.alloc_always});
+          std.debug.assert(std.meta.eql(state.planet.retentionMutation,micro.RetentionConfig{}));
+          state.planet.retentionMutation=.{.law=1,.enabled=true,.stream_seed=42};
+          const configured=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});const parsed=try std.json.parseFromSlice(saves.schema.Save,a,configured,.{.allocate=.alloc_always});try saves.apply(state,parsed.value);std.debug.assert(std.mem.eql(u8,configured,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          var invalid=parsed.value;invalid.origin.?.retention_mutation.law=2;var rejected=false;saves.apply(state,invalid) catch {rejected=true;};std.debug.assert(rejected);std.debug.assert(std.mem.eql(u8,configured,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          invalid=parsed.value;invalid.version=7;invalid.origin.?.model_revision=6;rejected=false;saves.apply(state,invalid) catch {rejected=true;};std.debug.assert(rejected);std.debug.assert(std.mem.eql(u8,configured,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+          var legacy=baseline.value;legacy.version=7;legacy.origin.?.model_revision=6;try saves.apply(state,legacy);std.debug.assert(std.meta.eql(state.planet.retentionMutation,micro.RetentionConfig{}));
+          try saves.apply(state,parsed.value);var sandbox=baseline.value;sandbox.mode=.sandbox;sandbox.origin=null;try saves.apply(state,sandbox);std.debug.assert(std.meta.eql(state.planet.retentionMutation,micro.RetentionConfig{}));try saves.apply(state,baseline.value);
+          std.debug.print("MUTATION_CONFIG_GATE explicit_restart=true unknown_atomic=true disguisedlegacy_atomic=true legacy_disabled=true sandbox_reset=true\n",.{});
+          const keys=[_]u64{0,1,42};
+          for(0..6)|arm|{
+            if(std.posix.getenv("QA_MUTATION_CONFIG_ONLY")!=null)break;
+            try saves.apply(state,baseline.value);state.planet.retentionMutation=.{.law=1,.enabled=arm%2==1,.stream_seed=keys[arm/2]};micro.qa_births=0;micro.qa_positive=0;micro.qa_negative=0;micro.qa_expressed=0;
+            @import("simulation/hydration_exchange.zig").qa_max_residual=0;@import("simulation/hydration_exchange.zig").qa_sum_residual=0;pm.qa_bio_max=0;pm.qa_bio_sum=0;
+            for(state.planet.microbeCells)|cell|for(cell.cohorts)|co|{std.debug.assert(co.retention_allocation==0 and co.stored_water==0);};
+            var positive_fates=std.AutoHashMap(u64,usize).init(a);
+            for(0..601)|tick|{
+              if(tick>0){state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}
+              for(state.planet.microbeCells,0..)|pc,ci|for(pc.cohorts)|co|{if(co.biomass>0 and co.retention_allocation>0){try positive_fates.put(co.lineage,tick);std.debug.print("MUTATION_FATE arm={d} tick={d} id={d} parent={d} patch={d} allocation={d} mass={d} support={d} water={d} depth_m={d} temperature={d}\n",.{arm,tick,co.lineage,co.parent,ci,co.retention_allocation,co.biomass,co.support_mass,co.stored_water,state.planet.waterMass[ci]*state.planet.getKmPerWaterMass()*1000,state.planet.temperature[ci]});}};
+              var fate_iterator=positive_fates.iterator();while(fate_iterator.next())|entry|{if(entry.value_ptr.*<tick){std.debug.print("MUTATION_ABSENT arm={d} tick={d} id={d} cause=unattributed\n",.{arm,tick,entry.key_ptr.*});entry.value_ptr.*=std.math.maxInt(usize);}}
+              if(tick%60==0){var bins=[_]usize{0}**33;var mass:f64=0;var retained_support_sum:f64=0;var nutrient:f64=0;var detritus:f64=0;var retained=std.ArrayList(micro.Cohort).init(a);var owned:f64=0;var dry:usize=0;var film:usize=0;var with_water:usize=0;var water:f64=0;
+                for(state.planet.microbeCells,0..)|cell,i|{std.debug.assert(micro.validCell(cell,state.planet.microbeStats.next_lineage));nutrient+=cell.nutrient;detritus+=cell.detritus;water+=@as(f64,state.planet.waterMass[i])+state.planet.waterVaporMass[i]+micro.waterTotal(cell)*state.planet.getMeanPointArea()/1e9;for(cell.cohorts)|co|{if(co.biomass>0){const bin:usize=@intFromFloat(@round(co.retention_allocation*32));bins[bin]+=1;mass+=co.biomass;retained_support_sum+=co.support_mass;owned+=co.stored_water;if(co.stored_water>0)with_water+=1;if(co.retention_allocation>0){try retained.append(co);const depth=state.planet.waterMass[i]*state.planet.getKmPerWaterMass();if(depth==0)dry+=1;if(depth<0.0002)film+=1;}}}}
+                std.debug.print("MUTATION_COUPLED {s}\n",.{try std.json.stringifyAlloc(a,.{.arm=arm,.key=keys[arm/2],.enabled=arm%2==1,.tick=tick,.bins=bins,.biomass=mass,.support=retained_support_sum,.biological_carbon=mass+detritus,.nutrient_total=nutrient+mass*micro.nutrient_per_carbon,.oxygen_mass=state.planet.averageOxygenMass,.co2_mass=state.planet.averageCarbonDioxideMass,.retained_cohorts=retained.items,.stored_water=owned,.with_water=with_water,.retained_dry=dry,.retained_film=film,.water1e9kg=water,.mutating_births=micro.qa_births,.positive=micro.qa_positive,.negative=micro.qa_negative,.expressed=micro.qa_expressed,.stats=state.planet.microbeStats},.{})});
+              }
+            }
+            const path=try std.fmt.allocPrint(a,"OUTPUT/arm-{d}.json",.{arm});const endpoint=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try std.fs.cwd().writeFile(.{.sub_path=path,.data=endpoint});const decoded=try std.json.parseFromSlice(saves.schema.Save,a,endpoint,.{.allocate=.alloc_always});
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}const uninterrupted=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try saves.apply(state,decoded.value);std.debug.assert(std.mem.eql(u8,endpoint,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+            for(0..10)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;}const resumed=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});std.debug.assert(std.mem.eql(u8,uninterrupted,resumed));
+            std.debug.print("MUTATION_ENDPOINT arm={d} owned_config_roundtrip=true uninterrupted_continuation=true local_water_max={d} whole_bio_max={d}\n",.{arm,@import("simulation/hydration_exchange.zig").qa_max_residual,pm.qa_bio_max});
+          }
+          try saves.apply(state,baseline.value);
+        }
+'''.replace('OUTPUT',str(out.parent))
+s=s[:start]+block+s[end:];p.write_text(s)
+(out.parent/'mutation-provenance.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'sources':{str(p.relative_to(out)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [out/'main.zig',out/'simulation/planet.zig',out/'simulation/microbes.zig',out/'save_schema.zig',out/'save_game.zig']}},indent=2)+'\n')

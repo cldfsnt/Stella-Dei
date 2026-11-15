@@ -1,0 +1,23 @@
+{
+  "id": "appgdep_6af96175cdd08191a69469bc234b5605",
+  "project_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc",
+  "title": "Stella Dei Browser Port",
+  "version_id": "appgprj_6af67efb3a2c8191954f3f9326c0c1dc~appgver_c77b1bf72a2c8191bc34cd28d20b9bdb",
+  "type": "publish",
+  "status": "succeeded",
+  "url": "https://stella-dei-browser-lab.workspace-823194.chatgpt.site",
+  "has_mcp": false,
+  "screenshot_asset_pointer": null,
+  "provider_deployment_id": "release---6af67fd5da48819182e55d9a349e0184",
+  "failure_message": null,
+  "env_set_revision": 0,
+  "updated_at": "2026-11-15T07:38:39.090599+00:00",
+  "site_source": "87f2bd8c1bca249af5a64f5470043770c72b9318",
+  "fork_master": "12bdf091e5acc9340d5e75376a1bb921d13d4456",
+  "local_release": "540e4bc2ba42b00c5374ca56f0db36dc1ded92c5",
+  "tree": "b6527eb82ececde4fdaadebbe247090dd68292a8",
+  "packaged_hashes_verified": 33,
+  "access": "owner-only unchanged",
+  "verification_limit": "Packaged hashes and successful deployment; not live browser gameplay/device proof",
+  "workflow_note": "Packaging helper succeeded, output JSON parser initially rejected status prefix. Reopened supported source helper and confirmed pushed87f2bd8 before deployment; archive hashes verified."
+}

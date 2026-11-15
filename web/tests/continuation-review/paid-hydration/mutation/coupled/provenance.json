@@ -1,0 +1,30 @@
+{
+  "input": "../site-tmp/natural60-day60.json",
+  "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+  "files": {
+    "../site-tmp/retention-coupled/run.log": "0375c5ded4515b1bbe05bc5657bc97139f69f335f16732815598d59a5654d3d8",
+    "../site-tmp/retention-coupled/config-run.log": "e453b33768d17dd5be408aac0e1ed4db4b4269284afacd2f0e3383c2da2222d2",
+    "../site-tmp/retention-coupled/config-owned-v7-run.log": "57c0133e2b0e3355e8cc94ec4597c3f35fbb7e27d2309ab9afc1a26fa4a9cbd1",
+    "../site-tmp/retention-coupled/summary.json": "a32a90fa96a8117cdd17368c74dab1ab6e6287602d02ec4f169850fb514f31f3",
+    "../site-tmp/retention-coupled/mutation-provenance.json": "f10f06a7796b6d10d30d202559812826feb2ac848738dfd2e79f185e65317a02",
+    "../site-tmp/retention-coupled/export-audit.json": "1e0dec3944db98fa4bf13e1e279cdb0867d75db7f75cdf237bc43ca47db5654d",
+    "../site-tmp/retention-coupled/arm-0.json": "41a41638d82cdc0e203372632c566689822347a4800cf5f8464b14172d0f024f",
+    "../site-tmp/retention-coupled/arm-1.json": "4382e60ca824e5727aadae48aa4d84b4be101a2733e370a55011eaed8bdfaa33",
+    "../site-tmp/retention-coupled/arm-2.json": "af0d8bf810efbb339ee54a73766b4b6cfeadccc78fd91f8364a813086371e30c",
+    "../site-tmp/retention-coupled/arm-3.json": "e09e29f126bd4fc3ac75da56cb8fa1672ed39b5f3cb724a6909f4b6007659efe",
+    "../site-tmp/retention-coupled/arm-4.json": "83f54c8a60ccda1ce58dd547b79b33f78b9212ad23e59eb50af6c8e272406caf",
+    "../site-tmp/retention-coupled/arm-5.json": "cd8fc049ed5ce08286468ca2d4949808649a4834fdc397caf84024d2233b02a6"
+  },
+  "source_files": {
+    "../site-tmp/retention-coupled/src/main.zig": "30143bba12344c2acf10ad1f99d3dc1a923f993ba120a29d4a3f150765cf6296",
+    "../site-tmp/retention-coupled/src/simulation/planet.zig": "b9a6526d01b46ac204edf6f697baa46c787ecc3b31a72440615092c5db2dba75",
+    "../site-tmp/retention-coupled/src/simulation/microbes.zig": "7ec7bbec87ed897000a3d5236579c1d278fd031a74a93e27d363bcee8ee7785e",
+    "../site-tmp/retention-coupled/src/simulation/retention_mutation.zig": "671f8f783aaa1125db85233257c2f30b970a4a97909f316d0ca44b39ac6eae8c",
+    "../site-tmp/retention-coupled/src/simulation/hydration_exchange.zig": "c1609bdcdf5067aa57deca139031657e29b984e9cb6ba5d33d4895d486888ab0",
+    "../site-tmp/retention-coupled/src/save_schema.zig": "483b57ad6dfc59a71085e32e2575212bd128c43a43d6a81a437a2669261e77e5",
+    "../site-tmp/retention-coupled/src/save_game.zig": "513bed260082d99ab215d2b81bbefffe85a0eff6492cce9798997e67aad57c99"
+  },
+  "target": "Zig0.13 ReleaseSafe native EGL software proxy; production v57 geometry refresh present",
+  "preparer_sha256": "660fa0ae400dc5a30f6d94e0c8b91b48ea88cd8a2b060755ad6395fdef81bbb8",
+  "binary_sha256": "9306b05a61daf873da5cbcfe9e213c0ae9f69c21f4d154d3863674209bafd147"
+}

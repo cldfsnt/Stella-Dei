@@ -1,0 +1,10 @@
+{
+  "base_files": {
+    "main.zig": "20a3bf996ac8b89e6ab29716e1f4eeb3e6007cf2903034510269314787d8d8c0",
+    "save_schema.zig": "483b57ad6dfc59a71085e32e2575212bd128c43a43d6a81a437a2669261e77e5",
+    "save_game.zig": "513bed260082d99ab215d2b81bbefffe85a0eff6492cce9798997e67aad57c99",
+    "simulation/planet.zig": "b9a6526d01b46ac204edf6f697baa46c787ecc3b31a72440615092c5db2dba75",
+    "simulation/microbes.zig": "11b71a675b8902555bd1e33783bd3abf3e452247df6ed7cae02d7fee6ac931fd"
+  },
+  "audit_main": "fd1cb2819236c83c0d0b519881607d82590d96d4db0e8092422813ea32393b86"
+}

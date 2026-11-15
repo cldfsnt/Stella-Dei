@@ -1,0 +1,18 @@
+{
+  "input_sha256": "e09e29f126bd4fc3ac75da56cb8fa1672ed39b5f3cb724a6909f4b6007659efe",
+  "uniform_actual_area_m2": 7669529600,
+  "endpoint_only_not_entire_trajectory_causality": true,
+  "rows": [
+    {
+      "id": 2003,
+      "patch": 12397,
+      "liquid_1e9kg": 3101.661865234375,
+      "prior_f32_liquid_1e9kg": 3101.66162109375,
+      "one_quantum_kg_per_m2": 3.1832542246137236e-05,
+      "capacity_kg_per_m2": 3.005005964951124e-05,
+      "stored_kg_per_m2": 0.0,
+      "capacity_below_quantum": true,
+      "paid_support": 9.616019087843597e-05
+    }
+  ]
+}
