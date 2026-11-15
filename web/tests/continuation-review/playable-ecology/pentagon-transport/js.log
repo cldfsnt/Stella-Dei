@@ -1,0 +1,20 @@
+✔ explicit review and one-use whole colony execution, exact string identity (2.724103ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.475045ms)
+✔ ineligible source or full target cannot prepare (0.267163ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.605863ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (0.714666ms)
+✔ unknown execution result is not reported as safe failure or retried (0.345781ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (1.49405ms)
+✔ post-execution malformed receipt never claims successful move (0.483007ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (0.324148ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (0.492352ms)
+✔ changing source or destination consumes pending ticket without refreshing options (1.068559ms)
+✔ actual pentagon five destinations accepted while raw self padding remains rejected (0.162735ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.525511

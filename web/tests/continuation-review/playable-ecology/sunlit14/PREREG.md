@@ -1,0 +1,7 @@
+# v60 Sunlit14 fixed player journey
+
+Before outcomes: fresh seed42 generated40,962-cell world, current production Find habitat→explicit Sunlit nursery→one seed→Watch, then14 simulated days without later care. Normal coupled update at fixed1/60 input and requested24h/s, maximum1000callbacks. Same seed and first7days as prior fixed trial; not an independent world or a parameter search.
+
+Read-only daily all-living-cohort records, actual cumulative carbon/grazing/birth/arrival/loss receipts, forms/support/generations, depth/temperature/nutrient, visibility. Retain7/14day complete saves, final Fit camera-only state gate and endpoint apply exactness. Wall-clock total is native software proxy including daily render/serialization, not browser FPS or achieved user-device pace. No new physics, rates, trait assignment, selective follow-up, solver/root/schema work. Initial terraforming/water and seeding are explicit god inputs, not autonomous creation. No further intervention or horizon extension after results.
+
+Question: does current shallow nursery sustain visibly differentiated autonomous succession and meaningful competition beyond first daughters? Identify an actual frustrating control/biology interaction before proposing a small change, preserving negative results. Daily lineage snapshots do not capture every same-day death; tracked-loss counter is not total mortality. Native snapshots/visuals do not establish browser playability.

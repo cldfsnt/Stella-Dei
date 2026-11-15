@@ -24,7 +24,12 @@ pub fn options(state:anytype,world:u32)[:0]const u8{
  var sources:[4]Source=undefined;var ns:usize=0;
  for(p.microbeCells[cell].cohorts,0..)|co,slot|if(co.biomass>0){sources[ns]=.{.slot=slot,.id=.{.value=co.lineage},.biomass=co.biomass,.support=co.support_mass,.credit=co.reproduction_credit,.form=M.producerFormName(M.producerForm(co)),.eligible=eligible(co),.reason=if(eligible(co)) "" else "Recorded autonomous travel cannot be rewritten",.efficiency=co.efficiency,.optimum_k=co.optimum,.structure=co.structure,.organization=co.organization,.feeding=co.feeding,.mobility=co.mobility};ns+=1;};
  const Neighbor=struct{cell:usize,depth_m:f32,temp_k:f32,count:usize,biomass:f64,free_slots:usize};var neighbors:[6]Neighbor=undefined;var nn:usize=0;
- for(p.getNeighbours(cell))|n|{if(nn==6)break;var count:usize=0;var mass:f64=0;for(p.microbeCells[n].cohorts)|co|{mass+=co.biomass;if(co.biomass>0)count+=1;}neighbors[nn]=.{.cell=n,.depth_m=p.waterMass[n]*p.getKmPerWaterMass()*1000,.temp_k=p.temperature[n],.count=count,.biomass=mass,.free_slots=4-count};nn+=1;}
+ for(p.getNeighbours(cell))|n|{
+  // Pentagon topology pads with self. Offer only unique real destinations;
+  // the browser intentionally rejects self-neighbors rather than hiding them.
+  if(n==cell or n>=p.microbeCells.len)continue;
+  var duplicate=false;for(neighbors[0..nn])|prior|{if(prior.cell==n){duplicate=true;break;}}
+  if(duplicate)continue;if(nn==6)break;var count:usize=0;var mass:f64=0;for(p.microbeCells[n].cohorts)|co|{mass+=co.biomass;if(co.biomass>0)count+=1;}neighbors[nn]=.{.cell=n,.depth_m=p.waterMass[n]*p.getKmPerWaterMass()*1000,.temp_k=p.temperature[n],.count=count,.biomass=mass,.free_slots=4-count};nn+=1;}
  return json(.{.available=true,.reason="",.paused=true,.world=world,.cell=cell,.sources=sources[0..ns],.neighbors=neighbors[0..nn]});
 }
 pub fn prepare(state:anytype,world:u32,expected:u32,cell:i32,slot:i32,target:i32,id_text:[]const u8)[:0]const u8{

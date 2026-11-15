@@ -1,0 +1,17 @@
+{
+  "head": "51defed2e1d7d8a750ed7f64ac8234bbae93ce16",
+  "input_sha256": "db14ebd4ade6c41fa321b4218827fe75c26e84749a92d76b384435cc29bfebc5",
+  "production": {
+    "src/main.zig": "c4b40406526092f0c3a462d4adfc13c13d79ce6989b2564abb54d0fc04206e65",
+    "src/states/play.zig": "247f6bc5359d1a219649f2237349365ee37bcc8e495a7c4ec51821c490f7f1d3",
+    "src/offspring_finder.zig": "56988f3a11d143e07fe67588bcdd78aa6a6ee0580a4d51f6475c6bfb45364adc",
+    "src/save_game.zig": "731f2632ee4bbc0bf1287a5b864fb90f79460706d351f9e5958a3eb35bddb1f6"
+  },
+  "copied": {
+    "src/main.zig": "66489fe915532fa0670beb20cd300645afea94c6b53b500dc5dc47f745a6e4bc",
+    "src/states/play.zig": "1332192f11c85f157d9fa30f36821e2027ba0cea4be10bb14e464c23734693c2",
+    "src/offspring_finder.zig": "56988f3a11d143e07fe67588bcdd78aa6a6ee0580a4d51f6475c6bfb45364adc",
+    "src/save_game.zig": "433009d487a470ab13edaba4126c323e3d07d57d9ebf76d28e40e93833073824"
+  },
+  "capture_sha256": "890bedb7b6cd0c3a49d9d735f66fbbd19f0725d9c0d8289261b9cefaea03bd40"
+}

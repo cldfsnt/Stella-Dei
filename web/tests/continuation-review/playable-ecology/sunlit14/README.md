@@ -1,0 +1,13 @@
+# v60 Sunlit nursery: fourteen days, no further care
+
+Fixed seed42/current production40,962cells. Actual Find habitat→Sunlit nursery→one seed→Watch,840normal coupled callbacks,14simulated days. No later care, favorable trait assignment, biology edits or solver changes. Native software EGL proxy, not browser/device measurement. Production Planet/microbes/pond_action byte-identical to fixture; all55 public exports exact. Explicit successful QA exit skips inherited teardown.
+
+Day7 save byte-identical to prior shipped Sunlit trial. By day14:54living colonies on16patches, maximum generation4,84paid births/82arrivals/30tracked arrival losses. Biomass density sum0.5782651356 versus0.1330947943 day7. All6 existing aquatic growth forms:16mats,14cushions,11rosettes,2ribbons,3branching,8canopies;38have actual support tissue,27have recorded grazing. No claim true land plants or animals. Integrated cumulative grazing1.8203e9kgC; counter units differ from summed biomass density. Existing material receipt counters and every daily patch preserved, no new exact global conservation claim.
+
+Competition is observable without changing rates: founder1 biomass0.048099 on day12 falls to0.024417 day14; feeding daughter4 reaches0.051897, overtaking it. Founder patch nutrient0.0003622 and grandson11 shares it. Feeding, density/light and nutrient limitations covary; this is NOT a causal grazing ablation. Occupancy expands onto9 shallow rim patches, depths0.086–0.198m at day14; wet habitat, not dry-land establishment.
+
+Most immediate player friction is finding this real progression: unchanged Watch framing renders6 of16occupied patches; explicit existing Fit reveals16. Screenshot after Fit inspected and shows varied glyphs. Direct living-offspring navigation is justified; no biological growth boost is justified by this run. Parent separately prioritizes user-requested seed-target declutter.
+
+First run elapsed9.465s for simulation plus daily render/serialization; not full-frame FPS/browserpace benchmark. Original capture shim stopped at12images(day10), so an explicit final capture was added and the same fixed run repeated. Both7/14day saves match first-run bytes exactly; first logs retained. Final Fit passes complete saved-world parity except declared camera fields; endpoint save.apply matches full frozen bytes.
+
+Reproduce with egl-sunlit14-prepare.py and egl-propagule-visual-build.zig, Zig0.13 ReleaseSafe; QA_FLOW_SEED=42, STELLA_ORIGIN_WIDTH=390, LIBGL_ALWAYS_SOFTWARE=1,EGL_PLATFORM=surfaceless. analyze-sunlit14.py consumes first-run.log. Large saves remain local site-tmp/sunlit14, hashes recorded. No production change from this observation.

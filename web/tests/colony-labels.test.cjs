@@ -11,7 +11,7 @@ const context={document:{getElementById:node},Module:{started:true,_stella_life_
 vm.createContext(context);
 // Include the production refresh dependency, not a no-op stand-in.
 vm.runInContext(html.slice(html.indexOf('let lifePoint='),html.indexOf('function livingTraitLabel(')),context);
-vm.runInContext(html.slice(html.indexOf('function competitionFeedback('),html.indexOf("document.getElementById('life-toggle').onclick=")),context);
+vm.runInContext(html.slice(html.indexOf('function competitionFeedback('),html.indexOf('const offspringSearch='))+html.slice(html.indexOf('function compactColonyRows('),html.indexOf("document.getElementById('life-toggle').onclick=")),context);
 const original=JSON.stringify(snapshot);context.refreshLife();
 assert.match(node('life-summary').textContent,/2 living colonies/);
 assert.match(node('life-competition').textContent,/2 living colonies/);

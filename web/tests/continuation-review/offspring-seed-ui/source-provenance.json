@@ -1,0 +1,10 @@
+{
+  "src/main.zig": "c4b40406526092f0c3a462d4adfc13c13d79ce6989b2564abb54d0fc04206e65",
+  "src/states/play.zig": "247f6bc5359d1a219649f2237349365ee37bcc8e495a7c4ec51821c490f7f1d3",
+  "src/save_game.zig": "731f2632ee4bbc0bf1287a5b864fb90f79460706d351f9e5958a3eb35bddb1f6",
+  "src/offspring_finder.zig": "56988f3a11d143e07fe67588bcdd78aa6a6ee0580a4d51f6475c6bfb45364adc",
+  "web/shell.html": "94e1452b22c1d9eed508936e8fd65e455a5f23aa4849e8c15741606575b11550",
+  "web/offspring-search.js": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e",
+  "web/build.sh": "ff61444f7955db00e60d7b30a34f0706d6bd73fba6f73f66198f39d92756ace4",
+  "src/seed_eligibility.zig": "814d08b32a58239e3f0da240bc1aeb7a84f7268078f5c318ffdfccc963f928a1"
+}

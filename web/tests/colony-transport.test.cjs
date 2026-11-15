@@ -15,3 +15,14 @@ test('capacity includes existing target mass; cancel and refresh discard session
 test('destination inspection is explicit and bound to verified world, target and string ID',()=>{const f=fixture();let observed;f.h.inspect=(...a)=>{observed=a;return 1};assert(!f.c.inspect());ready(f);f.c.execute();assert.equal(observed,undefined);assert(f.c.inspect());assert.deepEqual(observed,[7,19,'9007199254740993']);f.h.inspect=()=>-1;assert(!f.c.inspect());assert.equal(f.state.receipt,null);});
 
 test('changing source or destination consumes pending ticket without refreshing options',()=>{for(const method of ['changeSource','changeTarget']){const f=fixture();ready(f);const old=f.cancelled;f.c[method]();assert(f.cancelled>old);assert.equal(f.state.ticket,null);assert(!f.c.execute());assert.equal(f.state.target,null);assert.equal(!!f.state.source,method==='changeTarget');assert.equal(f.state.options,f.options);}});
+
+test('actual pentagon five destinations accepted while raw self padding remains rejected',()=>{
+ const f=fixture();f.options.cell=0;
+ const row=[10242,10244,11826,30746,30748]; // actual 40,962-cell Planet row0 minus self
+ f.options.neighbors=row.map(cell=>({...f.options.neighbors[0],cell}));
+ assert(T.valid(f.options));assert(f.c.refresh());
+ assert.equal(f.state.options.neighbors.length,5);
+ assert.equal(T.valid({...f.options,neighbors:[...f.options.neighbors,{...f.options.neighbors[0],cell:0}]}),false);
+ const hex=[10350,10352,10866,10868,12035,12726];
+ assert(T.valid({...f.options,cell:12,neighbors:hex.map(cell=>({...f.options.neighbors[0],cell}))}));
+});

@@ -403,6 +403,9 @@ pub fn lifeSnapshotForState(state:*PlayState) [*:0]const u8 {
     const Tissue = struct { form:[]const u8, support_mass:f32, frond_mass:f32, height_m:f32, available_light:f32, maintenance_potential:f32, living_traits:@import("producer_habitat.zig").LivingTraits };
     var tissues:[4]Tissue=undefined;
     for(cell.cohorts,0..) |co,slot| tissues[slot]=.{.form=Microbes.producerFormName(Microbes.producerForm(co)),.support_mass=co.support_mass,.frond_mass=Microbes.frondMass(co),.height_m=Microbes.producerHeightMeters(co),.available_light=shares[slot],.maintenance_potential=Microbes.supportMaintenancePerDay(co),.living_traits=@import("producer_habitat.zig").livingTraits(co,depth,state.planet.temperature[point])};
+    const Identity=struct{id:[]const u8,parent:[]const u8,living:bool,generation:u32};
+    var id_buffers:[4][20]u8=undefined;var parent_buffers:[4][20]u8=undefined;var identities:[4]Identity=undefined;
+    for(cell.cohorts,0..)|c,i|identities[i]=.{.id=std.fmt.bufPrint(&id_buffers[i],"{d}",.{c.lineage}) catch "",.parent=std.fmt.bufPrint(&parent_buffers[i],"{d}",.{c.parent}) catch "",.living=@import("offspring_finder.zig").alive(c),.generation=c.generation};
     var movement_reasons: [4][]const u8 = undefined;
     for (&movement_reasons, 0..) |*reason, slot| {
         reason.* = @tagName(state.planet.microbeRelocationOpportunity(point, slot, state.gameTime).reason);
@@ -415,7 +418,7 @@ pub fn lifeSnapshotForState(state:*PlayState) [*:0]const u8 {
         .temperature_c = state.planet.temperature[point] - 273.15,
         .water_m = state.planet.waterMass[point] * state.planet.getKmPerWaterMass() * 1000,
         .nutrients = cell.nutrient, .detritus = cell.detritus, .simulation_light = biologicalLight,
-        .cohorts = cell.cohorts, .movement_reasons = movement_reasons, .tissues = tissues,
+        .cohorts = cell.cohorts, .identities = identities, .movement_reasons = movement_reasons, .tissues = tissues,
     }, .{ .emit_nonportable_numbers_as_strings = true }, stream.writer()) catch return "{\"status\":\"error\"}";
     lifeSnapshotBuffer[stream.pos] = 0;
     return @ptrCast(&lifeSnapshotBuffer);
@@ -565,6 +568,14 @@ export fn stella_find_feeding(restart:u32) i32 {
     return state.findRecordedFeeding(restart==1);
 }
 
+export fn stella_find_offspring(restart:u32,world:u32,source:u32,parent_text:[*:0]const u8)i32 {
+    const state=webEditableState() orelse return -1;
+    if(restart==2){state.offspringFinder=.{};return -4;}
+    if(restart>2){state.offspringFinder=.{};return -4;}
+    const parent=@import("offspring_finder.zig").parseId(std.mem.span(parent_text)) orelse {state.offspringFinder=.{};return -4;};
+    return state.findOffspring(restart==1,world,source,parent);
+}
+
 export fn stella_find_life() i32 {
     const state=webEditableState() orelse return -1;
     const size=game.window.getFramebufferSize();
@@ -575,6 +586,14 @@ export fn stella_watch_life() i32 {
     const state=webEditableState() orelse return 0;
     state.watchLife();
     return 1;
+}
+
+/// Session display preference only; never serialized or an ecology action.
+export fn stella_seed_targets(mode:i32)i32 {
+    const state=webPlayState() orelse return -1;
+    if(state.planet.worldMode!=.origin or mode < -1 or mode > 1)return -1;
+    if(mode>=0){_ = webEditableState() orelse return -1;state.setSeedTargetsVisible(mode==1);}
+    return @intFromBool(state.seedTargetsVisible);
 }
 
 export fn stella_seed_colony(expected_point:u32) i32 {

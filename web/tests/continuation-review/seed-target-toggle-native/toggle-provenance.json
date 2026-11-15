@@ -1,0 +1,22 @@
+{
+  "head": "4758dfbe66f24fe17d983c8894500a90e128e71f",
+  "input_sha256": "db14ebd4ade6c41fa321b4218827fe75c26e84749a92d76b384435cc29bfebc5",
+  "source": {
+    "main.zig": {
+      "production": "c4b40406526092f0c3a462d4adfc13c13d79ce6989b2564abb54d0fc04206e65",
+      "copy": "6fb5500199996d3a95f490b62daab3e4969ff101d2c9719860ce42b2a0d3de3d"
+    },
+    "states/play.zig": {
+      "production": "6b34bce5d35d9e5c83c811f4265cdf5ad360cefa24cae2d195b67858be4ca80b",
+      "copy": "a28ae1f097c2153c63c36f32d6acca69170422a77d657044b7a755b1a7212919"
+    },
+    "simulation/planet.zig": {
+      "production": "0be6803d6aa8178ecb4e16c98613724b6eafc339566c66d9a316cf12d97fbb8d",
+      "copy": "b0060d3eec2a9882fabfeb73719cbb7fd6fe9d3b67f7cd0f1e24da6bb57b6004"
+    },
+    "simulation/microbes.zig": {
+      "production": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "copy": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986"
+    }
+  }
+}

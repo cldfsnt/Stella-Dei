@@ -16,6 +16,16 @@ pub fn reasonText(reason:Reason) []const u8 {
   .no_carbon=>"No carbon: habitat cannot seed now",
  };
 }
+pub fn displayHint(reason:Reason,feedback:[]const u8,targets_visible:bool)[]const u8{
+ if(targets_visible)return seedHint(reason,feedback);
+ return switch(reason){.eligible=>"Seed hints hidden: tap terrain or use Seed colony",.too_dry=>"Too dry: add water or Find habitat",.no_space=>"Patch full: select another patch",else=>reasonText(reason)};
+}
+test "hidden seed hints retain current eligibility without invisible target directions"{
+ try std.testing.expectEqualStrings("Seed hints hidden: tap terrain or use Seed colony",displayHint(.eligible,"Tap closer to a green + or use Seed colony",false));
+ try std.testing.expectEqualStrings("Patch full: select another patch",displayHint(.no_space,"",false));
+ try std.testing.expectEqualStrings("Too dry: add water or Find habitat",displayHint(.too_dry,"",false));
+ for(std.enums.values(Reason))|reason|try std.testing.expectEqualStrings(seedHint(reason,""),displayHint(reason,"",true));
+}
 pub fn seedHint(reason:Reason, feedback:[]const u8) []const u8 {
  if(reason==.eligible and std.mem.eql(u8,feedback,"Tap closer to a green + or use Seed colony"))return feedback;
  return reasonText(reason);

@@ -4,7 +4,7 @@ from pathlib import Path
 import re,sys,shutil
 r=Path(__file__).resolve().parents[2];out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 s=(r/'web/shell.html').read_text().replace('{{{ SCRIPT }}}','').replace('{{{SCRIPT}}}','')
-s=s.replace('</head>','<style>#habitat-sheet{width:358px;max-width:calc(100vw - 16px)}</style></head>')
+s=s.replace('</head>','<style>#habitat-sheet,#life-sheet{width:358px;max-width:calc(100vw - 16px)}</style></head>')
 s=s.replace('<body>','<body><aside style="padding:12px;background:#6d3c00;color:white"><strong>UI FIXTURE ONLY · 358px panel · mock engine · no game simulation</strong><div id="fixture-controls"></div></aside>')
 for name in re.findall(r'<script src="([^"]+)"',s):
  source=r/'web'/name

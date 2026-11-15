@@ -136,6 +136,7 @@ pub fn apply(state: anytype, saved: schema.Save) !void {
     if (@hasField(@TypeOf(state.*), "seedTargets")) state.seedTargets.count = 0;
     if (@hasField(@TypeOf(state.*), "detritusFinder")) state.detritusFinder = .{};
     if (@hasField(@TypeOf(state.*), "feedingFinder")) state.feedingFinder = .{};
+    if (@hasField(@TypeOf(state.*), "offspringFinder")) state.offspringFinder = .{};
     if (@hasField(@TypeOf(state.*), "godReceipt")) state.godReceipt = null;
     // Last-action text belongs to the prior world, not the loaded save.
     if (@hasField(@TypeOf(state.*), "mobileFeedback")) state.mobileFeedback = "";

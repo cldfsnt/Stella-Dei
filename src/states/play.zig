@@ -200,6 +200,7 @@ pub const PlayState = struct {
     colonyTargetHeight:f32=0,
     colonyTargetWorld:usize=0,
     seedTargets: SeedTargets.List = .{},
+    seedTargetsVisible: bool = true,
     seedTargetWidth:f32=0,
     seedTargetHeight:f32=0,
     seedTargetWorld:usize=0,
@@ -207,6 +208,7 @@ pub const PlayState = struct {
     godEffectSeconds: f32 = 0,
     detritusFinder: @import("../detritus_finder.zig").Scanner = .{},
     feedingFinder: @import("../detritus_finder.zig").Scanner = .{},
+    offspringFinder: @import("../offspring_finder.zig").Search = .{},
 
     pub const simulation_step_seconds: f32 = 1440;
     pub fn setRawFrameDelta(self:*PlayState, seconds:f32) void {self.rawFrameDelta=seconds;}
@@ -835,6 +837,13 @@ pub const PlayState = struct {
             if (self.cameraInputBlocked()) return;
             self.validateSeedTargetViewport(game);
             const cursor=game.window.getCursorPos();
+            if(!self.seedTargetsVisible){
+                // Hidden hints do not disable planting. Re-pick actual terrain,
+                // never reuse the old snapped circle target after a toggle.
+                self.mouseMoved(game,@floatCast(cursor.xpos),@floatCast(cursor.ypos),0,0);
+                if(self.pointerOnPlanet) _=self.applySelectedTool(.PlaceVegetation,true,0);
+                return;
+            }
             if (self.pickSeedTarget(@floatCast(cursor.xpos),@floatCast(cursor.ypos))) |cell| {
                 self.selectedPoint=cell;self.pointerOnPlanet=true;
                 if(self.planet.seedEligibility(cell)==.eligible) _=self.applySelectedTool(.PlaceVegetation,true,0);
@@ -1161,7 +1170,9 @@ pub const PlayState = struct {
     }
     /// Exact visible target, never redirected if ecology changed after rendering.
     /// The action separately rechecks eligibility before any state mutation.
+    pub fn setSeedTargetsVisible(self:*PlayState,visible:bool)void{self.seedTargetsVisible=visible;self.seedTargets.count=0;}
     pub fn pickSeedTarget(self:*PlayState,x:f32,y:f32) ?usize {
+        if(!self.seedTargetsVisible)return null;
         if(self.planet.worldMode!=.origin or self.selectedTool!=.PlaceVegetation or self.displayMode!=.Normal)return null;
         if(self.seedTargetWorld!=@intFromPtr(self.planet.waterMass.ptr))return null;
         return self.seedTargets.pick(x,y);
@@ -1549,6 +1560,26 @@ pub const PlayState = struct {
         self.mobileFeedbackSeconds=5;return 1;
     }
 
+    /// Explicit whole-world discovery in <=512-cell chunks. Only direct living children.
+    pub fn findOffspring(self:*PlayState,restart:bool,world:u32,source:usize,parent:u64)i32 {
+        const F=@import("../offspring_finder.zig");const n=self.planet.microbeCells.len;
+        const search=&self.offspringFinder;const scan=&search.scan;
+        if(self.planet.worldMode!=.origin or world!=@import("../performance_details.zig").world_serial or source!=self.selectedPoint or source>=n or n!=self.planet.transformedPoints.len or !std.math.isFinite(self.gameTime)) {search.*=.{};return -4;}
+        if(!F.parentPresent(self.planet.microbeCells[source],parent)){search.*=.{};return -4;}
+        if(restart){search.*=.{.world=world,.parent=parent,.time=self.gameTime};scan.begin(n,@intFromPtr(self.planet.microbeCells.ptr));scan.geometry=@intFromPtr(self.planet.transformedPoints.ptr);scan.selection=source;scan.seed=self.planet.seed;scan.radius=self.planet.radius;}
+        if(!scan.active or search.world!=world or search.parent!=parent or search.time>self.gameTime or scan.selection!=source or scan.total!=n or scan.storage!=@intFromPtr(self.planet.microbeCells.ptr) or scan.geometry!=@intFromPtr(self.planet.transformedPoints.ptr) or scan.seed!=self.planet.seed or scan.radius!=self.planet.radius){search.*=.{};return -4;}
+        const end=scan.end();var found:?usize=null;
+        for(scan.cursor..end)|i|{const point=self.planet.transformedPoints[i];const length=point.length();if(!std.math.isFinite(length) or length<=0 or @abs(point.norm().z())>0.95)continue;if(F.child(self.planet.microbeCells[i],parent)!=null){found=i;break;}}
+        scan.cursor=end;if(found==null and end<n)return 2;scan.active=false;
+        const candidate=found orelse return 0;
+        if(!F.parentPresent(self.planet.microbeCells[source],parent) or F.child(self.planet.microbeCells[candidate],parent)==null)return -4;
+        const point=self.planet.transformedPoints[candidate];const length=point.length();
+        self.displayMode=.Normal;self.watchLife();self.colonyPeek.clear();
+        self.selectedPoint=candidate;self.clickedPoint=candidate;self.pointerOnPlanet=true;
+        self.targetCameraPos=point.norm();self.setOrbitDistance(length+900,true);self.cameraGroundPoint=candidate;
+        self.mobileFeedback="Direct living offspring found; inspect inherited traits";self.mobileFeedbackSeconds=5;return 1;
+    }
+
     pub fn findLivingClusterResult(self:*PlayState,width:f32,height:f32) i32 {
         return self.frameLivingCluster(width,height,true);
     }
@@ -1700,7 +1731,7 @@ pub const PlayState = struct {
     fn renderSeedZones(self: *PlayState, vg: nvg, vp: Mat4, width: f32, height: f32, toolBottom: f32) void {
         self.seedTargets.count=0;
         self.seedTargetWidth=width;self.seedTargetHeight=height;self.seedTargetWorld=@intFromPtr(self.planet.waterMass.ptr);
-        if (self.planet.worldMode != .origin or self.selectedTool != .PlaceVegetation or self.displayMode != .Normal) return;
+        if (!self.seedTargetsVisible or self.planet.worldMode != .origin or self.selectedTool != .PlaceVegetation or self.displayMode != .Normal) return;
         for (self.planet.transformedPoints, 0..) |p, index| {
             if (self.seedTargets.count == 64) break;
             if (p.dot(self.cameraPos.sub(p)) <= 0) continue;
@@ -2088,7 +2119,7 @@ pub const PlayState = struct {
         vg.fontSize(14);
         const depth = self.planet.waterMass[self.selectedPoint] * self.planet.getKmPerWaterMass();
         const hint: []const u8 = if (origin and self.selectedTool == .PlaceVegetation)
-            @import("../seed_eligibility.zig").seedHint(self.planet.seedEligibility(self.selectedPoint), if(self.mobileFeedbackSeconds>0) self.mobileFeedback else "")
+            @import("../seed_eligibility.zig").displayHint(self.planet.seedEligibility(self.selectedPoint), if(self.mobileFeedbackSeconds>0) self.mobileFeedback else "", self.seedTargetsVisible)
         else if (self.mobileFeedbackSeconds > 0) self.mobileFeedback else if (origin and self.watchLifeView) @import("../watch_feedback.zig").legend else if (origin) switch (self.selectedTool) {
             .PlaceVegetation => if (depth < 0.0002) "Too dry: microbes need shallow water" else if (depth > 0.05) "Too deep: drain to 0.2–50m" else "Tap to seed existing simple life",
             .PlaceLife => "Tap to add nutrients (player supplied)",
