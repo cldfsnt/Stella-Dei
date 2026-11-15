@@ -1,0 +1,127 @@
+--- old/simulation/microbes.zig
++++ candidate/simulation/microbes.zig
+@@ -11,7 +11,7 @@
+ };
+ pub const Cell=struct { cohorts:[4]Cohort=.{.{},.{},.{},.{}}, nutrient:f32=0.02, detritus:f32=0, rng:u64=1 };
+ pub const Stats=struct { next_lineage:u64=1,births:u64=0,fixed_carbon:f64=0,recycled_carbon:f64=0, nutrient_added:f64=0, failed_patches:u64=0, grazed_carbon:f64=0, grazing_respired_carbon:f64=0, relocations:u64=0, movement_respired_carbon:f64=0 };
+-pub const Environment=struct {temperature:f32,depth_km:f32,light:f32,carbon_available:f32,oxygen_carbon_capacity:f32,immersion_physiology:bool=false,final_demand_physiology:bool=false,root_credit:[4]f64=.{0,0,0,0},root_owner:[4]u64=.{0,0,0,0},root_hydration:[4]f32=.{0,0,0,0}};
++pub const Environment=struct {temperature:f32,depth_km:f32,light:f32,carbon_available:f32,oxygen_carbon_capacity:f32,immersion_physiology:bool=false,final_demand_physiology:bool=false,composed_growth_physiology:bool=false,root_credit:[4]f64=.{0,0,0,0},root_owner:[4]u64=.{0,0,0,0},root_hydration:[4]f32=.{0,0,0,0}};
+ pub const Flux=struct{fixed:f32=0,recycled:f32=0,failed_patches:u32=0,grazed:f32=0,grazing_respired:f32=0};
+ pub fn random(state:*u64) u64 {state.* +%= 0x9e3779b97f4a7c15;if(state.*==0)state.*=1;var z=state.*;z=(z^(z>>30))*%0xbf58476d1ce4e5b9;z=(z^(z>>27))*%0x94d049bb133111eb;return z^(z>>31);}
+ pub fn initialized(initial_seed:u64) Cell{return .{.rng=if(initial_seed==0) 1 else initial_seed};}
+@@ -175,7 +175,8 @@
+     for(cell.cohorts,0..) |c,i| {
+         const habitat=photosyntheticHabitat(c,env.depth_km,env.temperature);
+         const immersed=if(env.immersion_physiology)@max(habitat,geometricImmersion(c,env.depth_km,env.temperature))else habitat;
+-        const effective_habitat=@max(immersed,effectiveHydration(if(env.final_demand_physiology)fundedHydration(c,env,elapsed,i,interval_demand[i])else env.root_hydration[i],env.depth_km,env.temperature));
++        const funded=effectiveHydration(if(env.final_demand_physiology)fundedHydration(c,env,elapsed,i,interval_demand[i])else env.root_hydration[i],env.depth_km,env.temperature);
++        const effective_habitat=if(env.composed_growth_physiology) composedGrowthHabitat(habitat,if(env.immersion_physiology)geometricImmersion(c,env.depth_km,env.temperature)else 0,funded) else @max(immersed,funded);
+          if(c.biomass<=0 or effective_habitat<=0)continue;
+         const fitness=thermalFitness(env.temperature,c.optimum);
+         // Higher light efficiency carries maintenance cost; not a free upgrade.
+@@ -1030,3 +1031,6 @@
+         }
+     }
+ }
++
++/// Law4: funded is the fraction of exposed demand, not whole-body hydration.
++pub fn composedGrowthHabitat(film:f32,immersion:f32,funded:f32)f32{return @max(film,immersion+(1-immersion)*funded);}
+--- old/simulation/planet.zig
++++ candidate/simulation/planet.zig
+@@ -1391,7 +1391,7 @@
+             const temperature=self.temperature[i];const saturation=@as(f64,getEquilibriumVaporPressure(temperature))*divider/(@as(f64,temperature)*k);
+             var env=self.microbeEnvironment(i,@max(0,self.transformedPoints[i].norm().dot(options.solarVector))*std.math.clamp(options.solarConstant/1361,0,2));env.immersion_physiology=self.landBeta.physiology_law>=2;
+             const column=@import("capillary_bucket.zig").stepBorrowed(.{.liquid=liquid,.vapor=vapor,.soil=self.landSoil[i],.rain=self.rainfall[i]},.{.dt=dt,.area=self.getMeanPointArea(),.temperature=temperature,.saturation=saturation,.environment=env,.conductance=10},&self.microbeCells[i]) orelse continue;
+-            self.waterMass[i]=column.state.liquid;self.landVapor[i]=column.state.vapor;self.landSoil[i]=column.state.soil;self.rainfall[i]=column.state.rain;for(0..4)|slot|{self.landRootH[i][slot]=if(self.landBeta.physiology_law==3)column.root_credits[slot]else column.root_h[slot];self.landRootOwner[i][slot]=if(self.landBeta.physiology_law==3)self.microbeCells[i].cohorts[slot].lineage else 0;}
++            self.waterMass[i]=column.state.liquid;self.landVapor[i]=column.state.vapor;self.landSoil[i]=column.state.soil;self.rainfall[i]=column.state.rain;for(0..4)|slot|{self.landRootH[i][slot]=if(self.landBeta.physiology_law>=3)column.root_credits[slot]else column.root_h[slot];self.landRootOwner[i][slot]=if(self.landBeta.physiology_law>=3)self.microbeCells[i].cohorts[slot].lineage else 0;}
+         }
+         // After the preceding swap, newWaterMass holds stale OLD liquid data.
+         // It is scratch until the NEXT water step overwrites it from waterMass.
+@@ -1764,9 +1764,9 @@
+             if(active)|bits|ActiveCells.mark(bits,i);
+             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
+             const before_cohorts=cell.cohorts;
+-            var env=self.microbeEnvironment(i,light);if(self.landBeta.enabled){if(self.landBeta.physiology_law==3){env.final_demand_physiology=true;env.root_credit=self.landRootH[i];env.root_owner=self.landRootOwner[i];}else for(0..4)|slot|{env.root_hydration[slot]=@floatCast(self.landRootH[i][slot]);}env.immersion_physiology=self.landBeta.physiology_law>=2;}
++            var env=self.microbeEnvironment(i,light);if(self.landBeta.enabled){if(self.landBeta.physiology_law>=3){env.final_demand_physiology=true;env.composed_growth_physiology=self.landBeta.physiology_law==4;env.root_credit=self.landRootH[i];env.root_owner=self.landRootOwner[i];}else for(0..4)|slot|{env.root_hydration[slot]=@floatCast(self.landRootH[i][slot]);}env.immersion_physiology=self.landBeta.physiology_law>=2;}
+             const flux = Microbes.step(cell, env, dt);
+-            if(self.landBeta.enabled and self.landBeta.physiology_law==3){self.landRootH[i]=.{0,0,0,0};self.landRootOwner[i]=.{0,0,0,0};}
++            if(self.landBeta.enabled and self.landBeta.physiology_law>=3){self.landRootH[i]=.{0,0,0,0};self.landRootOwner[i]=.{0,0,0,0};}
+             physiology_deaths +|= WorldEcology.physiologyDeaths(before_cohorts,cell.cohorts);
+             if(observing)watch.recordFlux(i,flux.fixed,flux.recycled,flux.grazed);
+             for(before_cohorts,0..)|old,slot|{
+--- old/simulation/land_beta.zig
++++ candidate/simulation/land_beta.zig
+@@ -1,2 +1,2 @@
+ const R=@import("microbes.zig").RootMutation;
+-pub const Config=struct{enabled:bool=false,law:u8=0,physiology_law:u8=1,root_mutation:R.Config=.{},pub fn jsonStringify(c:@This(),w:anytype)!void{try w.beginObject();try w.objectField("enabled");try w.write(c.enabled);try w.objectField("law");try w.write(c.law);if(c.physiology_law!=1){try w.objectField("physiology_law");try w.write(c.physiology_law);}try w.objectField("root_mutation");try w.write(c.root_mutation);try w.endObject();}pub fn valid(c:@This())bool{return (c.physiology_law==1 or (c.enabled and (c.physiology_law==2 or c.physiology_law==3))) and (if(!c.enabled)c.law==0 and c.root_mutation.law==0 and !c.root_mutation.enabled and c.root_mutation.stream_seed==0 else c.law==1 and c.root_mutation.law==1 and c.root_mutation.enabled);}};
++pub const Config=struct{enabled:bool=false,law:u8=0,physiology_law:u8=1,root_mutation:R.Config=.{},pub fn jsonStringify(c:@This(),w:anytype)!void{try w.beginObject();try w.objectField("enabled");try w.write(c.enabled);try w.objectField("law");try w.write(c.law);if(c.physiology_law!=1){try w.objectField("physiology_law");try w.write(c.physiology_law);}try w.objectField("root_mutation");try w.write(c.root_mutation);try w.endObject();}pub fn valid(c:@This())bool{return (c.physiology_law==1 or (c.enabled and (c.physiology_law==2 or c.physiology_law==3 or c.physiology_law==4))) and (if(!c.enabled)c.law==0 and c.root_mutation.law==0 and !c.root_mutation.enabled and c.root_mutation.stream_seed==0 else c.law==1 and c.root_mutation.law==1 and c.root_mutation.enabled);}};
+--- old/save_schema.zig
++++ candidate/save_schema.zig
+@@ -1,7 +1,7 @@
+ //! Versioned, graphics-independent browser save format. Never includes pointers.
+ const std = @import("std");
+ pub const VERSION: u32 = 10;
+-pub const BetaOrigin=struct{format:enum{origin_land_beta_v1,origin_land_beta_v2,origin_land_beta_v3},config:@import("simulation/land_beta.zig").Config,soil:[]const f64,vapor:[]const f64};
++pub const BetaOrigin=struct{format:enum{origin_land_beta_v1,origin_land_beta_v2,origin_land_beta_v3,origin_land_beta_v4},config:@import("simulation/land_beta.zig").Config,soil:[]const f64,vapor:[]const f64};
+ pub const CURRENT_ORIGIN_REVISION:u32=5;
+ pub fn originRevision(version:u32)u32{return if(version>=7) CURRENT_ORIGIN_REVISION else version-1;}
+ pub const Microbes = @import("simulation/microbes.zig");
+@@ -155,7 +155,7 @@
+         try writer.endObject();
+     }
+     pub fn validate(self: Save) !void {
+-        if ((self.version < 1 or self.version > VERSION) or self.subdivisions > 7 or self.radius != 5000) return error.IncompatibleSave;
++        if ((self.version < 1 or (self.version > VERSION and self.version!=12)) or self.subdivisions > 7 or self.radius != 5000) return error.IncompatibleSave;
+         if (self.version == 1 and (self.mode != .sandbox or self.origin != null)) return error.IncompatibleSave;
+         if(self.version<7 and self.sandbox_defense!=null)return error.IncompatibleSave;
+         if(self.sandbox_defense)|cfg|{
+@@ -164,7 +164,7 @@
+         const count = 10 * std.math.pow(usize, 4, self.subdivisions) + 2;
+         if (self.elevation.len != count or self.temperature.len != count or self.vegetation.len != count or self.water.len != count or self.vapor.len != count or self.rainfall.len != count or self.wind.len != count or self.wind_error.len != count or self.plants.len != count or self.rabbits.len > 100000) return error.InvalidShape;
+         if(self.beta_origin)|beta|{
+-            if(beta.config.physiology_law==1){if(self.version!=8 or beta.format!=.origin_land_beta_v1)return error.IncompatibleSave;}else if(beta.config.physiology_law==2){if(self.version!=9 or beta.format!=.origin_land_beta_v2)return error.IncompatibleSave;}else if(beta.config.physiology_law==3){if(self.version!=10 or beta.format!=.origin_land_beta_v3)return error.IncompatibleSave;}else return error.InvalidValue;
++            if(beta.config.physiology_law==1){if(self.version!=8 or beta.format!=.origin_land_beta_v1)return error.IncompatibleSave;}else if(beta.config.physiology_law==2){if(self.version!=9 or beta.format!=.origin_land_beta_v2)return error.IncompatibleSave;}else if(beta.config.physiology_law==3){if(self.version!=10 or beta.format!=.origin_land_beta_v3)return error.IncompatibleSave;}else if(beta.config.physiology_law==4){if(self.version!=12 or beta.format!=.origin_land_beta_v4)return error.IncompatibleSave;}else return error.InvalidValue;
+             if(self.mode!=.origin or !beta.config.enabled or !beta.config.valid())return error.InvalidValue;
+             if(beta.soil.len!=count or beta.vapor.len!=count)return error.InvalidShape;
+             for(beta.soil)|v|try finiteRange(v,0,1);
+@@ -173,6 +173,7 @@
+                 if(@as(f32,@floatCast(v))!=projection)return error.InvalidValue;
+             }
+         }
++        if(self.version==12 and self.beta_origin==null)return error.IncompatibleSave;
+         switch (self.mode) {
+             .sandbox => if (self.origin != null) return error.InvalidValue,
+             .origin => {
+@@ -774,3 +775,13 @@
+  for([_]u32{7,8,9})|v|{var bad=saved;bad.version=v;try std.testing.expectError(error.IncompatibleSave,bad.validate());}
+  var bad=saved;bad.beta_origin.?.format=.origin_land_beta_v2;try std.testing.expectError(error.IncompatibleSave,bad.validate());
+ }
++
++test "law4 persisted identity and older identities unchanged" {
++ var saved=fixture();saved.version=12;saved.mode=.origin;
++ const cells=[_]Microbes.Cell{Microbes.initialized(42)}**12;const sparse=try captureSparse(std.testing.allocator,&cells);defer sparse.deinit(std.testing.allocator);
++ saved.origin=.{.model_revision=5,.cohort_encoding=.sparse_indexed,.cells=sparse.cells,.stats=.{}};const soil=[_]f64{0}**12;const vapor=[_]f64{0.5}**12;
++ saved.beta_origin=.{.format=.origin_land_beta_v4,.config=.{.enabled=true,.law=1,.physiology_law=4,.root_mutation=.{.enabled=true,.law=1,.stream_seed=42}},.soil=&soil,.vapor=&vapor};
++ try saved.validate();const bytes=try std.json.stringifyAlloc(std.testing.allocator,saved,.{});defer std.testing.allocator.free(bytes);var parsed=try parse(std.testing.allocator,bytes);defer parsed.deinit();try std.testing.expectEqualDeep(saved,parsed.value);
++ for([_]u32{7,8,9,10,11})|v|{var bad=saved;bad.version=v;try std.testing.expectError(error.IncompatibleSave,bad.validate());}
++ var bad=saved;bad.beta_origin.?.format=.origin_land_beta_v2;try std.testing.expectError(error.IncompatibleSave,bad.validate());
++}
+--- old/save_game.zig
++++ candidate/save_game.zig
+@@ -34,14 +34,14 @@
+         if(p.worldMode!=.origin or !p.landBeta.valid() or p.landSoil.len!=p.waterMass.len or p.landVapor.len!=p.waterMass.len)return error.InvalidValue;
+         const projection=try allocator.alloc(f32,p.landVapor.len);
+         for(p.landVapor,projection)|v,*out|{if(!std.math.isFinite(v) or v<0 or v>std.math.floatMax(f32))return error.InvalidValue;out.*=@floatCast(v);}
+-        vapor=projection;beta=.{.format=if(p.landBeta.physiology_law==3).origin_land_beta_v3 else if(p.landBeta.physiology_law==2).origin_land_beta_v2 else .origin_land_beta_v1,.config=p.landBeta,.soil=p.landSoil,.vapor=p.landVapor};
++        vapor=projection;beta=.{.format=if(p.landBeta.physiology_law==4).origin_land_beta_v4 else if(p.landBeta.physiology_law==3).origin_land_beta_v3 else if(p.landBeta.physiology_law==2).origin_land_beta_v2 else .origin_land_beta_v1,.config=p.landBeta,.soil=p.landSoil,.vapor=p.landVapor};
+     }
+     var origin: ?schema.Origin = null;
+     if (p.worldMode == .origin) {
+         const sparse = try schema.captureSparse(allocator, p.microbeCells);
+         origin = .{ .model_revision = schema.CURRENT_ORIGIN_REVISION, .cohort_encoding = .sparse_indexed, .cells = sparse.cells, .stats = p.microbeStats };
+     }
+-    return .{ .version = if(beta!=null) (if(p.landBeta.physiology_law==3) @as(u32,10) else if(p.landBeta.physiology_law==2) @as(u32,9) else @as(u32,8)) else 7, .beta_origin=beta, .mode = p.worldMode, .origin = origin, .sandbox_defense = if(p.worldMode==.sandbox and p.sandboxDefense.enabled) p.sandboxDefense else null, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = vapor, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
++    return .{ .version = if(beta!=null) (if(p.landBeta.physiology_law==4) @as(u32,12) else if(p.landBeta.physiology_law==3) @as(u32,10) else if(p.landBeta.physiology_law==2) @as(u32,9) else @as(u32,8)) else 7, .beta_origin=beta, .mode = p.worldMode, .origin = origin, .sandbox_defense = if(p.worldMode==.sandbox and p.sandboxDefense.enabled) p.sandboxDefense else null, .radius = p.radius, .subdivisions = p.numSubdivisions, .seed = p.seed, .game_time = state.gameTime, .time_scale = state.timeScale, .solar_constant = state.solarConstant, .rotation_time = state.planetRotationTime, .axial_tilt = state.axialTilt, .paused = state.paused, .daylight = state.stableDaylight, .display_mode = @intCast(@intFromEnum(state.displayMode)), .camera = state.cameraPos.data, .camera_target = state.targetCameraPos.data, .camera_distance = state.cameraDistance, .target_distance = state.targetCameraDistance, .nitrogen = p.averageNitrogenMass, .oxygen = p.averageOxygenMass, .carbon_dioxide = p.averageCarbonDioxideMass, .plant_generations = p.plantGenerations, .plant_births = p.plantBirths, .rabbit_births = p.rabbitBirths, .rabbit_meals = p.rabbitMeals, .rabbit_deaths = p.rabbitDeaths, .plant_color = p.plantColorWavelength, .elevation = p.elevation, .temperature = p.temperature, .vegetation = p.vegetation, .water = p.waterMass, .vapor = vapor, .rainfall = p.rainfall, .wind = wind, .wind_error = wind_error, .plants = p.plantTraits, .rabbits = rabbits };
+ }
+ pub fn write(state: anytype, allocator: std.mem.Allocator) !void {
+     var arena = std.heap.ArenaAllocator.init(allocator);

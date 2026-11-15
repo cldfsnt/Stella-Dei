@@ -1,0 +1,21 @@
+{
+  "law3_full_saved_state_rng_exact": true,
+  "law2_full_saved_state_rng_exact": true,
+  "law1_full_saved_state_rng_exact": true,
+  "natural_full_saved_state_rng_exact": true,
+  "warm_full_saved_state_rng_exact": true,
+  "migration_identity_only": true,
+  "law4_fresh_process_restart_exact": true,
+  "hashes": {
+    "law4-2plus2.json": "0ba6e17b27756705366206f3d3bb52db5a155ab8217384f2339af7141214d557",
+    "law1-4.json": "de94af039ded9ce6720ab8d93c138f6a7a1fa886a4188d503b0dd3a117224065",
+    "natural-10.json": "6dbfc3ebb97b1c2ae9920883db7ab753e00b77048007d3ad5e526bbc3e7da4d6",
+    "warm-10.json": "c0a49ae69771506ab23f57c1e78e709a41eb1cb6d3360516f3b2b9aeaad97ebd",
+    "law4-2.json": "4e79ac2ff06ddf7c46fd5bc8dff8b17009d0d6fd54d99a4982d9620b09169da8",
+    "law2-4.json": "8f24cb690ef824e0e9d9b66f9fc38a418dc36c96d8b7024c62a1afbd1758780b",
+    "law3-4.json": "0289d001b988e0e104e6c4a5da45d483c7275cb513ed8fd2325aece601791f6a",
+    "native-source-hashes.json": "c8cf50cb193ce42b044a0ac8e52dc0fa79e9b5fa6953fa78452f483fa0ea636c",
+    "law4-initial.json": "958be14b27401cd061deaf56190b863bdf956b424f46870a5ddb27e7f506949e",
+    "law4-4.json": "0ba6e17b27756705366206f3d3bb52db5a155ab8217384f2339af7141214d557"
+  }
+}

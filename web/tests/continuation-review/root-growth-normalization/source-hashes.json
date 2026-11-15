@@ -1,0 +1,22 @@
+{
+  "simulation/microbes.zig": {
+    "baseline": "0ae008bed40c88b7f32b73d1f6b51405459933e2b61853e06c9df2ccee30e9d9",
+    "candidate": "691c25f53e7edea9195be017572fa43ade261ec5f854d8043fba701bce6b9417"
+  },
+  "simulation/planet.zig": {
+    "baseline": "0e21388e7d3871294af26d460f37b9cd3c1a4254ec82baea15e843af69bae376",
+    "candidate": "c42bc9597551e86224d22a048861ed2df332e3f3456d9bc6d266db0d5a914bc4"
+  },
+  "simulation/land_beta.zig": {
+    "baseline": "8a36f4c46b09d8f78c83b8bc8b0e993ab62242c054771b35a5327c79851f4d4b",
+    "candidate": "1f243247700f7aaadb0ea9e4f070b1e46829372efe9fc523767061caf1fa9b1a"
+  },
+  "save_schema.zig": {
+    "baseline": "e8dc1353964c2df5b330aea1d8bbb2eca94340598c3aceb5b368f787c27515c4",
+    "candidate": "303bff21533e38c2bed0876ee3bac2197e27fc36d35381322433fd5cc0a844f2"
+  },
+  "save_game.zig": {
+    "baseline": "ee3e68585cc344a64a163ade5393e81b6199c967e13d28be3fc6c1f9a22f83c9",
+    "candidate": "d62519e7f3b825c3802bc1ff4fe6dc019641404ad7a41e9e3efc2132af52eb6b"
+  }
+}
