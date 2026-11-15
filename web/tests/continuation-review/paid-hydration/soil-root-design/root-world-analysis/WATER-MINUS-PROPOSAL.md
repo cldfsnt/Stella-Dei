@@ -1,0 +1,9 @@
+# Proposed next fixed player intervention, not executed
+
+Use the three frozen completed day60+1 endpoints from the existing experiment: root0/k1, root.25/k1, root.25/k10. They already contain actual charged soil near0.997kg/m², not an assigned pool. Preserve each snapshot and its inherited descendants; no trait reassignment at this new start.
+
+Branch each into untouched versus exactly one actual selected-patch Water− tap at12352 (six arms). Current actual tool is1m/tap, so it removes this0.705m standing pool tozero. Invoke native selection/pointer/testAction(2), record actual removed native water as an external intervention, assert no neighbor/soil/biology changes from the action itself. Soil is a separate physical pool and is NOT removed by the existing standing-water tool; this laboratory distinction must be explicit before any future user-facing soil integration.
+
+Advance exactly one actual coupled day60×1440s, no refill, second tap, retarget, terrain change or extension after outcomes. Retain pre-action, immediate post-action and every tick local standing/soil/vapor/T/height/exposure/light/root request/actual source-paid flow and founder/family biomass. Observe actual hydrologic refill and atmospheric emptying rather than holding a dry flag. Global material accounting must include the exact external standing-water removal. Keep zero uptake/death/rapid-refill results. Same root0 control and both conductances are predeclared, not choose the favorable rate.
+
+This can test whether an actual player disturbance creates any brief paid root-water opportunity. It cannot establish continuous drought, realistic rooting, evolved-from-zero roots or competitive fitness. Current physical and thermal omissions remain. Request review before running; no parameter/tolerance/model edits proposed.

@@ -1,0 +1,111 @@
+{
+  "source_hashes_match": {
+    "main.zig": true,
+    "simulation/planet.zig": true,
+    "simulation/microbes.zig": true,
+    "simulation/root_throughflow.zig": true,
+    "simulation/root_scheduler_audit.zig": true,
+    "save_schema.zig": true,
+    "save_game.zig": true
+  },
+  "input_hashes_match": {
+    "day60-arm-1.json": true,
+    "day60-arm-2.json": true,
+    "day60-arm-3.json": true
+  },
+  "exports_exact": 55,
+  "extra_native_fixture_exports": [
+    "egl_trace"
+  ],
+  "endpoints": [
+    {
+      "endpoint": "root0-action-0.json",
+      "endpoint_sha256": "070d0654934c00403693b067cc54800336ab302465f372bba20fc07e3444356d",
+      "continuation_sha256": "981d8dbea28f1cdc8a9586b56f35a1bab244b6ecf7dad89f73f63094f39585ec",
+      "restored_sha256": "981d8dbea28f1cdc8a9586b56f35a1bab244b6ecf7dad89f73f63094f39585ec",
+      "exact": true,
+      "continuation_seconds": 14400,
+      "endpoint_time": 5875200.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      }
+    },
+    {
+      "endpoint": "root0-action-1.json",
+      "endpoint_sha256": "99d40444a72a03bef072cd82bbf9d0cbacf94bfd925d9c706c88050d23f286fd",
+      "continuation_sha256": "e80b74f57aa6c2b9ada641eebd21ff5693d36391f0e581c59777e3677c7bce0a",
+      "restored_sha256": "e80b74f57aa6c2b9ada641eebd21ff5693d36391f0e581c59777e3677c7bce0a",
+      "exact": true,
+      "continuation_seconds": 14400,
+      "endpoint_time": 5875200.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      }
+    },
+    {
+      "endpoint": "root25k1-action-0.json",
+      "endpoint_sha256": "a46a9f7785dd1a0a3e3d9625b89f5e6d15adf1f50f6926b9503d856ebe2c9c7b",
+      "continuation_sha256": "b4f86102cf430a2ad8e1145a0a42db5511521c55e08405fbcf0a4b0d2df6da0d",
+      "restored_sha256": "b4f86102cf430a2ad8e1145a0a42db5511521c55e08405fbcf0a4b0d2df6da0d",
+      "exact": true,
+      "continuation_seconds": 14400,
+      "endpoint_time": 5875200.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      }
+    },
+    {
+      "endpoint": "root25k1-action-1.json",
+      "endpoint_sha256": "d773c8a87b85ba81294fb2d06542cdbb6566b66d8f9cb1fcd31982e9f33342b6",
+      "continuation_sha256": "2079de7692b8a0aebe8866fc54bedabf7f46667d3315a50e4a870da4ab135290",
+      "restored_sha256": "2079de7692b8a0aebe8866fc54bedabf7f46667d3315a50e4a870da4ab135290",
+      "exact": true,
+      "continuation_seconds": 14400,
+      "endpoint_time": 5875200.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      }
+    },
+    {
+      "endpoint": "root25k10-action-0.json",
+      "endpoint_sha256": "c800d3aa12ffe2c46c20450943b254d812f2eda543b474f08ace6c078477790e",
+      "continuation_sha256": "cda79e1e094391d6ea052239bbd6305a58409a7c2cb6e38c0be8d94faf0af550",
+      "restored_sha256": "cda79e1e094391d6ea052239bbd6305a58409a7c2cb6e38c0be8d94faf0af550",
+      "exact": true,
+      "continuation_seconds": 14400,
+      "endpoint_time": 5875200.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 10
+      }
+    },
+    {
+      "endpoint": "root25k10-action-1.json",
+      "endpoint_sha256": "ec321ff8790ca8bc4194e9885e52b14e00e38b2098e5240e2d275fa93bb49fab",
+      "continuation_sha256": "68bb699fd6af20e416b39fbd1ccc740e329a380e7f83ead5e3f3712a2e032cc6",
+      "restored_sha256": "68bb699fd6af20e416b39fbd1ccc740e329a380e7f83ead5e3f3712a2e032cc6",
+      "exact": true,
+      "continuation_seconds": 14400,
+      "endpoint_time": 5875200.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 10
+      }
+    }
+  ],
+  "limits": [
+    "Continuation is in-process decoded apply plus actual ticks, not process relaunch.",
+    "Roundtrip and original restoration are native assertion/log evidence, not independently retained recapture bytes.",
+    "No browser click or UI/device interaction proof."
+  ]
+}

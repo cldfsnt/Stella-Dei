@@ -1,0 +1,716 @@
+{
+  "root_patch_endpoints": [
+    {
+      "label": "day30",
+      "arm": 1,
+      "input_sha256": "00068f681d0a1e5e4074795b2d4630d73748d429a6b26d3ecb7bd30f64008f6a",
+      "patch": 12352,
+      "depth_m": 0.659727209773237,
+      "temperature": 295.62835693359375,
+      "soil": 0.9969952231490159,
+      "root478": []
+    },
+    {
+      "label": "day60",
+      "arm": 1,
+      "input_sha256": "2331857a5f849f83bd2ca300625fb957c53f106a34b44a8305fae2b04b61dc88",
+      "patch": 12352,
+      "depth_m": 0.7048388243475193,
+      "temperature": 295.86279296875,
+      "soil": 0.9969952231490159,
+      "root478": [
+        {
+          "root_fraction": 0.0,
+          "biomass": 0.12179429829120636,
+          "organization": 0.13426367938518524,
+          "support_mass": 0.016352619975805283,
+          "optimum": 296.1463928222656,
+          "efficiency": 1.0451198816299438,
+          "structure": 0.13595879077911377,
+          "feeding": 0.20643378794193268,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.047025907784700394,
+          "generation": 6,
+          "lineage": 478,
+          "parent": 232,
+          "reproduction_credit": 0.0013318685814738274
+        }
+      ],
+      "height_m_f64_reconstruction": 0.026408033043623536,
+      "exposure": 0
+    },
+    {
+      "label": "day60",
+      "arm": 2,
+      "input_sha256": "a2648b6c32015afd5044136de60635cfffe5d4ea3edf1e3f0105549192bcfb8e",
+      "patch": 12352,
+      "depth_m": 0.7048388243475193,
+      "temperature": 295.86279296875,
+      "soil": 0.9969952231490159,
+      "root478": [
+        {
+          "root_fraction": 0.25,
+          "biomass": 0.12179429829120636,
+          "organization": 0.13426367938518524,
+          "support_mass": 0.016352619975805283,
+          "optimum": 296.1463928222656,
+          "efficiency": 1.0451198816299438,
+          "structure": 0.13595879077911377,
+          "feeding": 0.20643378794193268,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.047025907784700394,
+          "generation": 6,
+          "lineage": 478,
+          "parent": 232,
+          "reproduction_credit": 0.0013318685814738274
+        }
+      ],
+      "height_m_f64_reconstruction": 0.019806024782717653,
+      "exposure": 0
+    },
+    {
+      "label": "day60",
+      "arm": 3,
+      "input_sha256": "777a4c3f2565aac35c40e64aaa2cd2cf30f07216ad6fb8a562fd62614f39f0eb",
+      "patch": 12352,
+      "depth_m": 0.7048388243475193,
+      "temperature": 295.86279296875,
+      "soil": 0.9969952231490159,
+      "root478": [
+        {
+          "root_fraction": 0.25,
+          "biomass": 0.12179429829120636,
+          "organization": 0.13426367938518524,
+          "support_mass": 0.016352619975805283,
+          "optimum": 296.1463928222656,
+          "efficiency": 1.0451198816299438,
+          "structure": 0.13595879077911377,
+          "feeding": 0.20643378794193268,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.047025907784700394,
+          "generation": 6,
+          "lineage": 478,
+          "parent": 232,
+          "reproduction_credit": 0.0013318685814738274
+        }
+      ],
+      "height_m_f64_reconstruction": 0.019806024782717653,
+      "exposure": 0
+    },
+    {
+      "label": "day90",
+      "arm": 1,
+      "input_sha256": "b4fca3b7d9381409dd87654543917e192bcda431522d1b48ea28ac98638538a2",
+      "patch": 12352,
+      "depth_m": 0.7308687397977771,
+      "temperature": 295.95098876953125,
+      "soil": 0.9969952231490159,
+      "root478": [
+        {
+          "root_fraction": 0.0,
+          "biomass": 0.06851296871900558,
+          "organization": 0.13426367938518524,
+          "support_mass": 0.0091988705098629,
+          "optimum": 296.1463928222656,
+          "efficiency": 1.0451198816299438,
+          "structure": 0.13595879077911377,
+          "feeding": 0.20643378794193268,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.124724380671978,
+          "generation": 6,
+          "lineage": 478,
+          "parent": 232,
+          "reproduction_credit": 0.00325184129178524
+        }
+      ],
+      "height_m_f64_reconstruction": 0.0247414000007721,
+      "exposure": 0
+    }
+  ],
+  "endpoint_infiltration_probes": [
+    {
+      "label": "day30",
+      "bins": {
+        "dry": {
+          "count": 5,
+          "soil_sum": 0.0,
+          "positive_soil": 0,
+          "warm": 4,
+          "prospective_request": 0.0,
+          "prospective_source_debit": 0.0,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.0,
+          "prospective_delivery_ratio": null
+        },
+        "0_to_20cm": {
+          "count": 1290,
+          "soil_sum": 750.5587823750201,
+          "positive_soil": 919,
+          "warm": 740,
+          "prospective_request": 4.329391464187852,
+          "prospective_source_debit": 4.324190483889874,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 1.5916271123068618e-05,
+          "prospective_delivery_ratio": 0.9987986809829973
+        },
+        "20cm_to_2m": {
+          "count": 2640,
+          "soil_sum": 2105.8644039763594,
+          "positive_soil": 2175,
+          "warm": 2076,
+          "prospective_request": 4.729933415726884,
+          "prospective_source_debit": 4.688089910486479,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.00012733016898454894,
+          "prospective_delivery_ratio": 0.9911534684396874
+        },
+        "2_to_100m": {
+          "count": 424,
+          "soil_sum": 356.48449148367325,
+          "positive_soil": 364,
+          "warm": 361,
+          "prospective_request": 4.905031711028086,
+          "prospective_source_debit": 4.792452900240487,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.008149130815011132,
+          "prospective_delivery_ratio": 0.9770483011283116
+        },
+        "over100m": {
+          "count": 36603,
+          "soil_sum": 341.2855985326645,
+          "positive_soil": 349,
+          "warm": 36603,
+          "prospective_request": 610.0499999997738,
+          "prospective_source_debit": 5.688093308877812,
+          "zero_source_receipts": 36254,
+          "max_quantum_density": 2.08617748864285,
+          "prospective_delivery_ratio": 0.009323978868748332
+        }
+      }
+    },
+    {
+      "label": "day60",
+      "bins": {
+        "dry": {
+          "count": 5,
+          "soil_sum": 0.22109349524754907,
+          "positive_soil": 1,
+          "warm": 4,
+          "prospective_request": 0.0,
+          "prospective_source_debit": 0.0,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.0,
+          "prospective_delivery_ratio": null
+        },
+        "0_to_20cm": {
+          "count": 1283,
+          "soil_sum": 711.9077933885712,
+          "positive_soil": 882,
+          "warm": 696,
+          "prospective_request": 4.141321783675781,
+          "prospective_source_debit": 4.13645806599328,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 1.5916271123068618e-05,
+          "prospective_delivery_ratio": 0.9988255639294507
+        },
+        "20cm_to_2m": {
+          "count": 2655,
+          "soil_sum": 2143.5954685518946,
+          "positive_soil": 2212,
+          "warm": 2112,
+          "prospective_request": 4.830358616212328,
+          "prospective_source_debit": 4.788155507037213,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.00012733016898454894,
+          "prospective_delivery_ratio": 0.9912629449429557
+        },
+        "2_to_100m": {
+          "count": 415,
+          "soil_sum": 354.4981408475145,
+          "positive_soil": 363,
+          "warm": 361,
+          "prospective_request": 5.158466479482841,
+          "prospective_source_debit": 5.041765371112237,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.008149130815011132,
+          "prospective_delivery_ratio": 0.9773767826475623
+        },
+        "over100m": {
+          "count": 36604,
+          "soil_sum": 340.7477558988738,
+          "positive_soil": 349,
+          "warm": 36603,
+          "prospective_request": 610.0499999997738,
+          "prospective_source_debit": 5.688093308877812,
+          "zero_source_receipts": 36254,
+          "max_quantum_density": 2.08617748864285,
+          "prospective_delivery_ratio": 0.009323978868748332
+        }
+      }
+    },
+    {
+      "label": "day90",
+      "bins": {
+        "dry": {
+          "count": 4,
+          "soil_sum": 0.057985057338958035,
+          "positive_soil": 1,
+          "warm": 3,
+          "prospective_request": 0.0,
+          "prospective_source_debit": 0.0,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.0,
+          "prospective_delivery_ratio": null
+        },
+        "0_to_20cm": {
+          "count": 1313,
+          "soil_sum": 702.114998814498,
+          "positive_soil": 878,
+          "warm": 682,
+          "prospective_request": 4.156382144480905,
+          "prospective_source_debit": 4.151660405314371,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 1.5916271123068618e-05,
+          "prospective_delivery_ratio": 0.9988639785750201
+        },
+        "20cm_to_2m": {
+          "count": 2639,
+          "soil_sum": 2158.5587211089246,
+          "positive_soil": 2224,
+          "warm": 2130,
+          "prospective_request": 4.967405933815576,
+          "prospective_source_debit": 4.924319206495079,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.00012733016898454894,
+          "prospective_delivery_ratio": 0.9913261110739543
+        },
+        "2_to_100m": {
+          "count": 401,
+          "soil_sum": 340.21729841488366,
+          "positive_soil": 349,
+          "warm": 346,
+          "prospective_request": 5.018675825959554,
+          "prospective_source_debit": 4.905776750636735,
+          "zero_source_receipts": 0,
+          "max_quantum_density": 0.008149130815011132,
+          "prospective_delivery_ratio": 0.9775042104256191
+        },
+        "over100m": {
+          "count": 36605,
+          "soil_sum": 341.2855985326645,
+          "positive_soil": 349,
+          "warm": 36604,
+          "prospective_request": 610.0666666664405,
+          "prospective_source_debit": 5.688093308877812,
+          "zero_source_receipts": 36255,
+          "max_quantum_density": 2.08617748864285,
+          "prospective_delivery_ratio": 0.009323724143066201
+        }
+      }
+    }
+  ],
+  "all_original_final_diagnostics": [
+    {
+      "label": "day30",
+      "arm": 1,
+      "tick": 60,
+      "game_time": 2678400.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      },
+      "colonies": 23,
+      "biomass_density_sum": 0.22272387775592506,
+      "support_density_sum": 0.0027495409867697163,
+      "carbon_density_sum": 0.5164635436376557,
+      "nitrogen_density_sum": 819.2399817551982,
+      "liquid_native_sum": 1644965010400.0483,
+      "vapor_native_sum": 44047409.80248882,
+      "soil_density_sum": 3554.193276367653,
+      "water_native_sum": 1645009085068.8413,
+      "mean_area": 7669529600.0,
+      "rooted_alive": 0,
+      "observed_family_alive": 0,
+      "observed_family_mass": 0.0,
+      "observed_family_ids": 1,
+      "stats": {
+        "next_lineage": 58,
+        "births": 56,
+        "fixed_carbon": 7816905033.602686,
+        "recycled_carbon": 3855872318.994414,
+        "nutrient_added": 0.0,
+        "failed_patches": 34,
+        "grazed_carbon": 575340464.1919795,
+        "grazing_respired_carbon": 143835116.04799488,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      },
+      "audit": {
+        "columns": 2457720,
+        "soil_positive": 225461,
+        "cold": 67886,
+        "exposed": 184,
+        "infiltrated": 3555.476579542043,
+        "infiltration_requested": 39827.47256327558,
+        "soil_evaporated": 1.283303181629273,
+        "standing_evaporated": 1658843.630508442,
+        "phase_signed": [
+          -0.0003329013325564866,
+          4.8689179003484975e-06,
+          -340.35548531596294,
+          -6.4317637045278875e-12,
+          0.0
+        ],
+        "phase_absolute": [
+          0.11626763730795446,
+          1.6060046032819082e-05,
+          10800.78358010089,
+          6.4317637045278875e-12,
+          0.0
+        ],
+        "phase_max": [
+          1.5916271123068618e-05,
+          3.3923107154512633e-06,
+          1.014375791215409,
+          1.0408340855860843e-16,
+          0.0
+        ],
+        "root_calls": 814,
+        "root_demand": 0.0,
+        "root_paid": 0.0,
+        "root_credited": 0.0,
+        "root_zero_receipt": 0,
+        "vapor_zero_receipt": 0,
+        "root_receiver_signed": 0.0,
+        "root_receiver_absolute": 0.0,
+        "root_receiver_max": 0.0
+      }
+    },
+    {
+      "label": "day60",
+      "arm": 1,
+      "tick": 60,
+      "game_time": 5270400.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      },
+      "colonies": 64,
+      "biomass_density_sum": 2.6134977652691305,
+      "support_density_sum": 0.16261437770565157,
+      "carbon_density_sum": 7.497795645147562,
+      "nitrogen_density_sum": 819.2399818445356,
+      "liquid_native_sum": 1644901081166.7275,
+      "vapor_native_sum": 43101096.95293233,
+      "soil_density_sum": 3550.97025218204,
+      "water_native_sum": 1644944209497.952,
+      "mean_area": 7669529600.0,
+      "rooted_alive": 0,
+      "observed_family_alive": 1,
+      "observed_family_mass": 0.12179429829120636,
+      "observed_family_ids": 3,
+      "stats": {
+        "next_lineage": 1618,
+        "births": 1616,
+        "fixed_carbon": 134018257695.40668,
+        "recycled_carbon": 76513735248.5934,
+        "nutrient_added": 0.0,
+        "failed_patches": 1553,
+        "grazed_carbon": 46026680614.44303,
+        "grazing_respired_carbon": 11506670153.610758,
+        "relocations": 26,
+        "movement_respired_carbon": 9218163.852110758
+      },
+      "audit": {
+        "columns": 2457720,
+        "soil_positive": 225266,
+        "cold": 68030,
+        "exposed": 162,
+        "infiltrated": 3552.4475557095534,
+        "infiltration_requested": 39825.4646710901,
+        "soil_evaporated": 1.477303534810757,
+        "standing_evaporated": 1601572.277712035,
+        "phase_signed": [
+          0.00016002335707102414,
+          1.4784703562496782e-06,
+          -298.02051114503456,
+          -6.443477695849964e-12,
+          0.0
+        ],
+        "phase_absolute": [
+          0.10114157634463583,
+          1.898015129741734e-05,
+          10803.210113319561,
+          6.443477695849964e-12,
+          0.0
+        ],
+        "phase_max": [
+          1.5916271123068618e-05,
+          3.4039681405875766e-06,
+          0.9974090461982179,
+          1.0408340855860843e-16,
+          0.0
+        ],
+        "root_calls": 3780,
+        "root_demand": 0.0,
+        "root_paid": 0.0,
+        "root_credited": 0.0,
+        "root_zero_receipt": 0,
+        "vapor_zero_receipt": 0,
+        "root_receiver_signed": 0.0,
+        "root_receiver_absolute": 0.0,
+        "root_receiver_max": 0.0
+      }
+    },
+    {
+      "label": "day60",
+      "arm": 2,
+      "tick": 60,
+      "game_time": 5270400.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      },
+      "colonies": 64,
+      "biomass_density_sum": 2.6134977503679693,
+      "support_density_sum": 0.1626143777059358,
+      "carbon_density_sum": 7.4977934546768665,
+      "nitrogen_density_sum": 819.2399818428707,
+      "liquid_native_sum": 1644901081166.7275,
+      "vapor_native_sum": 43101096.95293233,
+      "soil_density_sum": 3550.97025218204,
+      "water_native_sum": 1644944209497.952,
+      "mean_area": 7669529600.0,
+      "rooted_alive": 1,
+      "observed_family_alive": 1,
+      "observed_family_mass": 0.12179429829120636,
+      "observed_family_ids": 3,
+      "stats": {
+        "next_lineage": 1618,
+        "births": 1616,
+        "fixed_carbon": 134018240822.31311,
+        "recycled_carbon": 76513734044.58409,
+        "nutrient_added": 0.0,
+        "failed_patches": 1553,
+        "grazed_carbon": 46026680373.819756,
+        "grazing_respired_carbon": 11506670093.454939,
+        "relocations": 26,
+        "movement_respired_carbon": 9218163.852110758
+      },
+      "audit": {
+        "columns": 2457720,
+        "soil_positive": 225266,
+        "cold": 68030,
+        "exposed": 162,
+        "infiltrated": 3552.4475557095534,
+        "infiltration_requested": 39825.4646710901,
+        "soil_evaporated": 1.477303534810757,
+        "standing_evaporated": 1601572.277712035,
+        "phase_signed": [
+          0.00016002335707102414,
+          1.4784703562496782e-06,
+          -298.02051114503456,
+          -6.443477695849964e-12,
+          0.0
+        ],
+        "phase_absolute": [
+          0.10114157634463583,
+          1.898015129741734e-05,
+          10803.210113319561,
+          6.443477695849964e-12,
+          0.0
+        ],
+        "phase_max": [
+          1.5916271123068618e-05,
+          3.4039681405875766e-06,
+          0.9974090461982179,
+          1.0408340855860843e-16,
+          0.0
+        ],
+        "root_calls": 3780,
+        "root_demand": 0.0,
+        "root_paid": 0.0,
+        "root_credited": 0.0,
+        "root_zero_receipt": 0,
+        "vapor_zero_receipt": 0,
+        "root_receiver_signed": 0.0,
+        "root_receiver_absolute": 0.0,
+        "root_receiver_max": 0.0
+      }
+    },
+    {
+      "label": "day60",
+      "arm": 3,
+      "tick": 60,
+      "game_time": 5270400.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 10
+      },
+      "colonies": 64,
+      "biomass_density_sum": 2.6134977503679693,
+      "support_density_sum": 0.1626143777059358,
+      "carbon_density_sum": 7.4977934546768665,
+      "nitrogen_density_sum": 819.2399818428707,
+      "liquid_native_sum": 1644901081166.7275,
+      "vapor_native_sum": 43101096.95293233,
+      "soil_density_sum": 3550.97025218204,
+      "water_native_sum": 1644944209497.952,
+      "mean_area": 7669529600.0,
+      "rooted_alive": 1,
+      "observed_family_alive": 1,
+      "observed_family_mass": 0.12179429829120636,
+      "observed_family_ids": 3,
+      "stats": {
+        "next_lineage": 1618,
+        "births": 1616,
+        "fixed_carbon": 134018240822.31311,
+        "recycled_carbon": 76513734044.58409,
+        "nutrient_added": 0.0,
+        "failed_patches": 1553,
+        "grazed_carbon": 46026680373.819756,
+        "grazing_respired_carbon": 11506670093.454939,
+        "relocations": 26,
+        "movement_respired_carbon": 9218163.852110758
+      },
+      "audit": {
+        "columns": 2457720,
+        "soil_positive": 225266,
+        "cold": 68030,
+        "exposed": 162,
+        "infiltrated": 3552.4475557095534,
+        "infiltration_requested": 39825.4646710901,
+        "soil_evaporated": 1.477303534810757,
+        "standing_evaporated": 1601572.277712035,
+        "phase_signed": [
+          0.00016002335707102414,
+          1.4784703562496782e-06,
+          -298.02051114503456,
+          -6.443477695849964e-12,
+          0.0
+        ],
+        "phase_absolute": [
+          0.10114157634463583,
+          1.898015129741734e-05,
+          10803.210113319561,
+          6.443477695849964e-12,
+          0.0
+        ],
+        "phase_max": [
+          1.5916271123068618e-05,
+          3.4039681405875766e-06,
+          0.9974090461982179,
+          1.0408340855860843e-16,
+          0.0
+        ],
+        "root_calls": 3780,
+        "root_demand": 0.0,
+        "root_paid": 0.0,
+        "root_credited": 0.0,
+        "root_zero_receipt": 0,
+        "vapor_zero_receipt": 0,
+        "root_receiver_signed": 0.0,
+        "root_receiver_absolute": 0.0,
+        "root_receiver_max": 0.0
+      }
+    },
+    {
+      "label": "day90",
+      "arm": 1,
+      "tick": 60,
+      "game_time": 7862400.0,
+      "config": {
+        "enabled": true,
+        "law": 1,
+        "conductance": 1
+      },
+      "colonies": 45,
+      "biomass_density_sum": 2.0119155605789274,
+      "support_density_sum": 0.15256381042751405,
+      "carbon_density_sum": 6.043354436056688,
+      "nitrogen_density_sum": 819.2399816127221,
+      "liquid_native_sum": 1644832778711.6409,
+      "vapor_native_sum": 42278005.9586937,
+      "soil_density_sum": 3542.234601928247,
+      "water_native_sum": 1644875083884.8728,
+      "mean_area": 7669529600.0,
+      "rooted_alive": 0,
+      "observed_family_alive": 1,
+      "observed_family_mass": 0.06851296871900558,
+      "observed_family_ids": 2,
+      "stats": {
+        "next_lineage": 3045,
+        "births": 3043,
+        "fixed_carbon": 243505853091.51746,
+        "recycled_carbon": 197156242763.51117,
+        "nutrient_added": 0.0,
+        "failed_patches": 2999,
+        "grazed_carbon": 85800809830.91992,
+        "grazing_respired_carbon": 21450202457.72998,
+        "relocations": 46,
+        "movement_respired_carbon": 19187673.08610613
+      },
+      "audit": {
+        "columns": 2457720,
+        "soil_positive": 224812,
+        "cold": 68538,
+        "exposed": 160,
+        "infiltrated": 3543.5701102827334,
+        "infiltration_requested": 39817.01600010726,
+        "soil_evaporated": 1.335508361664,
+        "standing_evaporated": 1556472.7431901877,
+        "phase_signed": [
+          0.0012656037820138852,
+          7.545084201528857e-06,
+          -400.79407432185144,
+          -6.438970884259376e-12,
+          0.0
+        ],
+        "phase_absolute": [
+          0.0947232907737785,
+          1.8114482993530218e-05,
+          10802.055245127507,
+          6.438970884259376e-12,
+          0.0
+        ],
+        "phase_max": [
+          1.5916271123068618e-05,
+          3.403968140622271e-06,
+          1.0315016989438308,
+          1.0408340855860843e-16,
+          0.0
+        ],
+        "root_calls": 3900,
+        "root_demand": 0.0,
+        "root_paid": 0.0,
+        "root_credited": 0.0,
+        "root_zero_receipt": 0,
+        "vapor_zero_receipt": 0,
+        "root_receiver_signed": 0.0,
+        "root_receiver_absolute": 0.0,
+        "root_receiver_max": 0.0
+      }
+    }
+  ],
+  "scope": "No simulation advanced. F64 reconstructed height and prospective native source-removal probes omit atmospheric phases and last-bit conservative conversion; not actual per-tick local logs. Actual cumulative roots remain zero."
+}

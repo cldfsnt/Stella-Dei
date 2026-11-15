@@ -1,0 +1,18 @@
+{
+  "stage": "prepared only, not executed",
+  "source": "/workspace/scratch/f67c3ac60ca3/site-tmp/root-only/src",
+  "files": {
+    "main.zig": "8bce1c745aeeb916cd4178d8c5d5dedf93b3478c032fe4c03898722627337721",
+    "simulation/planet.zig": "854a36d0a7d5e87389ce64872196f194704cb7a2a1d747f73cb7aeed25a7d0fa",
+    "simulation/microbes.zig": "3d2098d0df954150527f29f762363d352f137f8e2e3c044264b6202f2647887c",
+    "simulation/root_throughflow.zig": "47f41ecfb9c415457b3a8edb216bf523668fe299bac0fd4d7f2e63cfa47a3ec9",
+    "simulation/root_scheduler_audit.zig": "8b3794453362fbe7e63aa8ebd575bb7744ac432ea65edaf2fe1802bfe87bee76",
+    "save_schema.zig": "0de70e9c0ef7cd7b6cbbca751979dd107809bbf6f844bdb2796ba2f93784209c",
+    "save_game.zig": "b20942778aa313bed62ced99be349af0c15f0ece4f15f3dba3bf0de227280596"
+  },
+  "inputs": {
+    "/workspace/scratch/f67c3ac60ca3/site-tmp/root-world-qa/day60-arm-1.json": "2331857a5f849f83bd2ca300625fb957c53f106a34b44a8305fae2b04b61dc88",
+    "/workspace/scratch/f67c3ac60ca3/site-tmp/root-world-qa/day60-arm-2.json": "a2648b6c32015afd5044136de60635cfffe5d4ea3edf1e3f0105549192bcfb8e",
+    "/workspace/scratch/f67c3ac60ca3/site-tmp/root-world-qa/day60-arm-3.json": "777a4c3f2565aac35c40e64aaa2cd2cf30f07216ad6fb8a562fd62614f39f0eb"
+  }
+}

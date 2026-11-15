@@ -1,0 +1,35 @@
+[
+  {
+    "label": "day30",
+    "input": "natural60-day30.json",
+    "input_sha256": "ce23ae3cdd81b5186dcda3ab8f87c362b8322daf255b76db0b7d158d28904e35",
+    "exit": 0,
+    "outputs": {
+      "arm-0.json.restored.json": "330a16799717ecbed7874c9daf06fa848472e853c13cb415e2999c8ba31e226c",
+      "arm-0.json": "a305ece1e938bab48e7231ec54d7de5d75d82ef296aebb792220254c19c6f962",
+      "arm-0.json.uninterrupted.json": "330a16799717ecbed7874c9daf06fa848472e853c13cb415e2999c8ba31e226c"
+    }
+  },
+  {
+    "label": "day60",
+    "input": "natural60-day60.json",
+    "input_sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "exit": 0,
+    "outputs": {
+      "arm-0.json.restored.json": "7e7a3e87d16a1a0856ff793e9288c91463a80bec4818e3f717a142835046d89c",
+      "arm-0.json": "0e88adb1df2728cda475676f8ab87d9ef10b82a9bdb88db5a83825c0af471985",
+      "arm-0.json.uninterrupted.json": "7e7a3e87d16a1a0856ff793e9288c91463a80bec4818e3f717a142835046d89c"
+    }
+  },
+  {
+    "label": "day90",
+    "input": "grazing-coupled/arm-0-day90.json",
+    "input_sha256": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "exit": 0,
+    "outputs": {
+      "arm-0.json.restored.json": "a8d152a5fe694261778bd994c3caf0b86812d1deb1dcda0c03196f8f7d6aed87",
+      "arm-0.json": "fbed725076ee00a9cd20a62a132bf41e788520810c13746b1830b51a2f11b699",
+      "arm-0.json.uninterrupted.json": "a8d152a5fe694261778bd994c3caf0b86812d1deb1dcda0c03196f8f7d6aed87"
+    }
+  }
+]

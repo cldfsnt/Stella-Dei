@@ -1,0 +1,20 @@
+[
+  {
+    "label": "root0",
+    "input": "day60-arm-1.json",
+    "input_sha256": "2331857a5f849f83bd2ca300625fb957c53f106a34b44a8305fae2b04b61dc88",
+    "exit": 0
+  },
+  {
+    "label": "root25k1",
+    "input": "day60-arm-2.json",
+    "input_sha256": "a2648b6c32015afd5044136de60635cfffe5d4ea3edf1e3f0105549192bcfb8e",
+    "exit": 0
+  },
+  {
+    "label": "root25k10",
+    "input": "day60-arm-3.json",
+    "input_sha256": "777a4c3f2565aac35c40e64aaa2cd2cf30f07216ad6fb8a562fd62614f39f0eb",
+    "exit": 0
+  }
+]

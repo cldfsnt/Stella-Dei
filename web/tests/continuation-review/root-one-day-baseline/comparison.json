@@ -1,0 +1,32 @@
+[
+  {
+    "day": "day30",
+    "initial_native": 1645011183588.6296,
+    "production_delta_native": -2027138.5729980469,
+    "candidate_delta_native": -2098519.7915039062,
+    "candidate_minus_production_native": -71381.21850585938,
+    "area": 7669529600.0,
+    "production_soil": 0,
+    "candidate_soil_native": 27258.99053722289
+  },
+  {
+    "day": "day60",
+    "initial_native": 1644946550078.069,
+    "production_delta_native": -2264054.084716797,
+    "candidate_delta_native": -2340580.115234375,
+    "candidate_minus_production_native": -76526.03051757812,
+    "area": 7669529600.0,
+    "production_soil": 0,
+    "candidate_soil_native": 27234.271457829786
+  },
+  {
+    "day": "day90",
+    "initial_native": 1644877499901.376,
+    "production_delta_native": -2341587.7028808594,
+    "candidate_delta_native": -2416016.5017089844,
+    "candidate_minus_production_native": -74428.798828125,
+    "area": 7669529600.0,
+    "production_soil": 0,
+    "candidate_soil_native": 27167.273129633097
+  }
+]

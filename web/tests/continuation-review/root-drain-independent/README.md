@@ -1,0 +1,11 @@
+# Independent six-arm Water-minus audit
+
+All source/input hashes in drain-provenance match; inspected immutable branching and tool oracle. All2526records contain exactly ticks0..420 for each arm; resetTarget clears observational fields before every tick. All six endpoint restored10tick files equal uninterrupted continuation bytes. These checks are separate from efficacy summaries.
+
+Actual one-tap action removes5405.7822265625 native water units from selected standing water only, leaving soil .9969952231490159kg/m² unchanged. Full save oracle permits only that water slot change. Whole-water accounting adds actual external removal back; it includes owned soil converted by mean area. Neither action accounting nor this inclusion asserts conservation of subsequent climate.
+
+Target is dry only at tick0. Actual pre-core water depth is7.53058mm at tick1 and19.4964mm at tick2. Both rooted conductances have just two positive paid root events, total5.58147314018e-5kg/m²; both nearly fully fund instantaneous demand. Independent Fraction checks across every recorded root receipt verify summed credits<=actual represented soil debit and each f32 h*demand<=credit<=demand. Vapor residuals are−6.71033454e-6 and−1.35558350e-6kg/m²; the second transfer vanishes entirely at the f32 receiver. No hidden compensator or conservation claim.
+
+Drained root.25 ending family mass .1993047297 is lower than drained root0 .2068978995; untreated family masses are approximately .20914223. All retain two observed family members. This is brief exposure/refilling, not sustained drought or a root advantage. Observed ancestry cannot recover unobserved same-tick births/deaths.
+
+Seven-day whole-water-plus-external-removal still loses approximately16.12million native units. The separate matched one-day production comparison db4637b observes additional candidate loss71,381–76,526 native units across three initial worlds. This is a HARD RELEASE BLOCKER, not excused by relative world mass. Current observations do not causally assign the difference to roots, soil or any single rounding stage. Diagnostic source-funded soil receipts alone do not establish global precision. Same-input phase comparison and stage-separated transport/advection inventory are required next; no retrospective threshold/rate tuning.
