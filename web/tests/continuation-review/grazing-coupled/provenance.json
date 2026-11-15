@@ -1,0 +1,21 @@
+{
+  "head": "a2f42d235db676565f429891fdf54114ac217536",
+  "production": {
+    "simulation/microbes.zig": "844f077e8a6112fc37261e23ebbc4497af6ccd9bc48d04255ec4a6c045b6d485",
+    "simulation/planet.zig": "3b667056f1bce22d1ea2a38ea24b8744453e5374d45dff3ed1052d23a69b2b87",
+    "main.zig": "a07a6738f8492285c62ea938ed14ac5b64082d602555f59e063776f58a30dce4",
+    "states/play.zig": "42132ddb9d87fa5c8193f460dee2225c176584da0ca000cd2648e18f331f32cf"
+  },
+  "copied": {
+    "simulation/microbes.zig": "51ad91f624d7ae5a7162918ef3ddbf4b641e81da78a7d1e3067f852d20f27cde",
+    "simulation/planet.zig": "bdf96dcf96d8f873e5f4015dc068b7390960858e2deeb884897c726037dda48c",
+    "main.zig": "4cbb4270bcef042a06f5893f6287edabcef7c0e60dbc7f17d72885b86e8eb424",
+    "states/play.zig": "2cc5bba9b1fd8bd47638b55d746fdd4f7c742d632e740df94cdf5666eed30172"
+  },
+  "artifacts": {
+    "../natural60-day60.json": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7",
+    "arm-0-day90.json": "99613f778c0f15ddd2a589c63790453a18c2fb8e757b5783a1e8af22bdfe41d9",
+    "arm-1-day90.json": "351d3d07eccfcdb362d9a8b306650475e3ebabe728f68d1afe7c3f21cfe52f0d",
+    "build/bin/stella-egl": "33b4b3f61f49d5ff4b264e173732d2fe217079a30d9ddb00df6fc0d78e65981a"
+  }
+}

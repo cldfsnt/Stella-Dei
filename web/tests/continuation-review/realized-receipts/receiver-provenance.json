@@ -1,0 +1,15 @@
+{
+  "source": {
+    "src/experimental/realized_receipt_core.zig": "9efae4e34a4588413fe59bd2395a19fdcc795a994980bea89e451f5b917898e3",
+    "src/experimental/realized_receipt_pace.zig": "2ac035754e0ea0a029702055786c06f455db2b61c3c99f91dceffa1019fd006f",
+    "src/qa_realized_receipt_cycles.zig": "7b6a2c5ff6c9775b68a52e30144f10942a8d5df984473f694329699623ffbe95",
+    "src/qa_realized_receipt_controls.zig": "d9cd851aeeabfd9d4a70ec06ee7a6ac06b9c15e411ecc23a73ec73333535dceb",
+    "web/tests/prepare-realized-receipts.py": "716dc4c1c782033dddf4d9143e99e1e6565d9717a6bd1c7d48cd76513f40b1f1"
+  },
+  "decompressed_logs": {
+    "tiny-controls.log": "f41ff1d61a12e250c40fd4d0782adc0592f1eafd1f46b9b22d5fbe7ba1ad234a",
+    "tiny-compile2.log": "beb2695cf51f53b59165bc94bedf1cc0ff9cc3a2512879d1ad2f93df5e8953ad",
+    "tiny-compile.log": "e0ccdcf729c497563d9f0350da2389ae76ef37859384df48f77b075d86a783e8",
+    "receiver-controls.log": "37ed9d0b173b2eed3d49b6cb2e47a8b249875c809e3e9526d15e8a64c84d7ca5"
+  }
+}

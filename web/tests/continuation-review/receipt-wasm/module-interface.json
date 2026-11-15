@@ -1,0 +1,77 @@
+{
+  "imports": [
+    {
+      "module": "env",
+      "name": "emscripten_force_exit",
+      "kind": "function"
+    },
+    {
+      "module": "env",
+      "name": "_emscripten_memcpy_js",
+      "kind": "function"
+    },
+    {
+      "module": "wasi_snapshot_preview1",
+      "name": "fd_write",
+      "kind": "function"
+    }
+  ],
+  "exports": [
+    {
+      "name": "memory",
+      "kind": "memory"
+    },
+    {
+      "name": "__wasm_call_ctors",
+      "kind": "function"
+    },
+    {
+      "name": "main",
+      "kind": "function"
+    },
+    {
+      "name": "__indirect_function_table",
+      "kind": "table"
+    },
+    {
+      "name": "fflush",
+      "kind": "function"
+    },
+    {
+      "name": "strerror",
+      "kind": "function"
+    },
+    {
+      "name": "emscripten_stack_init",
+      "kind": "function"
+    },
+    {
+      "name": "emscripten_stack_get_free",
+      "kind": "function"
+    },
+    {
+      "name": "emscripten_stack_get_base",
+      "kind": "function"
+    },
+    {
+      "name": "emscripten_stack_get_end",
+      "kind": "function"
+    },
+    {
+      "name": "_emscripten_stack_restore",
+      "kind": "function"
+    },
+    {
+      "name": "_emscripten_stack_alloc",
+      "kind": "function"
+    },
+    {
+      "name": "emscripten_stack_get_current",
+      "kind": "function"
+    },
+    {
+      "name": "dynCall_jiji",
+      "kind": "function"
+    }
+  ]
+}

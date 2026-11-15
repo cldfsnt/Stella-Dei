@@ -1,0 +1,15 @@
+{
+  "source": {
+    "src/qa_receipt_wasm.zig": "a8a0cc87d4fd70b3a86214a7580aca43dc9b6a717e29e66469dfb007f3577a40",
+    "src/experimental/realized_receipt_core.zig": "9efae4e34a4588413fe59bd2395a19fdcc795a994980bea89e451f5b917898e3",
+    "src/experimental/realized_receipt_pace.zig": "2ac035754e0ea0a029702055786c06f455db2b61c3c99f91dceffa1019fd006f",
+    "web/tests/receipt-wasm-main.c": "38be47bfb98670c366f2a4886151a26fc44b6329e897f41e9ecb7479ec80339b",
+    "web/tests/receipt-wasm-run.sh": "50901887dd0a00b5b431e32a4bd1f11e69a8acc60ed0fc7e59919f33c667e2f9",
+    "web-build.zig": "b106f8e83d38434c7f39f03b0a8dda458a6c2d2df6ea5b2a5ea965f2ac1b8396",
+    "web/build.sh": "f7c9bde4eef2ac8596ff6a6af6b10c999605803075b9d068de28e01290ff4785"
+  },
+  "executable_decompressed_sha256": {
+    "receipt-qa.js": "e51e7a774b31222a76dd6615ee74f21ab2af31685198583aef07a76e10df225a",
+    "receipt-qa.wasm": "f78b8a686a7f606207cc106c99a2274fbd8671475151ec56d8f5afa68811b277"
+  }
+}

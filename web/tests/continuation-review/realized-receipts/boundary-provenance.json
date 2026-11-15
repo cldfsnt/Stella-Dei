@@ -1,0 +1,12 @@
+{
+  "source": {
+    "src/experimental/realized_receipt_core.zig": "9efae4e34a4588413fe59bd2395a19fdcc795a994980bea89e451f5b917898e3",
+    "src/qa_realized_receipt_controls.zig": "72f3e67ae699dd491fa7e62f09226513636894d05b07f8a1a7802fee037b97a0",
+    "src/qa_realized_receipt_cycles.zig": "7b6a2c5ff6c9775b68a52e30144f10942a8d5df984473f694329699623ffbe95"
+  },
+  "decompressed_logs": {
+    "support-boundary.log": "ac36c20c6eced595a7aa827231d60ab3982ff11fa1dcdded139195ea3fdba518",
+    "aggregate-boundary.log": "08aa32e1587b67b56d2725fed9eaf7e4ae46ac7ebd2b23b75e96b8d905f3efc4",
+    "receiver-matrix.log": "9dba017aacc33a59238fc2ecb54339d8a858ddb51e54dcd1a9fa306842761b9d"
+  }
+}

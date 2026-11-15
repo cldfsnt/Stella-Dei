@@ -1,0 +1,13 @@
+//! Executable WASM arithmetic regression; no renderer or production wiring.
+const std=@import("std");const E=@import("experimental/realized_receipt_pace.zig");const M=E.M;
+var metrics:[8]f64=.{0}**8;
+export fn qa_metric(i:u32)f64{return if(i<metrics.len)metrics[i] else -1;}
+export fn qa_run()u32{
+ metrics=.{0}**8;var failed:u32=0;
+ for(0..10000)|i|{var c=M.initialized(42);c.cohorts[0]=.{.lineage=1,.biomass=0.02,.reproduction_credit=0.00001+@as(f32,@floatFromInt(i))*0.00001};const old=c.cohorts[0].reproduction_credit;const f=M.step(&c,.{.temperature=303,.depth_km=0.001,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1},1440);if(@as(f64,c.cohorts[0].reproduction_credit)-old>f.fixed)failed|=1;}
+ for([_]f32{0,0.000001,0.03,0.1})|support|for([_]f32{0,0.01,0.5,1})|organization|{var c=M.initialized(42);c.cohorts[0]=.{.lineage=1,.biomass=0.2,.support_mass=support,.organization=organization};var dark=c;const env=M.Environment{.temperature=303,.depth_km=0.001,.light=1,.carbon_available=1,.oxygen_carbon_capacity=1};var denv=env;denv.light=0;denv.carbon_available=0;_=M.step(&dark,denv,1440);const f=M.step(&c,env,1440);if(@as(f64,c.cohorts[0].support_mass)-dark.cohorts[0].support_mass>@as(f64,f.fixed)*organization or c.cohorts[0].support_mass>c.cohorts[0].biomass)failed|=2;};
+ for([_]f32{0,0.000000000001,0.00000001,0.00001,0.01,1})|oxygen|for([_]f32{0.0001,0.01,1,1440,86400,864000})|elapsed|{var c=M.initialized(42);for(&c.cohorts,0..)|*co,i|co.*=.{.lineage=i+1,.biomass=0.2,.support_mass=0.1,.organization=0.5};const f=M.step(&c,.{.temperature=303,.depth_km=0.001,.light=1,.carbon_available=oxygen,.oxygen_carbon_capacity=oxygen},elapsed);if(f.fixed>oxygen or f.recycled>oxygen)failed|=4;};
+ for([_]bool{false,true})|crowded|for(0..2)|swap|{var s=E.State{.cell=M.initialized(42)};for(0..2)|i|s.cell.cohorts[i^swap]=.{.lineage=i+1,.biomass=if(crowded)0.4 else 0.02};s.air=10.8-M.carbon(s.cell);s.cell.nutrient=@floatCast(0.18-@as(f64,M.biomass(s.cell))*M.nutrient_per_carbon);const c0=E.carbon(s);const n0=E.nutrient(s);const gases=s.air+s.oxygen;for(0..2880)|_|{_=E.step(&s,.{1,1,1,1},0.2,1,1440) orelse {failed|=8;break;};metrics[0]=@max(metrics[0],@abs(E.carbon(s)-c0));metrics[1]=@max(metrics[1],@abs(E.nutrient(s)-n0));metrics[2]=@max(metrics[2],@abs(s.air+s.oxygen-gases));if(metrics[0]>=1e-4 or metrics[1]>=1e-5 or metrics[2]>1e-10)failed|=8;}};
+ var c=M.initialized(42);c.cohorts[0]=.{.lineage=1,.biomass=0.02};const before=c;const f=M.step(&c,.{.temperature=303,.depth_km=0.001,.light=0.5,.carbon_available=1,.oxygen_carbon_capacity=1},0.01);metrics[3]=@as(f64,c.cohorts[0].biomass)-before.cohorts[0].biomass;metrics[4]=@as(f64,c.nutrient)-before.nutrient;metrics[5]=f.fixed;if(!(metrics[3]>0 and metrics[4]==0))failed|=16;
+ return failed;
+}

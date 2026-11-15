@@ -1,0 +1,7 @@
+RECEIPT_WASM failure_bits=0 credit_cases=10000 support_cases=16 aggregate_cases=36 neutral48day_controls=4 known_tiny_N_witness_expected=true
+metric[0]=7.482621988685878e-07
+metric[1]=1.9371509552001953e-07
+metric[2]=0
+metric[3]=1.862645149230957e-09
+metric[4]=0
+metric[5]=1.862645149230957e-09
