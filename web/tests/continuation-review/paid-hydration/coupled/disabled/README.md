@@ -1,0 +1,3 @@
+Actual native coupled10tick feature-disabled acceptance passed. Separate baseline/candidate binaries, same deep-restored natural60 input. All original serialized fields including arrays/cohorts/RNG exact; only verified-zero new hydration fields and schema6→7/model5→6 normalized. Raw local saves hashed in comparison.json, not user saves. Candidate newrootvalues remainzero; no enabled results used. Runtime allocator leak warning inherited native harness retained in logs; no general memory-clean claim.
+
+This checkpoint predates added local-ledger instrumentation and four-arm run; parity will be repeated on final instrumented candidate. Not production or browser proof.

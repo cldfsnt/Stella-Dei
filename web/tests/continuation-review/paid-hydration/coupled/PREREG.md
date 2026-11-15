@@ -1,0 +1,13 @@
+# Actual coupled hydration experiment, frozen scope before outcomes
+
+Use current production checkout copied into isolated native baseline/candidate trees. Candidate uses reviewed continuous hydration core/exchange and experimental v7 schema only. Exact changes recorded, public exports audited. No production files/save overwrite.
+
+Input natural60-day60.json SHA25676d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7. First10 actual coupled ticks1440s baseline versus feature-disabled candidate; normalize only added zero fields and schema/model revision for exact serialized comparison, all old values/RNG retained. Both start from separately applied frozen save.
+
+Then two candidate arms r0/.25 assigned ONLY existing root478 at its saved patch12352; no water store prefill, no other trait/biomass/resource assignments. Allocation inherited unchanged, allocation mutation disabled. Run one actual day, apply exactly one existing Water− god action at original patch12352, then six actual days with no care. Do not retarget if root moves/dies; preserve receipt/refusal. Water− is explicit external removal, measured separately. Actual post-hydrology water/vapor, area,temp,light; actual core flux applied once.
+
+Daily records: root/observed connected descendants, biomass/support/storedwater, occupied patches, births/generation, water/depth/temp at original patch, liquid/vapor/internal/escrow total and external removal, C/N/O2 receipts/drift. All outcomes retained. Hydrology may erase dry exposure, a result not grounds to search targets. Native proxy simduration, not browserpace. No claim naturally evolved allocation/landplants or production readiness.
+
+Escrow-only cells must flush without gaining reproductive RNG or phantomlife. Real lifecycle settlement used; no double atmosphere-C/O2 flux. Serializer must retain owned stores/escrows and backwardzero defaults. Independent schema/export/source audit before run. Known core-water/thermal numerical limits reported, no global ledger topup.
+
+Before ANY enabled hydration trial, parent restores full2×2 control: original arms1/2 retain oneWater−, new arms3/4 remain untouched, r0/.25 respectively. Only original production10tick baseline had been seen; candidate parity-only run started, no enabled outcomes inspected. All four7day arms same root/no retarget. Add per-adapter-call local water before/after bound max(1e-9kg/m²,64*f64epsilon*inventory), max/signed residual accumulation, and whole biological-stage before/after owned+physical-water ledger to include births/moves; whole-ledger f64 cancellation limits reported. No climate-drift correction/topup.

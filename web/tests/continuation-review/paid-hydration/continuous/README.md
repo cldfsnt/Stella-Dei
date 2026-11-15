@@ -11,3 +11,5 @@ All16 original7day condition/timestep endpoints retain their qualitative results
 C/O2 remains caller-owned: adapter returns actual core flux; QA applies it once. Uptake and evaporation use represented transfers and counted nonhydrating escrow. Current root-zone allocation is inherited but not mutating; no natural evolutionary adoption demonstrated. Full scheduler real hydrology, full-frame performance, thermal omissions, version7 save/rollback constraints and WASM remain gating. No landplants/rabbits claim.
 
 Independent adapter review requested before next coupled step.
+
+Independent audit found finite tiny area could overflow derived f32 depth after mutation. Fixed pre-mutation bound includes current liquid plus possible liquid-return escrow deposit, checks finite and f32representable depth; no arbitrary area clipping or tolerance change. Exact independent73-test witness now passes. Original failing witness belongs to independent audit evidence; no claim first candidate had complete extreme-input refusal.

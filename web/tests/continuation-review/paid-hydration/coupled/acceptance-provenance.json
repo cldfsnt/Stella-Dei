@@ -1,0 +1,47 @@
+{
+  "target": "Zig0.13 ReleaseSafe x86_64 EGL software proxy",
+  "source_head": "4123ffb + recorded preparer acceptance assertions",
+  "snapshots": {
+    "baseline/arm-0.json.restored.json": "ebbdffe347209f1796578fb9a5eb7fac3ffc814246dfa9edab45c215eb4f750c",
+    "baseline/arm-0.json": "e2a46ebbb52b0fc2f077ece7f78663085088ff57c78bad57c5b3d27810fa79cb",
+    "baseline/arm-0.json.uninterrupted.json": "ebbdffe347209f1796578fb9a5eb7fac3ffc814246dfa9edab45c215eb4f750c",
+    "candidate/arm-4.json.uninterrupted.json": "967cfe25d9f326d9deac17c49d1af027485bee1fc4fba9d2e17637b36a1018ce",
+    "candidate/arm-0.json.restored.json": "fcb63bed616038bcfd58806f7ed39fed4a09fd5e4ecdaf4f9384a6e82a1e9d79",
+    "candidate/arm-2.json.uninterrupted.json": "1ba0b3a992e584b2e81b7cd1fa2ae8aa499ca45ca21de7127612b98f459a2019",
+    "candidate/arm-0.json": "9d95d793d48bbfb17753e8600b6363b6785334d9e988fb666781a9d7421d555b",
+    "candidate/arm-3.json.restored.json": "6001e635da3fb7110a6682129c305e21347846900d36a41711aef4a9a363e80e",
+    "candidate/arm-4.json": "2b1f3d69aee5f527675ec6f3f1700a6d0103b1be66acc65ec822b7370280e834",
+    "candidate/arm-4.json.restored.json": "967cfe25d9f326d9deac17c49d1af027485bee1fc4fba9d2e17637b36a1018ce",
+    "candidate/arm-3.json.uninterrupted.json": "6001e635da3fb7110a6682129c305e21347846900d36a41711aef4a9a363e80e",
+    "candidate/arm-0.json.uninterrupted.json": "fcb63bed616038bcfd58806f7ed39fed4a09fd5e4ecdaf4f9384a6e82a1e9d79",
+    "candidate/arm-1.json.uninterrupted.json": "eea6d9a927040a9cf2b54738247f84530730dddfba9196e287d27175a4e3aa6a",
+    "candidate/arm-3.json": "4acfbc1f5cc01a415103e2766e17d54f1f7b82b5b1b6b9a34833fb4fa9dbc7a2",
+    "candidate/arm-1.json.restored.json": "eea6d9a927040a9cf2b54738247f84530730dddfba9196e287d27175a4e3aa6a",
+    "candidate/arm-2.json": "d2a4e818a21f4294e89c16fe6b93b133d0ffcb77a6b46c69f698aea152bf305a",
+    "candidate/arm-2.json.restored.json": "1ba0b3a992e584b2e81b7cd1fa2ae8aa499ca45ca21de7127612b98f459a2019",
+    "candidate/arm-1.json": "763118d83ee2b234edb001f9d8df453484df3adaf43a7a2d0cea372fce236579"
+  },
+  "sources": {
+    "baseline": {
+      "main.zig": "46337006398efe4c5b19aa6b05d4cfb2d6a36789e4b0e15322e7333ddd98dfac",
+      "simulation/planet.zig": "c2b3c76652949fcd1561fd51f3db69e17c4a7ed22bd49d9445734e5acd86b1a5",
+      "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+      "save_game.zig": "e241ca410bb67473e6b7f47cb6b977c84c1ade95e2c0707cd2e4c488340d7dc1",
+      "binary": "d89c416e403599cd88c2cf61e5c90044f50d52d421f25732b0034a0d9caadfcd"
+    },
+    "candidate": {
+      "main.zig": "2048261c2b6542ad342cf152d771a89936c3e55d034bff5812e017be27911548",
+      "simulation/planet.zig": "995c930b426ae77e450ea0a730e3ebd62f13254882f5990ecad57c4bf5e6eba3",
+      "simulation/microbes.zig": "cadf8f699a3655c444ddefd68ce270443b05a70f291386ac95f2ed3523278a87",
+      "save_schema.zig": "edd134ad092bfbdb6814622ab632506fa46870c7dfe44bf66306a8fe2634df97",
+      "save_game.zig": "e241ca410bb67473e6b7f47cb6b977c84c1ade95e2c0707cd2e4c488340d7dc1",
+      "binary": "2f9468e6b2123ea26f7707608df761379aa20e1f148f1b7b66502a4fe0b003a5",
+      "simulation/hydration_exchange.zig": "c1609bdcdf5067aa57deca139031657e29b984e9cb6ba5d33d4895d486888ab0"
+    }
+  },
+  "logs": {
+    "baseline": "f98c39664d395d7d685beb367b5ae607bf56a811e10af27e3496e5c930a6b4ad",
+    "candidate": "6339c3c242b88ef5e6c92e9abbf16b5df8e409636158987cb2b520ae6a857b55"
+  }
+}
