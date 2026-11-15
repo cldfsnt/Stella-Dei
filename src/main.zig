@@ -460,6 +460,7 @@ export fn stella_patch_watch_start(expected:i32)i32 {
 pub fn patchWatchStartForState(state:*PlayState,expected:i32)i32 {
  if(state.planet.worldMode!=.origin or expected<0 or state.selectedPoint!=@as(usize,@intCast(expected)) or state.selectedPoint>=state.planet.microbeCells.len or state.paused or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails)return -2;
  if(!PatchWatch.current.start(state.selectedPoint,PerformanceDetails.world_serial,state.gameTime,PatchWatch.nowMs()))return -3;
+ if(!PatchWatch.current.startPopulation(PatchWatch.Watch.population(state.planet.microbeCells[state.selectedPoint].cohorts)))return -3;
  PatchWatch.current.owner=@intFromPtr(&state.planet);return 1;
 }
 export fn stella_patch_watch_stop(complete:i32)void {
@@ -469,7 +470,7 @@ export fn stella_patch_watch_stop(complete:i32)void {
 export fn stella_patch_watch_snapshot()[*:0]const u8 {
  if(webPlayState())|s|PatchWatch.current.guard(s.selectedPoint,PerformanceDetails.world_serial,s.gameTime,PatchWatch.nowMs(),s.paused or s.showEscapeMenu or s.showPlanetControl or s.showPointDetails) else PatchWatch.current.stop("world unavailable");
  var stream=std.io.fixedBufferStream(&patch_watch_json);
- std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks},.{},stream.writer()) catch return "{}";
+ std.json.stringify(.{.active=PatchWatch.current.active,.status=PatchWatch.current.status,.cell=PatchWatch.current.cell,.world=PatchWatch.current.world,.elapsed=PatchWatch.current.elapsed,.consumed=PatchWatch.current.consumed,.ticks=PatchWatch.current.ticks,.fixed=PatchWatch.current.fixed,.recycled=PatchWatch.current.recycled,.start_biomass=PatchWatch.current.start_biomass,.end_biomass=PatchWatch.current.end_biomass,.start_colonies=PatchWatch.current.start_colonies,.end_colonies=PatchWatch.current.end_colonies},.{},stream.writer()) catch return "{}";
  if(stream.pos>=patch_watch_json.len)return "{}";patch_watch_json[stream.pos]=0;return @ptrCast(&patch_watch_json);
 }
 

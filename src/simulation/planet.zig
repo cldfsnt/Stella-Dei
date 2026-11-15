@@ -1494,7 +1494,7 @@ pub const Planet = struct {
             const light = @max(0, self.transformedPoints[i].norm().dot(options.solarVector)) * std.math.clamp(options.solarConstant / 1361, 0, 2);
             const before_cohorts=cell.cohorts;
             const flux = Microbes.step(cell, self.microbeEnvironment(i, light), dt);
-            if(observing)watch.record(i,flux.grazed);
+            if(observing)watch.recordFlux(i,flux.fixed,flux.recycled,flux.grazed);
             for(before_cohorts,0..)|old,slot|{
                 if(old.biomass>0 and cell.cohorts[slot].biomass==0 and self.propaguleFeedback.failed(i,old.lineage,options.gameTime))self.propaguleTrackedLosses+|=1;
             }
@@ -1503,7 +1503,6 @@ pub const Planet = struct {
             self.microbeStats.grazed_carbon += @as(f64,flux.grazed)*self.getMeanPointArea();
             self.microbeStats.grazing_respired_carbon += @as(f64,flux.grazing_respired)*self.getMeanPointArea();
         }
-        if(observing)watch.finishTick(options.gameTime,dt);
         // A resident cohort may make at most one adjacent relocation per step.
         // Six neighbor records stay on the stack. The activity bitset uses one bit
         // per cell, and is rebuilt/freed within this tick.
@@ -1564,6 +1563,7 @@ pub const Planet = struct {
                 }
             }
         }
+        if(observing)watch.finishPopulationTick(options.gameTime,dt,@import("../patch_watch.zig").Watch.population(self.microbeCells[watch.cell].cohorts));
     }
 
     pub fn simulateVegetation(self: *Planet, options: SimulationOptions, start: usize, end: usize) void {
