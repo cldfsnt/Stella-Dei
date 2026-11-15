@@ -1,0 +1,5 @@
+1/4 qa_near_quantum.test.endpoint2003 bounded debit while zero-capacity refuses...OK
+2/4 qa_near_quantum.test.threshold ordinary and invalid controls...OK
+3/4 qa_near_quantum.test.all slot permutations preserve unequal receipts...OK
+4/4 qa_near_quantum.test.escrow merge refuses unrepresentable change atomically...OK
+All 4 tests passed.

@@ -1,0 +1,79 @@
+{
+  "rows": [
+    {
+      "trial": 0,
+      "candidate": false,
+      "ticks": 300,
+      "warmup": 30,
+      "ns": 2494266106,
+      "partitions": 1,
+      "cells": 40962,
+      "cell_bytes": 336,
+      "cohort_bytes": 80
+    },
+    {
+      "trial": 1,
+      "candidate": true,
+      "ticks": 300,
+      "warmup": 30,
+      "ns": 2673227744,
+      "partitions": 1,
+      "cells": 40962,
+      "cell_bytes": 416,
+      "cohort_bytes": 96
+    },
+    {
+      "trial": 2,
+      "candidate": true,
+      "ticks": 300,
+      "warmup": 30,
+      "ns": 2348039827,
+      "partitions": 1,
+      "cells": 40962,
+      "cell_bytes": 416,
+      "cohort_bytes": 96
+    },
+    {
+      "trial": 3,
+      "candidate": false,
+      "ticks": 300,
+      "warmup": 30,
+      "ns": 2505670337,
+      "partitions": 1,
+      "cells": 40962,
+      "cell_bytes": 336,
+      "cohort_bytes": 80
+    },
+    {
+      "trial": 4,
+      "candidate": false,
+      "ticks": 300,
+      "warmup": 30,
+      "ns": 2509620212,
+      "partitions": 1,
+      "cells": 40962,
+      "cell_bytes": 336,
+      "cohort_bytes": 80
+    },
+    {
+      "trial": 5,
+      "candidate": true,
+      "ticks": 300,
+      "warmup": 30,
+      "ns": 2491847735,
+      "partitions": 1,
+      "cells": 40962,
+      "cell_bytes": 416,
+      "cohort_bytes": 96
+    }
+  ],
+  "baseline_median_ms": 2505.670337,
+  "candidate_median_ms": 2491.847735,
+  "median_ratio_percent": -0.5516528569576185,
+  "paired_percent": [
+    7.174921616001795,
+    -6.290951673584022,
+    -0.7081739665236619
+  ],
+  "cell_allocation_added_bytes": 3276960
+}

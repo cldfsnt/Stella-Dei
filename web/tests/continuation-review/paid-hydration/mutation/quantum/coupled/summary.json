@@ -1,0 +1,176 @@
+{
+  "trial_ticks": 10,
+  "tick_seconds": 1440,
+  "continuation_events_excluded": true,
+  "arms": [
+    {
+      "source": 3,
+      "policy": 0,
+      "attempts": [],
+      "accepted": [],
+      "ledger": {
+        "local_max": "0",
+        "local_signed": "0",
+        "bio_max": "0",
+        "bio_signed": "0"
+      },
+      "refused": 0,
+      "total_debit_kg_m2": 0,
+      "total_actual_credit_kg_m2": 0,
+      "sha256": "9b6fa338963b63f9f036825fbebdd0bb91f3d3d8e0547289018a1513bdb11c79",
+      "traces_preserve_exact_endpoint": true
+    },
+    {
+      "source": 3,
+      "policy": 1,
+      "attempts": [
+        {
+          "id": "2003",
+          "wanted": "0.000030050059649511244",
+          "pool": "3108.0996",
+          "escrow": "0"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000006971107585244887",
+          "pool": "3114.9119",
+          "escrow": "0.0000018695751863738535"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000013906121212180305",
+          "pool": "3122.0664",
+          "escrow": "0.0000019301605771216003"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.0000208062511003409",
+          "pool": "3129.5396",
+          "escrow": "0.000001964234340039776"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000006940720948211922",
+          "pool": "3137.3184",
+          "escrow": "0.000013074095359392915"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000013846593530781507",
+          "pool": "3145.3894",
+          "escrow": "0.00001313182418754224"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000020718467766720154",
+          "pool": "3153.7173",
+          "escrow": "0.0000131646595477605"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000006909414167641977",
+          "pool": "3162.2302",
+          "escrow": "0.00002435830632354904"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000014073280328900301",
+          "pool": "3170.7659",
+          "escrow": "0.00002441240202842355"
+        },
+        {
+          "id": "2003",
+          "wanted": "0.000022030601496539867",
+          "pool": "3179.16",
+          "escrow": "0.0000244397107290876"
+        }
+      ],
+      "accepted": [
+        {
+          "id": "2003",
+          "debit": "0.000031832542246137236",
+          "credited": "0.00003005005964951124",
+          "escrow_before": "0",
+          "escrow_after": "0.0000017824825966259957"
+        },
+        {
+          "id": "2003",
+          "debit": "0.000031832542246137236",
+          "credited": "0.000020806251100340895",
+          "escrow_before": "0.000001964234340039776",
+          "escrow_after": "0.000012990525485836118"
+        },
+        {
+          "id": "2003",
+          "debit": "0.000031832542246137236",
+          "credited": "0.00002071846776672015",
+          "escrow_before": "0.0000131646595477605",
+          "escrow_after": "0.000024278734027177586"
+        }
+      ],
+      "ledger": {
+        "local_max": "0.00000000000011368683772161603",
+        "local_signed": "0.00000000000011368683772161603",
+        "bio_max": "0",
+        "bio_signed": "0"
+      },
+      "refused": 7,
+      "total_debit_kg_m2": 9.549762673841171e-05,
+      "total_actual_credit_kg_m2": 7.157477851657228e-05,
+      "sha256": "bb88c29ccf3e2a5bb5ca94492f9459e1e0d1e3df06d84d30954fa9aaf2bc096a",
+      "traces_preserve_exact_endpoint": true
+    },
+    {
+      "source": 5,
+      "policy": 0,
+      "attempts": [],
+      "accepted": [],
+      "ledger": {
+        "local_max": "0",
+        "local_signed": "0",
+        "bio_max": "0",
+        "bio_signed": "0"
+      },
+      "refused": 0,
+      "total_debit_kg_m2": 0,
+      "total_actual_credit_kg_m2": 0,
+      "sha256": "d038d32157c2cdd9b0c9cdf21a21488225685adbe1402f7d06f4cba38f87f0ef",
+      "traces_preserve_exact_endpoint": true
+    },
+    {
+      "source": 5,
+      "policy": 1,
+      "attempts": [],
+      "accepted": [],
+      "ledger": {
+        "local_max": "0",
+        "local_signed": "0",
+        "bio_max": "0",
+        "bio_signed": "0"
+      },
+      "refused": 0,
+      "total_debit_kg_m2": 0,
+      "total_actual_credit_kg_m2": 0,
+      "sha256": "4cd940296198c7a8e026940446e6117fd44aa3b397c015ebe4d63a40dd2c69e4",
+      "traces_preserve_exact_endpoint": true
+    }
+  ],
+  "pairs": [
+    {
+      "source": 3,
+      "exact_except_policy": false,
+      "water_cells_changed": 1,
+      "vapor_cells_changed": 6,
+      "cohorts_exact": true,
+      "stats_exact": true
+    },
+    {
+      "source": 5,
+      "exact_except_policy": true,
+      "water_cells_changed": 0,
+      "vapor_cells_changed": 0,
+      "cohorts_exact": true,
+      "stats_exact": true
+    }
+  ]
+}

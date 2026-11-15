@@ -1,0 +1,7 @@
+1/3 qa_near_quantum_audit.test.independent staged receipts across scales and all slot permutations...independent: 10000 scale cases, 240000 permutations, accepted=8160, refused=1840
+OK
+2/3 qa_near_quantum_audit.test.independent zero ordinary and extreme refusals...OK
+3/3 qa_near_quantum_audit.test.roundoff witnesses remain explicit and escrow merge is not validated by Plan...witness pool=1.0070386 conversion=0.751142227474936 debit=0.00000008954313128887844 remainder=0.000000029422711156854457 cast_error=1.6543612251060553497428173841399257e-24 existing_escrow=1 merge_error=-4.972596252362525867489473352378582e-19
+roundoff: upward=1734, downward=2276, lossy merges=4915
+OK
+All 3 tests passed.

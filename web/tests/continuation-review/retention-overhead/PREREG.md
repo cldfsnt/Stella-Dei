@@ -1,0 +1,5 @@
+# Disabled persisted-hydration overhead gate
+
+No production edits. Baseline frozen production b308b37 (v57 load-geometry fix); candidate copied immutable completed six-arm retention-coupled source, provenance from bfe949f. The new near-quantum planner is absent. Remove full-world QA water ledger scans from candidate before timing; no observations/serialization/rendering within timed block. Existing candidate zero-owned branch remains real code, not replaced with production.
+
+First compare complete saved outputs after 10 actual coupled 1440s ticks on the same natural60 input. Only schema version/model revision/config and zero new material fields may be normalized; all old state including RNG must match. Reject timing interpretation if parity fails. Then alternate baseline/candidate, candidate/baseline, baseline/candidate: 30 untimed warmup ticks plus 300 measured ticks per process, same restored input and cooperative partition count. Report all paired times, medians, variability and native Cell/Cohort layout. This is native scheduler overhead, not a browser/laptop frame-rate claim. No favorable parameter selection or mutation enabled.

@@ -1,0 +1,34 @@
+{
+  "input": {
+    "name": "natural60-day60.json",
+    "sha256": "76d5f4af52b9b26272381e220d899a0ff6f780479b7164709c8d09b1fde97dd7"
+  },
+  "baseline": {
+    "baseline_revision": "b308b37",
+    "candidate": false,
+    "frozen_input": "<workspace>/site-tmp/retention-overhead/frozen",
+    "files": {
+      "main.zig": "26ca6ab3614b70d49e764af2be4d7a4e7a5b8d4f78670f4ad2d8e16cc40785de",
+      "simulation/planet.zig": "c4e1411123537f1020a95247a786ccdebaa5caec77afd4ff493be4e1b1e68651",
+      "simulation/microbes.zig": "398c3342fdac7eb8cafc39df65ddc0d9478f3573b302c8e9ccc8bd0b610ae986",
+      "save_schema.zig": "50693275e0d9115e8dc65593d197b6042b0db72d03fb2478f716f0af70f8c4a3",
+      "save_game.zig": "e9eba3b80a893bd8578d0f8ec1e92e0c42551061e0465d496ce99fe0493cc7fe"
+    }
+  },
+  "candidate": {
+    "baseline_revision": "b308b37",
+    "candidate": true,
+    "frozen_input": "<workspace>/site-tmp/retention-overhead/frozen",
+    "files": {
+      "main.zig": "70d8c5cd8d35e35bae85b4fdad2c000b5e82cfe21196428f1476f63d69a1ecf9",
+      "simulation/planet.zig": "f31d1ee7634a04e5f3b7b4d0e05245bb1303c67404072d1bdb49ac09a0891e99",
+      "simulation/microbes.zig": "7ec7bbec87ed897000a3d5236579c1d278fd031a74a93e27d363bcee8ee7785e",
+      "save_schema.zig": "483b57ad6dfc59a71085e32e2575212bd128c43a43d6a81a437a2669261e77e5",
+      "save_game.zig": "513bed260082d99ab215d2b81bbefffe85a0eff6492cce9798997e67aad57c99"
+    }
+  },
+  "binaries": {
+    "baseline": "ce8cfa4b581931d8c0f6873a708c06e87eaa80fe4fcf68a6b3d78bf10a568c63",
+    "candidate": "f62eb42824ac80cecf7107e48157392dafa330f47e10fcf926e6c44888bb5ee5"
+  }
+}

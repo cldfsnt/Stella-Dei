@@ -1,0 +1,8 @@
+1/6 qa_near_quantum.test.endpoint2003 bounded debit while zero-capacity refuses...OK
+2/6 qa_near_quantum.test.threshold ordinary and invalid controls...OK
+3/6 qa_near_quantum.test.all slot permutations preserve unequal receipts...OK
+4/6 qa_near_quantum.test.escrow merge refuses unrepresentable change atomically...OK
+5/6 qa_near_quantum.test.frozen scale matrix reports exact merge refusal coverage...EXACT_MERGE planned=8160 accepted=7669 refused=491 total=10000
+OK
+6/6 qa_near_quantum.test.reject independently witnessed f128 erased tiny second receipt...OK
+All 6 tests passed.

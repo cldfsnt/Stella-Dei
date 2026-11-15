@@ -1,0 +1,8 @@
+{
+  "exact_old_state_rng": true,
+  "normalization": "version/model_revision/default config and explicitly zero new material fields only",
+  "hashes": {
+    "baseline": "6e30944ddc593fa05cbd4ad94bbda75b920f31f50cca72139c8a38d0c8c6a542",
+    "candidate": "40744d46da45eb913bdb0e1d280b4d1ca3cd9f86d88ffc2a6408f864fc26b933"
+  }
+}

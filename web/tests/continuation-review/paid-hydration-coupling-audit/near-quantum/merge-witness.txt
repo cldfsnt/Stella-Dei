@@ -1,0 +1,5 @@
+Independent native tests: 2 passed. 10000 ordinary-scale probes: 4329 accepted, 5598 refused (73 no Plan).
+Extreme native accepted: pool1 conversion1 caps[3*2^-26,2^-200,0,0].
+Returned large=3*2^-26, escrow=2^-26, small=2^-200.
+Python Fraction exact total minus paid quantum: 1/1606938044258990275541962092341162602522202993782792835301376
+Initial independent test compile failed only for .1/.15 Zig literal syntax; corrected to0.1/0.15. No owner source edits.
