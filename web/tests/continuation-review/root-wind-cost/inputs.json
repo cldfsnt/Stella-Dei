@@ -1,0 +1,32 @@
+{
+  "historical.json": {
+    "sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e",
+    "bytes": 13284659,
+    "cells": 40962,
+    "occupied": 391,
+    "living": 1140,
+    "root_positive": 20,
+    "aerial_positive": 0,
+    "game_time": 1814400.0
+  },
+  "fresh.json": {
+    "sha256": "3b2a508b4e1c37ab6165dd1917ea54ebca4d502643e598964dd843942af451bd",
+    "bytes": 9718425,
+    "cells": 40962,
+    "occupied": 1,
+    "living": 2,
+    "root_positive": 1,
+    "aerial_positive": 1,
+    "game_time": 0.0
+  },
+  "fresh-projected-off.json": {
+    "sha256": "59b6ff13e2e29539745fa36206dba90b94b00909001548224075d9c6b26c24b7",
+    "bytes": 9412143,
+    "cells": 40962,
+    "occupied": 1,
+    "living": 2,
+    "root_positive": 1,
+    "aerial_positive": 0,
+    "game_time": 0.0
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "graph_sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+  "public_hardy_wasm_sha256": "1c7c6aec1d231468c5abd20c85f370de71db9ad2e1a41c88822b0010c61251b5",
+  "binaries": {
+    "baseline": {
+      "profile.js": {
+        "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+        "bytes": 94248
+      },
+      "profile.wasm": {
+        "sha256": "7916fd9154eb824c8305a78bcc3dc3a6196fc99af479253647ed219e4a40e8fe",
+        "bytes": 334743
+      }
+    },
+    "candidate": {
+      "profile.js": {
+        "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+        "bytes": 94248
+      },
+      "profile.wasm": {
+        "sha256": "40b6de7bcfefee8f4ca903ea1065fe3468649e677b297521deb651539247d239",
+        "bytes": 363467
+      }
+    }
+  }
+}

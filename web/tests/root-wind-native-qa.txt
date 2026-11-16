@@ -1,0 +1,16 @@
+    const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();const state=&game.state.Playing;web_initialized=true;loop.pump(4096);
+    if(!state.planet.windDispersal.enabled or state.planet.landBeta.physiology_law!=3)return error.WrongFreshLaw;
+    if(std.posix.getenv("QA_SAVE_IN"))|path|{const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);loop.pump(4096);std.debug.assert(std.mem.eql(u8,bytes,try qaCombinedBytes(a,state)));}else{
+      var seeded=false;for(0..state.planet.microbeCells.len)|i|{if(state.planet.seedPioneer(i)){
+       const receipt=@import("rooted_founder.zig").apply(&state.planet,i);if(receipt.status!=.planted)return error.RootedSeedRefused;seeded=true;break;
+      }}if(!seeded)return error.NoPaidFounders;
+    }
+    const baseline=try qaCombinedBytes(a,state);const owned=try saves.schema.parse(a,baseline);
+    if(owned.value.version!=13 and std.posix.getenv("QA_SAVE_IN")==null)return error.WrongWire;
+    var bad=owned.value;if(bad.wind_dispersal)|*w|w.law=2 else bad.version=13;
+    if(saves.apply(state,bad)){return error.InvalidAccepted;}else |_|{}std.debug.assert(std.mem.eql(u8,baseline,try qaCombinedBytes(a,state)));
+    const ticks=try std.fmt.parseInt(usize,std.posix.getenv("QA_TICKS") orelse "4",10);
+    for(0..ticks)|_|{state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;for(state.planet.landRootH)|row|for(row)|v|std.debug.assert(v==0);for(state.planet.landRootOwner)|row|for(row)|v|std.debug.assert(v==0);}
+    const output=std.posix.getenv("QA_SAVE_OUT") orelse "OUTPUT/end.json";try std.fs.cwd().writeFile(.{.sub_path=output,.data=try qaCombinedBytes(a,state)});std.debug.print("COMBINED_NATIVE_PASS ticks={} wire={} wind={}\n",.{ticks,(try saves.capture(a,state)).version,state.planet.windDispersal.enabled});std.process.exit(0);
+}
+fn qaCombinedBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}

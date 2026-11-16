@@ -1,0 +1,13 @@
+{
+  "reference": {
+    "sha256": "9e884253d2570b62eddaa201474b7b5861374f53d06ab50e84cf6a934807c657",
+    "bytes": 13283664,
+    "version": 10
+  },
+  "candidate": {
+    "sha256": "9e884253d2570b62eddaa201474b7b5861374f53d06ab50e84cf6a934807c657",
+    "bytes": 13283664,
+    "version": 10
+  },
+  "input_sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e"
+}

@@ -1,0 +1,13 @@
+# Explicit fresh combined Wetlands controls (isolated, no UI activation)
+
+Only main.zig, states/play.zig, auto_seed.zig and new combined_view.zig differ from gated combined physics. No model/schema changes.
+
+- stella_wetlands_combined_new(expected_world:u32):1created,-1unavailable,-2stale,-3busy. Fresh rootlaw3+windlaw1 only; never converts current world. Existing stella_wetlands_new and first Play stay standard rootlaw3/windoff. Newworld construction occurs before oldstate deinitialization by existing Game.setState. Frontend MUST obtain explicit save/replace confirmation; cancelling means no factory call. Successful creation advances worldserial, so repeating oldrequest refuses. Busy/stale checks precede replacement. No implicit save.
+- stella_combined_snapshot():status combined/wetlands/historical_beta/legacy/unavailable,world_serial,writer_version0|7|8|9|10|13,enabled,root_physiology,wind_law. Read-only constant work, no conversions.
+- stella_save_expected(world,writer): existing native save statuses; -6 staleworld/writer after cooperative pump. No legacy fallback. Same /wetlands-saves namespace. Frontend pending: before first13 write, preserve latest prior<=10 in new immutable content-addressed pre-v13 backup, durable sync before guarded write; older backup must not suppress another distinct imported oldsave. Reject standalone11/research12 clearly, never reset/import silently.
+- stella_seed_pioneer(world,point): existing Wind paid action/status contract. Ordinary/rooted controls remain unchanged. Pioneer defaults root0/aerial.5; chosen genetics, not evolved.
+- stella_auto_seed_pioneer_start(world), existing auto_seed step/status/apply/cancel: immutable founder_kind pioneer, all initially eligible points,512cells/call, staged actual shared-resource seedPioneer calls. No12cap or assignedgenes. Root+wind configs/world/time/material freshness; no livewrites until Apply. Ordinarystart unchanged. Warn memory/populationcost, save before Apply, cancel changes nothing; Close afterapply not undo.
+
+Actual native gate: public expected-world factory stale refusal preserves fullsave/RNG, newworld+repeat refusal, readonly snapshot, batch preview/cancel and all205paid Pioneer Applyonce, duplicates nochange, newborn root0/aerial.5/generation0, guarded writer10 refusal, actual13disk write/read/apply exact, explicit standardWetlands newworld resetswindoff/writer10. No ecology ticks. Scratch-only /wetlands-saves path mapping in QA. Existing gated historical reader/schema and restart proofs remain applicable.
+
+No frontend build/export allowlist or browser storage proof yet. No livecheckout edits/deployment or fourthSite. Independent UI/backup/prompt tests remain release requirements.

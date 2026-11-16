@@ -1,0 +1,9 @@
+# Actual native combined initial gates
+
+Stable core3ebb433+schema49b2159, fresh generated rootphysiology3+windlaw1 via real Planet.generate options, actual paid seedPioneer then existing rooted founder apply at first eligible cell. Two explicitly chosen founders, no trait assignment, resource grants or ecological tuning. See fresh-founders.json for exact actual seed/traits/stats.
+
+Passed actual fresh capture/apply, invalid windlaw atomic rejection, full4tick saved-state/RNG equality with fresh-process2+2, transient root credit/owner clear every tick. Final SHA4529fdc8e647d115f906d39ae771bce1b5ded5b742b9c456399f88b7bef822f9. Old immutable day21 rootlaw3 loaded after a combined world with wind fullydisabled and complete oldsave byteexact, SHA dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e. No native-to-WASM equivalence or performance claim. This short fresh gate does not claim established descendant wind activity.
+
+Retained QA failures: first compile forced combined factory left unused wetlands parameter; fixed adapter only. First restart commands used QA_INPUT/OUTPUT names accidentally rewritten by generator placeholder replacement, so requested restart instead ran fresh2ticks and overwritten default endpoint; these logs are excluded from restart proof. Corrected QA_SAVE_IN/OUT, rebuilt unchanged owner source, and ran exactly fresh0/full4/mid2/resume2 plus oldsave0. All final '*-fixed.log' pass. Native source uses established EGL host adapters, fixed PRNG42 (actual world seed recorded), subdivision6, web presentation branches and scratch savepath. No model changes.
+
+Reproduce prepare-root-wind-native.py then existing egl-propagule-visual-build.zig. Run from repository cwd with EGL_PLATFORM=surfaceless LIBGL_ALWAYS_SOFTWARE=1 and QA_TICKS, QA_SAVE_IN(optional), QA_SAVE_OUT. Original production and all frontend trees unchanged.

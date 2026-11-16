@@ -1,0 +1,47 @@
+{
+  "historical_off-A-72": {
+    "sha256": "5d320e8b9b155bd2b4a7f109119b8ea6fa12d073d77677648ed1b53c3b8969aa",
+    "bytes": 13348741,
+    "living": 1267,
+    "occupied": 422,
+    "root_positive": 23,
+    "aerial_positive": 0,
+    "births": 2914,
+    "wind_config": null
+  },
+  "historical_off-B-72": {
+    "sha256": "5d320e8b9b155bd2b4a7f109119b8ea6fa12d073d77677648ed1b53c3b8969aa",
+    "bytes": 13348741,
+    "living": 1267,
+    "occupied": 422,
+    "root_positive": 23,
+    "aerial_positive": 0,
+    "births": 2914,
+    "wind_config": null
+  },
+  "fresh_sparse-A-72": {
+    "sha256": "b3c2a0ea2900f73d9cd1783261e034d6addf8024e839eef322f2befc20b6b33b",
+    "bytes": 12208654,
+    "living": 2,
+    "occupied": 1,
+    "root_positive": 1,
+    "aerial_positive": 0,
+    "births": 0,
+    "wind_config": null
+  },
+  "fresh_sparse-B-72": {
+    "sha256": "2f9c55218f87c02d1a30d9e86ff2242cde4a89395767620352c19fce46a85328",
+    "bytes": 12208791,
+    "living": 2,
+    "occupied": 1,
+    "root_positive": 1,
+    "aerial_positive": 1,
+    "births": 0,
+    "wind_config": {
+      "enabled": true,
+      "law": 1,
+      "stream_seed": 15021278609987233951,
+      "serial": 0
+    }
+  }
+}

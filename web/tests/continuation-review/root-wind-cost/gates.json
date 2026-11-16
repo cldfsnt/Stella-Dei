@@ -1,0 +1,73 @@
+{
+  "historical_off": {
+    "A": {
+      "arm": "baseline",
+      "input": "historical.json",
+      "input_sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e",
+      "endpoint_sha256": "5d320e8b9b155bd2b4a7f109119b8ea6fa12d073d77677648ed1b53c3b8969aa",
+      "save_bytes": 13348741,
+      "zero_typed_exact": true,
+      "restart_exact": true,
+      "layout": [
+        "LAYOUT plant=12 planet=3008 cells=40962",
+        "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+        "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784",
+        "CELL_LAYOUT cohort=88 cell=368 cell_array=15074016",
+        "WASM_HEAP_CAPACITY bytes=134217728 includes_harness_io=1"
+      ]
+    },
+    "B": {
+      "arm": "candidate",
+      "input": "historical.json",
+      "input_sha256": "dc38195de486e9d8a711bb232df27b1816803de8b6c874a2014354f8ea8c881e",
+      "endpoint_sha256": "5d320e8b9b155bd2b4a7f109119b8ea6fa12d073d77677648ed1b53c3b8969aa",
+      "save_bytes": 13348741,
+      "zero_typed_exact": true,
+      "restart_exact": true,
+      "layout": [
+        "LAYOUT plant=12 planet=3032 cells=40962",
+        "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+        "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784",
+        "CELL_LAYOUT cohort=88 cell=368 cell_array=15074016",
+        "WIND_FINAL enabled=false serial=0",
+        "WASM_HEAP_CAPACITY bytes=134217728 includes_harness_io=1"
+      ]
+    }
+  },
+  "fresh_sparse": {
+    "A": {
+      "arm": "candidate",
+      "input": "fresh-projected-off.json",
+      "input_sha256": "59b6ff13e2e29539745fa36206dba90b94b00909001548224075d9c6b26c24b7",
+      "endpoint_sha256": "b3c2a0ea2900f73d9cd1783261e034d6addf8024e839eef322f2befc20b6b33b",
+      "save_bytes": 12208654,
+      "zero_typed_exact": true,
+      "restart_exact": true,
+      "layout": [
+        "LAYOUT plant=12 planet=3032 cells=40962",
+        "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+        "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784",
+        "CELL_LAYOUT cohort=88 cell=368 cell_array=15074016",
+        "WIND_FINAL enabled=false serial=0",
+        "WASM_HEAP_CAPACITY bytes=134217728 includes_harness_io=1"
+      ]
+    },
+    "B": {
+      "arm": "candidate",
+      "input": "fresh.json",
+      "input_sha256": "3b2a508b4e1c37ab6165dd1917ea54ebca4d502643e598964dd843942af451bd",
+      "endpoint_sha256": "2f9c55218f87c02d1a30d9e86ff2242cde4a89395767620352c19fce46a85328",
+      "save_bytes": 12208791,
+      "zero_typed_exact": true,
+      "restart_exact": true,
+      "layout": [
+        "LAYOUT plant=12 planet=3032 cells=40962",
+        "BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88",
+        "ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784",
+        "CELL_LAYOUT cohort=88 cell=368 cell_array=15074016",
+        "WIND_FINAL enabled=true serial=0",
+        "WASM_HEAP_CAPACITY bytes=134217728 includes_harness_io=1"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+    const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();web_initialized=true;loop.pump(4096);var state=&game.state.Playing;state.paused=true;
+    const oldworld=PerformanceDetails.world_serial;const before=try qaBytes(a,state);std.debug.assert(combinedNewForGame(&game,oldworld+%1)==-2);try qaSame(a,state,before);
+    std.debug.assert(combinedNewForGame(&game,oldworld)==1);loop.pump(4096);state=&game.state.Playing;state.paused=true;state.showEscapeMenu=false;state.showPointDetails=false;state.showPlanetControl=false;
+    const world=PerformanceDetails.world_serial;std.debug.assert(world!=oldworld and state.planet.windDispersal.enabled and state.planet.landBeta.physiology_law==3);std.debug.assert(@import("combined_view.zig").writerVersion(state)==13);
+    const fresh=try qaBytes(a,state);std.debug.assert(combinedNewForGame(&game,oldworld)==-2);try qaSame(a,state,fresh);
+    const snap=try qaReply(a,stella_combined_snapshot());std.debug.assert(snap.object.get("writer_version").?.integer==13);try qaSame(a,state,fresh);
+    var plan=try qaReply(a,stella_auto_seed_pioneer_start(world));try qaPhase(plan,"planning");var token:u32=@intCast(plan.object.get("token").?.integer);std.debug.assert(std.mem.eql(u8,plan.object.get("founder_kind").?.string,"pioneer"));_=AutoSeed.cancel(token);try qaSame(a,state,fresh);
+    plan=try qaReply(a,stella_auto_seed_pioneer_start(world));token=@intCast(plan.object.get("token").?.integer);
+    while(std.mem.eql(u8,plan.object.get("phase").?.string,"planning")){plan=try qaReply(a,AutoSeed.step(state,world,token).ptr);}try qaPhase(plan,"ready");try qaSame(a,state,fresh);
+    const wanted=plan.object.get("planted").?.integer;std.debug.assert(wanted>0);plan=try qaReply(a,AutoSeed.apply(state,world,token).ptr);try qaPhase(plan,"applied");var count:usize=0;for(state.planet.microbeCells)|cell|for(cell.cohorts)|c|{if(c.biomass>0){count+=1;std.debug.assert(c.aerial_allocation==0.5 and c.root_fraction==0 and c.generation==0);}};std.debug.assert(count==wanted);
+    const paid=try qaBytes(a,state);_=AutoSeed.apply(state,world,token);try qaSame(a,state,paid);std.debug.assert(stella_save_expected(world,10)==-6);try qaSame(a,state,paid);
+    std.debug.assert(stella_save_expected(world,13)==0);const disk=try std.fs.cwd().readFileAlloc(a,saves.path,128*1024*1024);std.debug.assert(std.mem.eql(u8,disk,paid));const restored=try saves.schema.parse(a,disk);try saves.apply(state,restored.value);loop.pump(4096);try qaSame(a,state,paid);
+    std.debug.assert(wetlandsNewForGame(&game,world)==1);loop.pump(4096);state=&game.state.Playing;std.debug.assert(!state.planet.windDispersal.enabled and state.planet.landBeta.physiology_law==3);std.debug.assert(@import("combined_view.zig").writerVersion(state)==10);
+    std.debug.print("COMBINED_CONTROLS_PASS stale_fresh_repeat_snapshot_batch_cancel_apply_once_saved13_standard10 planted={}\n",.{count});std.process.exit(0);
+}
+fn qaReply(a:std.mem.Allocator,p:[*:0]const u8)!std.json.Value{return (try std.json.parseFromSlice(std.json.Value,a,std.mem.span(p),.{})).value;}
+fn qaPhase(v:std.json.Value,want:[]const u8)!void{if(!std.mem.eql(u8,v.object.get("phase").?.string,want)){std.debug.print("BAD_PHASE {s}\n",.{v.object.get("phase").?.string});return error.BadPhase;}}
+fn qaBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}
+fn qaSame(a:std.mem.Allocator,s:*PlayState,b:[]const u8)!void{std.debug.assert(std.mem.eql(u8,b,try qaBytes(a,s)));}

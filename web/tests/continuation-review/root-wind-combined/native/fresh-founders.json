@@ -1,0 +1,68 @@
+{
+  "seed": 15021278609987233951,
+  "time": 0.0,
+  "founders": [
+    {
+      "cell": 180,
+      "aerial_allocation": 0.5,
+      "root_fraction": 0.0,
+      "biomass": 0.019999999552965164,
+      "organization": 0.0,
+      "support_mass": 0.0,
+      "optimum": 303.0,
+      "efficiency": 1.0,
+      "structure": 0.0,
+      "feeding": 0.0,
+      "mobility": 0.0,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0,
+      "generation": 0,
+      "lineage": 1,
+      "parent": 0,
+      "reproduction_credit": 0.0
+    },
+    {
+      "cell": 180,
+      "aerial_allocation": 0.0,
+      "root_fraction": 0.5,
+      "biomass": 0.019999999552965164,
+      "organization": 0.25,
+      "support_mass": 0.004999999888241291,
+      "optimum": 303.0,
+      "efficiency": 1.0,
+      "structure": 0.0,
+      "feeding": 0.0,
+      "mobility": 0.0,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0,
+      "generation": 0,
+      "lineage": 2,
+      "parent": 0,
+      "reproduction_credit": 0.0
+    }
+  ],
+  "stats": {
+    "next_lineage": 3,
+    "births": 0,
+    "fixed_carbon": 306781177.1429062,
+    "recycled_carbon": 0.0,
+    "nutrient_added": 0.0,
+    "failed_patches": 0,
+    "grazed_carbon": 0.0,
+    "grazing_respired_carbon": 0.0,
+    "relocations": 0,
+    "movement_respired_carbon": 0.0
+  },
+  "wind": {
+    "enabled": true,
+    "law": 1,
+    "stream_seed": 15021278609987233951,
+    "serial": 0
+  }
+}
