@@ -1,0 +1,21 @@
+
+test "combined13 and historical strict reader exact emission" {
+ const a=std.testing.allocator;var saved=fixture();saved.mode=.origin;
+ var cohorts=[_]Microbes.Cohort{.{}}**4;const cells=[_]SavedCell{.{.cohorts=&cohorts}}**12;
+ saved.origin=.{.model_revision=5,.cells=&cells,.stats=.{.next_lineage=2}};
+ const soil=[_]f64{0}**12;const vapor=[_]f64{0.5}**12;
+ for(7..11)|version|{
+  saved.version=@intCast(version);
+  saved.beta_origin=if(version==7)null else .{.format=if(version==8).origin_land_beta_v1 else if(version==9).origin_land_beta_v2 else .origin_land_beta_v3,.config=.{.enabled=true,.law=1,.physiology_law=@intCast(version-7),.root_mutation=.{.enabled=true,.law=1,.stream_seed=42}},.soil=&soil,.vapor=&vapor};
+  try saved.validate();const encoded=try std.json.stringifyAlloc(a,saved,.{});defer a.free(encoded);
+  try std.testing.expect(std.mem.indexOf(u8,encoded,"aerial_allocation")==null);try std.testing.expect(std.mem.indexOf(u8,encoded,"wind_dispersal")==null);
+  var old=try @import("legacy/save_schema.zig").parse(a,encoded);defer old.deinit();const canonical=try std.json.stringifyAlloc(a,old.value,.{});defer a.free(canonical);try std.testing.expectEqualStrings(encoded,canonical);
+ }
+ saved.version=13;saved.wind_dispersal=.{.enabled=true,.law=1,.stream_seed=std.math.maxInt(u64),.serial=std.math.maxInt(u64)};
+ cohorts[0]=.{.lineage=1,.biomass=0.02,.support_mass=0.001,.root_fraction=0.25,.aerial_allocation=0.5};try saved.validate();
+ const bytes=try std.json.stringifyAlloc(a,saved,.{});defer a.free(bytes);var parsed=try parse(a,bytes);defer parsed.deinit();try std.testing.expectEqualDeep(saved,parsed.value);
+ var bad=saved;bad.version=11;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad.version=12;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.wind_dispersal=null;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.beta_origin=null;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.wind_dispersal.?.law=2;try std.testing.expectError(error.InvalidValue,bad.validate());
+ cohorts[1].aerial_allocation=std.math.nan(f32);try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].aerial_allocation=-0.0;try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].aerial_allocation=0;
+ saved.version=10;saved.wind_dispersal=null;try std.testing.expectError(error.IncompatibleSave,saved.validate());
+ try std.testing.expectError(error.MissingField,std.json.parseFromSlice(SavedWind,a,"{\"enabled\":true,\"law\":1,\"stream_seed\":0}",.{}));
+}
