@@ -1,0 +1,5 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unified storage real IndexedDB QA</title>
+<style>body{font:16px system-ui;max-width:900px;margin:24px auto;padding:16px}button{font:inherit;padding:12px;margin:8px 8px 8px 0}pre{white-space:pre-wrap;background:#f2f4f6;padding:16px}strong{color:#703400}</style>
+<h1>Unified storage: real IndexedDB gate</h1><p><strong>QA only. Native world apply is mocked. No game or GPU proof.</strong></p><p>This page uses only fresh databases prefixed <code>stella-unified-idb-qa-</code>. It never opens existing game databases. The actual storage module and recovery controller run against real browser IndexedDB.</p>
+<button id="run">Run real IndexedDB tests</button><button id="reload">Reload and verify durable results</button><button id="verify">Verify persisted results</button><pre id="result" role="status">Not run.</pre>
+<script src="unified-storage.js"></script><script src="combined-recovery.js"></script><script src="world-library.js"></script><script src="harness.js"></script>

@@ -1,0 +1,25 @@
+{
+  "input": {
+    "path": "site-tmp/wind-bulk/pioneer-day7.json",
+    "sha256": "a9a0fcf4179b30cb058d72c2967ccf4a55e9ba72cbf60433f0d6e14f345e24eb"
+  },
+  "owner_freeze": "2ffd946 + aa3887c",
+  "states": {
+    "reference": {
+      "tick1.json": "b17676cd7f15c01fba342452143990390fa897b0ac539b7811eca87f95292d38",
+      "tick2.json": "0d1d139a4568734c0507a1bea044673293cfb22cd0f29603eea06536b415912a",
+      "tick3.json": "b3aa5fb0341cc3db223cd8e78b142cf11ee069820edd6f09ff0815cbdbc85738",
+      "tick4.json": "353a09506d58cd5643edfcd9621c518da0ad79856460795645db68dbb89d3531",
+      "resuming-final.json": "353a09506d58cd5643edfcd9621c518da0ad79856460795645db68dbb89d3531"
+    },
+    "candidate": {
+      "tick1.json": "b17676cd7f15c01fba342452143990390fa897b0ac539b7811eca87f95292d38",
+      "tick2.json": "0d1d139a4568734c0507a1bea044673293cfb22cd0f29603eea06536b415912a",
+      "tick3.json": "b3aa5fb0341cc3db223cd8e78b142cf11ee069820edd6f09ff0815cbdbc85738",
+      "tick4.json": "353a09506d58cd5643edfcd9621c518da0ad79856460795645db68dbb89d3531",
+      "resuming-final.json": "353a09506d58cd5643edfcd9621c518da0ad79856460795645db68dbb89d3531"
+    }
+  },
+  "owner_reference_pins_verified": true,
+  "packaging_note": "Initial packaging used relative Path parent incorrectly; evidence generation failed before copying. Corrected to resolved repository path; no tests rerun."
+}

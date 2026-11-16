@@ -1,0 +1,380 @@
+combined-recovery-shell.test.cjs
+✖ recovery panel identity, accessible controls and scoped collapsed layout (4.391855ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.005608
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/combined-recovery-shell.test.cjs:3:1
+✖ recovery panel identity, accessible controls and scoped collapsed layout (4.391855ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(shell.includes('<p id="release-label">Wetlands · optional roots + wind</p>'))
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/combined-recovery-shell.test.cjs:3:86)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+combined-recovery-storage.test.cjs
+✔ discovers canonical and hashed durable backups across new storage instances; export exact bytes without writes (11.049684ms)
+✔ rejects arbitrary paths and unverified export without reading (0.797322ms)
+✖ corrupt hash or JSON/version is listed invalid, cannot export; valid backups remain available (1.981385ms)
+✔ selection stale bytes, oversized files and directories fail closed (1.563415ms)
+✔ filesystem read failure is explicit and does not mutate storage/world (0.527674ms)
+✔ restore syncs immutable current checkpoint before apply, canonical untouched, checkpoint rediscovered (2.604454ms)
+✔ prepare, hash, size, write/readback, read, quota, stale and target changes refuse without apply or canonical changes (5.068044ms)
+✔ native refusal codes never automatically write or retry, current state unchanged (2.912187ms)
+✔ existing exact checkpoint is resynced; conflicting checkpoint is never overwritten (1.657296ms)
+✔ invalid selection never prepares; concurrent operation refuses and does not duplicate apply (1.076442ms)
+✔ lastRecoveryError preserves actionable pause/refusal and thrown apply is uncertain (1.062801ms)
+✔ actual Recovery UI composes discovery/cancel and confirmed durable restore or quota refusal (2.325864ms)
+✔ failed Save dirty canonical blocks recovery without prepare/apply/sync until a successful Save (1.400299ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 118.593745
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/combined-recovery-storage.test.cjs:7:1
+✖ corrupt hash or JSON/version is listed invalid, cannot export; valid backups remain available (1.981385ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/combined-recovery-storage.test.cjs:7:386)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+combined-shell.test.cjs
+✖ combined native calls use explicit guarded writer and fresh expected-world (1.577005ms)
+✔ Pioneer batch shares reviewed immutable-kind transaction; ordinary stays separate (0.434274ms)
+✔ hardy choice mobile touch styling and collapsed disclosure remain usable in source (0.236796ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.021732
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/combined-shell.test.cjs:3:1
+✖ combined native calls use explicit guarded writer and fresh expected-world (1.577005ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /stella_wetlands_combined_new','number',\['number'\],\[world\]/. Input:
+  
+  '<!doctype html>\n' +
+    '<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d18"><title>Stella Dei · Browser Edition</title>\n' +
+    '<style>\n' +
+    '*{box-sizing:border-box}body{margin:0;background:#080d18;color:#e9edf5;font:15px system-ui,sans-serif}header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px}h1{font-size:18px;margin:0}small{color:#aebbd0}main{max-width:1280px;margin:auto}#stage{position:relative;background:#000;aspect-ratio:16/9}canvas{width:100%;height:100%;display:block;touch-action:none;outline:none}#status{padding:10px 16px;color:#bed1ed}#controls{display:flex;gap:7px;flex-wrap:wrap;padding:10px 14px;align-items:center}button{border:1px solid #475775;border-radius:9px;background:#172640;color:#fff;padding:12px;min-height:44px;font:inherit;touch-action:none}button[aria-pressed=true]{background:#345f92;border-color:#9bd4ff}button:disabled{opacity:.4}#help{padding:0 16px 16px;color:#bac7da;font-size:13px;line-height:1.5}a{color:#a9d6ff}#cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#080d18c9}#cover[hidden]{display:none}#play{font-size:20px;padding:18px 32px}.credits{padding:12px 16px;font-size:12px;color:#8d9cb4}@media(max-width:650px){header{padding:8px 12px}#controls{gap:5px;padding:8px}button{padding:10px}small{font-size:11px}}\n' +
+    '\n' +
+    '/* Match logical game pixels to the phone viewport, never shrink a desktop UI. */\n' +
+    'html,body{height:100%;overflow:hidden}body{overscroll-behavior:none;height:100dvh;display:flex;flex-direction:column}header{flex:none;padding:6px 12px;min-height:32px}header small{display:none}main{width:100%;max-width:none;flex:1;min-height:0;display:flex;flex-direction:column}#stage{flex:1;min-height:180px;aspect-ratio:auto}#controls{flex:none;flex-wrap:nowrap;overflow-x:auto;padding:6px max(8px,env(safe-area-inset-left));gap:6px;background:#111d30}#controls button{flex:none;min-height:44px;padding:8px 12px}#status{position:absolute;top:34px;left:8px;right:8px;pointer-events:none;z-index:2;font-size:12px;padding:4px 8px;background:#080d18aa;border-radius:4px}body.playing #status{display:none}#help,.credits{display:none}#controls [data-key]{display:none}details{position:absolute;z-index:4;bottom:62px;left:8px;right:8px;max-height:45dvh;overflow:auto;background:#111d30;border-radius:8px;padding:10px}details:not([open]){display:none}#guide{position:absolute;inset:40px 8px 64px;overflow:auto;background:#111d30f5;padding:20px;z-index:5;border-radius:12px}#guide[hidden]{display:none}#guide p{line-height:1.5}#guide button{float:right}#guide a{display:inline-block;padding:8px}#controls #mode{min-width:66px}#controls{font-size:13px}#controls button{padding:8px}#controls{gap:4px;padding-bottom:max(6px,env(safe-area-inset-bottom))}#controls #fullscreen{min-width:44px}#controls [data-zoom]{min-width:44px}#controls #fullscreen{font-size:13px}@media(orientation:landscape) and (max-height:500px){header{display:none}#status{top:4px}#controls{padding-top:3px;padding-bottom:max(3px,env(safe-area-inset-bottom))}#guide{top:8px}}\n' +
+    '#notice{position:absolute;z-index:7;top:38px;left:10px;right:10px;padding:12px 16px;background:#163c39;color:#effff9;border:1px solid #57b9a0;border-radius:8px;font-size:13px;line-height:1.4}#notice[data-error=true]{background:#4c2725;border-color:#e5a695}#notice[hidden]{display:none}\n' +
+    '#controls{display:grid;grid-template-columns:minmax(70px,1.4fr) repeat(5,minmax(0,1fr));gap:3px;padding-left:4px;padding-right:4px;overflow:visible}#controls button{min-width:0;padding:8px 4px}#controls #mode{min-width:70px}#more-menu{color:#e9edf5;background:#14243a;border:1px solid #506e90;border-radius:14px;padding:16px;position:fixed;top:auto;bottom:calc(64px + env(safe-area-inset-bottom));width:min(420px,calc(100vw - 16px));max-height:70dvh;overflow:auto}#more-menu::backdrop{background:#0008}.sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.sheet-heading h2{font-size:18px;margin:0}.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.sheet-actions button{min-height:48px}#more-menu p{font-size:12px;color:#bbcce1;margin-bottom:0}@media(max-width:360px){#controls{font-size:12px}}\n' +
+    '#welcome-tip{position:absolute;z-index:4;bottom:142px;left:8px;right:8px;margin:auto;max-width:440px;background:#172e46f5;border:1px solid #78acd0;border-radius:12px;padding:10px;box-shadow:0 4px 18px #0008}#welcome-tip[hidden]{display:none}#welcome-tip p{margin:0 0 8px;line-height:1.35}#welcome-tip .tip-actions{display:flex;gap:8px}#welcome-tip button{flex:1;min-height:44px}#guide .guide-actions{display:flex;flex-wrap:wrap;gap:8px}#guide .guide-actions button{float:none;flex:1;min-height:44px}#goal-card{background:#203c53;border-radius:10px;padding:12px;margin:12px 0}#goal-card h3{margin:0 0 6px;font-size:18px}#goal-card p{margin:6px 0}#manual{position:static;display:block;max-height:none;padding:0;background:none}#manual summary{padding:14px 0;min-height:44px;cursor:pointer}#manual:not([open])>*:not(summary){display:none}#guide button{max-width:100%}@media(max-height:420px){#welcome-tip{bottom:62px;font-size:13px;padding:8px}#guide{inset:8px 8px 58px;padding:12px}}\n' +
+    '#life-sheet,#god-sheet,#speed-sheet{color:#ecf7f4;background:#102c30;border:1px solid #5d9d96;border-radius:14px;padding:16px;width:min(450px,calc(100vw - 16px));max-height:80dvh;overflow:auto}#life-sheet::backdrop,#god-sheet::backdrop,#speed-sheet::backdrop{background:#0009}#life-sheet .sheet-heading,#god-sheet .sheet-heading,#speed-sheet .sheet-heading{position:sticky;top:-16px;background:#102c30;padding:8px 0;z-index:1}#life-sheet h2,#god-sheet h2,#speed-sheet h2{font-size:18px}#life-sheet p,#god-sheet p{line-height:1.45}#life-cohorts{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;background:#193e40;padding:12px;border-radius:10px;margin:12px 0}#life-sheet .life-note{font-size:12px;color:#b1ccc7}#refresh-life{width:100%;margin-top:6px}\n' +
+    'body #journey{min-height:36px;padding:6px 10px;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;background:#153d35;border-color:#508876}header{min-height:44px}body #water-target{display:block;width:100%;min-height:44px;font:inherit;padding:10px;margin:6px 0;color:#ecf7f4;background:#193e40;border:1px solid #5d9d96;border-radius:8px}#target-water button{margin-bottom:6px}body #origin-starter{position:static;flex:none;display:block;width:auto;inset:auto;max-height:180px;overflow:auto;padding:4px 10px;background:#102d29}body #origin-starter:not([open]){display:block}body #origin-starter:not([open])>:not(summary){display:none}body #origin-starter summary{cursor:pointer;min-height:32px}body #starter-actions{display:flex;gap:4px;flex-wrap:wrap}body #starter-actions button{font-size:12px;padding:6px;min-height:44px}body #starter-info{font-size:12px;margin:4px 0}body #origin-starter[hidden]{display:none}body #performance-details{position:static;display:block;inset:auto;max-height:none;width:auto;overflow:visible;margin-top:12px}body #performance-details:not([open]){display:block}body #performance-details[hidden]{display:none}#performance-readout{white-space:pre-line;font-variant-numeric:tabular-nums;line-height:1.5}\n' +
+    'body #speed-sheet .sheet-heading{z-index:5;margin:0 -1px;border-bottom:1px solid #5d9d9666}body #close-speed{flex:none;min-width:64px;min-height:44px}body #speed-sheet{overscroll-behavior:contain;scroll-padding-top:68px}\n' +
+    'body #gameplay-measure-status{position:absolute;z-index:6;bottom:68px;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;background:#102c30e6;border:1px solid #5d9d96;border-radius:8px;font-size:12px;pointer-events:none}body #gameplay-measure-status button{pointer-events:auto;min-height:44px}body #gameplay-measure-status[hidden]{display:none}#gameplay-result-readout{white-space:pre-line;font-variant-numeric:tabular-nums}\n' +
+    'body #living-traits{padding:8px;border:1px solid #508876;border-radius:8px}body #living-traits-copy{white-space:pre-line}\n' +
+    'body #god-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}body #god-actions button{margin:0;min-width:0;min-height:48px;width:100%;white-space:normal}body #god-sheet details{position:static;display:block;inset:auto;max-height:none;width:auto;overflow:visible;margin-top:12px}body #god-sheet details:not([open]){display:block}body #god-sheet details:not([open])>:not(summary){display:none}body #god-sheet details[hidden]{display:none}body #god-sheet details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}body #god-sheet{overscroll-behavior:contain;scroll-padding-top:68px}\n' +
+    '#patch-watch-readout{white-space:pre-line;margin:0 0 8px;font-size:13px;line-height:1.3}\n' +
+    '\n' +
+    'body #life-sheet details{position:static;display:block;inset:auto;margin:8px 0;padding:8px;max-height:none;background:#183a3b;border-radius:8px}\n' +
+    'body #life-sheet details:not([open]){display:block}\n' +
+    'body #life-sheet details:not([open])>:not(summary){display:none}\n' +
+    'body #life-sheet details[hidden]{display:none}\n' +
+    'body #life-sheet summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer}body #life-sheet summary::after{content:"＋";margin-left:auto;font-size:20px}body #life-sheet details[open]>summary::after{content:"−"}\n' +
+    'body #life-colony-shares{white-space:pre-line;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;line-height:1.5}\n' +
+    'body #life-habitat{font-weight:600;margin:8px 0;overflow-wrap:anywhere}\n' +
+    'body #life-sheet #fine-water>p{margin:8px 0}\n' +
+    'body #patch-watch-colonies{position:static;display:block;inset:auto;max-height:none;overflow:visible;margin:8px 0;padding:8px;background:#183a3b}body #patch-watch-colonies:not([open]){display:block}body #patch-watch-colonies:not([open])>:not(summary){display:none}body #patch-watch-colonies[hidden]{display:none}body #patch-watch-colonies summary{cursor:pointer;min-hei'... 134163 more characters
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/combined-shell.test.cjs:3:159)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d18"><title>Stella Dei · Browser Edition</title>\n<style>\n*{box-sizing:border-box}body{margin:0;background:#080d18;color:#e9edf5;font:15px system-ui,sans-serif}header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px}h1{font-size:18px;margin:0}small{color:#aebbd0}main{max-width:1280px;margin:auto}#stage{position:relative;background:#000;aspect-ratio:16/9}canvas{width:100%;height:100%;display:block;touch-action:none;outline:none}#status{padding:10px 16px;color:#bed1ed}#controls{display:flex;gap:7px;flex-wrap:wrap;padding:10px 14px;align-items:center}button{border:1px solid #475775;border-radius:9px;background:#172640;color:#fff;padding:12px;min-height:44px;font:inherit;touch-action:none}button[aria-pressed=true]{background:#345f92;border-color:#9bd4ff}button:disabled{opacity:.4}#help{padding:0 16px 16px;color:#bac7da;font-size:13px;line-height:1.5}a{color:#a9d6ff}#cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#080d18c9}#cover[hidden]{display:none}#play{font-size:20px;padding:18px 32px}.credits{padding:12px 16px;font-size:12px;color:#8d9cb4}@media(max-width:650px){header{padding:8px 12px}#controls{gap:5px;padding:8px}button{padding:10px}small{font-size:11px}}\n\n/* Match logical game pixels to the phone viewport, never shrink a desktop UI. */\nhtml,body{height:100%;overflow:hidden}body{overscroll-behavior:none;height:100dvh;display:flex;flex-direction:column}header{flex:none;padding:6px 12px;min-height:32px}header small{display:none}main{width:100%;max-width:none;flex:1;min-height:0;display:flex;flex-direction:column}#stage{flex:1;min-height:180px;aspect-ratio:auto}#controls{flex:none;flex-wrap:nowrap;overflow-x:auto;padding:6px max(8px,env(safe-area-inset-left));gap:6px;background:#111d30}#controls button{flex:none;min-height:44px;padding:8px 12px}#status{position:absolute;top:34px;left:8px;right:8px;pointer-events:none;z-index:2;font-size:12px;padding:4px 8px;background:#080d18aa;border-radius:4px}body.playing #status{display:none}#help,.credits{display:none}#controls [data-key]{display:none}details{position:absolute;z-index:4;bottom:62px;left:8px;right:8px;max-height:45dvh;overflow:auto;background:#111d30;border-radius:8px;padding:10px}details:not([open]){display:none}#guide{position:absolute;inset:40px 8px 64px;overflow:auto;background:#111d30f5;padding:20px;z-index:5;border-radius:12px}#guide[hidden]{display:none}#guide p{line-height:1.5}#guide button{float:right}#guide a{display:inline-block;padding:8px}#controls #mode{min-width:66px}#controls{font-size:13px}#controls button{padding:8px}#controls{gap:4px;padding-bottom:max(6px,env(safe-area-inset-bottom))}#controls #fullscreen{min-width:44px}#controls [data-zoom]{min-width:44px}#controls #fullscreen{font-size:13px}@media(orientation:landscape) and (max-height:500px){header{display:none}#status{top:4px}#controls{padding-top:3px;padding-bottom:max(3px,env(safe-area-inset-bottom))}#guide{top:8px}}\n#notice{position:absolute;z-index:7;top:38px;left:10px;right:10px;padding:12px 16px;background:#163c39;color:#effff9;border:1px solid #57b9a0;border-radius:8px;font-size:13px;line-height:1.4}#notice[data-error=true]{background:#4c2725;border-color:#e5a695}#notice[hidden]{display:none}\n#controls{display:grid;grid-template-columns:minmax(70px,1.4fr) repeat(5,minmax(0,1fr));gap:3px;padding-left:4px;padding-right:4px;overflow:visible}#controls button{min-width:0;padding:8px 4px}#controls #mode{min-width:70px}#more-menu{color:#e9edf5;background:#14243a;border:1px solid #506e90;border-radius:14px;padding:16px;position:fixed;top:auto;bottom:calc(64px + env(safe-area-inset-bottom));width:min(420px,calc(100vw - 16px));max-height:70dvh;overflow:auto}#more-menu::backdrop{background:#0008}.sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.sheet-heading h2{font-size:18px;margin:0}.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.sheet-actions button{min-height:48px}#more-menu p{font-size:12px;color:#bbcce1;margin-bottom:0}@media(max-width:360px){#controls{font-size:12px}}\n#welcome-tip{position:absolute;z-index:4;bottom:142px;left:8px;right:8px;margin:auto;max-width:440px;background:#172e46f5;border:1px solid #78acd0;border-radius:12px;padding:10px;box-shadow:0 4px 18px #0008}#welcome-tip[hidden]{display:none}#welcome-tip p{margin:0 0 8px;line-height:1.35}#welcome-tip .tip-actions{display:flex;gap:8px}#welcome-tip button{flex:1;min-height:44px}#guide .guide-actions{display:flex;flex-wrap:wrap;gap:8px}#guide .guide-actions button{float:none;flex:1;min-height:44px}#goal-card{background:#203c53;border-radius:10px;padding:12px;margin:12px 0}#goal-card h3{margin:0 0 6px;font-size:18px}#goal-card p{margin:6px 0}#manual{position:static;display:block;max-height:none;padding:0;background:none}#manual summary{padding:14px 0;min-height:44px;cursor:pointer}#manual:not([open])>*:not(summary){display:none}#guide button{max-width:100%}@media(max-height:420px){#welcome-tip{bottom:62px;font-size:13px;padding:8px}#guide{inset:8px 8px 58px;padding:12px}}\n#life-sheet,#god-sheet,#speed-sheet{color:#ecf7f4;background:#102c30;border:1px solid #5d9d96;border-radius:14px;padding:16px;width:min(450px,calc(100vw - 16px));max-height:80dvh;overflow:auto}#life-sheet::backdrop,#god-sheet::backdrop,#speed-sheet::backdrop{background:#0009}#life-sheet .sheet-heading,#god-sheet .sheet-heading,#speed-sheet .sheet-heading{position:sticky;top:-16px;background:#102c30;padding:8px 0;z-index:1}#life-sheet h2,#god-sheet h2,#speed-sheet h2{font-size:18px}#life-sheet p,#god-sheet p{line-height:1.45}#life-cohorts{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;background:#193e40;padding:12px;border-radius:10px;margin:12px 0}#life-sheet .life-note{font-size:12px;color:#b1ccc7}#refresh-life{width:100%;margin-top:6px}\nbody #journey{min-height:36px;padding:6px 10px;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;background:#153d35;border-color:#508876}header{min-height:44px}body #water-target{display:block;width:100%;min-height:44px;font:inherit;padding:10px;margin:6px 0;color:#ecf7f4;background:#193e40;border:1px solid #5d9d96;border-radius:8px}#target-water button{margin-bottom:6px}body #origin-starter{position:static;flex:none;display:block;width:auto;inset:auto;max-height:180px;overflow:auto;padding:4px 10px;background:#102d29}body #origin-starter:not([open]){display:block}body #origin-starter:not([open])>:not(summary){display:none}body #origin-starter summary{cursor:pointer;min-height:32px}body #starter-actions{display:flex;gap:4px;flex-wrap:wrap}body #starter-actions button{font-size:12px;padding:6px;min-height:44px}body #starter-info{font-size:12px;margin:4px 0}body #origin-starter[hidden]{display:none}body #performance-details{position:static;display:block;inset:auto;max-height:none;width:auto;overflow:visible;margin-top:12px}body #performance-details:not([open]){display:block}body #performance-details[hidden]{display:none}#performance-readout{white-space:pre-line;font-variant-numeric:tabular-nums;line-height:1.5}\nbody #speed-sheet .sheet-heading{z-index:5;margin:0 -1px;border-bottom:1px solid #5d9d9666}body #close-speed{flex:none;min-width:64px;min-height:44px}body #speed-sheet{overscroll-behavior:contain;scroll-padding-top:68px}\nbody #gameplay-measure-status{position:absolute;z-index:6;bottom:68px;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;background:#102c30e6;border:1px solid #5d9d96;border-radius:8px;font-size:12px;pointer-events:none}body #gameplay-measure-status button{pointer-events:auto;min-height:44px}body #gameplay-measure-status[hidden]{display:none}#gameplay-result-readout{white-space:pre-line;font-variant-numeric:tabular-nums}\nbody #living-traits{padding:8px;border:1px solid #508876;border-radius:8px}body #living-traits-copy{white-space:pre-line}\nbody #god-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}body #god-actions button{margin:0;min-width:0;min-height:48px;width:100%;white-space:normal}body #god-sheet details{position:static;display:block;inset:auto;max-height:none;width:auto;overflow:visible;margin-top:12px}body #god-sheet details:not([open]){display:block}body #god-sheet details:not([open])>:not(summary){display:none}body #god-sheet details[hidden]{display:none}body #god-sheet details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}body #god-sheet{overscroll-behavior:contain;scroll-padding-top:68px}\n#patch-watch-readout{white-space:pre-line;margin:0 0 8px;font-size:13px;line-height:1.3}\n\nbody #life-sheet details{position:static;display:block;inset:auto;margin:8px 0;padding:8px;max-height:none;background:#183a3b;border-radius:8px}\nbody #life-sheet details:not([open]){display:block}\nbody #life-sheet details:not([open])>:not(summary){display:none}\nbody #life-sheet details[hidden]{display:none}\nbody #life-sheet summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer}body #life-sheet summary::after{content:"＋";margin-left:auto;font-size:20px}body #life-sheet details[open]>summary::after{content:"−"}\nbody #life-colony-shares{white-space:pre-line;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;line-height:1.5}\nbody #life-habitat{font-weight:600;margin:8px 0;overflow-wrap:anywhere}\nbody #life-sheet #fine-water>p{margin:8px 0}\nbody #patch-watch-colonies{position:static;display:block;inset:auto;max-height:none;overflow:visible;margin:8px 0;padding:8px;background:#183a3b}body #patch-watch-colonies:not([open]){display:block}body #patch-watch-colonies:not([open])>:not(summary){display:none}body #patch-watch-colonies[hidden]{display:none}body #patch-watch-colonies summary{cursor:pointer;min-hei'... 134163 more characters,
+    expected: /stella_wetlands_combined_new','number',\['number'\],\[world\]/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+combined-storage.test.cjs
+TIMEOUT
+combined-world.test.cjs
+✔ explicit save succeeds before fresh replacement; no automatic planting (2.488058ms)
+✔ cancel, unavailable and save/backup failure never reset (0.503268ms)
+✔ world changes during asynchronous durable save never reset (0.234844ms)
+✔ repeated click during save does not duplicate reset (0.243577ms)
+✔ native stale/busy/unavailable refuse without retry (0.239751ms)
+✔ Pioneer available only in actual combined world (0.370167ms)
+✖ status validates native combined law and unknown writer (0.698462ms)
+✔ inconsistent writer/law combinations refuse (0.20557ms)
+✖ controller mount wires one fresh action and truthfully disables Pioneer off (0.453393ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.73525
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/combined-world.test.cjs:10:1
+✖ status validates native combined law and unknown writer (0.698462ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /off/. Input:
+  
+  'Existing world retained with its original rules. Newer mechanics start on a new living planet.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/combined-world.test.cjs:10:244)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Existing world retained with its original rules. Newer mechanics start on a new living planet.',
+    expected: /off/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at ../site-tmp/unified-ui/web/tests/combined-world.test.cjs:13:1
+✖ controller mount wires one fresh action and truthfully disables Pioneer off (0.453393ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /off/. Input:
+  
+  'Existing world retained with its original rules. Newer mechanics start on a new living planet.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/combined-world.test.cjs:13:567)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Existing world retained with its original rules. Newer mechanics start on a new living planet.',
+    expected: /off/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+protective-ui.test.cjs
+✔ fresh15 is explicit, old14 valid, malformed combinations refused (0.90943ms)
+✔ save/new guards cancel, unavailable, failure, selection change, stale and repeats (0.73686ms)
+✔ actual identity and graded state wording, not fabricated oldworld zero or countdown (0.727997ms)
+✖ creation checkbox is defaultoff, clears Historical and does not mirror loaded15 (0.398881ms)
+✔ verbatim native paid active founder and QA persistence states render exact identity (0.545381ms)
+✖ optional new-world cost disclosure is visible, non-numeric and default-off (6.714254ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.175015
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/protective-ui.test.cjs:8:1
+✖ creation checkbox is defaultoff, clears Historical and does not mirror loaded15 (0.398881ms)
+  TypeError [Error]: nodes.combined-climate.change is not a function
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/protective-ui.test.cjs:8:684)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at ../site-tmp/unified-ui/web/tests/protective-ui.test.cjs:11:1
+✖ optional new-world cost disclosure is visible, non-numeric and default-off (6.714254ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(label)
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/protective-ui.test.cjs:11:299)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+root-water-combined.test.cjs
+✔ wire14 requires explicit thermal identity and preserves old13 display (1.009461ms)
+✖ explicit calmer save/new uses native choice and no reset after failure or change (1.157944ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.119134
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/root-water-combined.test.cjs:5:1
+✖ explicit calmer save/new uses native choice and no reset after failure or change (1.157944ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /replaces the existing Wetlands browser save slot/. Input:
+  
+  'Chosen new-world setting: calmer ground-temperature response. This does not add rain or soil water, and does not guarantee survival.\n' +
+    'Save the current world to this game browser slot, then replace the active world with a new living planet? This replaces the existing game browser save slot with the current world. Eligible older-format saved bytes are backed up before a newer-format write; this is not a backup of every prior save. This saves your current world, not the new one. Older saved worlds are not converted. Cancel keeps the current world unchanged.'
+  
+      at Object.confirm (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/root-water-combined.test.cjs:4:216)
+      at Object.fresh (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/combined-world.js:18:9)
+      at flow (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/root-water-combined.test.cjs:4:610)
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/root-water-combined.test.cjs:5:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Chosen new-world setting: calmer ground-temperature response. This does not add rain or soil water, and does not guarantee survival.\nSave the current world to this game browser slot, then replace the active world with a new living planet? This replaces the existing game browser save slot with the current world. Eligible older-format saved bytes are backed up before a newer-format write; this is not a backup of every prior save. This saves your current world, not the new one. Older saved worlds are not converted. Cancel keeps the current world unchanged.',
+    expected: /replaces the existing Wetlands browser save slot/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+shell.test.cjs
+evalmachine.<anonymous>:17
+const worldLibrary=StellaWorldLibrary.mount(document,{
+                   ^
+
+ReferenceError: StellaWorldLibrary is not defined
+    at evalmachine.<anonymous>:17:20
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at Object.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/shell.test.cjs:33:182)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+
+Node.js v24.22.1
+✖ ../site-tmp/unified-ui/web/tests/shell.test.cjs (85.424436ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.405228
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/shell.test.cjs:1:1
+✖ ../site-tmp/unified-ui/web/tests/shell.test.cjs (85.424436ms)
+  'test failed'
+
+storage-upgrade.test.cjs
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+AssertionError [ERR_ASSERTION]: Expected a pending storage sync
+    at Object.complete (/workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/storage-upgrade.test.cjs:33:31)
+    at /workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/storage-upgrade.test.cjs:101:44 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+✖ ../site-tmp/unified-ui/web/tests/storage-upgrade.test.cjs (75.587639ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.264583
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/storage-upgrade.test.cjs:1:1
+✖ ../site-tmp/unified-ui/web/tests/storage-upgrade.test.cjs (75.587639ms)
+  'test failed'
+
+storage.test.cjs
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No saved planet/. Input:
+
+'Load blocked after unsuccessful Save. Finish a successful Save or reload the page; reload loses unsaved active progress.'
+
+    at /workspace/scratch/f67c3ac60ca3/site-tmp/unified-ui/web/tests/storage.test.cjs:8:112 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'Load blocked after unsuccessful Save. Finish a successful Save or reload the page; reload loses unsaved active progress.',
+  expected: /No saved planet/,
+  operator: 'match',
+  diff: 'simple'
+}
+✖ ../site-tmp/unified-ui/web/tests/storage.test.cjs (58.20202ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.375697
+
+✖ failing tests:
+
+test at ../site-tmp/unified-ui/web/tests/storage.test.cjs:1:1
+✖ ../site-tmp/unified-ui/web/tests/storage.test.cjs (58.20202ms)
+  'test failed'

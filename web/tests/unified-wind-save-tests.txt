@@ -1,0 +1,17 @@
+
+test "genuine Wind11 canonical original-reader bytes and forbidden composition" {
+ const a=std.testing.allocator;var saved=fixture();saved.version=11;saved.mode=.origin;
+ var cohorts=[_]Microbes.Cohort{.{}}**4;const cells=[_]SavedCell{.{.cohorts=&cohorts}}**12;
+ saved.origin=.{.model_revision=5,.cells=&cells,.stats=.{.next_lineage=2}};
+ saved.wind_dispersal=.{.enabled=true,.law=1,.stream_seed=std.math.maxInt(u64),.serial=std.math.maxInt(u64)};
+ cohorts[0]=.{.lineage=1,.biomass=0.02,.support_mass=0.001,.aerial_allocation=0.5};try saved.validate();
+ const encoded=try std.json.stringifyAlloc(a,saved,.{});defer a.free(encoded);var old=try @import("wind_original/save_schema.zig").parse(a,encoded);defer old.deinit();const canonical=try std.json.stringifyAlloc(a,old.value,.{});defer a.free(canonical);try std.testing.expectEqualStrings(encoded,canonical);
+ var restored=try parse(a,encoded);defer restored.deinit();try std.testing.expectEqualDeep(saved,restored.value);
+ for([_] []const u8{"root_fraction","beta_origin","ground_thermal","protective_strategy","protective_investment","protective_clock"})|field|try std.testing.expect(std.mem.indexOf(u8,encoded,field)==null);
+ var bad=saved;bad.version=12;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.wind_dispersal=null;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.wind_dispersal.?.law=2;try std.testing.expectError(error.InvalidValue,bad.validate());bad=saved;bad.mode=.sandbox;try std.testing.expectError(error.InvalidValue,bad.validate());bad=saved;bad.ground_thermal=.{.law=1};try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.protective_strategy=.{.law=1,.mutation_law=1,.stream_seed=42};try std.testing.expectError(error.IncompatibleSave,bad.validate());
+ cohorts[1].root_fraction=0.25;try std.testing.expectError(error.IncompatibleSave,saved.validate());cohorts[1].root_fraction=0;cohorts[1].protective_investment=0.25;try std.testing.expectError(error.IncompatibleSave,saved.validate());
+}
+test "actual original ordinary and Pioneer Wind11 saves strict-reader exact" {
+ const paths=[_] []const u8{"/workspace/scratch/f67c3ac60ca3/site-tmp/wind-descendant-continuation/ordinary-input.json","/workspace/scratch/f67c3ac60ca3/site-tmp/wind-descendant-continuation/pioneer-day10.json"};
+ for(paths)|path|{var arena=std.heap.ArenaAllocator.init(std.testing.allocator);defer arena.deinit();const a=arena.allocator();const input=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const current=try parse(a,input);try std.testing.expectEqual(@as(u32,11),current.value.version);const old=try @import("wind_original/save_schema.zig").parse(a,input);const before=try std.json.stringifyAlloc(a,old.value,.{});const after=try std.json.stringifyAlloc(a,current.value,.{});try std.testing.expectEqualStrings(before,after);const reread=try @import("wind_original/save_schema.zig").parse(a,after);try std.testing.expectEqualStrings(before,try std.json.stringifyAlloc(a,reread.value,.{}));std.debug.print("WIND11_OLD_READER {s} bytes={}\n",.{path,after.len});}
+}

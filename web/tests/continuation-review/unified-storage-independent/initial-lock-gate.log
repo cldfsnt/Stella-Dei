@@ -1,0 +1,30 @@
+/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/unified-storage-independent.test.cjs:3
+const target=process.env.STORAGE_SOURCE||'../unified-storage.js';const {createStorage}=require(target);globalThis.crypto=webcrypto;
+                                                                                                                        ^
+
+TypeError: Cannot set property crypto of #<Object> which has only a getter
+    at Object.<anonymous> (/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/unified-storage-independent.test.cjs:3:121)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+Node.js v24.22.1
+✖ web/tests/unified-storage-independent.test.cjs (120.528101ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.303694
+
+✖ failing tests:
+
+test at web/tests/unified-storage-independent.test.cjs:1:1
+✖ web/tests/unified-storage-independent.test.cjs (120.528101ms)
+  'test failed'

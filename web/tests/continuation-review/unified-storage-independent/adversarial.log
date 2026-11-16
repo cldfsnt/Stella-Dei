@@ -1,0 +1,19 @@
+✔ owned import retains lock through nested recovery completion microtasks (11.490048ms)
+✔ historical discovery and exact-u64 export never mount/write/populate legacy stores (2.41678ms)
+✔ missing historical discovery aborts creation and leaves canonical bytes intact (0.534075ms)
+✔ import refuses cancel during durable checkpoint without native apply (2.797124ms)
+✔ import refuses hidden during durable checkpoint without native apply (1.766892ms)
+✔ import refuses stale-world during durable checkpoint without native apply (4.066946ms)
+✔ import refuses source-change during durable checkpoint without native apply (1.373249ms)
+✔ version12 and unknown version cannot reach import preparation (0.974658ms)
+✔ failed Save blocks populating Load and Import until explicit successful save (1.028399ms)
+✔ post-serialization quota failure preserves durable original and blocks destructive populate until retry (1.029201ms)
+✔ successful standalone Wind import retains exact source and canonical bytes, repeat pending import refuses (1.366729ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.273713

@@ -1,0 +1,11 @@
+EGL surface=0x18d63220 context=0x18d63830
+info: Loading states.main_menu.MainMenuState...
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+thread 63 panic: access of inactive union field
+Unwind error at address `:0x10cb51e` (error.InvalidDebugInfo), trace may be incomplete
+

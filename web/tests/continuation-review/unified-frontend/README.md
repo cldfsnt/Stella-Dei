@@ -1,0 +1,14 @@
+# Unified frontend first stage
+Separate unified-ui/web; no native copy/build/live edits. Reproducer unified-ui-prepare.py derives only isolated shell from verified protective-ui baseline, preserving read-only wetlands summary/graphics helper but removing obsolete preview banner and mount. Existing rooted/Pioneer IDs/controllers move into optional God toolbox; ordinary aquatic Seed/observe stays primary. No engine-wide tool lock or new resource grants. New always routes to guarded15 factory; Continue only closes menu. Actual initialPlay15/advancedSandbox native patch and Wind11 compatibility remain native-owned, not proven by these mocks.
+
+Three focused tests pass. Import selection/recovery contract and storage implementation still pending; no accessible-import claim yet. Full test adaptation/native payload/Module/source recovery required before publication. No browser/device rendering claim.
+
+## Integrated chooser/source checkpoint
+Native eefbb1a copied exact; Wind11 schema2ffd946 supports unchanged standalone identity. Actual disabled root metadata is root_physiology1, not0; UI and storage06f18f8 corrected. Full216 copiedJS tests pass plus focused main-layout/startup/identity tests. Superseded checkbox/banner/11-rejection tests adapted explicitly with reproducible scripts; firstfailures retained. Native Wind11 verbatim snapshot reconciliation pending owner fixture.
+
+World chooser uses actual storage5d28346/06f18f8 API: explicit source+file+SHA, confirmation, busy/epoch cancel, originalfiles untouched, no auto-save. Discovery not import. StartPlay/init never saves; Continue closes menu only. New separately Save+replace guarded. Landstarter is immediate in optional Godtools, not required aquatic start. Mainnative namespace stays hidden /wetlands-saves. No runtime build/deploy yet at this checkpoint.
+
+## Final isolated artifact
+Native eefbb1a exact271files; Wind11 fixturec909391 tested verbatim;222copiedJS tests plus6focused main/startup tests pass. Final linkedModule verifies exports/unavailable guards and onlycanonicalIDB mount; first module assertion rejected mere readonly /saves string and was replaced by explicit legacyreadonly/canonicalmount assertions (failure retainedgz). No engine change.
+
+36distfiles at site-tmp/unified-ui/web/dist. HTMLe7cc174cb9473f298b2a1ef4f40aced4706464eeb1a36a2d818c978eb743bae7; WASM6cfefaf66e718838fc4b804815802b5b9606a449a94860b19c139a88d5454062. Exact1752sourcefiles/25assets recovered; archive16,579,702bytes/3parts SHA 8ef66fcf77ad3564c809032592964225962e20c5c436c589811334fc6f2a5d4e. All previous runtime hashes unchanged. Coordinator reports fresh-origin realIndexedDB harness PASS with reload durability, mocked nativeapply explicit; real native transitions independently passed. No browserGL/device gameplay claim. Publication remains coordinator-owned.

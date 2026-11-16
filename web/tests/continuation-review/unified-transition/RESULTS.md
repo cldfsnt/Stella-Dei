@@ -1,0 +1,7 @@
+# Active protective15 to standalone Wind11 and back
+
+Actual native gate2824 passed without ecological ticks. Starting from integrated15, load preserved15 QA persistence fixture (investment.5, clock8000), then immutable real Pioneer-day10 Wind11, then restore the exact15 fixture. Complete serialized world/RNG bytes equal each original at every boundary. Wind11 preserves windlaw1 and resets root/thermal/protective configs, cohort root/protective fields and allocated root-credit/owner/soil scratch. Restored15 re-enables all intended laws and restores investment.5/clock8000 exactly. The positive investment/clock fixture is explicitly assigned persistence QA, not a natural-evolution claim.
+
+Canonical disabled LandBeta configuration has enabledfalse/law0/root mutationoff and physiology_law1 as inactive default. It is not an active root physiology. First QA erroneously asserted0 and failed; that failure is retained. Only the assertion changed, no runtime source or model. Public snapshot likewise reports root_physiology1 for11; UI must interpret world/law enablement correctly.
+
+The same gate repeats actual busy menu refusal, ready Play15, loaded13 byte identity, and Advanced Sandbox7 creation. Owner source remains frozen eefbb1a/2ffd946. Final fixture gate66692 EXIT0 repeated every check and emitted verbatim stella_combined_snapshot() to wind11-snapshot.json; full saved state/RNG remained byte-exact after the readout. No runtime source change or further ecological horizon.

@@ -1,0 +1,14 @@
+EGL surface=0x2970fa10 context=0x29710020
+info: Loading states.main_menu.MainMenuState...
+info: There are 40962 points in the ico-sphere.
+
+info: The mean area per point of the ico-sphere is 7669.5293 km²
+
+info: SIMD Vectors: 16 x f32
+info: Loaded
+Captured /tmp/stella-egl-001.ppm
+MENU_READY init=true serial=0 job=false
+MENU_AFTER tag=MainMenu
+thread 49 panic: reached unreachable code
+Unwind error at address `:0x10c8bee` (error.InvalidDebugInfo), trace may be incomplete
+

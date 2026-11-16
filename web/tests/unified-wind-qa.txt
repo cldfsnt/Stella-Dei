@@ -1,0 +1,14 @@
+    const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();web_initialized=true;loop.pump(4096);const state=&game.state.Playing;
+    const resuming=std.posix.getenv("QA_RESUME")!=null;const input=if(resuming)"OUTPUT/tick2.json" else "INPUT";const bytes=try std.fs.cwd().readFileAlloc(a,input,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);loop.pump(4096);try qaSame(a,state,bytes);
+    std.debug.assert((try saves.capture(a,state)).version==11 and state.planet.windDispersal.enabled);
+    if(comptime @hasField(@TypeOf(state.planet),"groundThermalLaw")){std.debug.assert(state.planet.groundThermalLaw==0 and !state.planet.landBeta.enabled and !state.planet.protectiveStrategy.enabled);std.debug.assert(@import("combined_view.zig").writerVersion(state)==11);}
+    var bad=parsed.value;bad.version=12;try qaReject(a,state,bad,bytes);bad=parsed.value;bad.wind_dispersal.?.law=99;try qaReject(a,state,bad,bytes);
+    try saves.write(state,a);const disk=try saves.read(a);try saves.apply(state,disk.value);try qaSame(a,state,bytes);
+    if(resuming){qaTick(state);qaTick(state);try qaWrite(a,state,"OUTPUT/resuming-final.json");}else{for(0..4)|i|{qaTick(state);const path=try std.fmt.allocPrint(a,"OUTPUT/tick{d}.json",.{i+1});try qaWrite(a,state,path);}}
+    try saves.apply(state,parsed.value);try qaSame(a,state,bytes);std.debug.print("WIND11_NATIVE_PASS resuming={} writer11_malformed_atomic_disk_roundtrip_original_restore\n",.{resuming});std.process.exit(0);
+}
+fn qaTick(s:*PlayState)void{s.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=s.solarConstant,.gameTime=s.gameTime,.planetRotationTime=s.planetRotationTime,.solarVector=s.simulationSolarVector()});s.gameTime+=1440;}
+fn qaBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}
+fn qaSame(a:std.mem.Allocator,s:*PlayState,b:[]const u8)!void{if(!std.mem.eql(u8,b,try qaBytes(a,s)))return error.StateMismatch;}
+fn qaWrite(a:std.mem.Allocator,s:*PlayState,p:[]const u8)!void{try std.fs.cwd().writeFile(.{.sub_path=p,.data=try qaBytes(a,s)});}
+fn qaReject(a:std.mem.Allocator,s:*PlayState,bad:@import("save_schema.zig").Save,before:[]const u8)!void{@import("save_game.zig").apply(s,bad) catch {try qaSame(a,s,before);return;};return error.UnexpectedLoadAcceptance;}

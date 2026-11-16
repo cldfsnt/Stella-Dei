@@ -1,0 +1,14 @@
+✔ legacy discovery uses read-only exact namespaces; missing DB aborts creation (10.59563ms)
+✔ exact max-u64 imported bytes preserve source and canonical with durable current checkpoint (7.633388ms)
+✔ 12, malformed and stale source refuse before native prepare; cancel prevents apply (4.081327ms)
+✔ import quota failure never applies; source unchanged and canonical untouched (1.943698ms)
+✔ failed Save blocks Load populate and Import while read-only discovery remains safe (1.689745ms)
+✔ actual Wind11 disabled-landBeta root1 snapshot saves; erroneous root0 refuses (1.22174ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.61606
