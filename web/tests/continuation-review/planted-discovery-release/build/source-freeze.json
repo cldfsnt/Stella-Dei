@@ -1,0 +1,11 @@
+{
+  "source_files_compared": 1760,
+  "native_changes": {
+    "src/main.zig": "0d4473366597d4a7a208d6a6c7bd343280fc210922a1e16ad3357afbd61c90ce",
+    "src/planted_view.zig": "c2585e739603a875da6587a087ca57f82b9f874bf16d1de35b620941af743e44",
+    "src/states/play.zig": "70f99b2f195476dba227d135e8659ccf3a122224bf22b330e6471b31d8111e87"
+  },
+  "archive_sha256": "f67586cc176a2c721c7eca0c00d745a8c0f438fca19cc144d118b449e352a8b7",
+  "assets_verified": 25,
+  "wasm": "c399ea4bea64d3a455e2e9d8a3e9fde1aad995a8a2ed1542e6f0622cbe8b54e4"
+}

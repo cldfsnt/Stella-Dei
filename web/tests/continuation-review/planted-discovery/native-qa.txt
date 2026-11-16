@@ -1,0 +1,23 @@
+    const saves=@import("save_game.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();web_initialized=true;const state=&game.state.Playing;
+    const bytes=try std.fs.cwd().readFileAlloc(a,"/workspace/scratch/f67c3ac60ca3/site-tmp/unified-land-starter/preseed.json",128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);for(0..16)|_|game.loop.pump(4096);
+    state.showEscapeMenu=false;state.showPlanetControl=false;state.showPointDetails=false;state.paused=true;const w=PerformanceDetails.world_serial;
+    var chosen:?u32=null;for(state.planet.microbeCells,0..)|_,i|{state.selectedPoint=i;const r=rootedFounderVariantForState(state,w,@intCast(i),false,true);if(r.status==.eligible){chosen=@intCast(i);break;}}
+    const cell=chosen orelse return error.NoEligibleFixture;const before_camera=state.targetCameraPos;const planted=rootedFounderVariantForState(state,w,cell,true,true);std.debug.assert(planted.status==.planted and std.meta.eql(before_camera,state.targetCameraPos));
+    var id_buf:[20]u8=undefined;const id=try std.fmt.bufPrint(&id_buf,"{d}",.{planted.lineage});const before=try saves.capture(a,state);const before_json=try std.json.stringifyAlloc(a,before,.{});
+    std.debug.assert(viewPlantedForState(state,w+%1,cell,id,390,700)==0);std.debug.assert(viewPlantedForState(state,w,cell,"0",390,700)==0);std.debug.assert(viewPlantedForState(state,w,cell,id,100,700)==-3);std.debug.assert(std.mem.eql(u8,before_json,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));
+    _=stella_web_shell_set(1,28,0);render(window);gl.finish();window.swapBuffers();qa_capture("/workspace/scratch/f67c3ac60ca3/site-tmp/planted-discovery-native/before.ppm");
+    std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==1);std.debug.assert(state.colonyPeek.focused==planted.lineage and state.selectedPoint==cell);
+    var after=try saves.capture(a,state);after.camera=before.camera;after.camera_target=before.camera_target;after.camera_distance=before.camera_distance;after.target_distance=before.target_distance;
+    std.debug.assert(std.mem.eql(u8,before_json,try std.json.stringifyAlloc(a,after,.{})));
+    render(window);gl.finish();window.swapBuffers();qa_capture("/workspace/scratch/f67c3ac60ca3/site-tmp/planted-discovery-native/after.ppm");
+    std.debug.assert(viewPlantedForState(state,w,cell,id,700,390)==1);std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==1);
+    state.showEscapeMenu=true;std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==-2);state.showEscapeMenu=false;
+    const geometry=state.planet.transformedPoints[cell];state.planet.transformedPoints[cell]=@TypeOf(geometry).new(0,0,state.planet.radius);std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==-3);state.planet.transformedPoints[cell]=geometry;
+    _=stella_web_shell_set(1,240,240);std.debug.assert(viewPlantedForState(state,w,cell,id,390,390)==-3);_=stella_web_shell_set(1,28,0);
+    const before_mixed=state.planet.microbeCells[cell];var founder_slot:usize=0;for(before_mixed.cohorts,0..)|co,i|{if(co.lineage==planted.lineage)founder_slot=i;}
+    const other=(founder_slot+1)%4;state.planet.microbeCells[cell].cohorts[other]=before_mixed.cohorts[founder_slot];state.planet.microbeCells[cell].cohorts[other].lineage=999;state.planet.microbeCells[cell].cohorts[other].biomass*=2;
+    std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==1 and state.colonyPeek.focused==planted.lineage);state.planet.microbeCells[cell]=before_mixed;
+    const living=state.planet.microbeCells[cell];for(&state.planet.microbeCells[cell].cohorts)|*co|if(co.lineage==planted.lineage){co.biomass=0;};std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==0);state.planet.microbeCells[cell]=living;
+    try saves.apply(state,parsed.value);for(0..16)|_|game.loop.pump(4096);std.debug.assert(viewPlantedForState(state,w,cell,id,390,700)==0);
+    std.debug.print("PLANTED_VIEW_ACTUAL_PAID_ID_SAVE_PURITY_REPEATED_DEAD_LOAD_PASS cell={} id={}\n",.{cell,planted.lineage});std.process.exit(0);
+}

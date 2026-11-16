@@ -1,0 +1,9 @@
+# Paid-founder discovery release validation
+
+Main host increment only: optional View planted colony after a successful paid Standard/Hardy rooted founder. No automatic Details modal, no automatic camera movement, no replacement organism and no implied survival. Ordinary and bulk seeding remain outside this scoped receipt feature.
+
+Exact live single-dock baseline233JS tests passed independently. An initial broad run on the historical root checkout failed incompatible archived-generation tests; that run is retained, not described as a release regression or pass. Correct final test target is isolated live-source reconstruction plus its candidate patch. Implementation final237tests and actual native identity/save-purity/guard tests passed; see ../planted-discovery/RESULTS.md. Coordinator visually checked both390×700 and700×390 actual engine images: green paid organism and Peek visible, but HTML dock is not drawn by this native adapter. BrowserGPU, phone multitouch and real saved-world touch flow remain pending, as REAL-DEVICE-GATE documents.
+
+Source packaging compares1760source/dependency files against the candidate and verifies25original assets by SHA256/preload slices. Only main.zig, states/play.zig and new planted_view.zig differ natively from accepted mobile source; no ecology, save format or saved biological laws change. Full exact source parts are served with the game; the fork preserves existing accepted base archive, the new exact reconstruction patch, native evidence and build manifests rather than duplicating another16MBsource archive. Generation/source recovery script is retained. No current biology experiment is included in the published artifact.
+
+No successful public deployment is implied by this checkpoint; publication is recorded separately only after verified host response.
