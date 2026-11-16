@@ -1,0 +1,7 @@
+{
+  "main_wasm": "83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957",
+  "wind_wasm": "6bd6e8f9cc8317eee2a99cfebc1df146b9b781da7691fba6b1adc39ed9b0d09f",
+  "prior_rooted_wasm": "8ddab248bc58d286c3207e3246fa2d562768f5b8788418fbcea453d312e67ab9",
+  "prior_rooted_controller": "64cf28caf36dddb86202339e5f17c203ea92c63920446df1aec3e04c0beb30a4",
+  "conditions_wasm": "5c0100e94718554dafc939c6a1f59e38c5ecb08a837fc3fed431bb3361fc62e3"
+}

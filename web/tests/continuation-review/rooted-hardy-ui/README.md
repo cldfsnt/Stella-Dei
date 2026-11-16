@@ -1,0 +1,9 @@
+# Explicit standard/hardy choice in existing rooted Plant flow
+
+NEW isolated site-tmp/rooted-hardy-ui tree, exact native8b1b3a8. Prior rooted-conditions artifact untouched. One labelled inline select beside existing Plant rooted founder button; Standard selected by default. Hardy explicitly chooses structure50%, with slower growth/less harsh shallow-water loss, same paid body cost, not frost-proof/evolved adaptation. No new mode, menu, batch, resource grant or biology edits.
+
+Choice only selects standard versus additive hardy preview export. Apply remains exactly(world,point,token); native token owns variant. Both controls lock during confirmation; any changed selection cancels, no automatic substitution/retry. Receipt structure must match chosen variant and confirmed receipt; unknown post-apply result never claims nothing happened. Existing actual-current-conditions/payment disclosure retained.132 copied tests pass, including variant changes/mismatch/cancel, current conditions, token/refusal and prior regression suite. Outer HTML source asserts default/accessibility/native signature. No browser rendering claim.
+
+Build held pending parent review of fixed natural outcomes. No deployment. Reproduce with rooted-hardy-ui-prepare.py on a new conditions-web clone, then copy test fixture and use exact frozen native source.
+
+Final wording clarification: “Better survival in shallow cold/dry conditions, slower growth and extra wet-habitat costs. Not frost-proof.” This is the existing structure tradeoff, not guaranteed better overall outcomes: structure0.5 lowers the documented shallow harsh-condition mortality coefficient, productivity multiplier becomes0.75, and wet mortality adds0.05/day. Initial body payment is unchanged. No new UI elements or mechanics;132 tests rerun pass. Final source hashes supersede initial source.json UI entries in wording-source.json.
