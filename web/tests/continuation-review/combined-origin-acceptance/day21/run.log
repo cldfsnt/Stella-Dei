@@ -1,0 +1,12 @@
+COMPLETE 42-ordinary.log
+COMPLETE 42-ordinary-resume.log
+EXACT_RESTART 42-ordinary {'endpoint_sha256': '76029494e4ae7b43457fdc8fbc326a2ce2b0800c4494d29442342e74e0406433', 'trace_sha256': '00fd627e4a5572c357a5f3ad2a429c260b1d1490f105e60fd7545daca5c7385c', 'trace_bytes': 3959087}
+COMPLETE 42-pioneer.log
+COMPLETE 42-pioneer-resume.log
+EXACT_RESTART 42-pioneer {'endpoint_sha256': '2a908a925c666ddd753c8f5f6781b9f24e2e884229fadde274317ddc5d8c38fe', 'trace_sha256': 'dc7eded13c1a2e5a35ce7c2616ab3fb2e5adec8ddacab1b8c805832d0712c3bd', 'trace_bytes': 21801549}
+COMPLETE 1337-ordinary.log
+COMPLETE 1337-ordinary-resume.log
+EXACT_RESTART 1337-ordinary {'endpoint_sha256': '3604bd46a942a0d019c5f62d7958377be6713f86286ec57d90b82a7f07c3f146', 'trace_sha256': '09965a11f0771fe8931bc8b3503b0385f216756a81f92afa307ac35863b7f0ca', 'trace_bytes': 1368129}
+COMPLETE 1337-pioneer.log
+COMPLETE 1337-pioneer-resume.log
+EXACT_RESTART 1337-pioneer {'endpoint_sha256': '027f26b93f15b9865126655d47cc5be516e6491f6835d1033ae9855dd3e04051', 'trace_sha256': '968f2064abd51a69024cafbfacd5e98f3ef64182f9b78c734b3632efc7805608', 'trace_bytes': 7055576}

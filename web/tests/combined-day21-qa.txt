@@ -1,0 +1,20 @@
+    const saves=@import("save_game.zig");const M=@import("simulation/microbes.zig");const A=@import("simulation/wind_audit.zig");const L=@import("simulation/land_journey_audit.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();const state=&game.state.Playing;web_initialized=true;loop.pump(4096);
+    const pioneer=std.posix.getenv("QA_PIONEER")!=null;const resumed=std.posix.getenv("QA_RESUME")!=null;const arm=try std.fmt.allocPrint(a,"{s}-{s}",.{std.posix.getenv("QA_SEED") orelse "42",if(pioneer)"pioneer"else "ordinary"});var timer=try std.time.Timer.start();
+    const path=if(resumed)try std.fmt.allocPrint(a,"OUTPUT/{s}-day14.json",.{arm})else try std.fmt.allocPrint(a,"INPUT/{s}-day7.json",.{arm});const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);std.debug.assert(std.mem.eql(u8,bytes,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));std.debug.assert(state.planet.windDispersal.enabled==pioneer and state.planet.landBeta.physiology_law==3);
+    if(!resumed){A.enabled=false;L.enabled=false;qaWindTick(state);qaWindTick(state);const off=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{});try saves.apply(state,parsed.value);A.enabled=true;L.enabled=true;qaWindTick(state);qaWindTick(state);std.debug.assert(std.mem.eql(u8,off,try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})));try saves.apply(state,parsed.value);std.debug.print("OBSERVER_PARITY_PASS {s}\n",.{arm});}
+    L.summary=.{};A.enabled=true;L.enabled=true;
+    const Entry=struct{cell:usize,cohort:M.Cohort,seen:usize};var known=std.AutoHashMap(u64,Entry).init(a);const first:usize=if(resumed)840 else 420;
+    for(state.planet.microbeCells,0..)|cell,i|for(cell.cohorts)|c|{if(c.biomass>0)try known.put(c.lineage,.{.cell=i,.cohort=c,.seen=first});};
+    qaWindEmit("START",.{.arm=arm,.tick=first,.living=known.count(),.births=state.planet.microbeStats.births,.time=state.gameTime});
+    for(first..1260)|tick|{
+      L.tick=tick+1;qaWindTick(state);var living:usize=0;var occupied:usize=0;var mass:f64=0;var roots:usize=0;var supported:usize=0;var max_gen:u32=0;var forms=[_]usize{0}**6;var born:usize=0;var lost:usize=0;
+      for(state.planet.microbeCells,0..)|cell,i|{std.debug.assert(M.validCell(cell,state.planet.microbeStats.next_lineage));if(M.biomass(cell)>0)occupied+=1;for(cell.cohorts)|c|{if(c.biomass<=0)continue;living+=1;mass+=c.biomass;max_gen=@max(max_gen,c.generation);forms[@intFromEnum(M.producerForm(c))]+=1;if(c.root_fraction>0){roots+=1;if(c.support_mass>0)supported+=1;}if(!known.contains(c.lineage)){born+=1;qaWindEmit("BIRTH",.{.tick=tick+1,.cell=i,.cohort=c});}try known.put(c.lineage,.{.cell=i,.cohort=c,.seen=tick+1});if((tick+1)%60==0)qaWindEmit("COHORT",.{.tick=tick+1,.cell=i,.cohort=c});}}
+      var dead=std.ArrayList(u64).init(allocator);defer dead.deinit();var iter=known.iterator();while(iter.next())|e|{if(e.value_ptr.seen!=tick+1){lost+=1;qaWindEmit("LOSS",.{.tick=tick+1,.cell=e.value_ptr.cell,.cohort=e.value_ptr.cohort});try dead.append(e.key_ptr.*);}}for(dead.items)|id|{_=known.remove(id);}
+      if((tick+1)%60==0){if(!std.math.isFinite(L.summary.min_depth))L.summary.min_depth=0;qaWindEmit("DAY",.{.arm=arm,.tick=tick+1,.living=living,.occupied=occupied,.mass=mass,.roots=roots,.supported=supported,.max_gen=max_gen,.forms=forms,.births=state.planet.microbeStats.births,.serial=state.planet.windDispersal.serial,.root_summary=L.summary});L.summary=.{};}
+      if(born>0 or lost>0)qaWindEmit("EVENT_COUNT",.{.tick=tick+1,.born=born,.lost=lost});
+      if(tick+1==840 or tick+1==1260){const out=try std.fmt.allocPrint(a,"OUTPUT/{s}{s}-day{}.json",.{if(resumed)"resume-"else "",arm,(tick+1)/60});try std.fs.cwd().writeFile(.{.sub_path=out,.data=try std.json.stringifyAlloc(a,try saves.capture(a,state),.{})});}
+      if(timer.read()>900*std.time.ns_per_s)return error.RuntimeBudget;
+    }
+    std.debug.print("DAY21_COMPLETE arm={s} resumed={} elapsed_ms={}\n",.{arm,resumed,timer.read()/1000000});std.process.exit(0);
+}
