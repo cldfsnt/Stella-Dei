@@ -1,0 +1,36 @@
+    const saves=@import("save_game.zig");const A=@import("simulation/shore_audit.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();web_initialized=true;loop.pump(4096);var state=&game.state.Playing;qaClear(state);
+    const stage=std.posix.getenv("QA_STAGE") orelse "main";const resumed=std.mem.eql(u8,stage,"resume");const parity=std.mem.eql(u8,stage,"parity");A.enabled=std.posix.getenv("QA_OFF")==null;
+    var points=std.ArrayList(usize).init(a);try points.append(334);for(state.planet.getNeighbours(334))|n|{var seen=false;for(points.items)|p|{if(p==n)seen=true;}if(!seen)try points.append(n);}std.mem.sort(usize,points.items,{},std.sort.asc(usize));
+    if(resumed or parity){const path=if(resumed)"OUTPUT/day14.json"else "OUTPUT/seeded.json";const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);loop.pump(4096);std.debug.assert(std.mem.eql(u8,bytes,try qaBytes(a,state)));}
+    else{
+      std.debug.assert(stella_combined_calm_new(PerformanceDetails.world_serial)==1);loop.pump(4096);state=&game.state.Playing;qaClear(state);std.debug.assert(state.planet.groundThermalLaw==1 and state.planet.landBeta.physiology_law==3);try qaWrite(a,state,"OUTPUT/fresh.json");for(0..60)|_|qaTick(state);
+      for(points.items)|p|{state.selectedPoint=@intCast(p);state.pointerOnPlanet=true;const old=state.planet.waterMass[p];const ok=state.testAction(@intFromEnum(@as(@TypeOf(state.selectedTool),.EmitWater)));qaEmit("WATER_PLUS",.{.point=p,.ok=ok,.signed_kg=(@as(f64,state.planet.waterMass[p])-old)*1e9});}
+      for(0..6)|_|qaTick(state);
+      for(points.items)|p|{state.selectedPoint=@intCast(p);const old=state.planet.waterMass[p];const change=state.setSelectedWaterTarget(@intCast(p),0.2);qaEmit("POND_TARGET",.{.point=p,.change_m=change,.signed_kg=(@as(f64,state.planet.waterMass[p])-old)*1e9});}
+      for(points.items)|p|{const before=state.planet.microbeCells[p];const gas=state.planet.averageCarbonDioxideMass;const id=state.planet.microbeStats.next_lineage;const reason=state.planet.seedEligibility(p);const ok=state.planet.seedMicrobes(p);qaEmit("FOUNDER",.{.point=p,.id=id,.eligible=reason,.planted=ok,.before=before,.after=state.planet.microbeCells[p],.carbon_dioxide_before=gas,.carbon_dioxide_after=state.planet.averageCarbonDioxideMass});if(ok){for(state.planet.microbeCells[p].cohorts)|c|if(c.lineage==id)std.debug.assert(c.root_fraction==0 and c.support_mass==0 and c.organization==0);}}
+      try qaWrite(a,state,"OUTPUT/seeded.json");qaView(state,window,"OUTPUT/day0.ppm");
+    }
+    if(parity){qaTick(state);qaTick(state);try qaWrite(a,state,if(A.enabled)"OUTPUT/parity-on.json"else "OUTPUT/parity-off.json");std.debug.print("PARITY_COMPLETE\n",.{});std.process.exit(0);}
+    var seen=std.AutoHashMap(u64,QaSeen).init(a);try qaCensus(a,state,&seen,if(resumed)840 else 0,points.items);
+    const start:usize=if(resumed)840 else 0;
+    for(start..1260)|tick|{
+      A.tick=tick+1;qaTick(state);try qaEvents(state,&seen,tick+1);
+      if((tick+1)%60==0)try qaCensus(a,state,&seen,tick+1,points.items);
+      if(tick+1==420){try qaWrite(a,state,"OUTPUT/day7.json");qaView(state,window,"OUTPUT/day7.ppm");for(points.items)|p|{var planted=false;const bytes=try std.fs.cwd().readFileAlloc(a,"OUTPUT/seeded.json",128*1024*1024);const parsed=try saves.schema.parse(a,bytes);for(parsed.value.origin.?.cells[p].runtime().cohorts)|c|if(c.biomass>0){planted=true;};if(planted){state.selectedPoint=@intCast(p);const old=state.planet.waterMass[p];const change=state.setSelectedWaterTarget(@intCast(p),0.01);qaEmit("DRAWDOWN",.{.point=p,.change_m=change,.signed_kg=(@as(f64,state.planet.waterMass[p])-old)*1e9});}}}
+      if(tick+1==840)try qaWrite(a,state,"OUTPUT/day14.json");
+    }
+    try qaWrite(a,state,if(resumed)"OUTPUT/resumed.json"else "OUTPUT/final.json");if(!resumed)qaView(state,window,"OUTPUT/day21.ppm");qaEmit("COMPLETE",.{.resumed=resumed,.root_credits=A.credits,.used_rows=A.used});std.process.exit(0);
+}
+const QaSeen=struct{last:usize,alive:bool=true};
+fn qaEvents(s:*PlayState,seen:*std.AutoHashMap(u64,QaSeen),tick:usize)!void{
+ for(s.planet.microbeCells,0..)|cell,p|for(cell.cohorts)|c|{if(c.biomass<=0)continue;const e=try seen.getOrPut(c.lineage);if(!e.found_existing){qaEmit("BIRTH_OR_INITIAL",.{.tick=tick,.point=p,.cohort=c});}e.value_ptr.*=.{.last=tick};};
+ var it=seen.iterator();while(it.next())|e|{if(e.value_ptr.alive and e.value_ptr.last!=tick){e.value_ptr.alive=false;qaEmit("DEATH",.{.tick=tick,.id=e.key_ptr.*});}}
+}
+fn qaCensus(a:std.mem.Allocator,s:*PlayState,seen:*std.AutoHashMap(u64,QaSeen),tick:usize,points:[]const usize)!void{_ =a;try qaEvents(s,seen,tick);var living:usize=0;var occupied:usize=0;var root:usize=0;var supported:usize=0;var mass:f64=0;var forms:[6]usize=.{0,0,0,0,0,0};for(s.planet.microbeCells,0..)|cell,p|{var any=false;for(cell.cohorts)|c|{if(c.biomass<=0)continue;any=true;living+=1;mass+=c.biomass;forms[@intFromEnum(@import("simulation/microbes.zig").producerForm(c))]+=1;if(c.root_fraction>0){root+=1;if(c.support_mass>0)supported+=1;qaEmit("ROOT_DAILY",.{.tick=tick,.point=p,.cohort=c,.depth_m=s.planet.waterMass[p]*s.planet.getKmPerWaterMass()*1000,.soil=s.planet.landSoil[p]});}}if(any)occupied+=1;}
+ qaEmit("DAILY",.{.tick=tick,.living=living,.occupied=occupied,.biomass=mass,.forms=forms,.root=root,.supported=supported,.stats=s.planet.microbeStats});for(points)|p|qaEmit("PATCH",.{.tick=tick,.point=p,.cohorts=s.planet.microbeCells[p].cohorts,.depth_m=s.planet.waterMass[p]*s.planet.getKmPerWaterMass()*1000,.soil=s.planet.landSoil[p],.temperature=s.planet.temperature[p]});}
+fn qaEmit(comptime tag:[]const u8,v:anytype)void{var b:[16384]u8=undefined;var stream=std.io.fixedBufferStream(&b);std.json.stringify(v,.{},stream.writer()) catch unreachable;std.debug.print("{s} {s}\n",.{tag,stream.getWritten()});}
+fn qaClear(s:*PlayState)void{s.paused=true;s.showEscapeMenu=false;s.showPointDetails=false;s.showPlanetControl=false;s.selectedTool=.None;}
+fn qaTick(s:*PlayState)void{s.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=s.solarConstant,.gameTime=s.gameTime,.planetRotationTime=s.planetRotationTime,.solarVector=s.simulationSolarVector()});s.gameTime+=1440;}
+fn qaBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}
+fn qaWrite(a:std.mem.Allocator,s:*PlayState,p:[]const u8)!void{try std.fs.cwd().writeFile(.{.sub_path=p,.data=try qaBytes(a,s)});}
+fn qaView(s:*PlayState,w:anytype,path:[*:0]const u8)void{const code=s.visitGrowthForm(PerformanceDetails.world_serial,0,390,700);qaEmit("VISIT",.{.code=code,.point=s.selectedPoint});s.cameraPos=s.targetCameraPos.norm().scale(s.targetCameraDistance);s.cameraDistance=s.targetCameraDistance;game.loop.pump(4096);render(w);gl.finish();w.swapBuffers();qa_capture(path);}

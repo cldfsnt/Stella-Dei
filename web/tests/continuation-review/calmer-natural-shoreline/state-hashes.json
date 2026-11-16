@@ -1,0 +1,34 @@
+{
+  "parity-on.json": {
+    "sha256": "cd94975870a546b158e157bfd1baff99cf44ba6918cf87b91899e7c6d581ce0d",
+    "bytes": 11840683
+  },
+  "seeded.json": {
+    "sha256": "1370b6d01f1b296246cedd531aaa5e3d62dc83c2736204064818d4042984a632",
+    "bytes": 11833592
+  },
+  "final.json": {
+    "sha256": "523471f2bc1f9bb8dd262867929f3ba89105cc2ad9755450944e0ce5c0e9db67",
+    "bytes": 12610758
+  },
+  "fresh.json": {
+    "sha256": "6c363d6ed3329fd0a53f404e669edc0e5d3f24fd40fa73d94f8b21707a461ed9",
+    "bytes": 9717685
+  },
+  "resumed.json": {
+    "sha256": "523471f2bc1f9bb8dd262867929f3ba89105cc2ad9755450944e0ce5c0e9db67",
+    "bytes": 12610758
+  },
+  "day7.json": {
+    "sha256": "08a1e393fd46a6372d7becfc1a0260a25d52a13578f81d554d9719d163a48a4c",
+    "bytes": 12523705
+  },
+  "day14.json": {
+    "sha256": "f232e2254d940ee2617d811c410ed916c55f67a07476505aa464a8b27dc972f9",
+    "bytes": 12573546
+  },
+  "parity-off.json": {
+    "sha256": "cd94975870a546b158e157bfd1baff99cf44ba6918cf87b91899e7c6d581ce0d",
+    "bytes": 11840683
+  }
+}

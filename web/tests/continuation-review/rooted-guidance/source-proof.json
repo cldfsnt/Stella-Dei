@@ -1,0 +1,31 @@
+{
+  "change": "HTML-only inline guidance; no new control, receipt, storage, or engine change",
+  "baseline_shell_sha256": "43c73a16de84fd26e3a0930f1ccb6ec9be932f749dea5327000418650cb1e216",
+  "candidate_shell_sha256": "9857de128897f201dc57563bec1321b928118e41e55c7fca42197bc995d02654",
+  "unchanged_files": {
+    "renderer-info.js": "43bc06cf649808f3a7d0d45cbfd4043fbd5af138702f17a62b5e26ab73b8ee81",
+    "colony-watch-details.js": "42afb7241a7357a028afaa1a0a98c1934fed97dcb17b84299e4792021a340ac0",
+    "combined-recovery-storage.js": "9c8dcb3dd9504d200ff88b1abdaa1fe4f9c14563c01d15b98d8be9c8a107487c",
+    "gameplay-harness.js": "305e4a7e173b122f8dd1ed0dea897d2127337e258c5e89440a380a2bdf215bce",
+    "offspring-search.js": "f9a50852368ea448125ad1ff86d3ab8f885854959a0bea0f834a1a12b2afa53e",
+    "colony-transport.js": "af5a9608ae785b14da8008bd3fe169b993c01d2e0aac15eef1b17cc7b9e9569f",
+    "touch-controls.js": "60f9a3f8e472c7587e212cc3db157eefdfdf67c4a0eac7c1b45c5c4a4fa5fa5f",
+    "world-ecology.js": "45bec1b492c1c51d06205939f001762a615140414f7dd6beb1301a0fadcd16df",
+    "combined-storage.js": "9c8dcb3dd9504d200ff88b1abdaa1fe4f9c14563c01d15b98d8be9c8a107487c",
+    "patch-watch.js": "9debeb5ca2d891e898ee3d72ff20578137d357d51faf281d341151199ab82a76",
+    "sandbox-defense.js": "af132c720400c3dc7a8c47bb278cc9a76b06154076cf31d5e1b1ad0c972b9ee3",
+    "auto-seed.js": "7ef9d974d641f408039e509dd6c2f66204b6756aa69414e40d13921fa36ab263",
+    "copy-report.js": "1dff57984483a3e1c06c63b833d1e2101c217921efb1cf5785b179e3edbf2d4c",
+    "habitat-plan.js": "d4f1f121904f17314131915baa0617d402d832ab4ab0b4a5a5cfa7a348238495",
+    "combined-traits.js": "f7daa59eada3ae28b807a5b59023ff2694966796d9fbb70800b0e91a296271de",
+    "combined-recovery.js": "a52e5cb612b47b65ddc18b1a5e2d8898bb8a469b6215cd111a6e0a13b87c7399",
+    "life-trend.js": "e40802e4987f4639a1e5669c2bc5698099dd4ae857ef2c1e5be7d26bb8a55a08",
+    "rooted-founder.js": "2c320c10f60f80829b726ab92f1247b593503559f2eb1d863932f0b7a1d7685d",
+    "wetlands-preview.js": "cd5d9e07b3d52b195beb96e54563c1ca3258390a0f773fe68d7f918367771971",
+    "advance-day.js": "c3db817f23355d82ea6ddf20367f00bf97d3ba52acd4e46928e87cb371d0e0d8",
+    "gameplay-measure.js": "315d00546e28235b71ad5d0c4f20d71a29324c75bd3acfbfe8aa1d5d10ae3fe9",
+    "root-water-storage.js": "9c8dcb3dd9504d200ff88b1abdaa1fe4f9c14563c01d15b98d8be9c8a107487c",
+    "stella-storage.js": "9c8dcb3dd9504d200ff88b1abdaa1fe4f9c14563c01d15b98d8be9c8a107487c",
+    "combined-world.js": "42611cb52a57b7b8cdee1ab4a22505d425515e1b3cd0e43c1b88feff3d2cb7cd"
+  }
+}
