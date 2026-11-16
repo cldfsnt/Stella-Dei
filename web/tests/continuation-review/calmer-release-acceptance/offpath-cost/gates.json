@@ -1,0 +1,20 @@
+{
+  "42": {
+    "A": {
+      "mode": "legacy",
+      "input": "42-legacy.json",
+      "endpoint_sha256": "2d87bf3203c2c7991acff8ab9bfa18df61fe7c11353b9e14c639c23f15c98d65",
+      "zero_exact": true,
+      "restart_exact": true,
+      "cross_build_exact": true
+    },
+    "B": {
+      "mode": "small",
+      "input": "42-small.json",
+      "endpoint_sha256": "2d87bf3203c2c7991acff8ab9bfa18df61fe7c11353b9e14c639c23f15c98d65",
+      "zero_exact": true,
+      "restart_exact": true,
+      "cross_build_exact": true
+    }
+  }
+}

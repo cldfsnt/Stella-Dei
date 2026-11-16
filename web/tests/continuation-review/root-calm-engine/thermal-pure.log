@@ -1,0 +1,4 @@
+1/3 surface_physics.test.water thermal capacity uses depth, not grid size, and dry ground unchanged...OK
+2/3 surface_physics.test.closed water exchange conserves water plus vapor and cannot overshoot or go negative...OK
+3/3 surface_physics.test.calmer thermal identity preserves old capacity and adds only declared ground reservoir...OK
+All 3 tests passed.

@@ -1,0 +1,14 @@
+{
+  "control/spin.json": "0c6e049498dedbfc130a69d56ab4e766c70487f7876a7f96febabdef3c0c6a9b",
+  "control/preseed.json": "3786616dc49410305f7683d3e73d8966b9773f6199e86595e4c40eee4b8e5fa6",
+  "control/seeded.json": "e6fa0efd205ef69463e2f2281421f38a3c6d22954f763180d76fe737291e686e",
+  "control/midpoint.json": "c73ac29f3c0cdb81608f1a1f2418249a80f06c87d207bd255cba7bad88439f9d",
+  "control/final.json": "6f16d1f4593bccc2617c9ed1e0f890e72736c28cf401883c3cc1274fc5ec4df6",
+  "control/resumed.json": "6f16d1f4593bccc2617c9ed1e0f890e72736c28cf401883c3cc1274fc5ec4df6",
+  "candidate/spin.json": "e0a13ac4f8ecedd20a8e7b11611bbc09ae0f34f587f7b5acb8abf7885d216f9c",
+  "candidate/preseed.json": "41454e46e30f447f1fc9c5f0945247416ece6644add554f4395d04fe3202c9ba",
+  "candidate/seeded.json": "649731571fcb2e45f3b119993e9fed0a32a7273d5275e0e5f9f8599e105f4111",
+  "candidate/midpoint.json": "617239d89a84136239363afe21aad8ae4fc4b67d0d049f7e9faaa21c22910ab7",
+  "candidate/final.json": "1ae7b4c2e94cf1fd47e2e69d7d1cde0764ede2aa27934896af2e230933ca8033",
+  "candidate/resumed.json": "1ae7b4c2e94cf1fd47e2e69d7d1cde0764ede2aa27934896af2e230933ca8033"
+}

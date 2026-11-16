@@ -1,0 +1,12 @@
+{
+  "source_freeze": "de14d24",
+  "ecology_ticks": 0,
+  "inputs_and_adapter_sha256": {
+    "site-tmp/thermal-fresh/candidate/spin.json": "e0a13ac4f8ecedd20a8e7b11611bbc09ae0f34f587f7b5acb8abf7885d216f9c",
+    "site-tmp/thermal-nurture/candidate/preseed.json": "41454e46e30f447f1fc9c5f0945247416ece6644add554f4395d04fe3202c9ba",
+    "site-tmp/root-water-native/src/main.zig": "2e087c66355f028220c81df54bfbabb95a7250b3ec3aab0490dbc8d1fc7b3fad",
+    "site-tmp/root-water-native/src/rooted_founder.zig": "aa899b02d71406e0112328767ba3ac7053c6ac8d4ed6c4b03a0ffcacefdfd0c3",
+    "site-tmp/root-water-native/src/rooted_water_support.zig": "d478cc63d736fa45a944281e2a4c08ba77682e32cfd56be27d928d92b4c6644e"
+  },
+  "notes": "Actual public preview output; immutable actual saved worlds; fullsave/RNG exact before/after and original restored. Adapter only adds logging and load selection; no model edits. root-calm/root-water-ui owner manifests unchanged."
+}

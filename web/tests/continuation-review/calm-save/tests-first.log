@@ -1,0 +1,13 @@
+install
++- run test
+   +- zig test ReleaseSafe native 1 errors
+/workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/src/save_schema.zig:163:99: error: comptime control flow inside runtime block
+/workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/src/save_schema.zig:163:92: note: runtime control flow here
+error: the following command failed with 1 compilation errors:
+/workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig test -OReleaseSafe -I deps -I deps/nanovg/src -I deps/web-vendor/glfw/include --dep build_options --dep gl --dep glfw --dep zalgebra --dep zigimg --dep nanovg -Mroot=/workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/src/save_schema.zig -Mbuild_options=/workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/cache/c/dae75f2f4fc24c799774c029add80b30/options.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mgl=deps/gl3v3.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mglfw=deps/web-vendor/mach-glfw/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzalgebra=deps/web-vendor/zalgebra/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzigimg=deps/web-vendor/zigimg/zigimg.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mnanovg=deps/nanovg/src/nanovg.zig -lc --cache-dir /workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/cache --global-cache-dir /home/agent/.cache/zig --name test --listen=- 
+Build Summary: 1/4 steps succeeded; 1 failed (disable with --summary none)
+install transitive failure
++- run test transitive failure
+   +- zig test ReleaseSafe native 1 errors
+error: the following build command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/cache/o/4fce7a5d4810602e0f4b4dc300c5c64d/build /workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig web/tests /workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/cache /home/agent/.cache/zig --seed 0x53239d98 -Z97accba1713f2279 -Dsource=/workspace/scratch/f67c3ac60ca3/site-tmp/calm-save-tests/src/save_schema.zig

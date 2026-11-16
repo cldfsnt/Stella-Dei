@@ -1,0 +1,39 @@
+    const saves=@import("save_game.zig");
+    var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();const state=&game.state.Playing;web_initialized=true;
+    const bytes=try std.fs.cwd().readFileAlloc(a,"INPUT",128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);loop.pump(4096);
+    state.paused=true;state.showEscapeMenu=false;state.showPointDetails=false;state.showPlanetControl=false;state.selectedTool=.None;state.selectedPoint=6;const world=PerformanceDetails.world_serial;
+    const original=try qaRootBytes(a,state);const original_owned=try saves.schema.parse(a,original);
+    var preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));try qaConditions(a,state,preview);try qaRootSame(a,state,original);
+    var token=qaToken(preview);preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));try qaRootStatus(try qaRootReply(a,stella_seed_rooted(world,6,token)),"stale");token=qaToken(preview);std.debug.assert(stella_rooted_founder_cancel(token)==1);try qaRootStatus(try qaRootReply(a,stella_seed_rooted(world,6,token)),"stale");try qaRootSame(a,state,original);
+    for(0..6)|field|{
+      preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));token=qaToken(preview);
+      if(field==0)state.gameTime+=1 else if(field==1)state.solarConstant+=1 else if(field==2)state.axialTilt+=1 else if(field==3)state.planet.landVapor[6]+=1 else if(field==4)state.planet.rainfall[6]+=1 else state.planet.windDispersal=.{.enabled=true,.law=1,.stream_seed=42};
+      const changed=try qaRootBytes(a,state);try qaRootStatus(try qaRootReply(a,stella_seed_rooted(world,6,token)),"stale");try qaRootSame(a,state,changed);
+      try saves.apply(state,original_owned.value);loop.pump(4096);state.selectedPoint=6;
+    }
+    state.solarConstant=0;const dark=try qaRootBytes(a,state);preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));try qaConditions(a,state,preview);std.debug.assert(qaNum(preview.object.get("conditions").?.object.get("biological_light").?)==0);try qaRootSame(a,state,dark);
+    state.solarConstant=std.math.nan(f32);preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));try qaRootStatus(preview,"eligible");std.debug.assert(preview.object.get("conditions").?==.null);
+    try saves.apply(state,original_owned.value);loop.pump(4096);state.selectedPoint=6;
+    state.showEscapeMenu=true;preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));try qaRootStatus(preview,"busy");std.debug.assert(preview.object.get("conditions").?==.null);state.showEscapeMenu=false;try qaRootSame(a,state,original);
+    state.planet.microbeCells[6].nutrient=0.0001;const partial_before=try qaRootBytes(a,state);preview=try qaRootReply(a,stella_rooted_founder_preview(world,6));try qaConditions(a,state,preview);try qaRootSame(a,state,partial_before);token=qaToken(preview);
+    const result=try qaRootReply(a,stella_seed_rooted(world,6,token));try qaRootStatus(result,"planted");try qaConditions(a,state,result);std.debug.assert(qaNum(result.object.get("carbon_kg_m2").?)<0.02);
+    std.debug.assert(std.mem.eql(u8,try std.json.stringifyAlloc(a,preview.object.get("conditions").?,.{}),try std.json.stringifyAlloc(a,result.object.get("conditions").?,.{})));
+    const paid=try qaRootBytes(a,state);try qaRootStatus(try qaRootReply(a,stella_seed_rooted(world,6,token)),"stale");try qaRootSame(a,state,paid);
+    const founder=state.planet.microbeCells[6].cohorts[0];std.debug.assert(state.colonyPeek.focused==founder.lineage and founder.root_fraction==0.5);std.debug.assert(founder.support_mass==founder.biomass*0.25);
+    try saves.apply(state,original_owned.value);loop.pump(4096);state.selectedPoint=6;try qaRootSame(a,state,original);std.debug.print("WATER_PUBLIC_PASS purity_exact_light_height_partial_time_solar_tilt_cancel_repeat_unavailable_original=true\n",.{});std.process.exit(0);
+}
+fn qaToken(v:std.json.Value)u32{return @intCast(v.object.get("token").?.integer);}
+fn qaNum(v:std.json.Value)f64{return switch(v){.float=>v.float,.integer=>@floatFromInt(v.integer),else=>unreachable};}
+fn qaConditions(a:std.mem.Allocator,s:*PlayState,v:std.json.Value)!void{
+ const w=v.object.get("water_support").?.object;std.debug.assert(qaNum(w.get("reference_seconds").?)==1440);std.debug.assert(qaNum(w.get("soil_kg_m2").?)==s.planet.landSoil[s.selectedPoint]);std.debug.assert(qaNum(w.get("root_tissue_kg_c_m2").?)==qaNum(v.object.get("root_kg_c_m2").?));
+ const c=v.object.get("conditions").?.object;const point=s.selectedPoint;const m=@import("simulation/microbes.zig");
+ const life=try qaRootReply(a,lifeSnapshotForState(s));std.debug.assert(qaNum(c.get("biological_light").?)==qaNum(life.object.get("simulation_light").?));
+ std.debug.assert(qaNum(c.get("temperature_k").?)==s.planet.temperature[point]);std.debug.assert(qaNum(c.get("optimum_k").?)==303);
+ const co=m.Cohort{.biomass=@floatCast(qaNum(v.object.get("carbon_kg_m2").?)),.support_mass=@floatCast(qaNum(v.object.get("support_kg_c_m2").?)),.root_fraction=0.5,.organization=0.25};
+ const h=@max(@as(f64,co.biomass)/100,@as(f64,m.producerHeightMeters(co)));std.debug.assert(qaNum(c.get("body_height_m").?)==h);std.debug.assert(c.get("submerged").?.bool==(qaNum(v.object.get("depth_m").?)>=h));
+}
+
+fn qaRootReply(a:std.mem.Allocator,p:[*:0]const u8)!std.json.Value{return (try std.json.parseFromSlice(std.json.Value,a,std.mem.span(p),.{})).value;}
+fn qaRootStatus(v:std.json.Value,want:[]const u8)!void{if(!std.mem.eql(u8,v.object.get("status").?.string,want)){std.debug.print("BAD_STATUS expected={s} got={s}\n",.{want,v.object.get("status").?.string});return error.BadStatus;}}
+fn qaRootBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}
+fn qaRootSame(a:std.mem.Allocator,s:*PlayState,b:[]const u8)!void{std.debug.assert(std.mem.eql(u8,b,try qaRootBytes(a,s)));}

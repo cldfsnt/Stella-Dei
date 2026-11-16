@@ -1,0 +1,22 @@
+{
+  "legacy": {
+    "profile.js": {
+      "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+      "bytes": 94248
+    },
+    "profile.wasm": {
+      "sha256": "6043dfb2d0f16ef557e6ffb0c2369041d02896bd6bfab11f5a233390292d9c2c",
+      "bytes": 363463
+    }
+  },
+  "small": {
+    "profile.js": {
+      "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+      "bytes": 94248
+    },
+    "profile.wasm": {
+      "sha256": "54d39dc1b854bec5ae306f65f8381b5373cf86ce9ac54a2ccbac852f046045eb",
+      "bytes": 364890
+    }
+  }
+}

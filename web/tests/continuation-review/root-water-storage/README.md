@@ -1,0 +1,9 @@
+# Prospective wire14 storage compatibility
+
+Only new root-water-storage.js and root-water-ui storage copies changed. Earlier combined/recovery modules and artifacts remain frozen. Writer14 requires the actual authoritative snapshot identity status=combined, enabled=true, root_physiology3, wind_law1, ground_thermal_law1. Writer13 permits historical omitted thermal field or0, rejects1. Guarded native writer remains required; no inferred conversion.
+
+Before writer14 replaces actual prior versions1..10 or13, SHA256 exact bytes are durably preserved in immutable world.recovery.sha256-H.json with readback, sync and world/identity/prior-byte rechecks. The existing pre-v13 canonical/hash policy remains unchanged for writer13; prior pre-v7/pre-v13 files are never replaced. Repeat14 writes need no transition backup. Unknown versions and11/12 refuse. Recovery uses existing native kind3, no new filename/API; discovery/export accepts14 while native schema remains responsible for actual payload validation. Failed-save dirty-slot, one-use restore and whole-mount sync guards are retained.
+
+21 mocked-FS tests pass:7 prospective writer/load tests and14 unchanged/extended recovery tests. This is frontend policy proof, not native schema14 payload or real browser/IndexedDB proof. Native freeze/acceptance is owned separately. No native/source physics/UI shell/build/deployment edits.
+
+Reverse14→13 now preserves the exact canonical14 bytes in the same immutable generic recovery hash namespace before a historical13 writer runs. The frontend verifies14's JSON/law envelope (thermal1, wind enabled/law1, beta physiology3); complete payload validity remains native-owned. No pre13 file is replaced. All24 tests pass including newHistorical13→Save, actual storage restore13 while canonical14 remains→Save, malformed14, hash collision and sync failure. The restore test uses native ABI mocks and real storage orchestration; no actual native payload claim.

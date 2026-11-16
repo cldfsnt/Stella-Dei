@@ -1,0 +1,6 @@
+for([_] []const u8{"/workspace/scratch/f67c3ac60ca3/site-tmp/thermal-fresh/candidate/spin.json","/workspace/scratch/f67c3ac60ca3/site-tmp/thermal-nurture/candidate/preseed.json"},0..)|input,i|{
+ const fixture_bytes=try std.fs.cwd().readFileAlloc(a,input,128*1024*1024);const fixture_save=try saves.schema.parse(a,fixture_bytes);try saves.apply(state,fixture_save.value);loop.pump(4096);state.selectedPoint=334;state.paused=true;state.showEscapeMenu=false;state.showPointDetails=false;state.showPlanetControl=false;
+ const before_fixture=try qaRootBytes(a,state);const raw=std.mem.span(stella_rooted_founder_preview(PerformanceDetails.world_serial,334));const owned=try a.dupe(u8,raw);const parsed_fixture=try qaRootReply(a,stella_rooted_founder_preview(PerformanceDetails.world_serial,334));try qaRootStatus(parsed_fixture,"eligible");try qaRootSame(a,state,before_fixture);
+ const output=try std.fmt.allocPrint(a,"/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/continuation-review/rooted-water-support/actual-receipt-{d}.json",.{i});try std.fs.cwd().writeFile(.{.sub_path=output,.data=owned});std.debug.print("ACTUAL_RECEIPT {d} public_preview_fullsave_rng_pure=true\n",.{i});
+}
+try saves.apply(state,original_owned.value);loop.pump(4096);state.selectedPoint=6;try qaRootSame(a,state,original);

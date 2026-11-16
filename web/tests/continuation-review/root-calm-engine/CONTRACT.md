@@ -1,0 +1,9 @@
+# Fresh-only calmer combined candidate
+
+Additive stella_combined_calm_new(expected_world) uses the existing guarded new-world transaction, returns1/-1/-2/-3 identically, never converts loaded worlds. Existing stella_wetlands_combined_new still creates historical combined13. Game.startCalmNext is consumed once; topology replacements ignore it. New GenerationOptions.ground_thermal_law permits1 only on explicit fresh combined root3+wind1. Planet.groundThermalLaw0 is historical0.1m;1 fixed illustrative0.5m. ResetLandBeta clears it; old-save apply resets0. No arbitrary floating model parameter.
+
+Only capacity calculation changes under1. The old function remains exact and called for0; new function uses the same water mixed-layer expression, changing ground thickness0.1→0.5. All existing thermal loops recompute their capacity cache before use, with scalar installed before factory returns/first tick. No additional array/full scan. Higher effective heat reservoir is a game-model assumption, not measured soil calibration or recurring heat input.
+
+Wire14 nullable ground_thermal:{law:1} requires valid combined context. Historical1–10/13 omit field;11/12 remain rejected. Combined snapshot adds ground_thermal_law and accepts14; recovery remains fixed-path/schema-driven. UI storage must preserve previous canonical<=13 in immutable generic recovery backup before14 write, using existing durable guards. No automatic conversion/save.
+
+Explicit exclusion audit: microbes.zig/shared_soil.zig/capillary_bucket.zig are byte-identical to approved root-water-preview base. Cohort88, cutoff.0025, rootlaw3 and windlaw1 unchanged. No held dormancy/development/cutoff code included. Native actual factory/save/recovery/restart acceptance remains pending; pure thermal3tests and schema historical gates pass.

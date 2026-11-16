@@ -1,0 +1,1 @@
+Final additional-history patch first searched wrong main marker and raised ValueError before changing copied main; shell subsequently repeated previous passing acceptance. No new assertions were claimed for that pass. Corrected marker and set -e before final compile/run. Owner source never changed.

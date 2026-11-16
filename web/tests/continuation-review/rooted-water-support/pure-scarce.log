@@ -1,0 +1,65 @@
+install
++- run test 41/42 passed, 1 failed
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=368
+GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+PHASE_DT days=1 dt=1 vapor=126.42411176571144 mass_error=-0.0000000000017053025658242404
+PHASE_DT days=1 dt=60 vapor=126.42411176571149 mass_error=-0.00000000000022737367544323206
+PHASE_DT days=1 dt=360 vapor=126.4241117657115 mass_error=0
+PHASE_DT days=1 dt=1440 vapor=126.42411176571156 mass_error=0.0000000000007958078640513122
+PHASE_DT days=15 dt=1 vapor=199.99993881953566 mass_error=-0.000000000003637978807091713
+PHASE_DT days=15 dt=60 vapor=199.99993881953608 mass_error=0.0000000000018189894035458565
+PHASE_DT days=15 dt=360 vapor=199.9999388195359 mass_error=-0.000000000004320099833421409
+PHASE_DT days=15 dt=1440 vapor=199.99993881953586 mass_error=0.0000000000022737367544323206
+COUPLED_DT days=1 dt=1 liquid={ 8.185948612328385e2, 1.0531915971471687e3 } vapor={ 2.074450064182055e1, 1.0746904097816854e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=1 dt=60 liquid={ 8.18594931404473e2, 1.053191301715352e3 } vapor={ 2.068335634457746e1, 1.0753041053559816e2 } liquid_error_vs1s={ 7.017163443379104e-5, -2.954318167667225e-4 }
+COUPLED_DT days=1 dt=360 liquid={ 8.185973880024231e2, 1.0531809599670742e3 } vapor={ 2.0374104019504237e1, 1.0784754801099926e2 } liquid_error_vs1s={ 2.5267695846196148e-3, -1.0637180094590803e-2 }
+COUPLED_DT days=1 dt=1440 liquid={ 8.186352672056381e2, 1.0530217066217297e3 } vapor={ 1.928383950881584e1, 1.0905918666381655e2 } liquid_error_vs1s={ 4.040597279959002e-2, -1.6989052543908656e-1 }
+COUPLED_DT days=15 dt=1 liquid={ 0e0, 1.9000000000002094e3 } vapor={ 8.323560252138874e-35, 1.0000000000002558e2 } liquid_error_vs1s={ 0e0, 0e0 }
+COUPLED_DT days=15 dt=60 liquid={ 0e0, 1.9000000000001578e3 } vapor={ 8.299175051180785e-35, 1.0000000000000043e2 } liquid_error_vs1s={ 0e0, -5.161382432561368e-11 }
+COUPLED_DT days=15 dt=360 liquid={ 0e0, 1.8999999999999616e3 } vapor={ 8.180098575041795e-35, 1.0000000000000007e2 } liquid_error_vs1s={ 0e0, -2.4783730623312294e-10 }
+COUPLED_DT days=15 dt=1440 liquid={ 0e0, 1.8999999999999857e3 } vapor={ 7.819479944760153e-35, 1.0000000000000001e2 } liquid_error_vs1s={ 0e0, -2.2373569663614035e-10 }
+FLOAT_GATHER dt=1 relative_mass_error=0.00007720947265625
+FLOAT_GATHER dt=60 relative_mass_error=0.000001286097935267857
+FLOAT_GATHER dt=360 relative_mass_error=0.00000023978097098214287
+FLOAT_GATHER dt=1440 relative_mass_error=0
+WIND_MUTATION keys8192 positive4088 negative4104 config_bytes24
+error: 'rooted_water_support.test.actual water reference is pure and distinguishes tiny dry soil from usable supply' failed: TINY rooted_water_support.Estimate{ .reference_seconds = 1440, .status = rooted_water_support.Estimate.Estimate__enum_1038.no_root_water, .soil_kg_m2 = 5.7856749216317645e-40, .current_immersion = 0e0, .root_tissue_kg_c_m2 = 2.4999999441206455e-3, .exposed_demand_kg_m2 = 2.499999944120646e-5, .modeled_credit_kg_m2 = 0e0, .modeled_funded_fraction = 0e0, .reference_end_depth_m = 0e0 }
+GOOD rooted_water_support.Estimate{ .reference_seconds = 1440, .status = rooted_water_support.Estimate.Estimate__enum_1038.available, .soil_kg_m2 = 5e-1, .current_immersion = 0e0, .root_tissue_kg_c_m2 = 2.4999999441206455e-3, .exposed_demand_kg_m2 = 2.499999944120646e-5, .modeled_credit_kg_m2 = 2.4999999441144268e-5, .modeled_funded_fraction = 9.9999994e-1, .reference_end_depth_m = 5.421010925777983e-24 }
+COMPETE rooted_water_support.Estimate{ .reference_seconds = 1440, .status = rooted_water_support.Estimate.Estimate__enum_1038.available, .soil_kg_m2 = 1e-6, .current_immersion = 0e0, .root_tissue_kg_c_m2 = 2.4999999441206455e-3, .exposed_demand_kg_m2 = 2.499999944120646e-5, .modeled_credit_kg_m2 = 4.1666665675206305e-10, .modeled_funded_fraction = 1.6666665e-5, .reference_end_depth_m = 9.926167701733361e-28 }
+error: while executing test 'simulation.wind_genetics.test.fixed inherited mutation symmetry bounds and memory', the following test command failed:
+/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache/o/b419a80349cb8e0a5ddad4902ec8ca38/test --listen=- 
+Build Summary: 2/4 steps succeeded; 1 failed; 41/42 tests passed; 1 failed (disable with --summary none)
+install transitive failure
++- run test 41/42 passed, 1 failed
+error: the following build command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache/o/4fce7a5d4810602e0f4b4dc300c5c64d/build /workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig web/tests /workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache /home/agent/.cache/zig --seed 0x271d675 -Z7c1694bc43317f8a -Dsource=/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/src/rooted_water_support.zig

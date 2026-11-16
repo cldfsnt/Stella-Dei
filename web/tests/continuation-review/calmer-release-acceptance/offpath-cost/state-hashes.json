@@ -1,0 +1,46 @@
+{
+  "42-legacy-resume.json": {
+    "sha256": "ce86a688ad2f0963163efe65c09035937ff448c9b874b836037dad91c9aeb0c8",
+    "bytes": 12859329
+  },
+  "42-small-resume.json": {
+    "sha256": "ce86a688ad2f0963163efe65c09035937ff448c9b874b836037dad91c9aeb0c8",
+    "bytes": 12859329
+  },
+  "42-small.json": {
+    "sha256": "c25d2b2ce9953137eae1a95542cd73c1c0b3fda6718b482b261a74700e206670",
+    "bytes": 12826224
+  },
+  "42-legacy-82.json": {
+    "sha256": "ce86a688ad2f0963163efe65c09035937ff448c9b874b836037dad91c9aeb0c8",
+    "bytes": 12859329
+  },
+  "42-small-82.json": {
+    "sha256": "ce86a688ad2f0963163efe65c09035937ff448c9b874b836037dad91c9aeb0c8",
+    "bytes": 12859329
+  },
+  "42-legacy-zero.json": {
+    "sha256": "c25d2b2ce9953137eae1a95542cd73c1c0b3fda6718b482b261a74700e206670",
+    "bytes": 12826224
+  },
+  "42-small-zero.json": {
+    "sha256": "c25d2b2ce9953137eae1a95542cd73c1c0b3fda6718b482b261a74700e206670",
+    "bytes": 12826224
+  },
+  "42-legacy-72.json": {
+    "sha256": "2d87bf3203c2c7991acff8ab9bfa18df61fe7c11353b9e14c639c23f15c98d65",
+    "bytes": 12852942
+  },
+  "42-small-72.json": {
+    "sha256": "2d87bf3203c2c7991acff8ab9bfa18df61fe7c11353b9e14c639c23f15c98d65",
+    "bytes": 12852942
+  },
+  "42-legacy.json": {
+    "sha256": "c25d2b2ce9953137eae1a95542cd73c1c0b3fda6718b482b261a74700e206670",
+    "bytes": 12826224
+  },
+  "graph.json": {
+    "sha256": "cf7e23fb58d0479e0cbf6d90c47594ea4139d316b7b43c815ad63f67eec83c7d",
+    "bytes": 3987201
+  }
+}

@@ -1,0 +1,13 @@
+install
++- run test
+   +- zig test ReleaseSafe native 1 errors
+/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/src/rooted_water_support.zig:16:141: error: struct 'rooted_water_support.Estimate' has no member named 'status'
+/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/src/rooted_water_support.zig:3:20: note: struct declared here
+error: the following command failed with 1 compilation errors:
+/workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig test -OReleaseSafe -I deps -I deps/nanovg/src -I deps/web-vendor/glfw/include --dep build_options --dep gl --dep glfw --dep zalgebra --dep zigimg --dep nanovg -Mroot=/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/src/rooted_water_support.zig -Mbuild_options=/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache/c/dae75f2f4fc24c799774c029add80b30/options.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mgl=deps/gl3v3.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mglfw=deps/web-vendor/mach-glfw/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzalgebra=deps/web-vendor/zalgebra/src/main.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mzigimg=deps/web-vendor/zigimg/zigimg.zig -OReleaseSafe -I deps/web-vendor/glfw/include -I deps/nanovg/src -Mnanovg=deps/nanovg/src/nanovg.zig -lc --cache-dir /workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache --global-cache-dir /home/agent/.cache/zig --name test --listen=- 
+Build Summary: 1/4 steps succeeded; 1 failed (disable with --summary none)
+install transitive failure
++- run test transitive failure
+   +- zig test ReleaseSafe native 1 errors
+error: the following build command failed with exit code 1:
+/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache/o/4fce7a5d4810602e0f4b4dc300c5c64d/build /workspace/scratch/f67c3ac60ca3/stella-review-tools/zig-linux-x86_64-0.13.0/zig web/tests /workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/cache /home/agent/.cache/zig --seed 0xc08e8490 -Ze2873829f16c5678 -Dsource=/workspace/scratch/f67c3ac60ca3/site-tmp/root-water-preview/src/rooted_water_support.zig
