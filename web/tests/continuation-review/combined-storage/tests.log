@@ -1,27 +1,30 @@
-✔ protects latest v10 bytes only before actual13 write; old pre-v7 untouched (13.860277ms)
-✔ all historical writers7..10 save guarded without prematurely creating pre13 backup (2.299709ms)
-✔ real latest historical save, not an earlier one, is protected on transition (1.324085ms)
-✔ existing13 repeated/autosave same safe path does not produce backups (1.151083ms)
-✔ fresh13 absent disk save requires guarded native write and no backup (1.063632ms)
-✔ second distinct old save uses immutable hash path, first backup unchanged; identical dedups (4.782554ms)
-✔ collision/corrupt hash path refuses without native write or overwriting backups (1.0489ms)
-✔ opaque/unknown and standalone11/12 fail closed before native write (1.349242ms)
-✔ invalid/missing writer or guarded export refuses with no legacy fallback (0.800315ms)
-✔ write/readback/rename corruption and quota failures never authorize overwrite/reset (4.985709ms)
-✔ existing backup read failure aborts; data corruption during sync aborts (0.513033ms)
-✔ world/writer/prior-byte changes during await cannot write a different world (0.604641ms)
-✔ native -6 wrong writer has no sync-after-failure or reset (0.407313ms)
-✔ loaded13 goes through native reader and subsequent normal save policy (1.007648ms)
-✔ pre-v7 remains intact and is created for real old save (0.464991ms)
-✔ no path access leaks into main/Wind namespace (0.495827ms)
-✔ missing/corrupt hash implementation and stale hashing fail closed (0.895038ms)
-✔ real Combined fresh flow never resets after FS corruption, quota or guarded-native failure (1.490985ms)
-✔ real Combined cancellation never saves, creates backup or resets (0.257498ms)
-ℹ tests 19
+✔ protects latest v10 bytes only before actual13 write; old pre-v7 untouched (8.2201ms)
+✔ all historical writers7..10 save guarded without prematurely creating pre13 backup (1.319267ms)
+✔ real latest historical save, not an earlier one, is protected on transition (1.143513ms)
+✔ existing13 repeated/autosave same safe path does not produce backups (0.695107ms)
+✔ fresh13 absent disk save requires guarded native write and no backup (0.739283ms)
+✔ second distinct old save uses immutable hash path, first backup unchanged; identical dedups (3.169353ms)
+✔ collision/corrupt hash path refuses without native write or overwriting backups (0.779745ms)
+✔ opaque/unknown and standalone11/12 fail closed before native write (1.310173ms)
+✔ invalid/missing writer or guarded export refuses with no legacy fallback (0.356446ms)
+✔ write/readback/rename corruption and quota failures never authorize overwrite/reset (3.9899ms)
+✔ existing backup read failure aborts; data corruption during sync aborts (0.422356ms)
+✔ world/writer/prior-byte changes during await cannot write a different world (0.656559ms)
+✔ native -6 wrong writer has no sync-after-failure or reset (0.301795ms)
+✔ loaded13 goes through native reader and subsequent normal save policy (0.775858ms)
+✔ pre-v7 remains intact and is created for real old save (0.706995ms)
+✔ no path access leaks into main/Wind namespace (0.522507ms)
+✔ missing/corrupt hash implementation and stale hashing fail closed (0.660906ms)
+✔ real Combined fresh flow never resets after FS corruption, quota or guarded-native failure (1.516745ms)
+✔ real Combined cancellation never saves, creates backup or resets (0.162434ms)
+✔ standalone11 and research12 load refuse before native with actionable identity and unchanged world (1.093928ms)
+✔ pre13 refusal names standalone11 and research12 and does not write or reset (0.505982ms)
+✔ actual combined storage loads readable version6 through native then preserves it before writer7 save (0.887597ms)
+ℹ tests 22
 ℹ suites 0
-ℹ pass 19
+ℹ pass 22
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 179.959958
+ℹ duration_ms 130.668549

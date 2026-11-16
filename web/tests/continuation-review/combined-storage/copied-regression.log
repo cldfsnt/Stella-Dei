@@ -1,0 +1,17 @@
+PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately
+✔ ../site-tmp/root-wind-ui/web/tests/save-size-safety.test.cjs (125.801556ms)
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ ../site-tmp/root-wind-ui/web/tests/storage-upgrade.test.cjs (81.46312ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ ../site-tmp/root-wind-ui/web/tests/storage.test.cjs (80.40401ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 139.993884

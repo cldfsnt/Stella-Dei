@@ -1,0 +1,22 @@
+{
+  "42": {
+    "file": "/workspace/scratch/f67c3ac60ca3/site-tmp/combined-strategy/42-pioneer-day7.json",
+    "sha256": "c25d2b2ce9953137eae1a95542cd73c1c0b3fda6718b482b261a74700e206670",
+    "bytes": 12826224,
+    "living": 268,
+    "occupied": 243,
+    "root_positive": 0,
+    "aerial_positive": 268,
+    "opportunity_serial": 249
+  },
+  "1337": {
+    "file": "/workspace/scratch/f67c3ac60ca3/site-tmp/combined-strategy/1337-pioneer-day7.json",
+    "sha256": "ca9c2d4cb9a4c5f02bb3d8cc6a01dfc172fee38f6a40d26d949a8383754e9b78",
+    "bytes": 12209329,
+    "living": 123,
+    "occupied": 114,
+    "root_positive": 0,
+    "aerial_positive": 123,
+    "opportunity_serial": 75
+  }
+}

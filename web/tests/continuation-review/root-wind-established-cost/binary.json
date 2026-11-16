@@ -1,0 +1,10 @@
+{
+  "profile.js": {
+    "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+    "bytes": 94248
+  },
+  "profile.wasm": {
+    "sha256": "40b6de7bcfefee8f4ca903ea1065fe3468649e677b297521deb651539247d239",
+    "bytes": 363467
+  }
+}

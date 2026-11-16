@@ -1,0 +1,82 @@
+{
+  "42": {
+    "A": {
+      "living": 289,
+      "occupied": 247,
+      "root_positive": 0,
+      "aerial_positive": 0,
+      "wind_serial": 0,
+      "stats": {
+        "next_lineage": 474,
+        "births": 268,
+        "fixed_carbon": 72072414946.01611,
+        "recycled_carbon": 16362583638.731306,
+        "nutrient_added": 0.0,
+        "failed_patches": 184,
+        "grazed_carbon": 289410955.13264406,
+        "grazing_respired_carbon": 72352738.78316101,
+        "relocations": 1,
+        "movement_respired_carbon": 34906.80598934414
+      }
+    },
+    "B": {
+      "living": 289,
+      "occupied": 252,
+      "root_positive": 0,
+      "aerial_positive": 289,
+      "wind_serial": 306,
+      "stats": {
+        "next_lineage": 467,
+        "births": 261,
+        "fixed_carbon": 72115603374.60605,
+        "recycled_carbon": 16357061365.09268,
+        "nutrient_added": 0.0,
+        "failed_patches": 177,
+        "grazed_carbon": 260384508.39128917,
+        "grazing_respired_carbon": 65096127.09782229,
+        "relocations": 1,
+        "movement_respired_carbon": 34906.80598934414
+      }
+    }
+  },
+  "1337": {
+    "A": {
+      "living": 128,
+      "occupied": 115,
+      "root_positive": 1,
+      "aerial_positive": 0,
+      "wind_serial": 0,
+      "stats": {
+        "next_lineage": 180,
+        "births": 89,
+        "fixed_carbon": 28118947990.458374,
+        "recycled_carbon": 6601534146.340684,
+        "nutrient_added": 0.0,
+        "failed_patches": 51,
+        "grazed_carbon": 261345049.86969265,
+        "grazing_respired_carbon": 65336262.46742316,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    "B": {
+      "living": 124,
+      "occupied": 114,
+      "root_positive": 0,
+      "aerial_positive": 124,
+      "wind_serial": 91,
+      "stats": {
+        "next_lineage": 178,
+        "births": 87,
+        "fixed_carbon": 28084849070.068916,
+        "recycled_carbon": 6605323880.995115,
+        "nutrient_added": 0.0,
+        "failed_patches": 53,
+        "grazed_carbon": 263673332.79786962,
+        "grazing_respired_carbon": 65918333.199467406,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    }
+  }
+}

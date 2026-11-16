@@ -1,0 +1,10 @@
+LAYOUT plant=12 planet=3032 cells=40962
+BETA_LAYOUT enabled=true soil_bytes=327696 vapor_bytes=327696 scratch_bytes=3276960 cohort_bytes=88
+ENGINE_MEMORY cell_size=368 cohort_size=88 cell_array_bytes=15074016 amount_bytes=1310784 owner_bytes=1310784
+COST_STAGES temperature_liquid_landphase_misc_microbes_birthsubset={ 1.3499628900000073e2, 1.9801969299999996e2, 1.2438493380000004e3, 4.178599999920607e-2, 5.4431914999999435e1, 7.549520000005714e-1 }
+CELL_LAYOUT cohort=88 cell=368 cell_array=15074016
+FIRST_TICK ms=26.634339999999952 stages={ 0e0, 0e0, 0e0, 0e0 } sub={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+ATMOSPHERE_SUBSTAGES ms={ 0e0, 0e0, 0e0, 0e0, 0e0 }
+WIND_FINAL enabled=false serial=0
+WASM_PLANET ticks=72 cells=40962 width=4 parallel=1 total_ms=1631.693674 temperature_ms=0 liquid_wind_ms=0 atmosphere_ms=0 ecology_ms=0
+WASM_HEAP_CAPACITY bytes=134217728 includes_harness_io=1

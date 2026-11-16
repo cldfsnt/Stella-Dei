@@ -20,6 +20,11 @@
         return match?Number(match[1]):null;
       }finally{module.FS.close(stream);}
     }
+    function unsupportedPreview(version){
+      if(version===11)return 'Version 11 is a standalone Wind preview save. Open it in the original Wind preview. The current world is unchanged; the saved file was not replaced.';
+      if(version===12)return 'Version 12 is a research preview save. Use its original research preview, not this Wetlands preview. The current world is unchanged; the saved file was not replaced.';
+      return null;
+    }
     async function preserveLegacySave(){
       if(!preserveLegacy)return;
       try{
@@ -63,6 +68,7 @@
       let path='/wetlands-saves/world.pre-v13.json';
       if(!module.FS.analyzePath(worldPath).exists){combinedBackup={status:'not-needed',durable:false};return;}
       const version=savedVersion();
+      if(unsupportedPreview(version))throw Error(unsupportedPreview(version));
       if(version===13){combinedBackup={status:'not-needed',durable:false};return;}
       if(!Number.isSafeInteger(version)||version<1||version>10)throw Error('Previous save version is unknown or incompatible; refusing to replace it.');
       const prior=before.bytes;
@@ -99,7 +105,7 @@
       try{
         const identity=writerIdentity();
         const beforeCombined={exists:module.FS.analyzePath(worldPath).exists,bytes:module.FS.analyzePath(worldPath).exists?module.FS.readFile(worldPath,{encoding:'binary'}):null};
-        await preserveBeforeCombined(identity,beforeCombined);
+        if(identity.writer_version===13)await preserveBeforeCombined(identity,beforeCombined);
         if(preserveLegacy)await preserveLegacySave();
         checkWriter(identity);
         if(beforeCombined&&(module.FS.analyzePath(worldPath).exists!==beforeCombined.exists||(beforeCombined.exists&&!equalBytes(beforeCombined.bytes,module.FS.readFile(worldPath,{encoding:'binary'})))))throw Error('Saved bytes changed during preparation; refusing to serialize.');
@@ -114,7 +120,7 @@
     async function load(){
       if(busy)return false;if(!available){feedback('Load unavailable: browser storage did not open.',true);return false;}
       busy=true;module.storageOperation=true;feedback('Loading your browser save…');
-      try{await sync(true);if(preserveLegacy)backup.durable=false;const code=module._stella_load();if(code!==0)throw Error(code===-1?'No saved planet in this browser yet.':code===-2?'Saved data is invalid or from an incompatible version.':'The game is not ready to load.');feedback('Loaded your saved planet.');return true;}
+      try{await sync(true);if(preserveLegacy)backup.durable=false;if(module.FS.analyzePath(worldPath).exists){const reason=unsupportedPreview(savedVersion());if(reason)throw Error(reason);}const code=module._stella_load();if(code!==0)throw Error(code===-1?'No saved planet in this browser yet.':code===-2?'Saved data is invalid or from an incompatible version.':'The game is not ready to load.');feedback('Loaded your saved planet.');return true;}
       catch(error){feedback('Load failed: '+error.message,true);return false;}
       finally{busy=false;module.storageOperation=false;}
     }
