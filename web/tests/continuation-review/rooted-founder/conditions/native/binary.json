@@ -1,0 +1,6 @@
+{
+  "sha256": "2005ad4019f65acbdbea57ed11e96ef54b161c384029bbc033a878cce945b1b6",
+  "bytes": 9075744,
+  "toolchain": "Zig 0.13.0 ReleaseSafe native EGL software",
+  "exit_code": 0
+}

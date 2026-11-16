@@ -1,12 +1,12 @@
 
 const RootedFounder=@import("rooted_founder.zig");
-var rooted_plan:?struct{world:u32,point:u32,token:u32,snapshot:RootedFounder.Snapshot}=null;
+var rooted_plan:?struct{world:u32,point:u32,token:u32,time:f64,solar:f32,tilt:f32,snapshot:RootedFounder.Snapshot}=null;
 var rooted_nonce:u32=0;
 var rooted_receipt_buffer:[2048]u8=undefined;
 fn rootedReceiptJson(receipt:@import("rooted_founder.zig").Receipt,world:u32,point:u32,token:u32)[*:0]const u8{
  var stream=std.io.fixedBufferStream(rooted_receipt_buffer[0..rooted_receipt_buffer.len-1]);var id:[20]u8=undefined;
  const founder_id=if(receipt.lineage!=0) std.fmt.bufPrint(&id,"{d}",.{receipt.lineage}) catch "" else "";
- std.json.stringify(.{.world_serial=world,.cell=point,.token=token,.status=receipt.status,.founder_id=founder_id,.carbon_kg_m2=receipt.carbon_kg_m2,.nitrogen_kg_m2=receipt.nitrogen_kg_m2,.carbon_source_kg=receipt.carbon_source_kg,.carbon_rounding_kg=receipt.carbon_rounding_kg,.support_kg_c_m2=receipt.support_kg_c_m2,.root_kg_c_m2=receipt.root_kg_c_m2,.root_fraction=receipt.root_fraction,.organization=receipt.organization,.soil_kg_m2=receipt.soil_kg_m2,.depth_m=receipt.depth_m},.{},stream.writer()) catch return "{}";
+ std.json.stringify(.{.world_serial=world,.cell=point,.token=token,.status=receipt.status,.founder_id=founder_id,.carbon_kg_m2=receipt.carbon_kg_m2,.nitrogen_kg_m2=receipt.nitrogen_kg_m2,.carbon_source_kg=receipt.carbon_source_kg,.carbon_rounding_kg=receipt.carbon_rounding_kg,.support_kg_c_m2=receipt.support_kg_c_m2,.root_kg_c_m2=receipt.root_kg_c_m2,.root_fraction=receipt.root_fraction,.organization=receipt.organization,.soil_kg_m2=receipt.soil_kg_m2,.depth_m=receipt.depth_m,.conditions=receipt.conditions},.{},stream.writer()) catch return "{}";
  rooted_receipt_buffer[stream.pos]=0;return @ptrCast(&rooted_receipt_buffer);
 }
 pub fn rootedFounderForState(state:*PlayState,world:u32,point:u32,apply:bool)@import("rooted_founder.zig").Receipt{
@@ -14,8 +14,16 @@ pub fn rootedFounderForState(state:*PlayState,world:u32,point:u32,apply:bool)@im
  if(world!=PerformanceDetails.world_serial or point!=state.selectedPoint)return .{.status=.stale};
  if(AdvanceDay.blocksInput() or state.showEscapeMenu or state.showPlanetControl or state.showPointDetails)return .{.status=.busy};
  if(state.planet.normalComputeJob)|job|if(!job.isCompleted())return .{.status=.busy};
- if(!apply)return R.preview(&state.planet,point);
- const receipt=R.apply(&state.planet,point);
+ var receipt=if(apply) R.apply(&state.planet,point) else R.preview(&state.planet,point);
+ if((receipt.status==.eligible or receipt.status==.planted) and point<state.planet.transformedPoints.len){
+  const depth=state.planet.waterMass[point]*state.planet.getKmPerWaterMass();
+  const solar_dot=state.planet.transformedPoints[point].norm().dot(state.simulationSolarVector());
+  if(std.math.isFinite(solar_dot) and std.math.isFinite(state.solarConstant) and std.math.isFinite(depth)){
+   const surface=@max(0,solar_dot)*std.math.clamp(state.solarConstant/1361,0,2);
+   receipt.conditions=R.currentConditions(receipt,state.planet.temperature[point],@import("simulation/microbes.zig").availableLight(surface,depth));
+  }
+ }
+
  if(receipt.status==.planted){
   @import("plant_receipt.zig").invalidate();@import("patch_watch.zig").current.stop("Rooted founder planted");
   state.colonyPeek.set(point,state.planet.microbeCells[point],state.gameTime);state.colonyPeek.focused=receipt.lineage;
@@ -30,14 +38,14 @@ pub fn rootedPreviewForState(state:*PlayState,world:u32,point:u32)[*:0]const u8{
  if(receipt.status!=.eligible)return rootedReceiptJson(receipt,PerformanceDetails.world_serial,point,0);
  if(rooted_nonce==std.math.maxInt(u32))return rootedReceiptJson(.{.status=.unrepresentable},PerformanceDetails.world_serial,point,0);
  const snap=RootedFounder.snapshot(&state.planet,point) orelse return rootedReceiptJson(.{.status=.invalid},PerformanceDetails.world_serial,point,0);
- rooted_nonce+=1;rooted_plan=.{.world=world,.point=point,.token=rooted_nonce,.snapshot=snap};return rootedReceiptJson(receipt,world,point,rooted_nonce);
+ rooted_nonce+=1;rooted_plan=.{.world=world,.point=point,.token=rooted_nonce,.time=state.gameTime,.solar=state.solarConstant,.tilt=state.axialTilt,.snapshot=snap};return rootedReceiptJson(receipt,world,point,rooted_nonce);
 }
 pub fn rootedApplyForState(state:*PlayState,world:u32,point:u32,token:u32)[*:0]const u8{
  const plan=rooted_plan orelse return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
  if(token!=plan.token or world!=plan.world or point!=plan.point)return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
  rooted_plan=null;
  const snap=RootedFounder.snapshot(&state.planet,point) orelse return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
- if(!std.meta.eql(snap,plan.snapshot))return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
+ if(state.gameTime!=plan.time or state.solarConstant!=plan.solar or state.axialTilt!=plan.tilt or !std.meta.eql(snap,plan.snapshot))return rootedReceiptJson(.{.status=.stale},PerformanceDetails.world_serial,point,token);
  return rootedReceiptJson(rootedFounderForState(state,world,point,true),PerformanceDetails.world_serial,point,token);
 }
 export fn stella_rooted_founder_preview(world:u32,point:u32)[*:0]const u8{

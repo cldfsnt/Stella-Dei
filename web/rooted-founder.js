@@ -8,6 +8,12 @@ function receipt(r,s,status,token){return r&&r.status===status&&r.world_serial==
 const reasons={disabled:'Requires the current Wetlands world.',invalid:'Patch data unavailable.',stale:'World, selection or resources changed. Request a fresh preview.',busy:'Finish Advance or close native Details first.',too_cold:'Patch is too cold.',too_hot:'Patch is too hot.',too_deep:'Water is too deep.',no_soil:'This shallow patch has no soil water. Planting does not supply water.',no_space:'No free colony slot or biomass capacity.',no_nutrients:'Not enough mineral nutrients.',no_carbon:'Not enough atmospheric carbon.',unrepresentable:'The resource payment cannot be represented safely.'};
 const num=x=>x.toPrecision(4);
 function payment(r){return num(r.carbon_kg_m2)+' kg C/m² living tissue, including '+num(r.support_kg_c_m2)+' support and '+num(r.root_kg_c_m2)+' roots; '+num(r.nitrogen_kg_m2)+' kg N/m² mineral debit. Atmospheric C debit: '+num(r.carbon_source_kg)+' kg (rounding excess ≤ '+num(r.carbon_rounding_kg)+' kg).';}
+function validConditions(c){return c&&positive(c.temperature_k)&&c.optimum_k===303&&nonnegative(c.biological_light)&&c.biological_light<=2&&positive(c.body_height_m)&&typeof c.submerged==='boolean';}
+function conditions(c){
+ if(!validConditions(c))return 'Current conditions unavailable. Not a survival forecast.';
+ return 'Now: '+c.temperature_k.toFixed(1)+' K (founder optimum 303 K); biological light '+(c.biological_light===0?'none now':c.biological_light.toPrecision(3)+'× reference')+'; '+(c.submerged?'fully submerged':'partly or fully exposed, not necessarily dry ground')+'. Not a survival forecast; screen brightness is not biological light.';
+}
+function sameConditions(a,b){if(a==null||b==null)return a==null&&b==null;return ['temperature_k','optimum_k','biological_light','body_height_m','submerged'].every(k=>a[k]===b[k]);}
 function create(h){let busy=false;
  return {plant(){if(busy)return;busy=true;h.busy(true);let token=0;
  try{
@@ -15,12 +21,12 @@ function create(h){let busy=false;
   const s=h.snapshot();if(!current(s)){h.report('Select a patch in the current Wetlands world. Nothing planted.');return;}
   const p=h.preview(s.world_serial,s.cell);if(p&&u32(p.token))token=p.token;
   if(!receipt(p,s,'eligible')){h.report((reasons[p&&p.status]||'Could not verify the preview.')+' Nothing planted.');return;}
-  if(!h.confirm('Plant one rooted founder here?\nChosen genetics: 50% root allocation, 25% organization. Support is part of paid tissue, not extra carbon.\n'+payment(p)+'\nCurrent soil: '+num(p.soil_kg_m2)+' kg water/m²; standing depth: '+num(p.depth_m)+' m. No water or soil is supplied. These chosen founder traits are not evolved adaptation or a survival guarantee. The colony may decline or die.')){h.report('Cancelled. Nothing planted.');return;}
+  if(!h.confirm('Plant one rooted founder here?\nChosen genetics: 50% root allocation, 25% organization. Support is part of paid tissue, not extra carbon.\n'+payment(p)+'\nCurrent soil: '+num(p.soil_kg_m2)+' kg water/m²; standing depth: '+num(p.depth_m)+' m. '+conditions(p.conditions)+'\nNo water or soil is supplied. These chosen founder traits are not evolved adaptation or a survival guarantee. The colony may decline or die.')){h.report('Cancelled. Nothing planted.');return;}
   const now=h.snapshot();if(!h.available()||!current(now)||now.world_serial!==s.world_serial||now.cell!==s.cell){h.report('World, selection or operation changed. Nothing planted.');return;}
   const r=h.apply(s.world_serial,s.cell,token);
   if(!receipt(r,s,'planted',token)){h.report(r&&reasons[r.status]?(reasons[r.status]+' Nothing planted.'):'Planting outcome could not be verified. Inspect before trying again.');return;}
   const confirmed=['founder_id','carbon_kg_m2','nitrogen_kg_m2','carbon_source_kg','carbon_rounding_kg','support_kg_c_m2','root_kg_c_m2','root_fraction','organization','soil_kg_m2','depth_m'];
-  if(!confirmed.every(k=>r[k]===p[k])){h.report('Planting returned a different receipt from the confirmed preview. Outcome unknown; inspect before trying again.');return;}
+  if(!confirmed.every(k=>r[k]===p[k])||!sameConditions(p.conditions,r.conditions)){h.report('Planting returned a different receipt from the confirmed preview. Outcome unknown; inspect before trying again.');return;}
   const after=h.snapshot();const found=current(after)&&after.world_serial===s.world_serial&&after.cell===s.cell&&Array.isArray(after.root_allocations)&&after.root_allocations.some(c=>c.id===r.founder_id&&c.living===true&&c.fraction===.5);
   if(!found){h.report('Planting returned a receipt, but the new colony could not be verified. Inspect before trying again.');return;}
   h.report('Planted colony #'+r.founder_id+'. '+payment(r)+' No water supplied. Chosen genetics, not proof of uptake or survival.');h.inspect(r.founder_id);
@@ -28,5 +34,5 @@ function create(h){let busy=false;
  finally{if(token)try{h.cancel(token);}catch{}busy=false;h.busy(false);}
  }};
 }
-const api={create,current,receipt,payment};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.StellaRootedFounder=api;
+const api={create,current,receipt,payment,conditions,validConditions};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.StellaRootedFounder=api;
 })(typeof window==='undefined'?globalThis:window);

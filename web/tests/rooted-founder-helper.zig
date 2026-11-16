@@ -1,7 +1,7 @@
 //! Explicit chosen founder genetics, not evolved ancestry or new physiology.
 const std=@import("std");const M=@import("simulation/microbes.zig");
 pub const Status=enum{eligible,planted,disabled,invalid,stale,busy,too_cold,too_hot,too_deep,no_soil,no_space,no_nutrients,no_carbon,unrepresentable};
-pub const Receipt=struct{status:Status,carbon_kg_m2:f32=0,nitrogen_kg_m2:f64=0,carbon_source_kg:f64=0,carbon_rounding_kg:f64=0,support_kg_c_m2:f32=0,root_kg_c_m2:f32=0,root_fraction:f32=0.5,organization:f32=0.25,soil_kg_m2:f64=0,depth_m:f64=0,lineage:u64=0};
+pub const Receipt=struct{status:Status,conditions:?Conditions=null,carbon_kg_m2:f32=0,nitrogen_kg_m2:f64=0,carbon_source_kg:f64=0,carbon_rounding_kg:f64=0,support_kg_c_m2:f32=0,root_kg_c_m2:f32=0,root_fraction:f32=0.5,organization:f32=0.25,soil_kg_m2:f64=0,depth_m:f64=0,lineage:u64=0};
 const Plan=struct{receipt:Receipt,cell:M.Cell,stats:M.Stats,co2:f64,oxygen:f64};
 pub fn stage(cell:M.Cell,stats:M.Stats,co2:f64,oxygen:f64,area:f64,count:usize,depth:f32,temp:f32,soil:f64)Plan{
  var p=Plan{.receipt=.{.status=.invalid},.cell=cell,.stats=stats,.co2=co2,.oxygen=oxygen};
@@ -49,4 +49,19 @@ pub const Snapshot=struct{epoch:u64,cell:M.Cell,stats:M.Stats,co2:f64,oxygen:f64
 pub fn snapshot(p:anytype,index:usize)?Snapshot{
  if(p.worldMode!=.origin or !p.landBeta.enabled or p.landBeta.physiology_law!=3 or index>=p.microbeCells.len or index>=p.waterMass.len or index>=p.temperature.len or index>=p.landSoil.len)return null;
  return .{.epoch=epoch,.cell=p.microbeCells[index],.stats=p.microbeStats,.co2=p.averageCarbonDioxideMass,.oxygen=p.averageOxygenMass,.area=p.getMeanPointArea(),.count=p.vertices.len,.water=p.waterMass[index],.conversion=p.getKmPerWaterMass(),.temperature=p.temperature[index],.soil=p.landSoil[index],.config=p.landBeta};
+}
+
+/// Current prospective founder environment, not a forecast or uptake receipt.
+pub const Conditions=struct{temperature_k:f32,optimum_k:f32=303,biological_light:f32,body_height_m:f64,submerged:bool};
+pub fn currentConditions(r:Receipt,temp:f32,light:f32)?Conditions{
+ if((r.status!=.eligible and r.status!=.planted) or !std.math.isFinite(temp) or !std.math.isFinite(light) or light<0 or light>2 or !std.math.isFinite(r.depth_m) or r.depth_m<0)return null;
+ const c=M.Cohort{.biomass=r.carbon_kg_m2,.support_mass=r.support_kg_c_m2,.root_fraction=r.root_fraction,.organization=r.organization};
+ const height=@import("simulation/basal_geometry.zig").height(c.biomass,M.producerHeightMeters(c),100) orelse return null;
+ return .{.temperature_k=temp,.biological_light=light,.body_height_m=height,.submerged=r.depth_m>=height};
+}
+test "current conditions use paid founder geometry and reject unavailable light"{
+ const r=stage(M.initialized(42),.{},1,1,1000,12,0,303,1).receipt;
+ const c=currentConditions(r,290,0).?;try std.testing.expect(!c.submerged);try std.testing.expectEqual(@as(f32,0),c.biological_light);try std.testing.expect(c.body_height_m>0);
+ var wet=r;wet.depth_m=c.body_height_m;try std.testing.expect(currentConditions(wet,290,1).?.submerged);
+ try std.testing.expect(currentConditions(r,290,std.math.nan(f32))==null);try std.testing.expect(currentConditions(r,std.math.inf(f32),1)==null);try std.testing.expect(currentConditions(r,290,3)==null);try std.testing.expect(currentConditions(.{.status=.disabled},290,1)==null);
 }
