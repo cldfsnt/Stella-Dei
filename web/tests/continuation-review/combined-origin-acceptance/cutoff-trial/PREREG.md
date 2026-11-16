@@ -1,0 +1,9 @@
+# Fixed cutoff resolution comparison
+
+Prospective authorization after recorded-data41298f3; not a revision of prior trials. Exactly four arms: same frozen Pioneer day7 from seeds42/1337 × cleanup.0025legacy/.001candidate,420×1440s to day14. No other physiology/packet/action/trait/resource/environment changes, no retargets, extra horizons or repeated tuning. Candidate.001 is25% of the.004smallpacket,10% of.01largepacket, global numerical-resolution hypothesis not a biological calibration or immortal floor. Leave relocation's separate minimum unchanged.
+
+Two isolated binaries share source and observers; only the cleanup literal differs. Inputs hashes frome5db89c; complete initial loaded states equal. Capture continuous mortality and exact residual cleanup separately where feasible; daily census, births/losses, occupancy, biomass, root credits/h, wind opportunities/fates and engine work counters. Ecological RNG/trajectories may diverge after first threshold crossing. Legacy day14 must match already-completed6474993 midpoint; fresh day10→14 complete state/RNG and observation equality for each arm; observer on/off parity before main run with initial restore.
+
+Experimental saves use required typed envelope cutoff_qa_v1 + threshold + actual current Save payload. Reject wrong threshold before applying. This is a QA-only identity, not a released schema or license for production old-save migration. No new law exposed. Original source/save untouched.
+
+Native correctness run only, no controlled performance or WASMtiming.900s/process limit; preserve failures; no model retuning. Fixed arrays remain four slots/cell; report active cohorts/occupied and computational work proxies, not inferred FPS. Archive compact compressed logs/essential outcomes/hash proof. Test whether weak colonies receive a useful finite window, never guarantee survival or succession.
