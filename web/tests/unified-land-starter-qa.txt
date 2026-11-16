@@ -1,0 +1,22 @@
+    const saves=@import("save_game.zig");const A=@import("simulation/shore_audit.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();web_initialized=true;loop.pump(4096);var state=&game.state.Playing;
+    const resumed=std.posix.getenv("QA_RESUME")!=null;const point:u32=334;const input=if(resumed)"OUTPUT/midpoint.json"else "INPUT";
+    const bytes=try std.fs.cwd().readFileAlloc(a,input,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);loop.pump(4096);std.debug.assert(std.mem.eql(u8,bytes,try qaBytes(a,state)));qaClear(state);
+    std.debug.assert(state.planet.protectiveStrategy.enabled and state.planet.groundThermalLaw==1);A.enabled=true;
+    if(!resumed){
+      for(0..60)|_|qaTick(state);try qaWrite(a,state,"OUTPUT/spin.json");state.selectedPoint=point;state.pointerOnPlanet=true;
+      const old=state.planet.waterMass[point];std.debug.assert(state.testAction(@intFromEnum(@as(@TypeOf(state.selectedTool),.EmitWater))));qaEmit("WATER_PLUS",.{.point=point,.signed_kg=(@as(f64,state.planet.waterMass[point])-old)*1e9});
+      for(0..6)|_|qaTick(state);const before_target=state.planet.waterMass[point];const change=state.setSelectedWaterTarget(point,0.01);std.debug.assert(std.math.isFinite(change));qaEmit("TARGET",.{.change_m=change,.signed_kg=(@as(f64,state.planet.waterMass[point])-before_target)*1e9});
+      try qaWrite(a,state,"OUTPUT/preseed.json");const before=try qaBytes(a,state);const preview=try qaReply(a,stella_rooted_founder_preview(PerformanceDetails.world_serial,point));qaEmit("PREVIEW",preview);std.debug.assert(std.mem.eql(u8,before,try qaBytes(a,state)));if(!std.mem.eql(u8,preview.object.get("status").?.string,"eligible"))return error.SetupRefused;
+      const token:u32=@intCast(preview.object.get("token").?.integer);const paid=try qaReply(a,stella_seed_rooted(PerformanceDetails.world_serial,point,token));qaEmit("PAID",paid);std.debug.assert(std.mem.eql(u8,paid.object.get("status").?.string,"planted"));try qaWrite(a,state,"OUTPUT/seeded.json");qaView(state,window,"OUTPUT/day0.ppm");
+    }
+    const start:usize=if(resumed)90 else 0;
+    for(start..180)|tick|{A.tick=tick+1;qaTick(state);qaEmit("PATCH",.{.tick=tick+1,.cohorts=state.planet.microbeCells[point].cohorts,.soil=state.planet.landSoil[point],.depth_m=state.planet.waterMass[point]*state.planet.getKmPerWaterMass()*1000,.temperature=state.planet.temperature[point],.stats=state.planet.microbeStats});if((tick+1)%60==0 or tick==89){for(state.planet.microbeCells,0..)|cell,i|for(cell.cohorts)|c|{if(c.biomass>0)qaEmit("LIVING",.{.tick=tick+1,.point=i,.cohort=c});};}if(tick==89)try qaWrite(a,state,"OUTPUT/midpoint.json");}
+    try qaWrite(a,state,if(resumed)"OUTPUT/resumed.json"else "OUTPUT/final.json");if(!resumed)qaView(state,window,"OUTPUT/day3.ppm");qaEmit("COMPLETE",.{.resumed=resumed});std.process.exit(0);
+}
+fn qaClear(s:*PlayState)void{s.paused=true;s.showEscapeMenu=false;s.showPointDetails=false;s.showPlanetControl=false;s.selectedTool=.None;}
+fn qaTick(s:*PlayState)void{s.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=s.solarConstant,.gameTime=s.gameTime,.planetRotationTime=s.planetRotationTime,.solarVector=s.simulationSolarVector()});s.gameTime+=1440;}
+fn qaBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}
+fn qaWrite(a:std.mem.Allocator,s:*PlayState,p:[]const u8)!void{try std.fs.cwd().writeFile(.{.sub_path=p,.data=try qaBytes(a,s)});}
+fn qaReply(a:std.mem.Allocator,p:[*:0]const u8)!std.json.Value{return (try std.json.parseFromSlice(std.json.Value,a,std.mem.span(p),.{})).value;}
+fn qaEmit(comptime tag:[]const u8,v:anytype)void{var b:[16384]u8=undefined;var stream=std.io.fixedBufferStream(&b);std.json.stringify(v,.{},stream.writer()) catch unreachable;std.debug.print("{s} {s}\n",.{tag,stream.getWritten()});}
+fn qaView(s:*PlayState,w:anytype,path:[*:0]const u8)void{const code=s.visitGrowthForm(PerformanceDetails.world_serial,0,390,700);qaEmit("VIEW",.{.code=code,.point=s.selectedPoint});s.cameraPos=s.targetCameraPos.norm().scale(s.targetCameraDistance);s.cameraDistance=s.targetCameraDistance;game.loop.pump(4096);render(w);gl.finish();w.swapBuffers();qa_capture(path);}

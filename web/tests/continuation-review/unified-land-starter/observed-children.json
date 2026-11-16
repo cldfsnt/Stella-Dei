@@ -1,0 +1,29 @@
+[
+  {
+    "tick": 90,
+    "point": 20426,
+    "cohort": {
+      "protective_investment": 0.0959417000412941,
+      "protective_clock": -1.0,
+      "aerial_allocation": 0.0,
+      "root_fraction": 0.5,
+      "biomass": 0.0037447598297148943,
+      "organization": 0.26212838292121887,
+      "support_mass": 0.0009363130084238946,
+      "optimum": 300.5993347167969,
+      "efficiency": 0.995764434337616,
+      "structure": 0.0,
+      "feeding": 0.07400782406330109,
+      "mobility": 0.05527154356241226,
+      "relocations": 0,
+      "last_from": 0,
+      "last_to": 0,
+      "last_move_time": 0.0,
+      "lifetime_grazed": 0.0,
+      "generation": 1,
+      "lineage": 2,
+      "parent": 1,
+      "reproduction_credit": 1.085922122001648e-05
+    }
+  }
+]

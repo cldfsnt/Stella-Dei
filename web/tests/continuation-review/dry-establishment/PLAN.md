@@ -1,0 +1,7 @@
+# Fixed juvenile warm-dry establishment diagnostic
+
+Approved after read-only natural root-user diagnosis. No product change, new schema, inherited trait assignment or resource grant. This is prospective game calibration, not validated biology.
+
+Restore immutable natural15 day7 (`cebb6725c9aa0d602efb25a7c4ba4472e129c8130bbd9bccb30b6781e2857d3d`). That save precedes the ORIGINAL seven planted-pond Target10mm actions: replay exactly those ascending334+unique-neighbor targets once, then172 existing full scheduler ticks to known tick592/lineage246 at20740. Check recorded birth/drawdown/events against prior immutable log before splitting. No favorable target selection.
+
+Matched60ticks/24h from identical reconstructed birth: original warm dry base4/day versus candidate1/day only at273.15<T<355. Preserve root1/32, tissue, genes, thermal laws, immersion, funded lineage credits, C/N/space/competition, maintenance, cold/heat protection and.0025 cleanup. No new care. Record growth/upkeep/mortality/precleanup residual/light/temperature/water receipts and actual offspring/fates. Roots are not guaranteed beneficial; finite failure retained. Two-step observer-on/off exact fullstate/RNG gate. No horizon extension or coefficient selection from outcomes. Source is isolated copy of original instrumented natural15 engine; no current game edits. Candidate snapshots remain QA-only version15 files, not supported import/release.

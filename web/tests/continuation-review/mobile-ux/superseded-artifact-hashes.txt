@@ -1,0 +1,2 @@
+d502d2fe838a5d84059477a0809646b6871a29bb643f180a4ea4f60bac3d2d7e  ../site-tmp/mobile-ux/web/dist/index.wasm
+976bede9cfdf0d295ed955c4c63c2defceed0b7e9c704c0d0d1a2bebe2f84e74  ../site-tmp/mobile-ux/web/dist/index.html

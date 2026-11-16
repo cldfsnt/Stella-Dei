@@ -1,0 +1,19 @@
+✔ six destinations: state-backed pause and five direct sheets (2.303921ms)
+✔ storage/advance lock never dispatches or replaces a sheet (0.258519ms)
+✔ unavailable or malformed snapshot cannot invent pause/tool state (0.231579ms)
+✔ explicit brush and Explore use guarded current identity (0.274403ms)
+✔ rejected native selection does not close sheet or activate painting (0.222685ms)
+✔ navigation contains no save/load/seed side effects (0.205961ms)
+✔ actual modal wrapper cancels old plan synchronously and ignores delayed close after reopen (0.689919ms)
+✔ busy close/Escape requests cancellation but keeps operation visibly open (0.334014ms)
+✔ Advance overlay cannot be dismissed by sheet navigation or open underneath a new modal (0.516428ms)
+✔ Escape after ordinary close runs completion cleanup exactly once (0.454484ms)
+✔ mode-specific Plant/Rabbit/Nutrient action rejects stale and unknown mode after load (0.263637ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.01054

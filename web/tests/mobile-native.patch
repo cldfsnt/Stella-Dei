@@ -1,0 +1,240 @@
+--- a/main.zig
++++ b/main.zig
+@@ -526,6 +526,7 @@
+ var speed_json:[512]u8=undefined;
+ export fn stella_set_speed(seconds:f32)i32 {
+     const state=webEditableState() orelse return -1;
++    if(@import("web_shell.zig").enabled and !mobileGuard(state,PerformanceDetails.world_serial))return -2;
+     if(!std.math.isFinite(seconds) or (seconds!=3600 and seconds!=21600 and seconds!=86400))return -1;
+     HabitatPreview.cancel();state.timeScale=seconds;state.simulationClock.reset();return 1;
+ }
+@@ -1110,3 +1111,44 @@
+  web_loop.pump(1024);return combinedOptionsNewForGame(&game,expected,true,true);
+ }
+ export fn stella_protective_snapshot()[*:0]const u8{return @import("protective_view.zig").snapshot(webPlayState(),PerformanceDetails.world_serial);}
++
++// Explicit browser presentation bridge. No save/model fields.
++export fn stella_web_shell_set(on:i32,top:f32,bottom:f32)i32{
++ const was=@import("web_shell.zig").enabled;
++ if(!@import("web_shell.zig").set(on,top,bottom))return -1;
++ if(webPlayState())|v|{if(on==1 and !was){v.selectGameTool(.None);v.colonyTargets.count=0;v.seedTargets.count=0;}}
++ return 1;
++}
++var mobile_json:[1024]u8=undefined;
++pub fn mobileSnapshot(state:?*PlayState)[*:0]const u8{
++ const v=state orelse return "{\"available\":false}";
++ var stream=std.io.fixedBufferStream(mobile_json[0..mobile_json.len-1]);
++ std.json.stringify(.{.available=true,.world_serial=PerformanceDetails.world_serial,.paused=v.paused,.blocked=v.showEscapeMenu or v.showPlanetControl or v.showPointDetails or AdvanceDay.blocksInput(),.tool=@intFromEnum(v.selectedTool),.selected=v.selectedPoint,.day=v.gameTime/86400,.speed=v.timeScale,.feedback=v.mobileFeedback},.{.emit_nonportable_numbers_as_strings=true},stream.writer()) catch return "{}";
++ mobile_json[stream.pos]=0;return @ptrCast(&mobile_json);
++}
++export fn stella_mobile_snapshot()[*:0]const u8{return mobileSnapshot(webPlayState());}
++pub fn mobileGuard(v:*PlayState,world:u32)bool{
++ if(world!=PerformanceDetails.world_serial or AdvanceDay.blocksInput() or v.showEscapeMenu or v.showPlanetControl or v.showPointDetails)return false;
++ if(v.planet.normalComputeJob)|job|if(!job.isCompleted())return false;
++ return true;
++}
++pub fn mobilePause(v:*PlayState,world:u32,paused:i32)i32{
++ if(paused!=0 and paused!=1)return -1;if(!mobileGuard(v,world))return -2;
++ HabitatPreview.cancel();v.paused=paused==1;v.simulationClock.reset();return 1;
++}
++pub fn mobileTool(v:*PlayState,world:u32,tool:i32)i32{
++ if(tool<0 or tool>6)return -1;
++ if(!mobileGuard(v,world))return -2;
++ HabitatPreview.cancel();v.selectGameTool(@enumFromInt(tool));return 1;
++}
++export fn stella_mobile_pause(world:u32,paused:i32)i32{return if(webEditableState())|v|mobilePause(v,world,paused) else -1;}
++export fn stella_mobile_tool(world:u32,tool:i32)i32{return if(webEditableState())|v|mobileTool(v,world,tool) else -1;}
++export fn stella_mobile_climate(world:u32)i32{
++ const v=webEditableState() orelse return -1;if(!mobileGuard(v,world))return -2;
++ HabitatPreview.cancel();v.selectGameTool(.None);v.showPlanetControl=true;return 1;
++}
++
++export fn stella_mobile_menu(world:u32)i32{
++ const v=webEditableState() orelse return -1;if(!mobileGuard(v,world))return -2;
++ HabitatPreview.cancel();v.selectGameTool(.None);v.leavePlanetArmed=false;v.showEscapeMenu=true;return 1;
++}
+--- a/states/play.zig
++++ b/states/play.zig
+@@ -234,6 +234,7 @@
+             if(wetlands)state.mobileFeedback="Wetlands experiment: seed in shallow water; roots may emerge through offspring";
+             state.mobileFeedbackSeconds = 8;
+         }
++        if(@import("../web_shell.zig").enabled)state.selectedTool=.None;
+         return state;
+     }
+ 
+@@ -811,6 +812,10 @@
+         _ = scancode;
+         _ = mods;
+         if (action == .press) {
++            if (@import("../web_shell.zig").enabled and key == .escape) {
++                // HTML owns menu Escape. Existing native dialogs can only close.
++                self.showEscapeMenu=false;self.showPlanetControl=false;self.showPointDetails=false;return;
++            }
+             if (key == .escape) {
+                 self.showEscapeMenu = !self.showEscapeMenu;
+             }
+@@ -847,7 +852,7 @@
+ 
+     pub fn mousePressed(self: *PlayState, game: *Game, button: MouseButton) void {
+         if (self.showEscapeMenu) return;
+-        if (@import("builtin").target.cpu.arch == .wasm32 and self.mobilePointerOnUI(game)) return;
++        if (self.mobilePointerOnUI(game)) return;
+ 
+         if (button == .left and self.planet.worldMode == .origin and self.selectedTool == .PlaceVegetation) {
+             if (self.cameraInputBlocked()) return;
+@@ -904,7 +909,7 @@
+         }
+ 
+         if (self.selectedTool == .None and button == .left) {
+-            if(self.watchLifeView and self.planet.worldMode==.origin) {
++            if((self.watchLifeView or @import("../web_shell.zig").enabled) and self.planet.worldMode==.origin) {
+                 self.colonyPeek.set(self.selectedPoint,self.planet.microbeCells[self.selectedPoint],self.gameTime);
+             } else {
+                 self.showPointDetails = true;
+@@ -1715,16 +1720,21 @@
+         self.showPointDetails = false;
+     }
+ 
+-    fn mobileToolbarBottom(self: *const PlayState, width: f32) f32 {
+-        return if (self.watchLifeView) 56 else if (width >= 650) 112 else 166;
+-    }
+-
+-    fn mobilePointerOnUI(self: *PlayState, game: *Game) bool {
+-        if (@import("builtin").target.cpu.arch != .wasm32) return false;
++    pub fn mobileToolbarBottom(self: *const PlayState, width: f32) f32 {
++        return if (@import("../web_shell.zig").enabled) @import("../web_shell.zig").top else if (self.watchLifeView) 56 else if (width >= 650) 112 else 166;
++    }
++
++    pub fn mobileBottomInset(self:*const PlayState) f32 {
++        const shell=@import("../web_shell.zig");
++        if(!shell.enabled)return 84;
++        return @max(shell.bottom,if(self.colonyPeek.cell!=null and self.planet.worldMode==.origin and !self.showPointDetails and !self.showEscapeMenu and !self.showPlanetControl) @as(f32,84) else 0);
++    }
++    pub fn mobilePointerOnUI(self: *PlayState, game: *Game) bool {
++        if (@import("builtin").target.cpu.arch != .wasm32 and !@import("../web_shell.zig").enabled) return false;
+         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) return true;
+         const p = game.window.getCursorPos();
+         const size = game.renderer.framebufferSize;
+-        return p.ypos < self.mobileToolbarBottom(size.x()) or p.ypos > size.y() - 84;
++        return p.ypos < self.mobileToolbarBottom(size.x()) or p.ypos > size.y() - self.mobileBottomInset();
+     }
+ 
+     /// A fading ember/heat receipt, not continuing combustion or spreading fire.
+@@ -1759,7 +1769,7 @@
+             if (clip.w()<=0) continue;
+             const x=(clip.x()/clip.w()+1)*width/2;
+             const y=(1-clip.y()/clip.w())*height/2;
+-            if (x<8 or x>width-8 or y<toolBottom+18 or y>height-100) continue;
++            if (x<8 or x>width-8 or y<toolBottom+18 or y>height-self.mobileBottomInset()-16) continue;
+             if (receipt.kind==.wave) {
+                 const radius=12+progress*30;
+                 vg.beginPath();vg.ellipse(x,y,radius,radius*0.55);
+@@ -1789,7 +1799,7 @@
+         const p=self.planet.transformedPoints[cell];if(p.dot(self.cameraPos.sub(p))<=0)return null;
+         const clip=vp.mulByVec4(Vec4.new(p.x(),p.y(),p.z(),1));if(clip.w()<=0)return null;
+         const x=(clip.x()/clip.w()+1)*width/2;const y=(1-clip.y()/clip.w())*height/2;
+-        if(x<14 or x>width-14 or y<top+20 or y>height-116)return null;
++        if(x<14 or x>width-14 or y<top+20 or y>height-self.mobileBottomInset()-32)return null;
+         return Vec2.new(x,y);
+     }
+     /// Cyan diamonds are real arrivals, amber crosses actual tracked colony losses.
+@@ -1849,7 +1859,7 @@
+             if (clip.w() <= 0) continue;
+             const x = (clip.x() / clip.w() + 1) * width / 2;
+             const y = (1 - clip.y() / clip.w()) * height / 2;
+-            if (x < 18 or x > width - 18 or y < toolBottom + 22 or y > height - 108) continue;
++            if (x < 18 or x > width - 18 or y < toolBottom + 22 or y > height - self.mobileBottomInset()-24) continue;
+             if (self.planet.seedEligibility(index) != .eligible) continue;
+             if (!self.seedTargets.add(.{.cell=index,.x=x,.y=y},true)) continue;
+             // Dark rim keeps this actionable target visible on land and water.
+@@ -1866,7 +1876,7 @@
+         if (clip.w() <= 0) return;
+         const x = (clip.x()/clip.w()+1)*width/2;
+         const y = (1-clip.y()/clip.w())*height/2;
+-        if (x<22 or x>width-22 or y<toolBottom+24 or y>height-110) return;
++        if (x<22 or x>width-22 or y<toolBottom+24 or y>height-self.mobileBottomInset()-26) return;
+         const valid = self.planet.seedEligibility(self.selectedPoint)==.eligible;
+         if(valid) _=self.seedTargets.add(.{.cell=self.selectedPoint,.x=x,.y=y},false);
+         vg.beginPath(); vg.circle(x,y,20); vg.strokeColor(nvg.rgba(3,24,26,240)); vg.strokeWidth(6); vg.stroke();
+@@ -1923,7 +1933,7 @@
+             const glyph_lod=if(origin and index==self.selectedPoint)@max(lod,0.75) else lod;
+             const size = (if (origin) 13 + 10 * @sqrt(std.math.clamp(biomass, 0, 1)) else 12 + biology_visuals.sproutSize(biomass)) * lod;
+             if (origin and index==self.selectedPoint and !@import("../feeding_marker.zig").fits(x,y,glyph_lod,width,height,toolBottom))continue;
+-            if (x < size + 4 or x > width - size - 4 or y < toolBottom + size * 2 or y > height - 90) continue;
++            if (x < size + 4 or x > width - size - 4 or y < toolBottom + size * 2 or y > height - self.mobileBottomInset()-6) continue;
+             const screen = Vec2.new(x,y);
+             // A living cell is an area, not a floating icon. Render its footprint
+             // even when the nearby morphology glyph is suppressed by decluttering.
+@@ -2079,7 +2089,7 @@
+     }
+ 
+     fn renderColonyPeek(self:*PlayState,game:*Game,renderer:*Renderer,width:f32,height:f32) bool {
+-        if(!self.watchLifeView or self.planet.worldMode!=.origin or self.showPointDetails or self.showEscapeMenu or self.showPlanetControl)return false;
++        if((!self.watchLifeView and !@import("../web_shell.zig").enabled) or self.planet.worldMode!=.origin or self.showPointDetails or self.showEscapeMenu or self.showPlanetControl)return false;
+         const cell=self.colonyPeek.cell orelse return false;
+         if(cell>=self.planet.microbeCells.len){self.colonyPeek.clear();return false;}
+         _=self.colonyPeek.focusedCohort(self.selectedPoint,self.planet.microbeCells[cell]);
+@@ -2151,7 +2161,7 @@
+             if (clip.w()>0 and p.dot(self.cameraPos.sub(p))>0) {
+                 const x=(clip.x()/clip.w()+1)*width/2;
+                 const y=(1-clip.y()/clip.w())*height/2;
+-                if (x>18 and x<width-18 and y>toolBottom+18 and y<height-100) {
++                if (x>18 and x<width-18 and y>toolBottom+18 and y<height-self.mobileBottomInset()-16) {
+                     vg.beginPath(); vg.fillColor(nvg.rgba(230,252,255,220));
+                     vg.roundedRect(x-16,y-16,9,2,1);vg.roundedRect(x-16,y-16,2,9,1);
+                     vg.roundedRect(x+7,y-16,9,2,1);vg.roundedRect(x+14,y-16,2,9,1);
+@@ -2171,7 +2181,7 @@
+             if (clip.w() <= 0) continue;
+             const x = (clip.x() / clip.w() + 1) * width / 2;
+             const y = (1 - clip.y() / clip.w()) * height / 2;
+-            if (x < 6 or x > width - 6 or y < toolBottom + 6 or y > height - 90) continue;
++            if (x < 6 or x > width - 6 or y < toolBottom + 6 or y > height - self.mobileBottomInset()-6) continue;
+             vg.beginPath();
+             vg.fillColor(nvg.rgb(255, 178, 70));
+             vg.roundedRect(x - 6*marker_scale, y - 6*marker_scale, 12*marker_scale, 12*marker_scale, 6*marker_scale);
+@@ -2181,12 +2191,13 @@
+             vg.roundedRect(x - 2*marker_scale, y - 2*marker_scale, 4*marker_scale, 4*marker_scale, 2*marker_scale);
+             vg.fill();
+         }
++        const origin = self.planet.worldMode == .origin;
++        if(!@import("../web_shell.zig").enabled){
+         vg.beginPath();
+         vg.fillColor(nvg.rgba(8, 15, 28, 225));
+         vg.rect(0, 0, width, toolBottom);
+         vg.rect(0, height - 84, width, 84);
+         vg.fill();
+-        const origin = self.planet.worldMode == .origin;
+         if (self.watchLifeView) {
+             const compactWidth = (width - 40) / 4;
+             if (ui.button(vg, game, "watch-pause", 8, 6, compactWidth, 44, if (self.paused) "Play" else "Pause")) self.paused = !self.paused;
+@@ -2280,6 +2291,7 @@
+         if(origin and self.watchLifeView and self.mobileFeedbackSeconds<=0)renderWatchLegend(vg,width,height-16) else _ = vg.text(10, height - 16, hint);
+ 
+         }
++        } else { _=self.renderColonyPeek(game,renderer,width,height); }
+         if (self.showEscapeMenu or self.showPlanetControl or self.showPointDetails) {
+             const pw = @min(width - 24, 360);
+             const ph: f32 = if (self.showPlanetControl) 280 else if (self.showEscapeMenu) 248 else 280;
+--- a/life_camera.zig
++++ b/life_camera.zig
+@@ -31,7 +31,7 @@
+  const up=[_]f32{right[1]*center[2],-right[0]*center[2],right[0]*center[1]-right[1]*center[0]};
+  const tan_y=@tan(@as(f32,std.math.pi/180.0*35.0));const tan_x=tan_y*width/height;
+  const usable_x=std.math.clamp((width-72)/width,0.2,0.9);
+- const usable_y=std.math.clamp((height-220)/height,0.2,0.9);
++ const usable_y=std.math.clamp((height-@import("web_shell.zig").frameReserve())/height,0.2,0.9);
+  var distance:f32=0;var max_radius:f32=0;
+  for(ids[0..n])|id|{const v=point(p,id);const r=@sqrt(dot(v,v));if(!std.math.isFinite(r))return error.InvalidGeometry;max_radius=@max(max_radius,r);
+   const depth=dot(v,center);distance=@max(distance,depth+@max(@abs(dot(v,right))/(tan_x*usable_x),@abs(dot(v,up))/(tan_y*usable_y)));
+--- /dev/null
++++ b/web_shell.zig
+@@ -0,0 +1,8 @@
++//! Browser chrome ownership is session-only, never a save field.
++const std=@import("std");
++pub var enabled=false;
++pub var top:f32=0;
++pub var bottom:f32=0;
++pub fn set(on:i32,t:f32,b:f32)bool{if((on!=0 and on!=1) or !std.math.isFinite(t) or !std.math.isFinite(b) or t<0 or b<0 or t>240 or b>240)return false;enabled=on==1;top=t;bottom=b;return true;}
++// Find creates a real 84px Peek panel; reserve it for framing, not terrain hit exclusion.
++pub fn frameReserve()f32{return if(enabled) 2*@max(top,@max(bottom,84))+40 else 220;}

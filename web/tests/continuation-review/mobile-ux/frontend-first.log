@@ -1,0 +1,306 @@
+✔ actual shell: start, cancel, redraw wait, dismiss and repeat (5.429178ms)
+✔ missing native API never calls start or hides game (1.418557ms)
+✔ active input guards block globe and tools but permit accessible actions (1.548042ms)
+✔ context loss calls native environment and shows stopped, not advancing (1.585889ms)
+✔ genuine context loss stays frozen after restored event; explicit durable save then reload path (1.771989ms)
+✔ recovery save failure never claims durable save (1.677667ms)
+✔ context loss outside advancement still exposes reload recovery, never leaves a silently frozen game (1.482443ms)
+✔ browser timer APIs use global-call wrappers, never hook-object receivers (0.43166ms)
+✔ release/cancel events reach guarded native input handlers to clear held state (4.047317ms)
+✔ recovery hides generic final-redraw subtitle (1.513039ms)
+✔ only explicit start; duplicate click never restarts; native redraw required (1.649765ms)
+✔ cancel keeps completed count, blocks dismissal until redraw (0.3119ms)
+✔ malformed, unknown, regressed and wrong-token statuses fail closed (0.488937ms)
+✔ status exception never unlocks or silently retries (0.59726ms)
+✔ hidden/context cancellation waits native acknowledgement; repeated session works (0.387664ms)
+✔ validation rejects incomplete-success and unsafe progress (0.216026ms)
+✔ uncertain start cannot reuse prior completed job as new success (0.65104ms)
+✔ explicit dismissal waits for native neutral-input acknowledgement (0.321725ms)
+✔ rejected dismissal does not unlock; wrong world cannot establish a job (0.286111ms)
+✔ arrival effects control uses authoritative result and is independent of seed hints (2.369479ms)
+✔ native hide discards only visual receipts and export remains guarded (1.897579ms)
+✔ all snapshot points explicitly reviewed, one apply only, no twelve cap (2.335698ms)
+✔ cancel and unavailable invalidate queued planning without applying (0.492643ms)
+✔ changed world or counts refuse before apply (0.453273ms)
+✔ unknown execution receipt never claims unchanged or success (0.282857ms)
+✔ invalid native counts and world refuse planning (0.257968ms)
+✔ malformed newly created plan is cancelled using its verified world/token (1.136132ms)
+PASS serial IDs, cumulative births, generations, exact local positive-cohort counts and immutable snapshots
+✔ ../site-tmp/mobile-ux/web/tests/colony-labels.test.cjs (331.75089ms)
+✔ explicit review and one-use whole colony execution, exact string identity (2.763953ms)
+✔ running, invalid, overcapacity and nonfinite previews fail closed (0.47794ms)
+✔ ineligible source or full target cannot prepare (0.263007ms)
+✔ world, cell, pause and native ticket invalidation cancel without silent reprepare (0.492492ms)
+✔ prepare changed identity or biomass fails closed and cancellation consumes plan (0.675538ms)
+✔ unknown execution result is not reported as safe failure or retried (0.32577ms)
+✔ DOM buttons use text, preserve long IDs, 4+6 bound, close/hide/collapse clear (1.564066ms)
+✔ post-execution malformed receipt never claims successful move (0.433082ms)
+✔ capacity includes existing target mass; cancel and refresh discard session receipt (0.336738ms)
+✔ destination inspection is explicit and bound to verified world, target and string ID (1.914885ms)
+✔ changing source or destination consumes pending ticket without refreshing options (0.283837ms)
+✔ actual pentagon five destinations accepted while raw self padding remains rejected (0.23209ms)
+PASS bounded exact string IDs, endpoint semantics, invalid data and immutability
+PASS optional third render argument exposes retained endpoint snapshot without extra timers
+✔ ../site-tmp/mobile-ux/web/tests/colony-watch-details.test.cjs (352.06526ms)
+PASS retained optional endpoint UI, active fold closure, exceptions, failed restart, dismissal and bounded scrolling
+✔ ../site-tmp/mobile-ux/web/tests/colony-watch-ui.test.cjs (385.601286ms)
+✔ recovery panel identity, accessible controls and scoped collapsed layout (2.042226ms)
+✔ discovers canonical and hashed durable backups across new storage instances; export exact bytes without writes (62.779632ms)
+✔ rejects arbitrary paths and unverified export without reading (0.88255ms)
+✔ corrupt hash or JSON/version is listed invalid, cannot export; valid backups remain available (5.398632ms)
+✔ selection stale bytes, oversized files and directories fail closed (1.489403ms)
+✔ filesystem read failure is explicit and does not mutate storage/world (0.760075ms)
+✔ restore syncs immutable current checkpoint before apply, canonical untouched, checkpoint rediscovered (18.372135ms)
+✔ prepare, hash, size, write/readback, read, quota, stale and target changes refuse without apply or canonical changes (12.883947ms)
+✔ native refusal codes never automatically write or retry, current state unchanged (11.289095ms)
+✔ existing exact checkpoint is resynced; conflicting checkpoint is never overwritten (3.711161ms)
+✔ invalid selection never prepares; concurrent operation refuses and does not duplicate apply (12.849345ms)
+✔ lastRecoveryError preserves actionable pause/refusal and thrown apply is uncertain (1.68599ms)
+✔ actual Recovery UI composes discovery/cancel and confirmed durable restore or quota refusal (4.055139ms)
+✔ failed Save dirty canonical blocks recovery without prepare/apply/sync until a successful Save (4.883496ms)
+✔ unified recovery discovers supported Wind11 unchanged (0.977803ms)
+✔ discover then select and explicitly restore, no automatic restore (2.242768ms)
+✔ cancel never calls storage restore and preserves selection (0.361434ms)
+✔ busy duplicate restore refused and unavailable prevents action (0.431349ms)
+✔ failure never reports success or changed (0.531951ms)
+✔ export verifies selected bytes through storage API, no load (0.548206ms)
+✔ refresh invalidates old selection, failed listing gives no stale choice (0.351009ms)
+✔ corrupt entries are reported but cannot be selected (0.678933ms)
+✔ World-panel controls expose only verified choices and restore after confirmation (1.170222ms)
+✔ combined native calls use explicit guarded writer and fresh expected-world (0.935279ms)
+✔ Pioneer batch shares reviewed immutable-kind transaction; ordinary stays separate (0.407895ms)
+✔ hardy choice mobile touch styling and collapsed disclosure remain usable in source (0.21253ms)
+✔ protects latest v10 bytes only before actual13 write; old pre-v7 untouched (14.275233ms)
+✔ all historical writers7..10 save guarded without prematurely creating pre13 backup (2.965317ms)
+✔ real latest historical save, not an earlier one, is protected on transition (1.249231ms)
+✔ existing13 repeated/autosave same safe path does not produce backups (0.925704ms)
+✔ fresh13 absent disk save requires guarded native write and no backup (0.711742ms)
+✔ second distinct old save uses immutable hash path, first backup unchanged; identical dedups (6.555866ms)
+✔ collision/corrupt hash path refuses without native write or overwriting backups (0.855188ms)
+✔ opaque/unknown and research12 fail closed before native write (1.335682ms)
+✔ invalid/missing writer or guarded export refuses with no legacy fallback (0.665182ms)
+✔ write/readback/rename corruption and quota failures never authorize overwrite/reset (4.08961ms)
+✔ existing backup read failure aborts; data corruption during sync aborts (0.42473ms)
+✔ world/writer/prior-byte changes during await cannot write a different world (0.536198ms)
+✔ native -6 wrong writer has no sync-after-failure or reset (0.450559ms)
+✔ loaded13 goes through native reader and subsequent normal save policy (1.16183ms)
+✔ pre-v7 remains intact and is created for real old save (1.193047ms)
+✔ no path access leaks into main/Wind namespace (0.434344ms)
+✔ missing/corrupt hash implementation and stale hashing fail closed (0.834607ms)
+✔ real Combined fresh flow never resets after FS corruption, quota or guarded-native failure (1.435772ms)
+✔ real Combined cancellation never saves, creates backup or resets (0.203477ms)
+✔ research12 load refuses before native with actionable identity and unchanged world (1.723636ms)
+✔ pre13 refusal names research12 and does not write or reset (0.317439ms)
+✔ actual combined storage loads readable version6 through native then preserves it before writer7 save (0.689779ms)
+✔ unified11 load now delegates native unchanged and before13write preserves exact11 recovery (1.018094ms)
+✔ actual paid founder and saved descendant allocation are inspectable, not flight claims (1.203142ms)
+✔ zero allocation remains explicit; invalid and dead values are not fabricated (0.372491ms)
+✔ classic/off/unknown law and mismatched snapshots cannot imply enabled trait (0.227863ms)
+✔ explicit save succeeds before fresh replacement; no automatic planting (4.961303ms)
+✔ cancel, unavailable and save/backup failure never reset (0.63085ms)
+✔ world changes during asynchronous durable save never reset (1.082921ms)
+✔ repeated click during save does not duplicate reset (0.198339ms)
+✔ native stale/busy/unavailable refuse without retry (0.248424ms)
+✔ Pioneer available only in actual combined world (0.293142ms)
+✔ status validates native combined law and unknown writer (0.15274ms)
+✔ inconsistent writer/law combinations refuse (0.155494ms)
+✔ controller mount wires one fresh action and truthfully disables Pioneer off (0.35841ms)
+PASS compact Life exact IDs, immutable shares/slot forms, empty/invalid data, action order, collapsed details and truthful empty trend
+✔ ../site-tmp/mobile-ux/web/tests/compact-life.test.cjs (118.387559ms)
+✔ explicit local copy preserves exact report and exposes manual fallback (1.982056ms)
+✔ restricted or missing clipboard stays manually copyable (1.020317ms)
+✔ missing or oversized report never writes or displays stale data (0.793095ms)
+✔ Sandbox finite grazing guidance and bite counter do not promise recovery (1.485878ms)
+PASS: actual elapsed time, immutable retained copy, pause/menu/background cancel API, world/speed/session guards, repeat/cancel and prior result preservation
+✔ ../site-tmp/mobile-ux/web/tests/gameplay-measure.test.cjs (106.294043ms)
+✔ preview only, explicit one-use application and exact manual receipt (1.317805ms)
+✔ cancel and repeated preparation never apply (0.222846ms)
+✔ stale world selection token pause availability and pending refuse (0.330077ms)
+✔ malformed preview fails closed with real bounded footprint (0.400743ms)
+✔ failed response, thrown response and malformed success never imply application status falsely (0.448716ms)
+✔ actual refusal is one-use, no silent retry (0.222556ms)
+✔ shell routes both player entry points through preview and cancels destructive lifecycle (0.63075ms)
+✔ receipt changed risk counts, depth, token or exact footprint is unknown (1.505868ms)
+✔ receipt does not survive world or selection change (0.580965ms)
+✔ sunlit is explicit kind 2 with exact 5m shelf; deep remains kind 1 (1.140358ms)
+✔ sunlit receipt cannot silently become deep, and stale world refuses (0.223166ms)
+PASS: Sandbox harness rejects Origin before touching game state
+✔ ../site-tmp/mobile-ux/web/tests/harness-mode.test.cjs (91.413874ms)
+PASS net biomass trend: measured window, death, no zero baseline, gaps, load/rewind/action reset and invalid data
+PASS bounded trend: 100k tiny advances, actual endpoints, repeated windows, same-time updates, real gaps, rewind, zero baseline and 32×64 storage
+✔ ../site-tmp/mobile-ux/web/tests/life-trend.test.cjs (694.514885ms)
+✔ five coherent groups preserve all action IDs exactly once (8.808158ms)
+✔ group switching is UI-only, community direct access starts bounded sampling (5.33115ms)
+✔ moved direct planet actions dismiss Tools only after success (0.618431ms)
+✔ actual Find and Seed handlers close/focus on success but retain refusal (2.765957ms)
+✔ entire scan continues beyond one512 chunk with exact chosen ID and explicit result (1.85912ms)
+✔ cancel, closed UI, new snapshot and changed source prevent queued navigation (0.424309ms)
+✔ unrelated or dead result never claims offspring; no result is scoped to scan (0.52428ms)
+✔ only explicit valid living parent choices, bounded4 and no unsafe integer coercion (0.259441ms)
+✔ post-navigation snapshot from another world never claims success (9.508072ms)
+✔ exact received flux and simulation duration, no lifetime subtraction (2.779266ms)
+✔ empty interval and no ticks are explicit (0.279531ms)
+✔ pause menu hidden guard cancels without unpause (0.158018ms)
+✔ engine selection/load stop is retained, stale timeout cannot stop replacement (0.256206ms)
+✔ hard deadline and invalid result terminate (0.177898ms)
+✔ photosynthesis without grazing and falling net biomass are not called growth (0.208334ms)
+✔ invalid or missing pulse fields stop safely (0.229195ms)
+✔ compact pulse is four readable lines and typical length below 350 (0.290878ms)
+✔ last step is bounded native inspector with explicit units and combined other change (1.780853ms)
+✔ existing snapshot receipt is read-only and changes no export contract (0.327844ms)
+✔ direct water and god tool attempts invalidate prior interval (0.789659ms)
+✔ receipt display uses signed bounded fixed formatting and active tabs (1.234399ms)
+✔ grazing is presented as signed removal, not added cover (0.23901ms)
+✔ observation requires explicit request and sync never rearms (0.714446ms)
+✔ fresh15 is explicit, old14 valid, malformed combinations refused (0.871282ms)
+✔ save/new guards cancel, unavailable, failure, selection change, stale and repeats (1.131284ms)
+✔ actual identity and graded state wording, not fabricated oldworld zero or countdown (0.658211ms)
+✔ unified New has no climate/protection toggle maze (0.883911ms)
+✔ verbatim native paid active founder and QA persistence states render exact identity (1.47405ms)
+✔ world details retains non-numeric protection cost disclosure (0.556929ms)
+✖ rabbit badge scaling keeps every visible animal and existing two fills, no picking change (6.476827ms)
+✖ web build defaults to explicit false with diagnostic opt in (0.857652ms)
+✖ renderer uses policy and retains independent shader validation (0.357359ms)
+PASS: explicit local capture, extension fallback, bounded strings, software hint without hardware inference
+✔ ../site-tmp/mobile-ux/web/tests/renderer-info.test.cjs (99.076662ms)
+✔ wire14 requires explicit thermal identity and preserves old13 display (1.607171ms)
+✔ explicit calmer save/new uses native choice and no reset after failure or change (7.393627ms)
+✔ water reference separates eligibility and finite support without forecast (2.637523ms)
+✔ zero tiny positive and old unavailable remain distinct (0.39171ms)
+✔ temperature and submerged references do not invent uptake (0.184488ms)
+✔ optional payload is bound to confirmed receipt and old absence accepted (0.351189ms)
+✔ full controller confirms native-shaped water receipt and preserves old payload (3.535987ms)
+✔ zero-water warning does not change paid eligibility; cancel stale and changed reply safe (0.460043ms)
+✔ verbatim native eligible receipts distinguish trace soil from useful water without a number wall (2.686677ms)
+✔ exact large ID success and actual subset resource receipt (3.109073ms)
+✔ cancel, busy, stale selection never apply (0.399331ms)
+✔ duplicate click during confirmation cannot apply twice (0.329126ms)
+✔ all known refusal statuses never inspect (0.727506ms)
+✔ malformed and mismatched receipts fail closed (0.541065ms)
+✔ success ID must exist in actual current snapshot (0.197587ms)
+✔ partial budget is valid; non-law3 and invalid cells refused (0.308845ms)
+✔ changed applied ID or payment is unknown, never falsely nothing planted (0.593775ms)
+✔ wrong support and root split cannot pass preview (0.220171ms)
+✔ current actual light and temperature, not a forecast (1.259918ms)
+✔ nullable and malformed current conditions honestly unavailable (0.233762ms)
+✔ changed conditions after apply report unknown, never automatic retry (0.196066ms)
+✔ actual confirmation carries zero light and cold refusal never opens confirmation (0.306752ms)
+✔ hardy is explicit, uses same token apply and verifies immutable structure (0.507254ms)
+✔ standard default remains, cancelled hardy never applies and invalid variant refuses (0.201954ms)
+✔ variant changes during confirmation cancel instead of switching paid genetics (0.294774ms)
+✔ viewing is inert; explicit enable then choice and cancel never plant (1.147278ms)
+✔ stale selection/world and Origin refuse before command (0.243587ms)
+✔ malformed or mismatched postcommand is unknown not false failed promise (0.259431ms)
+✔ refusal remains visible and no silent focus or retry (0.155354ms)
+✔ isolated shell hides whole Origin auto-seed block across mode flips (5.076116ms)
+✔ tool selection preserves valid phenotype and defaults only Plant; shared native routes (0.582317ms)
+✔ retained seed choice does not promise a planting tap after another tool (0.215955ms)
+✔ Sandbox find controls call distinct kinds without planting or time advancement (2.890064ms)
+✔ Sparse and submerged are not falsely reported as no life (1.098084ms)
+✔ Empty/refused/missing export remain truthful and do not mutate (3.592792ms)
+PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately
+✔ ../site-tmp/mobile-ux/web/tests/save-size-safety.test.cjs (138.796867ms)
+PASS explicit 3D resolution controls, rejected values, backend failures, verified state, no automatic choice
+✔ ../site-tmp/mobile-ux/web/tests/scene-resolution.test.cjs (100.554402ms)
+PASS post-water watch: explicit resume, running, stale world/selection, relabel on pause, zero/refusal and close/cancel; observation begins after edit
+PASS: production shell ID wiring, More/Close/Help flows, save and cancelled/confirmed load
+✔ ../site-tmp/mobile-ux/web/tests/shell.test.cjs (134.36639ms)
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+LEGACY-REFERENCE ONLY: exact original writer6 storage behavior
+PASS: opt-in v7 exact durable pre-upgrade backup, ordering, immutable retries, quota/read/write failure gates, bounded unknown headers, busy dedup, no automatic restore
+✔ ../site-tmp/mobile-ux/web/tests/storage-upgrade.test.cjs (77.604909ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ ../site-tmp/mobile-ux/web/tests/storage.test.cjs (164.008661ms)
+PASS: pinch in/out, paint isolation, post-pinch suppression, taps, navigation, painting, cancellation, repeat/third finger, mouse pass-through
+PASS: frame-aware tap minimum, timeout ceiling, cancellation cleanup
+✔ ../site-tmp/mobile-ux/web/tests/touch-controls.test.cjs (97.429ms)
+✔ one world flow removes overlay and law maze without losing root summary helper (1.547942ms)
+✔ ordinary aquatic start and optional chosen founder toolbox retain exact controls (0.326301ms)
+✔ continued open world closes menu only, New always guarded15 and failed save never creates (0.681026ms)
+✔ runtime initialization and Play never save or load automatically (0.359752ms)
+✔ standalone Wind native disabled root metadata remains a loaded saved world (0.275756ms)
+✔ verbatim native Wind11 snapshot remains supported without phantom roots (0.394564ms)
+✔ actual shell form buttons bind current sample and cancel safely (3.98322ms)
+✔ Watch prepares a private baseline before dismissing only native Inspect (1.284134ms)
+✔ ordinary Watch never resumes; checked Watch requires explicit authorization (0.248935ms)
+✔ generic HTML close and cancel do not trigger native watch transitions (0.435416ms)
+✔ Pioneer batch uses separate start and existing single reviewed paid apply (2.090069ms)
+✔ ordinary batch retains ordinary start (0.193241ms)
+✔ wrong or absent founder kind on initial, status and applied receipt fails closed (0.39815ms)
+✔ cancel invalidates Pioneer plan and queued step kind mismatch refuses (0.38563ms)
+✔ community copy distinguishes sampled forms and unavailable events (2.165642ms)
+✔ bounded census cancels queued work and refuses switched world (0.480664ms)
+✔ Sandbox occupied defense traits use actual range and patch units, not taxonomy (0.500994ms)
+✔ positive tiny toughness does not display as zero (0.250498ms)
+✔ all six stable form identities survive biomass sorting, zero remains honest (0.660775ms)
+✔ visit uses sampled world and enum, never zero or stale/cancelled rows; no retries (1.31416ms)
+✔ current-state refusal never fabricates a match or retries (0.59701ms)
+✔ actual shell uses two-number public contract and accessible six-row controls (0.969981ms)
+✔ discovery never imports and explicit confirmed selection calls exact source/hash (3.29905ms)
+✔ cancel, unavailable and no selection never call native import (0.50442ms)
+✔ repeat clicks cannot duplicate and cancellation suppresses stale success (0.323767ms)
+✔ refused import never claims opened or resets world (0.289757ms)
+ℹ tests 222
+ℹ suites 0
+ℹ pass 219
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1246.552517
+
+✖ failing tests:
+
+test at ../site-tmp/mobile-ux/web/tests/rabbit-marker-scale.test.cjs:3:1
+✖ rabbit badge scaling keeps every visible animal and existing two fills, no picking change (6.476827ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(block.includes('y > height - 90'))
+  
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web/tests/rabbit-marker-scale.test.cjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at ../site-tmp/mobile-ux/web/tests/render-diagnostics-policy.test.cjs:3:1
+✖ web build defaults to explicit false with diagnostic opt in (0.857652ms)
+  Error: ENOENT: no such file or directory, open '/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web-build.zig'
+      at Object.readFileSync (node:fs:483:20)
+      at read (/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web/tests/render-diagnostics-policy.test.cjs:2:61)
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web/tests/render-diagnostics-policy.test.cjs:4:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web-build.zig'
+  }
+
+test at ../site-tmp/mobile-ux/web/tests/render-diagnostics-policy.test.cjs:9:1
+✖ renderer uses policy and retains independent shader validation (0.357359ms)
+  Error: ENOENT: no such file or directory, open '/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/deps/nanovg/src/nanovg_gl.zig'
+      at Object.readFileSync (node:fs:483:20)
+      at read (/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web/tests/render-diagnostics-policy.test.cjs:2:61)
+      at TestContext.<anonymous> (/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/web/tests/render-diagnostics-policy.test.cjs:12:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/workspace/scratch/f67c3ac60ca3/site-tmp/mobile-ux/deps/nanovg/src/nanovg_gl.zig'
+  }

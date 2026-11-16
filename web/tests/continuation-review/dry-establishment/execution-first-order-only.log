@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/run-dry-establishment.py", line 18, in <module>
+    new=rows((b/'reconstruct.log').read_text().splitlines());assert old==new,('reconstruction event mismatch',len(old),len(new),next(((a,c)for a,c in zip(old,new)if a!=c),None))
+                                                                    ^^^^^^^^
+AssertionError: ('reconstruction event mismatch', 272, 272, (('DEATH', {'tick': 425, 'id': 136}), ('DEATH', {'tick': 425, 'id': 130})))
