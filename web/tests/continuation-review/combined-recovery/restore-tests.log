@@ -1,0 +1,21 @@
+✔ discovers canonical and hashed durable backups across new storage instances; export exact bytes without writes (15.989133ms)
+✔ rejects arbitrary paths and unverified export without reading (0.988219ms)
+✔ corrupt hash or JSON/version is listed invalid, cannot export; valid backups remain available (2.790543ms)
+✔ selection stale bytes, oversized files and directories fail closed (1.617947ms)
+✔ filesystem read failure is explicit and does not mutate storage/world (0.720285ms)
+✔ restore syncs immutable current checkpoint before apply, canonical untouched, checkpoint rediscovered (4.722503ms)
+✔ prepare, hash, size, write/readback, read, quota, stale and target changes refuse without apply or canonical changes (7.276369ms)
+✔ native refusal codes never automatically write or retry, current state unchanged (3.380302ms)
+✔ existing exact checkpoint is resynced; conflicting checkpoint is never overwritten (1.960954ms)
+✔ invalid selection never prepares; concurrent operation refuses and does not duplicate apply (1.348151ms)
+✔ lastRecoveryError preserves actionable pause/refusal and thrown apply is uncertain (1.422082ms)
+✔ actual Recovery UI composes discovery/cancel and confirmed durable restore or quota refusal (2.86819ms)
+✔ failed Save dirty canonical blocks recovery without prepare/apply/sync until a successful Save (1.800042ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 207.404992

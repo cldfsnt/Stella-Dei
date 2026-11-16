@@ -1,0 +1,31 @@
+PASS oversized normal/recovery messaging contract, no post-refusal sync, fresh subsequent status; native file atomicity covered separately
+✔ ../site-tmp/root-wind-recovery/web/tests/save-size-safety.test.cjs (80.219786ms)
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /automatic restore is not available/. Input:
+
+'Saved in this browser. Clearing site data removes this save. Use World → Recovery backups to download or restore a verified checkpoint.'
+
+    at /workspace/scratch/f67c3ac60ca3/site-tmp/root-wind-recovery/web/tests/storage-upgrade.test.cjs:49:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'Saved in this browser. Clearing site data removes this save. Use World → Recovery backups to download or restore a verified checkpoint.',
+  expected: /automatic restore is not available/,
+  operator: 'match',
+  diff: 'simple'
+}
+✖ ../site-tmp/root-wind-recovery/web/tests/storage-upgrade.test.cjs (59.097784ms)
+PASS: initialize sync, persistence completion gate, busy dedup, quota errors, missing/corrupt loads, unavailable storage
+✔ ../site-tmp/root-wind-recovery/web/tests/storage.test.cjs (76.527383ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.549039
+
+✖ failing tests:
+
+test at ../site-tmp/root-wind-recovery/web/tests/storage-upgrade.test.cjs:1:1
+✖ ../site-tmp/root-wind-recovery/web/tests/storage-upgrade.test.cjs (59.097784ms)
+  'test failed'

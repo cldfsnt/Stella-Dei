@@ -1,0 +1,13 @@
+✔ discovers canonical and hashed durable backups across new storage instances; export exact bytes without writes (14.10043ms)
+✔ rejects arbitrary paths and unverified export without reading (0.739764ms)
+✔ corrupt hash or JSON/version is listed invalid, cannot export; valid backups remain available (3.789899ms)
+✔ selection stale bytes, oversized files and directories fail closed (1.694783ms)
+✔ filesystem read failure is explicit and does not mutate storage/world (0.752964ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 143.499867

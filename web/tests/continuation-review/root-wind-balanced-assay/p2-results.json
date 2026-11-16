@@ -1,0 +1,360 @@
+{
+  "process": "2",
+  "node": {
+    "node": "24.22.1",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.9",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.9",
+    "simdjson": "4.6.11",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.4",
+    "tz": "2026e",
+    "undici": "7.30.1",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.58",
+    "zlib": "1.3.2.1-motley-285e94b",
+    "zstd": "1.5.7"
+  },
+  "start": "2026-11-16T01:04:25.578Z",
+  "end": "2026-11-16T01:04:46.026Z",
+  "compile_count": 1,
+  "instantiate_count": 10,
+  "binary": {
+    "profile.js": {
+      "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+      "bytes": 94248
+    },
+    "profile.wasm": {
+      "sha256": "40b6de7bcfefee8f4ca903ea1065fe3468649e677b297521deb651539247d239",
+      "bytes": 363467
+    }
+  },
+  "rows": [
+    {
+      "label": "zero",
+      "arm": "A",
+      "ticks": 0,
+      "endpoint_sha256": "f4b9733edf585c8e26eaea9ba414594423103e4f135dac3d409448f2a92c2896",
+      "ms_per_tick": null,
+      "total_ms": 0.001902999999970234,
+      "before": {
+        "rss": 41738240,
+        "heapTotal": 12111872,
+        "heapUsed": 8079344,
+        "external": 4411165,
+        "arrayBuffers": 604330
+      },
+      "after": {
+        "rss": 316268544,
+        "heapTotal": 218542080,
+        "heapUsed": 124498896,
+        "external": 150772763,
+        "arrayBuffers": 12716688
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 17.745228999999995,
+      "after_gc": {
+        "rss": 205570048,
+        "heapTotal": 143183872,
+        "heapUsed": 7486576,
+        "external": 4348393,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "zero",
+      "arm": "B",
+      "ticks": 0,
+      "endpoint_sha256": "ca9c2d4cb9a4c5f02bb3d8cc6a01dfc172fee38f6a40d26d949a8383754e9b78",
+      "ms_per_tick": null,
+      "total_ms": 0.0019730000001345616,
+      "before": {
+        "rss": 205570048,
+        "heapTotal": 143183872,
+        "heapUsed": 7493016,
+        "external": 4348393,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 374054912,
+        "heapTotal": 221163520,
+        "heapUsed": 129629960,
+        "external": 150776486,
+        "arrayBuffers": 12720411
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 16.09979999999996,
+      "after_gc": {
+        "rss": 263004160,
+        "heapTotal": 142659584,
+        "heapUsed": 7494208,
+        "external": 4348393,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "warm0",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "bfba07b941b3c8d33564aa04726efeec18f08c4cc44f4192da9a9fac8a994260",
+      "ms_per_tick": 27.549201266666675,
+      "total_ms": 1652.9520760000005,
+      "before": {
+        "rss": 263004160,
+        "heapTotal": 142659584,
+        "heapUsed": 7500960,
+        "external": 4348393,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 356327424,
+        "heapTotal": 143446016,
+        "heapUsed": 12325064,
+        "external": 150778641,
+        "arrayBuffers": 12722566
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 16.636749000000236,
+      "after_gc": {
+        "rss": 263032832,
+        "heapTotal": 142135296,
+        "heapUsed": 6147032,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "warm1",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "109f341b17218d45caea385b06e92e896cb04db18e579db2c227a90a735a5db2",
+      "ms_per_tick": 28.154534950000002,
+      "total_ms": 1689.272097,
+      "before": {
+        "rss": 263032832,
+        "heapTotal": 142135296,
+        "heapUsed": 6156800,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 355569664,
+        "heapTotal": 142921728,
+        "heapUsed": 12253432,
+        "external": 150772384,
+        "arrayBuffers": 12720461
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 16.538140999999996,
+      "after_gc": {
+        "rss": 275181568,
+        "heapTotal": 142397440,
+        "heapUsed": 6169816,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "warm2",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "109f341b17218d45caea385b06e92e896cb04db18e579db2c227a90a735a5db2",
+      "ms_per_tick": 29.886681483333344,
+      "total_ms": 1793.2008890000006,
+      "before": {
+        "rss": 275181568,
+        "heapTotal": 142397440,
+        "heapUsed": 6177848,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 355528704,
+        "heapTotal": 142921728,
+        "heapUsed": 12271200,
+        "external": 150772384,
+        "arrayBuffers": 12720461
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 21.19840099999965,
+      "after_gc": {
+        "rss": 275296256,
+        "heapTotal": 142397440,
+        "heapUsed": 6195760,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "warm3",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "bfba07b941b3c8d33564aa04726efeec18f08c4cc44f4192da9a9fac8a994260",
+      "ms_per_tick": 22.40931521666665,
+      "total_ms": 1344.558912999999,
+      "before": {
+        "rss": 275296256,
+        "heapTotal": 142397440,
+        "heapUsed": 6204576,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 356298752,
+        "heapTotal": 143183872,
+        "heapUsed": 12259912,
+        "external": 150774489,
+        "arrayBuffers": 12722566
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 15.883074999999735,
+      "after_gc": {
+        "rss": 275439616,
+        "heapTotal": 142397440,
+        "heapUsed": 6195912,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "measured0",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "bfba07b941b3c8d33564aa04726efeec18f08c4cc44f4192da9a9fac8a994260",
+      "ms_per_tick": 23.187691316666648,
+      "total_ms": 1391.2614789999989,
+      "before": {
+        "rss": 275439616,
+        "heapTotal": 142397440,
+        "heapUsed": 6205552,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 356311040,
+        "heapTotal": 143183872,
+        "heapUsed": 12276280,
+        "external": 150774489,
+        "arrayBuffers": 12722566
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 17.69109700000081,
+      "after_gc": {
+        "rss": 275443712,
+        "heapTotal": 142397440,
+        "heapUsed": 6214384,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "measured1",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "109f341b17218d45caea385b06e92e896cb04db18e579db2c227a90a735a5db2",
+      "ms_per_tick": 25.937839599999975,
+      "total_ms": 1556.2703759999986,
+      "before": {
+        "rss": 275443712,
+        "heapTotal": 142397440,
+        "heapUsed": 6224808,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 355790848,
+        "heapTotal": 142921728,
+        "heapUsed": 12305056,
+        "external": 150772384,
+        "arrayBuffers": 12720461
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 16.740615000000616,
+      "after_gc": {
+        "rss": 275451904,
+        "heapTotal": 142397440,
+        "heapUsed": 6234296,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "measured2",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "109f341b17218d45caea385b06e92e896cb04db18e579db2c227a90a735a5db2",
+      "ms_per_tick": 26.178736883333354,
+      "total_ms": 1570.7242130000013,
+      "before": {
+        "rss": 275451904,
+        "heapTotal": 142397440,
+        "heapUsed": 6245600,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 355799040,
+        "heapTotal": 143183872,
+        "heapUsed": 12349880,
+        "external": 150772384,
+        "arrayBuffers": 12720461
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 18.271482000000105,
+      "after_gc": {
+        "rss": 275451904,
+        "heapTotal": 142397440,
+        "heapUsed": 6268216,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    },
+    {
+      "label": "measured3",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "bfba07b941b3c8d33564aa04726efeec18f08c4cc44f4192da9a9fac8a994260",
+      "ms_per_tick": 25.501184299999963,
+      "total_ms": 1530.0710579999977,
+      "before": {
+        "rss": 275451904,
+        "heapTotal": 142397440,
+        "heapUsed": 6281008,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      },
+      "after": {
+        "rss": 356323328,
+        "heapTotal": 143183872,
+        "heapUsed": 12377096,
+        "external": 150774489,
+        "arrayBuffers": 12722566
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 10.713026000001264,
+      "after_gc": {
+        "rss": 275456000,
+        "heapTotal": 142397440,
+        "heapUsed": 6297640,
+        "external": 4344241,
+        "arrayBuffers": 510046
+      }
+    }
+  ]
+}

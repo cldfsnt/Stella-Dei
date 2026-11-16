@@ -1,0 +1,19 @@
+
+fn recoveryState()?*PlayState{
+ if(AdvanceDay.blocksInput())return null;
+ const state=webPlayState() orelse return null;
+ if(state.planet.normalComputeJob)|job|if(!job.isCompleted())return null;
+ return state;
+}
+export fn stella_recovery_prepare(world:u32,writer:u32)[*:0]const u8{
+ const state=recoveryState() orelse return "{\"status\":\"unavailable\",\"token\":0}";
+ return @import("combined_recovery.zig").prepare(state,PerformanceDetails.world_serial,world,writer);
+}
+export fn stella_recovery_apply(token:u32,kind:u32,hash:[*:0]const u8)i32{
+ if(!is_web or !web_initialized)return -1;
+ if(AdvanceDay.blocksInput())return -1;web_loop.pump(1024);
+ const state=recoveryState() orelse return -1;
+ const result=@import("combined_recovery.zig").apply(state,PerformanceDetails.world_serial,token,kind,std.mem.span(hash));
+ if(result==0)PerformanceDetails.worldChanged();return result;
+}
+export fn stella_recovery_cancel(token:u32)i32{return @import("combined_recovery.zig").cancel(token);}

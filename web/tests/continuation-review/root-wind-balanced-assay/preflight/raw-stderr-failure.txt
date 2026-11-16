@@ -1,0 +1,14 @@
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(timing)
+
+    at runBlock (/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/run-root-wind-balanced.cjs:12:129)
+    at block (/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/run-root-wind-balanced.cjs:15:15)
+    at /workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/run-root-wind-balanced.cjs:17:18
+    at Object.<anonymous> (/workspace/scratch/f67c3ac60ca3/stella-independent-review/web/tests/run-root-wind-balanced.cjs:17:540)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
