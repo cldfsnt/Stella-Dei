@@ -1,0 +1,1 @@
+Only runtime physics delta: originHeatCapacity ground active thickness0.1m ->0.5m. Same density5513kg/m3,cp700J/kg/K, water mixed layer cap50m, all fluxes/biology unchanged. main/save_game differences are isolated QA output prefixes only.

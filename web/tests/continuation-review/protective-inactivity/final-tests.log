@@ -1,0 +1,119 @@
+install
++- run test stderr
+DAY kind=0 slot=0 day=1 protected=0.030266415 active=0.030266415 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7074104358700564
+DAY kind=0 slot=0 day=2 protected=0.04510421 active=0.04510421 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7033468730900905
+DAY kind=0 slot=0 day=3 protected=0.06576427 active=0.06576427 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6973752904953779
+DAY kind=0 slot=0 day=4 protected=0.092258945 active=0.092258945 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6888754653729999
+DAY kind=0 slot=0 day=5 protected=0.0834445 active=0.0834445 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6800609296028164
+DAY kind=0 slot=0 day=6 protected=0.0764381 active=0.0764381 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6720105825573284
+DAY kind=0 slot=0 day=7 protected=0.07086336 active=0.07086336 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6645680477766452
+DAY kind=0 slot=1 day=1 protected=0.030266415 active=0.030266415 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7074104358700564
+DAY kind=0 slot=1 day=2 protected=0.04510421 active=0.04510421 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7033468730900905
+DAY kind=0 slot=1 day=3 protected=0.06576427 active=0.06576427 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6973752904953779
+DAY kind=0 slot=1 day=4 protected=0.092258945 active=0.092258945 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6888754653729999
+DAY kind=0 slot=1 day=5 protected=0.0834445 active=0.0834445 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6800609296028164
+DAY kind=0 slot=1 day=6 protected=0.0764381 active=0.0764381 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6720105825573284
+DAY kind=0 slot=1 day=7 protected=0.07086336 active=0.07086336 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.6645680477766452
+DAY kind=1 slot=0 day=1 protected=0.030266415 active=0.030266415 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7074104358700564
+DAY kind=1 slot=0 day=2 protected=0.018597795 active=0.045436483 paid=0.0006053280085325241 entries=1 wakes=0 inactive_ticks=60 soil=0.7053276969970985
+DAY kind=1 slot=0 day=3 protected=0.025704006 active=0.06818657 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.7011599538391853
+DAY kind=1 slot=0 day=4 protected=0.036626082 active=0.0999048 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6949556788644748
+DAY kind=1 slot=0 day=5 protected=0.0456813 active=0.12679668 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6866194266011337
+DAY kind=1 slot=0 day=6 protected=0.041580208 active=0.115738414 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6783267511917005
+DAY kind=1 slot=0 day=7 protected=0.038294423 active=0.10697118 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6706914384376802
+DAY kind=1 slot=1 day=1 protected=0.030266415 active=0.030266415 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7074104358700564
+DAY kind=1 slot=1 day=2 protected=0.018597795 active=0.045436483 paid=0.0006053280085325241 entries=1 wakes=0 inactive_ticks=60 soil=0.7053276969970985
+DAY kind=1 slot=1 day=3 protected=0.025704006 active=0.06818657 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.7011599538391853
+DAY kind=1 slot=1 day=4 protected=0.036626082 active=0.0999048 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6949556788644748
+DAY kind=1 slot=1 day=5 protected=0.0456813 active=0.12679668 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6866194266011337
+DAY kind=1 slot=1 day=6 protected=0.041580204 active=0.115738414 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6783267513269873
+DAY kind=1 slot=1 day=7 protected=0.038294423 active=0.106971174 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6706914387428249
+DAY kind=2 slot=0 day=1 protected=0.030266415 active=0.030266415 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7074104358700564
+DAY kind=2 slot=0 day=2 protected=0.01862538 active=0 paid=0.0006053280085325241 entries=1 wakes=0 inactive_ticks=60 soil=0.7074104358700564
+DAY kind=2 slot=0 day=3 protected=0.027233828 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.7062638463265173
+DAY kind=2 slot=0 day=4 protected=0.04161377 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.704403573214555
+DAY kind=2 slot=0 day=5 protected=0.06289847 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.7015779014882692
+DAY kind=2 slot=0 day=6 protected=0.09356924 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6973501792497603
+DAY kind=2 slot=0 day=7 protected=0.13609546 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6911562910075044
+DAY kind=2 slot=1 day=1 protected=0.030266415 active=0.030266415 paid=0 entries=0 wakes=0 inactive_ticks=0 soil=0.7074104358700564
+DAY kind=2 slot=1 day=2 protected=0.01862538 active=0 paid=0.0006053280085325241 entries=1 wakes=0 inactive_ticks=60 soil=0.7074104358700564
+DAY kind=2 slot=1 day=3 protected=0.027233828 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.7062638463265173
+DAY kind=2 slot=1 day=4 protected=0.04161377 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.704403573214555
+DAY kind=2 slot=1 day=5 protected=0.06289847 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.7015779014882692
+DAY kind=2 slot=1 day=6 protected=0.09356924 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6973501792497603
+DAY kind=2 slot=1 day=7 protected=0.13609546 active=0 paid=0.0006053280085325241 entries=1 wakes=1 inactive_ticks=65 soil=0.6911562910075044
+DAY kind=3 slot=0 day=1 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=0 day=2 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=0 day=3 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=0 day=4 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=0 day=5 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=0 day=6 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=0 day=7 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=1 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=2 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=3 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=4 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=5 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=6 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=3 slot=1 day=7 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=1 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=2 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=3 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=4 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=5 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=6 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=0 day=7 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=1 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=2 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=3 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=4 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=5 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=6 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=4 slot=1 day=7 protected=0 active=0 paid=0.00039999932050704956 entries=1 wakes=0 inactive_ticks=29 soil=0.7101186234866845
+DAY kind=5 slot=0 day=1 protected=0.028175736 active=0.030340604 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.7075704354765124
+DAY kind=5 slot=0 day=2 protected=0.041992854 active=0.045341384 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.7036386825360796
+DAY kind=5 slot=0 day=3 protected=0.06128692 active=0.06631805 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6978493453533305
+DAY kind=5 slot=0 day=4 protected=0.08691175 active=0.0942027 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.689554437313391
+DAY kind=5 slot=0 day=5 protected=0.08049991 active=0.087273866 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6807186490480733
+DAY kind=5 slot=0 day=6 protected=0.07368095 active=0.07989855 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6726299388140567
+DAY kind=5 slot=0 day=7 protected=0.06825356 active=0.07403344 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6651568835674482
+DAY kind=5 slot=1 day=1 protected=0.028175736 active=0.030340604 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.7075704354765124
+DAY kind=5 slot=1 day=2 protected=0.041992854 active=0.045341384 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.7036386825360796
+DAY kind=5 slot=1 day=3 protected=0.06128692 active=0.06631805 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6978493453533305
+DAY kind=5 slot=1 day=4 protected=0.08691175 active=0.0942027 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.689554437313391
+DAY kind=5 slot=1 day=5 protected=0.08049991 active=0.087273866 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6807186490480733
+DAY kind=5 slot=1 day=6 protected=0.07368095 active=0.07989855 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6726299388140567
+DAY kind=5 slot=1 day=7 protected=0.06825356 active=0.07403344 paid=0.00039999932050704956 entries=1 wakes=1 inactive_ticks=5 soil=0.6651568835674482
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=400
+GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+WIND_MUTATION keys8192 positive4088 negative4104 config_bytes24
