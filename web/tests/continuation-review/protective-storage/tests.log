@@ -1,0 +1,36 @@
+✔ discovers canonical and hashed durable backups across new storage instances; export exact bytes without writes (12.842465ms)
+✔ rejects arbitrary paths and unverified export without reading (1.057833ms)
+✔ corrupt hash or JSON/version is listed invalid, cannot export; valid backups remain available (1.935075ms)
+✔ selection stale bytes, oversized files and directories fail closed (1.233679ms)
+✔ filesystem read failure is explicit and does not mutate storage/world (0.485572ms)
+✔ restore syncs immutable current checkpoint before apply, canonical untouched, checkpoint rediscovered (2.580718ms)
+✔ prepare, hash, size, write/readback, read, quota, stale and target changes refuse without apply or canonical changes (5.398282ms)
+✔ native refusal codes never automatically write or retry, current state unchanged (2.943734ms)
+✔ existing exact checkpoint is resynced; conflicting checkpoint is never overwritten (1.770046ms)
+✔ invalid selection never prepares; concurrent operation refuses and does not duplicate apply (1.18143ms)
+✔ lastRecoveryError preserves actionable pause/refusal and thrown apply is uncertain (1.198355ms)
+✔ actual Recovery UI composes discovery/cancel and confirmed durable restore or quota refusal (2.525754ms)
+✔ failed Save dirty canonical blocks recovery without prepare/apply/sync until a successful Save (1.490976ms)
+✔ recovery discovery/export accepts13 and14 exact bytes under generic hash names (1.859411ms)
+✔ writer14 requires actual combined thermal1 identity; historical13 allows omitted or zero (7.135618ms)
+✔ first14 write preserves exact latest prior13 in generic immutable checkpoint before native (4.72678ms)
+✔ same14 repeats do not create backups; older combined13 boundary unchanged (0.985705ms)
+✔ differing historical saves each get immutable hashes; collision refuses (1.034017ms)
+✔ 11/12 remain rejected before14; wrong law during sync stops native (1.115871ms)
+✔ 14 checkpoint write/readback and sync failures cannot overwrite canonical (2.146083ms)
+✔ version14 load delegates to native without conversion; 11/12 remain blocked (0.746094ms)
+✔ new historical13 Save preserves canonical14 in immutable generic recovery before write (0.706904ms)
+✔ reverse14-to13 refuses malformed identity, quota and bad hash without native write (0.925484ms)
+✔ restore13 while canonical14 remains then Save protects14 and writes13 (2.176749ms)
+✔ 15 requires full authoritative protective identity; historical rejects active protective flag (0.478751ms)
+✔ prior13/14 to15 and15 to7/10/13/14 preserve exact immutable checkpoint before guarded write (2.737453ms)
+✔ malformed15 refuses older overwrite; quota/hash collision preserve canonical15 (2.372895ms)
+✔ 15 load delegates native without conversion and repeat15 does not backup (0.453613ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 270.76175

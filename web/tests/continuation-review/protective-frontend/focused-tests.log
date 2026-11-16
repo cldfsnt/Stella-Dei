@@ -1,0 +1,12 @@
+✔ fresh15 is explicit, old14 valid, malformed combinations refused (1.071094ms)
+✔ save/new guards cancel, unavailable, failure, selection change, stale and repeats (1.070352ms)
+✔ actual identity and graded state wording, not fabricated oldworld zero or countdown (0.642979ms)
+✔ creation checkbox is defaultoff, clears Historical and does not mirror loaded15 (0.410187ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.364743

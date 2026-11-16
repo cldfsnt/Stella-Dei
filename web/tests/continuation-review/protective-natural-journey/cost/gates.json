@@ -1,0 +1,34 @@
+{
+  "off": {
+    "A": {
+      "input": "off-legacy.json",
+      "endpoint_sha256": "2d87bf3203c2c7991acff8ab9bfa18df61fe7c11353b9e14c639c23f15c98d65",
+      "zero_material_exact": true,
+      "restart_exact": true,
+      "cross_build_exact_required": true
+    },
+    "B": {
+      "input": "off-small.json",
+      "endpoint_sha256": "2d87bf3203c2c7991acff8ab9bfa18df61fe7c11353b9e14c639c23f15c98d65",
+      "zero_material_exact": true,
+      "restart_exact": true,
+      "cross_build_exact_required": true
+    }
+  },
+  "enabled": {
+    "A": {
+      "input": "enabled-legacy.json",
+      "endpoint_sha256": "dbb17202de082d6707e609294e5bad0841754a4a4632960f146a20b30bae0c72",
+      "zero_material_exact": true,
+      "restart_exact": true,
+      "cross_build_exact_required": false
+    },
+    "B": {
+      "input": "enabled-small.json",
+      "endpoint_sha256": "a8fafc00117e6986b831a80edb5bb7074bb6adf79c296bd8dc8a89341cd462ba",
+      "zero_material_exact": true,
+      "restart_exact": true,
+      "cross_build_exact_required": false
+    }
+  }
+}

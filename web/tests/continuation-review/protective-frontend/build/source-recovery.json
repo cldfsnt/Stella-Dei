@@ -1,0 +1,14 @@
+{
+  "source_files_exact": 1746,
+  "assets_exact": 25,
+  "native_files_exact": 271,
+  "archive_sha256": "3b13184a446abaa88a2b378f12c278325e447071d56d66e5a82781ac29371de5",
+  "recovery_stdout": "Verified and recovered 25 original asset files\n",
+  "prior_runtimes_unchanged": {
+    "web/dist/index.wasm": "83acaa7c1d90683e4534467530cc7358592810eca23e4286167e3d502d22c957",
+    "../site-tmp/wind-dispersal/web/dist/index.wasm": "6bd6e8f9cc8317eee2a99cfebc1df146b9b781da7691fba6b1adc39ed9b0d09f",
+    "../site-tmp/rooted-hardy-ui/web/dist/index.wasm": "1c7c6aec1d231468c5abd20c85f370de71db9ad2e1a41c88822b0010c61251b5",
+    "../site-tmp/root-wind-ui/web/dist/index.wasm": "8fbe75a2a3c0a37b2bbbb4bf3e79fa5224d82e6dc7591a9bf2bf9e8884b3170a",
+    "../site-tmp/root-water-ui/web/dist/index.wasm": "2350946d354b4494c95bfacac8ee15a9df20ad147ca506b4a286e8e89eda6a32"
+  }
+}

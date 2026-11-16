@@ -1,0 +1,27 @@
+
+test "protective15 and historical strict reader exact emission" {
+ const a=std.testing.allocator;var saved=fixture();saved.mode=.origin;
+ var cohorts=[_]Microbes.Cohort{.{}}**4;const cells=[_]SavedCell{.{.cohorts=&cohorts}}**12;
+ saved.origin=.{.model_revision=5,.cells=&cells,.stats=.{.next_lineage=2}};
+ const soil=[_]f64{0}**12;const vapor=[_]f64{0.5}**12;
+ for(7..11)|version|{
+  saved.version=@intCast(version);
+  saved.beta_origin=if(version==7)null else .{.format=if(version==8).origin_land_beta_v1 else if(version==9).origin_land_beta_v2 else .origin_land_beta_v3,.config=.{.enabled=true,.law=1,.physiology_law=@intCast(version-7),.root_mutation=.{.enabled=true,.law=1,.stream_seed=42}},.soil=&soil,.vapor=&vapor};
+  try saved.validate();const encoded=try std.json.stringifyAlloc(a,saved,.{});defer a.free(encoded);
+  try std.testing.expect(std.mem.indexOf(u8,encoded,"aerial_allocation")==null);try std.testing.expect(std.mem.indexOf(u8,encoded,"wind_dispersal")==null);
+  var old=try @import("legacy/save_schema.zig").parse(a,encoded);defer old.deinit();const canonical=try std.json.stringifyAlloc(a,old.value,.{});defer a.free(canonical);try std.testing.expectEqualStrings(encoded,canonical);
+ }
+ saved.version=13;saved.wind_dispersal=.{.enabled=true,.law=1,.stream_seed=std.math.maxInt(u64),.serial=std.math.maxInt(u64)};
+ cohorts[0]=.{.lineage=1,.biomass=0.02,.support_mass=0.001,.root_fraction=0.25,.aerial_allocation=0.5};try saved.validate();
+ const historical=try std.json.stringifyAlloc(a,saved,.{});defer a.free(historical);var old13=try @import("legacy/save_schema.zig").parse(a,historical);defer old13.deinit();const canonical13=try std.json.stringifyAlloc(a,old13.value,.{});defer a.free(canonical13);try std.testing.expectEqualStrings(historical,canonical13);
+ saved.version=14;saved.ground_thermal=.{.law=1};try saved.validate();const bytes=try std.json.stringifyAlloc(a,saved,.{});defer a.free(bytes);var parsed=try parse(a,bytes);defer parsed.deinit();try std.testing.expectEqualDeep(saved,parsed.value);
+ var old14=try @import("legacy/save_schema.zig").parse(a,bytes);defer old14.deinit();const canonical14=try std.json.stringifyAlloc(a,old14.value,.{});defer a.free(canonical14);try std.testing.expectEqualStrings(bytes,canonical14);
+ saved.version=15;saved.protective_strategy=.{.law=1,.mutation_law=1,.stream_seed=std.math.maxInt(u64)};cohorts[0].protective_investment=0.5;cohorts[0].protective_clock=8000;
+ // Dead trait records are valid, not silently normalized away.
+ cohorts[1].protective_investment=0.25;cohorts[1].protective_clock=-1;
+ try saved.validate();const full=try std.json.stringifyAlloc(a,saved,.{});defer a.free(full);var restored=try parse(a,full);defer restored.deinit();try std.testing.expectEqualDeep(saved,restored.value);
+ var bad=saved;bad.version=14;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.protective_strategy=null;try std.testing.expectError(error.IncompatibleSave,bad.validate());bad=saved;bad.protective_strategy.?.law=2;try std.testing.expectError(error.InvalidValue,bad.validate());bad=saved;bad.protective_strategy.?.mutation_law=0;try std.testing.expectError(error.InvalidValue,bad.validate());bad=saved;bad.ground_thermal=null;try std.testing.expectError(error.IncompatibleSave,bad.validate());
+ for([_]u32{11,12})|version|{bad=saved;bad.version=version;try std.testing.expectError(error.IncompatibleSave,bad.validate());}
+ cohorts[1].protective_clock=-0.5;try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].protective_clock=std.math.inf(f32);try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].protective_clock=0;cohorts[1].protective_investment=0;try std.testing.expectError(error.InvalidValue,saved.validate());cohorts[1].protective_clock=-1;cohorts[1].protective_investment=std.math.nan(f32);try std.testing.expectError(error.InvalidValue,saved.validate());
+ try std.testing.expectError(error.MissingField,std.json.parseFromSlice(SavedProtective,a,"{\"law\":1,\"mutation_law\":1}",.{}));
+}

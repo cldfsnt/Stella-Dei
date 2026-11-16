@@ -1,0 +1,9 @@
+# Protective wire15 storage, isolated candidate
+
+New protective-storage.js only; earlier source modules/artifacts unchanged. Native contract fceacea: writer15 requires combined/enabled/root3/wind1/thermal1/protective_law1. Historical writers permit protective_law0 or absence, never1. Saved15 envelope requires protective_strategy law1/mutation_law1/stream_seed plus the existing thermal/root/wind envelope. JS checks only envelope plausibility; full schema/u64 validation is native-owned, and exact original bytes are never reserialized for backup.
+
+Before writing15 over prior1..10/13/14, or any supported historical writer over15, exact canonical bytes are preserved under generic immutable world.recovery.sha256-H.json, readback verified, durably synced, and identity/prior bytes rechecked before guarded native write.13↔14 and pre13 policies remain intact; pre13 backup remains untouched. Repeated15 requires no transition backup. Readable15 goes to native loader unchanged; recovery discovery/export accepts15 via existing kind3.11/12 refusals, dirty failed-save guard, paused one-use native recovery and uncertainty messaging remain unchanged.
+
+28 mocked-FS tests pass: historical regression cases plus valid15 identity, forward/reverse15→7/10/13/14 checkpoints, malformed envelope/quota/collision refusal, native load delegation and recovery15 discovery/export. No native payload or browser execution claim. No UI shell/controller/native/build/deploy edits.
+
+Full candidate suite initially failed one unchanged save-size mock: the new reverse15 detection unnecessarily opened a second FS stream even for writer10/canonical10. Fixed the implementation to inspect the already-captured exact prior-byte header, keeping ordinary historical saves outside the backup branch while still protecting15→historical. No test/mock changed or assertion relaxed. All208 copied tests and28 focused storage/recovery tests now pass; first failure retained.

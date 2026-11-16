@@ -1,0 +1,4444 @@
+{
+  "DAILY": [
+    {
+      "tick": 0,
+      "living": 7,
+      "occupied": 7,
+      "biomass": 0.13999999687075615,
+      "forms": [
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "root": 0,
+      "supported": 0,
+      "protective": 0,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 8,
+        "births": 0,
+        "fixed_carbon": 1073734120.0001717,
+        "recycled_carbon": 0.0,
+        "nutrient_added": 0.0,
+        "failed_patches": 0,
+        "grazed_carbon": 0.0,
+        "grazing_respired_carbon": 0.0,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 60,
+      "living": 14,
+      "occupied": 8,
+      "biomass": 0.2124329498037696,
+      "forms": [
+        10,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "root": 0,
+      "supported": 0,
+      "protective": 4,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 15,
+        "births": 7,
+        "fixed_carbon": 1870119241.6262984,
+        "recycled_carbon": 10896026.337940449,
+        "nutrient_added": 0.0,
+        "failed_patches": 0,
+        "grazed_carbon": 0.0,
+        "grazing_respired_carbon": 0.0,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 120,
+      "living": 25,
+      "occupied": 11,
+      "biomass": 0.3133972566574812,
+      "forms": [
+        17,
+        1,
+        3,
+        1,
+        0,
+        3
+      ],
+      "root": 0,
+      "supported": 0,
+      "protective": 9,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 29,
+        "births": 21,
+        "fixed_carbon": 3070534580.525303,
+        "recycled_carbon": 50757863.88937889,
+        "nutrient_added": 0.0,
+        "failed_patches": 3,
+        "grazed_carbon": 0.0,
+        "grazing_respired_carbon": 0.0,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 180,
+      "living": 29,
+      "occupied": 13,
+      "biomass": 0.4192396455910057,
+      "forms": [
+        18,
+        3,
+        3,
+        2,
+        0,
+        3
+      ],
+      "root": 0,
+      "supported": 0,
+      "protective": 12,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 41,
+        "births": 33,
+        "fixed_carbon": 4705802716.235338,
+        "recycled_carbon": 152816865.4464555,
+        "nutrient_added": 0.0,
+        "failed_patches": 11,
+        "grazed_carbon": 723938.6626309482,
+        "grazing_respired_carbon": 180984.66565773706,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 240,
+      "living": 42,
+      "occupied": 16,
+      "biomass": 0.6237388025037944,
+      "forms": [
+        26,
+        5,
+        5,
+        2,
+        0,
+        4
+      ],
+      "root": 0,
+      "supported": 0,
+      "protective": 18,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 58,
+        "births": 50,
+        "fixed_carbon": 7079517370.126509,
+        "recycled_carbon": 325182094.47380084,
+        "nutrient_added": 0.0,
+        "failed_patches": 15,
+        "grazed_carbon": 15944390.908580508,
+        "grazing_respired_carbon": 3986097.727145127,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 300,
+      "living": 55,
+      "occupied": 16,
+      "biomass": 0.9005555077455938,
+      "forms": [
+        31,
+        10,
+        5,
+        4,
+        0,
+        5
+      ],
+      "root": 0,
+      "supported": 0,
+      "protective": 30,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 86,
+        "births": 78,
+        "fixed_carbon": 10505981919.109797,
+        "recycled_carbon": 590737676.0481938,
+        "nutrient_added": 0.0,
+        "failed_patches": 30,
+        "grazed_carbon": 73510952.05091928,
+        "grazing_respired_carbon": 18377738.01272982,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 360,
+      "living": 65,
+      "occupied": 19,
+      "biomass": 1.1557448629755527,
+      "forms": [
+        34,
+        13,
+        7,
+        5,
+        0,
+        6
+      ],
+      "root": 3,
+      "supported": 0,
+      "protective": 32,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 123,
+        "births": 115,
+        "fixed_carbon": 14579413683.447018,
+        "recycled_carbon": 1019733598.9379325,
+        "nutrient_added": 0.0,
+        "failed_patches": 57,
+        "grazed_carbon": 214391885.1771656,
+        "grazing_respired_carbon": 53597971.2942914,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 420,
+      "living": 65,
+      "occupied": 22,
+      "biomass": 1.2273388057947159,
+      "forms": [
+        33,
+        15,
+        7,
+        5,
+        0,
+        5
+      ],
+      "root": 1,
+      "supported": 1,
+      "protective": 35,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 149,
+        "births": 141,
+        "fixed_carbon": 17284943051.497444,
+        "recycled_carbon": 1639113538.960837,
+        "nutrient_added": 0.0,
+        "failed_patches": 83,
+        "grazed_carbon": 427669794.62378156,
+        "grazing_respired_carbon": 106917448.65594539,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 480,
+      "living": 67,
+      "occupied": 22,
+      "biomass": 1.211872406071052,
+      "forms": [
+        37,
+        13,
+        7,
+        5,
+        0,
+        5
+      ],
+      "root": 1,
+      "supported": 1,
+      "protective": 39,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 174,
+        "births": 166,
+        "fixed_carbon": 20600317798.63401,
+        "recycled_carbon": 2489393416.309575,
+        "nutrient_added": 0.0,
+        "failed_patches": 106,
+        "grazed_carbon": 603005153.8207719,
+        "grazing_respired_carbon": 150751288.45519298,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 540,
+      "living": 79,
+      "occupied": 29,
+      "biomass": 1.4657250111922622,
+      "forms": [
+        42,
+        14,
+        10,
+        6,
+        0,
+        7
+      ],
+      "root": 1,
+      "supported": 1,
+      "protective": 53,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 212,
+        "births": 204,
+        "fixed_carbon": 24918870095.43431,
+        "recycled_carbon": 3512385332.461331,
+        "nutrient_added": 0.0,
+        "failed_patches": 132,
+        "grazed_carbon": 855051085.0541463,
+        "grazing_respired_carbon": 213762771.26353657,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 600,
+      "living": 89,
+      "occupied": 30,
+      "biomass": 1.6567222254816443,
+      "forms": [
+        40,
+        21,
+        9,
+        8,
+        1,
+        10
+      ],
+      "root": 5,
+      "supported": 5,
+      "protective": 55,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 263,
+        "births": 255,
+        "fixed_carbon": 29427047014.495293,
+        "recycled_carbon": 4719549236.350675,
+        "nutrient_added": 0.0,
+        "failed_patches": 173,
+        "grazed_carbon": 1213942153.600679,
+        "grazing_respired_carbon": 303485538.40016973,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 660,
+      "living": 102,
+      "occupied": 36,
+      "biomass": 1.8739343383349478,
+      "forms": [
+        42,
+        28,
+        11,
+        7,
+        1,
+        13
+      ],
+      "root": 5,
+      "supported": 5,
+      "protective": 69,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 305,
+        "births": 297,
+        "fixed_carbon": 34079042442.37885,
+        "recycled_carbon": 6132949594.612881,
+        "nutrient_added": 0.0,
+        "failed_patches": 202,
+        "grazed_carbon": 1695808366.5950184,
+        "grazing_respired_carbon": 423952091.6487546,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 720,
+      "living": 118,
+      "occupied": 41,
+      "biomass": 2.128926054108888,
+      "forms": [
+        43,
+        32,
+        15,
+        10,
+        0,
+        18
+      ],
+      "root": 7,
+      "supported": 7,
+      "protective": 79,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 355,
+        "births": 347,
+        "fixed_carbon": 39518998270.00447,
+        "recycled_carbon": 7774197092.940837,
+        "nutrient_added": 0.0,
+        "failed_patches": 236,
+        "grazed_carbon": 2322056887.9733233,
+        "grazing_respired_carbon": 580514221.9933308,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 780,
+      "living": 131,
+      "occupied": 42,
+      "biomass": 2.4334967946633697,
+      "forms": [
+        45,
+        34,
+        16,
+        10,
+        0,
+        26
+      ],
+      "root": 12,
+      "supported": 12,
+      "protective": 88,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 402,
+        "births": 394,
+        "fixed_carbon": 45775421411.33042,
+        "recycled_carbon": 9658964232.251951,
+        "nutrient_added": 0.0,
+        "failed_patches": 270,
+        "grazed_carbon": 3171418144.3712153,
+        "grazing_respired_carbon": 792854536.0928038,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 840,
+      "living": 148,
+      "occupied": 42,
+      "biomass": 2.7601081568282098,
+      "forms": [
+        40,
+        39,
+        18,
+        12,
+        0,
+        39
+      ],
+      "root": 26,
+      "supported": 26,
+      "protective": 108,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 455,
+        "births": 447,
+        "fixed_carbon": 52725969528.92341,
+        "recycled_carbon": 11853648622.671183,
+        "nutrient_added": 0.0,
+        "failed_patches": 306,
+        "grazed_carbon": 4376010658.254415,
+        "grazing_respired_carbon": 1094002664.5636036,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 900,
+      "living": 161,
+      "occupied": 47,
+      "biomass": 3.1208445611409843,
+      "forms": [
+        43,
+        47,
+        20,
+        11,
+        0,
+        40
+      ],
+      "root": 32,
+      "supported": 32,
+      "protective": 122,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 505,
+        "births": 497,
+        "fixed_carbon": 60546121073.012245,
+        "recycled_carbon": 14373896599.366926,
+        "nutrient_added": 0.0,
+        "failed_patches": 343,
+        "grazed_carbon": 5887655699.550873,
+        "grazing_respired_carbon": 1471913924.8877182,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 960,
+      "living": 176,
+      "occupied": 48,
+      "biomass": 3.5453398765530437,
+      "forms": [
+        40,
+        55,
+        24,
+        13,
+        2,
+        42
+      ],
+      "root": 40,
+      "supported": 40,
+      "protective": 134,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 552,
+        "births": 544,
+        "fixed_carbon": 69298257529.54922,
+        "recycled_carbon": 17269218578.77765,
+        "nutrient_added": 0.0,
+        "failed_patches": 375,
+        "grazed_carbon": 7778991536.493487,
+        "grazing_respired_carbon": 1944747884.1233718,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 1020,
+      "living": 183,
+      "occupied": 55,
+      "biomass": 3.9088622324634343,
+      "forms": [
+        40,
+        58,
+        23,
+        14,
+        1,
+        47
+      ],
+      "root": 45,
+      "supported": 45,
+      "protective": 140,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 617,
+        "births": 609,
+        "fixed_carbon": 78732440555.88866,
+        "recycled_carbon": 20571522396.07999,
+        "nutrient_added": 0.0,
+        "failed_patches": 433,
+        "grazed_carbon": 10070443653.036964,
+        "grazing_respired_carbon": 2517610913.259241,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 1080,
+      "living": 194,
+      "occupied": 58,
+      "biomass": 4.177540879696608,
+      "forms": [
+        40,
+        61,
+        21,
+        14,
+        7,
+        51
+      ],
+      "root": 53,
+      "supported": 53,
+      "protective": 147,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 680,
+        "births": 672,
+        "fixed_carbon": 87855636785.16612,
+        "recycled_carbon": 24325346064.69379,
+        "nutrient_added": 0.0,
+        "failed_patches": 485,
+        "grazed_carbon": 12787299211.155376,
+        "grazing_respired_carbon": 3196824802.788844,
+        "relocations": 0,
+        "movement_respired_carbon": 0.0
+      }
+    },
+    {
+      "tick": 1140,
+      "living": 203,
+      "occupied": 61,
+      "biomass": 4.369222927140072,
+      "forms": [
+        38,
+        66,
+        21,
+        15,
+        4,
+        59
+      ],
+      "root": 60,
+      "supported": 60,
+      "protective": 159,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 761,
+        "births": 753,
+        "fixed_carbon": 97217209225.5034,
+        "recycled_carbon": 28533467143.69328,
+        "nutrient_added": 0.0,
+        "failed_patches": 557,
+        "grazed_carbon": 15884651177.949532,
+        "grazing_respired_carbon": 3971162794.487383,
+        "relocations": 1,
+        "movement_respired_carbon": 1246726.0156925768
+      }
+    },
+    {
+      "tick": 1200,
+      "living": 224,
+      "occupied": 68,
+      "biomass": 4.628452543634921,
+      "forms": [
+        43,
+        78,
+        21,
+        16,
+        9,
+        57
+      ],
+      "root": 75,
+      "supported": 75,
+      "protective": 180,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 859,
+        "births": 851,
+        "fixed_carbon": 107683061062.005,
+        "recycled_carbon": 33192760278.236248,
+        "nutrient_added": 0.0,
+        "failed_patches": 634,
+        "grazed_carbon": 19306707824.734547,
+        "grazing_respired_carbon": 4826676956.183637,
+        "relocations": 1,
+        "movement_respired_carbon": 1246726.0156925768
+      }
+    },
+    {
+      "tick": 1260,
+      "living": 228,
+      "occupied": 66,
+      "biomass": 4.925109115894884,
+      "forms": [
+        36,
+        76,
+        27,
+        18,
+        8,
+        63
+      ],
+      "root": 73,
+      "supported": 73,
+      "protective": 179,
+      "resting": 0,
+      "stats": {
+        "next_lineage": 952,
+        "births": 944,
+        "fixed_carbon": 118712517260.12245,
+        "recycled_carbon": 38303539870.35731,
+        "nutrient_added": 0.0,
+        "failed_patches": 723,
+        "grazed_carbon": 22927785663.61694,
+        "grazing_respired_carbon": 5731946415.904235,
+        "relocations": 1,
+        "movement_respired_carbon": 1246726.0156925768
+      }
+    }
+  ],
+  "FOUNDER": [
+    {
+      "point": 334,
+      "id": 1,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 13553193075531811833
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 1,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 13553193075531811833
+      },
+      "carbon_dioxide_before": 754.3577270507812,
+      "carbon_dioxide_after": 754.3577133201978
+    },
+    {
+      "point": 20387,
+      "id": 2,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 834558098755622080
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 2,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 834558098755622080
+      },
+      "carbon_dioxide_before": 754.3577133201978,
+      "carbon_dioxide_after": 754.3576995896144
+    },
+    {
+      "point": 20389,
+      "id": 3,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 14422777361105296406
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 3,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 14422777361105296406
+      },
+      "carbon_dioxide_before": 754.3576995896144,
+      "carbon_dioxide_after": 754.357685859031
+    },
+    {
+      "point": 20424,
+      "id": 4,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 7606890366189241335
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 4,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 7606890366189241335
+      },
+      "carbon_dioxide_before": 754.357685859031,
+      "carbon_dioxide_after": 754.3576721284476
+    },
+    {
+      "point": 20426,
+      "id": 5,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 2747204470699330317
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 5,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 2747204470699330317
+      },
+      "carbon_dioxide_before": 754.3576721284476,
+      "carbon_dioxide_after": 754.3576583978642
+    },
+    {
+      "point": 20675,
+      "id": 6,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 738024487566801760
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 6,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 738024487566801760
+      },
+      "carbon_dioxide_before": 754.3576583978642,
+      "carbon_dioxide_after": 754.3576446672807
+    },
+    {
+      "point": 20711,
+      "id": 7,
+      "eligible": "eligible",
+      "planted": true,
+      "before": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.019999999552965164,
+        "detritus": 0.0,
+        "rng": 14586740718929899116
+      },
+      "after": {
+        "cohorts": [
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.019999999552965164,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 7,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          },
+          {
+            "protective_investment": 0.0,
+            "protective_clock": -1.0,
+            "aerial_allocation": 0.0,
+            "root_fraction": 0.0,
+            "biomass": 0.0,
+            "organization": 0.0,
+            "support_mass": 0.0,
+            "optimum": 303.0,
+            "efficiency": 1.0,
+            "structure": 0.0,
+            "feeding": 0.0,
+            "mobility": 0.0,
+            "relocations": 0,
+            "last_from": 0,
+            "last_to": 0,
+            "last_move_time": 0.0,
+            "lifetime_grazed": 0.0,
+            "generation": 0,
+            "lineage": 0,
+            "parent": 0,
+            "reproduction_credit": 0.0
+          }
+        ],
+        "nutrient": 0.017999999225139618,
+        "detritus": 0.0,
+        "rng": 14586740718929899116
+      },
+      "carbon_dioxide_before": 754.3576446672807,
+      "carbon_dioxide_after": 754.3576309366973
+    }
+  ],
+  "WATER_PLUS": [
+    {
+      "point": 334,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    },
+    {
+      "point": 20387,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    },
+    {
+      "point": 20389,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    },
+    {
+      "point": 20424,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    },
+    {
+      "point": 20426,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    },
+    {
+      "point": 20675,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    },
+    {
+      "point": 20711,
+      "ok": true,
+      "signed_kg": 7669529785156.25
+    }
+  ],
+  "POND_TARGET": [
+    {
+      "point": 334,
+      "change_m": -0.8964040875434875,
+      "signed_kg": -6874997436523.4375
+    },
+    {
+      "point": 20387,
+      "change_m": -0.7081283330917358,
+      "signed_kg": -5431010620117.1875
+    },
+    {
+      "point": 20389,
+      "change_m": -0.732049822807312,
+      "signed_kg": -5614477416992.1875
+    },
+    {
+      "point": 20424,
+      "change_m": -0.7860413193702698,
+      "signed_kg": -6028566772460.9375
+    },
+    {
+      "point": 20426,
+      "change_m": -0.8124748468399048,
+      "signed_kg": -6231299682617.1875
+    },
+    {
+      "point": 20675,
+      "change_m": -0.6566134095191956,
+      "signed_kg": -5035915405273.4375
+    },
+    {
+      "point": 20711,
+      "change_m": -0.7613751292228699,
+      "signed_kg": -5839388549804.6875
+    }
+  ],
+  "DRAWDOWN": [
+    {
+      "point": 334,
+      "change_m": -0.41928014159202576,
+      "signed_kg": -3215681419372.5586
+    },
+    {
+      "point": 20387,
+      "change_m": -0.28939738869667053,
+      "signed_kg": -2219541770935.0586
+    },
+    {
+      "point": 20389,
+      "change_m": 0.009999999776482582,
+      "signed_kg": 76695289611.8164
+    },
+    {
+      "point": 20424,
+      "change_m": -0.29025664925575256,
+      "signed_kg": -2226132102966.3086
+    },
+    {
+      "point": 20426,
+      "change_m": -0.21620000898838043,
+      "signed_kg": -1658152244567.871
+    },
+    {
+      "point": 20675,
+      "change_m": -0.08401836454868317,
+      "signed_kg": -644381309509.2773
+    },
+    {
+      "point": 20711,
+      "change_m": -0.1598757803440094,
+      "signed_kg": -1226172019958.496
+    }
+  ],
+  "COMPLETE": [
+    {
+      "resumed": false,
+      "root_credits": 7.13104382478292e-05,
+      "used_rows": 182
+    }
+  ],
+  "VISIT": [
+    {
+      "code": 1,
+      "point": 20426
+    },
+    {
+      "code": 1,
+      "point": 20426
+    },
+    {
+      "code": 1,
+      "point": 20426
+    }
+  ],
+  "funded_root_lineages": [
+    {
+      "id": 246,
+      "birth": {
+        "tick": 592,
+        "point": 20740,
+        "cohort": {
+          "protective_investment": 0.0,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.061942629516124725,
+          "support_mass": 0.0002174264081986621,
+          "optimum": 300.6288757324219,
+          "efficiency": 1.048669695854187,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.10981777310371399,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 2,
+          "lineage": 246,
+          "parent": 23,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          600,
+          1.3753090876731765e-06
+        ],
+        [
+          601,
+          1.303319308443454e-06
+        ],
+        [
+          602,
+          1.227345843972457e-06
+        ],
+        [
+          603,
+          1.1555964112404921e-06
+        ],
+        [
+          604,
+          1.0880000716973694e-06
+        ],
+        [
+          605,
+          1.024461036545146e-06
+        ],
+        [
+          606,
+          9.649875307995177e-07
+        ],
+        [
+          607,
+          9.105329446067104e-07
+        ],
+        [
+          608,
+          8.607543852147063e-07
+        ],
+        [
+          609,
+          8.136539246849009e-07
+        ],
+        [
+          610,
+          7.691052903020983e-07
+        ],
+        [
+          611,
+          7.26981936230168e-07
+        ],
+        [
+          612,
+          6.871635217097816e-07
+        ],
+        [
+          613,
+          6.495396630278022e-07
+        ]
+      ],
+      "used_h": [
+        [
+          600,
+          0.22416742
+        ],
+        [
+          601,
+          0.23484233
+        ],
+        [
+          602,
+          0.24612536
+        ],
+        [
+          603,
+          0.25975987
+        ],
+        [
+          604,
+          0.27622324
+        ],
+        [
+          605,
+          0.2961385
+        ],
+        [
+          606,
+          0.32033426
+        ],
+        [
+          607,
+          0.34557888
+        ],
+        [
+          608,
+          0.3417922
+        ],
+        [
+          609,
+          0.33809254
+        ],
+        [
+          610,
+          0.33448312
+        ],
+        [
+          611,
+          0.33096495
+        ],
+        [
+          612,
+          0.3275396
+        ],
+        [
+          613,
+          0.32421115
+        ]
+      ],
+      "death_tick": 613
+    },
+    {
+      "id": 554,
+      "birth": {
+        "tick": 963,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.0,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.18183818459510803,
+          "root_fraction": 0.03125,
+          "biomass": 0.0040000006556510925,
+          "organization": 0.09830094873905182,
+          "support_mass": 0.00020803185179829597,
+          "optimum": 304.2226867675781,
+          "efficiency": 1.0826224088668823,
+          "structure": 0.08457975834608078,
+          "feeding": 0.07144401222467422,
+          "mobility": 0.017646873369812965,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 4,
+          "lineage": 554,
+          "parent": 240,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          964,
+          1.606948954823076e-08
+        ],
+        [
+          965,
+          1.4859663507378326e-08
+        ],
+        [
+          966,
+          1.3742112714770866e-08
+        ],
+        [
+          967,
+          1.2709655997856549e-08
+        ],
+        [
+          968,
+          1.1755576908894639e-08
+        ],
+        [
+          969,
+          1.0873900800514895e-08
+        ],
+        [
+          970,
+          1.0059097175993735e-08
+        ],
+        [
+          971,
+          9.306044595872e-09
+        ]
+      ],
+      "used_h": [
+        [
+          964,
+          0.004418021
+        ],
+        [
+          965,
+          0.0047807163
+        ],
+        [
+          966,
+          0.004934331
+        ],
+        [
+          967,
+          0.004860597
+        ],
+        [
+          968,
+          0.004788041
+        ],
+        [
+          969,
+          0.004716667
+        ],
+        [
+          970,
+          0.0046464754
+        ],
+        [
+          971,
+          0.004577458
+        ]
+      ],
+      "death_tick": 971
+    },
+    {
+      "id": 620,
+      "birth": {
+        "tick": 1025,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.19072631001472473,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.01419848669320345,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.12107342481613159,
+          "support_mass": 0.0004177301889285445,
+          "optimum": 305.2901916503906,
+          "efficiency": 1.1641509532928467,
+          "structure": 0.08053485304117203,
+          "feeding": 0.12111087143421173,
+          "mobility": 0.026610806584358215,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 620,
+          "parent": 397,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1026,
+          1.3746717162224041e-08
+        ],
+        [
+          1027,
+          1.2693750541669148e-08
+        ],
+        [
+          1028,
+          1.1723069360058776e-08
+        ],
+        [
+          1029,
+          1.0828132582257858e-08
+        ],
+        [
+          1030,
+          1.0002930583663245e-08
+        ],
+        [
+          1031,
+          9.241907886107705e-09
+        ],
+        [
+          1032,
+          8.539987820753551e-09
+        ],
+        [
+          1033,
+          7.892501715987962e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1026,
+          0.0046049184
+        ],
+        [
+          1027,
+          0.0045367656
+        ],
+        [
+          1028,
+          0.0044697197
+        ],
+        [
+          1029,
+          0.004403782
+        ],
+        [
+          1030,
+          0.0043389564
+        ],
+        [
+          1031,
+          0.004275232
+        ],
+        [
+          1032,
+          0.004212611
+        ],
+        [
+          1033,
+          0.004151093
+        ]
+      ],
+      "death_tick": 1033
+    },
+    {
+      "id": 660,
+      "birth": {
+        "tick": 1072,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.41561374068260193,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.015047191642224789,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.012498531490564346,
+          "support_mass": 0.0002272321580676362,
+          "optimum": 298.84234619140625,
+          "efficiency": 1.111588716506958,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 660,
+          "parent": 514,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1073,
+          4.0176780944544645e-09
+        ],
+        [
+          1074,
+          3.7013660632016636e-09
+        ],
+        [
+          1075,
+          3.409587549941403e-09
+        ],
+        [
+          1076,
+          3.140514676763932e-09
+        ],
+        [
+          1077,
+          2.892430655945797e-09
+        ],
+        [
+          1078,
+          2.6637546799971427e-09
+        ],
+        [
+          1079,
+          2.4530054839810066e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1073,
+          0.00065316656
+        ],
+        [
+          1074,
+          0.00065510714
+        ],
+        [
+          1075,
+          0.0006606576
+        ],
+        [
+          1076,
+          0.0006700057
+        ],
+        [
+          1077,
+          0.00068343076
+        ],
+        [
+          1078,
+          0.0007013266
+        ],
+        [
+          1079,
+          0.000724218
+        ]
+      ],
+      "death_tick": 1079
+    },
+    {
+      "id": 682,
+      "birth": {
+        "tick": 1081,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.10009055584669113,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.09442131221294403,
+          "support_mass": 0.0002223648043582216,
+          "optimum": 303.86175537109375,
+          "efficiency": 1.1037907600402832,
+          "structure": 0.0021774412598460913,
+          "feeding": 0.0,
+          "mobility": 0.18242399394512177,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 682,
+          "parent": 484,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1082,
+          3.4555646329453947e-09
+        ],
+        [
+          1083,
+          3.1808315896407914e-09
+        ],
+        [
+          1084,
+          2.928093605332424e-09
+        ],
+        [
+          1085,
+          2.6956174278416345e-09
+        ],
+        [
+          1086,
+          2.4818069076864286e-09
+        ],
+        [
+          1087,
+          2.28516266609453e-09
+        ],
+        [
+          1088,
+          2.1042848769850565e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1082,
+          0.0008122391
+        ],
+        [
+          1083,
+          0.00086346595
+        ],
+        [
+          1084,
+          0.00092587183
+        ],
+        [
+          1085,
+          0.0010021552
+        ],
+        [
+          1086,
+          0.0010346496
+        ],
+        [
+          1087,
+          0.0010194886
+        ],
+        [
+          1088,
+          0.0010045771
+        ]
+      ],
+      "death_tick": 1088
+    },
+    {
+      "id": 693,
+      "birth": {
+        "tick": 1087,
+        "point": 20419,
+        "cohort": {
+          "protective_investment": 0.0,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.11979243904352188,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.10186120122671127,
+          "support_mass": 0.00033747966517694294,
+          "optimum": 308.87921142578125,
+          "efficiency": 1.1633775234222412,
+          "structure": 0.0,
+          "feeding": 0.20956707000732422,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 693,
+          "parent": 450,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1088,
+          1.5842989682986124e-06
+        ],
+        [
+          1089,
+          1.4972346473224975e-06
+        ],
+        [
+          1090,
+          1.4109423414560947e-06
+        ],
+        [
+          1091,
+          1.3254116627991682e-06
+        ],
+        [
+          1092,
+          1.2406368780774692e-06
+        ],
+        [
+          1093,
+          1.1566178584080978e-06
+        ],
+        [
+          1094,
+          1.0733558679468484e-06
+        ],
+        [
+          1095,
+          9.908549464704296e-07
+        ],
+        [
+          1096,
+          9.091268000683589e-07
+        ],
+        [
+          1097,
+          8.269953725109922e-07
+        ],
+        [
+          1098,
+          7.445719782568496e-07
+        ],
+        [
+          1099,
+          6.622701575075491e-07
+        ]
+      ],
+      "used_h": [
+        [
+          1088,
+          0.51908475
+        ],
+        [
+          1089,
+          0.50782186
+        ],
+        [
+          1090,
+          0.49577594
+        ],
+        [
+          1091,
+          0.48287705
+        ],
+        [
+          1092,
+          0.46904847
+        ],
+        [
+          1093,
+          0.45420572
+        ],
+        [
+          1094,
+          0.4382534
+        ],
+        [
+          1095,
+          0.4210845
+        ],
+        [
+          1096,
+          0.40257993
+        ],
+        [
+          1097,
+          0.38205466
+        ],
+        [
+          1098,
+          0.35933918
+        ],
+        [
+          1099,
+          0.334386
+        ]
+      ],
+      "death_tick": 1099
+    },
+    {
+      "id": 694,
+      "birth": {
+        "tick": 1088,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.06482391059398651,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.05008528754115105,
+          "support_mass": 0.00042636736179701984,
+          "optimum": 310.3221130371094,
+          "efficiency": 1.183172583580017,
+          "structure": 0.0,
+          "feeding": 0.0266418419778347,
+          "mobility": 0.14014345407485962,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 694,
+          "parent": 397,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1089,
+          5.975235910603036e-09
+        ],
+        [
+          1090,
+          5.493076671899959e-09
+        ],
+        [
+          1091,
+          5.050704409279005e-09
+        ],
+        [
+          1092,
+          4.644759156211423e-09
+        ],
+        [
+          1093,
+          4.272191710094353e-09
+        ],
+        [
+          1094,
+          3.930188158419339e-09
+        ],
+        [
+          1095,
+          3.616191243208683e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1089,
+          0.002006441
+        ],
+        [
+          1090,
+          0.0019772302
+        ],
+        [
+          1091,
+          0.0019485238
+        ],
+        [
+          1092,
+          0.0019203175
+        ],
+        [
+          1093,
+          0.0018926171
+        ],
+        [
+          1094,
+          0.0018654161
+        ],
+        [
+          1095,
+          0.0018387149
+        ]
+      ],
+      "death_tick": 1095
+    },
+    {
+      "id": 696,
+      "birth": {
+        "tick": 1090,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.12259648740291595,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.14370287954807281,
+          "support_mass": 0.0004263673909008503,
+          "optimum": 309.03460693359375,
+          "efficiency": 1.0968025922775269,
+          "structure": 0.0,
+          "feeding": 0.07692017406225204,
+          "mobility": 0.14664098620414734,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 696,
+          "parent": 397,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1091,
+          5.802757456628077e-09
+        ],
+        [
+          1092,
+          5.334143352030026e-09
+        ],
+        [
+          1093,
+          4.9043230370521386e-09
+        ],
+        [
+          1094,
+          4.509997038087433e-09
+        ],
+        [
+          1095,
+          4.148168607568513e-09
+        ],
+        [
+          1096,
+          3.8161015701552525e-09
+        ],
+        [
+          1097,
+          3.5112864267688557e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1091,
+          0.0019485238
+        ],
+        [
+          1092,
+          0.0019203175
+        ],
+        [
+          1093,
+          0.001892617
+        ],
+        [
+          1094,
+          0.001865416
+        ],
+        [
+          1095,
+          0.0018387146
+        ],
+        [
+          1096,
+          0.0018125138
+        ],
+        [
+          1097,
+          0.0017868102
+        ]
+      ],
+      "death_tick": 1097
+    },
+    {
+      "id": 737,
+      "birth": {
+        "tick": 1132,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.0,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.03342992067337036,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.12508082389831543,
+          "support_mass": 0.0003409356577321887,
+          "optimum": 304.71099853515625,
+          "efficiency": 1.1205880641937256,
+          "structure": 0.0,
+          "feeding": 0.17574156820774078,
+          "mobility": 0.056469857692718506,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 737,
+          "parent": 450,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1133,
+          2.8489386152885356e-08
+        ],
+        [
+          1134,
+          5.506734682346752e-08
+        ],
+        [
+          1135,
+          5.087019550495586e-08
+        ],
+        [
+          1136,
+          4.685766653808467e-08
+        ],
+        [
+          1137,
+          4.315968876278701e-08
+        ],
+        [
+          1138,
+          3.9752393014775114e-08
+        ],
+        [
+          1139,
+          3.661345983822095e-08
+        ],
+        [
+          1140,
+          3.372247520156968e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1133,
+          0.0056218538
+        ],
+        [
+          1134,
+          0.009918919
+        ],
+        [
+          1135,
+          0.010033054
+        ],
+        [
+          1136,
+          0.010176749
+        ],
+        [
+          1137,
+          0.010382367
+        ],
+        [
+          1138,
+          0.010655934
+        ],
+        [
+          1139,
+          0.011005465
+        ],
+        [
+          1140,
+          0.011441594
+        ]
+      ],
+      "death_tick": 1140
+    },
+    {
+      "id": 745,
+      "birth": {
+        "tick": 1133,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.36133670806884766,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.0858147144317627,
+          "support_mass": 0.00019444237113930285,
+          "optimum": 300.6741943359375,
+          "efficiency": 1.0658628940582275,
+          "structure": 0.11456426233053207,
+          "feeding": 0.11108678579330444,
+          "mobility": 0.055306315422058105,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 745,
+          "parent": 531,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1134,
+          3.312668239393612e-08
+        ],
+        [
+          1135,
+          3.0814598896684125e-08
+        ],
+        [
+          1136,
+          2.8579716779555332e-08
+        ],
+        [
+          1137,
+          2.650422769589976e-08
+        ],
+        [
+          1138,
+          2.4577397602024634e-08
+        ],
+        [
+          1139,
+          2.278902493640069e-08
+        ],
+        [
+          1140,
+          2.112968792761401e-08
+        ],
+        [
+          1141,
+          1.9591070812869844e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1134,
+          0.0054292115
+        ],
+        [
+          1135,
+          0.0054916847
+        ],
+        [
+          1136,
+          0.005570337
+        ],
+        [
+          1137,
+          0.005682885
+        ],
+        [
+          1138,
+          0.005832624
+        ],
+        [
+          1139,
+          0.006023944
+        ],
+        [
+          1140,
+          0.0062626624
+        ],
+        [
+          1141,
+          0.0065565584
+        ]
+      ],
+      "death_tick": 1141
+    },
+    {
+      "id": 743,
+      "birth": {
+        "tick": 1133,
+        "point": 20419,
+        "cohort": {
+          "protective_investment": 0.12352263182401657,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.047563180327415466,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.08869345486164093,
+          "support_mass": 0.00042956980178132653,
+          "optimum": 309.6847229003906,
+          "efficiency": 1.1553603410720825,
+          "structure": 0.0,
+          "feeding": 0.14407089352607727,
+          "mobility": 0.1831182837486267,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 743,
+          "parent": 397,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1138,
+          1.4600655327415222e-06
+        ],
+        [
+          1139,
+          2.089895100973209e-06
+        ],
+        [
+          1140,
+          2.0066451390514466e-06
+        ],
+        [
+          1141,
+          1.9275987992582713e-06
+        ],
+        [
+          1142,
+          1.8528591359913015e-06
+        ],
+        [
+          1143,
+          1.757624021881632e-06
+        ],
+        [
+          1144,
+          1.5440955828765557e-06
+        ],
+        [
+          1145,
+          1.3369199025867266e-06
+        ],
+        [
+          1146,
+          1.2032212856336357e-06
+        ],
+        [
+          1147,
+          1.137581554024909e-06
+        ],
+        [
+          1148,
+          1.0724753333870454e-06
+        ],
+        [
+          1149,
+          1.0078780838730285e-06
+        ],
+        [
+          1150,
+          9.437781435317862e-07
+        ],
+        [
+          1151,
+          8.801716164176713e-07
+        ]
+      ],
+      "used_h": [
+        [
+          1138,
+          0.2903222
+        ],
+        [
+          1139,
+          0.45546776
+        ],
+        [
+          1140,
+          0.47568706
+        ],
+        [
+          1141,
+          0.5003171
+        ],
+        [
+          1142,
+          0.53022814
+        ],
+        [
+          1143,
+          0.558635
+        ],
+        [
+          1144,
+          0.54968554
+        ],
+        [
+          1145,
+          0.5395995
+        ],
+        [
+          1146,
+          0.5287895
+        ],
+        [
+          1147,
+          0.5172662
+        ],
+        [
+          1148,
+          0.50495714
+        ],
+        [
+          1149,
+          0.49178237
+        ],
+        [
+          1150,
+          0.4776588
+        ],
+        [
+          1151,
+          0.46249646
+        ]
+      ],
+      "death_tick": 1151
+    },
+    {
+      "id": 766,
+      "birth": {
+        "tick": 1142,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.12534308433532715,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.15858714282512665,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.05067901685833931,
+          "support_mass": 0.0003428469062782824,
+          "optimum": 307.5302429199219,
+          "efficiency": 1.137783408164978,
+          "structure": 0.09621576219797134,
+          "feeding": 0.06121939420700073,
+          "mobility": 0.07699475437402725,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 766,
+          "parent": 450,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1143,
+          5.1500710928445174e-08
+        ],
+        [
+          1144,
+          4.7658298986212125e-08
+        ],
+        [
+          1145,
+          4.4109324433890733e-08
+        ],
+        [
+          1146,
+          4.083208511732014e-08
+        ],
+        [
+          1147,
+          3.7803998457045616e-08
+        ],
+        [
+          1148,
+          3.500410502999433e-08
+        ],
+        [
+          1149,
+          3.241502570308911e-08
+        ],
+        [
+          1150,
+          3.002072734462212e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1143,
+          0.013490582
+        ],
+        [
+          1144,
+          0.014467508
+        ],
+        [
+          1145,
+          0.015661614
+        ],
+        [
+          1146,
+          0.01617169
+        ],
+        [
+          1147,
+          0.01593703
+        ],
+        [
+          1148,
+          0.015706291
+        ],
+        [
+          1149,
+          0.015479481
+        ],
+        [
+          1150,
+          0.015256614
+        ]
+      ],
+      "death_tick": 1150
+    },
+    {
+      "id": 787,
+      "birth": {
+        "tick": 1182,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.32758381962776184,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.1011381596326828,
+          "support_mass": 0.00024125522759277374,
+          "optimum": 300.4370422363281,
+          "efficiency": 1.1489912271499634,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.003892362117767334,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 787,
+          "parent": 514,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1183,
+          2.156650804767239e-08
+        ],
+        [
+          1184,
+          1.9926504522197663e-08
+        ],
+        [
+          1185,
+          1.8407710625557018e-08
+        ],
+        [
+          1186,
+          1.7001061107335404e-08
+        ],
+        [
+          1187,
+          1.569848474213838e-08
+        ],
+        [
+          1188,
+          1.4492522300730046e-08
+        ],
+        [
+          1189,
+          1.3376329937184769e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1183,
+          0.004040999
+        ],
+        [
+          1184,
+          0.0038409214
+        ],
+        [
+          1185,
+          0.0036722652
+        ],
+        [
+          1186,
+          0.0035309189
+        ],
+        [
+          1187,
+          0.0034136951
+        ],
+        [
+          1188,
+          0.0033181095
+        ],
+        [
+          1189,
+          0.003242269
+        ]
+      ],
+      "death_tick": 1189
+    },
+    {
+      "id": 797,
+      "birth": {
+        "tick": 1185,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.37132030725479126,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.029887594282627106,
+          "support_mass": 0.0001956893684109673,
+          "optimum": 299.7435302734375,
+          "efficiency": 1.0934072732925415,
+          "structure": 0.12913024425506592,
+          "feeding": 0.1228346973657608,
+          "mobility": 0.03811922296881676,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 797,
+          "parent": 531,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1186,
+          1.691127372915562e-08
+        ],
+        [
+          1187,
+          1.5727565777504013e-08
+        ],
+        [
+          1188,
+          1.462332513470656e-08
+        ],
+        [
+          1189,
+          1.3593545389574682e-08
+        ],
+        [
+          1190,
+          1.2633570274725853e-08
+        ],
+        [
+          1191,
+          1.173900328727872e-08
+        ],
+        [
+          1192,
+          1.0905682242033447e-08
+        ],
+        [
+          1193,
+          1.0129719201954977e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1186,
+          0.002829731
+        ],
+        [
+          1187,
+          0.0027357864
+        ],
+        [
+          1188,
+          0.0026591828
+        ],
+        [
+          1189,
+          0.0025984035
+        ],
+        [
+          1190,
+          0.0025523312
+        ],
+        [
+          1191,
+          0.0025201866
+        ],
+        [
+          1192,
+          0.0025014922
+        ],
+        [
+          1193,
+          0.002496069
+        ]
+      ],
+      "death_tick": 1193
+    },
+    {
+      "id": 799,
+      "birth": {
+        "tick": 1186,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.1923162192106247,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.048163823783397675,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.16537533700466156,
+          "support_mass": 0.0004318081773817539,
+          "optimum": 306.55218505859375,
+          "efficiency": 1.1354597806930542,
+          "structure": 0.0,
+          "feeding": 0.07524272054433823,
+          "mobility": 0.05849114805459976,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 799,
+          "parent": 397,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1187,
+          3.687777528285294e-08
+        ],
+        [
+          1188,
+          3.3994737153863045e-08
+        ],
+        [
+          1189,
+          3.1332600767804435e-08
+        ],
+        [
+          1190,
+          2.8875080547456175e-08
+        ],
+        [
+          1191,
+          2.660701960221782e-08
+        ],
+        [
+          1192,
+          2.4514291019499106e-08
+        ],
+        [
+          1193,
+          2.2583846959958754e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1187,
+          0.00643626
+        ],
+        [
+          1188,
+          0.006256041
+        ],
+        [
+          1189,
+          0.00611305
+        ],
+        [
+          1190,
+          0.0060046595
+        ],
+        [
+          1191,
+          0.0059290356
+        ],
+        [
+          1192,
+          0.0058850558
+        ],
+        [
+          1193,
+          0.005872297
+        ]
+      ],
+      "death_tick": 1193
+    },
+    {
+      "id": 816,
+      "birth": {
+        "tick": 1191,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.3581790626049042,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.08458053320646286,
+          "support_mass": 0.00024303347163368016,
+          "optimum": 301.83941650390625,
+          "efficiency": 1.1008718013763428,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.022294390946626663,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 816,
+          "parent": 514,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1192,
+          1.948585094243005e-08
+        ],
+        [
+          1193,
+          1.796009871682881e-08
+        ],
+        [
+          1194,
+          1.6551702229132533e-08
+        ],
+        [
+          1195,
+          1.5252030956600986e-08
+        ],
+        [
+          1196,
+          1.4053031722678975e-08
+        ],
+        [
+          1197,
+          1.29472546623942e-08
+        ],
+        [
+          1198,
+          1.192799918278308e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1192,
+          0.0031458396
+        ],
+        [
+          1193,
+          0.00313902
+        ],
+        [
+          1194,
+          0.0031490289
+        ],
+        [
+          1195,
+          0.0031763744
+        ],
+        [
+          1196,
+          0.0032219682
+        ],
+        [
+          1197,
+          0.0032871915
+        ],
+        [
+          1198,
+          0.003374033
+        ]
+      ],
+      "death_tick": 1198
+    },
+    {
+      "id": 847,
+      "birth": {
+        "tick": 1197,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.3248886466026306,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.05205678194761276,
+          "support_mass": 0.00024395721266046166,
+          "optimum": 300.66656494140625,
+          "efficiency": 1.1106057167053223,
+          "structure": 0.0,
+          "feeding": 0.03205198049545288,
+          "mobility": 0.09965892136096954,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 847,
+          "parent": 514,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1198,
+          1.800561884555188e-08
+        ],
+        [
+          1199,
+          1.6580556949835085e-08
+        ],
+        [
+          1200,
+          1.5268325444125926e-08
+        ],
+        [
+          1201,
+          1.4060174083419667e-08
+        ],
+        [
+          1202,
+          1.294804367805098e-08
+        ],
+        [
+          1203,
+          1.192445864529576e-08
+        ],
+        [
+          1204,
+          1.0982515083181511e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1198,
+          0.0033876891
+        ],
+        [
+          1199,
+          0.0034991459
+        ],
+        [
+          1200,
+          0.0036382645
+        ],
+        [
+          1201,
+          0.003809467
+        ],
+        [
+          1202,
+          0.0040185396
+        ],
+        [
+          1203,
+          0.004273067
+        ],
+        [
+          1204,
+          0.0045830794
+        ]
+      ],
+      "death_tick": 1204
+    },
+    {
+      "id": 852,
+      "birth": {
+        "tick": 1199,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.13826677203178406,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.0557403564453125,
+          "support_mass": 0.00023198427516035736,
+          "optimum": 304.8638916015625,
+          "efficiency": 1.0981967449188232,
+          "structure": 0.0,
+          "feeding": 0.0,
+          "mobility": 0.07445334643125534,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 852,
+          "parent": 484,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1200,
+          1.6638511728468373e-08
+        ],
+        [
+          1201,
+          1.5320609536527063e-08
+        ],
+        [
+          1202,
+          1.4107575773791403e-08
+        ],
+        [
+          1203,
+          1.2991235173950944e-08
+        ],
+        [
+          1204,
+          1.1964039959989307e-08
+        ],
+        [
+          1205,
+          1.101902393832724e-08
+        ],
+        [
+          1206,
+          1.0149779262387374e-08
+        ]
+      ],
+      "used_h": [
+        [
+          1200,
+          0.0034487122
+        ],
+        [
+          1201,
+          0.0036109951
+        ],
+        [
+          1202,
+          0.0038091755
+        ],
+        [
+          1203,
+          0.004050442
+        ],
+        [
+          1204,
+          0.004344302
+        ],
+        [
+          1205,
+          0.0047034766
+        ],
+        [
+          1206,
+          0.0048573157
+        ]
+      ],
+      "death_tick": 1206
+    },
+    {
+      "id": 872,
+      "birth": {
+        "tick": 1206,
+        "point": 20419,
+        "cohort": {
+          "protective_investment": 0.1617821753025055,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.0,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.08213934302330017,
+          "support_mass": 0.0004335709090810269,
+          "optimum": 306.3712158203125,
+          "efficiency": 1.1205238103866577,
+          "structure": 0.08857287466526031,
+          "feeding": 0.07256585359573364,
+          "mobility": 0.06588379293680191,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 872,
+          "parent": 397,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1207,
+          1.8575942235971787e-06
+        ],
+        [
+          1208,
+          1.7929338926513429e-06
+        ],
+        [
+          1209,
+          1.7285917125587348e-06
+        ],
+        [
+          1210,
+          1.664556820608645e-06
+        ],
+        [
+          1211,
+          1.6008293004070181e-06
+        ],
+        [
+          1212,
+          1.5374096353920983e-06
+        ],
+        [
+          1213,
+          1.4742997966120638e-06
+        ],
+        [
+          1214,
+          1.4115051008173764e-06
+        ],
+        [
+          1215,
+          1.3490316858809469e-06
+        ],
+        [
+          1216,
+          1.2868868454761703e-06
+        ],
+        [
+          1217,
+          1.2243185688102934e-06
+        ],
+        [
+          1218,
+          1.161236355238088e-06
+        ],
+        [
+          1219,
+          1.0979707919748775e-06
+        ],
+        [
+          1220,
+          1.0347179354617176e-06
+        ],
+        [
+          1221,
+          9.715971147545923e-07
+        ],
+        [
+          1222,
+          9.086808367393558e-07
+        ]
+      ],
+      "used_h": [
+        [
+          1207,
+          0.6250265
+        ],
+        [
+          1208,
+          0.6188413
+        ],
+        [
+          1209,
+          0.6122961
+        ],
+        [
+          1210,
+          0.6053649
+        ],
+        [
+          1211,
+          0.5980234
+        ],
+        [
+          1212,
+          0.590245
+        ],
+        [
+          1213,
+          0.58200115
+        ],
+        [
+          1214,
+          0.5732616
+        ],
+        [
+          1215,
+          0.56399363
+        ],
+        [
+          1216,
+          0.55416125
+        ],
+        [
+          1217,
+          0.5433877
+        ],
+        [
+          1218,
+          0.53156346
+        ],
+        [
+          1219,
+          0.5187647
+        ],
+        [
+          1220,
+          0.50500655
+        ],
+        [
+          1221,
+          0.4902644
+        ],
+        [
+          1222,
+          0.474485
+        ]
+      ],
+      "death_tick": 1222
+    },
+    {
+      "id": 908,
+      "birth": {
+        "tick": 1249,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.024181906133890152,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.06861705332994461,
+          "root_fraction": 0.03125,
+          "biomass": 0.004000000189989805,
+          "organization": 0.09081095457077026,
+          "support_mass": 0.00034663325641304255,
+          "optimum": 309.0552978515625,
+          "efficiency": 1.1470675468444824,
+          "structure": 0.06007150560617447,
+          "feeding": 0.07136791944503784,
+          "mobility": 0.12160959839820862,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 5,
+          "lineage": 908,
+          "parent": 450,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1250,
+          1.319827750271213e-08
+        ],
+        [
+          1251,
+          1.2204533366770625e-08
+        ],
+        [
+          1252,
+          1.1283931943801333e-08
+        ],
+        [
+          1253,
+          1.0431398633085003e-08
+        ],
+        [
+          1254,
+          9.642146148522572e-09
+        ],
+        [
+          1255,
+          8.911676086383439e-09
+        ],
+        [
+          1256,
+          8.235818715999326e-09
+        ],
+        [
+          1257,
+          7.610633536529654e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1250,
+          0.002178302
+        ],
+        [
+          1251,
+          0.0021513384
+        ],
+        [
+          1252,
+          0.002135817
+        ],
+        [
+          1253,
+          0.0021316016
+        ],
+        [
+          1254,
+          0.0021387937
+        ],
+        [
+          1255,
+          0.0021577429
+        ],
+        [
+          1256,
+          0.0021890812
+        ],
+        [
+          1257,
+          0.0022337406
+        ]
+      ],
+      "death_tick": 1257
+    },
+    {
+      "id": 909,
+      "birth": {
+        "tick": 1250,
+        "point": 5139,
+        "cohort": {
+          "protective_investment": 0.011173777282238007,
+          "protective_clock": -1.0,
+          "aerial_allocation": 0.06702939420938492,
+          "root_fraction": 0.03125,
+          "biomass": 0.0040000006556510925,
+          "organization": 0.0,
+          "support_mass": 0.00020945793949067593,
+          "optimum": 307.36224365234375,
+          "efficiency": 1.0807864665985107,
+          "structure": 0.0,
+          "feeding": 0.08419466018676758,
+          "mobility": 0.0,
+          "relocations": 0,
+          "last_from": 0,
+          "last_to": 0,
+          "last_move_time": 0.0,
+          "lifetime_grazed": 0.0,
+          "generation": 4,
+          "lineage": 909,
+          "parent": 240,
+          "reproduction_credit": 0.0
+        }
+      },
+      "receipts": [
+        [
+          1251,
+          7.874829972264303e-09
+        ],
+        [
+          1252,
+          7.26201630358893e-09
+        ],
+        [
+          1253,
+          6.6957935912196635e-09
+        ],
+        [
+          1254,
+          6.172803001792621e-09
+        ],
+        [
+          1255,
+          5.689894077010386e-09
+        ],
+        [
+          1256,
+          5.244147254256456e-09
+        ],
+        [
+          1257,
+          4.832811602779335e-09
+        ]
+      ],
+      "used_h": [
+        [
+          1251,
+          0.0012529312
+        ],
+        [
+          1252,
+          0.0012438917
+        ],
+        [
+          1253,
+          0.0012414367
+        ],
+        [
+          1254,
+          0.0012456254
+        ],
+        [
+          1255,
+          0.0012566614
+        ],
+        [
+          1256,
+          0.0012749126
+        ],
+        [
+          1257,
+          0.0013009221
+        ]
+      ],
+      "death_tick": 1257
+    }
+  ],
+  "protective_entries": [],
+  "nonactive_state_count": 0,
+  "independent_mutation": {
+    "births": 944,
+    "positive": 466,
+    "negative": 478,
+    "rare": 0
+  },
+  "initial_identity_only_exact": true,
+  "restart_exact": true,
+  "observer_exact": true
+}

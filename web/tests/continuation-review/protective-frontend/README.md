@@ -1,0 +1,16 @@
+# Staged protective frontend
+Separate protective-ui/web; no native copy, build, artifact or deployment yet. Confirmed owner contract: writer15 requires protective1/thermal1/root3/wind1. Old13/14 protective0 (absence accepted for old payload compatibility). Factory stella_combined_protective_new uses existing expected-world guard codes. Existing factories remain13/14. One default-off checkbox beside Calmer fresh-world choice; Historical clears it; loaded15 status never toggles creation choice.
+
+Inspection only in existing selected Life rows, native snapshot matched exact decimal ID/world/cell. Active clocknull; protecting0; recovering positive finite elapsed seconds includingovershoot. Partial investment remains partial activity. No countdown, drought immunity or founder grant. Optional missing export/payload gracefully unavailable and never poisons Life rendering. No per-frame/global scan added.
+
+Four focused controller/formatter/DOM-mock tests pass. Initial whole suite retained: source-dependent tests could not find src/build files because native source not yet frozen/copied. Full suite and actual payload/Module proof required after native acceptance. Storage child owns isolated15 compatibility separately. Staged source guidance6b0db1e included. No browser graphics/layout claim.
+
+## Built candidate checkpoint
+Native fec9760/schemafceacea exact271files copied after actual lifecycle acceptance51fc1ee. Full209JS tests and28storage tests pass. Verbatim active payload is an actual paid founder; protecting/recovering payloads are explicitly QA persistence states (not naturally evolved observation). Final Emscripten build exit0; actual linked Module exports new factory/snapshot and refuses unavailable factory/save15, while recovery/old factories remain available. No initialized browser gameplay claim.
+
+Artifact site-tmp/protective-ui/web/dist:35files. HTML753470832c316b548f048c45eb7286ce9e2308bf46e070aab8f2e0c09fc06cb8; WASMf48b73a64d4b08ecce7dc8db9587a1c83e0fc2b3e0c01b36250b6f80d3737b80. Exact1746sourcefiles and25assets recovered;3parts/16,562,076bytes, archiveSHA c955f250481004caba401dd8eb622fd4ac0e4289db261584e63bf540f30cd85a. All dependency source and preload recovery included. Classic, Wind and released calmer native binaries unchanged. Source manifest and all artifact hashes under build/.
+
+Deployment HOLD: independent natural mutation journey and actualWASM cost gates remain coordinator-owned. No browser/device speed or survival claim. No live edits.
+
+## Final cost disclosure
+Optional checkbox now visibly says “Adds simulation work and may run slower”. Default remains off; no device promise or universal numeric slowdown. Only this HTML copy and its test changed after8ec8542; no native/WASM recompilation.210fullJS tests and linkedModule checks pass. Final HTML11c85d2a5e463a3b8d48a07fb7bd4ee97a2b940ce8b1c706777842d700619808; WASM unchangedf48b73a64d4b08ecce7dc8db9587a1c83e0fc2b3e0c01b36250b6f80d3737b80. Refreshed source archive16,562,209bytes SHA 3b13184a446abaa88a2b378f12c278325e447071d56d66e5a82781ac29371de5. Exact1746sourcefiles/25assets recovered. Earlier hashes above remain historical checkpoint evidence; final build/artifacts.json is authoritative. Coordinator owns publication.
