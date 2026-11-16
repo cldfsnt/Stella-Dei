@@ -1,0 +1,16 @@
+{
+  "control/fresh.json": "68867db5e697472dd5ffabffeae48de3a59978f0b0f9c88915073badcb00d377",
+  "control/spin.json": "0c6e049498dedbfc130a69d56ab4e766c70487f7876a7f96febabdef3c0c6a9b",
+  "control/eligible.json": "53c413061e8fb901d1ba41e2fab06a8b2123dde1fefa966eb91e91acf0a391d2",
+  "candidate/fresh.json": "68867db5e697472dd5ffabffeae48de3a59978f0b0f9c88915073badcb00d377",
+  "candidate/spin.json": "e0a13ac4f8ecedd20a8e7b11611bbc09ae0f34f587f7b5acb8abf7885d216f9c",
+  "candidate/eligible.json": "a9937095dbb484c80802276b6e85ddb1b571d98bbd69d0f9ebb15fe3ce5b3a33",
+  "control/seeded.json": "9fb4d48d49d35a9c619b34f9e699e86cf6e4fd06aef5898032ba62f8e632cb02",
+  "control/midpoint.json": "e316864276f6767633c6cb348a16ef945f4dc8151023b70692f801497bee58da",
+  "control/final.json": "c4652ed0a59af5d17ee3805a62db86da8314157c03fc4e5b8a8489c0ca7d1a84",
+  "control/resumed.json": "c4652ed0a59af5d17ee3805a62db86da8314157c03fc4e5b8a8489c0ca7d1a84",
+  "candidate/seeded.json": "3cf626190ba653eabf853fe8eb29773f990dff0ac8cacb86c2ee1f29d93ff241",
+  "candidate/midpoint.json": "c31d1f55fb6dac6b44e414270f2869b026fe59e57a7b9222f25ada62bd84c3c4",
+  "candidate/final.json": "9e569bb47d15d80441034b0f915c320506f3b97f718722c9976331beb91208aa",
+  "candidate/resumed.json": "9e569bb47d15d80441034b0f915c320506f3b97f718722c9976331beb91208aa"
+}

@@ -1,0 +1,28 @@
+    const saves=@import("save_game.zig");const M=@import("simulation/microbes.zig");const Audit=@import("simulation/land_journey_audit.zig");var arena=std.heap.ArenaAllocator.init(allocator);defer arena.deinit();const a=arena.allocator();web_initialized=true;Audit.enabled=true;loop.pump(4096);var state=&game.state.Playing;state.paused=true;
+    const spin=std.mem.eql(u8,std.posix.getenv("QA_STAGE") orelse "spin","spin");const resumed=std.posix.getenv("QA_RESUME")!=null;
+    const point:u32=try std.fmt.parseInt(u32,std.posix.getenv("QA_POINT") orelse "0",10);
+    if(spin){const world=PerformanceDetails.world_serial;std.debug.assert(combinedNewForGame(&game,world)==1);loop.pump(4096);state=&game.state.Playing;state.paused=true;std.debug.assert(state.planet.windDispersal.enabled and state.planet.landBeta.physiology_law==3);for(state.planet.landSoil)|v|std.debug.assert(v==0);try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/fresh.json",.data=try qaThermalBytes(a,state)});}
+    else{const path=if(resumed)"OUTPUT/midpoint.json"else "OUTPUT/spin.json";const bytes=try std.fs.cwd().readFileAlloc(a,path,128*1024*1024);const parsed=try saves.schema.parse(a,bytes);try saves.apply(state,parsed.value);loop.pump(4096);std.debug.assert(std.mem.eql(u8,bytes,try qaThermalBytes(a,state)));}
+    state.showEscapeMenu=false;state.showPointDetails=false;state.showPlanetControl=false;state.selectedTool=.None;state.selectedPoint=point;state.pointerOnPlanet=true;
+    if(!spin and !resumed){
+      const before=try qaThermalBytes(a,state);Audit.subject=state.planet.microbeStats.next_lineage;const world=PerformanceDetails.world_serial;
+      const preview=try qaThermalReply(a,stella_rooted_founder_preview(world,point));std.debug.assert(std.mem.eql(u8,preview.object.get("status").?.string,"eligible"));std.debug.assert(std.mem.eql(u8,before,try qaThermalBytes(a,state)));
+      const token:u32=@intCast(preview.object.get("token").?.integer);const receipt=try qaThermalReply(a,stella_seed_rooted(world,point,token));std.debug.assert(std.mem.eql(u8,receipt.object.get("status").?.string,"planted"));Audit.emit("FOUNDER",receipt);try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/seeded.json",.data=try qaThermalBytes(a,state)});
+    }else if(resumed){const bytes=try std.fs.cwd().readFileAlloc(a,"OUTPUT/spin.json",128*1024*1024);const parsed=try saves.schema.parse(a,bytes);Audit.subject=parsed.value.origin.?.stats.next_lineage;}
+    const end:usize=if(spin)60 else 120;const start:usize=if(resumed)60 else 0;
+    for(start..end)|tick|{
+      Audit.tick=tick+1;state.planet.simulate(game.loop,.{.dt=1440,.timeScale=1,.solarConstant=state.solarConstant,.gameTime=state.gameTime,.planetRotationTime=state.planetRotationTime,.solarVector=state.simulationSolarVector()});state.gameTime+=1440;
+      if(!spin)Audit.emit("PATCH",.{.tick=tick+1,.cohorts=state.planet.microbeCells[point].cohorts,.soil=state.planet.landSoil[point],.depth_m=state.planet.waterMass[point]*state.planet.getKmPerWaterMass()*1000,.temperature=state.planet.temperature[point],.nutrient=state.planet.microbeCells[point].nutrient,.detritus=state.planet.microbeCells[point].detritus,.stats=state.planet.microbeStats});
+      if(!spin and tick+1==60)try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/midpoint.json",.data=try qaThermalBytes(a,state)});
+    }
+    if(spin){
+      const prior=try qaThermalBytes(a,state);var eligible=std.ArrayList(u32).init(a);for(state.planet.microbeCells,0..)|cell,i|{
+       const depth=state.planet.waterMass[i]*state.planet.getKmPerWaterMass()*1000;const temp=state.planet.temperature[i];if(depth>0.02 or temp<293.15 or temp>313.15 or M.biomass(cell)>0)continue;
+       if(@import("rooted_founder.zig").preview(&state.planet,i).status==.eligible)try eligible.append(@intCast(i));
+      }
+      std.debug.assert(std.mem.eql(u8,prior,try qaThermalBytes(a,state)));try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/eligible.json",.data=try std.json.stringifyAlloc(a,eligible.items,.{})});try std.fs.cwd().writeFile(.{.sub_path="OUTPUT/spin.json",.data=prior});std.debug.print("SPIN_COMPLETE count={}\n",.{eligible.items.len});
+    }else try std.fs.cwd().writeFile(.{.sub_path=if(resumed)"OUTPUT/resumed.json"else "OUTPUT/final.json",.data=try qaThermalBytes(a,state)});
+    std.debug.print("COMPLETE spin={} resumed={} point={} ticks={}\n",.{spin,resumed,point,end-start});std.process.exit(0);
+}
+fn qaThermalBytes(a:std.mem.Allocator,s:*PlayState)![]const u8{return std.json.stringifyAlloc(a,try @import("save_game.zig").capture(a,s),.{});}
+fn qaThermalReply(a:std.mem.Allocator,p:[*:0]const u8)!std.json.Value{return (try std.json.parseFromSlice(std.json.Value,a,std.mem.span(p),.{})).value;}

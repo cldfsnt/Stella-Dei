@@ -1,0 +1,1 @@
+First archival command used relative Path.parent incorrectly and failed before copying sources; outcome logs committed intact ce9fa1f. Corrected resolved workspace path, archived all five source files and verified gzip byte recovery. No experiment rerun.

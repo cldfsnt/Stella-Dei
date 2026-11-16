@@ -1,0 +1,310 @@
+{
+  "process": "1337",
+  "node": {
+    "node": "24.22.1",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.9",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.9",
+    "simdjson": "4.6.11",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.4",
+    "tz": "2026e",
+    "undici": "7.30.1",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.58",
+    "zlib": "1.3.2.1-motley-285e94b",
+    "zstd": "1.5.7"
+  },
+  "start": "2026-11-16T02:05:01.677Z",
+  "end": "2026-11-16T02:05:16.592Z",
+  "compile_count": 2,
+  "instantiate_count": 8,
+  "binary": {
+    "legacy": {
+      "profile.wasm": {
+        "sha256": "40b6de7bcfefee8f4ca903ea1065fe3468649e677b297521deb651539247d239",
+        "bytes": 363467
+      },
+      "profile.js": {
+        "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+        "bytes": 94248
+      }
+    },
+    "small": {
+      "profile.wasm": {
+        "sha256": "ee3afce468818cfcbd29c8145bf91cc1c32d1e751d8b496ae4cc21fa15bdb307",
+        "bytes": 363467
+      },
+      "profile.js": {
+        "sha256": "5038c38425dca1e72b28afdcf7b2507cb9ed6c1f6abb2345f7cbbc45e0df049c",
+        "bytes": 94248
+      }
+    }
+  },
+  "rows": [
+    {
+      "label": "zero",
+      "arm": "A",
+      "ticks": 0,
+      "endpoint_sha256": "befba42340870c7d61a757032b15627e4cd840c6ee51407c0b0c6f8669ea5b55",
+      "ms_per_tick": null,
+      "total_ms": 0.001832000000035805,
+      "before": {
+        "rss": 42528768,
+        "heapTotal": 12111872,
+        "heapUsed": 8201648,
+        "external": 4868880,
+        "arrayBuffers": 1062045
+      },
+      "after": {
+        "rss": 324931584,
+        "heapTotal": 219136000,
+        "heapUsed": 134722304,
+        "external": 151168623,
+        "arrayBuffers": 13112548
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 18.063495999999986,
+      "after_gc": {
+        "rss": 213917696,
+        "heapTotal": 142921728,
+        "heapUsed": 7581712,
+        "external": 4711860,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "zero",
+      "arm": "B",
+      "ticks": 0,
+      "endpoint_sha256": "02430373fc60fe7c230e2e03bffd0d46816bfb9fdf0fd0603fcdfbee2529e2cc",
+      "ms_per_tick": null,
+      "total_ms": 0.0017930000001342705,
+      "before": {
+        "rss": 213917696,
+        "heapTotal": 142921728,
+        "heapUsed": 7588240,
+        "external": 4711860,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 394080256,
+        "heapTotal": 221687808,
+        "heapUsed": 131832272,
+        "external": 151182500,
+        "arrayBuffers": 13126425
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 15.774263000000019,
+      "after_gc": {
+        "rss": 283119616,
+        "heapTotal": 142921728,
+        "heapUsed": 7594360,
+        "external": 4711860,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "warmA",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "885962ef3398b0e7b9bfb1e4de413054c86c9967cb91a1e8164c5384a9c3a62c",
+      "ms_per_tick": 24.256365083333336,
+      "total_ms": 1455.3819050000002,
+      "before": {
+        "rss": 283119616,
+        "heapTotal": 142921728,
+        "heapUsed": 7601248,
+        "external": 4711860,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 375918592,
+        "heapTotal": 143446016,
+        "heapUsed": 12412080,
+        "external": 151183631,
+        "arrayBuffers": 13127556
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 16.77432299999964,
+      "after_gc": {
+        "rss": 295366656,
+        "heapTotal": 142397440,
+        "heapUsed": 6248648,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "warmB",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "ab00d9435d91170fb5fc82d7a51cd807b152f70f5db9897e033c31247d920d6d",
+      "ms_per_tick": 23.339628283333333,
+      "total_ms": 1400.377697,
+      "before": {
+        "rss": 295366656,
+        "heapTotal": 142397440,
+        "heapUsed": 6258448,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 376107008,
+        "heapTotal": 143183872,
+        "heapUsed": 12427752,
+        "external": 151190618,
+        "arrayBuffers": 13138695
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 13.693594000000303,
+      "after_gc": {
+        "rss": 295493632,
+        "heapTotal": 142659584,
+        "heapUsed": 6263144,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "measured0",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "ab00d9435d91170fb5fc82d7a51cd807b152f70f5db9897e033c31247d920d6d",
+      "ms_per_tick": 23.402384483333343,
+      "total_ms": 1404.1430690000007,
+      "before": {
+        "rss": 295493632,
+        "heapTotal": 142659584,
+        "heapUsed": 6271352,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 376102912,
+        "heapTotal": 143183872,
+        "heapUsed": 12459824,
+        "external": 151190618,
+        "arrayBuffers": 13138695
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 12.64213000000018,
+      "after_gc": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6299072,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "measured1",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "885962ef3398b0e7b9bfb1e4de413054c86c9967cb91a1e8164c5384a9c3a62c",
+      "ms_per_tick": 23.673325216666672,
+      "total_ms": 1420.3995130000003,
+      "before": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6308064,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 375648256,
+        "heapTotal": 143183872,
+        "heapUsed": 12149912,
+        "external": 151179479,
+        "arrayBuffers": 13127556
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 12.021480000001247,
+      "after_gc": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6300072,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "measured2",
+      "arm": "A",
+      "ticks": 72,
+      "endpoint_sha256": "885962ef3398b0e7b9bfb1e4de413054c86c9967cb91a1e8164c5384a9c3a62c",
+      "ms_per_tick": 23.819387633333342,
+      "total_ms": 1429.1632580000005,
+      "before": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6309864,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 375648256,
+        "heapTotal": 143183872,
+        "heapUsed": 12150752,
+        "external": 151179479,
+        "arrayBuffers": 13127556
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 10.736851999999999,
+      "after_gc": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6301408,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      }
+    },
+    {
+      "label": "measured3",
+      "arm": "B",
+      "ticks": 72,
+      "endpoint_sha256": "ab00d9435d91170fb5fc82d7a51cd807b152f70f5db9897e033c31247d920d6d",
+      "ms_per_tick": 22.75058740000001,
+      "total_ms": 1365.0352440000006,
+      "before": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6311984,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      },
+      "after": {
+        "rss": 376172544,
+        "heapTotal": 143183872,
+        "heapUsed": 12486824,
+        "external": 151190618,
+        "arrayBuffers": 13138695
+      },
+      "wasm_capacity": 134217728,
+      "gc_ms": 10.783072000000175,
+      "after_gc": {
+        "rss": 295432192,
+        "heapTotal": 142659584,
+        "heapUsed": 6323496,
+        "external": 4707708,
+        "arrayBuffers": 873513
+      }
+    }
+  ]
+}

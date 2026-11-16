@@ -1,0 +1,11 @@
+--- legacy
++++ candidate
+@@ -168,7 +168,7 @@
+         if(c.biomass>0)c.support_mass*=1-dead/c.biomass;
+         c.biomass-=dead;c.support_mass=@min(c.support_mass,c.biomass);cell.detritus+=dead;cell.nutrient+=dead*nutrient_per_carbon;
+         // Below 25% of one propagule, recycle unresolved failed establishment.
+-        if(c.biomass<0.0025){ @import("land_journey_audit.zig").emit("CLEANUP",.{.tick=@import("land_journey_audit.zig").tick,.lineage=c.lineage,.before_mortality=qa_before_mortality,.after_mortality=c.*,.upkeep=upkeep,.continuous_dead=dead,.environment=env});result.failed_patches+=1;cell.detritus+=c.biomass;cell.nutrient+=c.biomass*nutrient_per_carbon;c.*=.{};continue;}
++        if(c.biomass<0.001){ @import("land_journey_audit.zig").emit("CLEANUP",.{.tick=@import("land_journey_audit.zig").tick,.lineage=c.lineage,.before_mortality=qa_before_mortality,.after_mortality=c.*,.upkeep=upkeep,.continuous_dead=dead,.environment=env});result.failed_patches+=1;cell.detritus+=c.biomass;cell.nutrient+=c.biomass*nutrient_per_carbon;c.*=.{};continue;}
+         if(!habitable(env.depth_km,env.temperature))continue;
+     }
+     const space=@max(0,1-biomass(cell.*));

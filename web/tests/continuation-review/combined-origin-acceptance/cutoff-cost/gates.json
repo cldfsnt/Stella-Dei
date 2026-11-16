@@ -1,0 +1,38 @@
+{
+  "42": {
+    "A": {
+      "mode": "legacy",
+      "input": "42-legacy.json",
+      "endpoint_sha256": "915bfd0fa7a852c62848b7b72028db1de3bfb6171375b5ba0566b2f7245e6f39",
+      "zero_exact": true,
+      "restart_exact": true,
+      "reference_exact": true
+    },
+    "B": {
+      "mode": "small",
+      "input": "42-small.json",
+      "endpoint_sha256": "975747929b6d86e3a9ee757f8e8e2cca1de8c27e2906f46ea6cdbb8e8915daa6",
+      "zero_exact": true,
+      "restart_exact": true,
+      "reference_exact": false
+    }
+  },
+  "1337": {
+    "A": {
+      "mode": "legacy",
+      "input": "1337-legacy.json",
+      "endpoint_sha256": "885962ef3398b0e7b9bfb1e4de413054c86c9967cb91a1e8164c5384a9c3a62c",
+      "zero_exact": true,
+      "restart_exact": true,
+      "reference_exact": true
+    },
+    "B": {
+      "mode": "small",
+      "input": "1337-small.json",
+      "endpoint_sha256": "ab00d9435d91170fb5fc82d7a51cd807b152f70f5db9897e033c31247d920d6d",
+      "zero_exact": true,
+      "restart_exact": true,
+      "reference_exact": false
+    }
+  }
+}

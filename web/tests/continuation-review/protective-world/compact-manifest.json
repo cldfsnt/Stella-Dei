@@ -1,0 +1,156 @@
+[
+  {
+    "original": "analysis.log",
+    "raw_sha256": "fad9ff772ec19674ee5bb41887d2d1dc662fb74b855a3dd42c8b5f320e04b914",
+    "raw_bytes": 2569,
+    "tracked_compressed": "analysis.log.gz",
+    "compressed_sha256": "bd1506073dc870cd1824ffbf026b6f0774c1c57c571f51c5db46b79bdc804089"
+  },
+  {
+    "original": "build-off.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "tracked_compressed": "build-off.log.gz",
+    "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  },
+  {
+    "original": "build-on.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "tracked_compressed": "build-on.log.gz",
+    "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  },
+  {
+    "original": "execution.log",
+    "raw_sha256": "dc424f762c8df22f5d471b94ec80170bd36faf904c47e492be37961603b26048",
+    "raw_bytes": 21,
+    "tracked_compressed": "execution.log.gz",
+    "compressed_sha256": "71855d0b59753c23458bb00eed7bddd380b525137ef92b4f5093a6a171b369b2"
+  },
+  {
+    "original": "first-build-failure.log",
+    "raw_sha256": "e44fd3281751ad6e757a85dfca27153a196875133c3a3f2d042b0a253c9b6485",
+    "raw_bytes": 2531,
+    "tracked_compressed": "first-build-failure.log.gz",
+    "compressed_sha256": "b67e79bfa1503058c7dcedc338e8159de65cb62144f8dcb6196fb64ea0b24cc7"
+  },
+  {
+    "original": "off-0-0.json.gz",
+    "compressed_sha256": "81b5ef411cc80bc88a9d09ea328d2a731a778c6a912758f873b04bfb08162407",
+    "raw_sha256": "62c3d6c6b6d525959f09d16d864f72b201d89a2f4b01b94202fcb6e0b73c254d",
+    "raw_bytes": 13285020,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "off-0-30.json.gz",
+    "compressed_sha256": "c52fd28575195376796a622b3043f1c466add09c752aab755f1f6e9d7793acef",
+    "raw_sha256": "986461088821c80a94304d9083111ae1d7f58ab415b3e38b39ebea9966c56ab6",
+    "raw_bytes": 13307225,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "off-0-main.log",
+    "raw_sha256": "95459209da7d521673e1b79c68e3250534bb4f3c8ebf4367a8bbfb330f07968f",
+    "raw_bytes": 2449019,
+    "tracked_compressed": "off-0-main.log.gz",
+    "compressed_sha256": "81adc7d0dd20afc81b0990acba27010a3b3161c54add0c0ad24112c8420a5944"
+  },
+  {
+    "original": "off-0-resume.log",
+    "raw_sha256": "e8ada1ef5d0a54f451e3e9647f8607e1e0ab2198cb4cdab17fbd416466eecfad",
+    "raw_bytes": 1347000,
+    "tracked_compressed": "off-0-resume.log.gz",
+    "compressed_sha256": "364096150f7e1fc6d6c4f48238a4b5167a8be2e8d151b3467f9e46f5bd09260f"
+  },
+  {
+    "original": "off-1-0.json.gz",
+    "compressed_sha256": "4bbd91d4886c92b348ac82ff71882c80e278b52152ecd68ce8f28ee7d3f1c909",
+    "raw_sha256": "ccf5524d2040541e5b8ae0eebb3dc5452e0d31d87453ba104d0ec70d4af161e9",
+    "raw_bytes": 13285021,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "off-1-30.json.gz",
+    "compressed_sha256": "c3849c20c0c513c5b73ff6fdfba1e883738b60f82a0a73ef829b21932e9b37bf",
+    "raw_sha256": "ce62faceb86ee27c91dd89b0b5f24232a140b428a3bebd0dd91d68c03c657b86",
+    "raw_bytes": 13307299,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "off-1-main.log",
+    "raw_sha256": "6fad661158b6dfd9718bc553760a90f3ee363fcef9938ff0de3fb5e6fece928d",
+    "raw_bytes": 2436856,
+    "tracked_compressed": "off-1-main.log.gz",
+    "compressed_sha256": "855bd67879c2e5071e3b5a572deda9005446b6ae48855bbb5339aa136271693a"
+  },
+  {
+    "original": "off-1-resume.log",
+    "raw_sha256": "55cf90a4b4038b0d836427fa926e0a03f5005730323e77f8eeede0468d25bf60",
+    "raw_bytes": 1338674,
+    "tracked_compressed": "off-1-resume.log.gz",
+    "compressed_sha256": "0e30334358bcd988ad3ec74fee22ee31c513f4d051a48e2b8988bf1601cff586"
+  },
+  {
+    "original": "on-0-0.json.gz",
+    "compressed_sha256": "81b5ef411cc80bc88a9d09ea328d2a731a778c6a912758f873b04bfb08162407",
+    "raw_sha256": "62c3d6c6b6d525959f09d16d864f72b201d89a2f4b01b94202fcb6e0b73c254d",
+    "raw_bytes": 13285020,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "on-0-30.json.gz",
+    "compressed_sha256": "9ddceeb0a32ac432f0e18bca6d67d5b3cf52c6cb2c6884f1808a645c44357d4b",
+    "raw_sha256": "7a3870c3b8a48fd33b8c8fd2de136950b73b4591e49feaca6a83bcc48fb0f680",
+    "raw_bytes": 13307216,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "on-0-main.log",
+    "raw_sha256": "192c1714937d4d684eb0ab65c5dfc1a78ee285c90df1597898157671f4cb4d95",
+    "raw_bytes": 2440122,
+    "tracked_compressed": "on-0-main.log.gz",
+    "compressed_sha256": "c9340cbced2ddd2747f69d48646f38bf1a9a2de43fe8eeb2d54e9cbdcf1625bc"
+  },
+  {
+    "original": "on-0-resume.log",
+    "raw_sha256": "353c18139cc342cb4b88a9ca520aabbbd368d5f45d0224d247ca0569f5170448",
+    "raw_bytes": 1342924,
+    "tracked_compressed": "on-0-resume.log.gz",
+    "compressed_sha256": "39f28ff9a0a5f6ac7db558d10ebce73d7b6ec7aae795f9cdfe09e575584ee20a"
+  },
+  {
+    "original": "on-1-0.json.gz",
+    "compressed_sha256": "4bbd91d4886c92b348ac82ff71882c80e278b52152ecd68ce8f28ee7d3f1c909",
+    "raw_sha256": "ccf5524d2040541e5b8ae0eebb3dc5452e0d31d87453ba104d0ec70d4af161e9",
+    "raw_bytes": 13285021,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "on-1-30.json.gz",
+    "compressed_sha256": "4152e7827ccf82d371fdd2c02344d593a359e11a08c9045b72ef0fb4c5031150",
+    "raw_sha256": "561a02723f2940d75175534284d3ad8c75b9b1f472751c3682cc8867eb45834e",
+    "raw_bytes": 13307288,
+    "recovery": "Regenerate exact frozen prepare/build/run protocol; compare both hashes. Gzip mtime0. Local original retained."
+  },
+  {
+    "original": "on-1-main.log",
+    "raw_sha256": "ec1bd969dfdb6af7cbb7b2e530cab13f3b360e04735860cc6c221171d014a3bd",
+    "raw_bytes": 2431064,
+    "tracked_compressed": "on-1-main.log.gz",
+    "compressed_sha256": "9de47c6941cfa7e8db3ee720ff1f8b4d5728a5502f9f15b3a33d124bb30bbfc8"
+  },
+  {
+    "original": "on-1-resume.log",
+    "raw_sha256": "7ed377881bebcb9720f088ad200b34c570d285eae010ee62eeada249ab45ee1a",
+    "raw_bytes": 1333654,
+    "tracked_compressed": "on-1-resume.log.gz",
+    "compressed_sha256": "52967b07c0a187ce602d3f369d347ceec52e99ac2745c18f41bb8c0c725d6018"
+  },
+  {
+    "original": "state-tests.log",
+    "raw_sha256": "5af6d99957422bc7c12a23bea73c14adb4d7af6092a1d91ebfdcb08505fb899c",
+    "raw_bytes": 109,
+    "tracked_compressed": "state-tests.log.gz",
+    "compressed_sha256": "1d23cc6d7f2497022be4b6f021f7d12b4cc7c8d297b260e1f9f8bcbc9c8583c7"
+  }
+]

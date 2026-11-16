@@ -1,0 +1,22 @@
+{
+  "42-legacy": {
+    "sha256": "1379f20c6912e59454340383b1bb2b5e6788b5d2df9f9c019a860e46fef9dae8",
+    "trace_sha256": "a223ecf83bf49c82076f4aadb04aee661c10bbd85e18938a139af2c41ff95cb8",
+    "legacy_exact_previous": true
+  },
+  "42-small": {
+    "sha256": "784413a6e7f53ce53942ff0395ad657d5a04ecaae166bf75f12b169fe8389154",
+    "trace_sha256": "39420ab5520ae95f822f736e55f58ee4858ed3dfd09697f9a76e066ef37b7daa",
+    "legacy_exact_previous": false
+  },
+  "1337-legacy": {
+    "sha256": "bd301fa5b7c0c308b7db81909d4882444e2552ebd91256852437563489e9e844",
+    "trace_sha256": "fcb68d4fdea91e464b211c5c66c7fec4218be64befbab0668d3cff7e1fb6fd45",
+    "legacy_exact_previous": true
+  },
+  "1337-small": {
+    "sha256": "4d5d0bee086a7825a2f32315b10fe569a600544b6520156323b0abc2139206df",
+    "trace_sha256": "32daa04e4579ab5bc03702e5a2862f11473ae5d5e090f0233ac20db39879a017",
+    "legacy_exact_previous": false
+  }
+}

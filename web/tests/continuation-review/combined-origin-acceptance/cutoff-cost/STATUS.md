@@ -1,0 +1,1 @@
+Completed fixed exclusive screen after coordinator release. All correctness, exact continuation, old-reference, endpoint hash and GC/memory gates pass. No additional measurements. See RESULTS.md; CPU released immediately after EXIT0.

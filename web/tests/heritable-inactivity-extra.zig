@@ -1,0 +1,14 @@
+const Old=@import("simulation/legacy_microbes.zig");
+fn sameOld(a:anytype,b:anytype)!void{inline for(std.meta.fields(@TypeOf(b)))|f|try std.testing.expectEqualDeep(@field(b,f.name),@field(a,f.name));}
+test "law off preserves old fields physiology and six draw funded birth RNG" {
+ M.qa_activity_law=false;var old=Old.initialized(42);var now=M.initialized(42);old.cohorts[0]=.{.biomass=0.1,.support_mass=0.025,.organization=0.25,.root_fraction=0.5,.lineage=1,.reproduction_credit=0.1};inline for(std.meta.fields(Old.Cohort))|f|@field(now.cohorts[0],f.name)=@field(old.cohorts[0],f.name);
+ const e=Old.Environment{.temperature=298,.depth_km=0.001,.light=1,.carbon_available=0.2,.oxygen_carbon_capacity=0.2};var ne:M.Environment=undefined;inline for(std.meta.fields(Old.Environment))|f|@field(ne,f.name)=@field(e,f.name);
+ for(0..60)|_|{const a=Old.step(&old,e,1440);const b=M.step(&now,ne,1440);try sameOld(b,a);try std.testing.expectEqual(old.nutrient,now.nutrient);try std.testing.expectEqual(old.detritus,now.detritus);try std.testing.expectEqual(old.rng,now.rng);for(old.cohorts,now.cohorts)|co,cn|try sameOld(cn,co);}
+ old.cohorts[0].reproduction_credit=1;now.cohorts[0].reproduction_credit=1;var od=Old.initialized(88);var nd=M.initialized(88);var os:Old.Stats=.{.next_lineage=2};var ns:M.Stats=.{.next_lineage=2};try std.testing.expectEqual(Old.reproduce(&old,0,&od,&os,true),M.reproduce(&now,0,&nd,&ns,true));try sameOld(ns,os);try std.testing.expectEqual(old.rng,now.rng);for(od.cohorts,nd.cohorts)|co,cn|try sameOld(cn,co);
+}
+test "funded inheritance newborn active and no dormant births" {
+ M.qa_activity_law=true;defer M.qa_activity_law=false;
+ for([_]f32{0,0.5,1})|p|{var cell=M.initialized(55);cell.cohorts[0]=.{.biomass=0.1,.support_mass=0.025,.lineage=1,.reproduction_credit=0.1,.protective_investment=p,.recovery_seconds=1440};var target=M.initialized(77);var stats:M.Stats=.{.next_lineage=2};const before=cell.cohorts[0];try std.testing.expect(M.reproduce(&cell,0,&target,&stats,false));const child=target.cohorts[0];try std.testing.expectEqual(p,child.protective_investment);try std.testing.expect(!child.inactive and child.recovery_seconds==0);try std.testing.expectEqual(@as(u64,1),child.parent);try std.testing.expectApproxEqAbs(before.biomass,cell.cohorts[0].biomass+child.biomass,1e-7);try std.testing.expectApproxEqAbs(before.support_mass,cell.cohorts[0].support_mass+child.support_mass,1e-7);
+ cell.cohorts[0].inactive=true;const frozen=cell;const oldstats=stats;try std.testing.expect(!M.reproduce(&cell,0,&target,&stats,true));try std.testing.expectEqualDeep(frozen,cell);try std.testing.expectEqualDeep(oldstats,stats);}
+ std.debug.print("LAYOUT old_cohort={} new_cohort={} old_cell={} new_cell={} extra_world_bytes={}\n",.{@sizeOf(Old.Cohort),@sizeOf(M.Cohort),@sizeOf(Old.Cell),@sizeOf(M.Cell),40962*(@sizeOf(M.Cell)-@sizeOf(Old.Cell))});
+}

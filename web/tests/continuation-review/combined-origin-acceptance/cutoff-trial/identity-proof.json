@@ -1,0 +1,15 @@
+{
+  "cases": [
+    {
+      "case": "wrong-threshold",
+      "exit": 1,
+      "no_scheduler_started": true
+    },
+    {
+      "case": "wrong-format",
+      "exit": 1,
+      "no_scheduler_started": true
+    }
+  ],
+  "restored_original_sha256": "657aa3dae9c4de91c22d8522a9ca64cea07bdcca8251eb69b2b2b9cf3f87fcec"
+}
