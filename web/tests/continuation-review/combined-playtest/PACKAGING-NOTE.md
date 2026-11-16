@@ -1,0 +1,1 @@
+First HTML-only patch attempt refused its exact source anchor because published HTML inline JavaScript is minified. No partial artifact was published. Corrected packaging emits the same tested shell with the ordinary index.js script slot, intentionally unminified, preserving actual index.js/WASM/preloads byte-for-byte. No linker/compiler needed.

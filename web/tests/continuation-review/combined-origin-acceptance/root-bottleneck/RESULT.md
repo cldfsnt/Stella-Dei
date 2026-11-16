@@ -1,0 +1,24 @@
+# Existing seven-day root bottleneck diagnosis
+
+No ecology extension or changed world. Reanalysed every recorded positive-root consumption-site row from e5db89c, then executed the actual unchanged rootDemand/height helpers on each lineage's final recorded cohort. Before execution the bounded test was declared to the coordinator: original environment versus depth-only hypothetical zero, no assigned tissue/resources, no scheduler continuation. This is a discriminating function test, not successful uptake or a player action. Actual source functions are byte-identical to frozen combined owner source (helper-source-proof.json); copied QA module otherwise contains existing observation hooks.
+
+## Three different failures, not one missing root benefit
+
+* Seed42 ordinary ID421: born tick378, alive day7. Root fraction1/32 but organization0 and support0 throughout all84 recorded mortality/growth rows. It grew and accumulated reproduction credit .00211145; growth allocates support as actual carbon growth × organization, so it cannot develop support without a later inherited organization change. Water depth34.938–135.590mm, T278.770–301.634K. Soil day7≈.999999kg/m². Its zero water demand is not evidence of depleted soil.
+* Seed42 Pioneer ID213: born tick63, last mortality row71, subsequently absent. Organization .0502883, root1/32, but support0 at birth and throughout15 rows. Depth exactly0, T305.015–307.701K, light .0845–.6177. No reproduction credit was earned. Source dependency: growth requires habitat or funded hydration; root funding requires already-paid support; support can only be added from actual growth. A support-free organized propagule on completely dry ground cannot bootstrap roots from its existing frond carbon under this law. This is a real developmental bottleneck, not proof that conductance or mutation frequency is wrong.
+* Seed1337 ordinary ID125: born tick218; paid support appears tick220 and remains positive through day7. All404 recorded rows are submerged27.403–27.752m, T293.176–293.427K. Real day7 B=.002681716kg C/m², organization .03505284, support=.00004618461, root fraction1/32, paid root tissue=.000001443269kg C/m². Actual architectural height≈.676mm. It is a genuine supported rooted organism, but it has no exposed demand. Current soil .998269kg/m² is not the limiting factor.
+* Seed1337 Pioneer produced no positive-root lineage. Preserve that negative.
+
+## Actual helper check
+
+All three actual final recorded demands are0. A depth-only dry counterfactual still gives0 for421 and213 (no support);125 gives2.1956758e−6kg water/m² per1440s at its recorded night light. This uses the last pre-growth trace, slightly different from the final saved endpoint; its support/root/height are shown explicitly in probe.log. No water was transferred by this test. At the actual endpoint, nominal conductance10/day and actual soil bound a dry1440s tissue flow to about2.4013e−7kg/m² before shared budget/representation/refinalization, roughly11% of corresponding night demand, less in daylight. This is a calculated upper capacity, not an observed hydration receipt.
+
+Source units: depth is km; producerHeightMeters is m; biomass/support/root tissue are kg C/m²; demand/credits are kg water/m² per interval. Actual rootDemand additionally rejects depth≥.2m, temperatures≤273.15 or≥355K, invalid light/tissue; geometry further makes demand0 when submerged. Support maintenance/mortality consume existing tissue. No new law was introduced.
+
+## Practical next step, not executed
+
+Do not blindly extend seven days or increase mutation frequency. The player already has actual paid rooted tissue in125, but deep water conceals its function. A future explicitly scoped existing-tool shoreline/transplant demonstration could use this exact lineage without assigning traits, only after checking an adjacent legal vacancy and resource/soil conditions. It is fragile: only .000181716kg C/m² above the .0025 viability cutoff, with sub-millimetre height and low root capacity; no survival promise, no favorable destination search. Merely draining all27.75m would test harsh exposure, not a gentle shoreline and not natural establishment. Parent requested no additional trial yet.
+
+The separate mechanical candidate worth discussion is paid developmental reallocation of existing frond carbon into inherited support during establishment, with explicit carbon/maintenance/opportunity cost. It would address213's bootstrap dependency rather than inventing roots or free water; it is NOT implemented, calibrated, or approved here. Existing supported125 demonstrates that current paid growth can already produce roots in suitable aquatic conditions.
+
+All original outcomes, signed historical seed arithmetic residuals, source law and saves remain untouched. Summary and probe source are compact; no duplicate world files, new simulation horizon, browser/device or global conservation claim.

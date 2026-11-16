@@ -1,0 +1,72 @@
+install
++- run test stderr
+ROW 42-ordinary budget=0.004 scenario=0 develop=false support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=3.803987e-5 dead_C=3.2874865e-5 respired=5.4837642e-8 net=5.110167e-6
+ROW 42-ordinary budget=0.004 scenario=0 develop=true support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=3.803987e-5 dead_C=3.2874865e-5 respired=5.4837642e-8 net=5.110167e-6
+ROW 42-ordinary budget=0.004 scenario=1 develop=false support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=2.4129551e-4 respired=4.0249827e-7 net=-2.41698e-4
+ROW 42-ordinary budget=0.004 scenario=1 develop=true support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=2.4129551e-4 respired=4.0249827e-7 net=-2.41698e-4
+ROW 42-ordinary budget=0.01 scenario=0 develop=false support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=9.4531104e-5 dead_C=8.21881e-5 respired=1.3709565e-7 net=1.2205914e-5
+ROW 42-ordinary budget=0.01 scenario=0 develop=true support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=9.4531104e-5 dead_C=8.21881e-5 respired=1.3709565e-7 net=1.2205914e-5
+ROW 42-ordinary budget=0.01 scenario=1 develop=false support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=6.0323864e-4 respired=1.0062455e-6 net=-6.042449e-4
+ROW 42-ordinary budget=0.01 scenario=1 develop=true support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=6.0323864e-4 respired=1.0062455e-6 net=-6.042449e-4
+ROW 42-ordinary budget=0.02 scenario=0 develop=false support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=1.871679e-4 dead_C=1.643762e-4 respired=2.741913e-7 net=2.2517517e-5
+ROW 42-ordinary budget=0.02 scenario=0 develop=true support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=1.871679e-4 dead_C=1.643762e-4 respired=2.741913e-7 net=2.2517517e-5
+ROW 42-ordinary budget=0.02 scenario=1 develop=false support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=1.2064773e-3 respired=2.012491e-6 net=-1.2084898e-3
+ROW 42-ordinary budget=0.02 scenario=1 develop=true support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=1.2064773e-3 respired=2.012491e-6 net=-1.2084898e-3
+ROW 42-pioneer budget=0.004 scenario=0 develop=false support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=2.5754233e-4 respired=4.2959914e-7 net=-2.5797193e-4
+ROW 42-pioneer budget=0.004 scenario=0 develop=true support=2.0115315e-4 roots=6.286036e-6 leaves=3.798847e-3 height=2.9174807e-3 maintenance_day=2.4138377e-5 demand=5.121098793723032e-6 credit=1.0476726400643332e-6 h=0.20457965 growth=9.8098535e-6 dead_C=2.1227686e-4 respired=7.559588e-7 net=-2.0322297e-4
+ROW 42-pioneer budget=0.004 scenario=1 develop=false support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=2.5754233e-4 respired=4.2959914e-7 net=-2.5797193e-4
+ROW 42-pioneer budget=0.004 scenario=1 develop=true support=2.0115315e-4 roots=6.286036e-6 leaves=3.798847e-3 height=2.9174807e-3 maintenance_day=2.4138377e-5 demand=6.331411811212698e-6 credit=1.0476726400643332e-6 h=0.1654722 growth=1.8292805e-5 dead_C=2.2119198e-4 respired=7.7082984e-7 net=-2.0367e-4
+ROW 42-pioneer budget=0.01 scenario=0 develop=false support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=6.438557e-4 respired=1.0739977e-6 net=-6.449297e-4
+ROW 42-pioneer budget=0.01 scenario=0 develop=true support=5.028828e-4 roots=1.5715088e-5 leaves=9.497117e-3 height=5.162028e-3 maintenance_day=6.0345938e-5 demand=1.2802746356565161e-5 credit=2.619181335128394e-6 h=0.20457964 growth=2.4363399e-5 dead_C=5.391253e-4 respired=1.9041969e-6 net=-5.166661e-4
+ROW 42-pioneer budget=0.01 scenario=1 develop=false support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=6.438557e-4 respired=1.0739977e-6 net=-6.449297e-4
+ROW 42-pioneer budget=0.01 scenario=1 develop=true support=5.028828e-4 roots=1.5715088e-5 leaves=9.497117e-3 height=5.162028e-3 maintenance_day=6.0345938e-5 demand=1.58285287519296e-5 credit=2.619181335128394e-6 h=0.16547218 growth=4.5429915e-5 dead_C=5.618071e-4 respired=1.9420318e-6 net=-5.183192e-4
+ROW 42-pioneer budget=0.02 scenario=0 develop=false support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=1.2877114e-3 respired=2.1479955e-6 net=-1.2898594e-3
+ROW 42-pioneer budget=0.02 scenario=0 develop=true support=1.0057656e-3 roots=3.1430176e-5 leaves=1.8994235e-2 height=6.9423914e-3 maintenance_day=1.20691875e-4 demand=2.5605492713130322e-5 credit=5.238362670390015e-6 h=0.20457964 growth=4.822761e-5 dead_C=1.0916189e-3 respired=3.830693e-6 net=-1.047222e-3
+ROW 42-pioneer budget=0.02 scenario=1 develop=false support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=1.2877114e-3 respired=2.1479955e-6 net=-1.2898594e-3
+ROW 42-pioneer budget=0.02 scenario=1 develop=true support=1.0057656e-3 roots=3.1430176e-5 leaves=1.8994235e-2 height=6.9423914e-3 maintenance_day=1.20691875e-4 demand=3.16570575038592e-5 credit=5.238362670390015e-6 h=0.16547218 growth=8.992851e-5 dead_C=1.1376054e-3 respired=3.9074016e-6 net=-1.0515843e-3
+ROW 1337-ordinary budget=0.004 scenario=0 develop=false support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=2.135709e-5 dead_C=1.6128284e-5 respired=2.690314e-8 net=5.2019022e-6
+ROW 1337-ordinary budget=0.004 scenario=0 develop=true support=1.4021134e-4 roots=4.3816044e-6 leaves=3.8597889e-3 height=1.8709871e-3 maintenance_day=1.7119484e-5 demand=0e0 credit=0e0 h=0 growth=2.0606909e-5 dead_C=1.6126889e-5 respired=3.1188551e-7 net=4.168134e-6
+ROW 1337-ordinary budget=0.004 scenario=1 develop=false support=0e0 roots=0e0 leaves=4e-3 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=2.4435538e-4 respired=4.0760236e-7 net=-2.4476298e-4
+ROW 1337-ordinary budget=0.004 scenario=1 develop=true support=1.4021134e-4 roots=4.3816044e-6 leaves=3.8597889e-3 height=1.8709871e-3 maintenance_day=1.7119484e-5 demand=6.4329814631491916e-6 credit=7.302674019715733e-7 h=0.11351927 growth=9.861775e-6 dead_C=2.2088515e-4 respired=6.5343704e-7 net=-2.1167682e-4
+ROW 1337-ordinary budget=0.01 scenario=0 develop=false support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=5.307235e-5 dead_C=4.0320476e-5 respired=6.725746e-8 net=1.26846135e-5
+ROW 1337-ordinary budget=0.01 scenario=0 develop=true support=3.5052834e-4 roots=1.0954011e-5 leaves=9.649471e-3 height=3.29926e-3 maintenance_day=4.2798707e-5 demand=0e0 credit=0e0 h=0 growth=5.120877e-5 dead_C=4.031769e-5 respired=7.797146e-7 net=1.0111369e-5
+ROW 1337-ordinary budget=0.01 scenario=1 develop=false support=0e0 roots=0e0 leaves=1e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=6.108888e-4 respired=1.0190065e-6 net=-6.119078e-4
+ROW 1337-ordinary budget=0.01 scenario=1 develop=true support=3.5052834e-4 roots=1.0954011e-5 leaves=9.649471e-3 height=3.29926e-3 maintenance_day=4.2798707e-5 demand=1.6082452299694222e-5 credit=1.825668429411563e-6 h=0.11351928 growth=2.449844e-5 dead_C=5.5818097e-4 respired=1.6435479e-6 net=-5.353261e-4
+ROW 1337-ordinary budget=0.02 scenario=0 develop=false support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=1.050774e-4 dead_C=8.064095e-5 respired=1.3451492e-7 net=2.4301931e-5
+ROW 1337-ordinary budget=0.02 scenario=0 develop=true support=7.010567e-4 roots=2.1908021e-5 leaves=1.9298943e-2 height=4.425328e-3 maintenance_day=8.5597414e-5 demand=0e0 credit=0e0 h=0 growth=1.013875e-4 dead_C=8.063538e-5 respired=1.5594292e-6 net=1.9192696e-5
+ROW 1337-ordinary budget=0.02 scenario=1 develop=false support=0e0 roots=0e0 leaves=2e-2 height=0e0 maintenance_day=0e0 demand=0e0 credit=0e0 h=0 growth=0e0 dead_C=1.2217776e-3 respired=2.038013e-6 net=-1.2238156e-3
+ROW 1337-ordinary budget=0.02 scenario=1 develop=true support=7.010567e-4 roots=2.1908021e-5 leaves=1.9298943e-2 height=4.425328e-3 maintenance_day=8.5597414e-5 demand=3.2164904599388444e-5 credit=3.651336858845331e-6 h=0.11351928 growth=4.8507005e-5 dead_C=1.1257675e-3 respired=3.3027848e-6 net=-1.0805633e-3
+MOTILITY32 mobility=0.080143966 feeding=0.09967989 mobile_survivors=21 immobile_survivors=0 moves=21 inherited_births=21
+GRAZING feeding=0.08096781 predator 0.01->0.03207169, disabled=0.004191701, preyfree=0.0036231964, prey=0.029577179, eaten=0.0825019930198323
+FOOD_WEB120 biomass=0.19443822 births=47 gen=2 grazed=0.8482479465164943 cell_bytes=368
+GRAZING_STEP seconds=60 predator=0.032286324 eaten=0.0831326520795983
+GRAZING_STEP seconds=1440 predator=0.032178458 eaten=0.08284892274605227
+GRAZING_STEP seconds=3600 predator=0.03207169 eaten=0.0825019930198323
+PRODUCER32 expressed=21
+PRODUCER_CONTROL open_support=0.9491554 open_flat=0.98685175 crowded_support=0.72340184 crowded_flat=0.23939754
+EVOLVED_FORMS observed={ true, true, true, true, true, true } counts={ 332390, 91257, 69568, 32424, 587, 20087 }
+FILM_MATRIX depth_m=0 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.001 variant=2 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.01 variant=2 biomass=0 fixed=0.017748503014445305
+FILM_MATRIX depth_m=0.049999997 variant=0 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=1 biomass=0 fixed=0
+FILM_MATRIX depth_m=0.049999997 variant=2 biomass=0.009404684 fixed=0.07699328754097223
+FILM_MATRIX depth_m=0.19000001 variant=0 biomass=0.6857268 fixed=1.0396779254078865
+FILM_MATRIX depth_m=0.19000001 variant=1 biomass=0.6605191 fixed=1.0023213624954224
+FILM_MATRIX depth_m=0.19000001 variant=2 biomass=0.86911434 fixed=0.9246637225151062
+FILM_MATRIX depth_m=1 variant=0 biomass=0.92377263 fixed=0.9222910925745964
+FILM_MATRIX depth_m=1 variant=1 biomass=0.90870816 fixed=0.9155896380543709
+FILM_MATRIX depth_m=1 variant=2 biomass=0.8812248 fixed=0.9056121408939362
+RARE_MUTATION n=262144 events=524 positive=250 negative=274 traits={ 88, 92, 87, 100, 77, 80 } positive_traits={ 46, 46, 38, 47, 36, 37 }
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=297 actual_mass=0.06365979 thermal_reset_control=0.09157588
+RARE_THERMAL seed=14176 offspring_optimum=304.541750 environment=303 actual_mass=0.10268831 thermal_reset_control=0.09157588
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=297 actual_mass=0.09120823 thermal_reset_control=0.08310292
+RARE_THERMAL seed=17598 offspring_optimum=295.204100 environment=303 actual_mass=0.05701171 thermal_reset_control=0.08310292
+WIND_MUTATION keys8192 positive4088 negative4104 config_bytes24
+WIND_LAYOUT cohort_bytes88 cell_bytes368 receipt_bytes104

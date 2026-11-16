@@ -1,0 +1,15 @@
+const std=@import("std");const M=@import("simulation/microbes.zig");
+pub fn main() !void {
+{const c=M.Cohort{.aerial_allocation=0.0,.root_fraction=0.03125,.biomass=0.005177270621061325,.organization=0.0,.support_mass=0.0,.optimum=304.3758544921875,.efficiency=0.9597649574279785,.structure=0.07890113443136215,.feeding=0.0,.mobility=0.0,.relocations=0,.last_from=0,.last_to=0,.last_move_time=0.0,.lifetime_grazed=0.0,.generation=1,.lineage=421,.parent=188,.reproduction_credit=0.0021114456467330456};var e=M.Environment{.temperature=282.2439880371094,.depth_km=9.305283310823143e-05,.light=0.0,.carbon_available=0,.oxygen_carbon_capacity=0};
+const real=M.rootDemand(c,e,1440);const height=M.producerHeightMeters(c);e.depth_km=0;const dry=M.rootDemand(c,e,1440);
+std.debug.print("42-ordinary id={d} height_m={e} root_tissue={e} actual_demand={e} hypothetical_dry_demand={e}\n",.{c.lineage,height,c.support_mass*c.root_fraction,real,dry});
+try std.testing.expectEqual(@as(f64,0),real);try std.testing.expect((dry>0)==(c.support_mass>0));}
+{const c=M.Cohort{.aerial_allocation=0.5414043068885803,.root_fraction=0.03125,.biomass=0.002508357400074601,.organization=0.05028828606009483,.support_mass=0.0,.optimum=300.9454650878906,.efficiency=0.9450716972351074,.structure=0.0,.feeding=0.04878711700439453,.mobility=0.09471913427114487,.relocations=0,.last_from=0,.last_to=0,.last_move_time=0.0,.lifetime_grazed=0.0,.generation=1,.lineage=213,.parent=137,.reproduction_credit=0.0};var e=M.Environment{.temperature=305.01483154296875,.depth_km=0.0,.light=0.08451157063245773,.carbon_available=0,.oxygen_carbon_capacity=0};
+const real=M.rootDemand(c,e,1440);const height=M.producerHeightMeters(c);e.depth_km=0;const dry=M.rootDemand(c,e,1440);
+std.debug.print("42-pioneer id={d} height_m={e} root_tissue={e} actual_demand={e} hypothetical_dry_demand={e}\n",.{c.lineage,height,c.support_mass*c.root_fraction,real,dry});
+try std.testing.expectEqual(@as(f64,0),real);try std.testing.expect((dry>0)==(c.support_mass>0));}
+{const c=M.Cohort{.aerial_allocation=0.0,.root_fraction=0.03125,.biomass=0.002680892124772072,.organization=0.0350528359413147,.support_mass=4.608109884429723e-05,.optimum=304.0870361328125,.efficiency=1.043702483177185,.structure=0.0640663430094719,.feeding=0.07463599741458893,.mobility=0.0,.relocations=0,.last_from=0,.last_to=0,.last_move_time=0.0,.lifetime_grazed=0.0024659265764057636,.generation=1,.lineage=125,.parent=87,.reproduction_credit=0.0022035595029592514};var e=M.Environment{.temperature=293.3701477050781,.depth_km=0.0277524683624506,.light=0.0,.carbon_available=0,.oxygen_carbon_capacity=0};
+const real=M.rootDemand(c,e,1440);const height=M.producerHeightMeters(c);e.depth_km=0;const dry=M.rootDemand(c,e,1440);
+std.debug.print("1337-ordinary id={d} height_m={e} root_tissue={e} actual_demand={e} hypothetical_dry_demand={e}\n",.{c.lineage,height,c.support_mass*c.root_fraction,real,dry});
+try std.testing.expectEqual(@as(f64,0),real);try std.testing.expect((dry>0)==(c.support_mass>0));}
+}
